@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kbstar.mapper.GymMapper">
+
+    <!-- insert-->
+    <insert id="insert" parameterType="gym">
+        INSERT INTO Gym (
+            gymNo,
+            gymMasterCk,
+            gymEmail,
+            gymPwd,
+            gymName,
+            gymPhone,
+            gymZipcode,
+            gymAddress1,
+            gymAddress2,
+            gymAddress3,
+            gymRegiimgname,
+            gymReginumber,
+            gymTitle,
+            gymContents,
+            gymMarketing,
+            Status,
+            approvedAdmID
+        )
+        VALUES (
+                   #{gymNo},
+                   #{gymMasterCk},
+                   #{gymEmail},
+                   #{gymPwd},
+                   #{gymName},
+                   #{gymPhone},
+                   #{gymZipcode},
+                   #{gymAddress1},
+                   #{gymAddress2},
+                   #{gymAddress3},
+                   #{gymRegiimgname},
+                   #{gymReginumber},
+                   #{gymTitle},
+                   #{gymContents},
+                   #{gymMarketing},
+                   #{Status},
+                   #{approvedAdmID}
+               )
+    </insert>
+    <!-- UPDATE -->
+    <update id="update" parameterType="gym">
+        UPDATE Gym
+        SET
+            gymMasterCk = #{gymMasterCk},
+            gymEmail = #{gymEmail},
+            gymPwd = #{gymPwd},
+            gymName = #{gymName},
+            gymPhone = #{gymPhone},
+            gymZipcode = #{gymZipcode},
+            gymAddress1 = #{gymAddress1},
+            gymAddress2 = #{gymAddress2},
+            gymAddress3 = #{gymAddress3},
+            gymRegiimgname = #{gymRegiimgname},
+            gymReginumber = #{gymReginumber},
+            gymTitle = #{gymTitle},
+            gymContents = #{gymContents},
+            gymMarketing = #{gymMarketing},
+            Status = #{Status},
+            approvedAdmID = #{approvedAdmID}
+        WHERE
+            gymNo = #{gymNo}
+    </update>
+
+    <!-- DELETE -->
+    <delete id="delete" parameterType="int">
+        DELETE FROM Gym
+        WHERE
+            gymNo = #{gymNo}
+    </delete>
+
+    <!-- SELECT -->
+    <select id="select" parameterType="int" resultType="gym">
+        SELECT
+            gymNo,
+            gymMasterCk,
+            gymEmail,
+            gymPwd,
+            gymName,
+            gymPhone,
+            gymZipcode,
+            gymAddress1,
+            gymAddress2,
+            gymAddress3,
+            gymRegiimgname,
+            gymReginumber,
+            gymTitle,
+            gymContents,
+            gymMarketing,
+            Status,
+            approvedAdmID
+        FROM
+            Gym
+        WHERE
+            gymNo = #{gymNo}
+    </select>
+    <!-- SELECT BY typeNo 운동종목으로 select 하기  -->
+    <select id="selectByTypeNo" parameterType="int" resultType="gym">
+        SELECT
+            g.gymNo,
+            g.gymMasterCk,
+            g.gymEmail,
+            g.gymPwd,
+            g.gymName,
+            g.gymPhone,
+            g.gymZipcode,
+            g.gymAddress1,
+            g.gymAddress2,
+            g.gymAddress3,
+            g.gymRegiimgname,
+            g.gymReginumber,
+            g.gymTitle,
+            g.gymContents,
+            g.gymMarketing,
+            g.Status,
+            g.approvedAdmID
+        FROM
+            Gym g
+                JOIN
+            Gymtype gt ON g.gymNo = gt.gymNo
+        WHERE
+            gt.typeNo = #{typeNo}
+    </select>
+
+    <!--    1: 헬스                workout                             wo-->
+<!--    2: PT.                  personalTraining.         pt-->
+<!--    3: 크로스핏       crossfit.                              cr-->
+<!--    4: 요가                yoga.                                    yo-->
+<!--    5: 필라테스       pilates.                                pi-->
+<!--    6: 골프                golf.                                       go-->
+<!--    7: 수영               swimming                          sw-->
+    <!--  헬스장만 조회하기  -->
+<!--    <select id="selectWorkout" parameterType="int" resultType="com.example.dto.GymDTO">-->
+<!--        SELECT g.gymNo, g.gymMasterCk, g.gymEmail, g.gymPwd, g.gymName, g.gymPhone,-->
+<!--               g.gymZipcode, g.gymAddress1, g.gymAddress2, g.gymAddress3, g.gymRegiimgname,-->
+<!--               g.gymReginumber, g.gymTitle, g.gymContents, g.gymMarketing, g.Status,-->
+<!--               g.approvedAdmID-->
+<!--        FROM Gym g-->
+<!--                 JOIN Gymtype gt ON g.gymNo = gt.gymNo-->
+<!--        WHERE gt.typeNo = 1-->
+<!--    </select>-->
+
+
+
+</mapper>

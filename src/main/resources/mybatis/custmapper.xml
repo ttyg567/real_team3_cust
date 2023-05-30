@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kbstar.mapper.CustMapper">
+    <!-- 이메일로 조회 -->
+    <select id="select" parameterType="String" resultType="cust">
+        SELECT * FROM cust WHERE custEmail=#{custEmail}
+    </select>
+    <!-- 모든 유저 추출 -->
+    <select id="selectall" resultType="cust">
+        SELECT * FROM cust
+    </select>
+    <!-- insert -->
+    <insert id="insert" parameterType="cust">
+        INSERT INTO cust (custNo, custEmail, custPwd, custName, custPhone, custBirth, custGender, custSido, custSigungu, sportsType,
+                          sportsClasstype, custStatus, custSocialmedia, custSnstype, custJoindate)
+        VALUES (cust_seq.NEXTVAL, #{custEmail}, #{custPwd}, #{custName}, #{custPhone}, #{custBirth}, #{custGender},
+        #{custSido}, #{custSigungu}, #{sportsType}, #{sportsClasstype},'1', #{custSocialmedia}, #{custSnstype}, sysdate)
+    </insert>
+    <!-- update (비밀번호와 관심컬럼은 다른 함수로) -->
+    <update id="update" parameterType="cust">
+        UPDATE cust SET custName=#{custName}, custPhone=#{custPhone}, custBirth=#{custBirth},
+                        custGender=#{custGender}
+        WHERE custEmail=#{custEmail}
+    </update>
+    <!-- 이메일로 삭제 -->
+    <delete id="delete" parameterType="cust">
+        DELETE FROM cust WHERE custEmail=#{custEmail}
+    </delete>
+</mapper>
