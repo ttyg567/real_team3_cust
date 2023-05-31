@@ -8,9 +8,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @Slf4j
 @SpringBootTest
-class SelectImgTest {
+public class selectIMGTest {
+
     @Autowired
     GymService service;
+
     @Test
     void contextLoads() {
         try {
@@ -21,3 +23,4 @@ class SelectImgTest {
     }
 
 }
+

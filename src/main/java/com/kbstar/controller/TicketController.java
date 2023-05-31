@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -19,6 +20,8 @@ public class TicketController {
     String dir = "ticket/";
     @Autowired
     GymService gymService;
+
+
     @RequestMapping("/all")
     public String all(Model model) throws Exception {
         List<Gym> list =  null;
@@ -120,17 +123,43 @@ public class TicketController {
 
     @RequestMapping("/detail")
     public String detail(Model model, @RequestParam("gymNo") int gymNo) throws Exception {
-        Gym gym = null;
-
         log.info("-------------------------------------");
+        log.info("디테일 화면 진입 전");
+        Gym gym = null;
         gym = gymService.get(gymNo);
-        gym.setGymImgname(gymService.selectImg(gymNo).getGymImgname());
-        gym.setGymImgdetailCk(gymService.selectImg(gymNo).getGymImgdetailCk());
+
+
+        // 이미지 추출
+        List<Gym> gym_list = null;
+        try {
+            gym_list = gymService.selectImg(gymNo);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        String[] gdetail_center_img = null; // 디테일에서 top에 위치한 센터 이미지
+        String[] gdetail_detail_img = null; // 디테일 화면에서 디테일 이미지
+        List<String> centerImages = new ArrayList<>(); // center 이미지를 저장할 리스트
+        List<String> detailImages = new ArrayList<>(); // detail 이미지를 저장할 리스트
+        for(Gym item : gym_list){
+            // 디테일 이미지가 아니면
+            if(item.getGymImgdetailCk().equals("0")){
+                centerImages.add(item.getGymImgname()); // center 이미지를 리스트에 추가
+            } else {  // 디테일 이미지 이면
+                detailImages.add(item.getGymImgname()); // center 이미지를 리스트에 추가
+            }
+        }
+
+        gdetail_center_img = centerImages.toArray(new String[0]); // 리스트를 배열로 변환
+        gdetail_detail_img = detailImages.toArray(new String[0]); // 리스트를 배열로 변환
+
+        log.info("센터 이미지 추출: " + Arrays.toString(gdetail_center_img));
+        log.info("디테일 이미지 추출: " + Arrays.toString(gdetail_detail_img));
 
         model.addAttribute("gdetail", gym);
+        model.addAttribute("gdetail_center_img", gdetail_center_img);
+        model.addAttribute("gdetail_detail_img", gdetail_detail_img);
         model.addAttribute("center", dir + "ticket_detail");
         return "index";
     }
-
-
 }

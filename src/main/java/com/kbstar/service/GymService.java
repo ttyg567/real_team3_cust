@@ -47,7 +47,7 @@ public class GymService implements KBService<Integer, Gym> {
     }
 
 
-    public Gym selectImg(Integer i){
+    public List<Gym> selectImg(Integer i){
         return mapper.selectimg(i);
     }
 }
