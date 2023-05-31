@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kbstar.mapper.GroupboardMapper">
+    <!-- 개설한 회원의 myjoin 조회하기 & 그러나 이미 신청한 회원이 있는데, 거기에 누군가 또
+    추가하는거라면 업데이트 쳐주기 -->
+    <select id="getWithMembers" resultType="groupboard">
+        SELECT
+            gb.groupboardNo, gb.custNo, gb.ticketNo,
+            gb.groupboardTitle, gb.groupboardContents,
+            gb.groupboardImgname, gb.groupboardImgpath,
+            gb.categoryNo, gb.expectMember, gb.applicationMember, gb.confirmMember,
+            gb.groupboardStatus, gb.boardViews, gb.writeDate,
+            COUNT(gm.custNo) AS applicationMemberCount
+            FROM
+            groupboard gb
+                LEFT JOIN
+            GBMember gm ON gm.groupboardNo = gb.groupboardNo
+            GROUP BY
+            gb.groupboardNo, gb.custNo, gb.ticketNo,
+            gb.groupboardTitle, gb.groupboardContents,
+            gb.groupboardImgname, gb.groupboardImgpath,
+            gb.categoryNo, gb.expectMember, gb.applicationMember, gb.confirmMember,
+            gb.groupboardStatus, gb.boardViews, gb.writeDate
+    </select>
+    <!-- 게시글번호로 1건만 조회 : 정상 -->
+    <select id="select" parameterType="Integer" resultType="groupboard">
+        SELECT * FROM groupboard WHERE groupboardNo=#{groupboardNo}
+    </select>
+    <!-- 모든 게시글 추출  : 정상 -->
+    <select id="selectall" resultType="groupboard">
+        SELECT * FROM groupboard
+    </select>
+    <!-- insert : 게시글 작성  : 정상 -->
+    <insert id="insert" parameterType="groupboard">
+        INSERT INTO groupboard (groupboardNo, custNo, ticketNo
+                                , groupboardTitle, groupboardContents
+                                , groupboardImgname, groupboardImgpath
+                                , categoryNo, expectMember, applicationMember
+                                , confirmMember, groupboardStatus, boardViews
+                                , writeDate)
+        VALUES (groupboard_seq.NEXTVAL, #{custNo}, #{ticketNo}
+                , #{groupboardTitle}, #{groupboardContents}
+                , #{groupboardImgname}, #{groupboardImgpath}
+                , #{categoryNo}, #{expectMember}, #{applicationMember}
+                , #{confirmMember}, #{groupboardStatus}, #{boardViews}
+                , SYSDATE
+                )
+    </insert>
+    <!-- 개설회원이 게시된 글에서 수정가능한 항목 7가지. : 정상 -->
+    <update id="update" parameterType="groupboard">
+        UPDATE groupboard SET groupboardTitle=#{groupboardTitle}
+                              , groupboardContents=#{groupboardContents}
+                              , groupboardImgname=#{groupboardImgname}
+                            , groupboardImgpath=#{groupboardImgpath}
+                            , categoryNo=#{categoryNo}
+                            , expectMember=#{expectMember}
+                            , groupboardStatus=#{groupboardStatus}
+        WHERE groupboardNo=#{groupboardNo}
+    </update>
+    <!-- 게시글번호로 게시글 삭제 : 정상 -->
+    <delete id="delete" parameterType="Integer">
+        DELETE FROM groupboard WHERE groupboardNo=#{groupboardNo}
+    </delete>
+</mapper>

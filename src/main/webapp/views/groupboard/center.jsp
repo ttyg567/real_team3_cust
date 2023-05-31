@@ -7,19 +7,18 @@
         height: 50%;
         border: #5d6072 solid 1px;
     }
-     .emPage__detailsBlog{border-radius: 30px 30px 30px 30px;}
-      .emheader_cover{border-radius: 30px 30px 30px 30px;}
+
 </style>
 <!-- header 구간  -->
 <jsp:include page="/views/header.jsp" />
 <!-- Start input_SaerchDefault -->
 <section class="padding-t-70 change_colorSearch">
     <div class="title_welcome">
-                        <span class="color-secondary size-16 weight-500"><!-- 입력 예 ${logincust} -->
+                        <span class="color-secondary size-16 weight-500">
                             성동구
                              <i class="tio-chevron_down -arrwo"></i>
                         </span>
-        <p class="size-13 weight-400 color-text mb-0" style="font-size: 5px"><!-- 입력 예 ${logincust.custname} -->
+        <p class="size-13 weight-400 color-text mb-0" style="font-size: 5px">
             인보님 관심지역에 개설된 조인을 보여드렸어요
         </p>
     </div>
@@ -122,7 +121,7 @@
             <h3 class="size-18 weight-500 color-secondary m-0">나의 관심지역에 개설된 조인</h3>
             <p class="size-13 color-text m-0 pt-1">거리가 가까울 수록 포기와는 거리가 멀어져요!</p>
         </div>
-        <a href="#" class="d-block color-blue size-14 m-0 hover:color-blue">더보기</a>
+        <a href="/groupboard/groupboard_list" class="d-block color-blue size-14 m-0 hover:color-blue">더보기</a>
     </div>
     <!-- Swiper -->
     <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe">
@@ -237,7 +236,7 @@
             <h3 class="size-18 weight-500 color-secondary m-0">선호운동이 비슷한 회원들이 만든 조인</h3>
             <p class="size-13 color-text m-0 pt-1">운동효능감까지 Up해요!</p>
         </div>
-        <a href="#" class="d-block color-blue size-14 m-0 hover:color-blue">더보기</a>
+        <a href="/groupboard/groupboard_list" class="d-block color-blue size-14 m-0 hover:color-blue">더보기</a>
     </div>
     <!-- Swiper -->
     <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe">
