@@ -120,6 +120,43 @@
         WHERE gymNo = #{gymNo}
         AND gymMasterCk = '1'
     </select>
-
+    <select id="selectwithmarketing" resultType="gym">
+        SELECT
+            gymNo,
+            gymName,
+            gymPhone,
+            gymAddress1,
+            gymAddress2,
+            gymAddress3,
+            gymTitle,
+            gymMarketing,
+            Status,
+            approvedAdmID
+        FROM
+            Gym
+        WHERE
+            gymMarketing = '1'
+    </select>
+    <select id="selectTicketsWithDiscount" resultType="ticket">
+        SELECT
+            ticketNo,
+            gymNo,
+            ticketType,
+            ticketMonth,
+            ticketNumber,
+            ticketJoin,
+            ticketTotal,
+            ticketSales,
+            ticketCost,
+            ticketDiscount,
+            ticketPrice,
+            ticketImgname,
+            sportsType,
+            sportsClasstype
+        FROM
+            Ticket
+        WHERE
+            ticketDiscount IS NOT NULL
+    </select>
 
 </mapper>

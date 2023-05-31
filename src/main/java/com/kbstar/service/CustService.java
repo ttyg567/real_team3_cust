@@ -2,6 +2,7 @@ package com.kbstar.service;
 
 import com.kbstar.dto.Cust;
 import com.kbstar.dto.Gym;
+import com.kbstar.dto.Ticket;
 import com.kbstar.frame.KBService;
 import com.kbstar.mapper.CustMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -42,9 +43,18 @@ public class CustService implements KBService<String, Cust> {
         return mapper.selectall();
     }
 
-
     @Override
     public List<Gym> getByTypeNo(Integer typeNo) throws Exception {
         return mapper.selectByTypeNo(typeNo);
+    }
+
+    @Override
+    public Ticket selectwitDiscount(Ticket ticket) {
+        return null;
+    }
+
+    @Override
+    public Ticket selectwitDiscount(Integer i) {
+        return null;
     }
 }

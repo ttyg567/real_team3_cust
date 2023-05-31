@@ -3,7 +3,7 @@ package com.kbstar.service;
 import com.kbstar.dto.Gym;
 import com.kbstar.dto.Ticket;
 import com.kbstar.frame.KBService;
-import com.kbstar.mapper.GymMapper;
+import com.kbstar.mapper.TicketMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,39 +12,37 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class GymService implements KBService<Integer, Gym> {
-
+public class TicketService implements KBService<Integer, Ticket>{
     @Autowired
-    GymMapper mapper;
-
+    TicketMapper mapper;
     @Override
-    public void register(Gym gym) throws Exception {
-        mapper.insert(gym);
-    }
-
-
-    @Override
-    public void remove(Integer i) throws Exception {
-        mapper.delete(i);
+    public void register(Ticket ticket) throws Exception {
+        mapper.insert(ticket);
     }
 
     @Override
-    public void modify(Gym gym) throws Exception {
-        mapper.update(gym);
+    public void remove(Integer integer) throws Exception {
+        mapper.delete(integer);
     }
 
     @Override
-    public Gym get(Integer i) throws Exception {
-        return mapper.select(i);
+    public void modify(Ticket ticket) throws Exception {
+        mapper.update(ticket);
     }
 
     @Override
-    public List<Gym> get() throws Exception {
+    public Ticket get(Integer integer) throws Exception {
+        return mapper.select(integer);
+    }
+
+    @Override
+    public List<Ticket> get() throws Exception {
         return mapper.selectall();
     }
+
     @Override
     public List<Gym> getByTypeNo(Integer typeNo) throws Exception {
-        return mapper.selectByTypeNo(typeNo);
+        return null;
     }
 
     @Override
@@ -58,7 +56,7 @@ public class GymService implements KBService<Integer, Gym> {
     }
 
 
-    public List<Gym> selectImg(Integer i){
-        return mapper.selectimg(i);
+    public void selectwitDiscount() {
+        mapper.selectTicketsWithDiscount();
     }
 }
