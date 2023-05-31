@@ -44,7 +44,7 @@ public class GroupboardService implements KBService<Integer, Groupboard> {
     public List<Groupboard> get() throws Exception {
         return mapper.selectall();
     }
-    //
+    // 조인을 신청한 인원 가져오기
     public List<Groupboard> getWithMembers() {
         // GroupBoard 테이블과 GBMember 테이블을 조인하여 데이터를 가져옵니다.
         List<Groupboard> groupboardList = mapper.getWithMembers();
@@ -57,5 +57,13 @@ public class GroupboardService implements KBService<Integer, Groupboard> {
         }
 
         return groupboardList;
+    }
+    // 내가 참여한 조인 가져오기
+    public List<Groupboard> getMyJoin(Integer custNo) throws Exception {
+        return mapper.getMyJoin(custNo);
+    }
+    // 내가 개설한 조인 가져오기
+    public List<Groupboard> getMyCreateJoin(Integer custNo) throws Exception {
+        return mapper.getMyCreateJoin(custNo);
     }
 }

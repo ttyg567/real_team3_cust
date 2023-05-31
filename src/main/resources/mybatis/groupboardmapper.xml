@@ -3,8 +3,31 @@
         PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kbstar.mapper.GroupboardMapper">
-    <!-- 개설한 회원의 myjoin 조회하기 & 그러나 이미 신청한 회원이 있는데, 거기에 누군가 또
-    추가하는거라면 업데이트 쳐주기 -->
+    <!--  getMyJoin : 로그인한 내가 참여한 조인 가져오기  -->
+    <select id="getMyJoin"  parameterType="Integer"  resultType="groupboard">
+        SELECT gb.GROUPBOARDNO, gb.CUSTNO, gb.TICKETNO, gb.GROUPBOARDTITLE, gb.GROUPBOARDcontents, gb.groupboardImgname, gb.EXPECTMEMBER, gb.APPLICATIONMEMBER, gb.CONFIRMMEMBER,
+               gb.GROUPBOARDSTATUS, gb.BOARDVIEWS, gb.WRITEDATE,
+               cu.custno AS applycustno, cu.custName, gm.memberStatus, COUNT(gm.custno) AS applicationMemberCount
+        FROM groupboard gb
+                 JOIN gbmember gm ON gb.GROUPBOARDNO = gm.GROUPBOARDNO
+                 JOIN cust cu ON gm.custno = cu.custno
+        WHERE gm.custNo = #{custNo}
+        GROUP BY gb.GROUPBOARDNO, gb.CUSTNO, gb.TICKETNO, gb.GROUPBOARDTITLE, gb.GROUPBOARDcontents, gb.groupboardImgname, gb.EXPECTMEMBER, gb.APPLICATIONMEMBER, gb.CONFIRMMEMBER,
+                 gb.GROUPBOARDSTATUS, gb.BOARDVIEWS, gb.WRITEDATE, cu.custno, cu.custName, gm.memberStatus
+    </select>
+    <!--  getMyCreateJoin : 로그인한 내가 개설한 조인 가져오기  -->
+    <select id="getMyCreateJoin"  parameterType="Integer"  resultType="groupboard">
+        SELECT gb.GROUPBOARDNO, gb.CUSTNO, gb.TICKETNO, gb.GROUPBOARDTITLE, gb.GROUPBOARDcontents, gb.groupboardImgname, gb.EXPECTMEMBER, gb.APPLICATIONMEMBER, gb.CONFIRMMEMBER,
+               gb.GROUPBOARDSTATUS, gb.BOARDVIEWS, gb.WRITEDATE,
+               cu.custno AS applycustno, cu.custName, gm.memberStatus, COUNT(gm.custno) AS applicationMemberCount
+        FROM groupboard gb
+                 JOIN gbmember gm ON gb.GROUPBOARDNO = gm.GROUPBOARDNO
+                 JOIN cust cu ON gm.custno = cu.custno
+        WHERE gb.custNo = #{custNo}
+        GROUP BY gb.GROUPBOARDNO, gb.CUSTNO, gb.TICKETNO, gb.GROUPBOARDTITLE, gb.GROUPBOARDcontents, gb.groupboardImgname, gb.EXPECTMEMBER, gb.APPLICATIONMEMBER, gb.CONFIRMMEMBER,
+                 gb.GROUPBOARDSTATUS, gb.BOARDVIEWS, gb.WRITEDATE, cu.custno, cu.custName, gm.memberStatus
+    </select>
+    <!--  getWithMembers : 조인을 참여한 회원의 수 등 가져오기  -->
     <select id="getWithMembers" resultType="groupboard">
         SELECT
             gb.groupboardNo, gb.custNo, gb.ticketNo,

@@ -42,4 +42,10 @@ public class Groupboard {
         this.boardViews = boardViews;
         this.writeDate = writeDate;
     }
+
+    // getMyJoin으로 가져올 때 보여줄 다른 테이블 칼럼들 적음
+    private int applycustno; // 조인을 신청한 회원번호 : xml에서 별칭으로 정한 칼럼명 사용.
+    private String custName; // 조인을 신청한 회원 이름(닉네임) ㅇ
+    private String memberStatus; // 조인을 신청한 신청한 회원상태 // 1: 정상, 2: 취소
+    private int applicationMemberCount; // 조인을 신청한 회원 인원수
 }

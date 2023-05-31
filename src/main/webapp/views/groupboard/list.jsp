@@ -43,10 +43,11 @@
         <c:forEach  var="obj" items="${alljoin}" >
         <%--  li : 화면에 보여질 조인들   --%>
         <li class="items-nav">
-          <a data-toggle="modal"
-             data-target="#mdllJobDetails${obj.groupboardNo}" class="btn">
+          <a class="btn"
+               data-toggle="modal"
+               data-target="#mdllJobDetails${obj.groupboardNo}">
             <div class="media align-items-center">
-                <%--1.대표 이미지--%><img class="img_news" src="/assets/img/${obj.groupboardImgname}" alt="">
+            <%--1.대표 이미지--%><img class="img_news" src="/assets/img/${obj.groupboardImgname}" alt="">
               <div class="media-body">
                 <div class="txt">
                     <%--2.조인글 제목--%><h2>${obj.groupboardTitle}</h2>
@@ -106,6 +107,8 @@
           </a>
         </li>
         </c:forEach>
+
+
       </ul>
     </section>
     <!-- End. page_join -->
@@ -128,13 +131,12 @@
     <c:forEach  var="obj" items="${alljoin}" >
     <%-- join 신청하는 기능이 페이지에 있을 땐, from 태그와, input hidden이 꼭 있어야해
      action -> 기재된 컨트롤러에서 처리 --%>
-    <form id="join_form" action="/groupboard/success_apply" method="get">
-    <input type="hidden" name="custNo" value="${logincust.custNo}"/>
-    <input type="hidden" name="groupboardNo" value="${obj.groupboardNo}"/>
+      <form id="join_form" action="/groupboard/success_apply" method="get">
+        <input type="hidden" name="custNo" value="${logincust.custNo}"/>
+        <input type="hidden" name="groupboardNo" value="${obj.groupboardNo}"/>
        <div class="modal transition-bottom screenFull defaultModal mdllJobs_details fade" id="mdllJobDetails${obj.groupboardNo}"
            tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable">
-
+           <div class="modal-dialog modal-dialog-scrollable">
           <div class="modal-content">
             <div class="modal-header padding-l-20 padding-r-50">
               <%-- 이미지 넣을 맨 상단 구간 --%>
@@ -333,7 +335,7 @@
 
           </div>
         </div>
-      </div><!-- /.modal -->
+       </div>
       </form>
       </c:forEach>
-</div>
+</div><!-- /.modal -->
