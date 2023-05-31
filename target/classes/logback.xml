@@ -1,34 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+<!-- 5.30 정인보 : custinfo 로그출력 내역 삭제함   -->
     <!-- C > project1 > logs 폴더를 만들어서 log를 저장하겠습니다 -->
     <property name="LOGS_DIR" value="c://project1/logs" />
-    <property name="LOGS_CUSTINFO" value="./src/main/resources/static/logs"></property>
+
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
-            <Pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %-5level %logger{36} - %msg%n</Pattern>
+            <Pattern>[%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</Pattern>
         </layout>
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOGS_DIR}/logback.log</file> <!-- "c://project1/logs 안에 logback.log 만들어짐 -->
         <encoder>
-            <pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %-5level %logger{35} - %msg%n</pattern>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{35} - %msg%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOGS_DIR}/logback.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>5MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
-            <maxHistory>30</maxHistory>
-        </rollingPolicy>
-    </appender>
-    <appender name="FILE2" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOGS_DIR}/custinfo.log</file> <!-- "c://project1/logs 안에 custinfo.log 만들어짐 -->
-        <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss}, %msg%n</pattern>
-        </encoder>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOGS_DIR}/custinfo.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>5MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
@@ -46,10 +34,6 @@
         <appender-ref ref="FILE" />
     </logger>
 
-    <!-- 아래의 클래스에서 만들어지는 것을 FILE2에 저장하겠다 -->
-    <logger name="com.kbstar.controller.CustController" level="INFO">
-        <appender-ref ref="FILE2" />
-    </logger>
     <!--
     <logger name="jdbc" level="OFF" />
 	<logger name="jdbc.sqlonly" level="DEBUG" />

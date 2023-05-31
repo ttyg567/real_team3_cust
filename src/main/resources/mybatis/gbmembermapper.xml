@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kbstar.mapper.GBMemberMapper">
+    <!-- 멤버 테이블 : 신청회원은 등록/삭제만 있다.
+     신청인원이 업데이트되는 곳은 보드 테이블이다. -->
+
+    <!-- 개설된 조인을 기준으로, 누가 신청했는지 조회  -->
+    <select id="select" parameterType="Integer" resultType="gbmember">
+        SELECT * FROM gbmember WHERE groupboardNo=#{groupboardNo}
+    </select>
+    <!-- 신청한 회원의 명수 조회하기 -->
+    <select id="getApplicationMemberCount" resultType="Integer">
+        SELECT
+            COUNT(custNo)
+        FROM
+            gbmember
+        WHERE
+            groupboardNo = #{groupboardNo}
+    </select>
+    <!-- 전체 -->
+    <select id="selectall" resultType="gbmember">
+        SELECT * FROM gbmember
+    </select>
+    <!-- 신청 완료 : 신청회원으로 등록 -->
+    <insert id="insert" parameterType="gbmember">
+          INSERT INTO gbmember (groupboardNo, custNo)
+          VALUES (#{groupboardNo}, #{custNo})
+    </insert>
+<!--    &#45;&#45;         INSERT INTO gbmember (groupboardNo, custNo)-->
+<!--    &#45;&#45;         VALUES (#{groupboardNo}, #{custNo})-->
+
+    <!-- 신청 취소 : 신청회원 삭제 -->
+    <delete id="delete" parameterType="Integer">
+        DELETE FROM gbmember WHERE custNo=#{custNo}
+    </delete>
+</mapper>
+
+<!--<insert id="insert" parameterType="gbmember">-->
+<!--MERGE INTO gbmember-->
+<!--    USING (SELECT 1 FROM DUAL) dummy-->
+<!--    ON (groupboardNo = #{groupboardNo} AND custNo = #{custNo})-->
+<!--    WHEN NOT MATCHED THEN-->
+<!--        INSERT (groupboardNo, custNo)-->
+<!--            VALUES (#{groupboardNo, jdbcType=INTEGER}, #{custNo, jdbcType=INTEGER})-->
+<!--</insert>-->
