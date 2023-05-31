@@ -135,7 +135,7 @@
                 </a>
             </div>
             <div class="item_link">
-                <a href="/ticket_list" class="btn btn_navLink">
+                <a href="/ticket/all" class="btn btn_navLink">
                     <div class="icon_current">
                         <svg id="Iconly_Curved_More_Circle" data-name="Iconly/Curved/More Circle"
                              xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">

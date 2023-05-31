@@ -1,5 +1,6 @@
 package com.kbstar.frame;
 
+import com.kbstar.dto.Gym;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -12,4 +13,6 @@ public interface KBMapper<K,V> {
     public void update(V v) throws Exception;
     public V select(K k) throws Exception;
     public List<V> selectall() throws Exception;
+
+    List<Gym> selectByTypeNo(int i);
 }

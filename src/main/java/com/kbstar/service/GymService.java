@@ -11,7 +11,7 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class GymService implements KBService<String, Gym> {
+public class GymService implements KBService<Integer, Gym> {
 
     @Autowired
     GymMapper mapper;
@@ -21,9 +21,10 @@ public class GymService implements KBService<String, Gym> {
         mapper.insert(gym);
     }
 
+
     @Override
-    public void remove(String s) throws Exception {
-        mapper.delete(s);
+    public void remove(Integer i) throws Exception {
+        mapper.delete(i);
     }
 
     @Override
@@ -32,12 +33,21 @@ public class GymService implements KBService<String, Gym> {
     }
 
     @Override
-    public Gym get(String s) throws Exception {
-        return mapper.select(s);
+    public Gym get(Integer i) throws Exception {
+        return mapper.select(i);
     }
 
     @Override
     public List<Gym> get() throws Exception {
         return mapper.selectall();
+    }
+    @Override
+    public List<Gym> getByTypeNo(Integer typeNo) throws Exception {
+        return mapper.selectByTypeNo(typeNo);
+    }
+
+
+    public Gym selectImg(Integer i){
+        return mapper.selectimg(i);
     }
 }

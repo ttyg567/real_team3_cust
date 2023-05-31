@@ -11,6 +11,7 @@
 <body>
 <div id="wrapper">
     <div id="content">
+
         <!-- Start main_haeder -->
         <header class="main_haeder header-sticky multi_item">
             <div class="em_side_right">
@@ -62,15 +63,17 @@
                     </li>
                 </ul>
             </div>
-<!-- 지역 정보가 들어오면 해당 지역의 센터 뿌려주기-->
+            <!-- 지역 정보가 들어오면 해당 지역의 센터 뿌려주기-->
+            <c:forEach  var="obj" items="${all}" >
             <ul class="itemList__news" style="background-color: white">
+
                 <li class="items-nav">
-                    <a href="/ticket/ticket_detail" class="btn">
+                    <a href="/ticket/detail?gymNo=${obj.gymNo}" class="btn">
                         <div class="media align-items-center">
                             <img class="img_news" src="assets/img/0asd897.jpg" alt="">
                             <div class="media-body">
                                 <div class="txt">
-                                    <h2>The Real Reason the World Isn’t Being Vaccinated</h2>
+                                    <h2>${obj.gymName}</h2>
                                     <div class="info_bottom">
                                         <div class="time">
                                             <div class="icon">
@@ -94,7 +97,7 @@
                                                     </g>
                                                 </svg>
                                             </div>
-                                            <span>2 hour ago</span>
+                                            <span>${obj.gymAddress1}</span>
                                         </div>
                                         <div class="view">
                                             <div class="icon">
@@ -116,7 +119,7 @@
                                                     </g>
                                                 </svg>
                                             </div>
-                                            <span>295 views</span>
+                                            <span>좋아요 수 </span>
                                         </div>
                                     </div>
                                 </div>
@@ -125,18 +128,8 @@
                     </a>
                 </li>
             </ul>
-
+            </c:forEach>
         </section>
-        <!-- End. page_news -->
-
-        <!-- spinner_loading -->
-<%--        <div class="spinner_loading">--%>
-<%--            <div class="bounce1"></div>--%>
-<%--            <div class="bounce2"></div>--%>
-<%--            <div class="bounce3"></div>--%>
-<%--        </div>--%>
-        <!-- End. spinner_loading -->
-
     </div>
 
 

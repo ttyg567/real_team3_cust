@@ -77,51 +77,18 @@
     </delete>
 
     <!-- SELECT -->
-    <select id="select" parameterType="int" resultType="gym">
-        SELECT
-            gymNo,
-            gymMasterCk,
-            gymEmail,
-            gymPwd,
-            gymName,
-            gymPhone,
-            gymZipcode,
-            gymAddress1,
-            gymAddress2,
-            gymAddress3,
-            gymRegiimgname,
-            gymReginumber,
-            gymTitle,
-            gymContents,
-            gymMarketing,
-            Status,
-            approvedAdmID
-        FROM
-            Gym
-        WHERE
-            gymNo = #{gymNo}
+<!--    <select id="select" parameterType="String" resultType="gym">-->
+<!--        SELECT * FROM Gym WHERE gymEmail=#{gymEmail}-->
+<!--    </select>-->
+    <select id="select" parameterType="Integer" resultType="gym">
+        SELECT * FROM Gym WHERE gymNo=#{gymNo}
+    </select>
+    <select id="selectall" resultType="gym">
+        SELECT * FROM gym WHERE gymMasterCk ='1'
     </select>
     <!-- SELECT BY typeNo 운동종목으로 select 하기  -->
     <select id="selectByTypeNo" parameterType="int" resultType="gym">
-        SELECT
-            g.gymNo,
-            g.gymMasterCk,
-            g.gymEmail,
-            g.gymPwd,
-            g.gymName,
-            g.gymPhone,
-            g.gymZipcode,
-            g.gymAddress1,
-            g.gymAddress2,
-            g.gymAddress3,
-            g.gymRegiimgname,
-            g.gymReginumber,
-            g.gymTitle,
-            g.gymContents,
-            g.gymMarketing,
-            g.Status,
-            g.approvedAdmID
-        FROM
+        SELECT * FROM
             Gym g
                 JOIN
             Gymtype gt ON g.gymNo = gt.gymNo
@@ -137,16 +104,22 @@
 <!--    6: 골프                golf.                                       go-->
 <!--    7: 수영               swimming                          sw-->
     <!--  헬스장만 조회하기  -->
-<!--    <select id="selectWorkout" parameterType="int" resultType="com.example.dto.GymDTO">-->
-<!--        SELECT g.gymNo, g.gymMasterCk, g.gymEmail, g.gymPwd, g.gymName, g.gymPhone,-->
-<!--               g.gymZipcode, g.gymAddress1, g.gymAddress2, g.gymAddress3, g.gymRegiimgname,-->
-<!--               g.gymReginumber, g.gymTitle, g.gymContents, g.gymMarketing, g.Status,-->
-<!--               g.approvedAdmID-->
-<!--        FROM Gym g-->
-<!--                 JOIN Gymtype gt ON g.gymNo = gt.gymNo-->
-<!--        WHERE gt.typeNo = 1-->
-<!--    </select>-->
+    <select id="selectWorkout" parameterType="int" resultType="gym">
+        SELECT g.gymNo,g.gymName, g.gymPhone,
+               g.gymZipcode, g.gymAddress1, g.gymAddress2, g.gymAddress3,
+               g.gymTitle, g.gymContents, g.gymMarketing
 
+        FROM Gym g
+                 JOIN Gymtype gt ON g.gymNo = gt.gymNo
+        WHERE gt.typeNo = 1
+    </select>
+    <select id="selectimg" parameterType="Integer" resultType="gym">
+        SELECT gymNo,gymImgname, gymImgdetailCk
+        FROM
+            GymImg
+        WHERE gymNo = #{gymNo}
+        AND gymMasterCk = '1'
+    </select>
 
 
 </mapper>

@@ -11,16 +11,12 @@ public class JinController {
 
 
 
-    @RequestMapping("/ticket_list")
+    @RequestMapping("/ticket")
     public String main(Model model){
-        model.addAttribute("center","ticket_list");
+        model.addAttribute("center","ticket");
         return "index";
     }
-    @RequestMapping("/ticket_detail")
-    public String ticket_detail(Model model){
-        model.addAttribute("center","ticket_detail");
-        return "index";
-    }
+
     @RequestMapping("/notification")
     public String notification(Model model){
         model.addAttribute("center","notification");

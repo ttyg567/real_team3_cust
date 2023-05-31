@@ -13,10 +13,11 @@
 
 <div id="wrapper">
   <div id="content">
+
     <!-- Start main_haeder -->
     <header class="main_haeder header-sticky multi_item">
       <div class="em_side_right">
-        <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/ticket_list">
+        <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/ticket/all">
           <i class="tio-chevron_left size-24 color-text"></i>
           <span class="color-text size-14">Back</span>
         </a>
@@ -37,17 +38,21 @@
 
     <!-- Start emPage__detailsBlog -->
     <section class="emPage__detailsBlog">
+
       <div class="emheader_cover">
         <div class="cover">
+
           <img src="assets/img/0aad987.jpg" alt="">
-          <span class="item_category">Software</span>
+          <span class="item_category"></span>
         </div>
         <div class="title">
-          <h1 class="head_art">As a tech guy, you will thank me for these websites</h1>
+          <h1 class="head_art">>${gdetail}</h1>
           <div class="item__auther emBlock__border">
+
             <div class="item_person">
               <img src="assets/img/persons/0654.jpg" alt="">
-              <h2>Hobert Blais</h2>
+
+              <h2></h2>
             </div>
             <div class="sideRight">
               <div class="time">
@@ -96,8 +101,7 @@
       </div>
       <div class="embody__content">
         <p>
-          Netus et malesuada fames ac turpis egestas. Malesuada fames ac turpis egestas integer. Ligula
-          ullamcorper malesuada proin libero. Venenatis tellus in metus vulputate eu scelerisque.
+          ${gdetail.gymContents}
         </p>
         <p>
           Volutpat diam ut venenatis tellus in metus vulputate eu scelerisque.
@@ -271,7 +275,7 @@
                   </a>
                 </div>
               </div>
-            </div>
+  </div>
           </div>
 
 
@@ -293,7 +297,7 @@
               <img class="img_news" src="assets/img/0asd897.jpg" alt="">
               <div class="media-body">
                 <div class="txt">
-                  <h2>The Real Reason the World Isn’t Being Vaccinated</h2>
+                  <h2></h2>
                   <div class="info_bottom">
                     <div class="time">
                       <div class="icon">
@@ -467,8 +471,7 @@
             </div>
           </a>
         </li>
-
-      </ul>
+  </ul>
     </section>
     <!-- End. emPage__blog -->
 
