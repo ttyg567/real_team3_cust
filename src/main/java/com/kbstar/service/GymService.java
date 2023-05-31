@@ -1,53 +1,66 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package com.kbstar.service;
 
 import com.kbstar.dto.Gym;
+import com.kbstar.dto.Ticket;
 import com.kbstar.frame.KBService;
 import com.kbstar.mapper.GymMapper;
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-@Slf4j
 @Service
 public class GymService implements KBService<Integer, Gym> {
-
+    private static final Logger log = LoggerFactory.getLogger(GymService.class);
     @Autowired
     GymMapper mapper;
 
-    @Override
+    public GymService() {
+    }
+
     public void register(Gym gym) throws Exception {
-        mapper.insert(gym);
+        this.mapper.insert(gym);
     }
 
-
-    @Override
     public void remove(Integer i) throws Exception {
-        mapper.delete(i);
+        this.mapper.delete(i);
     }
 
-    @Override
     public void modify(Gym gym) throws Exception {
-        mapper.update(gym);
+        this.mapper.update(gym);
     }
 
-    @Override
     public Gym get(Integer i) throws Exception {
-        return mapper.select(i);
+        return (Gym)this.mapper.select(i);
     }
 
-    @Override
     public List<Gym> get() throws Exception {
-        return mapper.selectall();
+        return this.mapper.selectall();
     }
-    @Override
+
     public List<Gym> getByTypeNo(Integer typeNo) throws Exception {
-        return mapper.selectByTypeNo(typeNo);
+        return this.mapper.selectByTypeNo(typeNo);
     }
 
+    public Ticket selectwitDiscount(Ticket ticket) {
+        return null;
+    }
 
-    public List<Gym> selectImg(Integer i){
-        return mapper.selectimg(i);
+    public Ticket selectwitDiscount(Integer i) {
+        return null;
+    }
+
+    public List<Gym> selectImg(Integer i) {
+        return this.mapper.selectimg(i);
+    }
+
+    public Gym selectwithMarketing(Integer i) {
+        return this.mapper.selectwithmarketing(i);
     }
 }

@@ -14,4 +14,6 @@ public interface GymMapper extends KBMapper<Integer, Gym> {
     List<Gym> selectByTypeNo(Integer i);
 
     public List<Gym> selectimg(Integer i);
+
+    Gym selectwithmarketing(Integer i);
 }
