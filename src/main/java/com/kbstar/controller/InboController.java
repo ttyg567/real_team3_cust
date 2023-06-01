@@ -52,11 +52,11 @@ public class InboController {
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
-        // 전체 조회페이지로 전환
+        // 조인 전체 조회페이지로 전환
         model.addAttribute("center", dir + "list");
         return "index";
     }
-    // 4-6 조인 신청 성공
+    // 4-6 조인 신청하기 기능 + 신청완료 페이지 이동
     @RequestMapping("/success_apply")
     public String success_apply(Model model, GBMember gbMember) throws Exception {
         // 조인 신청회원으로 등록해주기
@@ -65,12 +65,24 @@ public class InboController {
         // webapp > groupboard > apply 페이지로 전체 교체(center만 교체되는 것 아님)
        return dir + "apply";
     }
-    // 4-7 나의 조인 보기
-    @RequestMapping("/myjoin")
-    public String myjoin(Model model){
+    // 4-7-1 나의 조인 보기
+    @RequestMapping("/my_applyjoin")
+    public String my_applyjoin(Model model, Integer custNo) throws Exception {
+       List<Groupboard> list1 = null;
+        List<Groupboard> list2 = null;
+        try {
+            list1 = groupboardService.getMyJoin( custNo ); // 고객의 조인 정보를 list에 담기.
+            list2 = groupboardService.getMyCreateJoin(custNo);
+        } catch (Exception e) {
+            throw new Exception(e);
+        }
+        model.addAttribute("myapplyjoin", list1); // 내가 참여한 조인정보 보기
+        model.addAttribute("mycreatejoin", list2); // 내가 만든 조인정보 보기
+        // 나의조인 조회페이지로 전환
         model.addAttribute("center", dir + "myjoin");
         return "index";
     }
+
 
 
 

@@ -61,13 +61,14 @@
 
           <!-- 조인리스트 넣는 공간 -->
           <ul class="itemList__news" style="background-color: white">
+            <c:forEach var="obj" items="${myapplyjoin}">
             <li class="items-nav">
               <a href="/ticket_detail" class="btn">
                 <div class="media align-items-center">
-                  <img class="img_news" src="/assets/img/join1.jpg" alt="">
+                  <img class="img_news" src="/assets/img/${obj.groupboardImgname}" alt="">
                   <div class="media-body">
                     <div class="txt">
-                      <h2>같이 댕댕헬쓰 해욥🐶</h2>
+                      <h2>${obj.groupboardTitle}</h2>
                       <div class="view">
                         <div class="icon">
                           <svg id="Iconly_Curved_Show" data-name="Iconly/Curved/Show"
@@ -88,7 +89,7 @@
                             </g>
                           </svg>
                         </div>
-                        <span>2명 남음 / 총 4명</span>
+                        <span>${obj.applicationMemberCount}명 신청 | ${obj.expectMember}명 모집</span>
                       </div>
                       <div class="info_bottom">
                         <div class="time">
@@ -121,9 +122,9 @@
                 </div>
               </a>
             </li>
+            </c:forEach>
           </ul>
-          <!-- 조인리스트 넣는 공간 -->
-
+          <!-- 조인리스트 넣는 공간 끝 -->
 
 
         </div><!-- 참여한 조인 영역 끝. -->
@@ -133,14 +134,75 @@
 
           <!-- 개설한 조인 Start title -->
           <div class="emTitle_co padding-20">
-            <h2 class="size-16 weight-500 color-secondary mb-0">마감일자 안에 조인이 확정되면 알림을 드려요!</h2>
+            <h2 class="size-16 weight-500 color-secondary mb-0">개설한 조인의 모집인원이 모두 모여 확정되면 알림을 드려요!</h2>
           </div>
           <!-- End. title -->
-
-          <div class="bg-white padding-20 px-0"><!-- 하얀 배경 -->
-            <!-- 조인리스트 넣는 공간 -->
-
-          </div>
+          <!-- 조인리스트 넣는 공간 -->
+          <ul class="itemList__news" style="background-color: white">
+            <c:forEach var="obj" items="${mycreatejoin}">
+              <li class="items-nav">
+                <a href="/ticket_detail" class="btn">
+                  <div class="media align-items-center">
+                    <img class="img_news" src="/assets/img/${obj.groupboardImgname}" alt="">
+                    <div class="media-body">
+                      <div class="txt">
+                        <h2>${obj.groupboardTitle}</h2>
+                        <div class="view">
+                          <div class="icon">
+                            <svg id="Iconly_Curved_Show" data-name="Iconly/Curved/Show"
+                                 xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                 viewBox="0 0 15 15">
+                              <g id="Show" transform="translate(1.719 2.969)">
+                                <path id="Stroke_1" data-name="Stroke 1"
+                                      d="M3.952,1.976A1.976,1.976,0,1,1,1.976,0,1.977,1.977,0,0,1,3.952,1.976Z"
+                                      transform="translate(3.806 2.588)" fill="none"
+                                      stroke="#cbcdd8" stroke-linecap="round"
+                                      stroke-linejoin="round" stroke-miterlimit="10"
+                                      stroke-width="1.5" />
+                                <path id="Stroke_3" data-name="Stroke 3"
+                                      d="M0,4.564c0,2.05,2.589,4.564,5.782,4.564s5.782-2.512,5.782-4.564S8.976,0,5.782,0,0,2.514,0,4.564Z"
+                                      fill="none" stroke="#cbcdd8" stroke-linecap="round"
+                                      stroke-linejoin="round" stroke-miterlimit="10"
+                                      stroke-width="1.5" />
+                              </g>
+                            </svg>
+                          </div>
+                          <span>${obj.applicationMemberCount}명 신청 | ${obj.expectMember}명 모집</span>
+                        </div>
+                        <div class="info_bottom">
+                          <div class="time">
+                            <div class="icon">
+                              <svg id="Iconly_Curved_Time_Square"
+                                   data-name="Iconly/Curved/Time Square"
+                                   xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                   viewBox="0 0 15 15">
+                                <g id="Time_Square" data-name="Time Square"
+                                   transform="translate(1.719 1.719)">
+                                  <path id="Stroke_1" data-name="Stroke 1"
+                                        d="M0,5.781c0,4.336,1.446,5.781,5.781,5.781s5.781-1.446,5.781-5.781S10.117,0,5.781,0,0,1.446,0,5.781Z"
+                                        fill="none" stroke="#cbcdd8" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-miterlimit="10"
+                                        stroke-width="1.5" />
+                                  <path id="Stroke_3" data-name="Stroke 3"
+                                        d="M2.119,3.99,0,2.726V0"
+                                        transform="translate(5.781 3.053)" fill="none"
+                                        stroke="#cbcdd8" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-miterlimit="10"
+                                        stroke-width="1.5" />
+                                </g>
+                              </svg>
+                            </div>
+                            <span>06월 30일(목) 마감 ㅣ 성수 피트니스</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </c:forEach>
+          </ul>
+          <!-- 조인리스트 넣는 공간 끝 -->
 
         </div> <!-- 개설한 조인 끝. -->
 

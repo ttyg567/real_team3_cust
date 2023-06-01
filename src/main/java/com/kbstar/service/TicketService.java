@@ -40,17 +40,14 @@ public class TicketService implements KBService<Integer, Ticket>{
         return mapper.selectall();
     }
 
-    @Override
     public List<Gym> getByTypeNo(Integer typeNo) throws Exception {
         return null;
     }
 
-    @Override
     public Ticket selectwitDiscount(Ticket ticket) {
         return null;
     }
 
-    @Override
     public Ticket selectwitDiscount(Integer i) {
         return null;
     }

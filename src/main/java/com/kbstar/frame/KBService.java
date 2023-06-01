@@ -18,10 +18,4 @@ public interface KBService<K,V> {
     public V get(K k) throws Exception;
     @Transactional(readOnly = true)
     public List<V> get() throws Exception;
-
-    List<Gym> getByTypeNo(Integer typeNo) throws Exception;
-
-    Ticket selectwitDiscount(Ticket ticket);
-
-    Ticket selectwitDiscount(Integer i);
 }

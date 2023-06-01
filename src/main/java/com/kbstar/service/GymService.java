@@ -42,17 +42,17 @@ public class GymService implements KBService<Integer, Gym> {
     public List<Gym> get() throws Exception {
         return mapper.selectall();
     }
-    @Override
+
     public List<Gym> getByTypeNo(Integer typeNo) throws Exception {
         return mapper.selectByTypeNo(typeNo);
     }
 
-    @Override
+
     public Ticket selectwitDiscount(Ticket ticket) {
         return null;
     }
 
-    @Override
+
     public Ticket selectwitDiscount(Integer i) {
         return null;
     }
