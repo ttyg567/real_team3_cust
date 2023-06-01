@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kbstar.mapper.GroupboardMapper">
+    <!--  getMyJoin : 로그인한 내가 참여한 조인 가져오기  -->
+    <select id="getMyJoin"  parameterType="Integer"  resultType="groupboard">
+        SELECT gb.GROUPBOARDNO, gb.CUSTNO, gb.TICKETNO, gb.GROUPBOARDTITLE, gb.GROUPBOARDcontents, gb.groupboardImgname, gb.EXPECTMEMBER, gb.APPLICATIONMEMBER, gb.CONFIRMMEMBER,
+               gb.GROUPBOARDSTATUS, gb.BOARDVIEWS, gb.WRITEDATE,
+               cu.custno AS applycustno, cu.custName, gm.memberStatus, COUNT(gm.custno) AS applicationMemberCount
+        FROM groupboard gb
+                 JOIN gbmember gm ON gb.GROUPBOARDNO = gm.GROUPBOARDNO
+                 JOIN cust cu ON gm.custno = cu.custno
+        WHERE gm.custNo = #{custNo}
+        GROUP BY gb.GROUPBOARDNO, gb.CUSTNO, gb.TICKETNO, gb.GROUPBOARDTITLE, gb.GROUPBOARDcontents, gb.groupboardImgname, gb.EXPECTMEMBER, gb.APPLICATIONMEMBER, gb.CONFIRMMEMBER,
+                 gb.GROUPBOARDSTATUS, gb.BOARDVIEWS, gb.WRITEDATE, cu.custno, cu.custName, gm.memberStatus
+    </select>
+    <!--  getMyCreateJoin : 로그인한 내가 개설한 조인 가져오기  -->
+    <select id="getMyCreateJoin"  parameterType="Integer"  resultType="groupboard">
+        SELECT gb.GROUPBOARDNO, gb.CUSTNO, gb.TICKETNO, gb.GROUPBOARDTITLE, gb.GROUPBOARDcontents, gb.groupboardImgname, gb.EXPECTMEMBER, gb.APPLICATIONMEMBER, gb.CONFIRMMEMBER,
+               gb.GROUPBOARDSTATUS, gb.BOARDVIEWS, gb.WRITEDATE,
+               cu.custno AS applycustno, cu.custName, gm.memberStatus, COUNT(gm.custno) AS applicationMemberCount
+        FROM groupboard gb
+                 JOIN gbmember gm ON gb.GROUPBOARDNO = gm.GROUPBOARDNO
+                 JOIN cust cu ON gm.custno = cu.custno
+        WHERE gb.custNo = #{custNo}
+        GROUP BY gb.GROUPBOARDNO, gb.CUSTNO, gb.TICKETNO, gb.GROUPBOARDTITLE, gb.GROUPBOARDcontents, gb.groupboardImgname, gb.EXPECTMEMBER, gb.APPLICATIONMEMBER, gb.CONFIRMMEMBER,
+                 gb.GROUPBOARDSTATUS, gb.BOARDVIEWS, gb.WRITEDATE, cu.custno, cu.custName, gm.memberStatus
+    </select>
+    <!--  getWithMembers : 조인을 참여한 회원의 수 등 가져오기  -->
+    <select id="getWithMembers" resultType="groupboard">
+        SELECT
+            gb.groupboardNo, gb.custNo, gb.ticketNo,
+            gb.groupboardTitle, gb.groupboardContents,
+            gb.groupboardImgname, gb.groupboardImgpath,
+            gb.categoryNo, gb.expectMember, gb.applicationMember, gb.confirmMember,
+            gb.groupboardStatus, gb.boardViews, gb.writeDate,
+            COUNT(gm.custNo) AS applicationMemberCount
+            FROM
+            groupboard gb
+                LEFT JOIN
+            GBMember gm ON gm.groupboardNo = gb.groupboardNo
+            GROUP BY
+            gb.groupboardNo, gb.custNo, gb.ticketNo,
+            gb.groupboardTitle, gb.groupboardContents,
+            gb.groupboardImgname, gb.groupboardImgpath,
+            gb.categoryNo, gb.expectMember, gb.applicationMember, gb.confirmMember,
+            gb.groupboardStatus, gb.boardViews, gb.writeDate
+    </select>
+    <!-- 게시글번호로 1건만 조회 : 정상 -->
+    <select id="select" parameterType="Integer" resultType="groupboard">
+        SELECT * FROM groupboard WHERE groupboardNo=#{groupboardNo}
+    </select>
+    <!-- 모든 게시글 추출  : 정상 -->
+    <select id="selectall" resultType="groupboard">
+        SELECT * FROM groupboard
+    </select>
+    <!-- insert : 게시글 작성  : 정상 -->
+    <insert id="insert" parameterType="groupboard">
+        INSERT INTO groupboard (groupboardNo, custNo, ticketNo
+                                , groupboardTitle, groupboardContents
+                                , groupboardImgname, groupboardImgpath
+                                , categoryNo, expectMember, applicationMember
+                                , confirmMember, groupboardStatus, boardViews
+                                , writeDate)
+        VALUES (groupboard_seq.NEXTVAL, #{custNo}, #{ticketNo}
+                , #{groupboardTitle}, #{groupboardContents}
+                , #{groupboardImgname}, #{groupboardImgpath}
+                , #{categoryNo}, #{expectMember}, #{applicationMember}
+                , #{confirmMember}, #{groupboardStatus}, #{boardViews}
+                , SYSDATE
+                )
+    </insert>
+    <!-- 개설회원이 게시된 글에서 수정가능한 항목 7가지. : 정상 -->
+    <update id="update" parameterType="groupboard">
+        UPDATE groupboard SET groupboardTitle=#{groupboardTitle}
+                              , groupboardContents=#{groupboardContents}
+                              , groupboardImgname=#{groupboardImgname}
+                            , groupboardImgpath=#{groupboardImgpath}
+                            , categoryNo=#{categoryNo}
+                            , expectMember=#{expectMember}
+                            , groupboardStatus=#{groupboardStatus}
+        WHERE groupboardNo=#{groupboardNo}
+    </update>
+    <!-- 게시글번호로 게시글 삭제 : 정상 -->
+    <delete id="delete" parameterType="Integer">
+        DELETE FROM groupboard WHERE groupboardNo=#{groupboardNo}
+    </delete>
+</mapper>
