@@ -89,6 +89,7 @@ let register_form = {
                 },
                 success: function (result) {
                     if (result === "success") {
+                        $('#emailValue').text(custEmail);
                         $('#duplicateCheck').modal('show');
                         id_duplicate_check = true; // 이메일 중복검사 성공
                     } else {
@@ -98,6 +99,8 @@ let register_form = {
                     }
                 },
                 error  : function (xhr, status, error) {
+                    // $('#duplicateCheck').modal('hide');
+                    // 실패시 모달창 띄우기
                     console.log(error);
                 }
             });

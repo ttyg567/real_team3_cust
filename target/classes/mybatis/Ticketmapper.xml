@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kbstar.mapper.TicketMapper">
+    <select id="select" parameterType="int" resultType="ticket">
+        SELECT * FROM Ticket WHERE ticketNo = #{ticketNo}
+    </select>
+    <select id="selectTicketsWithDiscount" resultType="ticket">
+        SELECT
+            ticketNo,
+            gymNo,
+            gymMasterCk,
+            ticketType,
+            ticketMonth,
+            ticketNumber,
+            ticketJoin,
+            ticketTotal,
+            ticketSales,
+            ticketCost,
+            ticketDiscount,
+            ticketPrice,
+            ticketImgname,
+            sportsType,
+            sportsClasstype
+        FROM
+            Ticket
+        WHERE
+            ticketDiscount IS NOT NULL
+    </select>
+</mapper>
