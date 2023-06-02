@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <html>
 <head>
     <title>main</title>
@@ -70,7 +69,12 @@
                 <li class="items-nav">
                     <a href="/ticket/detail?gymNo=${obj.gymNo}" class="btn">
                         <div class="media align-items-center">
-                            <img class="img_news" src="assets/img/0asd897.jpg" alt="">
+                            <c:forEach var="img" items="${obj.gymImgname}" varStatus="status">
+                                <c:if test="${status.index eq 0}">
+                                    <img class="img_news" src="/uimg/${img}" alt="">
+                                </c:if>
+                            </c:forEach>
+
                             <div class="media-body">
                                 <div class="txt">
                                     <h2>${obj.gymName}</h2>

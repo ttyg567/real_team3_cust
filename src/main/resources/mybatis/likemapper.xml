@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kbstar.mapper.LikeMapper">
+    <!-- 본인의 찜만만 조회해주기.
+       <a href="/like?custNo=${loginuser.custNo}">-->
+<select id="getmylike"  parameterType="String"  resultType="like1">
+        select * from Like1
+            WHERE  custNo = #{custNo}
+</select>
+<insert id="insert" parameterType="like1">
+    INSERT INTO Like1 (custNo, ticketNo,likeStatus)
+    VALUES (#{custNo}, #{ticketNo}, '1')
+</insert>
+</mapper>

@@ -120,7 +120,18 @@
         WHERE gymNo = #{gymNo}
         AND gymMasterCk = '1'
     </select>
-    <select id="selectwithmarketing" resultType="gym">
+    <select id="selectListImg" parameterType="Integer" resultType="gym">
+        select t.*
+
+        from ( SELECT g.gymNo, g.gymName, g.gymPhone, g.gymAddress1, g.gymAddress2,  g.gymAddress3, g.gymTitle, gi.gymImgname,
+                      rank()over (partition by g.gymNo order by gi.gymImgNo) as rank
+               From Gym g
+                        Join GymImg gi on g.gymNo = gi.gymNo
+               WHERE gi.gymImgdetailCk = '0' ) t
+
+        where t.rank = 1
+    </select>
+    <select id="selectMarketing" resultType="gym">
         SELECT
             gymNo,
             gymName,
@@ -135,7 +146,7 @@
         FROM
             Gym
         WHERE
-            gymMarketing = '1'
+            gymMarketing = 0
     </select>
     <select id="selectTicketsWithDiscount" resultType="ticket">
         SELECT

@@ -1,7 +1,9 @@
 package com.kbstar.controller;
 
 import com.kbstar.dto.Gym;
+import com.kbstar.dto.Ticket;
 import com.kbstar.service.GymService;
+import com.kbstar.service.TicketService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,13 +22,18 @@ public class TicketController {
     String dir = "ticket/";
     @Autowired
     GymService gymService;
+    @Autowired
+    TicketService ticketService;
+
 
 
     @RequestMapping("/all")
     public String all(Model model) throws Exception {
         List<Gym> list =  null;
+
         try {
-            list = gymService.get();
+            list = gymService.selectlistimg();
+
         } catch (Exception e) {
             throw new Exception("전체조회 중 오류가 발생했습니다.");
         }
@@ -126,7 +133,12 @@ public class TicketController {
         log.info("-------------------------------------");
         log.info("디테일 화면 진입 전");
         Gym gym = null;
+        // 해당 gymNo에 해당하는 이용권 목록 가져오기
+        List<Ticket> ticket_list = ticketService.getTicketsByGymNo(gymNo);
         gym = gymService.get(gymNo);
+        //그 센터가 등록한 이용권을 가져온다.
+
+//        ticket_list = ticketService.get();
 
 
         // 이미지 추출
@@ -136,7 +148,6 @@ public class TicketController {
         } catch (Exception e){
             e.printStackTrace();
         }
-
         String[] gdetail_center_img = null; // 디테일에서 top에 위치한 센터 이미지
         String[] gdetail_detail_img = null; // 디테일 화면에서 디테일 이미지
         List<String> centerImages = new ArrayList<>(); // center 이미지를 저장할 리스트
@@ -155,11 +166,24 @@ public class TicketController {
 
         log.info("센터 이미지 추출: " + Arrays.toString(gdetail_center_img));
         log.info("디테일 이미지 추출: " + Arrays.toString(gdetail_detail_img));
-
+//        model.addAttribute("ticket", ticket_list);
+//        model.addAttribute("ticket", ticket_list);
         model.addAttribute("gdetail", gym);
+        model.addAttribute("tickets", getMatchingTickets(gymNo, ticket_list));
         model.addAttribute("gdetail_center_img", gdetail_center_img);
         model.addAttribute("gdetail_detail_img", gdetail_detail_img);
         model.addAttribute("center", dir + "ticket_detail");
         return "index";
+    }
+
+
+    private List<Ticket> getMatchingTickets(int gymNo, List<Ticket> ticketList) {
+        List<Ticket> matchingTickets = new ArrayList<>();
+        for (Ticket ticket : ticketList) {
+            if (ticket.getGymNo() == gymNo) {
+                matchingTickets.add(ticket); // gymNo와 일치하는 이용권 추가
+            }
+        }
+        return matchingTickets;
     }
 }

@@ -1,32 +1,32 @@
-package com.kbstar.Cust;
+package com.kbstar.Cart;
 
 import com.kbstar.dto.Cust;
-import com.kbstar.service.CustService;
+import com.kbstar.dto.GBMember;
+
+import com.kbstar.dto.Like1;
+import com.kbstar.service.LikeService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DuplicateKeyException;
 
-@Slf4j
 @SpringBootTest
-class InsertTest {
-
+@Slf4j
+public class InsertTest {
     @Autowired
-    CustService service;
+    LikeService service;
     @Test
-    void contextLoads() {
-        Cust cust = new Cust("cust01@naver.com","1234","이진뭉","010-1234-5678",1990,"0","경기도","수원시","1","1","0","0");
+    void contextLoads() throws Exception {
+        Like1 like = new Like1(9,3001);
         try {
-            service.register(cust);
+            service.register(like);
             service.get();
         } catch (Exception e) {
-            if(e instanceof DuplicateKeyException){
-                log.info("ID가 중복 되었습니다.-------------------------------");
-            }else{
                 log.info("시스템 장애입니다.----------------------------------");
+                e.printStackTrace();
             }
         }
     }
 
-}
+

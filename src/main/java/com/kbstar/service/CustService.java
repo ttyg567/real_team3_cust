@@ -43,16 +43,7 @@ public class CustService implements KBService<String, Cust> {
         return mapper.selectall();
     }
 
-
     public List<Gym> getByTypeNo(Integer typeNo) throws Exception {
         return mapper.selectByTypeNo(typeNo);
-    }
-
-    public Ticket selectwitDiscount(Ticket ticket) {
-        return null;
-    }
-
-    public Ticket selectwitDiscount(Integer i) {
-        return null;
     }
 }

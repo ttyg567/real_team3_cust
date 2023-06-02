@@ -39,4 +39,7 @@ public class Gym {
 
     private MultipartFile[] gymimg_notdetail; // 디테일 이미지 X
     private MultipartFile gymimg_isdetail; // 디테일 이미지 O
+
+    //ticket list 에서 1개만 보여주기 위해 rank필요
+    private String rank;
 }

@@ -8,15 +8,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @Slf4j
 @SpringBootTest
-class SelectwithMarketingTest {
+public class SelectwithMarketingTest {
     @Autowired
     GymService service;
     @Test
     void contextLoads() {
         try {
-//            service.selectwithMarketing(1);
+            service.selectWithMarketing();
         } catch (Exception e) {
-            log.error("Error occurred during selectwithMarketing: ", e);
+            log.info("에러..");
+
         }
     }
 

@@ -12,7 +12,6 @@ import java.util.List;
 @Repository
 @Mapper
 public interface TicketMapper extends KBMapper<Integer, Ticket> {
-    public Ticket selectwithdiscount(Integer i);
-
     public void selectTicketsWithDiscount();
+    List<Ticket> selectTicketsByGymNo(int gymNo);
 }

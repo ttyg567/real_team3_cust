@@ -40,20 +40,11 @@ public class TicketService implements KBService<Integer, Ticket>{
         return mapper.selectall();
     }
 
-    public List<Gym> getByTypeNo(Integer typeNo) throws Exception {
-        return null;
-    }
-
-    public Ticket selectwitDiscount(Ticket ticket) {
-        return null;
-    }
-
-    public Ticket selectwitDiscount(Integer i) {
-        return null;
-    }
-
-
-    public void selectwitDiscount() {
+    public void selectwithDiscount() {
         mapper.selectTicketsWithDiscount();
+    }
+
+    public List<Ticket> getTicketsByGymNo(int gymNo) throws Exception {
+        return mapper.selectTicketsByGymNo(gymNo);
     }
 }

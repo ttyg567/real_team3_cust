@@ -47,18 +47,15 @@ public class GymService implements KBService<Integer, Gym> {
         return mapper.selectByTypeNo(typeNo);
     }
 
-
-    public Ticket selectwitDiscount(Ticket ticket) {
-        return null;
-    }
-
-
-    public Ticket selectwitDiscount(Integer i) {
-        return null;
-    }
-
-
     public List<Gym> selectImg(Integer i){
         return mapper.selectimg(i);
     }
+    public List<Gym> selectlistimg(){
+        return mapper.selectListImg();
+    }
+    public void selectWithMarketing() {
+        mapper.selectMarketing();
+    }
+
+
 }

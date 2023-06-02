@@ -12,7 +12,7 @@ public class Ticket {
     private int ticketNo;
     private int gymNo;
     private char gymMasterCk;
-    private char ticketType;
+    private String ticketType;
     private int ticketMonth;
     private int ticketNumber;
     private char ticketJoin;

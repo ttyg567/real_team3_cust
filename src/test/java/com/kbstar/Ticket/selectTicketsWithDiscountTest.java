@@ -14,7 +14,7 @@ public class selectTicketsWithDiscountTest {
     @Test
     void contextLoads() {
         try {
-            service.selectwitDiscount();
+            service.selectwithDiscount();
         } catch (Exception e) {
             log.info("에러..");
             //e.printStackTrace();

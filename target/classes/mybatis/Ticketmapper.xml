@@ -6,6 +6,9 @@
     <select id="select" parameterType="int" resultType="ticket">
         SELECT * FROM Ticket WHERE ticketNo = #{ticketNo}
     </select>
+    <select id="selectall" resultType="ticket">
+        SELECT * FROM Ticket
+    </select>
     <select id="selectTicketsWithDiscount" resultType="ticket">
         SELECT
             ticketNo,
@@ -27,5 +30,8 @@
             Ticket
         WHERE
             ticketDiscount IS NOT NULL
+    </select>
+    <select id="selectTicketsByGymNo" parameterType="int" resultType="Ticket">
+        SELECT * FROM Ticket WHERE gymNo = #{gymNo}
     </select>
 </mapper>
