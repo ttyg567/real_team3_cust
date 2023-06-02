@@ -58,7 +58,7 @@ public class CustController {
         try {
             cust = custService.get(custEmail);
             // 나중에 수정하기!!!!!!!1
-            if(cust != null && (encoder.matches(custPwd, cust.getCustPwd())||custPwd.equals(cust.getCustPwd()))){
+            if(cust != null && (encoder.matches(custPwd, cust.getCustPwd())|| (custPwd.equals(cust.getCustPwd())))){
                 nextPage = "loginok";
                 session.setMaxInactiveInterval(100000);
                 session.setAttribute("logincust",cust);

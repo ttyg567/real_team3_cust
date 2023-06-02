@@ -61,7 +61,6 @@
 
 <div id="wrapper">
     <div id="content">
-
         <!-- Start main_haeder -->
         <header class="main_haeder header-sticky multi_item">
             <div class="em_side_right">
@@ -152,6 +151,7 @@
                     </div>
                 </div>
             </div>
+        </section>
     </div>
     <div class="embody__content">
         <!-- 타이틀 -->
@@ -532,8 +532,7 @@
             </ul>
         </section>
         <!-- End. emPage__blog -->
-
-
+    </section>
 </div>
 
 
