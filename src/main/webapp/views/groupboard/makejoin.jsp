@@ -245,12 +245,18 @@
                                     <%-- 검색결과 나타나는 공간 --%>
                                     <div class="form-group with_icon">
                                         <p>검색 결과</p><hr>
-                                        <div id="search-results"> <!-- 검색 결과를 표시할 공간 -->
-                                            <div  class="nav__list with__border"></div>
-                                                <li class="item-link hoverNone">
-                                                    <div  id="result" class="custom-control custom-radio" >
+                                        <div id="search-results"class="em__pkLink">
+                                            <ul  class="nav__list with__border">
+                                                <li>
+                                                    <div class="item-link hoverNone">
+                                                    <div  class="custom-control custom-radio" id="result">
+                                                        <!-- jsonArray 나오는 곳 -->
+<%--                                                        <input type="radio" id="result" name="customRadio"--%>
+<%--                                                               class="custom-control-input">--%>
+                                                    </div>
                                                     </div>
                                                 </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
