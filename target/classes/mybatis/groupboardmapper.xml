@@ -59,15 +59,13 @@
     <insert id="insert" parameterType="groupboard">
         INSERT INTO groupboard (groupboardNo, custNo, ticketNo
                                 , groupboardTitle, groupboardContents
-                                , groupboardImgname, groupboardImgpath
-                                , categoryNo, expectMember, applicationMember
-                                , confirmMember, groupboardStatus, boardViews
+                                , groupboardImgname
+                                , categoryNo, expectMember
                                 , writeDate)
         VALUES (groupboard_seq.NEXTVAL, #{custNo}, #{ticketNo}
                 , #{groupboardTitle}, #{groupboardContents}
-                , #{groupboardImgname}, #{groupboardImgpath}
-                , #{categoryNo}, #{expectMember}, #{applicationMember}
-                , #{confirmMember}, #{groupboardStatus}, #{boardViews}
+                , #{groupboardImgname}
+                , #{categoryNo}, #{expectMember}
                 , SYSDATE
                 )
     </insert>
@@ -76,7 +74,6 @@
         UPDATE groupboard SET groupboardTitle=#{groupboardTitle}
                               , groupboardContents=#{groupboardContents}
                               , groupboardImgname=#{groupboardImgname}
-                            , groupboardImgpath=#{groupboardImgpath}
                             , categoryNo=#{categoryNo}
                             , expectMember=#{expectMember}
                             , groupboardStatus=#{groupboardStatus}

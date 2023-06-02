@@ -26,7 +26,7 @@
                         </span>
         </div>
         <div class="em_side_right">
-          <a href="#" class="size-14 white-onScroll color-blue hover:color-blue">새로만들기</a>
+          <a href="/groupboard/makejoin" class="size-14 white-onScroll color-blue hover:color-blue">새로만들기</a>
 
         </div>
       </div>

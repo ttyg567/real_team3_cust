@@ -53,7 +53,7 @@
       </button>
 <%--      </a>--%>
       <%--  나의조인으로 이동하기 아이콘  --%>
-      <a href="/groupboard/my_applyjoin?custNo=${logincust.custNo}" class="btn justify-content-center">
+      <a href="/groupboard/my_applyjoin?custNo=${logincust.custNo}"  class="btn justify-content-center">
           <svg id="Iconly_Two-tone_Bookmark" data-name="Iconly/Two-tone/Bookmark"
                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <g id="Bookmark" transform="translate(3.5 2)">

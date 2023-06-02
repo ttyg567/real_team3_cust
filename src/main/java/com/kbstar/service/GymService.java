@@ -2,6 +2,7 @@ package com.kbstar.service;
 
 import com.kbstar.dto.Gym;
 import com.kbstar.dto.Ticket;
+import com.kbstar.dto.gymSearch;
 import com.kbstar.frame.KBService;
 import com.kbstar.mapper.GymMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -47,6 +48,7 @@ public class GymService implements KBService<Integer, Gym> {
         return mapper.selectByTypeNo(typeNo);
     }
 
+
     public List<Gym> selectImg(Integer i){
         return mapper.selectimg(i);
     }
@@ -57,5 +59,9 @@ public class GymService implements KBService<Integer, Gym> {
         mapper.selectMarketing();
     }
 
+    // 인보.조인개설 시 센터 검색해서 가져오는 기능
+    public List<Gym> search(gymSearch gs){
+        return mapper.search(gs);
+    }
 
 }

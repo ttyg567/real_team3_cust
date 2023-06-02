@@ -19,7 +19,7 @@ class InsertTest {
     @Test
     void contextLoads() {
         Groupboard groupboard;
-        groupboard = new Groupboard( 1, 1, "헬스이용권공동", "공동구매멤버 구함", "null", "null", "1", 2, 0, 0, "1", 1,  null);
+        groupboard = new Groupboard(2, 2, 4001, "라인 만들기 같이 막차타여\uD83D\uDE25", "룰루랄라 같이 운동해여", "join3.jpg", "null", "5", 2, 0, 0, "1", 1, null);
         try {
             service.register(groupboard);
             service.get();

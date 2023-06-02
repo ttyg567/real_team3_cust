@@ -45,6 +45,9 @@
     <link rel="manifest" href="_manifest.json" />
     <!-- jquery(위치변경) -->
     <script src="/assets/js/jquery-3.6.0.js"></script>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 
 

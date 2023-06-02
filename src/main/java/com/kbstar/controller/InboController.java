@@ -2,13 +2,21 @@ package com.kbstar.controller;
 
 import com.kbstar.dto.GBMember;
 import com.kbstar.dto.Groupboard;
+import com.kbstar.dto.Gym;
+import com.kbstar.dto.gymSearch;
 import com.kbstar.service.GBMemberService;
 import com.kbstar.service.GroupboardService;
+import com.kbstar.service.GymService;
+import com.kbstar.util.FileUploadUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -16,10 +24,16 @@ import java.util.List;
 @Controller
 @RequestMapping("/groupboard")
 public class InboController {
+    // imgdir 세팅하면, cust가 조인개설할 때 첨부한 이미지정보를
+    // 애플리케이션 프로퍼티에 정해둔, uimg/ 폴더에 집어넣는다.
+    @Value("${uploadimgdir}")
+    String imgdir;
     @Autowired
     GroupboardService groupboardService;
     @Autowired
     GBMemberService gbMemberService;
+    @Autowired
+    GymService gymService;
     String dir = "groupboard/";
     // 4-1 조인 메인페이지
     @RequestMapping("")
@@ -28,14 +42,52 @@ public class InboController {
         model.addAttribute("center", dir + "center");
         return "index";
     }
-    // 4-2 조인 만들기
+    // 4-2-1 조인 만들기
     @RequestMapping("/makejoin")
     public String makejoin(Model model){
+
+
         // webapp > groupboard > makejoin 페이지로 전체 교체(center만 교체되는 것 아님)
         model.addAttribute("center", dir + "makejoin");
         return "index";
     }
-    // 4-3 조인 만들기 성공
+    // 4-2-2. 센터 검색
+//    @RequestMapping(value = "/search", method = RequestMethod.GET)
+//    public String search(@RequestParam("gymName") String gymName, Model model) {
+//        try {
+//            gymSearch gs = new gymSearch();
+//
+//            gs.setGymName(gymName); // 검색어 설정
+//
+//            List<Gym> gymlist = gymService.search(gs); // 상품 검색 수행
+//
+//            model.addAttribute("gymlist", gymlist);
+//            return "groupboard/makejoin"; // 원 화면으로 복귀
+//
+//        } catch (Exception e) {
+//            // 예외 처리 로직
+//            e.printStackTrace();
+//            // 에러 페이지로 이동
+//           return "groupboard/makejoin";
+//        }
+//    }
+    // 4-2-3 조인 만들기에 입력한 정보 전송 기능(+이미지까지)
+    @RequestMapping("/makejoinimpl")
+    public String makejoinimpl(Model model, Groupboard groupboard) throws Exception {
+        MultipartFile mf = groupboard.getGroupboardImgpath(); // 0.tip. getSend_img : 서버전송될 때 이미지 이름
+        String Imgname = mf.getOriginalFilename(); // 0.파일 덩어리에서, 이미지이름을 끄집어내기
+
+        groupboard.setGroupboardImgname( Imgname ); // 0.서버가 아무이름이나 랜덤으로 저장한 이미지 이름을 다시 원래 가지고 있던 이름으로 set 저장해준다.
+        groupboardService.register( groupboard ); // 1. 개설을 위해 입력한 내용이 db에 정상입력 되면,
+        FileUploadUtil.saveFile( mf, imgdir);  // 2. 그때, 파일 덩어리 > 우리 디렉토리(c > project > uimg)에 저장해주기.
+
+
+        // 3. 등록완료 후엔 그룹보드 메인 페이지로 이동.
+        return  "redirect:/groupboard";
+    }
+
+
+    // 4-3 조인 만들기 성공 페이지 전환
     @RequestMapping("/success_create")
     public String success_create(Model model){
         // webapp > groupboard > create 페이지로 전체 교체(center만 교체되는 것 아님)

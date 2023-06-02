@@ -169,5 +169,13 @@
         WHERE
             ticketDiscount IS NOT NULL
     </select>
-
+    <!--  인보.조인 개설 시 센터를 검색해서 가져오기 위해 조회조건 추가  -->
+    <select id="search" parameterType="gymSearch" resultType="gym">
+        SELECT * FROM gym
+        <where>
+            <if test="gymName != null and !gymName.equals('') ">
+                AND gymName LIKE '%'||#{gymName}||'%'
+            </if>
+        </where>
+    </select>
 </mapper>

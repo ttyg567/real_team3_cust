@@ -1,7 +1,5 @@
 package com.kbstar.frame;
 
-import com.kbstar.dto.Gym;
-import com.kbstar.dto.Ticket;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
