@@ -345,7 +345,7 @@
 
 <!-- 조인만들기 버튼 -->
 <div style="position: fixed; z-index:20;  bottom: 100px; right: 50px">
-    <a href="/groupboard/makejoin"><img src="/img/chat.png" style="width:50px; height: 50px;" title="조인만들기" ></a>
+    <a href="/groupboard/makejoin"><img src="/img/join2.png" style="width:50px; height: 50px; drop-shadow(5px 5px 5px #000); " title="조인만들기" ></a>
 </div>
 <!-- End. em_swiper_products -->
 

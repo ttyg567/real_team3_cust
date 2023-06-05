@@ -11,4 +11,5 @@ import org.springframework.web.multipart.MultipartFile;
 @ToString
 public class gymSearch {
     private String gymName;
+    private int gymNo;
 }

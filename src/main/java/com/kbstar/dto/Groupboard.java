@@ -27,8 +27,40 @@ public class Groupboard {
     private int boardViews; // 글 조회수
     private Date writeDate; // 글 작성일자
 
+    // insert 2
+    public Groupboard(int groupboardNo, int custNo, int ticketNo, String groupboardTitle, String groupboardContents, String groupboardImgname, String categoryNo, int expectMember, String groupboardStatus, Date writeDate, int boardViews,int gymNo,  String gymName) {
+        this.groupboardNo = groupboardNo;
+        this.custNo = custNo;
+        this.ticketNo = ticketNo;
+        this.groupboardTitle = groupboardTitle;
+        this.groupboardContents = groupboardContents;
+        this.groupboardImgname = groupboardImgname;
+        this.categoryNo = categoryNo;
+        this.expectMember = expectMember;
+        this.groupboardStatus = groupboardStatus;
+        this.writeDate = writeDate;
+        this.boardViews = boardViews;
+        this.gymNo = gymNo;
+        this.gymName = gymName;
+    }
+
     // update
-    public Groupboard(int groupboardNo, int custNo, int ticketNo, String groupboardTitle, String groupboardContents, String groupboardImgname, String groupboardImgpath, String categoryNo, int expectMember, int applicationMember, int confirmMember, String groupboardStatus, int boardViews, Date writeDate) {
+
+    // insert 1
+    public Groupboard(int groupboardNo, int custNo, int ticketNo, String groupboardTitle, String groupboardContents, String groupboardImgname, String categoryNo, int expectMember, int applicationMember, int confirmMember, int boardViews) {
+        this.groupboardNo = groupboardNo;
+        this.custNo = custNo;
+        this.ticketNo = ticketNo;
+        this.groupboardTitle = groupboardTitle;
+        this.groupboardContents = groupboardContents;
+        this.groupboardImgname = groupboardImgname;
+        this.categoryNo = categoryNo;
+        this.expectMember = expectMember;
+        this.applicationMember = applicationMember;
+        this.confirmMember = confirmMember;
+        this.boardViews = boardViews;
+    }
+    public Groupboard(int groupboardNo, int custNo, int ticketNo, String groupboardTitle, String groupboardContents, String groupboardImgname,String categoryNo, int expectMember, int applicationMember, int confirmMember, String groupboardStatus, int boardViews, Date writeDate) {
         this.groupboardNo = groupboardNo;
         this.custNo = custNo;
         this.ticketNo = ticketNo;
@@ -44,24 +76,15 @@ public class Groupboard {
         this.writeDate = writeDate;
     }
 
-    // insert
-    public Groupboard(int groupboardNo, int custNo, int ticketNo, String groupboardTitle, String groupboardContents, String groupboardImgname, String categoryNo, int expectMember, int applicationMember, int confirmMember, int boardViews) {
-        this.groupboardNo = groupboardNo;
-        this.custNo = custNo;
-        this.ticketNo = ticketNo;
-        this.groupboardTitle = groupboardTitle;
-        this.groupboardContents = groupboardContents;
-        this.groupboardImgname = groupboardImgname;
-        this.categoryNo = categoryNo;
-        this.expectMember = expectMember;
-        this.applicationMember = applicationMember;
-        this.confirmMember = confirmMember;
-        this.boardViews = boardViews;
-    }
-
     // getMyJoin으로 가져올 때 보여줄 다른 테이블 칼럼들 적음
     private int applycustno; // 조인을 신청한 회원번호 : xml에서 별칭으로 정한 칼럼명 사용.
     private String custName; // 조인을 신청한 회원 이름(닉네임) ㅇ
     private String memberStatus; // 조인을 신청한 신청한 회원상태 // 1: 정상, 2: 취소
     private int applicationMemberCount; // 조인을 신청한 회원 인원수
+
+    // makejoin 할 때 필요한 속성
+    private int gymNo;
+    private String chooseGymName;
+    private String gymName;
+
 }

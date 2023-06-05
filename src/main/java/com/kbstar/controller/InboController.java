@@ -14,8 +14,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -51,36 +49,22 @@ public class InboController {
         model.addAttribute("center", dir + "makejoin");
         return "index";
     }
-    // 4-2-2. 센터 검색
-//    @RequestMapping(value = "/search", method = RequestMethod.GET)
-//    public String search(@RequestParam("gymName") String gymName, Model model) {
-//        try {
-//            gymSearch gs = new gymSearch();
-//
-//            gs.setGymName(gymName); // 검색어 설정
-//
-//            List<Gym> gymlist = gymService.search(gs); // 상품 검색 수행
-//
-//            model.addAttribute("gymlist", gymlist);
-//            return "groupboard/makejoin"; // 원 화면으로 복귀
-//
-//        } catch (Exception e) {
-//            // 예외 처리 로직
-//            e.printStackTrace();
-//            // 에러 페이지로 이동
-//           return "groupboard/makejoin";
-//        }
-//    }
     // 4-2-3 조인 만들기에 입력한 정보 전송 기능(+이미지까지)
     @RequestMapping("/makejoinimpl")
     public String makejoinimpl(Model model, Groupboard groupboard) throws Exception {
-        MultipartFile mf = groupboard.getGroupboardImgpath(); // 0.tip. getSend_img : 서버전송될 때 이미지 이름
-        String Imgname = mf.getOriginalFilename(); // 0.파일 덩어리에서, 이미지이름을 끄집어내기
 
-        groupboard.setGroupboardImgname( Imgname ); // 0.서버가 아무이름이나 랜덤으로 저장한 이미지 이름을 다시 원래 가지고 있던 이름으로 set 저장해준다.
-        groupboardService.register( groupboard ); // 1. 개설을 위해 입력한 내용이 db에 정상입력 되면,
-        FileUploadUtil.saveFile( mf, imgdir);  // 2. 그때, 파일 덩어리 > 우리 디렉토리(c > project > uimg)에 저장해주기.
-
+        log.info("===진입========");
+        try {
+            MultipartFile mf = groupboard.getGroupboardImgpath(); // 0.tip. getSend_img : 서버전송될 때 이미지 이름
+            log.info("=========확인2=========" + mf.toString());
+            String Imgname = mf.getOriginalFilename(); // 0.파일 덩어리에서, 이미지이름을 끄집어내기
+            log.info("=========확인2=========" + Imgname.toString());
+            groupboard.setGroupboardImgname(Imgname); // 0.서버가 아무이름이나 랜덤으로 저장한 이미지 이름을 다시 원래 가지고 있던 이름으로 set 저장해준다.
+            groupboardService.register(groupboard); // 1. 개설을 위해 입력한 내용이 db에 정상입력 되면,
+            FileUploadUtil.saveFile(mf, imgdir);  // 2. 그때, 파일 덩어리 > 우리 디렉토리(c > project > uimg)에 저장해주기.
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
         // 3. 등록완료 후엔 그룹보드 메인 페이지로 이동.
         return  "redirect:/groupboard";

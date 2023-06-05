@@ -37,28 +37,23 @@ public class InboAjaxController {
 
     // 4-2-2. 센터 검색
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public Object search(@RequestParam("gymName") String gymName, Model model) {
+    public Object search(@RequestParam("gymName") String gymName, Integer gymNo,Model model) {
 
             gymSearch gs = new gymSearch();
 
             gs.setGymName(gymName); // 검색어 설정
+            //gs.setGymNo(gymNo); // 검색어 설정
 
             List<Gym> gymlist = gymService.search(gs); // 상품 검색 수행
 
         if (gymlist != null) {
-//            return "success";
 
             JSONArray ja = new JSONArray();
             for(Gym obj : gymlist){
                 JSONObject jo = new JSONObject();
 
-                jo.put("gymName", obj.getGymName() );
-//                jo.put("title", obj.getTitle() );
-//                jo.put("target", obj.getTarget() );
-//                jo.put("lat", obj.getLat() );
-//                jo.put("lng", obj.getLng() );
-//                jo.put("img", obj.getImg() );
-//                jo.put("loc", obj.getLoc() );
+                jo.put("gymName", obj.getGymName());
+                jo.put("gymNo", obj.getGymNo());
                 ja.add(jo);
             }
             return ja;

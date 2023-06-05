@@ -2,90 +2,166 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<%-- 조인개설 시 태그명 참고 --%>
+<%--- gymNo : hidden--%>
+<%--- gymName--%>
+<%--- 가져오기 버튼 id : gymModal--%>
 
+<%--modal : 검색 입력창--%>
+<%--- modal_search_gymName--%>
+<%--- 검색 버튼 id : gymSearchBtn--%>
+<%--- modal_gymName--%>
+
+<%--modal : 검색결과--%>
+<%--- modal_gymName(+gymNo정보 포함되어 있음.)--%>
+<%--- 선택완료 버튼 id : gymChoiceBtn--%>
 <script>
-
+// 1. 운동센터 정보를 모달창으로 가져와주기 기능
     let center = {
-        init:function (){
-            $('#search_Btn').click(function () {
-                // 입력된 센터 이름 가져오기
-                var gymName = $("input[name='gymName']").val();
+        resultHTML : "", // 결과 담을 변수 만들기
+        init:function () {
+            $('#gymSearchBtn').click(function () {
+                // 검색창에 입력된 센터 이름 가져오기
+                var gymName = $("input[name='modal_search_gymName']").val();
 
                 // AJAX 요청을 사용하여 서버로 센터 이름 전송
                 $.ajax({
                     type: 'GET',
                     url: '/search',
-                    data: {gymName: gymName},
+                    data: {
+                       gymName: gymName,
+                    },
                     success: function (data) {
-                        if (data != null) {
-                            // console.log(result.toString());
-                            // document.getElementById("result").innerHTML ="<div><p>" + result.gymName + "</p></div>";
-                            // // document.getElementById("result").innerHTML =
-                            // //     "<p>" + gym.gymName + "</p>";
-                            console.log("success의 data!=null :"+data.toString());
-                            center.display(data);
+                        if (data != null) { // 검색어랑 비교했을 때 db에서 가져올 결과가 있다면
+                            //console.log("success의 data!=null :"+data.toString());
+                            document.getElementById("result").innerHTML = ""; // 검색결과 초기화
+                            center.display(data); // 화면에 보여주기(아래코드에서 계속)
                         } else {
-                            console.log("비어서 왔다");
+                            //console.log("비어서 왔다");
                             document.getElementById("result").innerHTML = "검색결과가 없습니다.";
                         }
                     }
-                    // ,
-                    // error: function () {
-                    //     document.getElementById("result").innerHTML = "서버 오류가 발생했습니다.";
-                    // }
-
-                    // success: function (response) {
-                    //     displayGymResults(response);
-                    // },
                 });
             });
-        }, display:function (data){ // data : json이 담겨있어
-            var resultHTML = ""; // 결과를 담을 변수 선언
-            console.log("display로 왔다");
-            for(var i = 0; i < data.length; i ++){
+            // 모달이 닫힐 때마다 결과 초기화하기.
+            $('#duplicateCheck').on('hidden.bs.modal', function () {
+                $("input[name='modal_search_gymName']").val(""); //검색 입력창도 초기화
+                //$("input[name='gymNo']").val("");
+                document.getElementById("result").innerHTML = ""; // 검색결과도 초기화
+            });
+            // 선택한 센터정보를 초기창에 자동입력 시켜주기
+            $(document).ready(function () {
+                $('#gymChoiceBtn').click(function () {
+                    var gymInfo1 = $('input[name="modal_gymName"]:checked').val(); //모달 - 검색결과 중 1개 선택하면 받을 준비
+                    // var gymInfo2 =  $('input[name="gymNo"]').val();
+
+                    let str = $('input[name="modal_gymName"]:checked').val(); // 선택한 값 담기
+                    //console.log("str : "+str);
+                    //console.log("str type: " +typeof (str));
+                    let result1 = str.slice(0, -1); // 센터이름 : 맨 뒤에서 1자리만 빼고
+                    let result2 = str.slice(-1); // 센터번호 : 맨 뒤에서 1자리
+                    //console.log("result1 : "+result1);
+                    //console.log("result2 : "+result2);
+
+                    // 라디오버튼 1개 선택 > 선택완료 > 모달꺼지면서 초기화면 창들 중
+                    // input의 name이 아래와 같은 태그에 자동입력 해주기
+                    $("input[name='gymName']").val(result1);
+                    $("input[name='gymNo']").val(result2);
+                    //alert("이름 출력 성공! " + gymInfo1);
+                    // alert("gymNo 출력 " + gymInfo2);
+
+
+                    // if (isNaN(gymInfo2)) {
+                    //     //gymInfo2 = "";
+                    //     //alert("Invalid gymNo");
+                    //     alert(gymInfo2);
+                    //     var parsedGymInfo2 = parseInt(gymInfo2);
+                    //     $("input[name='chooseGymNo']").val(parsedGymInfo2);
+                    //
+                    //     alert("번호 변환 성공! " + parsedGymInfo2);
+                    // } else {
+                    //     var parsedGymInfo2 = parseInt(gymInfo2);
+                    //     $("input[name='chooseGymNo']").val(parsedGymInfo2);
+                    //
+                    //     alert("번호 변환 성공! " + parsedGymInfo2);
+                    // }
+                });
+            });
+
+
+
+            // 화면 출력
+        }, display: function (data) { // data : json이 담겨있어
+            var resultHTML = ""; // 결과를 담을 변수 선언 초기화
+            var resultHTMLNo = ""; // 결과를 담을 변수 선언 초기화
+            //console.log("display로 왔다");
+            // console.log();
+            for (var i = 0; i < data.length; i++) {
                 console.log(data[i]);
-                resultHTML += "<p>" + data[i].gymName + "</p>"; // i가 반복해서 돌면서 검색어와 일치하는 데이터를 쌓기
-                document.getElementById("result").innerHTML = resultHTML; // 한 번에 결과를 출력
+                // modal - 검색결과 뿌려지는 창
+                resultHTML += "<li><div class='item-link hoverNone'><div class='custom-control custom-radio'><input type='radio'  value='" + data[i].gymName + data[i].gymNo + "'  id='customRadioList1' name='modal_gymName' class='custom-control-input'><label class='custom-control-label padding-l-30' for='customRadioList1'>" + data[i].gymName + "</label></div></div></li>"; // i가 반복해서 돌면서 검색어와 일치하는 데이터를 쌓기
+
             }
-
+            document.getElementById("result").innerHTML = resultHTML; // 결과 출력
         }
-    };
+    }
 
+    // 실행
     $(function (){
         center.init();
     });
 
-    // 검색 결과를 표시하는 함수
-    // function displayGymResults(gyms) {
-    //    // var resultList = $(".modal-body .item .nav__listAddress");
-    //     var resultList = $('.search-results');
-    //
-    //     // resultList.empty(); // 기존 검색 결과 제거
-    //
-    //     if (gyms.length > 0) {
-    //         $.each(gyms, function (index, gym) {
-    //            resultList.append("<div><p>" + gym.gymName + "</p></div>");
-    //         });
-    //     } else {
-    //          resultList.append('<div><p>검색 결과가 없습니다.</p></div>');
-    //     }
-    // }
 </script>
 <script>
     let makejoin = {
         init:function (){
-            $('#register_btn').click( function (){ // 클릭되면
-                makejoin.send(); //send.
+            $('#register_btn').click(function(){
+                var formData = new FormData();
+
+                var inputFile = $("input[name='groupboardImgpath']");
+                // console.log(inputFile);
+                var files = inputFile[0].files;
+                for(var i=0; i<files.length;i++){
+                    // 함수 호출(checkExtension)
+                    if(!makejoin.checkExtension(files[i].name, files[i].size)){
+                        return;
+                    }
+                }
+                makejoin.send();
+
             });
         },
-        send:function (){ // form의 정보를, 어디로 보낼까
+        checkExtension:function(fileName, fileSize){
+            var reg = new RegExp("(.*?)\.(exe|zip|alz)$");
+            // 유저가 올리려는 파일 확장자가 위와 같으면 못올리게.
 
+            // 파일크기 제한
+            // 실제파일의 크기 > 최대 크기
+            if(fileSize >= this.maxSize){
+                alert("파일 사이즈 초과");
+                return false;
+            }
+
+            // 확장자 제한
+            // 실제파일명의 확장자와 정규식 비교
+            // 정규식이면
+            if(reg.test(fileName)){
+                alert("해당 종류의 파일은 업로드 할 수 없습니다.");
+                return false;
+            }
+            return true;
+
+        },
+
+
+        send:function (){ // form의 정보를, 어디로 보낼까
             $('#register_form').attr({
                 method:'post', // 방식
                 action:'/groupboard/makejoinimpl', // 처리할 컨트롤러명
                 enctype : 'multipart/form-data' // form 정보 : text +file 정보도 전송.
             });
             $('#register_form').submit(); // 입력한  센터, 이용권, 등등 , img 모두 전송.
+
         }
     };
 
@@ -95,79 +171,7 @@
     });
 </script>
 <script>
-    $(document).ready(function(){
-        //파일첨부 이벤트
-        $('.filebox .upload-hidden').on('change', function(){
-            if(window.FileReader){
-                var filename = $(this)[0].files[0].name;
-                if(!validFileType(filename)){
-                    alert("허용하지 않는 확장자 파일입니다.");
-                    return false;
-                }else{
-                    if(!validFileSize($(this)[0].files[0])){
-                        alert("파일 사이즈가 10MB를 초과합니다.");
-                        return false;
-                    }else{
-                        if(!validFileNameSize(filename)){
-                            alert("파일명이 30자를 초과합니다.");
-                            return false;
-                        }
-                    }
-                }
-            } else {
-                var filename = $(this).val().split('/').pop().split('\\').pop();
-            }
-            $(this).prev().val(filename); //input upload-name 에 파일명 설정해주기
 
-            readImage($(this)[0]); //미리보기
-        });
-    });
-
-    function validFileType(filename) {
-        const fileTypes = ["png", "jpg", "jpeg"];
-        return fileTypes.indexOf(filename.substring(filename.lastIndexOf(".")+1, filename.length).toLowerCase()) >= 0;
-    }
-
-    function validFileSize(file){
-        if(file.size > 10000000){ //10MB
-            return false;
-        }else{
-            return true;
-        }
-    }
-
-    function validFileNameSize(filename){
-        if(filename.length > 30){ //30자
-            return false;
-        }else{
-            return true;
-        }
-    }
-
-    //이미지 띄우기
-    function readImage(input) {
-        if(input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function(e){
-                const previewImage = document.getElementById("previewImg");
-                previewImage.src = e.target.result;
-            }
-            // reader가 이미지 읽도록 하기
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    //이미지 원본 팝업 띄우기
-    function popImage(url) {
-        var img = new Image();
-        img.src = url;
-        var img_width = img.width;
-        var win_width = img.width + 25;
-        var img_height = img.height;
-        var win = img.height + 30;
-        var popup = window.open('', '_blank', 'width=' + img_width + ', height=' + img_height + ', menubars=no, scrollbars=auto');
-        popup.document.write("<style>body{margin:0px;}</style><img src='"+url+"' width='"+win_width+"'>");
-    }
 </script>
 
 
@@ -199,77 +203,30 @@
         <!-- form 태그 시작.  안에 입력!  -->
         <form role="form" id="register_form">
             <input type="hidden" name="custNo" value="${logincust.custNo}"/>
+<%--            <input type="hidden" name="gymNo" id="gymNo"/>--%>
             <div class="form-group with_icon">
-                <label>운동센터 선택</label>
+                <label>운동센터</label>
 <%--                <c:forEach var="obj" items="${gymlist}">--%>
                 <div class="input_group">
-                    <!-- 1. 센터정보 -->
-                        <input type="search" class="form-control" name="gymNo" style="margin-right: 10px"
-                               placeholder="이용할 센터 정보를 입력해 주세요" required>
+                    <!-- 1. 초기 센터정보 입력창 -->
+                    <input type="search" class="form-control" name="gymName"
+                               id="gymName"  style="margin-right: 10px"
+                               placeholder="이용할 센터 정보를 입력해 주세요" required >
+                    <!-- 센터번호 : 테스트할 땐 type 을 text로 -->
+                    <input type="hidden" name="gymNo" id="gymNo" value="" />
                     <button type="button" class="btn btn-outline-secondary col-3" style="width: 35%; height: 100%;"
-                            data-toggle="modal"
+                            data-toggle="modal" id="gymModal"
                             data-target="#duplicateCheck" >  <!--data-target="#duplicateCheck" -->
-                        찾아보기
+                        가져오기
                     </button>
 
                 </div>
 <%--                </c:forEach>--%>
                 <br>
-                <!-- 센터 검색 시 Modal -->
-                <div class="modal defaultModal modalCentered change__address fade" id="duplicateCheck" tabindex="-1"
-                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header border-0 padding-l-20 padding-r-20 justify-content-center">
-                                <div class="itemProduct_sm">
-                                    <h1 class="size-18 weight-600 color-secondary m-0">공동구매가 가능한 센터 검색하기</h1>
-                                </div>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <i class="tio-clear"></i>
-                                </button>
-                            </div>
-                            <%--  검색할 센터명 입력 + 선택결과 보여주기   --%>
-                            <div class="modal-body">
-                                <div class="nav__listAddress itemSingle">
-                                    <div class="item">
-                                        <form id="search-form" action="/groupboard/search">
-                                            <input type="search" class="form-control" name="gymName" style="margin-right: 10px"
-                                                   placeholder="센터 이름" required>
-                                            <div class="areaRight col-3">
-                                                <button type="button" class="btn btn-outline-secondary"
-                                                        id="search_Btn">검색</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <br>
-                                    <%-- 검색결과 나타나는 공간 --%>
-                                    <div class="form-group with_icon">
-                                        <p>검색 결과</p><hr>
-                                        <div id="search-results"class="em__pkLink">
-                                            <ul  class="nav__list with__border">
-                                                <li>
-                                                    <div class="item-link hoverNone">
-                                                    <div  class="custom-control custom-radio" id="result">
-                                                        <!-- jsonArray 나오는 곳 -->
-<%--                                                        <input type="radio" id="result" name="customRadio"--%>
-<%--                                                               class="custom-control-input">--%>
-                                                    </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn_default_lg" data-dismiss="modal" aria-label="Close">선택 완료</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <div class="form-group with_icon">
-                <label>이용권 선택</label>
+                <label>이용권</label>
                 <div class="input_group">
                     <!-- 2. 이용권정보 -->
                     <input type="text" class="form-control" style="margin-right: 10px"
@@ -294,7 +251,7 @@
                     <button type="button" class="btn btn-outline-secondary" style="width: 35%; height: 100%;"
                             data-toggle="modal"
                             id="btnECheck">  <!--data-target="#duplicateCheck" -->
-                        검색하기
+                        가져오기
                     </button>
                 </div>
                 <br>
@@ -303,7 +260,7 @@
             <!-- 모집인원 수 설정 -->
             <div class="item-link hoverNone">
                 <div class="group">
-                    <span class="path__name">모집인원 선택</span>
+                    <span class="path__name">모집인원 설정</span>
                     <p style="font-size: small; color:#8890E8">회원님을 제외하고 모집받을 인원 수를 선택해 주세요</p>
                 </div>
                 <div class="group">
@@ -323,9 +280,9 @@
                 <label>예상 할인금액</label>
                 <p style="font-size: small; color:#8890E8">회원님이 설정한 모집인원만큼 조인이 신청되면 적용받게 될 금액이에요</p>
                 <div class="input_group">
-                    <input type="text" class="form-control" style="margin-right: 10px"
-                           placeholder="할인 금액" id="custEmail"
-                            required>
+<%--                    <input type="text" class="form-control" style="margin-right: 10px"--%>
+<%--                           placeholder="할인 금액"--%>
+<%--                            required>--%>
 <%--                    <div class="icon">--%>
 <%--                        <svg id="Iconly_Two-tone_Message" data-name="Iconly/Two-tone/Call"--%>
 <%--                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">--%>
@@ -345,7 +302,7 @@
                     <button type="button" class="btn btn-outline-secondary" style="width: 35%; height: 100%;"
                             data-toggle="modal"
                             id="btnECheck">  <!--data-target="#duplicateCheck" -->
-                        조회하기
+                        미리보기
                     </button>
                 </div>
                 <br>
@@ -356,22 +313,15 @@
             </div>
             <label>대표 이미지</label>
             <!-- 4. 업로드하는 파일 -->
-            <div class="upliadimg">
-            <input class="upload-name" value="파일 없음" disabled>
-            <input type="file" id="file1" name="groupboardImgpath"
-                       class="upload-hidden">
-<!-- 미리보기 구간 --><img id="previewimg" onclick="popimage(this.src)" />
-            </div>
+<%--            <div class="upliadimg">--%>
+<%--&lt;%&ndash;            <input class="upload-name" value="파일 없음" disabled>&ndash;%&gt;--%>
+<%--            <input type="file" id="file1" name="groupboardImgpath"--%>
+<%--                       class="upload-hidden">--%>
+<%--<!-- 미리보기 구간 --><img id="previewimg" onclick="popimage(this.src)" />--%>
+<%--            </div>--%>
             <!-- 업로드한 이미지 표시 -->
-<%--            <%--%>
-<%--                이미지가 업로드되었다면 이미지를 화면에 표시--%>
-<%--                String uploadedImagePath = "업로드된 이미지의 상대 또는 절대 경로";--%>
-<%--                if (uploadedImagePath != null && !uploadedImagePath.isEmpty()) {--%>
-<%--            %>--%>
-<%--            <img src="<%= uploadedImagePath %>" alt="업로드된 이미지">--%>
-<%--            <%--%>
-<%--                }--%>
-<%--            %>--%>
+            <input type="file" name="groupboardImgpath" class="form-control" id="groupboardImgpath" placeholder="Input image">
+
             <br>
             <div class="form-group input-lined">
                             <input class="form-control" rows="2" name="groupboardTitle"
@@ -390,8 +340,8 @@
                 <label>카테고리 선택</label>
                 <p style="font-size: small; color:#8890E8">회원님이 선택하신 종류로 조인이 게시됩니다.</p>
                 <div class="form-group">
-                    <input type="text" name="categoryNo"><!-- 임시 -->
-                    <select class="form-control custom-select" id="sportsType" name="sportsType">
+<%--                    <input type="text" name="categoryNo"><!-- 임시 -->--%>
+                    <select class="form-control custom-select" id="categoryNo" name="categoryNo">
                         <option value="1" selected>헬스</option>
                         <option value="2">PT</option>
                         <option value="3">크로스핏</option>
@@ -415,3 +365,63 @@
     </form><!-- from 태그 종료 -->
 
 </section>
+
+<!-- 센터 검색 시 Modal -->
+<div class="modal defaultModal modalCentered change__address fade" id="duplicateCheck" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0 padding-l-20 padding-r-20 justify-content-center">
+                <div class="itemProduct_sm">
+                    <h1 class="size-18 weight-600 color-secondary m-0">공동구매가 가능한 센터 검색하기</h1>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="tio-clear"></i>
+                </button>
+            </div>
+            <%--  모달 - 검색입력창   --%>
+            <div class="modal-body">
+                <div class="nav__listAddress itemSingle">
+                    <div class="modal-content">
+                        <form id="search-form" action="/groupboard/search">
+                            <div class="row">
+                                <div class="col-9">
+                                    <input type="search" class="form-control" name="modal_search_gymName" placeholder="센터 이름" required>
+                                </div>
+                                <div class="col-3">
+                                    <button type="button" class="btn btn-outline-secondary" id="gymSearchBtn">검색</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <br>
+                    <%-- 검색결과 나타나는 공간 --%>
+                    <div class="form-group with_icon">
+                        <p>검색 결과</p><hr>
+                        <div id="search-results"class="em__pkLink">
+                            <ul  class="nav__list with__border" id="result"> <!-- jsonArray 결과 뿌려지는 곳 -->
+                                <!-- 센터명 나오는 모습-->
+                                <%--  resultHTML += "<li>
+                                                        <div class='item-link hoverNone'>
+                                                            <div class='custom-control custom-radio'>
+                                                                <input type='radio'  id='customRadioList1' class='custom-control-input'
+                                                                name='gymName' value='"+ data[i].gymName +"'>
+                                                                    <label class='custom-control-label padding-l-30'
+                                                                    for='customRadioList1' >" + data[i].gymName +
+                                                                    "</label>
+                                                                </div>
+                                                            </div>
+                                                    </li>"; // i가 반복해서 돌면서 검색어와 일치하는 데이터를 쌓기--%>
+
+                            </ul>
+                            <div id="resultNo"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="gymChoiceBtn" class="btn btn_default_lg" data-dismiss="modal" aria-label="Close">선택 완료</button>
+            </div>
+        </div>
+    </div>
+</div>

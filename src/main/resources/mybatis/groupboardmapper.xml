@@ -32,7 +32,7 @@
         SELECT
             gb.groupboardNo, gb.custNo, gb.ticketNo,
             gb.groupboardTitle, gb.groupboardContents,
-            gb.groupboardImgname, gb.groupboardImgpath,
+            gb.groupboardImgname,
             gb.categoryNo, gb.expectMember, gb.applicationMember, gb.confirmMember,
             gb.groupboardStatus, gb.boardViews, gb.writeDate,
             COUNT(gm.custNo) AS applicationMemberCount
@@ -43,7 +43,7 @@
             GROUP BY
             gb.groupboardNo, gb.custNo, gb.ticketNo,
             gb.groupboardTitle, gb.groupboardContents,
-            gb.groupboardImgname, gb.groupboardImgpath,
+            gb.groupboardImgname,
             gb.categoryNo, gb.expectMember, gb.applicationMember, gb.confirmMember,
             gb.groupboardStatus, gb.boardViews, gb.writeDate
     </select>
@@ -60,13 +60,13 @@
         INSERT INTO groupboard (groupboardNo, custNo, ticketNo
                                 , groupboardTitle, groupboardContents
                                 , groupboardImgname
-                                , categoryNo, expectMember
-                                , writeDate)
+                                , categoryNo, expectMember, boardViews
+                                , groupboardStatus, writeDate)
         VALUES (groupboard_seq.NEXTVAL, #{custNo}, #{ticketNo}
                 , #{groupboardTitle}, #{groupboardContents}
                 , #{groupboardImgname}
-                , #{categoryNo}, #{expectMember}
-                , SYSDATE
+                , #{categoryNo}, #{expectMember}, 0
+                , '1', SYSDATE
                 )
     </insert>
     <!-- 개설회원이 게시된 글에서 수정가능한 항목 7가지. : 정상 -->
