@@ -45,7 +45,11 @@
               </div>
               <label>가격</label>
               <div class="input_group">
-                <input type="text" class="form-control is-valid" id="ticketPriceValue" value="${ticketPrice}"required readonly>
+                <input type="text" class="form-control is-valid" id="ticketPriceValue" value="${ticketInfo}" required readonly>
+              </div>
+              <label>체육관 번호</label>
+              <div class="input_group">
+                <input type="text" class="form-control is-valid" id="gymNoValue" value="${gymNo}" required readonly>
               </div>
             </div>
 

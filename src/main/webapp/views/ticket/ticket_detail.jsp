@@ -58,7 +58,108 @@
         }
 
     </style>
+    <script>
 
+//        $(function(){
+//            goPay.init();
+//        });
+//
+//        let goPay = {
+//            init: function(){
+//                $('#ticket_pay_btn').on('click', function(){
+//
+//
+//                    let selectedOption = $('#ticket_pay_option').val();
+//
+//                    // ticketoption 값을 hidden input 요소로 추가
+//                    $('<input>').attr({
+//                        type: 'hidden',
+//                        name: 'ticketoption',
+//                        value: selectedOption
+//                    }).appendTo('#ticket_pay_form');
+//
+//                    $('#ticket_pay_form').attr({
+//                        action: '/pay',
+//                        method: 'post'
+//                    });
+//                    $('#ticket_pay_form').submit();
+//                });
+//            }
+//        };
+$(function(){
+    goPay.init();
+});
+
+let goPay = {
+    init: function(){
+        $('#ticket_pay_btn').on('click', function(){
+            alert("click");
+
+            let selectedOption = $('#ticket_pay_option').val();
+
+            $.ajax({
+                url: '/pay',
+                type: 'post',
+                data: { ticketoption: selectedOption },
+                success: function(response){
+                    // 요청이 성공한 경우에 수행할 동작
+                    console.log(response);
+                },
+                error: function(xhr, status, error){
+                    // 요청이 실패한 경우에 수행할 동작
+                    console.log(error);
+                }
+            });
+        });
+    }
+};
+        let slideIndex = 0;
+        let slides = $('.slide');
+        let slideInterval;
+
+        showSlide(slideIndex);
+        startSlideInterval(); // 자동 슬라이드
+
+        function changeSlide(n) {
+            showSlide(slideIndex += n);
+        }
+
+        function showSlide(n) {
+            if (n >= slides.length) {
+                slideIndex = 0;
+            } else if (n < 0) {
+                slideIndex = slides.length - 1;
+            }
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex].style.display = "block";
+
+            // 사진 슬라이드에 현재 슬라이드와 전체 슬라이드 수를  표시
+            $('#current-slide').text(slideIndex + 1);
+            $('#total-slides').text(slides.length);
+        }
+
+        function startSlideInterval() {
+            slideInterval = setInterval(() => {
+                changeSlide(1);
+            }, 2000); // 2초마다 슬라이드 전환
+        }
+
+        function stopSlideInterval() {
+            clearInterval(slideInterval);
+        }
+
+
+        // 마우스가 슬라이드 영역 위로 올라갔을 때 슬라이드 간격을 멈추도록 이벤트 처리
+        document.querySelector(".slideshow-container").addEventListener("mouseenter", stopSlideInterval);
+
+        // 마우스가 슬라이드 영역을 벗어났을 때 슬라이드 간격을 다시 시작하도록 이벤트 처리
+        document.querySelector(".slideshow-container").addEventListener("mouseleave", startSlideInterval);
+
+
+    </script>
     <div id="wrapper">
         <div id="content">
 
@@ -254,29 +355,26 @@
                     </div>
 
                     <div class="padding-t-100">
-
-                        <FORM action="/pay" method="post" class="em_footerinner"
-                             style="margin-bottom: 50px; position: fixed; z-index:9999; bottom: 65px">
-                            <input id="ticketValueInput" type="hidden" name="ticketvalue" value="">
-
-                            <select id="ticketSelect" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="width: 90%">
-                                <option selected>구매하실 이용권을 선택해주세요,</option>
+                        <form name="ticket_pay_form" id="ticket_pay_form">
+                            <select name="ticket" id="ticket_pay_option">
+                                <option selected>구매하실 이용권을 선택해주세요.</option>
                                 <c:forEach var="ticket" items="${tickets}">
                                     <c:choose>
                                         <c:when test="${ticket.ticketType == '1'}">
-                                            <option value="기간권-${ticket.ticketMonth}-${ticket.ticketCost}">
+                                            <option name="ticket_pay_option" class="ticket_pay_option" value="기간권-${ticket.ticketMonth}-${ticket.ticketCost}-${ticket.gymNo}">
                                                 <p>기간권</p> ${ticket.ticketMonth}개월  ${ticket.ticketCost}원
                                             </option>
                                         </c:when>
                                         <c:when test="${ticket.ticketType == '2'}">
-                                            <option value="횟수권-${ticket.ticketNumber}-${ticket.ticketCost}">
+                                            <option name="ticket_pay_option" class="ticket_pay_option" value="횟수권-${ticket.ticketNumber}-${ticket.ticketCost}-${ticket.gymNo}">
                                                 <p>횟수권</p> ${ticket.ticketNumber}회 ${ticket.ticketCost}원
                                             </option>
                                         </c:when>
                                     </c:choose>
                                 </c:forEach>
                             </select>
-                        </FORM>
+
+                        </form>
                         </div>
 
                     </div>
@@ -309,9 +407,9 @@
                                     </div>
                                     <span class="textCart color-secondary d-inline-block">Save</span>
                                 </button>
-                                <a href="/pay" class="btn btn__icon bg-primary color-white min-w-175 text-left justify-content-between">
+                                <button type="button" id="ticket_pay_btn" class="btn btn__icon bg-primary color-white min-w-175 text-left justify-content-between">
                                     결제하기
-
+                                </button>
                                     <div class="icon">
                                         <svg id="Iconly_Light_Arrow_-_Right_Square"
                                              data-name="Iconly/Light/Arrow - Right Square"
@@ -418,59 +516,7 @@
         </div>
 
 
-        <script>
-            let slideIndex = 0;
-            let slides = $('.slide');
-            let slideInterval;
 
-            showSlide(slideIndex);
-            startSlideInterval(); // 자동 슬라이드
 
-            function changeSlide(n) {
-                showSlide(slideIndex += n);
-            }
 
-            function showSlide(n) {
-                if (n >= slides.length) {
-                    slideIndex = 0;
-                } else if (n < 0) {
-                    slideIndex = slides.length - 1;
-                }
-
-                for (let i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";
-                }
-                slides[slideIndex].style.display = "block";
-
-                // 사진 슬라이드에 현재 슬라이드와 전체 슬라이드 수를  표시
-                $('#current-slide').text(slideIndex + 1);
-                $('#total-slides').text(slides.length);
-            }
-
-            function startSlideInterval() {
-                slideInterval = setInterval(() => {
-                    changeSlide(1);
-                }, 2000); // 2초마다 슬라이드 전환
-            }
-
-            function stopSlideInterval() {
-                clearInterval(slideInterval);
-            }
-
-            // 마우스가 슬라이드 영역 위로 올라갔을 때 슬라이드 간격을 멈추도록 이벤트 처리
-            document.querySelector(".slideshow-container").addEventListener("mouseenter", stopSlideInterval);
-
-            // 마우스가 슬라이드 영역을 벗어났을 때 슬라이드 간격을 다시 시작하도록 이벤트 처리
-            document.querySelector(".slideshow-container").addEventListener("mouseleave", startSlideInterval);
-        </script>
-
-    <script>
-        function updateValue() {
-            var selectElement = document.getElementById("ticketSelect");
-            var selectedOption = selectElement.options[selectElement.selectedIndex];
-            var ticketType = selectedOption.getAttribute("data-ticket-type");
-            var ticketValue = selectedOption.getAttribute("data-ticket-value");
-            document.getElementById("ticketValueInput").value = ticketValue;
-        }
-    </script>
 

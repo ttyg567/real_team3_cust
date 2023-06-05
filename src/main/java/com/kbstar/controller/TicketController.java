@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -197,20 +198,59 @@ public class TicketController {
 //                      @RequestParam("ticketPrice") String ticketPrice,
 //                      @RequestParam("ticketvalue") String ticketvalue,
 //                      Model model) throws Exception {
-@GetMapping("/pay")
-public String pay(@RequestParam("ticketvalue") String ticketvalue) throws Exception {
-//        Gym gym = null;
-//        // 해당 gymNo에 해당하는 이용권 목록 가져오기
-//        List<Ticket> ticketList = ticketService.getTicketsByGymNo(gymNo);
-//        // 필요한 로직 수행
-//        // 모델에 값을 담아서 pay 페이지로 전달
-//        model.addAttribute("gymNo", gymNo);
+//@GetMapping("/pay")
+//public String pay(@RequestParam("ticketvalue") String ticketvalue) throws Exception {
+////        Gym gym = null;
+////        // 해당 gymNo에 해당하는 이용권 목록 가져오기
+////        List<Ticket> ticketList = ticketService.getTicketsByGymNo(gymNo);
+////        // 필요한 로직 수행
+////        // 모델에 값을 담아서 pay 페이지로 전달
+////        model.addAttribute("gymNo", gymNo);
+////        model.addAttribute("ticketType", ticketType);
+////        model.addAttribute("ticketDuration", ticketDuration);
+////        model.addAttribute("ticketPrice", ticketPrice);
+////        model.addAttribute("ticketList", ticketList);
+//        // pay 페이지로 이동
+//        log.info("==========ticketvalue" + ticketvalue);
+//        return "pay";
+//    }
+//@PostMapping("/pay")
+//public String handlePostRequest(@RequestParam("ticket") String selectedTicket, @RequestParam("gymNo") int gymNo) {
+//    // 이용권 값 및 gymNo 처리 로직을 작성합니다.
+//    System.out.println("선택된 이용권: " + selectedTicket);
+//    System.out.println("선택된 체육관 번호: " + gymNo);
+//
+//    // 필요한 로직을 수행한 후, 다른 페이지로 리디렉션하거나 응답을 반환합니다.
+//    return "redirect:/otherPage";
+//}
+
+
+//    @PostMapping("/pay")
+//    public String handlePostRequest(@RequestParam("ticket") String selectedTicket, @RequestParam("gymNo") int gymNo, Model model) {
+//        // Extract the required values from the selectedTicket string
+//        String[] ticketValues = selectedTicket.split("-");
+//        String ticketType = ticketValues[0];
+//        String ticketInfo = ticketValues[1];
+//        // Add the values to the model to pass them to the pay.jsp page
 //        model.addAttribute("ticketType", ticketType);
-//        model.addAttribute("ticketDuration", ticketDuration);
-//        model.addAttribute("ticketPrice", ticketPrice);
-//        model.addAttribute("ticketList", ticketList);
-        // pay 페이지로 이동
-        log.info("==========ticketvalue" + ticketvalue);
+//        model.addAttribute("ticketInfo", ticketInfo);
+//        model.addAttribute("gymNo", gymNo);
+//        // Return the view name for the pay.jsp page
+//        return "pay";
+//    }
+    @PostMapping("/pay")
+    public String handlePostRequest(String ticketoption, Model model) {
+        System.out.println("pay controller");
+        String[] ticketoptions = ticketoption.split(" ");
+
+        String ticketType = ticketoptions[0];
+        String ticketInfo = ticketoptions[1];
+        String price = ticketoptions[2];
+        // Add the values to the model to pass them to the pay.jsp page
+        model.addAttribute("ticketType", ticketType);
+        model.addAttribute("ticketInfo", ticketInfo);
+        model.addAttribute("price", price);
         return "pay";
-    }
+}
+
 }
