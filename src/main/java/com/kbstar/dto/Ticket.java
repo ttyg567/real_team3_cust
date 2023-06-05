@@ -24,4 +24,6 @@ public class Ticket {
     private String ticketImgname;
     private String sportsType;
     private String sportsClasstype;
+
+   private String ticketValue;
 }

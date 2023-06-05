@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <html>
 <head>
     <title>main</title>
@@ -56,7 +55,7 @@
                         <a class="nav-link" href="/ticket/golf">골프</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/ticket/crossfit">크로스핏</a>
+                        <a class="nav-link active" href="/ticket/crossfit">크로스핏</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/ticket/swimming">수영</a>
@@ -64,12 +63,18 @@
                 </ul>
             </div>
             <!-- 지역 정보가 들어오면 해당 지역의 센터 뿌려주기-->
+            <c:forEach  var="obj" items="${all}" >
             <ul class="itemList__news" style="background-color: white">
-                <c:forEach  var="obj" items="${crossfit}" >
+
                 <li class="items-nav">
-                    <a href="/ticket_detail" class="btn">
+                    <a href="/ticket/detail?gymNo=${obj.gymNo}" class="btn">
                         <div class="media align-items-center">
-                            <img class="img_news" src="assets/img/0asd897.jpg" alt="">
+                            <c:forEach var="img" items="${obj.gymImgname}" varStatus="status">
+                                <c:if test="${status.index eq 0}">
+                                    <img class="img_news" src="/uimg/${img}" alt="">
+                                </c:if>
+                            </c:forEach>
+
                             <div class="media-body">
                                 <div class="txt">
                                     <h2>${obj.gymName}</h2>
@@ -96,7 +101,7 @@
                                                     </g>
                                                 </svg>
                                             </div>
-                                            <span>2 hour ago</span>
+                                            <span>${obj.gymAddress1}</span>
                                         </div>
                                         <div class="view">
                                             <div class="icon">
@@ -118,7 +123,7 @@
                                                     </g>
                                                 </svg>
                                             </div>
-                                            <span>295 views</span>
+                                            <span>좋아요 수 </span>
                                         </div>
                                     </div>
                                 </div>

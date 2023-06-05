@@ -100,7 +100,7 @@
                     </div>
                 </div>
                 <div class="title">
-                    <h1 class="head_art">${gdetail.gymName}</h1>
+                    <h1 class="head_art" style="margin-left: 3vw">${gdetail.gymName}</h1>
                     <div class="item__auther emBlock__border">
 
                         <div class="item_person">
@@ -108,63 +108,72 @@
 
                             <h2></h2>
                         </div>
-                        <div class="sideRight">
-                            <div class="time">
-                                <div class="icon">
-                                    <svg id="Iconly_Curved_Time_Square" data-name="Iconly/Curved/Time Square"
-                                         xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                         viewBox="0 0 15 15">
-                                        <g id="Time_Square" data-name="Time Square"
-                                           transform="translate(1.719 1.719)">
-                                            <path id="Stroke_1" data-name="Stroke 1"
-                                                  d="M0,5.781c0,4.336,1.446,5.781,5.781,5.781s5.781-1.446,5.781-5.781S10.117,0,5.781,0,0,1.446,0,5.781Z"
-                                                  fill="none" stroke="#cbcdd8" stroke-linecap="round"
-                                                  stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
-                                            <path id="Stroke_3" data-name="Stroke 3" d="M2.119,3.99,0,2.726V0"
-                                                  transform="translate(5.781 3.053)" fill="none" stroke="#cbcdd8"
-                                                  stroke-linecap="round" stroke-linejoin="round"
-                                                  stroke-miterlimit="10" stroke-width="1.5"/>
-                                        </g>
-                                    </svg>
-                                </div>
-                                <span>2 hour ago</span>
-                            </div>
-                            <div class="view margin-l-10">
-                                <div class="icon">
-                                    <svg id="Iconly_Curved_Show" data-name="Iconly/Curved/Show"
-                                         xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                         viewBox="0 0 15 15">
-                                        <g id="Show" transform="translate(1.719 2.969)">
-                                            <path id="Stroke_1" data-name="Stroke 1"
-                                                  d="M3.952,1.976A1.976,1.976,0,1,1,1.976,0,1.977,1.977,0,0,1,3.952,1.976Z"
-                                                  transform="translate(3.806 2.588)" fill="none" stroke="#cbcdd8"
-                                                  stroke-linecap="round" stroke-linejoin="round"
-                                                  stroke-miterlimit="10" stroke-width="1.5"/>
-                                            <path id="Stroke_3" data-name="Stroke 3"
-                                                  d="M0,4.564c0,2.05,2.589,4.564,5.782,4.564s5.782-2.512,5.782-4.564S8.976,0,5.782,0,0,2.514,0,4.564Z"
-                                                  fill="none" stroke="#cbcdd8" stroke-linecap="round"
-                                                  stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
-                                        </g>
-                                    </svg>
-                                </div>
-                                <span>295 views</span>
-                            </div>
-                        </div>
+                        <!--나중에 이자리에 좋아요 수 보여주기 -->
+<%--                        <div class="sideRight">--%>
+<%--                            <div class="time">--%>
+<%--                                <div class="icon">--%>
+<%--                                    <svg id="Iconly_Curved_Time_Square" data-name="Iconly/Curved/Time Square"--%>
+<%--                                         xmlns="http://www.w3.org/2000/svg" width="15" height="15"--%>
+<%--                                         viewBox="0 0 15 15">--%>
+<%--                                        <g id="Time_Square" data-name="Time Square"--%>
+<%--                                           transform="translate(1.719 1.719)">--%>
+<%--                                            <path id="Stroke_1" data-name="Stroke 1"--%>
+<%--                                                  d="M0,5.781c0,4.336,1.446,5.781,5.781,5.781s5.781-1.446,5.781-5.781S10.117,0,5.781,0,0,1.446,0,5.781Z"--%>
+<%--                                                  fill="none" stroke="#cbcdd8" stroke-linecap="round"--%>
+<%--                                                  stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>--%>
+<%--                                            <path id="Stroke_3" data-name="Stroke 3" d="M2.119,3.99,0,2.726V0"--%>
+<%--                                                  transform="translate(5.781 3.053)" fill="none" stroke="#cbcdd8"--%>
+<%--                                                  stroke-linecap="round" stroke-linejoin="round"--%>
+<%--                                                  stroke-miterlimit="10" stroke-width="1.5"/>--%>
+<%--                                        </g>--%>
+<%--                                    </svg>--%>
+<%--                                </div>--%>
+<%--                                <span>2 hour ago</span>--%>
+<%--                            </div>--%>
+<%--                            <div class="view margin-l-10">--%>
+<%--                                <div class="icon">--%>
+<%--                                    <svg id="Iconly_Curved_Show" data-name="Iconly/Curved/Show"--%>
+<%--                                         xmlns="http://www.w3.org/2000/svg" width="15" height="15"--%>
+<%--                                         viewBox="0 0 15 15">--%>
+<%--                                        <g id="Show" transform="translate(1.719 2.969)">--%>
+<%--                                            <path id="Stroke_1" data-name="Stroke 1"--%>
+<%--                                                  d="M3.952,1.976A1.976,1.976,0,1,1,1.976,0,1.977,1.977,0,0,1,3.952,1.976Z"--%>
+<%--                                                  transform="translate(3.806 2.588)" fill="none" stroke="#cbcdd8"--%>
+<%--                                                  stroke-linecap="round" stroke-linejoin="round"--%>
+<%--                                                  stroke-miterlimit="10" stroke-width="1.5"/>--%>
+<%--                                            <path id="Stroke_3" data-name="Stroke 3"--%>
+<%--                                                  d="M0,4.564c0,2.05,2.589,4.564,5.782,4.564s5.782-2.512,5.782-4.564S8.976,0,5.782,0,0,2.514,0,4.564Z"--%>
+<%--                                                  fill="none" stroke="#cbcdd8" stroke-linecap="round"--%>
+<%--                                                  stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>--%>
+<%--                                        </g>--%>
+<%--                                    </svg>--%>
+<%--                                </div>--%>
+<%--                                <span>295 views</span>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
                     </div>
                 </div>
-        </div>
+            </section>
+         </div>
+    </div>
+
         <div class="embody__content">
             <!-- 타이틀 -->
-            <p>
+            <p style="display: flex;
+                     justify-content: center;
+                       align-items: center;margin-top: 10vh; font-size: 190%">
                 ${gdetail.gymTitle}
             </p>
             <!-- 내용 -->
-            <p>
+            <p style="display: flex;
+                     justify-content: center;
+                       align-items: center; font-size: 170% ;  margin: 10%">
                 ${gdetail.gymContents}
             </p>
             <c:forEach var="detailImg" items="${gdetail_detail_img}">
-                <div class="cover">
-                    <img class="item_img_detail" src="/uimg/${detailImg}" alt="${detailImg}" style="width: 90%">
+                <div class="cover" style="margin-top: 10vh">
+                    <img class="item_img_detail" src="/uimg/${detailImg}" alt="${detailImg}"
+                         style="width: 90%; margin-left: 5vw;">
                     <span class="item_category"></span>
                 </div>
             </c:forEach>
@@ -183,7 +192,7 @@
 
         <!-- Comments -->
         <section class="pt_simpleDetails emBlock__border rounded-0 mt-0 padding-b-30">
-            <div class="em_bodyinner">
+            <form class="em_bodyinner">
                 <div class="emCommentCusomers">
                     <div class="title"></div>
                     <!-- item -->
@@ -214,8 +223,20 @@
                                           </c:choose>
                                         </span>
                                             <div class="details">
-                                                <h2 style="color: purple">${ticket.ticketCost}원</h2>
-                                                <p style="color: purple">${ticket.ticketNumber}회/개월</p>
+                                                <h2 style="color: purple">
+
+                                                        ${ticket.ticketCost}원</h2>
+                                                <p style="color: purple">
+                                                <c:choose>
+                                                    <c:when test="${ticket.ticketType == 1}">
+                                                      <h5>${ticket.ticketMonth}개월 </h5>
+                                                </c:when>
+                                                <c:when test="${ticket.ticketType == 2}">
+                                                    <h5>${ticket.ticketNumber}회</h5>
+                                                </c:when>
+                                                </c:choose>
+
+                                                </p>
                                             </div>
                                             <button type="button" class="btn btn_buy">
                                                 가격 불러오기
@@ -234,28 +255,33 @@
 
                     <div class="padding-t-100">
 
-                        <div class="em_footerinner"
+                        <FORM action="/pay" method="post" class="em_footerinner"
                              style="margin-bottom: 50px; position: fixed; z-index:9999; bottom: 65px">
-                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
-                                    style="width: 90%">
+                            <input id="ticketValueInput" type="hidden" name="ticketvalue" value="">
+
+                            <select id="ticketSelect" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="width: 90%">
                                 <option selected>구매하실 이용권을 선택해주세요,</option>
                                 <c:forEach var="ticket" items="${tickets}">
-                                    <option value="1">
-                                        <c:choose>
-                                            <c:when test="${ticket.ticketType == '1'}">
-                                                <p>기간권</p> ${ticket.ticketNumber}개월  ${ticket.ticketCost}원
-                                            </c:when>
-                                            <c:when test="${ticket.ticketType == '2'}">
-                                                <p>횟수권</p>${ticket.ticketNumber}개월 ${ticket.ticketCost}
-                                            </c:when>
-                                        </c:choose>
-                                    </option>
+                                    <c:choose>
+                                        <c:when test="${ticket.ticketType == '1'}">
+                                            <option value="기간권-${ticket.ticketMonth}-${ticket.ticketCost}">
+                                                <p>기간권</p> ${ticket.ticketMonth}개월  ${ticket.ticketCost}원
+                                            </option>
+                                        </c:when>
+                                        <c:when test="${ticket.ticketType == '2'}">
+                                            <option value="횟수권-${ticket.ticketNumber}-${ticket.ticketCost}">
+                                                <p>횟수권</p> ${ticket.ticketNumber}회 ${ticket.ticketCost}원
+                                            </option>
+                                        </c:when>
+                                    </c:choose>
                                 </c:forEach>
                             </select>
-
+                        </FORM>
                         </div>
-                        </a>
+
                     </div>
+
+
 
 
                     <div class="padding-t-100">
@@ -283,9 +309,9 @@
                                     </div>
                                     <span class="textCart color-secondary d-inline-block">Save</span>
                                 </button>
-                                <a href="/pay"
-                                   class="btn btn__icon bg-primary color-white min-w-175 text-left justify-content-between">
+                                <a href="/pay" class="btn btn__icon bg-primary color-white min-w-175 text-left justify-content-between">
                                     결제하기
+
                                     <div class="icon">
                                         <svg id="Iconly_Light_Arrow_-_Right_Square"
                                              data-name="Iconly/Light/Arrow - Right Square"
@@ -315,7 +341,7 @@
                         </div>
                     </div>
                 </div>
-
+            </form>
 
                 <!-- End. comments -->
 
@@ -437,3 +463,14 @@
             // 마우스가 슬라이드 영역을 벗어났을 때 슬라이드 간격을 다시 시작하도록 이벤트 처리
             document.querySelector(".slideshow-container").addEventListener("mouseleave", startSlideInterval);
         </script>
+
+    <script>
+        function updateValue() {
+            var selectElement = document.getElementById("ticketSelect");
+            var selectedOption = selectElement.options[selectElement.selectedIndex];
+            var ticketType = selectedOption.getAttribute("data-ticket-type");
+            var ticketValue = selectedOption.getAttribute("data-ticket-value");
+            document.getElementById("ticketValueInput").value = ticketValue;
+        }
+    </script>
+

@@ -15,7 +15,7 @@ public class selectByTypeNoTest {
     @Test
     void contextLoads() {
         try {
-            service.getByTypeNo(1);
+            service.getByTypeNo(6);
         } catch (Exception e) {
             log.info("오류");
         }

@@ -87,15 +87,22 @@
         SELECT * FROM gym WHERE gymMasterCk ='1'
     </select>
     <!-- SELECT BY typeNo 운동종목으로 select 하기  -->
-    <select id="selectByTypeNo" parameterType="int" resultType="gym">
-        SELECT * FROM
-            Gym g
-                JOIN
-            Gymtype gt ON g.gymNo = gt.gymNo
-        WHERE
-            gt.typeNo = #{typeNo}
+<!--    <select id="selectByTypeNo" parameterType="int" resultType="gym">-->
+<!--        SELECT * FROM Gym-->
+<!--        WHERE-->
+<!--            typeNo = #{typeNo}-->
+<!--    </select>-->
+    <select id="selectByTypeNo" parameterType="Integer" resultType="gym">
+        SELECT t.*
+        FROM (
+                 SELECT g.gymNo, g.gymName, g.gymPhone, g.gymAddress1, g.gymAddress2, g.gymAddress3, g.gymTitle, gi.gymImgname,
+                        RANK() OVER (PARTITION BY g.gymNo ORDER BY gi.gymImgNo) AS rank
+                 FROM Gym g
+                          JOIN GymImg gi ON g.gymNo = gi.gymNo
+                 WHERE gi.gymImgdetailCk = '0' AND g.typeNo = #{typeNo}
+             ) t
+        WHERE t.rank = 1
     </select>
-
     <!--    1: 헬스                workout                             wo-->
 <!--    2: PT.                  personalTraining.         pt-->
 <!--    3: 크로스핏       crossfit.                              cr-->

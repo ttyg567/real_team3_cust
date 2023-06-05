@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -49,7 +50,7 @@ public class TicketController {
         } catch (Exception e) {
             throw new Exception("헬스장조회 중 오류가 발생했습니다.");
         }
-        model.addAttribute("workout", list);
+        model.addAttribute("all", list);
         model.addAttribute("center", dir + "workout");
         return "index";
     }
@@ -61,7 +62,7 @@ public class TicketController {
         } catch (Exception e) {
             throw new Exception("pt샵 조회 중 오류가 발생했습니다.");
         }
-        model.addAttribute("pt", list);
+        model.addAttribute("all", list);
         model.addAttribute("center", dir + "pt");
         return "index";
     }
@@ -73,7 +74,7 @@ public class TicketController {
         } catch (Exception e) {
             throw new Exception("크로스핏 조회 중 오류가 발생했습니다.");
         }
-        model.addAttribute("crossfit", list);
+        model.addAttribute("all", list);
         model.addAttribute("center", dir + "crossfit");
         return "index";
     }
@@ -85,7 +86,7 @@ public class TicketController {
         } catch (Exception e) {
             throw new Exception("요가 조회 중 오류가 발생했습니다.");
         }
-        model.addAttribute("yoga", list);
+        model.addAttribute("all", list);
         model.addAttribute("center", dir + "yoga");
         return "index";
     }
@@ -97,7 +98,7 @@ public class TicketController {
         } catch (Exception e) {
             throw new Exception("필라테스 조회 중 오류가 발생했습니다.");
         }
-        model.addAttribute("pilates", list);
+        model.addAttribute("all", list);
         model.addAttribute("center", dir + "pilates");
         return "index";
     }
@@ -110,7 +111,7 @@ public class TicketController {
         } catch (Exception e) {
             throw new Exception("골프 조회 중 오류가 발생했습니다.");
         }
-        model.addAttribute("golf", list);
+        model.addAttribute("all", list);
         model.addAttribute("center", dir + "golf");
         return "index";
     }
@@ -123,7 +124,7 @@ public class TicketController {
         } catch (Exception e) {
             throw new Exception("골프 조회 중 오류가 발생했습니다.");
         }
-        model.addAttribute("swimming", list);
+        model.addAttribute("all", list);
         model.addAttribute("center", dir + "swimming");
         return "index";
     }
@@ -177,6 +178,8 @@ public class TicketController {
     }
 
 
+
+
     private List<Ticket> getMatchingTickets(int gymNo, List<Ticket> ticketList) {
         List<Ticket> matchingTickets = new ArrayList<>();
         for (Ticket ticket : ticketList) {
@@ -185,5 +188,29 @@ public class TicketController {
             }
         }
         return matchingTickets;
+    }
+
+//    @GetMapping("/pay")
+//    public String pay(@RequestParam("gymNo") int gymNo,
+//                      @RequestParam("ticketType") String ticketType,
+//                      @RequestParam("ticketDuration") String ticketDuration,
+//                      @RequestParam("ticketPrice") String ticketPrice,
+//                      @RequestParam("ticketvalue") String ticketvalue,
+//                      Model model) throws Exception {
+@GetMapping("/pay")
+public String pay(@RequestParam("ticketvalue") String ticketvalue) throws Exception {
+//        Gym gym = null;
+//        // 해당 gymNo에 해당하는 이용권 목록 가져오기
+//        List<Ticket> ticketList = ticketService.getTicketsByGymNo(gymNo);
+//        // 필요한 로직 수행
+//        // 모델에 값을 담아서 pay 페이지로 전달
+//        model.addAttribute("gymNo", gymNo);
+//        model.addAttribute("ticketType", ticketType);
+//        model.addAttribute("ticketDuration", ticketDuration);
+//        model.addAttribute("ticketPrice", ticketPrice);
+//        model.addAttribute("ticketList", ticketList);
+        // pay 페이지로 이동
+        log.info("==========ticketvalue" + ticketvalue);
+        return "pay";
     }
 }
