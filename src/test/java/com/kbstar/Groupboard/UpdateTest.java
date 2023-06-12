@@ -14,6 +14,8 @@ class UpdateTest {
     GroupboardService service;
     @Test
     void contextLoads() {
+
+
 //        Groupboard groupboard = new Groupboard(2, 2, 4001, "라인 만들기 같이 막차타여\uD83D\uDE25", "룰루랄라 같이 운동해여", "join3.jpg", "null", "5", 2, 0, 0, "1", 1, null);
         try {
 //            service.modify(groupboard);
