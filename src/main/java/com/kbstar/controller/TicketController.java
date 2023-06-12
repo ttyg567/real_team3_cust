@@ -238,19 +238,6 @@ public class TicketController {
 //        // Return the view name for the pay.jsp page
 //        return "pay";
 //    }
-    @PostMapping("/pay")
-    public String handlePostRequest(String ticketoption, Model model) {
-        System.out.println("pay controller");
-        String[] ticketoptions = ticketoption.split(" ");
 
-        String ticketType = ticketoptions[0];
-        String ticketInfo = ticketoptions[1];
-        String price = ticketoptions[2];
-        // Add the values to the model to pass them to the pay.jsp page
-        model.addAttribute("ticketType", ticketType);
-        model.addAttribute("ticketInfo", ticketInfo);
-        model.addAttribute("price", price);
-        return "pay";
-}
 
 }

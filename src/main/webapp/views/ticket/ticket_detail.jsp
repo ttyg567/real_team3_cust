@@ -58,108 +58,7 @@
         }
 
     </style>
-    <script>
 
-//        $(function(){
-//            goPay.init();
-//        });
-//
-//        let goPay = {
-//            init: function(){
-//                $('#ticket_pay_btn').on('click', function(){
-//
-//
-//                    let selectedOption = $('#ticket_pay_option').val();
-//
-//                    // ticketoption 값을 hidden input 요소로 추가
-//                    $('<input>').attr({
-//                        type: 'hidden',
-//                        name: 'ticketoption',
-//                        value: selectedOption
-//                    }).appendTo('#ticket_pay_form');
-//
-//                    $('#ticket_pay_form').attr({
-//                        action: '/pay',
-//                        method: 'post'
-//                    });
-//                    $('#ticket_pay_form').submit();
-//                });
-//            }
-//        };
-$(function(){
-    goPay.init();
-});
-
-let goPay = {
-    init: function(){
-        $('#ticket_pay_btn').on('click', function(){
-            alert("click");
-
-            let selectedOption = $('#ticket_pay_option').val();
-
-            $.ajax({
-                url: '/pay',
-                type: 'post',
-                data: { ticketoption: selectedOption },
-                success: function(response){
-                    // 요청이 성공한 경우에 수행할 동작
-                    console.log(response);
-                },
-                error: function(xhr, status, error){
-                    // 요청이 실패한 경우에 수행할 동작
-                    console.log(error);
-                }
-            });
-        });
-    }
-};
-        let slideIndex = 0;
-        let slides = $('.slide');
-        let slideInterval;
-
-        showSlide(slideIndex);
-        startSlideInterval(); // 자동 슬라이드
-
-        function changeSlide(n) {
-            showSlide(slideIndex += n);
-        }
-
-        function showSlide(n) {
-            if (n >= slides.length) {
-                slideIndex = 0;
-            } else if (n < 0) {
-                slideIndex = slides.length - 1;
-            }
-
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slides[slideIndex].style.display = "block";
-
-            // 사진 슬라이드에 현재 슬라이드와 전체 슬라이드 수를  표시
-            $('#current-slide').text(slideIndex + 1);
-            $('#total-slides').text(slides.length);
-        }
-
-        function startSlideInterval() {
-            slideInterval = setInterval(() => {
-                changeSlide(1);
-            }, 2000); // 2초마다 슬라이드 전환
-        }
-
-        function stopSlideInterval() {
-            clearInterval(slideInterval);
-        }
-
-
-        // 마우스가 슬라이드 영역 위로 올라갔을 때 슬라이드 간격을 멈추도록 이벤트 처리
-        document.querySelector(".slideshow-container").addEventListener("mouseenter", stopSlideInterval);
-
-        // 마우스가 슬라이드 영역을 벗어났을 때 슬라이드 간격을 다시 시작하도록 이벤트 처리
-        document.querySelector(".slideshow-container").addEventListener("mouseleave", startSlideInterval);
-
-
-    </script>
     <div id="wrapper">
         <div id="content">
 
@@ -209,49 +108,6 @@ let goPay = {
 
                             <h2></h2>
                         </div>
-                        <!--나중에 이자리에 좋아요 수 보여주기 -->
-<%--                        <div class="sideRight">--%>
-<%--                            <div class="time">--%>
-<%--                                <div class="icon">--%>
-<%--                                    <svg id="Iconly_Curved_Time_Square" data-name="Iconly/Curved/Time Square"--%>
-<%--                                         xmlns="http://www.w3.org/2000/svg" width="15" height="15"--%>
-<%--                                         viewBox="0 0 15 15">--%>
-<%--                                        <g id="Time_Square" data-name="Time Square"--%>
-<%--                                           transform="translate(1.719 1.719)">--%>
-<%--                                            <path id="Stroke_1" data-name="Stroke 1"--%>
-<%--                                                  d="M0,5.781c0,4.336,1.446,5.781,5.781,5.781s5.781-1.446,5.781-5.781S10.117,0,5.781,0,0,1.446,0,5.781Z"--%>
-<%--                                                  fill="none" stroke="#cbcdd8" stroke-linecap="round"--%>
-<%--                                                  stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>--%>
-<%--                                            <path id="Stroke_3" data-name="Stroke 3" d="M2.119,3.99,0,2.726V0"--%>
-<%--                                                  transform="translate(5.781 3.053)" fill="none" stroke="#cbcdd8"--%>
-<%--                                                  stroke-linecap="round" stroke-linejoin="round"--%>
-<%--                                                  stroke-miterlimit="10" stroke-width="1.5"/>--%>
-<%--                                        </g>--%>
-<%--                                    </svg>--%>
-<%--                                </div>--%>
-<%--                                <span>2 hour ago</span>--%>
-<%--                            </div>--%>
-<%--                            <div class="view margin-l-10">--%>
-<%--                                <div class="icon">--%>
-<%--                                    <svg id="Iconly_Curved_Show" data-name="Iconly/Curved/Show"--%>
-<%--                                         xmlns="http://www.w3.org/2000/svg" width="15" height="15"--%>
-<%--                                         viewBox="0 0 15 15">--%>
-<%--                                        <g id="Show" transform="translate(1.719 2.969)">--%>
-<%--                                            <path id="Stroke_1" data-name="Stroke 1"--%>
-<%--                                                  d="M3.952,1.976A1.976,1.976,0,1,1,1.976,0,1.977,1.977,0,0,1,3.952,1.976Z"--%>
-<%--                                                  transform="translate(3.806 2.588)" fill="none" stroke="#cbcdd8"--%>
-<%--                                                  stroke-linecap="round" stroke-linejoin="round"--%>
-<%--                                                  stroke-miterlimit="10" stroke-width="1.5"/>--%>
-<%--                                            <path id="Stroke_3" data-name="Stroke 3"--%>
-<%--                                                  d="M0,4.564c0,2.05,2.589,4.564,5.782,4.564s5.782-2.512,5.782-4.564S8.976,0,5.782,0,0,2.514,0,4.564Z"--%>
-<%--                                                  fill="none" stroke="#cbcdd8" stroke-linecap="round"--%>
-<%--                                                  stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>--%>
-<%--                                        </g>--%>
-<%--                                    </svg>--%>
-<%--                                </div>--%>
-<%--                                <span>295 views</span>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
                     </div>
                 </div>
             </section>
@@ -293,7 +149,7 @@ let goPay = {
 
         <!-- Comments -->
         <section class="pt_simpleDetails emBlock__border rounded-0 mt-0 padding-b-30">
-            <form class="em_bodyinner">
+
                 <div class="emCommentCusomers">
                     <div class="title"></div>
                     <!-- item -->
@@ -356,22 +212,24 @@ let goPay = {
 
                     <div class="padding-t-100">
                         <form name="ticket_pay_form" id="ticket_pay_form">
-                            <select name="ticket" id="ticket_pay_option">
+                            <input type="hidden"  name="gymName" value="${gdetail.gymName}">
+                            <select name="ticket_pay_option" id="ticket_pay_option">
                                 <option selected>구매하실 이용권을 선택해주세요.</option>
                                 <c:forEach var="ticket" items="${tickets}">
                                     <c:choose>
                                         <c:when test="${ticket.ticketType == '1'}">
-                                            <option name="ticket_pay_option" class="ticket_pay_option" value="기간권-${ticket.ticketMonth}-${ticket.ticketCost}-${ticket.gymNo}">
-                                                <p>기간권</p> ${ticket.ticketMonth}개월  ${ticket.ticketCost}원
+                                            <option name="ticket_pay_option" class="ticket_pay_option" value="기간권-${ticket.ticketMonth}개월-${ticket.ticketCost}원">
+                                                <p>기간권</p> ${ticket.ticketMonth}개월 ${ticket.ticketCost}원
                                             </option>
                                         </c:when>
                                         <c:when test="${ticket.ticketType == '2'}">
-                                            <option name="ticket_pay_option" class="ticket_pay_option" value="횟수권-${ticket.ticketNumber}-${ticket.ticketCost}-${ticket.gymNo}">
+                                            <option name="ticket_pay_option" class="ticket_pay_option" value="횟수권-${ticket.ticketNumber}회-${ticket.ticketCost}원">
                                                 <p>횟수권</p> ${ticket.ticketNumber}회 ${ticket.ticketCost}원
                                             </option>
                                         </c:when>
                                     </c:choose>
                                 </c:forEach>
+
                             </select>
 
                         </form>
@@ -410,7 +268,8 @@ let goPay = {
                                 <button type="button" id="ticket_pay_btn" class="btn btn__icon bg-primary color-white min-w-175 text-left justify-content-between">
                                     결제하기
                                 </button>
-                                    <div class="icon">
+
+                                <div class="icon">
                                         <svg id="Iconly_Light_Arrow_-_Right_Square"
                                              data-name="Iconly/Light/Arrow - Right Square"
                                              xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -439,7 +298,7 @@ let goPay = {
                         </div>
                     </div>
                 </div>
-            </form>
+
 
                 <!-- End. comments -->
 
@@ -516,7 +375,70 @@ let goPay = {
         </div>
 
 
+    <script>
+        let slideIndex = 0;
+        let slides = $('.slide');
+        let slideInterval;
+
+        showSlide(slideIndex);
+        startSlideInterval(); // 자동 슬라이드
+
+        function changeSlide(n) {
+            showSlide(slideIndex += n);
+        }
+
+        function showSlide(n) {
+            if (n >= slides.length) {
+                slideIndex = 0;
+            } else if (n < 0) {
+                slideIndex = slides.length - 1;
+            }
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex].style.display = "block";
+
+            // 사진 슬라이드에 현재 슬라이드와 전체 슬라이드 수를  표시
+            $('#current-slide').text(slideIndex + 1);
+            $('#total-slides').text(slides.length);
+        }
+
+        function startSlideInterval() {
+            slideInterval = setInterval(() => {
+                changeSlide(1);
+            }, 2000); // 2초마다 슬라이드 전환
+        }
+
+        function stopSlideInterval() {
+            clearInterval(slideInterval);
+        }
 
 
+        // 마우스가 슬라이드 영역 위로 올라갔을 때 슬라이드 간격을 멈추도록 이벤트 처리
+        document.querySelector(".slideshow-container").addEventListener("mouseenter", stopSlideInterval);
 
+        // 마우스가 슬라이드 영역을 벗어났을 때 슬라이드 간격을 다시 시작하도록 이벤트 처리
+        document.querySelector(".slideshow-container").addEventListener("mouseleave", startSlideInterval);
+
+        let ticket_pay_form = {
+            init: function () {
+                $('#ticket_pay_btn').click(function () {
+                    console.log("test");
+                    ticket_pay_form.send();
+                });
+            },
+            send: function () {
+                $('#ticket_pay_form').attr({
+                    'action':'/pay',
+                    'method':'post'
+                });
+                $('#ticket_pay_form').submit();
+            }
+        };
+
+        $(function (){
+            ticket_pay_form.init();
+        })
+    </script>
 
