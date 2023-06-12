@@ -32,11 +32,7 @@ public class JinController {
         model.addAttribute("center","chat");
         return "index";
     }
-    @RequestMapping("/pay")
-    public String pay(Model model){
-        model.addAttribute("center","pay");
-        return "index";
-    }
+
     @RequestMapping("/paySuccess")
     public String paySuccess(Model model){
         model.addAttribute("center","paySuccess");
@@ -47,6 +43,14 @@ public class JinController {
         model.addAttribute("center","payFailed");
         return "index";
     }
-
+    @RequestMapping("/pay")
+    public String pay(String ticket_pay_option, Model model, String gymName) {
+        model.addAttribute("ticket_pay_option", ticket_pay_option);
+        model.addAttribute("gymName", gymName);
+        log.info("---------------%%%%%%%%%%%%%----------------------------");
+        log.info(gymName);
+        model.addAttribute("center","pay");
+        return "index";
+    }
 }
 
