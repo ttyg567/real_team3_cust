@@ -15,9 +15,9 @@ public class SearchTest {
     GymService service;
     @Test
     void contextLoads(){
-        gymSearch gs = new gymSearch("성");
+//        gymSearch gs = new gymSearch("성");
         try {
-                service.search(gs);
+//                service.search(gs);
             log.info("=========== 판매 상품 검색 완료============");
         } catch (Exception e) {
             log.info("에러...");

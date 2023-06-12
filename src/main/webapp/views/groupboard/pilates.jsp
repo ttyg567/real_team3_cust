@@ -13,7 +13,7 @@
       <div class="emBlock__border padding-l-20 bg-snow">
         <ul class="nav navListProducts">
           <li class="nav-item"><!-- 진한 글씨로 표기된 페이지 active '전체' -->
-            <a class="nav-link active" href="/groupboard/groupboard_list">전체</a>
+            <a class="nav-link" href="/groupboard/groupboard_list">전체</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/groupboard/workout">헬스</a>
@@ -28,7 +28,7 @@
             <a class="nav-link" href="/groupboard/yoga">요가</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/groupboard/pilates">필라테스</a>
+            <a class="nav-link active" href="/groupboard/pilates">필라테스</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/groupboard/golf">골프</a>
@@ -107,6 +107,8 @@
           </a>
         </li>
         </c:forEach>
+
+
       </ul>
     </section>
     <!-- End. page_join -->

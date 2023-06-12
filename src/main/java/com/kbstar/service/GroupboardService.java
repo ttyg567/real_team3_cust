@@ -69,4 +69,8 @@ public class GroupboardService implements KBService<Integer, Groupboard> {
     public List<Groupboard> getMyCreateJoin(Integer custNo) throws Exception {
         return mapper.getMyCreateJoin(custNo);
     }
+    // 카테고리별로 일치하는 조인만 보여주기
+    public List<Groupboard> getcategory(String categoryNo) throws Exception {
+        return mapper.getcategory(categoryNo); // 카테고리번호와 일치하는 것만 보여주기
+    }
 }

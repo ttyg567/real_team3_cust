@@ -3,6 +3,12 @@
         PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kbstar.mapper.GroupboardMapper">
+    <!--  조인만들 때 입력한 카테고리번호별로 일치하는 조인들만 조회시켜주기. -->
+    <select id="getcategory" parameterType="String" resultType="groupboard">
+        SELECT *
+        FROM groupboard
+        WHERE categoryNo=#{categoryNo}
+    </select>
     <!--  getMyJoin : 로그인한 내가 참여한 조인 가져오기  -->
     <select id="getMyJoin"  parameterType="Integer"  resultType="groupboard">
         SELECT gb.GROUPBOARDNO, gb.CUSTNO, gb.TICKETNO, gb.GROUPBOARDTITLE, gb.GROUPBOARDcontents, gb.groupboardImgname, gb.EXPECTMEMBER, gb.APPLICATIONMEMBER, gb.CONFIRMMEMBER,
@@ -49,11 +55,34 @@
     </select>
     <!-- 게시글번호로 1건만 조회 : 정상 -->
     <select id="select" parameterType="Integer" resultType="groupboard">
-        SELECT * FROM groupboard WHERE groupboardNo=#{groupboardNo}
+        SELECT
+            gb.groupboardNo, gb.custNo, gb.ticketNo,
+            gb.groupboardTitle, gb.groupboardContents,
+            gb.groupboardImgname,
+            gb.categoryNo, gb.expectMember, gb.applicationMember, gb.confirmMember,
+            gb.groupboardStatus, gb.boardViews, gb.writeDate,
+            tk.TICKETTYPE, tk.TICKETMONTH, tk.TICKETNUMBER, tk.TICKETCOST, tk.TICKETDISCOUNT,
+            tk.TICKETPRICE,
+            gm.GYMNAME, gm.GYMADDRESS3, gm.GYMREGINUMBER
+        FROM groupboard gb, ticket tk, gym gm
+                 WHERE groupboardNo=#{groupboardNo}
+                   and gb.ticketno = tk.ticketno
+                   and tk.gymno = gm.gymno
     </select>
     <!-- 모든 게시글 추출  : 정상 -->
     <select id="selectall" resultType="groupboard">
-        SELECT * FROM groupboard
+        SELECT
+            gb.groupboardNo, gb.custNo, gb.ticketNo,
+            gb.groupboardTitle, gb.groupboardContents,
+            gb.groupboardImgname,
+            gb.categoryNo, gb.expectMember, gb.applicationMember, gb.confirmMember,
+            gb.groupboardStatus, gb.boardViews, gb.writeDate,
+            tk.TICKETTYPE, tk.TICKETMONTH, tk.TICKETNUMBER, tk.TICKETCOST, tk.TICKETDISCOUNT,
+            tk.TICKETPRICE,
+            gm.GYMNAME, gm.GYMADDRESS3, gm.GYMREGINUMBER
+        FROM groupboard gb, ticket tk, gym gm
+        where gb.ticketno = tk.ticketno
+          and tk.gymno = gm.gymno
     </select>
     <!-- insert : 게시글 작성  : 정상 -->
     <insert id="insert" parameterType="groupboard">

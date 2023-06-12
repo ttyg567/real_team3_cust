@@ -87,4 +87,14 @@ public class Groupboard {
     private String chooseGymName;
     private String gymName;
 
+    // 조인 조회 시 상세조회에 필요한 속성
+    private String gymAddress3;
+    private String gymReginumber;
+
+    private String ticketType;
+    private int ticketMonth;
+    private int ticketNumber;
+    private int ticketCost;
+    private double ticketDiscount;
+    private int ticketPrice;
 }
