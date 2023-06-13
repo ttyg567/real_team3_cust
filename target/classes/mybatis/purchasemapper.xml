@@ -14,5 +14,14 @@
         SELECT * FROM purchase
     </select>
 
+<!--    <select id="getCategoryTotal" resultType="purchase">-->
+<!--        <![CDATA[-->
+<!--        SELECT  p.category_id AS categoryID, UPPER(s.user_gender) AS gender,  SUM(cart_quantity) AS total-->
+<!--        FROM cart c, shopuser s, product p-->
+<!--        WHERE c.user_id = s.user_id AND c.product_id = p.product_id-->
+<!--        GROUP BY UPPER(s.user_gender), p.category_id-->
+<!--        ORDER BY 1-->
+<!--        ]]>-->
+<!--    </select>-->
 
 </mapper>

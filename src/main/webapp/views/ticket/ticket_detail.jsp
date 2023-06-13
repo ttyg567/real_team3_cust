@@ -90,7 +90,8 @@
                 <div class="slideshow-container">
                     <c:forEach var="centerImg" items="${gdetail_center_img}">
                         <div class="slide">
-                            <img class="item_img_top" src="/uimg/${centerImg}" alt="${centerImg}">
+
+                            <img class="item_img_top" src="/assets/img/gym/${centerImg}" alt="${centerImg}">
                         </div>
                     </c:forEach>
                     <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
@@ -129,7 +130,7 @@
             </p>
             <c:forEach var="detailImg" items="${gdetail_detail_img}">
                 <div class="cover" style="margin-top: 10vh">
-                    <img class="item_img_detail" src="/uimg/${detailImg}" alt="${detailImg}"
+                    <img class="item_img_detail" src="/assets/img/gym/${detailImg}" alt="${detailImg}"
                          style="width: 90%; margin-left: 5vw;">
                     <span class="item_category"></span>
                 </div>
