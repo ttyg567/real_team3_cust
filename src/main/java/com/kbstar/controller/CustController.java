@@ -18,8 +18,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
@@ -46,6 +44,8 @@ public class CustController {
 
     @Value("${uploadimgdir}")
     String imgdir;
+
+    private final HttpSession session = null;
 
     @RequestMapping("/login")
     public String login(Model model, String redirectURL) {
@@ -149,8 +149,6 @@ public class CustController {
     public String registerimpl(Model model, Cust cust, HttpSession session) throws Exception {
 
         try {
-            cust.setCustSido("임시세팅시도");
-            cust.setCustSigungu("임시세팅시군구");
             cust.setCustSocialmedia("0");  // 임시세팅 Socialmedia 0
             cust.setCustSnstype("0"); // 임시세팅 Snstype 0
             cust.setCustPwd((encoder.encode(cust.getCustPwd())));

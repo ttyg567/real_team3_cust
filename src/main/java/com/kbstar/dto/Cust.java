@@ -1,9 +1,13 @@
 package com.kbstar.dto;
 
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.multipart.MultipartFile;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.Collection;
+import java.util.Map;
 
 @Data
 @AllArgsConstructor
@@ -29,6 +33,15 @@ public class Cust {
     private String custSnstype; // SNS종류 // 0:부, 1:카카오
     private String custJoindate; // 가입일시
 
+    // 소셜 로그인 위해 추가
+    private Map<String, Object> attributes; // 구글 로그인을 통해서 받은 정보들을 그대로 담아 return 해주는 역할
+
+    private String provider; // google
+    private String providerId; //구글로 로그인한 유저의 고유 ID
+
+    private String picture;
+    private Role role;
+
     // insert
     public Cust(String custEmail, String custPwd, String custName, String custPhone, int custBirth, String custGender, String custSido, String custSigungu, String sportsType, String sportsClasstype, String custSocialmedia, String custSnstype) {
         this.custEmail = custEmail;
@@ -52,5 +65,14 @@ public class Cust {
         this.custPhone = custPhone;
         this.custBirth = custBirth;
         this.custGender = custGender;
+    }
+
+    // 소셜 로그인 시 cust 빌드
+    @Builder
+    public Cust(String name, String email, String picture, Role role){
+        this.custName=name;
+        this.custEmail=email;
+        this.picture=picture;
+        this.role=role;
     }
 }

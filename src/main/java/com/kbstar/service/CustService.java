@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -45,5 +46,13 @@ public class CustService implements KBService<String, Cust> {
 
     public List<Gym> getByTypeNo(Integer typeNo) throws Exception {
         return mapper.selectByTypeNo(typeNo);
+    }
+
+    public Optional<Cust> findByEmail(String custEmail) throws Exception {
+        return mapper.findByEmail(custEmail);
+    }
+
+    public void register_social(Cust cust) throws Exception {
+        mapper.insert_social(cust);
     }
 }

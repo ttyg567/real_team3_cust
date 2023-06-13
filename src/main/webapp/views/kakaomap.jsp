@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -196,7 +197,15 @@
         <div class="option">
             <div>
                 <form onsubmit="searchPlaces(); return false;">
-                    지역 : <input type="text" value="성수" id="keyword" size="15">
+                    지역 :
+                    <c:choose>
+                        <c:when test="${logincust == null}">
+                            <input type="text" value="성수" id="keyword" size="15">
+                        </c:when>
+                        <c:otherwise>
+                            <input type="text" value="${logincust.custSigungu}" id="keyword" size="15">
+                        </c:otherwise>
+                    </c:choose>
                     <button type="submit">검색하기</button>
                 </form>
             </div>
@@ -294,7 +303,7 @@
             // 주소를 좌표로 변환합니다
             // geocoder.addressSearch 비동기 함수로 변환 작업이 완료되기 전에 다음 작업을 실행하게 되면 마커가 찍히지 않는다. 해결방법으로는 비동기 작업이 완료된 후에 마커를 추가하고 지도 범위를 설정
             // 콜백함수 또는 프로미스를 사용하거나 한꺼번에 처리
-            geocoder.addressSearch(gymAddress, function(result, status) {
+            geocoder.addressSearch(gymAddress, function (result, status) {
                 // 정상적으로 좌표 검색이 완료됐으면
                 if (status === kakao.maps.services.Status.OK) {
                     // 마커를 생성하고 지도에 표시합니다
@@ -347,7 +356,7 @@
 
         var el = document.createElement('li'),
             itemStr = '<span class="markerbg marker_' + (index + 1) + '"></span>' +
-                '<div class="info" data-gymNo="'+places.gymNo+'">' +
+                '<div class="info" data-gymNo="' + places.gymNo + '">' +
                 '   <h5>' + places.gymName + '</h5>';
         itemStr += '    <span>' + places.gymAddress + '</span>';
         itemStr += '  <span class="tel">' + places.gymPhone + '</span>' +

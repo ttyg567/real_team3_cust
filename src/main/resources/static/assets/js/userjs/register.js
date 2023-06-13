@@ -21,7 +21,7 @@ let register_form = {
 
             let sportsType = $("#sportsType").val(); // 관심운동종목
             let sportsClasstype = $("#sportsClasstype").val(); // 관심수업
-            // 추후 모든 값 검증에서 추가 필요
+
             let custSido = $("#custSido").val(); // 성별
             let custSigungu = $("#custSigungu").val(); // 관심운동종목
 
@@ -57,7 +57,7 @@ let register_form = {
 
             // 모든 값 있는지 확인
             if (custName == "" || custEmail == "" || custPhone == "" || custPwd =="" || custPwd2 == "" ||
-                custBirth == "" || custGender == "" || sportsType == "" || sportsClasstype == "") {
+                custBirth == "" || custGender == "" || sportsType == "" || sportsClasstype == "" || custSido == "" || custSigungu == "") {
                 alert("모든 값을 입력하셔야 합니다. 확인해주세요")
                 // $("#register_info_msg").text("모든 값을 입력하셔야 합니다. 확인해주세요");
                 // $("#register_info").show();

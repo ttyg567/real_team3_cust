@@ -7,6 +7,10 @@
     <select id="select" parameterType="String" resultType="cust">
         SELECT * FROM cust WHERE custEmail=#{custEmail}
     </select>
+    <!-- 이메일로 조회 (소셜로그인에서 사용) -->
+    <select id="findByEmail" parameterType="String" resultType="cust">
+        SELECT * FROM cust WHERE custEmail=#{custEmail}
+    </select>
     <!-- 모든 유저 추출 -->
     <select id="selectall" resultType="cust">
         SELECT * FROM cust
@@ -17,6 +21,11 @@
                           sportsClasstype, custStatus, custSocialmedia, custSnstype, custJoindate)
         VALUES (cust_seq.NEXTVAL, #{custEmail}, #{custPwd}, #{custName}, #{custPhone}, #{custBirth}, #{custGender},
         #{custSido}, #{custSigungu}, #{sportsType}, #{sportsClasstype},'1', #{custSocialmedia}, #{custSnstype}, sysdate)
+    </insert>
+    <!-- insert : social 전용 -->
+    <insert id="insert_social" parameterType="cust">
+        INSERT INTO cust (custNo, custEmail, custName, custStatus, custSocialmedia, custSnstype, custJoindate)
+        VALUES (cust_seq.NEXTVAL, #{custEmail}, #{custName}, '1', '1', '구글', sysdate)
     </insert>
     <!-- update (비밀번호와 관심컬럼은 다른 함수로) -->
     <update id="update" parameterType="cust">

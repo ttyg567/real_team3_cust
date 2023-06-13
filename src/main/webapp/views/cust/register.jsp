@@ -123,10 +123,12 @@
                                     </li>
                                     <li class="item">
                                         <div class="personal__info">
-                                            <span class="size-16 color-secondary weight-500" id="codeAvailable" style="display: none; width:100%">
+                                            <span class="size-16 color-secondary weight-500" id="codeAvailable"
+                                                  style="display: none; width:100%">
                                                 인증 성공했습니다. 아래의 인증 완료 버튼을 눌러주세요.
                                             </span>
-                                            <span class="size-16 color-secondary weight-500" id="codeFailure" style="display: none; width:100%">
+                                            <span class="size-16 color-secondary weight-500" id="codeFailure"
+                                                  style="display: none; width:100%">
                                                 인증번호가 일치하지 않습니다. 다시 입력하시거나 인증번호를 다시 받아주세요.
                                             </span>
                                         </div>
@@ -134,7 +136,9 @@
                                 </ul>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn_default_lg" data-dismiss="modal" aria-label="Close">이메일 인증 완료</button>
+                                <button type="button" class="btn btn_default_lg" data-dismiss="modal"
+                                        aria-label="Close">이메일 인증 완료
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -144,7 +148,7 @@
                 <label>핸드폰 번호</label>
                 <div class="input_group">
                     <input type="tel" class="form-control" placeholder="010-1234-5678" id="custPhone" name="custPhone"
-                           onkeyup = "formatPhoneNumber(event)">
+                           onkeyup="formatPhoneNumber(event)">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                              class="bi bi-phone" viewBox="0 0 16 16">
@@ -259,28 +263,28 @@
             <br>
             <div class="form-group with_icon">
                 <label>관심 시도</label>
-                <select class="form-control custom-select" id="custSido" name="custSido" >
+                <select class="form-control custom-select" id="custSido" name="custSido">
                     <option value=""> 선택</option>
-                    <option value="서울특별시"> 서울특별시</option>
-                    <option value="경기도"> 경기도</option>
-                    <option value="인천광역시"> 인천광역시</option>
-                    <option value="강원도"> 강원도</option>
-                    <option value="충청북도"> 충청북도</option>
-                    <option value="충청남도"> 충청남도</option>
-                    <option value="대전광역시"> 대전광역시</option>
-                    <option value="경상북도"> 경상북도</option>
-                    <option value="경상남도"> 경상남도</option>
-                    <option value="울산광역시"> 울산광역시</option>
-                    <option value="대구광역시"> 대구광역시</option>
-                    <option value="부산광역시"> 부산광역시</option>
-                    <option value="전라북도"> 전라북도</option>
-                    <option value="전라남도"> 전라남도</option>
-                    <option value="광주광역시"> 광주광역시</option>
-                    <option value="제주특별자치도"> 제주특별자치도</option>
+                    <option value="서울"> 서울</option>
+                    <option value="경기"> 경기</option>
+                    <option value="인천광역시"> 인천</option>
+                    <option value="강원도"> 강원</option>
+                    <option value="충청북도"> 충북</option>
+                    <option value="충청남도"> 충남</option>
+                    <option value="대전광역시"> 대전</option>
+                    <option value="경상북도"> 경북</option>
+                    <option value="경상남도"> 경남</option>
+                    <option value="울산광역시"> 울산</option>
+                    <option value="대구광역시"> 대구</option>
+                    <option value="부산광역시"> 부산</option>
+                    <option value="전라북도"> 전북</option>
+                    <option value="전라남도"> 전남</option>
+                    <option value="광주광역시"> 광주</option>
+                    <option value="제주특별자치도"> 제주</option>
                 </select>
             </div>
             <div class="form-group with_icon">
-                <label>관심 시군구</label>
+                <label>관심 시군</label>
                 <select class="form-control custom-select" id="custSigungu" name="custSigungu">
                     <option></option>
                 </select>
@@ -324,28 +328,52 @@
 <script>
     $(document).ready(function () {
         // 관심 시도 변경 시 AJAX 요청 보내고 관심 시군구를 받아옵니다.
-        $("#custSido").change(function() {
+        $("#custSido").change(function () {
             let selectedSido = $(this).val();  // 선택된 시도 값을 가져옵니다.
             console.log("선택된 값" + selectedSido);
 
-            // AJAX 요청 보내기
-            $.ajax({
-                url: "/cust/getaddress",  // 실제 API 엔드포인트 URL로 대체해야 합니다.
-                method: "GET",
-                data: { custSido : selectedSido },  // 선택된 시도 값을 파라미터로 전달합니다.
-                success: function(response) {
-                    // 받아온 시군구 데이터를 처리합니다.
-                    var options = "";
-                    for (var i = 0; i < response.length; i++) {
-                        options += "<option value='" + response[i] + "'>" + response[i] + "</option>";
+            // 강원도는 api에서 제공 X (강원특별자치도도 제공 X)
+            if (selectedSido === "강원도") {
+                let options = "";
+                options += "<option value='강릉시'>강릉시</option>";
+                options += "<option value='동해시'>동해시</option>";
+                options += "<option value='삼척시'>삼척시</option>";
+                options += "<option value='속초시'>속초시</option>";
+                options += "<option value='원주시'>원주시</option>";
+                options += "<option value='춘천시'>춘천시</option>";
+                options += "<option value='태백시'>태백시</option>";
+                options += "<option value='고성군'>고성군</option>";
+                options += "<option value='양주군'>양주군</option>";
+                options += "<option value='양양군'>양양군</option>";
+                options += "<option value='영월군'>영월군</option>";
+                options += "<option value='인제군'>인제군</option>";
+                options += "<option value='정선군'>정선군</option>";
+                options += "<option value='철원군'>철원군</option>";
+                options += "<option value='평창군'>평창군</option>";
+                options += "<option value='홍천군'>홍천군</option>";
+                options += "<option value='화천군'>화천군</option>";
+                options += "<option value='횡성군'>횡성군</option>";
+                $("#custSigungu").html(options);
+            } else {
+                // AJAX 요청 보내기
+                $.ajax({
+                    url    : "/cust/getaddress",  // 실제 API 엔드포인트 URL로 대체해야 합니다.
+                    method : "GET",
+                    data   : {custSido: selectedSido},  // 선택된 시도 값을 파라미터로 전달합니다.
+                    success: function (response) {
+                        // 받아온 시군구 데이터를 처리합니다.
+                        let options = "";
+                        for (let i = 0; i < response.length; i++) {
+                            options += "<option value='" + response[i] + "'>" + response[i] + "</option>";
+                        }
+                        // 시군구 <select> 요소에 옵션을 추가합니다.
+                        $("#custSigungu").html(options);
+                    },
+                    error  : function (xhr, status, error) {
+                        console.error(error);  // 에러 처리
                     }
-                    // 시군구 <select> 요소에 옵션을 추가합니다.
-                    $("#custSigungu").html(options);
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);  // 에러 처리
-                }
-            });
+                });
+            }
         });
     });
 
