@@ -15,16 +15,21 @@ import java.util.List;
 public class MainController {
 @Autowired
     GymService gymService;
-    @RequestMapping("/")
-    public String main(Model model, Gym gym) throws Exception {
-        List<Gym> list = null;
-        try {
-            list = gymService.selectWithMarketing();
-        }
-        catch (Exception e){
-            throw new Exception("error");
-        }
-        model.addAttribute("all",list);
-        return "index";
-    }
+//    @RequestMapping("/")
+//    public String main(Model model, Gym gym) throws Exception {
+//        List<Gym> list = null;
+//        try {
+//            list = gymService.selectWithMarketing();
+//        }
+//        catch (Exception e){
+//            throw new Exception("error");
+//        }
+//        model.addAttribute("all",list);
+//        return "index";
+//    }
+@RequestMapping("/")
+public String main() {
+
+    return "index";
+}
 }
