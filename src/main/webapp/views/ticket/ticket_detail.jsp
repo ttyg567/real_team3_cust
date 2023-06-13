@@ -105,7 +105,30 @@
                     <div class="item__auther emBlock__border">
 
                         <div class="item_person">
-                            <img src="assets/img/persons/0654.jpg" alt="">
+
+                            <div class="icon">
+                                <svg id="Iconly_Curved_Time_Square"
+                                     data-name="Iconly/Curved/Time Square"
+                                     xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                     viewBox="0 0 15 15">
+                                    <g id="Time_Square" data-name="Time Square"
+                                       transform="translate(1.719 1.719)">
+                                        <path id="Stroke_1" data-name="Stroke 1"
+                                              d="M0,5.781c0,4.336,1.446,5.781,5.781,5.781s5.781-1.446,5.781-5.781S10.117,0,5.781,0,0,1.446,0,5.781Z"
+                                              fill="none" stroke="#cbcdd8" stroke-linecap="round"
+                                              stroke-linejoin="round" stroke-miterlimit="10"
+                                              stroke-width="1.5" />
+                                        <path id="Stroke_3" data-name="Stroke 3"
+                                              d="M2.119,3.99,0,2.726V0"
+                                              transform="translate(5.781 3.053)" fill="none"
+                                              stroke="#cbcdd8" stroke-linecap="round"
+                                              stroke-linejoin="round" stroke-miterlimit="10"
+                                              stroke-width="1.5" />
+                                    </g>
+                                </svg>      <span>${gdetail.gymAddress1}</span>
+                            </div>
+
+
 
                             <h2></h2>
                         </div>
@@ -196,9 +219,7 @@
 
                                                 </p>
                                             </div>
-                                            <button type="button" class="btn btn_buy">
-                                                가격 불러오기
-                                            </button>
+
                                         </div>
                                     </div>
                                 </div>
@@ -212,10 +233,11 @@
                     </div>
 
                     <div class="padding-t-100">
-                        <form name="ticket_pay_form" id="ticket_pay_form">
+                        <form name="ticket_pay_form" id="ticket_pay_form"  >
                             <input type="hidden"  name="gymName" value="${gdetail.gymName}">
-                            <select name="ticket_pay_option" id="ticket_pay_option">
-                                <option selected>구매하실 이용권을 선택해주세요.</option>
+                            <input type="hidden"  name="gymNo" value="${gdetail.gymNo}">
+                            <select name="ticket_pay_option" id="ticket_pay_option" style="width: 100%;  position: fixed; z-index:9999; bottom:120px">
+                                <option selected id="unselected" class="unselected">구매하실 이용권을 선택해주세요.</option>
                                 <c:forEach var="ticket" items="${tickets}">
                                     <c:choose>
                                         <c:when test="${ticket.ticketType == '1'}">
@@ -246,7 +268,7 @@
                         <div class="em_footerinner" style="margin-bottom: 50px">
                             <div class="emfo_button __withIcon">
 
-                                <button type="button" class="btn btn_addCart" id="itemSave">
+                                <button type="button" class="itemSave" id="itemSave">
                                     <div class="ico icon_current">
                                         <svg id="Iconly_Two-tone_Heart" data-name="Iconly/Two-tone/Heart"
                                              xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -424,22 +446,64 @@
 
         let ticket_pay_form = {
             init: function () {
+              //  btn btn_addCart
                 $('#ticket_pay_btn').click(function () {
                     console.log("test");
                     ticket_pay_form.send();
                 });
             },
             send: function () {
+                let selectedOption = $('#ticket_pay_option').val();
+                if (selectedOption === "unselected")
+                 {
+                    alert("구매하실 이용권을 선택해주세요.");
+                    return;
+                }
+
                 $('#ticket_pay_form').attr({
                     'action':'/pay',
                     'method':'post'
                 });
                 $('#ticket_pay_form').submit();
+
             }
+
         };
 
         $(function (){
             ticket_pay_form.init();
         })
+
+        let save = {
+            resultHTML: "",
+            init: function () {
+                $('#itemSave').click(function () {
+                    // 데이터를 전송할 객체 생성
+                    let data = {
+                        custNo: ${logincust.custNo}, // 고객 번호 설정
+                        ticketNo: ${selectedOption} // 이용권 번호 설정
+                    };
+
+                    $.ajax({
+                        url: '/like1', // 서버 URL 설정
+                        method: 'POST', // HTTP 요청 메서드 설정
+                        data: data, // 전송할 데이터 설정
+                        success: function (response) {
+                            console.log('like1 데이터 삽입 성공');
+                            // 추가적인 동작이 필요한 경우 여기에 작성
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('like1 데이터 삽입 실패:', error);
+                            // 실패 처리 로직 작성
+                        }
+                    });
+                });
+            }
+        };
+
+        $(function () {
+            save.init();
+        });
+
     </script>
 

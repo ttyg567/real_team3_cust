@@ -1,42 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <script>
-function requestPay(data) {
+function requestPay() {
   var IMP = window.IMP; // 생략 가능
   IMP.init("imp43288400"); // 예: imp00000000
 //IMP.request_pay(param, callback) 결제창 호출
+  IMP.request_pay({
+            pg: "kcp",
+            pay_method: "card",
+            merchant_uid: 'merchant_'+new Date().getTime(),
+            name: "${gymName} ${ticket_pay_option.substring(0, 3)}",
+            amount: parseInt("${ticket_pay_option.substring(ticket_pay_option.lastIndexOf('-') + 1)}"),
+            buyer_email: "${logincust.custEmail}",
+            buyer_name: "${logincust.custName}",
+            buyer_tel: "${logincust.custPhone}",
+            buyer_addr: "서울특별시 강남구 신사동",
+            buyer_postcode: "01181"
+            },
+          rsp => {
+            if (rsp.success) {
+              alert(`결제성공`);
+              location.href= "/paySuccess";
+            } else {
+              alert(`결제에 실패하였습니다. 에러 내용: ${rsp.error_msg}`);
+            }
+          });
 
-  function requestPay() {
-    IMP.request_pay({
-      pg: "kcp.{store-18c64183-2cf3-416d-b015-85f0113e8120}",
-      pay_method: "card",
-      merchant_uid: "ORD20180131-0000011",   // 주문번호
-      name: "노르웨이 회전 의자",
-      amount: 64900,                         // 숫자 타입
-      buyer_email: "gildong@gmail.com",
-      buyer_name: "홍길동",
-      buyer_tel: "010-4242-4242",
-      buyer_addr: "서울특별시 강남구 신사동",
-      buyer_postcode: "01181"
-    }, function (rsp) { // callback
-      //rsp.imp_uid 값으로 결제 단건조회 API를 호출하여 결제결과를 판단합니다.
-      if (rsp.success) {
-        // axios로 HTTP 요청
-        axios({
-          url: "/order",
-          method: "post",
-          headers: { "Content-Type": "application/json" },
-          data: {
-            imp_uid: rsp.imp_uid,
-            merchant_uid: rsp.merchant_uid
-          }
-        }).then((data) => {
-          // 서버 결제 API 성공시 로직
-        })
-      } else {
-        alert(`결제에 실패하였습니다. 에러 내용: ${rsp.error_msg}`);
-      }
-    });
+}
+
+function requestKPay() {
+  var IMP = window.IMP; // 생략 가능
+  IMP.init("imp43288400"); // 예: imp00000000
+//IMP.request_pay(param, callback) 결제창 호출
+  IMP.request_pay({
+            pg: "kakaopay",
+            pay_method: "kakaopay",
+            merchant_uid: 'merchant_'+new Date().getTime(),
+            name: "${gymName} ${ticket_pay_option.substring(0, 3)}",
+            amount: parseInt("${ticket_pay_option.substring(ticket_pay_option.lastIndexOf('-') + 1)}"),
+            buyer_email: "${logincust.custEmail}",
+            buyer_name: "${logincust.custName}",
+            buyer_tel: "${logincust.custPhone}",
+            buyer_addr: "서울특별시 강남구 신사동",
+            buyer_postcode: "01181"
+          },
+          rsp => {
+            if (rsp.success) {
+              alert(`결제성공`);
+              location.href= "/paySuccess";
+            } else {
+              alert(`결제에 실패하였습니다. 에러 내용: ${rsp.error_msg}`);
+            }
+          });
+
 }
 </script>
 <html>
@@ -48,7 +65,7 @@ function requestPay(data) {
     <!-- Start main_haeder -->
     <header class="main_haeder header-sticky multi_item">
       <div class="em_side_right">
-        <a class="rounded-circle d-flex align-items-center text-decoration-none" href="app-pages.html">
+        <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/ticket/detail?gymNo=${gymNo}">
           <i class="tio-chevron_left size-24 color-text"></i>
           <span class="color-text size-14">Back</span>
         </a>
@@ -87,25 +104,26 @@ function requestPay(data) {
               </div>
 
             <div class="padding-20 px-0">
-              <p class="size-14 color-text m-0">Choose a new method</p>
+              <p class="size-14 color-text m-0">결제수단을 선택해주세요</p>
             </div>
-            <a href="page-credit-card.html" class="btn itemPay">
-              <span>무통장 입금</span>
-              <div class="icon__payment">
-                <img src="assets/img/icon/visa.svg" alt="">
-                <img src="assets/img/icon/american-express.svg" alt="">
-                <img src="assets/img/icon/shopify.svg" alt="">
-                <img src="assets/img/icon/master-card.svg" alt="">
-              </div>
-            </a>
             <button type="button" id="check1" href="#" class="btn itemPay"
                     onclick="requestPay()">
-              <span>카카오페이</span>
-              <div class="icon__payment">
-                <img src="assets/img/kakaopay.png" alt="kakaopay">
+              <span>카드결제</span>
+                <div class="icon__payment">
+                  <img src="assets/img/icon/visa.svg" alt="">
+                  <img src="assets/img/icon/american-express.svg" alt="">
+                  <img src="assets/img/icon/shopify.svg" alt="">
+                  <img src="assets/img/icon/master-card.svg" alt="">
+                </div>
               </div>
             </button>
-              <button id="check_module" type="button">아임 서포트 결제 모듈 테스트 해보기</button>
+              <button type="button" id="check2" href="#" class="btn itemPay"
+                      onclick="requestKPay()">
+                <span>카카오페이</span>
+                <div class="icon__payment">
+                  <img src="assets/img/kakaopay.png" alt="kakaopay">
+                </div>
+              </button>
           </form>
 
           <!-- End. emSection__payment -->
