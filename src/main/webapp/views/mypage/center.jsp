@@ -63,6 +63,42 @@
         font-size: 14px;
     }
 
+    .fc-day-mon a {
+        color: #af9ad5;
+    }
+
+    .fc-day-tue a {
+        color:#af9ad5;
+    }
+
+    .fc-day-wed a {
+        color:#af9ad5;
+    }
+
+    .fc-day-thu a {
+        color:#af9ad5;
+    }
+
+    .fc-day-fri a {
+        color:#af9ad5;
+    }
+
+    .fc-day-sun a {
+        color: #f1aeb4;
+    }
+
+    .fc-day-sat a {
+        color: #99c0e3;
+    }
+
+    .bg-gradient-primary {
+        background-image: linear-gradient(310deg, rgb(236, 210, 242) 0%, rgb(166, 175, 235) 100%);
+    }
+
+
+
+
+
 </style>
 
 <head>
@@ -273,42 +309,21 @@
             title: 'Call with Dave',
             start: '2020-11-18',
             end: '2020-11-18',
-            className: 'bg-gradient-danger'
+            className: 'bg-gradient-primary'
         },
-
-            {
-                title: 'Lunch meeting',
-                start: '2020-11-21',
-                end: '2020-11-22',
-                className: 'bg-gradient-warning'
-            },
-
-            {
-                title: 'All day conference',
-                start: '2020-11-29',
-                end: '2020-11-29',
-                className: 'bg-gradient-success'
-            },
 
             {
                 title: 'Meeting with Mary',
                 start: '2020-12-01',
                 end: '2020-12-01',
-                className: 'bg-gradient-info'
+                className: 'bg-gradient-primary'
             },
 
             {
                 title: 'Winter Hackaton',
                 start: '2020-12-03',
                 end: '2020-12-03',
-                className: 'bg-gradient-danger'
-            },
-
-            {
-                title: 'Digital event',
-                start: '2020-12-07',
-                end: '2020-12-09',
-                className: 'bg-gradient-warning'
+                className: 'bg-gradient-primary'
             },
 
             {
@@ -322,21 +337,21 @@
                 title: 'Dinner with Family',
                 start: '2020-12-19',
                 end: '2020-12-19',
-                className: 'bg-gradient-danger'
+                className: 'bg-gradient-primary'
             },
 
             {
                 title: 'Black Friday',
                 start: '2020-12-23',
                 end: '2020-12-23',
-                className: 'bg-gradient-info'
+                className: 'bg-gradient-primary'
             },
 
             {
                 title: 'Cyber Week',
                 start: '2020-12-02',
                 end: '2020-12-02',
-                className: 'bg-gradient-warning'
+                className: 'bg-gradient-primary'
             },
 
         ],

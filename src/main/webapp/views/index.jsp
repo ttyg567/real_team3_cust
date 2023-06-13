@@ -52,6 +52,10 @@
 <%--    <script type="text/javascript"--%>
 <%--            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	0f0752ec20b8a0352c5794754058b576&libraries=services"></script>--%>
 
+    <!-- Calendar CDN 설치 -->
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
+
 </head>
 
 
@@ -765,6 +769,8 @@
 <!-- 성영 추가 -->
 <script src="/assets/js/userjs/register.js"></script>
 <script src="/assets/js/userjs/login.js"></script>
+<!-- calendar 관련 -->
+<script src="/assets/js/userjs/calendar.js"></script>
 </body>
 
 </html>
