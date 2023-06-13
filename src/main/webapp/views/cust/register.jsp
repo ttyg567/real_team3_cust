@@ -143,7 +143,8 @@
             <div class="form-group with_icon">
                 <label>핸드폰 번호</label>
                 <div class="input_group">
-                    <input type="tel" class="form-control" placeholder="010-1234-5678" id="custPhone" name="custPhone">
+                    <input type="tel" class="form-control" placeholder="010-1234-5678" id="custPhone" name="custPhone"
+                           onkeyup = "formatPhoneNumber(event)">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                              class="bi bi-phone" viewBox="0 0 16 16">
@@ -151,7 +152,6 @@
                             />
                             <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
                             />
-
                         </svg>
                     </div>
                 </div>
@@ -258,7 +258,32 @@
             </div>
             <br>
             <div class="form-group with_icon">
-                <label>관심 지역</label>
+                <label>관심 시도</label>
+                <select class="form-control custom-select" id="custSido" name="custSido" >
+                    <option value=""> 선택</option>
+                    <option value="서울특별시"> 서울특별시</option>
+                    <option value="경기도"> 경기도</option>
+                    <option value="인천광역시"> 인천광역시</option>
+                    <option value="강원도"> 강원도</option>
+                    <option value="충청북도"> 충청북도</option>
+                    <option value="충청남도"> 충청남도</option>
+                    <option value="대전광역시"> 대전광역시</option>
+                    <option value="경상북도"> 경상북도</option>
+                    <option value="경상남도"> 경상남도</option>
+                    <option value="울산광역시"> 울산광역시</option>
+                    <option value="대구광역시"> 대구광역시</option>
+                    <option value="부산광역시"> 부산광역시</option>
+                    <option value="전라북도"> 전라북도</option>
+                    <option value="전라남도"> 전라남도</option>
+                    <option value="광주광역시"> 광주광역시</option>
+                    <option value="제주특별자치도"> 제주특별자치도</option>
+                </select>
+            </div>
+            <div class="form-group with_icon">
+                <label>관심 시군구</label>
+                <select class="form-control custom-select" id="custSigungu" name="custSigungu">
+                    <option></option>
+                </select>
             </div>
             <div class="form-group with_icon">
                 <label>관심운동종목</label>
@@ -296,69 +321,33 @@
     </div>
 </section>
 
-<%--<!-- Start searchMenu__hdr -->--%>
-<%--<section class="searchMenu__hdr">--%>
-<%--    <form>--%>
-<%--        <div class="form-group">--%>
-<%--            <div class="input_group">--%>
-<%--                <input type="search" class="form-control" placeholder="type something here...">--%>
-<%--                <i class="ri-search-2-line icon_serach"></i>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </form>--%>
-<%--    <button type="button" class="btn btn_meunSearch -close __removeMenu">--%>
-<%--        <i class="tio-clear"></i>--%>
-<%--    </button>--%>
-<%--</section>--%>
-<%--<!-- End. searchMenu__hdr -->--%>
+<script>
+    $(document).ready(function () {
+        // 관심 시도 변경 시 AJAX 요청 보내고 관심 시군구를 받아옵니다.
+        $("#custSido").change(function() {
+            let selectedSido = $(this).val();  // 선택된 시도 값을 가져옵니다.
+            console.log("선택된 값" + selectedSido);
 
-<%--<!-- Modal Buttons Share -->--%>
-<%--<div class="modal transition-bottom -inside screenFull defaultModal mdlladd__rate fade" id="mdllButtons_share"--%>
-<%--     tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--%>
-<%--    <div class="modal-dialog">--%>
-<%--        <div class="modal-content rounded-15">--%>
+            // AJAX 요청 보내기
+            $.ajax({
+                url: "/cust/getaddress",  // 실제 API 엔드포인트 URL로 대체해야 합니다.
+                method: "GET",
+                data: { custSido : selectedSido },  // 선택된 시도 값을 파라미터로 전달합니다.
+                success: function(response) {
+                    // 받아온 시군구 데이터를 처리합니다.
+                    var options = "";
+                    for (var i = 0; i < response.length; i++) {
+                        options += "<option value='" + response[i] + "'>" + response[i] + "</option>";
+                    }
+                    // 시군구 <select> 요소에 옵션을 추가합니다.
+                    $("#custSigungu").html(options);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);  // 에러 처리
+                }
+            });
+        });
+    });
 
-<%--            <div class="modal-body rounded-15 p-0">--%>
-<%--                <div class="emBK__buttonsShare icon__share padding-20">--%>
-<%--                    <button type="button" class="btn" data-sharer="facebook" data-hashtag="hashtag"--%>
-<%--                            data-url="https://orinostudio.com/nepro/">--%>
-<%--                        <div class="icon bg-facebook rounded-10">--%>
-<%--                            <i class="tio-facebook_square"></i>--%>
-<%--                        </div>--%>
-<%--                    </button>--%>
-<%--                    <button type="button" class="btn" data-sharer="telegram" data-title="Checkout Nepro!"--%>
-<%--                            data-url="https://orinostudio.com/nepro/" data-to="+44555-5555">--%>
-<%--                        <div class="icon bg-telegram rounded-10">--%>
-<%--                            <i class="tio-telegram"></i>--%>
-<%--                        </div>--%>
-<%--                    </button>--%>
-<%--                    <button type="button" class="btn" data-sharer="skype"--%>
-<%--                            data-url="https://orinostudio.com/nepro/" data-title="Checkout Nepro!">--%>
-<%--                        <div class="icon bg-skype rounded-10">--%>
-<%--                            <i class="tio-skype"></i>--%>
-<%--                        </div>--%>
-<%--                    </button>--%>
-<%--                    <button type="button" class="btn" data-sharer="linkedin"--%>
-<%--                            data-url="https://orinostudio.com/nepro/">--%>
-<%--                        <div class="icon bg-linkedin rounded-10">--%>
-<%--                            <i class="tio-linkedin_square"></i>--%>
-<%--                        </div>--%>
-<%--                    </button>--%>
-<%--                    <button type="button" class="btn" data-sharer="twitter" data-title="Checkout Nepro!"--%>
-<%--                            data-hashtags="pwa, Nepro, template, mobile, app, shopping, ecommerce"--%>
-<%--                            data-url="https://orinostudio.com/nepro/">--%>
-<%--                        <div class="icon bg-twitter rounded-10">--%>
-<%--                            <i class="tio-twitter"></i>--%>
-<%--                        </div>--%>
-<%--                    </button>--%>
-<%--                    <button type="button" class="btn" data-sharer="whatsapp" data-title="Checkout Nepro!"--%>
-<%--                            data-url="https://orinostudio.com/nepro/">--%>
-<%--                        <div class="icon bg-whatsapp rounded-10">--%>
-<%--                            <i class="tio-whatsapp_outlined"></i>--%>
-<%--                        </div>--%>
-<%--                    </button>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</div>--%>
+</script>
+

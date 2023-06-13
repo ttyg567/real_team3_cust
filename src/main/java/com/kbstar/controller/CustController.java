@@ -2,7 +2,10 @@ package com.kbstar.controller;
 
 import com.kbstar.dto.Cust;
 import com.kbstar.service.CustService;
+import com.kbstar.util.AddressUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
-import java.util.Random;
+import java.util.*;
 
 @Slf4j
 @Controller
@@ -160,6 +164,38 @@ public class CustController {
 
         model.addAttribute("rcust", cust);
         return "redirect:/";
+    }
+
+    @RequestMapping("/getaddress")
+    @ResponseBody
+    public Object getaddress(String custSido) throws Exception {
+
+        JSONArray result = null;
+        result = (JSONArray) AddressUtil.getAddress(custSido);
+
+        Set<String> distinctWords = new HashSet<>();
+
+        for (int i = 0 ; i < result.size() ; i++){
+            JSONObject jsonObject = (JSONObject) result.get(i);
+            log.info("===========진입1===========");
+            String locatadd_nm = (String) jsonObject.get("locatadd_nm");
+            log.info("locatadd_nm : " + locatadd_nm);
+            String[] parts = locatadd_nm.split(" ");
+            log.info("parts : " + parts);
+            if (parts.length > 1) {
+                String custSigungu = parts[1]; // 두 번째 요소 추출
+                log.info("custSigungu : " + custSigungu);
+                distinctWords.add(custSigungu);
+            }
+        }
+
+        // Convert Set<String> to JSONArray
+        JSONArray jsonArray = new JSONArray();
+        for (String word : distinctWords) {
+            jsonArray.add(word);
+        }
+
+        return jsonArray;
     }
 
 }
