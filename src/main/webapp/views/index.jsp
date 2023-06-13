@@ -47,6 +47,10 @@
     <script src="/assets/js/jquery-3.6.0.js"></script>
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- 카카오지도 인보 -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4617571d8f9917ae900e8b494a093c31&libraries=services"></script>
+<%--    <script type="text/javascript"--%>
+<%--            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	0f0752ec20b8a0352c5794754058b576&libraries=services"></script>--%>
 
 </head>
 
@@ -213,7 +217,7 @@
                             </g>
                         </svg>
                     </div>
-                    <div class="items_basket_circle">2</div>
+<%--                    <div class="items_basket_circle">2</div>--%>
                     <div class="txt__tile" style="width: 60px;">조인헬쓱</div>
                 </a>
             </div>

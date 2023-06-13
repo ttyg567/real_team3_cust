@@ -1,19 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <style>
-    .groupboard_map{
-        width: 80%;
-        height: 50%;
-        border: #5d6072 solid 1px;
+    #map{
+        background-color: red;
+        border-radius: 15px;
     }
-     .join-button {
-         position: fixed;
-         z-index: 20;
-         bottom: 100px;
-         right: 50px;
-     }
+    .join-button {
+        position: fixed;
+        z-index: 20;
+        bottom: 100px;
+        right: 50px;
+    }
 
     .join-button img {
         width: 50px;
@@ -29,8 +27,53 @@
         opacity: 1; /* 커서를 올릴 때 불투명도 제거 */
         filter: alpha(opacity=100); /* IE8 이하 버전을 위한 설정 */
     }
-
+    .embody__content svg{
+        margin-right: 15px;
+    }
+    .joincontent{
+        margin-bottom: 15px;
+    }
 </style>
+<%--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4617571d8f9917ae900e8b494a093c31"></script>--%>
+<script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
+
+    // 지도를 생성합니다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // 주소-좌표 변환 객체를 생성합니다
+    var geocoder = new kakao.maps.services.Geocoder();
+
+    // 주소로 좌표를 검색합니다
+    geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
+
+        // 정상적으로 검색이 완료됐으면
+        if (status === kakao.maps.services.Status.OK) {
+
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: coords
+            });
+
+            // 인포윈도우로 장소에 대한 설명을 표시합니다
+            var infowindow = new kakao.maps.InfoWindow({
+                content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+            });
+            infowindow.open(map, marker);
+
+            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+            map.setCenter(coords);
+        }
+    });
+</script>
+
 <!-- header 구간  -->
 <jsp:include page="/views/header.jsp" />
 <!-- Start input_SaerchDefault -->
@@ -45,7 +88,8 @@
         </p>
     </div>
 
-</section><br>
+</section>
+<br>
 
 <!-- End. input_SaerchDefault -->
 <!-- Start emCategories__learning -->
@@ -161,7 +205,9 @@
 
     </div>
 <%--</section>--%>
-</section></section><hr style="height: 30px; color: #EFECEC; border: none; border-top: 5px solid;">
+</section>
+</section>
+<hr style="height: 30px; color: #EFECEC; border: none; border-top: 5px solid;">
 <!-- End. emCategories__learning -->
 
 <!-- Start em_swiper_products -->
@@ -193,7 +239,9 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
                     </svg>
-                    <span style="font-size: smaller; color: #5d6072; font-weight: bold "><span>${obj.expectMember}명</span></span>
+                   <%-- 모집인원 - 신청된 인원 = 신청가능 인원   --%>
+                    <c:set var="canapplymember" value="${canapplymember = (obj.expectMember - obj.applicationMember) }" />
+                    <span style="font-size: smaller; color: #5d6072; font-weight: bold "><fmt:formatNumber value="${canapplymember}" />명 조인 가능</span>
                 </div>
                 <div class="color-text">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -241,7 +289,9 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
                         </svg>
-                        <span style="font-size: smaller; color: #5d6072; font-weight: bold "><span>${obj.expectMember}명</span></span>
+                        <%-- 모집인원 - 신청된 인원 = 신청가능 인원   --%>
+                        <c:set var="canapplymember" value="${canapplymember = (obj.expectMember - obj.applicationMember) }" />
+                        <span style="font-size: smaller; color: #5d6072; font-weight: bold "><fmt:formatNumber value="${canapplymember}" />명 조인 가능</span>
                     </div>
                     <div class="color-text">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -274,7 +324,8 @@
     </c:otherwise>
 </c:choose>
 <!-- End. em_swiper_products -->
-
+<%--<div id="map" style="width: 90%; height: 250px; border: #9f9f9f 1px solid;">--%>
+<%--</div>--%>
 
 <!-- Modal로 보여지는 창 : mdllJobDetails -->
 <!-- Modal : center 에서 사용한 것 처럼 모달로 각 조인들 상세보기-->
@@ -383,27 +434,28 @@
                                     </div>
                                         <%-- 조인모집 작성내용 적히는 공간  --%>
                                     <div class="embody__content">
-                                        <div class="card-body" style="height: 200px;  display: flex; flex-wrap: wrap;  flex-wrap: wrap;  align-content: center; align-items: center;">
-                                            <div style="text-align: left;">
+                                        <div style="height: 150px;  display: flex; flex-wrap: wrap; flex-direction: column; align-content: flex-start; align-items: flex-start;">
+                                            <div class="joincontent" style=" display: flex; align-items: center;">
                                            <%-- 센터정보 : 이름 / 위치 --%>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-geo-alt color-primary" viewBox="0 0 16 16">
                                                 <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
                                                 <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                                             </svg>
+
                                             <span>${obj.gymName}  ${obj.gymAddress3}</span>
                                             </div>
 
                                            <%-- 이용권정보 : 이용권명 / 가격 / 할인율 --%>
                                                 <c:choose>
                                                     <c:when test="${obj.ticketType == '1'}">
-                                                            <div style="text-align: left">
+                                                            <div class="joincontent" style="text-align: left">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-ticket-perforated color-primary" viewBox="0 0 16 16">
                                                                 <path d="M4 4.85v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Z"/>
                                                                 <path d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z"/>
                                                             </svg>
                                                                 <span>기간권</span> <span>${obj.ticketMonth}개월 이용권</span>
                                                             </div>
-                                                            <div style="text-align: left">
+                                                            <div class="joincontent" style="text-align: left">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin color-primary" viewBox="0 0 16 16">
                                                                     <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
                                                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -414,14 +466,14 @@
 
                                                     </c:when>
                                                     <c:when test="${obj.ticketType == '2'}">
-                                                            <div style="text-align: left">
+                                                            <div class="joincontent" style="text-align: left">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-ticket-perforated color-primary" viewBox="0 0 16 16">
                                                                 <path d="M4 4.85v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Z"/>
                                                                 <path d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z"/>
                                                             </svg>
                                                                 <span>횟수권</span> <span>${obj.ticketNumber}회 이용권</span>
                                                             </div>
-                                                            <div style="text-align: left">
+                                                            <div class="joincontent" style="text-align: left">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin color-primary" viewBox="0 0 16 16">
                                                                     <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
                                                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -433,19 +485,18 @@
                                                     </c:when>
                                                 </c:choose>
 
-                                            <div>
+                                            <div class="joincontent">
                                             <%-- 모집인원 정보 --%>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-person color-primary" viewBox="0 0 16 16">
                                                     <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
                                                 </svg>
-                                                <span>확정 인원 <span style="color: #8890E8; font-weight: bolder"> ${obj.confirmMember}명</span></span> |<span> 모집 인원 ${obj.expectMember}명</span>
+                                                <span>신청 인원  <span style="color: #8890E8; font-weight: bolder"> ${obj.confirmMember}명</span></span> |<span> 모집 인원 ${obj.expectMember}명</span>
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="title">
                                             <h6>센터 위치</h6>
-                                            <div id="groupboard_map">
-                                                지도나타낼 위치
+                                            <div id="map" style="width: 920px; height: 250px; border: #9f9f9f 1px solid;">
                                             </div>
                                         </div>
                                         <hr>
