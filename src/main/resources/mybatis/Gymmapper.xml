@@ -140,20 +140,33 @@
     </select>
     <select id="selectMarketing" resultType="gym">
         SELECT
-            gymNo,
-            gymName,
-            gymPhone,
-            gymAddress1,
-            gymAddress2,
-            gymAddress3,
-            gymTitle,
-            gymMarketing,
-            Status,
-            approvedAdmID
+            G.gymNo,
+            G.gymName,
+            G.gymPhone,
+            G.gymAddress1,
+            G.gymAddress2,
+            G.gymAddress3,
+            G.gymTitle,
+            G.gymMarketing,
+            G.Status,
+            G.approvedAdmID,
+            MIN(GI.gymImgname) AS gymImgname
         FROM
-            Gym
+            Gym G
+                INNER JOIN gymImg GI ON G.gymNo = GI.gymNo
         WHERE
-            gymMarketing = 0
+            G.gymMarketing = '1'
+        GROUP BY
+            G.gymNo,
+            G.gymName,
+            G.gymPhone,
+            G.gymAddress1,
+            G.gymAddress2,
+            G.gymAddress3,
+            G.gymTitle,
+            G.gymMarketing,
+            G.Status,
+            G.approvedAdmID;
     </select>
     <select id="selectTicketsWithDiscount" resultType="ticket">
         SELECT

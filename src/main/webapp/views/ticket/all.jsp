@@ -71,7 +71,7 @@
                         <div class="media align-items-center">
                             <c:forEach var="img" items="${obj.gymImgname}" varStatus="status">
                                 <c:if test="${status.index eq 0}">
-                                    <img class="img_news" src="/uimg/${img}" alt="">
+                                    <img class="img_news" src="/assets/img/gym/${img}" alt="">
                                 </c:if>
                             </c:forEach>
 

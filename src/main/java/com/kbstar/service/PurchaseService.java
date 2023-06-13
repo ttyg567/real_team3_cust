@@ -17,6 +17,7 @@ public class PurchaseService implements KBService<Integer, Purchase>{
     @Autowired
     PurchaseMapper mapper;
 
+
     @Override
     public Purchase get(Integer integer) throws Exception {
         return mapper.select(integer);
@@ -26,6 +27,16 @@ public class PurchaseService implements KBService<Integer, Purchase>{
     public List<Purchase> get() throws Exception {
         return mapper.selectall();
     }
+
+
+    public List<Purchase> getvalid() throws Exception {
+        return mapper.selectallvalid();
+    }
+
+    public List<Purchase> getinvalid() throws Exception {
+        return mapper.selectallinvalid();
+    }
+
 
     @Override
     public void register(Purchase purchase) throws Exception {

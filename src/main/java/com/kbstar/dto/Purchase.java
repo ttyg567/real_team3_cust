@@ -26,7 +26,8 @@ public class Purchase {
     private Integer usedCnt; // 사용횟수
     private String ticketEx; // 이용권 만료 여부
     private Date exDate; // 만료 일자
-// push
+
+    private String gymName;
 
 
 

@@ -5,12 +5,18 @@
 <mapper namespace="com.kbstar.mapper.LikeMapper">
     <!-- 본인의 찜만만 조회해주기.
        <a href="/like?custNo=${loginuser.custNo}">-->
-<select id="getmylike"  parameterType="String"  resultType="like1">
+<select id="selectall" resultType="Like1">
+    SELECT * FROM Like1
+</select>
+<select id="getmylike"  resultType="like1" >
         select * from Like1
             WHERE  custNo = #{custNo}
 </select>
-<insert id="insert" parameterType="like1">
-    INSERT INTO Like1 (custNo, ticketNo,likeStatus)
-    VALUES (#{custNo}, #{ticketNo}, '1')
-</insert>
+    <insert id="insert" parameterType="Like1">
+        <selectKey keyProperty="likeNo" resultType="int" order="BEFORE">
+            SELECT Like1_seq.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO Like1 (likeNo, custNo, ticketNo, likeStatus)
+        VALUES (#{likeNo}, #{custNo}, #{ticketNo}, '1')
+    </insert>
 </mapper>

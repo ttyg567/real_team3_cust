@@ -18,9 +18,12 @@ public class InsertTest {
     LikeService service;
     @Test
     void contextLoads() throws Exception {
-        Like1 like = new Like1(9,3001);
+        Like1 like1 = new Like1();
+        like1.setCustNo(9);
+        like1.setTicketNo(3001);
+
         try {
-            service.register(like);
+            service.register(like1);
             service.get();
         } catch (Exception e) {
                 log.info("시스템 장애입니다.----------------------------------");
