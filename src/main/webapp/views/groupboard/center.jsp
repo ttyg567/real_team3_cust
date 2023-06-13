@@ -496,7 +496,7 @@
                                         <hr>
                                         <div class="title">
                                             <h6>센터 위치</h6>
-                                            <div id="map" style="width: 920px; height: 250px; border: #9f9f9f 1px solid;">
+                                            <div id="map" style="width: 220px; height: 250px; border: #9f9f9f 1px solid;">
                                             </div>
                                         </div>
                                         <hr>
