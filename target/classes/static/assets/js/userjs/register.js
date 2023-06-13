@@ -159,19 +159,27 @@ function mailFormCheck(custEmail) {
     console.log("==========" + form.test(custEmail) + "==========");
     return form.test(custEmail); // 정규표현식에 부합할 경우 true, 부합하지 않은 경우 false
 }
-function formatPhoneNumber(phoneNumber) {
-    var formattedNumber = "";
+
+function formatPhoneNumber(event) {
+    let input = event.target;
+    let phoneNumber = input.value;
+    // '-' 제거
+    phoneNumber = phoneNumber.replace(/-/g, '');
+    // 숫자만 입력
+    phoneNumber = phoneNumber.replace(/\D/g, ''); // 숫자가 아닌 문자열은 다 공백으로
+    // 형식화된 전화번호 적용
+    let formattedNumber = '';
     if (phoneNumber.length > 3) {
-        formattedNumber += phoneNumber.substr(0, 3) + "-";
+        formattedNumber += phoneNumber.substr(0, 3) + '-';
         if (phoneNumber.length > 7) {
-            formattedNumber += phoneNumber.substr(3, 4) + "-" + phoneNumber.substr(7);
+            formattedNumber += phoneNumber.substr(3, 4) + '-' + phoneNumber.substr(7);
         } else {
             formattedNumber += phoneNumber.substr(3);
         }
     } else {
         formattedNumber = phoneNumber;
     }
-    return formattedNumber;
+    input.value = formattedNumber;
 }
 
 // 다음 주소 api

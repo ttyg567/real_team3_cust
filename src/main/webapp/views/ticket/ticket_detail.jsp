@@ -236,19 +236,21 @@
                         <form name="ticket_pay_form" id="ticket_pay_form"  >
                             <input type="hidden"  name="gymName" value="${gdetail.gymName}">
                             <input type="hidden"  name="gymNo" value="${gdetail.gymNo}">
+
                             <select name="ticket_pay_option" id="ticket_pay_option" style="width: 100%;  position: fixed; z-index:9999; bottom:120px">
                                 <option selected id="unselected" class="unselected">구매하실 이용권을 선택해주세요.</option>
                                 <c:forEach var="ticket" items="${tickets}">
                                     <c:choose>
                                         <c:when test="${ticket.ticketType == '1'}">
-                                            <option name="ticket_pay_option" class="ticket_pay_option" value="기간권-${ticket.ticketMonth}개월-${ticket.ticketCost}원">
+                                            <option name="ticket_pay_option" class="ticket_pay_option" value="기간권-${ticket.ticketMonth}개월-${ticket.ticketCost}원-${ticket.ticketNo}">
                                                 <p>기간권</p> ${ticket.ticketMonth}개월 ${ticket.ticketCost}원
                                             </option>
                                         </c:when>
                                         <c:when test="${ticket.ticketType == '2'}">
-                                            <option name="ticket_pay_option" class="ticket_pay_option" value="횟수권-${ticket.ticketNumber}회-${ticket.ticketCost}원">
+                                            <option name="ticket_pay_option" class="ticket_pay_option" value="횟수권-${ticket.ticketNumber}회-${ticket.ticketCost}원-${ticket.ticketNo}">
                                                 <p>횟수권</p> ${ticket.ticketNumber}회 ${ticket.ticketCost}원
                                             </option>
+
                                         </c:when>
                                     </c:choose>
                                 </c:forEach>
@@ -448,8 +450,11 @@
             init: function () {
               //  btn btn_addCart
                 $('#ticket_pay_btn').click(function () {
-                    console.log("test");
                     ticket_pay_form.send();
+                });
+                $('#itemSave').click(function () {
+                    console.log("savetest");
+                    ticket_pay_form.save();
                 });
             },
             send: function () {
@@ -466,6 +471,13 @@
                 });
                 $('#ticket_pay_form').submit();
 
+            },
+            save : function (){
+                $('#ticket_pay_form').attr({
+                    'action':'/like1',
+                    'method':'post'
+                });
+                $('#ticket_pay_form').submit();
             }
 
         };

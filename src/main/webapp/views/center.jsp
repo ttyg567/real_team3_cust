@@ -180,8 +180,9 @@
         <div class="item em_item">
           <a href="#" class="link_service text-decoration-none">
             <!--헬스장 정보 등록하고, 해당 정보 가져오는걸로 -->
+<%--            <c:forEach  var="obj" items="${all}" >--%>
             <div class="cover_img">
-              <img src="/assets/img/gym/browngym_seongsu.jpg" alt="">
+              <img src="/assets/img/gym/${obj.gymImgname}" alt="">
             </div>
             <div class="txt">
               <span class="type">헬스장 이름</span>
@@ -195,41 +196,8 @@
             </div>
           </a>
         </div>
-        <div class="item em_item">
-          <a href="#" class="link_service text-decoration-none">
-            <div class="cover_img">
-              <img src="/assets/img/gym/seongsupt.jpg" alt="">
-            </div>
-            <div class="txt">
-              <span class="type">헬스장 이름</span>
-              <div class="details">
-                <h2>이용권이름</h2>
-                <p>이용권 가격</p>
-              </div>
-              <button type="button" class="btn btn_buy">
-                가격 불러오기
-              </button>
-            </div>
-          </a>
-        </div>
-        <div class="item em_item">
-          <a href="#" class="link_service text-decoration-none">
-            <div class="cover_img">
-              <img src="/assets/img/gym/spoany_seongsu.jpg" alt="">
-            </div>
-            <div class="txt">
-              <span class="type">헬스장 이름</span>
-              <div class="details">
-                <h2>이용권이름</h2>
-                <p>이용권 가격</p>
-              </div>
-              <button type="button" class="btn btn_buy">
-                가격 불러오기
-              </button>
-            </div>
-          </a>
-        </div>
-      </div>
+<%--          </c:forEach>--%>
+
     </section>
     <!-- End. banner_swiper -->
 

@@ -87,6 +87,7 @@ function requestKPay() {
             <div class="form-group">
               <label>센터명</label>
               <div class="input_group">
+
                 <input type="text" class="form-control is-valid" value="${gymName}" required="" readonly>
               </div>
 
@@ -94,13 +95,9 @@ function requestKPay() {
               <div class="input_group">
                 <input type="text" class="form-control is-valid" id="ticketTypeValue" value="${ticket_pay_option.substring(0, 3)}" readonly>
               </div>
-              <label>기간</label>
-              <div class="input_group">
-                <input type="text" class="form-control is-valid" id="ticketLengthValue" value="${ticket_pay_option.substring(4, ticket_pay_option.lastIndexOf('-'))}" readonly>
-              </div>
               <label>가격</label>
               <div class="input_group">
-                <input type="text" class="form-control is-valid" id="ticketPriceValue" value="${ticket_pay_option.substring(ticket_pay_option.lastIndexOf('-') + 1)}" readonly>
+                <input type="text" class="form-control is-valid" id="ticketPriceValue" value="${ticket_pay_option.substring(ticket_pay_option.indexOf('-') + 1, ticket_pay_option.lastIndexOf('-') - 1)}원" readonly>
               </div>
 
             <div class="padding-20 px-0">
