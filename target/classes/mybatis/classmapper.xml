@@ -22,6 +22,7 @@
                  where c.gymNo=#{gymNo} and c.gymMasterCk ='1' and c.classDate=#{classDate}
         order by c.CLASSSTARTTIME
     </select>
+
     <!-- 수업 추후 등록 -->
     <insert id="insert" parameterType="class">
         INSERT INTO class (classNo, gymNo, gymMasterCk, trainerNo, className, classDate, classStarttime, classEndtime, classMaximum, classJoin,
