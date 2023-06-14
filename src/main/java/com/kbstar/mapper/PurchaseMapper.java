@@ -2,6 +2,8 @@ package com.kbstar.mapper;
 
 
 
+import com.kbstar.dto.Class;
+import com.kbstar.dto.Cust;
 import com.kbstar.dto.Gym;
 import com.kbstar.dto.Purchase;
 import com.kbstar.frame.KBMapper;
@@ -16,4 +18,12 @@ public interface PurchaseMapper extends KBMapper<Integer, Purchase> {
     public List<Purchase> selectallvalid();
 
     public List<Purchase> selectallinvalid();
+
+    List<Class> selectcustclass(Integer integer);
+
+    List<Class> selectdayclass(Cust cust);
+
+
+
+
 }
