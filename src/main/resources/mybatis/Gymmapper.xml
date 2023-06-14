@@ -142,52 +142,66 @@
         SELECT
             G.gymNo,
             G.gymName,
-            G.gymPhone,
-            G.gymAddress1,
-            G.gymAddress2,
             G.gymAddress3,
             G.gymTitle,
             G.gymMarketing,
             G.Status,
-            G.approvedAdmID,
-            MIN(GI.gymImgname) AS gymImgname
+            MIN(GI.gymImgname) AS gymImgname,
+            T.ticketPrice AS minTicketPrice
         FROM
             Gym G
                 INNER JOIN gymImg GI ON G.gymNo = GI.gymNo
+                INNER JOIN (
+                SELECT
+                    gymNo,
+                    ticketPrice,
+                    RANK() OVER (PARTITION BY gymNo ORDER BY ticketPrice) AS priceRank
+                FROM ticket
+            ) T ON G.gymNo = T.gymNo
         WHERE
-            G.gymMarketing = '1'
+            G.gymMarketing = '1' AND T.priceRank = 1 AND GI.gymImgdetailCk = 0
         GROUP BY
             G.gymNo,
             G.gymName,
-            G.gymPhone,
-            G.gymAddress1,
-            G.gymAddress2,
             G.gymAddress3,
             G.gymTitle,
             G.gymMarketing,
             G.Status,
-            G.approvedAdmID;
+            T.ticketPrice
     </select>
-    <select id="selectTicketsWithDiscount" resultType="ticket">
+    <select id="selectTicketsWithDiscount" resultType="gym">
         SELECT
-            ticketNo,
             gymNo,
-            ticketType,
-            ticketMonth,
-            ticketNumber,
-            ticketJoin,
-            ticketTotal,
-            ticketSales,
-            ticketCost,
-            ticketDiscount,
+            gymName,
             ticketPrice,
-            ticketImgname,
-            sportsType,
-            sportsClasstype
-        FROM
-            Ticket
-        WHERE
-            ticketDiscount IS NOT NULL
+            ticketNo,
+            ticketDiscount,
+            gymImgName
+        FROM (
+                 SELECT
+                     G.gymNo,
+                     G.gymName,
+                     T.ticketPrice,
+                     T.ticketNo,
+                     T.ticketDiscount,
+                     GI.gymImgname AS gymImgName,
+                     ROW_NUMBER() OVER (PARTITION BY G.gymNo ORDER BY T.ticketDiscount DESC) AS rn
+                 FROM
+                     Gym G
+                         INNER JOIN gymImg GI ON G.gymNo = GI.gymNo AND GI.gymImgdetailCk = 0
+                         INNER JOIN (
+                         SELECT
+                             gymNo,
+                             ticketPrice,
+                             ticketNo,
+                             ticketDiscount
+                         FROM
+                             Ticket
+                         WHERE
+                             ticketDiscount > 0
+                     ) T ON G.gymNo = T.gymNo
+             ) Subquery
+        WHERE rn = 1
     </select>
     <!--  인보.조인 개설 시 센터를 검색해서 가져오기 위해 조회조건 추가  -->
     <select id="search" parameterType="gymSearch" resultType="gym">

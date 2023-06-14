@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style>
+  .owl-carousel {
+    display: flex;
+  }
 
+  .itm.em_item {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+</style>
 <div id="content">
   <main class="emPage__public">
 
@@ -167,79 +176,49 @@
 
 
     <!-- Start banner_swiper -->
-    <section class="banner_swiper bg-white np__ServicePackage padding-t-10 mt-0 padding-b-10">
-      <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
-        <div>
-          <h3 class="size-18 weight-500 color-secondary m-0">요즘 뜨는 운동!</h3>
-          <p class="size-13 color-text m-0 pt-1"></p>
+      <section class="banner_swiper bg-white np__ServicePackage padding-t-10 mt-0 padding-b-10">
+        <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
+          <div>
+            <h3 class="size-18 weight-500 color-secondary m-0">요즘 뜨는 운동!</h3>
+            <p class="size-13 color-text m-0 pt-1"></p>
+          </div>
+          <a href="#" class="d-block color-blue size-14 m-0 hover:color-blue">더 보기</a>
         </div>
-        <a href="/ticket/all" class="d-block color-blue size-14 m-0 hover:color-blue">더 보기</a>
-      </div>
-      <!-- Swiper -->
-      <div class="owl-carousel owl-theme owlServiceProvider em_owl_swipe">
-        <div class="item em_item">
-          <a href="#" class="link_service text-decoration-none">
-            <!--헬스장 정보 등록하고, 해당 정보 가져오는걸로 -->
-            <div class="cover_img">
-              <img src="/assets/img/gym/browngym_seongsu.jpg" alt="">
+        <!-- Swiper -->
+        <div class="owl-carousel owl-theme owlServiceProvider em_owl_swipe">
+          <c:forEach var="obj" items="${all}">
+            <div class="itm em_item">
+              <!--gymService.selectWithMarketing(); 마케팅 정보 있는 gym만 보여주기 -->
+              <a href="#" class="link_service text-decoration-none">
+                <!--헬스장 정보 등록하고, 해당 정보 가져오는걸로 -->
+                <div class="cover_img">
+                  <img src="/assets/img/gym/${obj.gymImgname}" alt="">
+                </div>
+                <div class="txt">
+                  <span class="type"
+                        style="color: black;   font-weight: 800;
+                        text-shadow: -1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff, 1px 1px 0 #fff;">${obj.gymName}</span>
+                  <div class="details" style="margin-top: 5%; ">
+                    <p style="color: yellowgreen">${obj.gymAddress3}</p>
+                    <p style="color: darkgreen">${obj.minTicketPrice}원</p>
+                  </div>
+                  <button type="button" class="btn btn_buy" onclick=" location.href='/ticket/detail?gymNo=${obj.gymNo}'">
+                    자세히 보기
+                  </button>
+                </div>
+              </a>
             </div>
-            <div class="txt">
-              <span class="type">헬스장 이름</span>
-              <div class="details">
-                <h2>이용권이름</h2>
-                <p>이용권 가격</p>
-              </div>
-              <button type="button" class="btn btn_buy">
-               가격 불러오기
-              </button>
-            </div>
-          </a>
+          </c:forEach>
         </div>
-        <div class="item em_item">
-          <a href="#" class="link_service text-decoration-none">
-            <div class="cover_img">
-              <img src="/assets/img/gym/seongsupt.jpg" alt="">
-            </div>
-            <div class="txt">
-              <span class="type">헬스장 이름</span>
-              <div class="details">
-                <h2>이용권이름</h2>
-                <p>이용권 가격</p>
-              </div>
-              <button type="button" class="btn btn_buy">
-                가격 불러오기
-              </button>
-            </div>
-          </a>
-        </div>
-        <div class="item em_item">
-          <a href="#" class="link_service text-decoration-none">
-            <div class="cover_img">
-              <img src="/assets/img/gym/spoany_seongsu.jpg" alt="">
-            </div>
-            <div class="txt">
-              <span class="type">헬스장 이름</span>
-              <div class="details">
-                <h2>이용권이름</h2>
-                <p>이용권 가격</p>
-              </div>
-              <button type="button" class="btn btn_buy">
-                가격 불러오기
-              </button>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
+      </section>
     <!-- End. banner_swiper -->
 
-
-    <!-- Start emTransactions__page -->
+          <!-- Start emTransactions__page -->
     <section class="padding-20 emTransactions__page np_Package_ac">
       <div class="title d-flex justify-content-between align-items-center margin-b-30 pb-0">
         <div>
-          <h3 class="size-18 weight-500 color-secondary m-0">Last Transactions</h3>
-          <p class="size-13 color-text m-0 pt-1">The last packages purchased</p>
+          <h3 class="size-18 weight-500 color-secondary m-0">찜으로 확인하는 오늘의 Gym</h3>
+          <p class="size-13 color-text m-0 pt-1">프로운동러의 마음을 사로잡은 운동 플레이스는? </p>
         </div>
         <a href="#" class="d-block color-blue size-14 m-0 hover:color-blue">See all</a>
       </div>
@@ -264,12 +243,11 @@
               </svg>
             </div>
             <div class="media-body my-auto">
-              <h4>Internet Plus 2 GB</h4>
-              <p>Exp on Sep 15, 2021</p>
+              <h4>에스파 필라테스</h4>
             </div>
           </div>
           <div class="sideRight">
-            <p class="mb-0">20.00 <span>USD</span></p>
+            <p class="mb-0">99,000 <span>원</span></p>
           </div>
         </div>
         <div class="item_trans" data-toggle="modal" data-target="#mdllDetailsTrans">
@@ -295,12 +273,15 @@
               </svg>
             </div>
             <div class="media-body my-auto">
-              <h4>Call 1 hour</h4>
-              <p>Exp on Sep 15, 2021</p>
+              <h4>F45 성수</h4>
             </div>
+            99,000 원
+
+            F45 성수
+            330,000원
           </div>
           <div class="sideRight">
-            <p class="mb-0">14.00 <span>USD</span></p>
+            <p class="mb-0">330,000<span>원</span></p>
           </div>
         </div>
 
@@ -313,65 +294,35 @@
       <section class="banner_swiper bg-white np__ServicePackage padding-t-10 mt-0 padding-b-10">
         <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
           <div>
-            <h3 class="size-18 weight-500 color-secondary m-0">요즘 뜨는 운동!</h3>
+            <h3 class="size-18 weight-500 color-secondary m-0">지금 할인하는 운동!</h3>
             <p class="size-13 color-text m-0 pt-1"></p>
           </div>
-          <a href="#" class="d-block color-blue size-14 m-0 hover:color-blue">See all</a>
+          <a href="#" class="d-block color-blue size-14 m-0 hover:color-blue">더 보기</a>
         </div>
         <!-- Swiper -->
         <div class="owl-carousel owl-theme owlServiceProvider em_owl_swipe">
-          <div class="item em_item">
-            <a href="#" class="link_service text-decoration-none">
-              <!--헬스장 정보 등록하고, 해당 정보 가져오는걸로 -->
-              <div class="cover_img">
-                <img src="/assets/img/gym/gymticket.jpg" alt="">
-              </div>
-              <div class="txt">
-                <span class="type">헬스장 이름</span>
-                <div class="details">
-                  <h2>이용권이름</h2>
-                  <p>이용권 가격</p>
+          <c:forEach var="gym" items="${allGym}">
+            <div class="itm em_item">
+              <!--gymService.selectWithMarketing(); 마케팅 정보 있는 gym만 보여주기 -->
+              <a href="#" class="link_service text-decoration-none">
+                <!--헬스장 정보 등록하고, 해당 정보 가져오는걸로 -->
+                <div class="cover_img">
+                  <img src="/assets/img/gym/${gym.gymImgname}" alt="">
                 </div>
-                <button type="button" class="btn btn_buy">
-                  가격 불러오기
-                </button>
-              </div>
-            </a>
-          </div>
-          <div class="item em_item">
-            <a href="#" class="link_service text-decoration-none">
-              <div class="cover_img">
-                <img src="/assets/img/gym/gymticket.jpg" alt="">
-              </div>
-              <div class="txt">
-                <span class="type">헬스장 이름</span>
-                <div class="details">
-                  <h2>이용권이름</h2>
-                  <p>이용권 가격</p>
+                <div class="txt">
+                  <span class="type" style="color: black;   font-weight: 800;
+                        text-shadow: -1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff, 1px 1px 0 #fff;">${gym.gymName}</span>
+                  <div class="details" style="margin-bottom: 20%">
+
+                  </div>
+                  <button type="button" class="btn btn_buy" onclick=" location.href='/ticket/detail?gymNo=${gym.gymNo}'"
+                  style="color: darkred">
+                      ${gym.ticketDiscount}% 할인 중
+                  </button>
                 </div>
-                <button type="button" class="btn btn_buy">
-                  가격 불러오기
-                </button>
-              </div>
-            </a>
-          </div>
-          <div class="item em_item">
-            <a href="#" class="link_service text-decoration-none">
-              <div class="cover_img">
-                <img src="/assets/img/gym/gymticket.jpg" alt="">
-              </div>
-              <div class="txt">
-                <span class="type">헬스장 이름</span>
-                <div class="details">
-                  <h2 style="color: #0a0f27">이용권이름</h2>
-                  <p>이용권 가격</p>
-                </div>
-                <button type="button" class="btn btn_buy" style="color: #0a0f27">
-                  가격 불러오기
-                </button>
-              </div>
-            </a>
-          </div>
+              </a>
+            </div>
+          </c:forEach>
         </div>
       </section>
     <!-- End. banner_swiper -->

@@ -13,14 +13,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
+
 @Slf4j
 @Controller
 public class Like1Controller {
 
-@Autowired
-LikeService service;
+    @Autowired
+    LikeService service;
+
     @RequestMapping("/like1")
-    public String like1impl(Model model, Like1 like1, Ticket ticket,  HttpSession session, String ticket_pay_option) throws Exception {
+    public String like1impl(Model model, Like1 like1, Ticket ticket, HttpSession session, String ticket_pay_option) throws Exception {
         Cust cust = (Cust) session.getAttribute("logincust");
         // 마지막 "-" 뒤의 숫자 추출
         String[] parts = ticket_pay_option.split("-");
@@ -34,4 +37,7 @@ LikeService service;
         model.addAttribute("center", "mypage");
         return "index";
     }
+
+//
+
 }

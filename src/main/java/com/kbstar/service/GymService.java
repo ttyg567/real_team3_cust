@@ -58,7 +58,10 @@ public class GymService implements KBService<Integer, Gym> {
 
         return  mapper.selectMarketing();
     }
+    public List<Gym> selectDiscount() {
 
+        return  mapper.selectTicketsWithDiscount();
+    }
     // 인보.조인개설 시 센터 검색해서 가져오는 기능
     public List<Gym> search(gymSearch gs){
         return mapper.search(gs);

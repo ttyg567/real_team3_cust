@@ -9,7 +9,7 @@ import lombok.*;
 @Getter
 @ToString
 public class Like1 {
-    private int likeNo; // 개인회원번호
+    private int likeNo; //
     private int custNo;
     private int ticketNo;
     private String likeStatus;

@@ -71,6 +71,9 @@
                     </a>
                 </div>
                 <div class="title_page">
+
+
+
                         <span class="page_name">
                             <!-- Something here.. -->
                         </span>

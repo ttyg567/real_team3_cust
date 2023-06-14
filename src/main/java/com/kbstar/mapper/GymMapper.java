@@ -21,4 +21,5 @@ public interface GymMapper extends KBMapper<Integer, Gym> {
     public List<Gym> selectMarketing();
     // 인보. 조인개설 시 센터 검색해서 가져오는 기능
     public List<Gym> search(gymSearch gs);
+    List<Gym> selectTicketsWithDiscount();
 }

@@ -42,4 +42,10 @@ public class Gym {
 
     //ticket list 에서 1개만 보여주기 위해 rank필요
     private String rank;
+    //Marketing정보
+    private int ticketNo;
+    private int ticketPrice;
+    private int minTicketPrice;
+    private int ticketDiscount;
+
 }

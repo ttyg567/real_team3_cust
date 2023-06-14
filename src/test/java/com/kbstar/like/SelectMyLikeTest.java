@@ -1,4 +1,4 @@
-package com.kbstar.Cart;
+package com.kbstar.like;
 
 import com.kbstar.service.LikeService;
 import lombok.extern.slf4j.Slf4j;

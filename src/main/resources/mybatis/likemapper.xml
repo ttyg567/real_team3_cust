@@ -12,11 +12,19 @@
         select * from Like1
             WHERE  custNo = #{custNo}
 </select>
-    <insert id="insert" parameterType="Like1">
-        <selectKey keyProperty="likeNo" resultType="int" order="BEFORE">
-            SELECT Like1_seq.NEXTVAL FROM DUAL
-        </selectKey>
-        INSERT INTO Like1 (likeNo, custNo, ticketNo, likeStatus)
-        VALUES (#{likeNo}, #{custNo}, #{ticketNo}, '1')
-    </insert>
+<insert id="insert" parameterType="Like1">
+    <selectKey keyProperty="likeNo" resultType="int" order="BEFORE">
+        SELECT Like1_seq.NEXTVAL FROM DUAL
+    </selectKey>
+    INSERT INTO Like1 (likeNo, custNo, ticketNo, likeStatus)
+    SELECT #{likeNo}, #{custNo}, #{ticketNo}, '1' FROM DUAL
+    WHERE NOT EXISTS (
+    SELECT 1 FROM Like1
+    WHERE custNo = #{custNo} AND ticketNo = #{ticketNo}
+    )
+</insert>
+<delete id="delete" parameterType="Like1">
+    DELETE FROM Like1
+    WHERE custNo = #{custNo} AND ticketNo = #{ticketNo}
+</delete>
 </mapper>
