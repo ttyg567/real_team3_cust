@@ -18,9 +18,9 @@
     <!-- insert -->
     <insert id="insert" parameterType="cust">
         INSERT INTO cust (custNo, custEmail, custPwd, custName, custPhone, custBirth, custGender, custSido, custSigungu, sportsType,
-                          sportsClasstype, custStatus, custSocialmedia, custSnstype, custJoindate)
+                          sportsClasstype, custStatus, custSocialmedia, custJoindate)
         VALUES (cust_seq.NEXTVAL, #{custEmail}, #{custPwd}, #{custName}, #{custPhone}, #{custBirth}, #{custGender},
-        #{custSido}, #{custSigungu}, #{sportsType}, #{sportsClasstype},'1', #{custSocialmedia}, #{custSnstype}, sysdate)
+        #{custSido}, #{custSigungu}, #{sportsType}, #{sportsClasstype},'1', '0', sysdate)
     </insert>
     <!-- insert : social 전용 -->
     <insert id="insert_social" parameterType="cust">
@@ -30,7 +30,19 @@
     <!-- update (비밀번호와 관심컬럼은 다른 함수로) -->
     <update id="update" parameterType="cust">
         UPDATE cust SET custName=#{custName}, custPhone=#{custPhone}, custBirth=#{custBirth},
-                        custGender=#{custGender}
+                        custGender=#{custGender}, custSido=#{custSido}, custSigungu=#{custSigungu},
+                        sportsType=#{sportsType}, sportsClasstype=#{sportsClasstype}
+        WHERE custEmail=#{custEmail}
+    </update>
+    <!-- update : social 전용 (비밀번호와 관심컬럼은 다른 함수로) -->
+    <update id="update_social" parameterType="cust">
+        UPDATE cust SET custPhone=#{custPhone}, custBirth=#{custBirth}, custGender=#{custGender},
+                        custSido=#{custSido}, custSigungu=#{custSigungu}, sportsType=#{sportsType}, sportsClasstype=#{sportsClasstype}
+        WHERE custEmail=#{custEmail}
+    </update>
+    <!-- update : social 전용 (비밀번호와 관심컬럼은 다른 함수로) -->
+    <update id="update_social_name" parameterType="cust">
+        UPDATE cust SET custName=#{custName}
         WHERE custEmail=#{custEmail}
     </update>
     <!-- 이메일로 삭제 -->
