@@ -11,6 +11,7 @@ import lombok.*;
 public class Ticket {
     private int ticketNo;
     private int gymNo;
+    private String ticketName;
     private char gymMasterCk;
     private String ticketType;
     private int ticketMonth;

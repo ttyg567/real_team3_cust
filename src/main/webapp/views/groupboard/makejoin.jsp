@@ -24,7 +24,7 @@
             $('#gymSearchBtn').click(function () {
                 // 검색창에 입력된 센터 이름 가져오기
                 var gymName = $("input[name='modal_search_gymName']").val();
-
+                
                 // AJAX 요청을 사용하여 서버로 센터 이름 전송
                 $.ajax({
                     type: 'GET',
@@ -113,9 +113,105 @@
     });
 
 </script>
+<script> // 2. 운동 이용권 정보를 모달창으로 가져와주기 기능
+let center2 = {
+    resultHTML : "", // 결과 담을 변수 만들기
+    init:function () {
+        $('#ticketSearchBtn').click(function () {
+            // 검색창에 입력된 센터 이름 가져오기
+            var ticketName = $("input[name='modal_search_ticketName']").val();
+
+            // AJAX 요청을 사용하여 서버로 센터 이름 전송
+            $.ajax({
+                type: 'GET',
+                url: '/ticketsearch',
+                data: {
+                    ticketName: ticketName,
+                },
+                success: function (data) {
+                    if (data != null) { // 검색어랑 비교했을 때 db에서 가져올 결과가 있다면
+                        //console.log("success의 data!=null :"+data.toString());
+                        document.getElementById("result2").innerHTML = ""; // 검색결과 초기화
+                        center2.display(data); // 화면에 보여주기(아래코드에서 계속)
+                    } else {
+                        //console.log("비어서 왔다");
+                        document.getElementById("result2").innerHTML = "검색결과가 없습니다.";
+                    }
+                }
+            });
+        });
+        // 모달2가 닫힐 때마다 결과 초기화하기.
+        $('#duplicateCheck2').on('hidden.bs.modal', function () {
+            $("input[name='modal_search_ticketName']").val(""); //검색 입력창도 초기화
+            //$("input[name='gymNo']").val("");
+            document.getElementById("result2").innerHTML = ""; // 검색결과도 초기화
+        });
+        // 선택한 센터정보를 초기창에 자동입력 시켜주기*
+        $(document).ready(function () {
+            $('#ticketChoiceBtn').click(function () {
+                var ticketInfo1 = $('input[name="modal_ticketName"]:checked').val(); //모달 - 검색결과 중 1개 선택하면 받을 준비
+                // var gymInfo2 =  $('input[name="gymNo"]').val();
+
+                let str = $('input[name="modal_ticketName"]:checked').val(); // 선택한 값 담기
+                //console.log("str : "+str);
+                //console.log("str type: " +typeof (str));
+                let result1 = str.slice(0, -5); // 센터이름 : 맨 뒤에서 5자리만 빼고
+                let result2 = str.slice(-5); // 센터번호 : 맨 뒤에서 5자리
+                //console.log("result1 : "+result1);
+                //console.log("result2 : "+result2);
+
+                // 라디오버튼 1개 선택 > 선택완료 > 모달꺼지면서 초기화면 창들 중
+                // 초기화면인 input의 name이 아래와 같은 태그에 자동입력 해주기
+                $("input[name='ticketName']").val(result1);
+                $("input[name='ticketNo']").val(result2);
+                //alert("이름 출력 성공! " + gymInfo1);
+                // alert("gymNo 출력 " + gymInfo2);
 
 
-<script>
+                // if (isNaN(gymInfo2)) {
+                //     //gymInfo2 = "";
+                //     //alert("Invalid gymNo");
+                //     alert(gymInfo2);
+                //     var parsedGymInfo2 = parseInt(gymInfo2);
+                //     $("input[name='chooseGymNo']").val(parsedGymInfo2);
+                //
+                //     alert("번호 변환 성공! " + parsedGymInfo2);
+                // } else {
+                //     var parsedGymInfo2 = parseInt(gymInfo2);
+                //     $("input[name='chooseGymNo']").val(parsedGymInfo2);
+                //
+                //     alert("번호 변환 성공! " + parsedGymInfo2);
+                // }
+            });
+        });
+
+
+
+        // 화면 출력
+    }, display: function (data) { // data : json이 담겨있어
+        var resultHTML = ""; // 결과를 담을 변수 선언 초기화
+        var resultHTMLNo = ""; // 결과를 담을 변수 선언 초기화
+        //console.log("display로 왔다");
+        // console.log();
+        for (var i = 0; i < data.length; i++) {
+            console.log(data[i]);
+            // modal - 검색결과 뿌려지는 창
+            resultHTML += "<li><div class='item-link hoverNone'><div class='custom-control custom-radio'><input type='radio'  value='" + data[i].ticketName + data[i].ticketNo + "'  id='customRadioList1' name='modal_ticketName' class='custom-control-input'><label class='custom-control-label padding-l-30' for='customRadioList1'>" + data[i].ticketName + "</label></div></div></li>"; // i가 반복해서 돌면서 검색어와 일치하는 데이터를 쌓기
+
+        }
+        document.getElementById("result2").innerHTML = resultHTML; // 결과 출력
+    }
+}
+
+    // 실행
+    $(function (){
+        center2.init();
+    });
+
+
+</script>
+
+<script> // 이미지 첨부하기
     let makejoin = {
         init:function (){
             $('#register_btn').click(function(){
@@ -197,7 +293,7 @@
 <section class="em__signTypeOne padding-t-50">
     <div class="em_titleSign">
         <div class="brand mb-3">
-            <img src="/assets/img/logo.jpg" alt="">
+            <img src="/uimg/logo.jpg" alt="">
         </div>
         <h1>조인 만들기</h1>
         <p class="size-13 color-text">헬쓱 회원들과 조인하면 운동 이용권을 할인된 금액으로 함께 구매할 수 있어요</p>
@@ -209,9 +305,8 @@
 <%--            <input type="hidden" name="gymNo" id="gymNo"/>--%>
             <div class="form-group with_icon">
                 <label>운동센터</label>
-<%--                <c:forEach var="obj" items="${gymlist}">--%>
                 <div class="input_group">
-                    <!-- 1. 초기 센터정보 입력창 -->
+                    <!-- 1. 초기 센터정보 가져오는창 -->
                     <input type="search" class="form-control" name="gymName"
                                id="gymName"  style="margin-right: 10px"
                                placeholder="이용할 센터 정보를 입력해 주세요" required >
@@ -224,36 +319,21 @@
                     </button>
 
                 </div>
-<%--                </c:forEach>--%>
                 <br>
 
             </div>
             <div class="form-group with_icon">
                 <label>이용권</label>
                 <div class="input_group">
-                    <!-- 2. 이용권정보 -->
-                    <input type="text" class="form-control" style="margin-right: 10px"
-                           placeholder="공동 구매하고 싶은 이용권을 검색해 주세요" id="ticketNo"
-                           name="ticketNo" required>
-<%--                    <div class="icon">--%>
-<%--                        <svg id="Iconly_Two-tone_Message" data-name="Iconly/Two-tone/Call"--%>
-<%--                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">--%>
-<%--                            <g id="Message" transform="translate(2 3)">--%>
-<%--                                <path id="Path_445" d="M11.314,0,7.048,3.434a2.223,2.223,0,0,1-2.746,0L0,0"--%>
-<%--                                      transform="translate(3.954 5.561)" fill="none" stroke="#200e32"--%>
-<%--                                      stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"--%>
-<%--                                      stroke-width="1.5" opacity="0.4"/>--%>
-<%--                                <path id="Rectangle_511"--%>
-<%--                                      d="M4.888,0h9.428A4.957,4.957,0,0,1,17.9,1.59a5.017,5.017,0,0,1,1.326,3.7v6.528a5.017,5.017,0,0,1-1.326,3.7,4.957,4.957,0,0,1-3.58,1.59H4.888C1.968,17.116,0,14.741,0,11.822V5.294C0,2.375,1.968,0,4.888,0Z"--%>
-<%--                                      transform="translate(0 0)" fill="none" stroke="#200e32"--%>
-<%--                                      stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"--%>
-<%--                                      stroke-width="1.5"/>--%>
-<%--                            </g>--%>
-<%--                        </svg>--%>
-<%--                    </div>--%>
+                    <!-- 2. 초기화면 이용권정보 가져오는 창 -->
+                    <input type="search" class="form-control" style="margin-right: 10px"
+                           placeholder="공동 구매하고 싶은 이용권을 검색해 주세요"
+                           id="ticketName" name="ticketName" required>
+                    <!-- 이용권 번호 : 테스트할 땐 type 을 text로 -->
+                    <input type="hidden" name="ticketNo" id="ticketNo" value="" />
                     <button type="button" class="btn btn-outline-secondary" style="width: 35%; height: 100%;"
-                            data-toggle="modal"
-                            id="btnECheck">  <!--data-target="#duplicateCheck" -->
+                            data-toggle="modal" data-target="#duplicateCheck2"
+                            id="ticketModal">  <!--data-target="#duplicateCheck" -->
                         가져오기
                     </button>
                 </div>
@@ -369,7 +449,7 @@
 
 </section>
 
-<!-- 센터 검색 시 Modal -->
+<!-- 1. 센터 검색 시 Modal -->
 <div class="modal defaultModal modalCentered change__address fade" id="duplicateCheck" tabindex="-1"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -382,7 +462,7 @@
                     <i class="tio-clear"></i>
                 </button>
             </div>
-            <%--  모달 - 검색입력창   --%>
+            <%-- 센터검색. 모달 - 검색입력창   --%>
             <div class="modal-body">
                 <div class="nav__listAddress itemSingle">
                     <div class="modal-content">
@@ -424,6 +504,67 @@
             </div>
             <div class="modal-footer">
                 <button type="button" id="gymChoiceBtn" class="btn btn_default_lg" data-dismiss="modal" aria-label="Close">선택 완료</button>
+            </div>
+        </div>
+    </div>
+</div>
+<%-- 2. 이용권 검색 시 보여주는 모달창 --%>
+
+<!-- 1. 센터 검색 시 Modal -->
+<div class="modal defaultModal modalCentered change__address fade" id="duplicateCheck2" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0 padding-l-20 padding-r-20 justify-content-center">
+                <div class="itemProduct_sm">
+                    <h1 class="size-18 weight-600 color-secondary m-0">공동구매가 가능한 이용권 검색하기</h1>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="tio-clear"></i>
+                </button>
+            </div>
+            <%-- 이용권 검색. 모달 - 검색창   --%>
+            <div class="modal-body">
+                <div class="nav__listAddress itemSingle">
+                    <div class="modal-content">
+                        <form id="ticket-search-form" action="/groupboard/ticketsearch">
+                            <div class="row">
+                                <div class="col-9">
+                                    <input type="search" class="form-control" name="modal_search_ticketName" placeholder="센터 이름" required>
+                                </div>
+                                <div class="col-3">
+                                    <button type="button" class="btn btn-outline-secondary" id="ticketSearchBtn">검색</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <br>
+                    <%-- 검색결과 나타나는 공간 --%>
+                    <div class="form-group with_icon">
+                        <p>검색 결과</p><hr>
+                        <div id="triketsearch-results"class="em__pkLink">
+                            <ul  class="nav__list with__border" id="result2"> <!-- jsonArray 결과 뿌려지는 곳 -->
+                                <!-- 티겟명 나오는 모습-->
+                                <%--  resultHTML += "<li>
+                                                        <div class='item-link hoverNone'>
+                                                            <div class='custom-control custom-radio'>
+                                                                <input type='radio'  id='customRadioList1' class='custom-control-input'
+                                                                name='gymName' value='"+ data[i].gymName +"'>
+                                                                    <label class='custom-control-label padding-l-30'
+                                                                    for='customRadioList1' >" + data[i].gymName +
+                                                                    "</label>
+                                                                </div>
+                                                            </div>
+                                                    </li>"; // i가 반복해서 돌면서 검색어와 일치하는 데이터를 쌓기--%>
+
+                            </ul>
+                            <div id="resultNo2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="ticketChoiceBtn" class="btn btn_default_lg" data-dismiss="modal" aria-label="Close">선택 완료</button>
             </div>
         </div>
     </div>

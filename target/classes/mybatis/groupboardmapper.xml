@@ -62,27 +62,29 @@
             gb.categoryNo, gb.expectMember, gb.applicationMember, gb.confirmMember,
             gb.groupboardStatus, gb.boardViews, gb.writeDate,
             tk.TICKETTYPE, tk.TICKETMONTH, tk.TICKETNUMBER, tk.TICKETCOST, tk.TICKETDISCOUNT,
-            tk.TICKETPRICE,
-            gm.GYMNAME, gm.GYMADDRESS3, gm.GYMREGINUMBER
+            tk.TICKETPRICE, tk.ticketname,
+            gm.GYMNO, gm.GYMNAME, gm.GYMADDRESS1, gm.GYMADDRESS2, gm.GYMADDRESS3, gm.gymPhone, gm.GYMREGINUMBER
         FROM groupboard gb, ticket tk, gym gm
-                 WHERE groupboardNo=#{groupboardNo}
-                   and gb.ticketno = tk.ticketno
-                   and tk.gymno = gm.gymno
+        WHERE groupboardNo=#{groupboardNo}
+          and gb.ticketno = tk.ticketno
+          and tk.gymno = gm.gymno
     </select>
     <!-- 모든 게시글 추출  : 정상 -->
     <select id="selectall" resultType="groupboard">
         SELECT
-            gb.groupboardNo, gb.custNo, gb.ticketNo,
+        gb.groupboardNo, gb.custNo, gb.ticketNo,
             gb.groupboardTitle, gb.groupboardContents,
             gb.groupboardImgname,
             gb.categoryNo, gb.expectMember, gb.applicationMember, gb.confirmMember,
             gb.groupboardStatus, gb.boardViews, gb.writeDate,
             tk.TICKETTYPE, tk.TICKETMONTH, tk.TICKETNUMBER, tk.TICKETCOST, tk.TICKETDISCOUNT,
-            tk.TICKETPRICE,
-            gm.GYMNAME, gm.GYMADDRESS3, gm.GYMREGINUMBER
-        FROM groupboard gb, ticket tk, gym gm
-        where gb.ticketno = tk.ticketno
-          and tk.gymno = gm.gymno
+            tk.TICKETPRICE, tk.ticketname,
+            gm.GYMNO, gm.GYMNAME, gm.GYMADDRESS1, gm.GYMADDRESS2, gm.GYMADDRESS3, gm.gymPhone, gm.GYMREGINUMBER
+            , cu.custname
+        FROM groupboard gb, ticket tk, gym gm, cust cu
+                where gb.ticketno = tk.ticketno
+                  and tk.gymno = gm.gymno
+                  and gb.custno = cu.custno
     </select>
     <!-- insert : 게시글 작성  : 정상 -->
     <insert id="insert" parameterType="groupboard">

@@ -34,4 +34,13 @@
     <select id="selectTicketsByGymNo" parameterType="int" resultType="Ticket">
         SELECT * FROM Ticket WHERE gymNo = #{gymNo}
     </select>
+    <!--  인보.조인 개설 시 이용권을 검색해서 가져오기 위해 조회조건 추가  -->
+    <select id="search" parameterType="TicketSearch" resultType="ticket">
+        SELECT * FROM ticket
+        <where>
+            <if test="ticketName != null and !ticketName.equals('') ">
+                AND ticketName LIKE '%'||#{ticketName}||'%'
+            </if>
+        </where>
+    </select>
 </mapper>

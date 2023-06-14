@@ -2,9 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
-    #map{
-        background-color: red;
+    #map img{
         border-radius: 15px;
+        width: 100%;
+        height: 100%;
+        border: #9f9f9f 1px solid;
     }
     .join-button {
         position: fixed;
@@ -191,7 +193,7 @@
         <div class="item em_item">
             <a data-toggle="modal"
                data-target="#mdllJobDetails${obj.groupboardNo}" class="em_cover_img text-decoration-none">
-                <img src="/assets/img/${obj.groupboardImgname}" alt="">
+                <img src="/uimg/${obj.groupboardImgname}" alt="">
             </a>
             <div class="card-body">
                 <h6 class="card-title"><!-- 글제목 -->
@@ -241,7 +243,7 @@
             <div class="item em_item">
                 <a data-toggle="modal"
                    data-target="#mdllJobDetails${obj.groupboardNo}" class="em_cover_img text-decoration-none">
-                    <img src="/assets/img/${obj.groupboardImgname}" alt="">
+                    <img src="/uimg/${obj.groupboardImgname}" alt="">
                 </a>
                 <div class="card-body">
                     <h6 class="card-title"><!-- 글제목 -->
@@ -287,7 +289,7 @@
     </c:otherwise>
 </c:choose>
 <!-- End. em_swiper_products -->
-<%--<div id="map" style="width: 90%; height: 250px; border: #9f9f9f 1px solid;">--%>
+
 <%--</div>--%>
 
 <!-- Modal로 보여지는 창 : mdllJobDetails -->
@@ -299,6 +301,7 @@
     <form id="join_form" action="/groupboard/success_apply" method="get">
         <input type="hidden" name="custNo" value="${logincust.custNo}"/>
         <input type="hidden" name="groupboardNo" value="${obj.groupboardNo}"/>
+        <input type="hidden" name="gymNo" value="${obj.gymNo}"/>
         <div class="modal transition-bottom screenFull defaultModal mdllJobs_details fade" id="mdllJobDetails${obj.groupboardNo}"
              tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
@@ -318,7 +321,7 @@
                                 <section class="emPage__detailsBlog" style="margin-top: -100px">
                                     <div class="emheader_cover">
                                         <div class="cover">
-                                            <img src="/assets/img/${obj.groupboardImgname}" alt="" style="height:450px" >
+                                            <img src="/uimg/${obj.groupboardImgname}" alt="" style="height:450px" >
                                         </div>
                                         <div class="title">
                                             <div class="size-18 weight-600 color-primary"style="text-align: right">
@@ -347,8 +350,9 @@
 
                                             <div class="item__auther emBlock__border">
                                                 <div class="item_person">
-                                                    <img src="/assets/img/${obj.groupboardImgname}" alt="">
-                                                    <h2>지니</h2>
+                                                    <img src="/uimg/${obj.groupboardImgname}" alt="">
+                                                        <%-- 조인을 만든 고객 이름   --%>
+                                                    <h2>${obj.custName}</h2>
                                                 </div>
                                                 <div class="sideRight">
                                                     <div class="time">
@@ -458,9 +462,29 @@
                                         </div>
                                         <hr>
                                         <div class="title">
-                                            <h6>센터 위치</h6>
-                                            <div id="map" style="width: 220px; height: 250px; border: #9f9f9f 1px solid;">
+                                            <h6>센터 상세정보</h6>
+                                            <%--  센터 지도 이미지 --%>
+                                            <div id="map" style="width: 90%; height: 250px; border: #9f9f9f 1px solid; border-radius: 15px;">
+                                                <img src="/uimg/gym1_map.jpg" alt="">
                                             </div>
+                                        </div>
+                                        <div style="height: 100px; margin-top: 20px;  display: flex; flex-wrap: wrap; flex-direction: column; align-content: flex-start; align-items: flex-start;">
+
+                                            <%--  센터 주소와 연락처 --%>
+                                            <div class="joincontent" style=" display: flex; align-items: center;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building color-primary" viewBox="0 0 16 16">
+                                                    <path d="M4 2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1Zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1Zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1ZM4 5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1ZM7.5 5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1ZM4.5 8a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1Zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Z"/>
+                                                    <path d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V1Zm11 0H3v14h3v-2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V15h3V1Z"/>
+                                                </svg>
+                                                <span>상세 주소 : ${obj.gymAddress1}, ${obj.gymAddress2}</span>
+                                            </div>
+                                            <div class="joincontent" style=" display: flex; align-items: center;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone color-primary" viewBox="0 0 16 16">
+                                                    <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                                                </svg>
+                                                <span>연락처 : ${obj.gymPhone}</span>
+                                            </div>
+
                                         </div>
                                         <hr>
                                         <div class="title">
@@ -546,41 +570,77 @@
         </div>
     </form>
 </c:forEach>
-<script>
-    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-        mapOption = {
-            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-            level: 3 // 지도의 확대 레벨
-        };
 
-    // 지도를 생성합니다
-    var map = new kakao.maps.Map(mapContainer, mapOption);
+<%--<script>// 지도의 크기를 동적으로 변경해주는 함수--%>
+<%--// (모달창일 경우 필요) 지도가 있는 영역을 누를 때(모달이 열릴 때) 호출되도록 할 것!--%>
+<%--    $(document).ready(function() {--%>
+<%--        $('.modal').on('shown.bs.modal', function () {--%>
+<%--            setTimeout(function (){--%>
+<%--                map.relayout();--%>
+<%--            }, 0);--%>
+<%--        });--%>
+<%--    });--%>
+<%--</script>--%>
+<%--<script>--%>
+<%--    var mapContainer = document.getElementById('map'), // 지도를 표시할 div--%>
+<%--        mapOption = {--%>
+<%--            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표--%>
+<%--            level: 5 // 지도의 확대 레벨--%>
+<%--        };--%>
 
-    // 주소-좌표 변환 객체를 생성합니다
-    var geocoder = new kakao.maps.services.Geocoder();
+<%--    // 지도를 생성합니다--%>
+<%--    var map = new kakao.maps.Map(mapContainer, mapOption);--%>
 
-    // 주소로 좌표를 검색합니다
-    geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
+<%--       // 아래는 하드코딩한 방식으로 테스트 성공--%>
+<%--        // var gymData = [--%>
+<%--        //     {"gymName": "헬스장2",--%>
+<%--        //         "gymAddress1": "서울특별시 강남구 테헤란로 123" },--%>
+<%--        //     // 추가적인 헬스장 데이터...--%>
+<%--        // ];--%>
 
-        // 정상적으로 검색이 완료됐으면
-        if (status === kakao.maps.services.Status.OK) {
+<%--    // JSON 형식의 데이터--%>
+<%--    $.ajax({--%>
+<%--        url:'/getgymaddress', // ajaxImpl컨트롤러에서 처리--%>
+<%--        data:{'gymAddress1':gymAddress1}, // *데이터 줘~ 요청:결과--%>
 
-            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+<%--    });--%>
+<%--    // 주소로 좌표를 검색하여 지도에 표시하는 함수--%>
+<%--    function displayMarkers() {--%>
+<%--        //--%>
 
-            // 결과값으로 받은 위치를 마커로 표시합니다
-            var marker = new kakao.maps.Marker({
-                map: map,
-                position: coords
-            });
+<%--            // var gymAddress = null;--%>
+<%--            // var gymName = null;--%>
 
-            // 인포윈도우로 장소에 대한 설명을 표시합니다
-            var infowindow = new kakao.maps.InfoWindow({
-                content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-            });
-            infowindow.open(map, marker);
+<%--            // 주소-좌표 변환 객체를 생성합니다--%>
+<%--            var geocoder = new kakao.maps.services.Geocoder();--%>
 
-            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-            map.setCenter(coords);
-        }
-    });
-</script>
+<%--            // 주소로 좌표를 검색합니다--%>
+<%--            geocoder.addressSearch(gymAddress, function (result, status) {--%>
+
+<%--                // 정상적으로 검색이 완료됐으면--%>
+<%--                if (status === kakao.maps.services.Status.OK) {--%>
+
+<%--                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);--%>
+
+<%--                    // 결과값으로 받은 위치를 마커로 표시합니다--%>
+<%--                    var marker = new kakao.maps.Marker({--%>
+<%--                        map: map,--%>
+<%--                        position: coords--%>
+<%--                    });--%>
+
+
+<%--                    // 인포윈도우로 장소에 대한 설명을 표시합니다--%>
+<%--                    var infowindow = new kakao.maps.InfoWindow({--%>
+<%--                        content: '<div style="width:150px;text-align:center;padding:6px 0;">'+gymName+'</div>'--%>
+<%--                    });--%>
+<%--                    infowindow.open(map, marker);--%>
+
+<%--                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다--%>
+<%--                    map.setCenter(coords);--%>
+<%--                }--%>
+<%--            });--%>
+
+<%--    }--%>
+<%--    // displayMarkers 함수 호출--%>
+<%--    displayMarkers();--%>
+<%--</script>--%>

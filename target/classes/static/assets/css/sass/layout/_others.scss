@@ -830,6 +830,13 @@
  * ----------------------------------------
  */
 .tab__line {
+  &.five_item {/* 인보 추가 */
+    .nav {
+      .nav-item {
+        width: calc(100% / 5);
+      }
+    }
+  }
   &.four_item {
     .nav {
       .nav-item {

@@ -8,8 +8,8 @@
 <%--</section>--%>
 <!-- End. em_loading -->
 
-<div id="wrapper">
-  <div id="content">
+<%--<div id="wrapper">--%>
+<%--  <div id="content">--%>
     <!-- Start main_haeder -->
     <header class="header_tab">
       <div class="main_haeder multi_item">
@@ -52,19 +52,19 @@
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
              aria-labelledby="pills-home-tab">
 
-          <!-- 참여한 조인 start title -->
+          <!-- 참여한 조인 시작 title -->
           <div class="emTitle_co padding-20">
             <h2 class="size-16 weight-500 color-secondary mb-1">확정된 조인은 결제하기를 누르면 할인된 금액이 적용되어 있어요 </h2>
           </div>
-          <!-- 참여한 조인 End. title -->
+          <!-- 참여한 조인 끝. title -->
 
-          <!-- 조인리스트 넣는 공간 -->
+          <!-- 리스트 넣는 공간 -->
+          <c:forEach var="obj" items="${myapplyjoin}">
           <ul class="itemList__news" style="background-color: white">
-            <c:forEach var="obj" items="${myapplyjoin}">
             <li class="items-nav">
               <a href="/ticket_detail" class="btn">
                 <div class="media align-items-center">
-                  <img class="img_news" src="/assets/img/${obj.groupboardImgname}" alt="">
+                  <img class="img_news" src="/uimg/${obj.groupboardImgname}" alt="">
                   <div class="media-body">
                     <div class="txt">
                       <h2>${obj.groupboardTitle}</h2>
@@ -121,8 +121,8 @@
                 </div>
               </a>
             </li>
-            </c:forEach>
           </ul>
+          </c:forEach>
           <!-- 조인리스트 넣는 공간 끝 -->
 
 
@@ -130,19 +130,18 @@
 
         <!-- 개설한 조인 시작 -->
         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-
           <!-- 개설한 조인 Start title -->
           <div class="emTitle_co padding-20">
             <h2 class="size-16 weight-500 color-secondary mb-0">개설한 조인의 모집인원이 모두 모여 확정되면 알림을 드려요!</h2>
           </div>
           <!-- End. title -->
           <!-- 조인리스트 넣는 공간 -->
+          <c:forEach var="obj" items="${mycreatejoin}">
           <ul class="itemList__news" style="background-color: white">
-            <c:forEach var="obj" items="${mycreatejoin}">
               <li class="items-nav">
                 <a href="/ticket_detail" class="btn">
                   <div class="media align-items-center">
-                    <img class="img_news" src="/assets/img/${obj.groupboardImgname}" alt="">
+                    <img class="img_news" src="/uimg/${obj.groupboardImgname}" alt="">
                     <div class="media-body">
                       <div class="txt">
                         <h2>${obj.groupboardTitle}</h2>
@@ -199,8 +198,8 @@
                   </div>
                 </a>
               </li>
-            </c:forEach>
           </ul>
+          </c:forEach>
           <!-- 조인리스트 넣는 공간 끝 -->
 
         </div> <!-- 개설한 조인 끝. -->
@@ -211,5 +210,5 @@
     </section>
 
 
-</div>
-</div>
+<%--</div>--%>
+<%--</div>--%>

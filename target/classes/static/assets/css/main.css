@@ -20369,6 +20369,10 @@ layout
  * tab__line
  * ----------------------------------------
  */
+
+.tab__line.five_item .nav .nav-item {
+  width: calc(100% / 5);
+}/* 인보 추가 */
 .tab__line.four_item .nav .nav-item {
   width: calc(100% / 4);
 }
@@ -20424,6 +20428,8 @@ layout
   z-index: 0;
   position: relative;
   padding-bottom: 0;
+  overflow: auto;  /* 인보추가 */
+  white-space: nowrap;  /* 인보추가 */
 }
 .components_page .main_haeder {
   position: relative;

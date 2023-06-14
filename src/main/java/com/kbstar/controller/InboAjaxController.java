@@ -1,11 +1,11 @@
 package com.kbstar.controller;
 
 
-import com.kbstar.dto.Gym;
-import com.kbstar.dto.gymSearch;
+import com.kbstar.dto.*;
 import com.kbstar.service.GBMemberService;
 import com.kbstar.service.GroupboardService;
 import com.kbstar.service.GymService;
+import com.kbstar.service.TicketService;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -33,18 +33,20 @@ public class InboAjaxController {
     GBMemberService gbMemberService;
     @Autowired
     GymService gymService;
+    @Autowired
+    TicketService ticketService;
     String dir = "groupboard/";
 
     // 4-2-2. 센터 검색
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public Object search(@RequestParam("gymName") String gymName, Integer gymNo,Model model) {
 
-            gymSearch gs = new gymSearch();
+        gymSearch gs = new gymSearch();
 
-            gs.setGymName(gymName); // 검색어 설정
-            //gs.setGymNo(gymNo); // 검색어 설정
+        gs.setGymName(gymName); // 검색어 설정
+        //gs.setGymNo(gymNo); // 검색어 설정
 
-            List<Gym> gymlist = gymService.search(gs); // 상품 검색 수행
+        List<Gym> gymlist = gymService.search(gs); // 상품 검색 수행
 
         if (gymlist != null) {
 
@@ -61,9 +63,50 @@ public class InboAjaxController {
         return "fail";
 
 
+    }
+    // 4-2-3. 이용권 검색
+    @RequestMapping(value = "/ticketsearch", method = RequestMethod.GET)
+    public Object ticketsearch(@RequestParam("ticketName") String ticketName, Integer ticketNo,Model model) {
+
+        TicketSearch ts = new TicketSearch();
+
+        ts.setTicketName(ticketName); // 검색어 설정
+        //gs.setGymNo(gymNo); // 검색어 설정
+
+        List<Ticket> ticketlist = ticketService.search(ts); // 상품 검색 수행
+
+        if (ticketlist != null) {
+
+            JSONArray ja = new JSONArray();
+            for(Ticket obj : ticketlist){
+                JSONObject jo = new JSONObject();
+
+                jo.put("ticketName", obj.getTicketName() );
+                jo.put("ticketNo", obj.getTicketNo());
+                ja.add(jo);
+            }
+            return ja;
+        }
+        return "fail";
 
     }
+    // 만들어진 보드의 센터위치를 지도로 보여주기
+    @RequestMapping("/getgymaddress")
+    public Object getgymaddress(Model model) throws Exception { // ajax에서 보내주는 값 : loc.
+        Groupboard groupboard = null;
+        try {
+            groupboard = groupboardService.get(groupboard.getGymNo());
+        } catch (Exception e) {
+            throw new Exception("ER0003");
+        }
+        // 위 데이터를
+        JSONObject jo = new JSONObject();
 
+            jo.put("gymNo", groupboard.getGymNo() ); // 센터 번호
+            jo.put("groupboardNo", groupboard.getGroupboardNo() ); // 게시글 번호
+            jo.put("gymAddress1", groupboard.getGymAddress1() ); // 센터 전체주소
 
+        return jo;
+    }
 
 }

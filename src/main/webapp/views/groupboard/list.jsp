@@ -1,11 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style>
+  #map img{
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    border: #9f9f9f 1px solid;
+  }
+
+
+  .embody__content svg{
+    margin-right: 15px;
+  }
+  .joincontent{
+    margin-bottom: 15px;
+  }
+</style>
+
 
 <!-- header 구간  -->
 <jsp:include page="/views/header.jsp" />
 
 
-<div id="wrapper">
   <div id="content">
 
     <!-- Start page_join -->
@@ -38,16 +54,16 @@
           </li>
         </ul>
       </div>
-
+      <c:forEach var="obj" items="${alljoin}" >
       <ul class="itemList__news">
-        <c:forEach var="obj" items="${alljoin}" >
+
         <%--  li : 화면에 보여질 조인들   --%>
         <li class="items-nav">
           <a class="btn"
                data-toggle="modal"
                data-target="#mdllJobDetails${obj.groupboardNo}">
             <div class="media align-items-center">
-            <%--1.대표 이미지--%><img class="img_news" src="/assets/img/${obj.groupboardImgname}" alt="">
+            <%--1.대표 이미지--%><img class="img_news" src="/uimg/${obj.groupboardImgname}" alt="">
               <div class="media-body">
                 <div class="txt">
                     <%--2.조인글 제목--%><h2>${obj.groupboardTitle}</h2>
@@ -106,47 +122,44 @@
 
           </a>
         </li>
-        </c:forEach>
+
       </ul>
+      </c:forEach>
     </section>
     <!-- End. page_join -->
 
     <!-- spinner_loading -->
-    <div class="spinner_loading">
-      <div class="bounce1"></div>
-      <div class="bounce2"></div>
-      <div class="bounce3"></div>
-    </div>
+<%--    <div class="spinner_loading">--%>
+<%--      <div class="bounce1"></div>--%>
+<%--      <div class="bounce2"></div>--%>
+<%--      <div class="bounce3"></div>--%>
+<%--    </div>--%>
     <!-- End. spinner_loading -->
 
   </div>
 
 
 
-
-      <!-- Modal : center 에서 사용한 것 처럼 모달로 각 조인들 상세보기-->
-         <!-- 조인 상세보기를 위해선 forEach 한번 더! -->
-    <c:forEach  var="obj" items="${alljoin}" >
+  <!-- Modal로 보여지는 창 : mdllJobDetails -->
+  <!-- Modal : center 에서 사용한 것 처럼 모달로 각 조인들 상세보기-->
+  <!-- 조인 상세보기를 위해선 forEach 한번 더! -->
+  <c:forEach  var="obj" items="${alljoin}" >
     <%-- join 신청하는 기능이 페이지에 있을 땐, from 태그와, input hidden이 꼭 있어야해
      action -> 기재된 컨트롤러에서 처리 --%>
-      <form id="join_form" action="/groupboard/success_apply" method="get">
-        <input type="hidden" name="custNo" value="${logincust.custNo}"/>
-        <input type="hidden" name="groupboardNo" value="${obj.groupboardNo}"/>
-       <div class="modal transition-bottom screenFull defaultModal mdllJobs_details fade" id="mdllJobDetails${obj.groupboardNo}"
+    <form id="join_form" action="/groupboard/success_apply" method="get">
+      <input type="hidden" name="custNo" value="${logincust.custNo}"/>
+      <input type="hidden" name="groupboardNo" value="${obj.groupboardNo}"/>
+      <input type="hidden" name="gymNo" value="${obj.gymNo}"/>
+      <div class="modal transition-bottom screenFull defaultModal mdllJobs_details fade" id="mdllJobDetails${obj.groupboardNo}"
            tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-           <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-dialog modal-dialog-scrollable">
           <div class="modal-content">
             <div class="modal-header padding-l-20 padding-r-50">
-              <%-- 이미지 넣을 맨 상단 구간 --%>
+                <%-- 이미지 넣을 맨 상단 구간 --%>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <i class="tio-clear"></i>
               </button>
-              <%-- 이미지 넣을 맨 상단 구간 --%>
-              <%--                <div class="absolute right-0 padding-r-20">--%>
-              <%-- 창닫기 아이콘  --%>
 
-              <%--                </div>--%>
-              <%-- 창닫기 아이콘  --%>
             </div>
             <div class="modal-body p-0"><%-- 제목~내용 구간  --%>
               <div id="wrapper">
@@ -156,7 +169,7 @@
                   <section class="emPage__detailsBlog" style="margin-top: -100px">
                     <div class="emheader_cover">
                       <div class="cover">
-                        <img src="/assets/img/${obj.groupboardImgname}" alt="" style="height:450px" >
+                        <img src="/uimg/${obj.groupboardImgname}" alt="" style="height:450px" >
                       </div>
                       <div class="title">
                         <div class="size-18 weight-600 color-primary"style="text-align: right">
@@ -185,8 +198,9 @@
 
                         <div class="item__auther emBlock__border">
                           <div class="item_person">
-                            <img src="/assets/img/${obj.groupboardImgname}" alt="">
-                            <h2>지니</h2>
+                            <img src="/uimg/${obj.groupboardImgname}" alt="">
+                              <%-- 조인을 만든 고객 이름   --%>
+                            <h2>${obj.custName}</h2>
                           </div>
                           <div class="sideRight">
                             <div class="time">
@@ -233,38 +247,106 @@
                         </div>
                       </div>
                     </div>
-                    <%-- 조인모집 작성내용 적히는 공간  --%>
+                      <%-- 조인모집 작성내용 적히는 공간  --%>
                     <div class="embody__content">
-                      <div class="title">
-                        <h6>센터 내용</h6>
-                      </div>
-                      <ul class="item_list">
-                        <li>성수 피트니스 | 서울 성수동</li>
-                        <li>2023.6.30(토) 마감</li>
-                        <li>${obj.expectMember}</li>
-                      </ul><hr>
-                      <div class="title">
-                        <h6>이용권 내용</h6>
-                      </div>
-                      <ul class="item_list">
-                        <li>헬스 이용권(3개월)</li>
-                        <li>560,000원 -> 498,000원</li>
-                      </ul><hr>
-                      <div class="title">
-                        <h6>위치</h6>
-                        <div id="groupboard_map">
-                          지도나타낼 위치
+                      <div style="height: 150px;  display: flex; flex-wrap: wrap; flex-direction: column; align-content: flex-start; align-items: flex-start;">
+                        <div class="joincontent" style=" display: flex; align-items: center;">
+                            <%-- 센터정보 : 이름 / 위치 --%>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-geo-alt color-primary" viewBox="0 0 16 16">
+                            <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                          </svg>
+
+                          <span>${obj.gymName}  ${obj.gymAddress3}</span>
                         </div>
-                      </div><hr>
-                      <p>
-                        ${obj.groupboardContents}
-                      </p>
+
+                          <%-- 이용권정보 : 이용권명 / 가격 / 할인율 --%>
+                        <c:choose>
+                          <c:when test="${obj.ticketType == '1'}">
+                            <div class="joincontent" style="text-align: left">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-ticket-perforated color-primary" viewBox="0 0 16 16">
+                                <path d="M4 4.85v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Z"/>
+                                <path d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z"/>
+                              </svg>
+                              <span>기간권</span> <span>${obj.ticketMonth}개월 이용권</span>
+                            </div>
+                            <div class="joincontent" style="text-align: left">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin color-primary" viewBox="0 0 16 16">
+                                <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+                              </svg>
+                              <span>할인가 <fmt:formatNumber value="${obj.ticketPrice}" pattern="###,### 원" /> | ${obj.ticketDiscount}% 할인 적용 (정상가 <fmt:formatNumber value="${obj.ticketCost}" pattern="###,### 원" />)</span>
+                            </div>
+
+                          </c:when>
+                          <c:when test="${obj.ticketType == '2'}">
+                            <div class="joincontent" style="text-align: left">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-ticket-perforated color-primary" viewBox="0 0 16 16">
+                                <path d="M4 4.85v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Z"/>
+                                <path d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z"/>
+                              </svg>
+                              <span>횟수권</span> <span>${obj.ticketNumber}회 이용권</span>
+                            </div>
+                            <div class="joincontent" style="text-align: left">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin color-primary" viewBox="0 0 16 16">
+                                <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+                              </svg>
+                              <span>할인가 <fmt:formatNumber value="${obj.ticketPrice}" pattern="###,### 원" />(${obj.ticketDiscount}% 할인 적용) | 정상가 <fmt:formatNumber value="${obj.ticketCost}" pattern="###,### 원" /></span>
+                            </div>
+
+                          </c:when>
+                        </c:choose>
+
+                        <div class="joincontent">
+                            <%-- 모집인원 정보 --%>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-person color-primary" viewBox="0 0 16 16">
+                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                          </svg>
+                          <span>신청 인원  <span style="color: #8890E8; font-weight: bolder"> ${obj.confirmMember}명</span></span> |<span> 모집 인원 ${obj.expectMember}명</span>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="title">
+                        <h6>센터 상세정보</h6>
+                          <%--  센터 지도 이미지 --%>
+                        <div id="map" style="width: 90%; height: 250px; border: #9f9f9f 1px solid; border-radius: 15px;">
+                          <img src="/uimg/gym1_map.jpg" alt="">
+                        </div>
+                      </div>
+                      <div style="height: 100px; margin-top: 20px;  display: flex; flex-wrap: wrap; flex-direction: column; align-content: flex-start; align-items: flex-start;">
+
+                          <%--  센터 주소와 연락처 --%>
+                        <div class="joincontent" style=" display: flex; align-items: center;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building color-primary" viewBox="0 0 16 16">
+                            <path d="M4 2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1Zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1Zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1ZM4 5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1ZM7.5 5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1ZM4.5 8a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1Zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Z"/>
+                            <path d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V1Zm11 0H3v14h3v-2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V15h3V1Z"/>
+                          </svg>
+                          <span>상세 주소 : ${obj.gymAddress1}, ${obj.gymAddress2}</span>
+                        </div>
+                        <div class="joincontent" style=" display: flex; align-items: center;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone color-primary" viewBox="0 0 16 16">
+                            <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                          </svg>
+                          <span>연락처 : ${obj.gymPhone}</span>
+                        </div>
+
+                      </div>
+                      <hr>
+                      <div class="title">
+                        <h6>모집 소개내용</h6>
+                        <p>
+                            ${obj.groupboardContents}
+                        </p>
+                      </div>
                     </div>
                   </section>
 
 
 
-                  <%--  모달 맨 밑 푸터   --%>
+                    <%--  모달 맨 밑 푸터   --%>
                   <div class="modal-footer">
                     <div class="em__footer">
                       <div class="em_footerinner">
@@ -289,36 +371,36 @@
                             </div>
                             <span class="textCart color-secondary d-inline-block" >Save</span>
                           </button>
-                          <%-- get 방식의 submit으로 정보 전송 --%>
+                            <%-- get 방식의 submit으로 정보 전송 --%>
                           <button type="submit" id="join_addbtn" style="margin-left: 50px"
                                   class="btn btn__icon bg-primary color-white min-w-175 text-left justify-content-between">
                             조인 신청하기
-                          <a href="/groupboard/success_apply" >
-                            <div class="icon">
-                              <svg id="Iconly_Light_Arrow_-_Right_Square"
-                                   data-name="Iconly/Light/Arrow - Right Square"
-                                   xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                   viewBox="0 0 24 24">
-                                <g id="Arrow_-_Right_Square" data-name="Arrow - Right Square"
-                                   transform="translate(2 22) rotate(-90)">
-                                  <path id="Stroke_1" data-name="Stroke 1"
-                                        d="M4.916,18.5h8.669c3.02,0,4.915-2.139,4.915-5.166V5.166C18.5,2.139,16.615,0,13.585,0H4.916C1.886,0,0,2.139,0,5.166v8.168C0,16.361,1.886,18.5,4.916,18.5Z"
-                                        transform="translate(0.75 0.75)" fill="none" stroke="#200e32"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-miterlimit="10" stroke-width="1.5" opacity="0.4"></path>
-                                  <path id="Stroke_3" data-name="Stroke 3" d="M.5,8.172V0"
-                                        transform="translate(9.5 5.914)" fill="none" stroke="#200e32"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-miterlimit="10" stroke-width="1.5"></path>
-                                  <path id="Stroke_5" data-name="Stroke 5" d="M7.5,0,3.748,3.764,0,0"
-                                        transform="translate(6.252 10.322)" fill="none" stroke="#200e32"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-miterlimit="10" stroke-width="1.5"></path>
-                                </g>
-                              </svg>
+                            <a href="/groupboard/success_apply" >
+                              <div class="icon">
+                                <svg id="Iconly_Light_Arrow_-_Right_Square"
+                                     data-name="Iconly/Light/Arrow - Right Square"
+                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24">
+                                  <g id="Arrow_-_Right_Square" data-name="Arrow - Right Square"
+                                     transform="translate(2 22) rotate(-90)">
+                                    <path id="Stroke_1" data-name="Stroke 1"
+                                          d="M4.916,18.5h8.669c3.02,0,4.915-2.139,4.915-5.166V5.166C18.5,2.139,16.615,0,13.585,0H4.916C1.886,0,0,2.139,0,5.166v8.168C0,16.361,1.886,18.5,4.916,18.5Z"
+                                          transform="translate(0.75 0.75)" fill="none" stroke="#200e32"
+                                          stroke-linecap="round" stroke-linejoin="round"
+                                          stroke-miterlimit="10" stroke-width="1.5" opacity="0.4"></path>
+                                    <path id="Stroke_3" data-name="Stroke 3" d="M.5,8.172V0"
+                                          transform="translate(9.5 5.914)" fill="none" stroke="#200e32"
+                                          stroke-linecap="round" stroke-linejoin="round"
+                                          stroke-miterlimit="10" stroke-width="1.5"></path>
+                                    <path id="Stroke_5" data-name="Stroke 5" d="M7.5,0,3.748,3.764,0,0"
+                                          transform="translate(6.252 10.322)" fill="none" stroke="#200e32"
+                                          stroke-linecap="round" stroke-linejoin="round"
+                                          stroke-miterlimit="10" stroke-width="1.5"></path>
+                                  </g>
+                                </svg>
 
-                            </div>
-                          </a>
+                              </div>
+                            </a>
                           </button>
                         </div>
                       </div>
@@ -333,7 +415,7 @@
 
           </div>
         </div>
-       </div>
-      </form>
-      </c:forEach>
-</div><!-- /.modal -->
+      </div>
+    </form>
+  </c:forEach>
+<!-- /.modal -->

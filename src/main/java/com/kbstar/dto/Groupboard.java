@@ -86,10 +86,16 @@ public class Groupboard {
     private int gymNo;
     private String chooseGymName;
     private String gymName;
+    private String ticketName;
+
 
     // 조인 조회 시 상세조회에 필요한 속성
-    private String gymAddress3;
+    private String gymAddress1; // 센터 주소 전체
+    private String gymAddress2; // 호,층
+    private String gymAddress3; // **동
+    private String gymPhone; // 센터 연락처
     private String gymReginumber;
+    //private String makeJoinCustName; // 조인을 만든 고객 이름
 
     private String ticketType;
     private int ticketMonth;

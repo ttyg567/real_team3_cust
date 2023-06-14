@@ -62,7 +62,7 @@
                     </li>
                 </ul>
             </div>
-<!-- 지역 정보가 들어오면 해당 지역의 센터 뿌려주기-->
+        <!-- 지역 정보가 들어오면 해당 지역의 센터 뿌려주기-->
             <ul class="itemList__news" style="background-color: white">
                 <li class="items-nav">
                     <a href="/ticket/ticket_detail" class="btn">

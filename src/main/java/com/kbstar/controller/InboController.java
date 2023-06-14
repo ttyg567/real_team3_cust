@@ -1,9 +1,6 @@
 package com.kbstar.controller;
 
-import com.kbstar.dto.GBMember;
-import com.kbstar.dto.Groupboard;
-import com.kbstar.dto.Gym;
-import com.kbstar.dto.gymSearch;
+import com.kbstar.dto.*;
 import com.kbstar.service.GBMemberService;
 import com.kbstar.service.GroupboardService;
 import com.kbstar.service.GymService;
@@ -16,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Slf4j
@@ -82,7 +81,7 @@ public class InboController {
         // webapp > groupboard > create 페이지로 전체 교체(center만 교체되는 것 아님)
         return dir + "create";
     }
-    // 4-4 개설된 조인 보기
+    // 4-4 개설된 조인 보기(더보기)
     @RequestMapping("/groupboard_list")
     public String groupboard_list(Model model) throws Exception {
         List<Groupboard> list = null; // 전체 보여줄 바구니 준비.
@@ -100,14 +99,19 @@ public class InboController {
     // 4-5-1 운동카테고리별로 조인 조회하기
     @RequestMapping("/workout") // 헬스
     public String workout(Model model) throws Exception {
-        List<Groupboard> list = null; // 전체 보여줄 바구니 준비.
+        List<Groupboard> list = null; // 1.전체 조인 리스트를 보여줄 바구니 준비.
+        List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("1"); // 가져오기.
+            list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
+
+        // 모달창 오픈 시 해당되는 정보 뿌려주기
+        model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "workout");
         return "index";
@@ -115,14 +119,18 @@ public class InboController {
     // 4-5-2 운동카테고리별로 조인 조회하기
     @RequestMapping("/personaltraining") // PT
     public String personaltraining(Model model) throws Exception {
-        List<Groupboard> list = null; // 전체 보여줄 바구니 준비.
+        List<Groupboard> list = null; // 1.전체 조인 리스트를 보여줄 바구니 준비.
+        List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("2"); // 가져오기.
+            list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
+        // 모달창 오픈 시 해당되는 정보 뿌려주기
+        model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "personaltraining");
         return "index";
@@ -130,14 +138,19 @@ public class InboController {
     // 4-5-3 운동카테고리별로 조인 조회하기
     @RequestMapping("/crossfit")
     public String crossfit(Model model) throws Exception {
-        List<Groupboard> list = null; // 전체 보여줄 바구니 준비.
+        List<Groupboard> list = null; // 1.전체 조인 리스트를 보여줄 바구니 준비.
+        List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("3"); // 가져오기.
+            list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
+
+        // 모달창 오픈 시 해당되는 정보 뿌려주기
+        model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "crossfit");
         return "index";
@@ -145,14 +158,19 @@ public class InboController {
     // 4-5-4 운동카테고리별로 조인 조회하기
     @RequestMapping("/yoga")
     public String yoga(Model model) throws Exception {
-        List<Groupboard> list = null; // 전체 보여줄 바구니 준비.
+        List<Groupboard> list = null; // 1.전체 조인 리스트를 보여줄 바구니 준비.
+        List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("4"); // 가져오기.
+            list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
+
+        // 모달창 오픈 시 해당되는 정보 뿌려주기
+        model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "yoga");
         return "index";
@@ -160,14 +178,19 @@ public class InboController {
     // 4-5-5 운동카테고리별로 조인 조회하기
     @RequestMapping("/pilates")
     public String pilates(Model model) throws Exception {
-        List<Groupboard> list = null; // 전체 보여줄 바구니 준비.
+        List<Groupboard> list = null; // 1.전체 조인 리스트를 보여줄 바구니 준비.
+        List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("5"); // 가져오기.
+            list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
+
+        // 모달창 오픈 시 해당되는 정보 뿌려주기
+        model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "pilates");
         return "index";
@@ -175,14 +198,19 @@ public class InboController {
     // 4-5-6 운동카테고리별로 조인 조회하기
     @RequestMapping("/golf")
     public String golf(Model model) throws Exception {
-        List<Groupboard> list = null; // 전체 보여줄 바구니 준비.
+        List<Groupboard> list = null; // 1.전체 조인 리스트를 보여줄 바구니 준비.
+        List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("6"); // 가져오기.
+            list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
+
+        // 모달창 오픈 시 해당되는 정보 뿌려주기
+        model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "golf");
         return "index";
@@ -190,14 +218,18 @@ public class InboController {
     // 4-5-7 운동카테고리별로 조인 조회하기
     @RequestMapping("/swimming")
     public String swimming(Model model) throws Exception {
-        List<Groupboard> list = null; // 전체 보여줄 바구니 준비.
+        List<Groupboard> list = null; // 1.전체 조인 리스트를 보여줄 바구니 준비.
+        List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("7"); // 가져오기.
+            list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
+        // 모달창 오픈 시 해당되는 정보 뿌려주기
+        model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "swimming");
         return "index";
@@ -213,24 +245,35 @@ public class InboController {
     }
     // 4-7-1 나의 조인 보기
     @RequestMapping("/my_applyjoin")
-    public String my_applyjoin(Model model, Integer custNo) throws Exception {
+    public String my_applyjoin(Model model, Integer custNo, HttpSession session, HttpServletRequest request) throws Exception {
        List<Groupboard> list1 = null;
         List<Groupboard> list2 = null;
+        // 로그인 체크
+//        Cust cust = (Cust) session.getAttribute("logincust");
+//        if (cust == null) {
+//            // 로그인 완료한 뒤 다시 돌아오도록 url 저장
+//            String redirectUrl = "/groupboard/my_applyjoin?custNo=" + custNo;
+//            request.getSession().setAttribute("redirectUrl", redirectUrl);
+//            return "redirect:/login"; // 로그인하지 않은 경우 로그인 페이지로 리다이렉트
+//        }
+
         try {
-            list1 = groupboardService.getMyJoin( custNo ); // 고객의 조인 정보를 list에 담기.
+            list1 = groupboardService.getMyJoin(custNo); // 고객의 조인 정보를 list에 담기.
             list2 = groupboardService.getMyCreateJoin(custNo);
+
         } catch (Exception e) {
             throw new Exception(e);
         }
         model.addAttribute("myapplyjoin", list1); // 내가 참여한 조인정보 보기
         model.addAttribute("mycreatejoin", list2); // 내가 만든 조인정보 보기
-        // 나의조인 조회페이지로 전환
         model.addAttribute("center", dir + "myjoin");
-        return "index";
+        return "index"; // 로그인 후 "my_applyjoin" 페이지로 이동
+    }
+
+
+
     }
 
 
 
 
-
-}
