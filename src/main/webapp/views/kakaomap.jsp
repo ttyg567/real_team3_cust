@@ -203,7 +203,8 @@
                             <input type="text" value="성수" id="keyword" size="15">
                         </c:when>
                         <c:otherwise>
-                            <input type="text" value="${logincust.custSigungu}" id="keyword" size="15">
+                            <input type="text" value="${logincust.custSocialmedia =='1' ?
+                            '관심지역 설정필요' : logincust.custSigungu}" id="keyword" size="15">
                         </c:otherwise>
                     </c:choose>
                     <button type="submit">검색하기</button>
@@ -243,7 +244,7 @@
         var keyword = document.getElementById('keyword').value;
 
         if (!keyword.replace(/^\s+|\s+$/g, '')) {
-            alert('키워드를 입력해주세요!');
+            // alert('키워드를 입력해주세요!');
             return false;
         }
 

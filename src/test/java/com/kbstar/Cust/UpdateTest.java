@@ -14,9 +14,9 @@ class UpdateTest {
     CustService service;
     @Test
     void contextLoads() {
-        Cust cust = new Cust("mung", "이망치","010-1234-1111",1992,"1");
+//        Cust cust = new Cust("mung", "이망치","010-1234-1111",1992,"1");
         try {
-            service.modify(cust);
+//            service.modify(cust);
             service.get();
         } catch (Exception e) {
             log.info("오류");

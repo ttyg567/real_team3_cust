@@ -2,6 +2,7 @@ package com.kbstar.service;
 
 import com.kbstar.dto.Cust;
 import com.kbstar.dto.OAuthAttributes;
+import com.kbstar.dto.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,8 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         }
 
         return new DefaultOAuth2User(
-                Collections.singleton(new SimpleGrantedAuthority(cust.getRole().getKey())) // 변경
+//                Collections.singleton(new SimpleGrantedAuthority(cust.getRole().getKey()))
+                Collections.singleton(new SimpleGrantedAuthority(Role.GUEST.getKey()))
                 , attributes.getAttributes()
                 , attributes.getNameAttributeKey());
     }
@@ -72,9 +74,14 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
             session.setMaxInactiveInterval(100000);
 
         } else {
-            log.info("이미 있는 사용자. 경로 지정해줄 것. 업데이트 후에 지정해주거나.... ");
-//            attributes.getName();
-//            attributes.getPicture();
+            log.info("이미 있는 사용자. 이름 변경 ");
+            cust.setCustName(attributes.getName());
+
+            custService.update_social_name(cust);
+
+            session.setAttribute("logincust",cust); // 세션에 저장
+            session.setMaxInactiveInterval(100000);
+
         }
 
         return cust;

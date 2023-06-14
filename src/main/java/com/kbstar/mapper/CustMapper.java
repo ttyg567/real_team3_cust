@@ -15,4 +15,7 @@ public interface CustMapper extends KBMapper<String, Cust> {
 
     public void insert_social(Cust c) throws Exception;
 
+    public void update_social(Cust c) throws Exception;
+    public void update_social_name(Cust c) throws Exception;
+
 }

@@ -55,4 +55,12 @@ public class CustService implements KBService<String, Cust> {
     public void register_social(Cust cust) throws Exception {
         mapper.insert_social(cust);
     }
+
+    public void update_social(Cust c) throws Exception {
+        mapper.update_social(c);
+    }
+
+    public void update_social_name(Cust c) throws Exception {
+        mapper.update_social_name(c);
+    }
 }
