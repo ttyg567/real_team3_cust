@@ -1,6 +1,7 @@
 package com.kbstar.service;
 
-import com.kbstar.dto.Gym;
+import com.kbstar.dto.Class;
+import com.kbstar.dto.Cust;
 import com.kbstar.frame.KBService;
 import com.kbstar.mapper.ClassMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -41,11 +42,14 @@ public class ClassService implements KBService<Integer, Class> {
         return mapper.selectall();
     }
 
-    public List<Class> selecGymclass(Integer integer) throws Exception {
-        return mapper.selectgymclass(integer);
+    // 내가 예약 가능한 모든일자 수업 (캘린더용)
+    public List<Class> selectAllclass(Integer custNo) throws Exception {
+        return mapper.selectallclass(custNo);
     }
 
-    public List<Class> selecDayclass(Gym gym) throws Exception {
-        return mapper.selectdayclass(gym);
+    // 내가 예약 가능한 특정일자 수업
+    public List<Class> selectDayclass(Cust c) throws  Exception {
+        return mapper.selectdayclass(c);
     }
+
 }

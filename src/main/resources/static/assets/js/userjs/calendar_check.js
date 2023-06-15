@@ -171,17 +171,8 @@ function reserveClass(circleCheck) {
 
 }
 
-var calendar = new FullCalendar.Calendar(document.getElementById("calendar_reserve"), {
+var calendar = new FullCalendar.Calendar(document.getElementById("calendar_check"), {
 
-    /** 구글 공휴일 지정 **/
-    googleCalendarApiKey: "AIzaSyD1IVA95RXsFpj3FngyLcClyP-RE4axSQw",
-    eventSources        : [
-        {
-            googleCalendarId: 'ko.south_korea.official#holiday@group.v.calendar.google.com'
-            , color         : 'white'   // an option!
-            , textColor     : 'red' // an option!
-        }
-    ],
     /************************ 추가 지정 *************************/
     locale              : 'ko',
     timeZone            : 'Asia/Seoul', // 반드시 세팅해줄 것!
@@ -206,159 +197,8 @@ var calendar = new FullCalendar.Calendar(document.getElementById("calendar_reser
     /************************ 추가 지정 *************************/
     // eventColor : 'green',
     // themeSystem: 'materia',
-    // eventClick : function (info) {
-    //    console.log(info);
-    // },
-    eventAdd   : function (obj) { // 이벤트가 추가되면 발생하는 이벤트
-        console.log(obj);
-    },
-    eventChange: function (obj) { // 이벤트가 수정되면 발생하는 이벤트
-        console.log(obj);
-    },
-    eventRemove: function (obj) { // 이벤트가 삭제되면 발생하는 이벤트
-        console.log(obj);
-    },
 
-    // 해당 일자를 누르면 수업 시간표가 나열된다.
-    dateClick: function (info) {
-
-        const date = new Date();
-
-        const year = date.getFullYear();
-        const month = ('0' + (date.getMonth() + 1)).slice(-2);
-        const day = ('0' + date.getDate()).slice(-2);
-        const dateStr = year + '-' + month + '-' + day;
-
-        $('#tdate').text(info.dateStr);
-        $('#ttime').text('');
-
-        // 세션에 담긴 custNo 추출
-        var custNo = $('#custNo').val();
-        console.log("고객넘버는 " + custNo);
-
-        $.ajax({
-            url     : '/class/getMyclass',
-            dataType: 'json',
-            data    : {
-                tdate: info.dateStr
-            }
-        }).done(function (data) {
-            var itemList = data; // data를 itemList 변수에 담기
-            var listHTML = ''; // 요소를 생성할 HTML 문자열 변수 초기화
-
-            // itemList을 순회하며 요소를 생성하는 코드
-            for (var i = 0; i < itemList.length; i++) {
-                var item = itemList[i];
-
-                // 숫자에 따라 운동 종목 지정
-                let sportsTypeText = '';
-                if (item.sportsType.trim() === "1") {
-                    sportsTypeText = '헬스';
-                } else if (item.sportsType.trim() === "2") {
-                    sportsTypeText = 'PT';
-                } else if (item.sportsType.trim() === "3") {
-                    sportsTypeText = '크로스핏';
-                } else if (item.sportsType.trim() === "4") {
-                    sportsTypeText = '요가';
-                } else if (item.sportsType.trim() === "5") {
-                    sportsTypeText = '필라테스';
-                } else if (item.sportsType.trim() === "6") {
-                    sportsTypeText = '골프';
-                } else if (item.sportsType.trim() === "7") {
-                    sportsTypeText = '수영';
-                } else {
-                    sportsTypeText = '기타';
-                }
-
-                // 숫자에 따라 수업 형태 지정
-                let sportsClasstypeText = '';
-                if (item.sportsClasstype.trim() === "1") {
-                    sportsClasstypeText = '1:1수업';
-                } else if (item.sportsClasstype.trim() === "2") {
-                    sportsClasstypeText = '그룹수업';
-                } else if (item.sportsClasstype.trim() === "3") {
-                    sportsClasstypeText = '자유수업';
-                } else {
-                    sportsClasstypeText = '기타';
-                }
-
-                listHTML += '<li class="item">';
-                listHTML += '<div class="personal__info">';
-                listHTML += '<h1 class="size-15 color-secondary weight-400">수업명 : ' + item.className + '</h1>';
-                listHTML += '<span class="size-13 color-text weight-400 d-inline-block" id="gymName">센터 : ' + item.gymName + ',' + '</span>&nbsp;&nbsp;';
-                listHTML += '<span class="size-13 color-text weight-400 d-inline-block" id="trainerName">강사 : ' + item.trainerName + '</span>';
-                listHTML += '<p class="size-13 color-text weight-400" id="classTime">수업시간 : ' + item.classTime + '</p>';
-                listHTML += '<span class="size-13 color-text weight-400 d-inline-block" id="sportsType">운동종목: ' + sportsTypeText + ',' + '</span>&nbsp;&nbsp;';
-                listHTML += '<span class="size-13 color-text weight-400 d-inline-block" id="sportsClasstype">수업형태: ' + sportsClasstypeText + '</span>';
-                listHTML += '<input type="hidden" id="classNo" value="' + item.classNo + '"/>'; // hidden으로 classNo 추가
-                listHTML += '</div>';
-                listHTML += '<div class="areaRight">';
-                listHTML += '<span class="circle_check"></span>';
-                listHTML += '</div>';
-                listHTML += '</li>';
-            }
-
-            // 생성된 요소를 ul 요소에 추가
-            $('.nav__listAddress').html(listHTML);
-
-            // 모달창 열기
-            $('#mdllAdd_Address').modal('show');
-        });
-
-        // // circle_check 요소에 클릭 이벤트 핸들러 추가
-        // $('.modal-body').on('click', '.circle_check', function () {
-        //     $(this).toggleClass('active');
-        //
-        //     // 예약 로직을 수행하는 함수 호출
-        //     // reserveClass($(this));
-        // });
-
-        // 모달 창이 열릴 때마다 .circle_check 요소 클릭 이벤트 핸들러 추가
-        $('#mdllAdd_Address').on('shown.bs.modal', function () {
-            $(this).find('.circle_check').click(function () {
-                $(this).toggleClass('active');
-            });
-        });
-
-        // 모달 창이 닫힐 때마다 .circle_check 요소 클릭 이벤트 핸들러 제거
-        $('#mdllAdd_Address').on('hidden.bs.modal', function () {
-            $(this).find('.circle_check').off('click');
-        });
-
-        // 예약 버튼 눌렀을 때
-        $('#reserve_btn').click(function () {
-            // 정보가 있는지 확인
-            if ($('.circle_check.active').length === 0) {
-                alert("예약하실 수업을 선택해주세요."); // 정보가 없을 경우 alert 창을 띄웁니다.
-                return;
-            }
-
-            let classNo = $('.circle_check.active').closest('.item').find('#classNo').val();
-
-            // GET 요청으로 예약 정보를 서버에 전송합니다
-            $.ajax({
-                url: '/class/reserve',
-                type: 'GET',
-                data: { classNo: classNo },
-                success: function (response) {
-                    if (response === "success") {
-                        alert("예약이 완료되었습니다");
-                        $('#mdllAdd_Address').modal('hide'); // 모달 창을 닫습니다
-                    } else {
-                        alert("예약에 실패하였습니다");
-                        $('#mdllAdd_Address').modal('hide'); // 모달 창을 닫습니다
-                    }
-                },
-                error: function (error) {
-                    alert("예약에 실패하였습니다");
-                    $('#mdllAdd_Address').modal('hide');
-                }
-            });
-        });
-    },
-
-    // cal4 참고
-    events: '/class/getClassdata', // ajax 호출하면 된다. 배열로 주기만 하면 된다.
+    // events: '/class/getClassdata', // ajax 호출하면 된다. 배열로 주기만 하면 된다.
 
     views: {
         month     : {
@@ -382,6 +222,53 @@ var calendar = new FullCalendar.Calendar(document.getElementById("calendar_reser
             }
         }
     },
+
+    dayRender: function (info) {
+        // 날짜 셀의 데이터를 가져와서 조건에 따라 이미지를 삽입합니다.
+        var date = info.date;
+        getEventData(date, function(eventData) {
+            if (eventData.trim() === 'success') {
+                var cellElement = info.el;
+                var imageElement = document.createElement('img');
+                imageElement.src = '/img/exercise.png';
+                cellElement.appendChild(imageElement);
+            }
+        });
+    }
 });
+
+calendar.on('dayRender', function (info) {
+    var date = info.date;
+    getEventData(date, function(eventData) {
+        if (eventData.trim() === 'success') {
+            var cellElement = info.el;
+            var imageElement = document.createElement('img');
+            imageElement.src = '/img/exercise.png';
+            cellElement.appendChild(imageElement);
+        }
+    });
+});
+
+function getEventData(date, callback) {
+
+    var custNo = $('#custNo').val();
+    console.log("고객넘버는 " + custNo);
+
+    $.ajax({
+        url: '/mypage/getCompleted',
+        dataType: 'json',
+        data: {
+            tdate: date
+        }
+    }).done(function (data) {
+        console.log("운동 완료된 데이터를 찍어보겠습니다");
+        console.log(data);
+        callback(data);
+    }).fail(function () {
+        callback("fail");
+    });
+
+}
+
 
 calendar.render();

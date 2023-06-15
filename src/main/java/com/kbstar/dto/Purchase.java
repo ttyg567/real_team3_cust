@@ -13,11 +13,10 @@ public class Purchase {
 
     private Integer purchaseNo; // 구매번호
     private Integer custNo; // 개인회원번호
-    private Integer ticketNo; //이용권 번호
+    private Integer ticketNo; // 이용권번호(추가)
     private Integer gymNo; // 센터회원번호
     private String sportsType; // 운동종목구분
     private String sportsClasstype; // 운동수업형태
-
     private String ticketType; // 이용권 종류
     private Integer ticketMonth; // 개월 수
     private Integer ticketNumber; // 횟수

@@ -76,8 +76,9 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         } else {
             log.info("이미 있는 사용자. 이름 변경 ");
             cust.setCustName(attributes.getName());
+            log.info("이름 찍기 " + attributes.getName());
 
-            custService.update_social_name(cust);
+//            custService.update_social_name(cust);
 
             session.setAttribute("logincust",cust); // 세션에 저장
             session.setMaxInactiveInterval(100000);
