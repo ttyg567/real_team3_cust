@@ -61,7 +61,7 @@
       <!--별도의 mainheader 구간  -->
       <jsp:include page="/views/mainheader.jsp" />
 
-    <section class="components_page paddingTab_header">
+    <section class="components_page paddingTab_header" style="padding-top: 0px">
 
       <div class="tab-content padding-0" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
@@ -170,16 +170,25 @@
                                   <a href="/ticket/detail?gymNo=${gym.gymNo}" >
                                       <img src="/assets/img/gym/${gym.gymImgname}" alt="">
                                   </a>
-                                  <button type="button" class="btn rounded-8 btn_addBookmark item-active">
-                                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                           xmlns="http://www.w3.org/2000/svg">
-                                          <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M11.6648 18.6316L5.73341 21.8811C5.25984 22.1272 4.67641 21.953 4.41533 21.4875V21.4875C4.3398 21.3433 4.29905 21.1834 4.29634 21.0206V6.62247C4.29634 3.87647 6.17277 2.77808 8.873 2.77808H15.2162C17.8341 2.77808 19.7929 3.80325 19.7929 6.4394V21.0206C19.7929 21.2804 19.6897 21.5295 19.506 21.7132C19.3224 21.8969 19.0733 22 18.8135 22C18.6478 21.9974 18.485 21.9567 18.3375 21.8811L12.3696 18.6316C12.1497 18.5128 11.8847 18.5128 11.6648 18.6316Z"
-                                                stroke="#200E32" stroke-width="1.5" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                          <path opacity="0.4" d="M8.36957 9.32266H15.6648" stroke="#200E32"
-                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                      </svg>
+                                  <!-- 찜버튼! -->
+                                  <button type="button" class="btn rounded-8 btn_addBookmark item-active" id="itemSave">
+                                      <div class="ico icon_current">
+                                          <svg id="Iconly_Two-tone_Heart" data-name="Iconly/Two-tone/Heart"
+                                               xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                               viewBox="0 0 20 20">
+                                              <g id="Heart" transform="translate(1.667 2.5)">
+                                                  <path id="Path_33961"
+                                                        d="M8.124,14.878a30.408,30.408,0,0,1-5.282-3.907A9.935,9.935,0,0,1,.327,7.163,5.229,5.229,0,0,1,3.571.24,5.469,5.469,0,0,1,8.33,1h0A5.477,5.477,0,0,1,13.089.24,5.232,5.232,0,0,1,16.34,7.163a9.935,9.935,0,0,1-2.514,3.808,30.408,30.408,0,0,1-5.282,3.907L8.338,15Z"
+                                                        transform="translate(0 0)" fill="none" stroke="#292e34"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-miterlimit="10" stroke-width="1.5"></path>
+                                                  <path id="Path_33964" d="M0,0A2.345,2.345,0,0,1,1.681,2.018"
+                                                        transform="translate(11.613 3.378)" fill="none" stroke="#292e34"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-miterlimit="10" stroke-width="1.5" opacity="0.4"></path>
+                                              </g>
+                                          </svg>
+                                      </div>
                                       <span class="icon_active"></span>
                                   </button>
                                   <div class="item_discount">${gym.ticketDiscount}%</div>
