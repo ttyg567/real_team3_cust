@@ -144,16 +144,23 @@
 
 </style>
 
-<head>
-<%--    <link id="my-specific-section" href="../../assets/css/soft-ui-dashboard.css?v=1.1.1" rel="stylesheet"/>--%>
-<%--    --%>
-</head>
+<!-- Start main_haeder -->
+<header class="main_haeder header-sticky multi_item">
+    <div class="em_side_right">
+        <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/">
+            <i class="tio-chevron_left size-24 color-text"></i>
+            <span class="color-text size-14">Back</span>
+        </a>
+    </div>
+    <div class="title_page">
+        <span class="page_name">헬쓱</span>
+    </div>
+</header>
 
 <div id="wrapper">
     <div id="content">
-
             <!-- Start 나의 정보 -->
-            <section class="banner_swiper padding-t-70">
+<%--            <section class="banner_swiper padding-t-70">--%>
 <%--                <div class="title_welcome">--%>
 <%--                    <c:choose>--%>
 <%--                        <c:when test="${logincust == null}">--%>
@@ -193,7 +200,7 @@
 <%--                        </c:otherwise>--%>
 <%--                    </c:choose>--%>
 <%--                </div>--%>
-            </section>
+<%--            </section>--%>
             <!-- End. 나의 정보 -->
 
             <!-- Start 오늘의 일정 -->

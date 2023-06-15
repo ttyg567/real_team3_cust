@@ -61,7 +61,7 @@
       <!--별도의 mainheader 구간  -->
       <jsp:include page="/views/mainheader.jsp" />
 
-    <section class="components_page paddingTab_header">
+    <section class="components_page paddingTab_header" style="padding-top: 0px">
 
       <div class="tab-content padding-0" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
