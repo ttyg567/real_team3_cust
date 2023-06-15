@@ -4,7 +4,6 @@ package com.kbstar.mapper;
 
 import com.kbstar.dto.Class;
 import com.kbstar.dto.Cust;
-import com.kbstar.dto.Gym;
 import com.kbstar.dto.Purchase;
 import com.kbstar.frame.KBMapper;
 import org.apache.ibatis.annotations.Mapper;
@@ -22,6 +21,8 @@ public interface PurchaseMapper extends KBMapper<Integer, Purchase> {
     List<Class> selectcustclass(Integer integer);
 
     List<Class> selectdayclass(Cust cust);
+
+    public void pinsert(Purchase purchase);
 
 
 
