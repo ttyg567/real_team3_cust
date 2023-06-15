@@ -92,19 +92,22 @@ public class InboAjaxController {
     }
     // 만들어진 보드의 센터위치를 지도로 보여주기
     @RequestMapping("/getgymaddress")
-    public Object getgymaddress(Model model) throws Exception { // ajax에서 보내주는 값 : loc.
+    public Object getgymaddress(Model model, Integer gymNo) throws Exception { // ajax에서 보내주는 값 : loc.
+        log.info("센터 지도 얻어오기 화면 호출");
         Groupboard groupboard = null;
         try {
-            groupboard = groupboardService.get(groupboard.getGymNo());
+            groupboard = groupboardService.get(gymNo);
         } catch (Exception e) {
             throw new Exception("ER0003");
         }
         // 위 데이터를
         JSONObject jo = new JSONObject();
 
-            jo.put("gymNo", groupboard.getGymNo() ); // 센터 번호
-            jo.put("groupboardNo", groupboard.getGroupboardNo() ); // 게시글 번호
-            jo.put("gymAddress1", groupboard.getGymAddress1() ); // 센터 전체주소
+        jo.put("gymNo", groupboard.getGymNo() ); // 센터 번호
+        jo.put("groupboardNo", groupboard.getGroupboardNo() ); // 게시글 번호
+        jo.put("gymAddress1", groupboard.getGymAddress1() ); // 센터 전체주소
+
+        log.info("센터 지도 얻어오기 화면 호출 결과" + groupboard.getGymAddress1());
 
         return jo;
     }

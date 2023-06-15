@@ -30,9 +30,36 @@ public class MainController {
         model.addAttribute("allGym",listGym);
         return "index";
     }
-//@RequestMapping("/")
-//public String main() {
-//
-//    return "index";
-//}
+    @RequestMapping("/best")
+    public String best(Model model, Gym gym) throws Exception {
+        List<Gym> list = null;
+        List<Gym> listGym = null;
+        try {
+            list = gymService.selectWithMarketing();
+            listGym = gymService.selectDiscount();
+        }
+        catch (Exception e){
+            throw new Exception("error");
+        }
+        model.addAttribute("all",list);
+        model.addAttribute("allGym",listGym);
+        model.addAttribute("center", "best");
+        return "index";
+    }
+    @RequestMapping("/discount")
+    public String discount(Model model, Gym gym) throws Exception {
+        List<Gym> list = null;
+        List<Gym> listGym = null;
+        try {
+            list = gymService.selectWithMarketing();
+            listGym = gymService.selectDiscount();
+        }
+        catch (Exception e){
+            throw new Exception("error");
+        }
+        model.addAttribute("all",list);
+        model.addAttribute("allGym",listGym);
+        model.addAttribute("center", "discount");
+        return "index";
+    }
 }

@@ -17338,7 +17338,8 @@ layout
 }
 .navListProducts.with__lined .nav-item .nav-link.active::before {
   content: "";
-  width: 12px;
+  width: 100%;
+  /* 인보  : 메인헤더 탭 하얀색 줄 간격 넓힘 원본 15px */
   height: 2px;
   background-color: var(--bg-secondary);
   position: absolute;
@@ -18818,7 +18819,7 @@ layout
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 15px 40px 15px 20px;
   background-color: var(--bg-white);
   -webkit-transition: 0.3s;
@@ -20405,9 +20406,10 @@ layout
   transition: 0.35s;
   padding: 15px 10px;
 }
+/* 탭 바 색상 변경 : 인보 */
 .tab__line .nav .nav-item .nav-link.active {
-  border-color: var(--border-primary);
-  color: var(--color-primary);
+  border-color: blueviolet;
+  color: blueviolet;
 }
 
 /**
