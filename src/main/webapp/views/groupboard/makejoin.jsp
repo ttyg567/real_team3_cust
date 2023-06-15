@@ -309,7 +309,7 @@ let center2 = {
                     <!-- 1. 초기 센터정보 가져오는창 -->
                     <input type="search" class="form-control" name="gymName"
                                id="gymName"  style="margin-right: 10px"
-                               placeholder="이용할 센터 정보를 입력해 주세요" required >
+                               placeholder="이용할 센터 정보를 입력해 주세요" required readonly>
                     <!-- 센터번호 : 테스트할 땐 type 을 text로 -->
                     <input type="hidden" name="gymNo" id="gymNo" value="" />
                     <button type="button" class="btn btn-outline-secondary col-3" style="width: 35%; height: 100%;"
@@ -328,7 +328,7 @@ let center2 = {
                     <!-- 2. 초기화면 이용권정보 가져오는 창 -->
                     <input type="search" class="form-control" style="margin-right: 10px"
                            placeholder="공동 구매하고 싶은 이용권을 검색해 주세요"
-                           id="ticketName" name="ticketName" required>
+                           id="ticketName" name="ticketName" required readonly>
                     <!-- 이용권 번호 : 테스트할 땐 type 을 text로 -->
                     <input type="hidden" name="ticketNo" id="ticketNo" value="" />
                     <button type="button" class="btn btn-outline-secondary" style="width: 35%; height: 100%;"
