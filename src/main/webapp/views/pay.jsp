@@ -116,17 +116,17 @@
                 <div class="padding-20 px-0">
                   <p class="size-14 color-text m-0">결제수단을 선택해주세요</p>
                     <form id="insert_form">
-                        <input type="text" class="form-control is-valid" id="ticketNo" name="ticketNo" value="${pticket.ticketNo}" required="" readonly>
-                        <input type="text" class="form-control is-valid" id="gymNo" name="gymNo" value="${pticket.gymNo}" required="" readonly>
-                        <input type="text" class="form-control is-valid" id="sportsType" name="sportsType" value="${pticket.sportsType}" required="" readonly>
-                        <input type="text" class="form-control is-valid" id="sportsClasstype" name="sportsClasstype" value="${pticket.sportsClasstype}" required="" readonly>
-                        <input type="text" class="form-control is-valid" id="ticketType" name="ticketType" value="${pticket.ticketType}" required="" readonly>
-                        <input type="text" class="form-control is-valid" id="ticketMonth" name="ticketMonth" value="${pticket.ticketMonth}" required="" readonly>
-                        <input type="text" class="form-control is-valid" id="ticketNumber" name="ticketNumber" value="${pticket.ticketNumber}" required="" readonly>
-                        <input type="text" class="form-control is-valid" id="ticketJoin" name="ticketJoin" value="${pticket.ticketJoin}" required="" readonly>
-                        <input type="text" class="form-control is-valid" id="purchasePrice" name="purchasePrice" value="${pticket.ticketPrice}" required="" readonly>
+                        <input type="hidden" class="form-control is-valid" id="ticketNo" name="ticketNo" value="${pticket.ticketNo}" required="" readonly>
+                        <input type="hidden" class="form-control is-valid" id="gymNo" name="gymNo" value="${pticket.gymNo}" required="" readonly>
+                        <input type="hidden" class="form-control is-valid" id="sportsType" name="sportsType" value="${pticket.sportsType}" required="" readonly>
+                        <input type="hidden" class="form-control is-valid" id="sportsClasstype" name="sportsClasstype" value="${pticket.sportsClasstype}" required="" readonly>
+                        <input type="hidden" class="form-control is-valid" id="ticketType" name="ticketType" value="${pticket.ticketType}" required="" readonly>
+                        <input type="hidden" class="form-control is-valid" id="ticketMonth" name="ticketMonth" value="${pticket.ticketMonth}" required="" readonly>
+                        <input type="hidden" class="form-control is-valid" id="ticketNumber" name="ticketNumber" value="${pticket.ticketNumber}" required="" readonly>
+                        <input type="hidden" class="form-control is-valid" id="ticketJoin" name="ticketJoin" value="${pticket.ticketJoin}" required="" readonly>
+                        <input type="hidden" class="form-control is-valid" id="purchasePrice" name="purchasePrice" value="${pticket.ticketPrice}" required="" readonly>
                         <%--                <input type="text" class="form-control is-valid" id="exDate" name="exDate" value="${pticket.exDate}" required="" readonly>--%>
-                        <input type="text" class="form-control is-valid" name="custNo"  id="custNo" value="${logincust.custNo}" required="" readonly>
+                        <input type="hidden" class="form-control is-valid" name="custNo"  id="custNo" value="${logincust.custNo}" required="" readonly>
                     </form>
                 </div>
 <%--            <button type="button" id="check1" href="#" class="btn itemPay"--%>
@@ -165,21 +165,23 @@
 <%--                <input type="text" class="form-control is-valid" name="custNo"  id="custNo" value="${logincust.custNo}" required="" readonly>--%>
 <%--            </form>--%>
 
-            <div class="buttons__footer text-center bg-transparent">
-                <div class="d-flex align-items-center margin-b-20 text-center justify-content-center">
-                  <i class="tio-security size-20 color-snow"></i>
-                  <span class="d-block size-14 color-snow ml-2">Safe and secure payments</span>
-                </div>
+<%--            <div class="buttons__footer text-center bg-transparent">--%>
+<%--                <div class="d-flex align-items-center margin-b-20 text-center justify-content-center">--%>
+<%--                  <i class="tio-security size-20 color-snow"></i>--%>
+<%--                  <span class="d-block size-14 color-snow ml-2">Safe and secure payments</span>--%>
+<%--                </div>--%>
 
-                <div class="env-pb">
-                  <a id="payButton" class="btn bg-primary rounded-pill btn__default" style="margin-bottom: 50px; position: fixed; z-index:9999; bottom: 65px">
-                    <span class="color-white">${ticket_pay_option.substring(ticket_pay_option.lastIndexOf('-') + 1)} 결제하기</span>
-                    <div class="icon rounded-circle">
-                      <i class="tio-chevron_right"></i>
-                    </div>
-                  </a>
-                </div>
-            </div>
+<%--                <div class="env-pb">--%>
+<%--                  <a id="payButton" class="btn bg-primary rounded-pill btn__default" style="margin-bottom: 50px; position: fixed; z-index:9999; bottom: 65px">--%>
+<%--                    <span class="color-white">${ticket_pay_option.substring(ticket_pay_option.lastIndexOf('-') + 1)} 결제하기</span>--%>
+<%--                    <div class="icon rounded-circle">--%>
+<%--                      <i class="tio-chevron_right"></i>--%>
+<%--                    </div>--%>
+<%--                  </a>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+
+
         </div>
       </div>
     </section>
