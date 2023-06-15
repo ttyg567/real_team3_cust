@@ -15,8 +15,10 @@ import java.util.List;
 @Slf4j
 @Service
 public class TicketService implements KBService<Integer, Ticket>{
+
     @Autowired
     TicketMapper mapper;
+
     @Override
     public void register(Ticket ticket) throws Exception {
         mapper.insert(ticket);

@@ -1,6 +1,8 @@
 package com.kbstar.service;
 
 
+import com.kbstar.dto.Class;
+import com.kbstar.dto.Cust;
 import com.kbstar.dto.Purchase;
 import com.kbstar.frame.KBService;
 import com.kbstar.mapper.PurchaseMapper;
@@ -37,6 +39,13 @@ public class PurchaseService implements KBService<Integer, Purchase>{
         return mapper.selectallinvalid();
     }
 
+    public List<Class> getcustclass(Integer integer) throws Exception {
+        return mapper.selectcustclass(integer);
+    }
+
+    public List<Class> getdayclass(Cust cust) throws Exception {
+        return mapper.selectdayclass(cust);
+    }
 
     @Override
     public void register(Purchase purchase) throws Exception {

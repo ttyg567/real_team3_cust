@@ -30,14 +30,26 @@
                 WHERE p.ticketEx='1' and g.gymMasterCk = '1'
     </select>
 
-<!--    <select id="getCategoryTotal" resultType="purchase">-->
-<!--        <![CDATA[-->
-<!--        SELECT  p.category_id AS categoryID, UPPER(s.user_gender) AS gender,  SUM(cart_quantity) AS total-->
-<!--        FROM cart c, shopuser s, product p-->
-<!--        WHERE c.user_id = s.user_id AND c.product_id = p.product_id-->
-<!--        GROUP BY UPPER(s.user_gender), p.category_id-->
-<!--        ORDER BY 1-->
-<!--        ]]>-->
-<!--    </select>-->
+    <select id="selectcustclass" parameterType="Integer" resultType="class">
+        SELECT p.custNo, c.*
+            FROM purchase p
+            LEFT JOIN class c on p.gymNo = c.gymNo and p.sportsclasstype = c.sportsclasstype
+            WHERE p.ticketEx='0' and p.custNo=#{custNo}
+            ORDER BY c.classstarttime
+    </select>
+
+    <select id="selectdayclass" parameterType="cust" resultType="class">
+        SELECT p.custNo, c.*
+        FROM purchase p
+                 LEFT JOIN class c on p.gymNo = c.gymNo and p.sportsclasstype = c.sportsclasstype
+        WHERE p.ticketEx='0' and p.custNo=#{custNo} and c.classDate=#{classDate}
+        ORDER BY c.classstarttime
+    </select>
+
+    <insert id="insert" parameterType="mySchedule">
+        INSERT INTO myschedule VALUES (myschedule_seq.NextVAL, #{classNo},
+                                       #{purchaseNo}, 0, 0, #{custNo})
+    </insert>
+
 
 </mapper>

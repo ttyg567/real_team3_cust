@@ -26,6 +26,8 @@ public class Class {
 
     private String url;
 
+    private int custNo;
+
     private String trainerName;
 
     public Class(Integer gymNo, Integer trainerNo, String className, String classDate, String classStarttime, String classEndtime, Integer classMaximum, String sportsType, String sportsClasstype) {
