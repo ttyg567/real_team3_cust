@@ -26,9 +26,10 @@ public class Class {
 
     private String url;
 
-    private int custNo;
-
+    // 수업 예약
+    private Integer custNo;
     private String trainerName;
+    private String gymName;
 
     public Class(Integer gymNo, Integer trainerNo, String className, String classDate, String classStarttime, String classEndtime, Integer classMaximum, String sportsType, String sportsClasstype) {
         this.gymNo = gymNo;

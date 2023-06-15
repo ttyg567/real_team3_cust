@@ -1,11 +1,9 @@
 package com.kbstar.controller;
 
+import com.kbstar.dto.*;
 import com.kbstar.dto.Class;
-import com.kbstar.dto.Cust;
-import com.kbstar.dto.Gym;
-import com.kbstar.dto.Purchase;
-import com.kbstar.dto.Ticket;
 import com.kbstar.service.ClassService;
+import com.kbstar.service.MyScheduleService;
 import com.kbstar.service.PurchaseService;
 import com.kbstar.service.TicketService;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +31,8 @@ public class MypageController {
     PurchaseService purchaseService;
     @Autowired
     ClassService classService;
+    @Autowired
+    MyScheduleService myScheduleService;
     String dir = "mypage/";
 
     @RequestMapping
@@ -103,62 +103,35 @@ public class MypageController {
     }
 
 
-    @RequestMapping("/myschedule")
-    public String myschedule(Model model, HttpSession session) throws Exception {
-        model.addAttribute("center", dir + "myschedule");
-        return "index";
-    }
-
-    @RequestMapping("/gettime")
+    @RequestMapping("/getCompleted")
     @ResponseBody
-    public Object gettime(Model model, String tdate, HttpSession session) throws Exception {
+    public String getCompleted(Model model, String tdate, HttpSession session) throws Exception {
+        log.info("===== 운동 완료 된 것을 찍어보겠습니다 =====");
 
         Cust cust = null;
         int custNo = 0;
-        JSONArray ja = new JSONArray();
+        MySchedule my = null;
+        List<MySchedule> list = null;
+
         // 세션에서 cust, custNo 가져오기
         if (session != null) {
             cust = (Cust) session.getAttribute("logincust");
-            cust.setClassDate(tdate); // 선택한 tdate set
-            if (cust != null) {
-                custNo = cust.getCustNo();
-                log.info("========== 세션의 gymNo는 " + custNo + "============");
-            }
+            custNo = cust.getCustNo();
 
-            List<Class> list = null;
-            list = purchaseService.getdayclass(cust);
+            log.info("========== 세션의 gymNo는 " + custNo + "============");
 
-            // Java Object ---> JSON
-            // JSON(JavaScript Object Notation)
-            // [시간1, 시간2, ... ]
-//            for (Class obj : list) {
-//                ja.add(obj.getClassStarttime()+"~"+obj.getClassEndtime()); // 수업시작시간 select하여 add
-//            }
-            // [ {classNo: , gymNo; , gymMasterCk: , trainerNo: , className: ,
-            // classDate: , classStarttime: , classEndtime: , classMaximum: , classJoin: ,
-            // classFullbooked: , sportsType: , sportsClasstype: }, {} ]
-            for (Class obj : list) {
-                JSONObject jo = new JSONObject();
-                jo.put("classNo", obj.getClassNo());
-                jo.put("gymNo", obj.getGymNo());
-                jo.put("gymMasterCk", obj.getGymMasterCk());
-                jo.put("trainerNo", obj.getTrainerNo());
-                jo.put("trainerName", obj.getTrainerName()); // trainer 테이블과 조인
-                jo.put("className", obj.getClassName());
-                jo.put("classDate", obj.getClassDate());
-                jo.put("classStarttime", obj.getClassStarttime());
-                jo.put("classEndtime", obj.getClassEndtime());
-                jo.put("classTime", obj.getClassStarttime()+"~"+obj.getClassEndtime());
-                jo.put("classMaximum", obj.getClassMaximum());
-                jo.put("classJoin", obj.getClassJoin());
-                jo.put("classFullbooked", obj.getClassFullbooked());
-                jo.put("sportsType", obj.getSportsType());
-                jo.put("sportsClasstype", obj.getSportsClasstype());
-                ja.add(jo);
-            }
+            my.setCustNo(custNo); // custNo set
+            my.setClassDate(tdate); // 선택한 날짜 set
 
+            list = myScheduleService.isCompleted(my); // 운동 완료된 내 스케줄 모두 추출
         }
-        return ja;
+
+        if(list == null){
+            return "fail"; // null이면 fail
+        } else {
+            return "success"; // null이 아니면 success
+        }
+
     }
 
 }

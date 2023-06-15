@@ -118,7 +118,7 @@
     <footer class="em_main_footer ouline_footer with__text">
         <div class="em_body_navigation -active-links">
             <div class="item_link">
-                <a href="/myschedule" class="btn btn_navLink">
+                <a href="/class/reservation" class="btn btn_navLink">
                     <div class="icon_current">
                         <svg id="Iconly_Curved_Document" data-name="Iconly/Curved/Document"
                              xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -769,8 +769,6 @@
 <!-- 성영 추가 -->
 <script src="/assets/js/userjs/register.js"></script>
 <script src="/assets/js/userjs/login.js"></script>
-<!-- calendar 관련 -->
-<script src="/assets/js/userjs/calendar.js"></script>
 </body>
 
 </html>

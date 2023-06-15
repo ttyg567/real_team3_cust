@@ -6,9 +6,16 @@
 <mapper namespace="com.kbstar.mapper.MyScheduleMapper">
 
     <insert id="insert" parameterType="mySchedule">
-        INSERT INTO myschedule VALUES (myschedule_seq.NextVAL, #{classNo},
-                                       #{purchaseNo}, 0, 0, #{custNo})
+    INSERT INTO myschedule (MYSCHEDULENO, CLASSNO, PURCHASENO, SCHEDULECOMPLETED, SHEDULECANCELED, CUSTNO)
+    VALUES (myschedule_seq.NextVAL, #{classNo}, #{purchaseNo}, '0', '0', #{custNo})
     </insert>
+
+    <!-- 일자별 운동완료되었는지 뽑기 -->
+    <select id="isCompleted" parameterType="mySchedule" resultType="mySchedule">
+        select m.*, c.classDate
+        from myschedule m left join class c on m.classNo =  c.classNo
+        where m.custno = #{custNo} and m.SCHEDULECOMPLETED = '1'
+    </select>
 
 
 </mapper>
