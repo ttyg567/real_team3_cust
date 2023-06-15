@@ -16,7 +16,7 @@
   }
 </style>
 <!-- header 구간  -->
-<jsp:include page="/views/header.jsp" />
+<jsp:include page="/views/groupboard/groupboardheader.jsp" />
 
 
   <div id="content">
@@ -60,7 +60,7 @@
                data-toggle="modal"
                data-target="#mdllJobDetails${obj.groupboardNo}">
             <div class="media align-items-center">
-            <%--1.대표 이미지--%><img class="img_news" src="/uimg/${obj.groupboardImgname}" alt="">
+            <%--1.대표 이미지--%><img class="img_news" src="/assets/img/${obj.groupboardImgname}" alt="">
               <div class="media-body">
                 <div class="txt">
                     <%--2.조인글 제목--%><h2>${obj.groupboardTitle}</h2>
@@ -159,7 +159,7 @@
                 <section class="emPage__detailsBlog" style="margin-top: -100px">
                   <div class="emheader_cover">
                     <div class="cover">
-                      <img src="/uimg/${obj.groupboardImgname}" alt="" style="height:450px" >
+                      <img src="/assets/img/${obj.groupboardImgname}" alt="" style="height:450px" >
                     </div>
                     <div class="title">
                       <div class="size-18 weight-600 color-primary"style="text-align: right">
@@ -188,7 +188,7 @@
 
                       <div class="item__auther emBlock__border">
                         <div class="item_person">
-                          <img src="/uimg/${obj.groupboardImgname}" alt="">
+                          <img src="/assets/img/${obj.groupboardImgname}" alt="">
                             <%-- 조인을 만든 고객 이름   --%>
                           <h2>${obj.custName}</h2>
                         </div>
@@ -258,7 +258,8 @@
                               <path d="M4 4.85v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Z"/>
                               <path d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z"/>
                             </svg>
-                            <span>${obj.ticketName}</span>
+                            <span>횟수권</span> <span>${obj.ticketNumber}회 이용권</span>
+<%--                            <span>${obj.ticketName}</span>--%>
                           </div>
                           <div class="joincontent" style="text-align: left">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin color-primary" viewBox="0 0 16 16">
@@ -277,6 +278,7 @@
                               <path d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z"/>
                             </svg>
                             <span>횟수권</span> <span>${obj.ticketNumber}회 이용권</span>
+<%--                            <span>${obj.ticketName}</span>--%>
                           </div>
                           <div class="joincontent" style="text-align: left">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin color-primary" viewBox="0 0 16 16">
@@ -303,7 +305,7 @@
                       <h6>센터 상세정보</h6>
                         <%--  센터 지도 이미지 --%>
                       <div id="map" style="width: 90%; height: 250px; border: #9f9f9f 1px solid; border-radius: 15px;">
-                        <img src="/uimg/gym1_map.jpg" alt="">
+                        <img src="/assets/img/gym1_map.jpg" alt="">
                       </div>
                     </div>
                     <div style="height: 100px; margin-top: 20px;  display: flex; flex-wrap: wrap; flex-direction: column; align-content: flex-start; align-items: flex-start;">

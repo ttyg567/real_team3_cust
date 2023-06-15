@@ -76,18 +76,16 @@ public class Groupboard {
         this.writeDate = writeDate;
     }
 
+    // makejoin 할 때 추가로 필요한 속성
+    private int gymNo;
+    private String gymName;
+    private String ticketName;
+
     // getMyJoin으로 가져올 때 보여줄 다른 테이블 칼럼들 적음
     private int applycustno; // 조인을 신청한 회원번호 : xml에서 별칭으로 정한 칼럼명 사용.
     private String custName; // 조인을 신청한 회원 이름(닉네임) ㅇ
     private String memberStatus; // 조인을 신청한 신청한 회원상태 // 1: 정상, 2: 취소
     private int applicationMemberCount; // 조인을 신청한 회원 인원수
-
-    // makejoin 할 때 필요한 속성
-    private int gymNo;
-    private String chooseGymName;
-    private String gymName;
-    private String ticketName;
-
 
     // 조인 조회 시 상세조회에 필요한 속성
     private String gymAddress1; // 센터 주소 전체
@@ -95,7 +93,7 @@ public class Groupboard {
     private String gymAddress3; // **동
     private String gymPhone; // 센터 연락처
     private String gymReginumber;
-    //private String makeJoinCustName; // 조인을 만든 고객 이름
+    //private String makeJoinCustName; // 조인을 만든 고객 이름 예정.
 
     private String ticketType;
     private int ticketMonth;
