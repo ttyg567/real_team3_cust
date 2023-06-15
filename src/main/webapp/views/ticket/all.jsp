@@ -57,9 +57,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/ticket/crossfit">크로스핏</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/ticket/swimming">수영</a>
-                    </li>
+<%--                    <li class="nav-item">--%>
+<%--                        <a class="nav-link" href="/ticket/swimming">수영</a>--%>
+<%--                    </li>--%>
                 </ul>
             </div>
             <!-- 지역 정보가 들어오면 해당 지역의 센터 뿌려주기-->
@@ -71,7 +71,7 @@
                         <div class="media align-items-center">
                             <c:forEach var="img" items="${obj.gymImgname}" varStatus="status">
                                 <c:if test="${status.index eq 0}">
-                                    <img class="img_news" src="/assets/img/gym/${img}" alt="">
+                                    <img class="img_news" src="/assets/img/gymImg/${img}" alt="">
                                 </c:if>
                             </c:forEach>
 
