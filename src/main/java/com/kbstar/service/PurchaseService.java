@@ -49,7 +49,7 @@ public class PurchaseService implements KBService<Integer, Purchase>{
 
     @Override
     public void register(Purchase purchase) throws Exception {
-
+        mapper.pinsert(purchase);
     }
 
     @Override

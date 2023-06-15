@@ -38,6 +38,13 @@ public class Like1Controller {
         return "index";
     }
 
-//
 
+//    @RequestMapping("/mypage")
+//    public String mypage(Model model, HttpSession session) throws Exception {
+//        Cust cust = (Cust) session.getAttribute("logincust");
+//        //내가 해야하는것 : 내가 찜한 이용권 이름 이용권 가격 보여주기
+//        service.getmylike(cust.getCustNo());
+//
+//        return "index";
+//    }
 }
