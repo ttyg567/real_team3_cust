@@ -42,6 +42,16 @@ public class MyScheduleService implements KBService<Integer, MySchedule> {
         return null;
     }
 
+    // 특정일자 운동예약 리스트 추출
+    public List<MySchedule> isReserved_day(MySchedule ms) throws Exception{
+        return mapper.isReserved_day(ms);
+    }
+
+    // 운동예약 리스트 추출
+    public List<MySchedule> isReserved(Integer custNo) throws Exception{
+        return mapper.isReserved(custNo);
+    }
+
     // 해당 일자에 운동완료를 했는지 여부를 반환하는 함수
     public List<MySchedule> isCompleted(MySchedule my) throws Exception {
         return mapper.isCompleted(my);

@@ -1053,6 +1053,8 @@
 <!-- 성영 추가 -->
 <script src="/assets/js/userjs/register.js"></script>
 <script src="/assets/js/userjs/login.js"></script>
+<!-- calendar 관련 -->
+<%--<script src="/assets/js/plugins/fullcalendar.min.js"></script>--%>
 
 </body>
 

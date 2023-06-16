@@ -68,19 +68,19 @@
     }
 
     .fc-day-tue a {
-        color:#af9ad5;
+        color: #af9ad5;
     }
 
     .fc-day-wed a {
-        color:#af9ad5;
+        color: #af9ad5;
     }
 
     .fc-day-thu a {
-        color:#af9ad5;
+        color: #af9ad5;
     }
 
     .fc-day-fri a {
-        color:#af9ad5;
+        color: #af9ad5;
     }
 
     .fc-day-sun a {
@@ -137,10 +137,38 @@
         border-color: var(--border-green) !important;
     }
 
-    .circle_check.active::before {
-        opacity: 1 !important;
-        background-position: center !important; /* 배경 이미지를 가운데로 정렬 */
+    #candy_list {
+        display: flex;
+        flex-direction: column;
     }
+
+    .image_list {
+        display: flex;
+        flex-direction: row;
+        box-sizing: border-box;
+    }
+
+    .candy {
+        width: 20%;
+        padding: 5px;
+    }
+
+    .image_list .candy[id^="day"]:first-child {
+        position: relative;
+    }
+
+    .image_list .candy[id^="day"]:first-child:before {
+        content: attr(id);
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 5px;
+        font-size: 12px;
+        font-weight: bold;
+        color: black;
+    }
+
 
 </style>
 
@@ -157,52 +185,10 @@
     </div>
 </header>
 
-<div id="wrapper">
-    <div id="content">
-            <!-- Start 나의 정보 -->
-<%--            <section class="banner_swiper padding-t-70">--%>
-<%--                <div class="title_welcome">--%>
-<%--                    <c:choose>--%>
-<%--                        <c:when test="${logincust == null}">--%>
-<%--                        <span class="color-secondary size-16 weight-500">Hi, there !--%>
-<%--                        </span>--%>
-<%--                            <br>--%>
-<%--                            <span class="color-black">로그인 후 이용해주세요</span>--%>
-<%--                            <a href="/cust/login" class="btn bg-primary rounded-pill btn__default"--%>
-<%--                               style="width: 70PX; height: 30PX">--%>
-<%--                                <span class="color-white">login</span>--%>
-<%--                            </a>--%>
-<%--                        </c:when>--%>
-<%--                        <c:otherwise>--%>
-<%--                            <div class="em__pkLink emBlock__border bg-white border-t-0">--%>
-<%--                                <ul class="nav__list mb-0 emBlock__border bg-white py-4">--%>
-<%--                                    <div class="group_collection">--%>
-<%--                                        <li>--%>
-<%--                                            <a href="/" class="item-link">--%>
-<%--                                                <div class="group">--%>
-<%--                                                    <div class="icon bg-primary">--%>
-<%--                                                        <i class="ri-user-follow-line"></i>--%>
-<%--                                                    </div>--%>
-<%--                                                    <span class="path__name">--%>
-<%--                                                        Hi, ${logincust.custName} 님!--%>
-<%--                                                        <img class="w-20 h-20" src="/assets/img/1f590.png" alt="">--%>
-<%--                                                    </span>--%>
-<%--                                                </div>--%>
-<%--                                                <div class="group">--%>
-<%--                                                    <span class="short__name"></span>--%>
-<%--                                                    <i class="tio-chevron_right -arrwo"></i>--%>
-<%--                                                </div>--%>
-<%--                                            </a>--%>
-<%--                                        </li>--%>
-<%--                                    </div>--%>
-<%--                                </ul>--%>
-<%--                            </div>--%>
-<%--                        </c:otherwise>--%>
-<%--                    </c:choose>--%>
-<%--                </div>--%>
-<%--            </section>--%>
-            <!-- End. 나의 정보 -->
+<section class="page_news">
 
+    <div id="wrapper">
+        <div id="content">
             <!-- Start 오늘의 일정 -->
             <section class="npBalabce_section padding-20 pb-0">
                 <div class="content_balance bg-white border border-snow">
@@ -212,72 +198,103 @@
                             <img class="w-20 h-20" src="assets/img/icon/working-hours.svg" alt="">
                         </span>
 
-                        <h3 class="color-secondary"> !!!!!!!! 19시  </h3>
+                        <h3 class="color-secondary"> !!!!!!!! 19시 </h3>
                         <p class="date color-snow"> !!!!! 센터명 , 종목명 ... 등등 </p>
                     </div>
                     <div class="action">
-                        <a href="#" class="btn">
-                            + 일정 추가하기
+                        <a href="/class/my_reservation" class="btn">
+                            나의 일정 보기
                         </a>
                     </div>
                 </div>
             </section>
-            <br/>
-            <br/>
+            <hr>
             <!-- End. 오늘의 일정 -->
             <!-- Start 수업 예약-->
-        <section class="pt_simpleDetails emBlock__border rounded-0 mt-0 padding-b-30">
-            <div class="emCommentCusomers">
-                <div class="title"></div>
-                <section class="banner_swiper bg-white np__ServicePackage padding-t-0 mt-0 padding-b-10">
-                    <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
-                        <div>
-                            <h3 class="size-18 weight-500 color-secondary m-0">운동완료 체크</h3>
-                            <span class="text_b color-text">매일매일 오운완 하기~ 약쏙!</span>
-                        </div>
+            <section class="npBalabce_section padding-20 pb-0">
+<%--            <section class="pt_simpleDetails emBlock__border rounded-0 mt-0 padding-b-60">--%>
+                <div class="content_balance bg-white border border-snow">
+                    <div class="txt">
+                        <p class="text_b color-text">
+                            이 달의 운동 사탕</p>
+                        <h5 class="color-secondary">매일매일 건강도 챙기고, 혜택도 챙겨가자!</h5>
+                        <h6 class="color-snow">내가 모은 헬쓱이 사탕 : 3개 / 30개</h6>
                     </div>
-                    <div class="col-xl-9">
-                        <div class="card card-calendar">
-                            <div class="card-body p-3">
-                                <div class="calendar" data-bs-toggle="calendar" id="calendar_check"></div>
+                </div> <br>
+                <div class="content_balance bg-white border border-snow" id="candy_list">
+                    <div class ="image_list">
+                        <img src="/assets/img/candy/starr_default.png" id="day1" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_default.png" id="day2" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_active.png" id="day3" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_active.png" id="day4" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_default.png" id="day5" class="candy" alt="candy">
+                    </div>
+                    <div class="image_list">
+                        <img src="/assets/img/candy/starr_default.png" id="day6" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_active.png" id="day7" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_default.png" id="day8" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_active.png" id="day9" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_active.png" id="day10" class="candy" alt="candy">
+                    </div>
+                    <div class="image_list">
+                        <img src="/assets/img/candy/starr_default.png" id="day11" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_active.png" id="day12" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_default.png" id="day13" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_active.png" id="day14" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_active.png" id="day15" class="candy" alt="candy">
+                    </div>
+                    <div class="image_list">
+                        <img src="/assets/img/candy/starr_default.png" id="day16" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_active.png" id="day17" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_default.png" id="day18" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_active.png" id="day19" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_active.png" id="day20" class="candy" alt="candy">
+                    </div>
+                    <div class="image_list">
+                        <img src="/assets/img/candy/starr_default.png" id="day21" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_active.png" id="day22" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_default.png" id="day23" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_active.png" id="day24" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_active.png" id="day25" class="candy" alt="candy">
+                    </div>
+                    <div class="image_list">
+                        <img src="/assets/img/candy/starr_default.png" id="day26" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_active.png" id="day27" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_default.png" id="day28" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_active.png" id="day29" class="candy" alt="candy">
+                        <img src="/assets/img/candy/starr_active.png" id="day30" class="candy" alt="candy">
+                    </div>
+                </div>
+            </section><hr>
+            <!-- End. 수업 예약-->
+            <!-- Start 나의 이용권 -->
+            <section class="pt_simpleDetails emBlock__border rounded-0 mt-0 padding-b-30">
+                <div class="emCommentCusomers">
+                    <div class="title"></div>
+                    <section class="banner_swiper bg-white np__ServicePackage padding-t-10 mt-0 padding-b-10">
+                        <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
+                            <div>
+                                <h3 class="size-18 weight-500 color-secondary m-0"> 나의 이용권</h3>
                             </div>
+                            <a href="/mypage/mypurchase" class="d-block color-blue size-14 m-0 hover:color-blue">모두
+                                보기</a>
                         </div>
-                    </div>
-                </section>
-            </div>
-        </section>
-        <!-- End. 수업 예약-->
-        <!-- Start 나의 이용권 -->
-        <section class="pt_simpleDetails emBlock__border rounded-0 mt-0 padding-b-30">
-            <div class="emCommentCusomers">
-                <div class="title"></div>
-                <section class="banner_swiper bg-white np__ServicePackage padding-t-10 mt-0 padding-b-10">
-                    <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
-                        <div>
-                            <h3 class="size-18 weight-500 color-secondary m-0"> 나의 이용권</h3>
-                        </div>
-                        <a href="/mypage/mypurchase" class="d-block color-blue size-14 m-0 hover:color-blue">모두 보기</a>
-                    </div>
-                    <div class="owl-carousel owl-theme owlServiceProvider em_owl_swipe">
-                        <c:forEach var="obj" items="${clist}">
-                            <c:if test="${obj.custNo == sessionScope.logincust.custNo}">
-                                <a href="#" class="link_service text-decoration-none">
-                                    <div class="item em_item">
-                                        <div class="link_service text-decoration-none">
+                        <div class="owl-carousel owl-theme owlServiceProvider em_owl_swipe">
+                            <c:forEach var="obj" items="${clist}">
+                                <c:if test="${obj.custNo == sessionScope.logincust.custNo}">
+                                    <a href="#" class="link_service text-decoration-none">
+                                        <div class="item em_item">
+                                            <div class="link_service text-decoration-none">
 
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                            </c:if>
-                        </c:forEach>
-                    </div>
-                </section>
-            </div>
-        </section>
+                                    </a>
+                                </c:if>
+                            </c:forEach>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </div>
     </div>
-</div>
-<!-- End. 나의 이용권 -->
-
-<!-- calendar 관련 -->
-<script src="/assets/js/plugins/fullcalendar.min.js"></script>
-<script src="/assets/js/userjs/calendar_check.js"></script>
+</section>
