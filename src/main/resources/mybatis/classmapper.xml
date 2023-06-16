@@ -11,34 +11,43 @@
     <select id="selectall" resultType="class">
         SELECT * FROM class
     </select>
-    <!-- 특정 gym의 모든 수업(대표계정 1로) 추출 -->
-    <select id="selectgymclass" parameterType="Integer" resultType="class">
-        SELECT * FROM class where gymNo=#{gymNo} and gymMasterCk ='1'
+    <!-- 내가 예약할 수 있는 모든 수업 추출 --> <!-- 일자를 지운다. 캘린더에 뿌릴거다 -->
+    <!-- 이용권과 수업은 센터와 운동수업형태만 조인하면 된다 -->
+    <!-- 이용권에서 만료여부가 0인 것만 가능하다 -->
+    <!-- 마감여부랑 상관없이 다 뿌려준다. -->
+    <select id="selectallclass" parameterType="Integer" resultType="class">
+        SELECT c.*, t.trainername, g.gymName
+        FROM purchase p
+                 LEFT JOIN class c on p.gymNo = c.gymNo and p.sportsclasstype = c.sportsclasstype
+                 LEFT JOIN gym g on c.gymNo = g.gymNo and g.gymMasterCk ='1'
+                 LEFT JOIN trainer t on c.trainerNo = t.trainerNo
+        WHERE p.custNo=#{custNo} and p.ticketEx='0' and c.classNo is not null
+        ORDER BY c.classstarttime
     </select>
-    <!-- 특정 gym, 특정 날짜의 모든 수업(대표계정 1로) 추출 -->
-    <select id="selectdayclass" parameterType="gym" resultType="class">
-        SELECT c.*, t.trainername FROM class c left join trainer t
-                 on c.trainerno = t.trainerno
-                 where c.gymNo=#{gymNo} and c.gymMasterCk ='1' and c.classDate=#{classDate}
-        order by c.CLASSSTARTTIME
+    <!-- 내가 해당일자에 예약할 수 있는 모든 수업 추출 -->
+    <!-- 이용권과 수업은 센터와 운동수업형태만 조인하면 된다 -->
+    <!-- 이용권에서 만료여부가 0인 것만 가능하다 -->
+    <!-- 마감이 안된 class만 추출 -->
+    <select id="selectdayclass" parameterType="cust" resultType="class">
+        SELECT c.*, t.trainername, g.gymName
+        FROM purchase p
+                 LEFT JOIN class c on p.gymNo = c.gymNo and p.sportsclasstype = c.sportsclasstype
+                 LEFT JOIN gym g on c.gymNo = g.gymNo and g.gymMasterCk ='1'
+                 LEFT JOIN trainer t on c.trainerNo = t.trainerNo
+        WHERE p.custNo=#{custNo} and c.classDate=TO_DATE(#{classDate},'YYYY-MM-DD') and p.ticketEx='0' and c.classFullbooked = '0' and c.classNo is not null
+        ORDER BY c.classstarttime
     </select>
-
-    <!-- 수업 추후 등록 -->
-    <insert id="insert" parameterType="class">
-        INSERT INTO class (classNo, gymNo, gymMasterCk, trainerNo, className, classDate, classStarttime, classEndtime, classMaximum, classJoin,
-                         classFullbooked, sportsType, sportsClasstype)
-        VALUES (Class_seq.NEXTVAL, #{gymNo}, '1', #{trainerNo}, #{className}, TO_DATE(#{classDate},'YYYY-MM-DD'), #{classStarttime}, #{classEndtime},
-                #{classMaximum}, 0, '0', #{sportsType}, #{sportsClasstype})
-    </insert>
-    <!-- 수업번호로 업데이트 -->
+    <!-- 예약이 되면 참여인원 +1 -->
     <update id="update" parameterType="class">
-        UPDATE class SET className=#{className}, trainerNo=#{trainerNo}, classDate=TO_DATE(#{classDate},'YYYY-MM-DD'), sportsClasstype=#{sportsClasstype},
-                         classStarttime=#{classStarttime}, classEndtime=#{classEndtime}, classMaximum=#{classMaximum},
-                         classJoin=#{classJoin}, classFullbooked=#{classFullbooked}
-                       WHERE classNo=#{classNo}
+        UPDATE class
+        SET
+            classJoin = #{classJoin} + 1
+            classFullbooked =
+            <choose>
+                <when test="classJoin == classMaximum"> '1' </when>
+                <otherwise> '0' </otherwise>
+            </choose>
+        WHERE classNo = #{classNo}
     </update>
-    <!-- 수업번호로 삭제 -->
-    <delete id="delete" parameterType="class">
-        DELETE FROM class WHERE classNo=#{classNo}
-    </delete>
+
 </mapper>

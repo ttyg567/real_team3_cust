@@ -6,10 +6,10 @@
 
 <head>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport"
-          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="format-detection" content="telephone=no">
 
@@ -17,7 +17,7 @@
     <title>Nepro – The Multipurpose Mobile HTML5 Template</title>
     <meta name="description" content="Nepro – The Multipurpose Mobile HTML5 Template">
     <meta name="keywords"
-          content="bootstrap 4, mobile template, 404, chat, about, cordova, phonegap, mobile, html, ecommerce, shopping, store, delivery, wallet, banking, education, jobs, careers, distance learning" />
+          content="bootstrap 4, mobile template, 404, chat, about, cordova, phonegap, mobile, html, ecommerce, shopping, store, delivery, wallet, banking, education, jobs, careers, distance learning"/>
 
     <!-- favicon -->
     <link rel="icon" type="image/png" href="/assets/img/favicon/32.png" sizes="32x32">
@@ -42,18 +42,19 @@
     <!-- normalize.css v8.0.1 -->
     <link rel="stylesheet" href="/assets/css/normalize.css">
     <!-- manifest meta -->
-    <link rel="manifest" href="_manifest.json" />
+    <link rel="manifest" href="_manifest.json"/>
     <!-- jquery(위치변경) -->
     <script src="/assets/js/jquery-3.6.0.js"></script>
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- 카카오지도 인보 -->
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4617571d8f9917ae900e8b494a093c31&libraries=services"></script>
-<%--    <script type="text/javascript"--%>
-<%--            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	0f0752ec20b8a0352c5794754058b576&libraries=services"></script>--%>
+    <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4617571d8f9917ae900e8b494a093c31&libraries=services"></script>
+    <%--    <script type="text/javascript"--%>
+    <%--            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	0f0752ec20b8a0352c5794754058b576&libraries=services"></script>--%>
 
     <!-- Calendar CDN 설치 -->
-    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet'/>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
 
 </head>
@@ -70,36 +71,36 @@
 <div id="wrapper">
 
     <!-- 기본헤더 스타일 Start main_haeder -->
-<%--    <header class="main_haeder header-sticky multi_item">--%>
-<%--        <div class="em_menu_sidebar">--%>
-<%--            <a href="/">--%>
-<%--                <img src="/assets/img/logo.jpg" alt="" style="width: 80px; height:60px; margin-top: 5px">--%>
-<%--            </a>--%>
-<%--        </div>--%>
-<%--        <div class="em_brand">--%>
+    <%--    <header class="main_haeder header-sticky multi_item">--%>
+    <%--        <div class="em_menu_sidebar">--%>
+    <%--            <a href="/">--%>
+    <%--                <img src="/assets/img/logo.jpg" alt="" style="width: 80px; height:60px; margin-top: 5px">--%>
+    <%--            </a>--%>
+    <%--        </div>--%>
+    <%--        <div class="em_brand">--%>
 
-<%--        </div>--%>
-<%--        <div class="em_side_right">--%>
-<%--            <a href="/notification" class="btn justify-content-center relative">--%>
-<%--                <svg class="color-secondary" id="Iconly_Two-tone_Notification"--%>
-<%--                     data-name="Iconly/Two-tone/Notification" xmlns="http://www.w3.org/2000/svg" width="24"--%>
-<%--                     height="24" viewBox="0 0 24 24">--%>
-<%--                    <g id="Notification" transform="translate(3.5 2)">--%>
-<%--                        <path id="Path_425"--%>
-<%--                              d="M0,11.787v-.219A3.6,3.6,0,0,1,.6,9.75,4.87,4.87,0,0,0,1.8,7.436c0-.666,0-1.342.058-2.009C2.155,2.218,5.327,0,8.461,0h.078c3.134,0,6.306,2.218,6.617,5.427.058.666,0,1.342.049,2.009A4.955,4.955,0,0,0,16.4,9.759a3.506,3.506,0,0,1,.6,1.809v.209a3.566,3.566,0,0,1-.844,2.39A4.505,4.505,0,0,1,13.3,15.538a45.078,45.078,0,0,1-9.615,0A4.554,4.554,0,0,1,.835,14.167,3.6,3.6,0,0,1,0,11.787Z"--%>
-<%--                              transform="translate(0 0)" fill="none" stroke="#200e32" stroke-linecap="round"--%>
-<%--                              stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />--%>
-<%--                        <path id="Path_421"--%>
-<%--                              d="M0,0A3.061,3.061,0,0,0,2.037,1.127,3.088,3.088,0,0,0,4.288.5,2.886,2.886,0,0,0,4.812,0"--%>
-<%--                              transform="translate(6.055 18.852)" fill="none" stroke="#200e32"--%>
-<%--                              stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"--%>
-<%--                              stroke-width="1.5" opacity="0.4" />--%>
-<%--                    </g>--%>
-<%--                </svg>--%>
-<%--                <span class="flashCircle"></span>--%>
-<%--            </a>--%>
-<%--        </div>--%>
-<%--    </header>--%>
+    <%--        </div>--%>
+    <%--        <div class="em_side_right">--%>
+    <%--            <a href="/notification" class="btn justify-content-center relative">--%>
+    <%--                <svg class="color-secondary" id="Iconly_Two-tone_Notification"--%>
+    <%--                     data-name="Iconly/Two-tone/Notification" xmlns="http://www.w3.org/2000/svg" width="24"--%>
+    <%--                     height="24" viewBox="0 0 24 24">--%>
+    <%--                    <g id="Notification" transform="translate(3.5 2)">--%>
+    <%--                        <path id="Path_425"--%>
+    <%--                              d="M0,11.787v-.219A3.6,3.6,0,0,1,.6,9.75,4.87,4.87,0,0,0,1.8,7.436c0-.666,0-1.342.058-2.009C2.155,2.218,5.327,0,8.461,0h.078c3.134,0,6.306,2.218,6.617,5.427.058.666,0,1.342.049,2.009A4.955,4.955,0,0,0,16.4,9.759a3.506,3.506,0,0,1,.6,1.809v.209a3.566,3.566,0,0,1-.844,2.39A4.505,4.505,0,0,1,13.3,15.538a45.078,45.078,0,0,1-9.615,0A4.554,4.554,0,0,1,.835,14.167,3.6,3.6,0,0,1,0,11.787Z"--%>
+    <%--                              transform="translate(0 0)" fill="none" stroke="#200e32" stroke-linecap="round"--%>
+    <%--                              stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />--%>
+    <%--                        <path id="Path_421"--%>
+    <%--                              d="M0,0A3.061,3.061,0,0,0,2.037,1.127,3.088,3.088,0,0,0,4.288.5,2.886,2.886,0,0,0,4.812,0"--%>
+    <%--                              transform="translate(6.055 18.852)" fill="none" stroke="#200e32"--%>
+    <%--                              stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"--%>
+    <%--                              stroke-width="1.5" opacity="0.4" />--%>
+    <%--                    </g>--%>
+    <%--                </svg>--%>
+    <%--                <span class="flashCircle"></span>--%>
+    <%--            </a>--%>
+    <%--        </div>--%>
+    <%--    </header>--%>
     <!-- End.main_haeder -->
     <!-- center 시작 -->
     <c:choose>
@@ -115,7 +116,7 @@
     <footer class="em_main_footer ouline_footer with__text">
         <div class="em_body_navigation -active-links">
             <div class="item_link">
-                <a href="/myschedule" class="btn btn_navLink">
+                <a href="/class/reservation" class="btn btn_navLink">
                     <div class="icon_current">
                         <svg id="Iconly_Curved_Document" data-name="Iconly/Curved/Document"
                              xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -123,23 +124,23 @@
                                 <path id="Stroke_1" data-name="Stroke 1" d="M7.22.5H0"
                                       transform="translate(4.766 12.446)" fill="none" stroke="#9498ac"
                                       stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                      stroke-width="1.5" />
+                                      stroke-width="1.5"/>
                                 <path id="Stroke_2" data-name="Stroke 2" d="M7.22.5H0"
                                       transform="translate(4.766 8.686)" fill="none" stroke="#9498ac"
                                       stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                      stroke-width="1.5" />
+                                      stroke-width="1.5"/>
                                 <path id="Stroke_3" data-name="Stroke 3" d="M2.755.5H0"
                                       transform="translate(4.766 4.927)" fill="none" stroke="#9498ac"
                                       stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                      stroke-width="1.5" />
+                                      stroke-width="1.5"/>
                                 <path id="Stroke_4" data-name="Stroke 4"
                                       d="M0,9.25c0,6.937,2.1,9.25,8.391,9.25s8.391-2.313,8.391-9.25S14.685,0,8.391,0,0,2.313,0,9.25Z"
                                       transform="translate(0)" fill="none" stroke="#9498ac" stroke-linecap="round"
-                                      stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
+                                      stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
                             </g>
                         </svg>
                     </div>
-                    <div class="txt__tile" style="width: 60px;" >수업예약</div>
+                    <div class="txt__tile" style="width: 60px;">수업예약</div>
                 </a>
             </div>
             <div class="item_link">
@@ -152,24 +153,24 @@
                                       d="M0,9.25C0,2.313,2.313,0,9.25,0S18.5,2.313,18.5,9.25,16.187,18.5,9.25,18.5,0,16.187,0,9.25Z"
                                       transform="translate(0.75 0.75)" fill="none" stroke="#9498ac"
                                       stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                      stroke-width="1.5" />
+                                      stroke-width="1.5"/>
                                 <path id="Stroke_11" data-name="Stroke 11" d="M.5.5H.5"
                                       transform="translate(12.709 11.4)" fill="none" stroke="#9498ac"
                                       stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                      stroke-width="2" />
+                                      stroke-width="2"/>
                                 <path id="Stroke_13" data-name="Stroke 13" d="M.5.5H.5"
                                       transform="translate(9.709 7.4)" fill="none" stroke="#9498ac"
                                       stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                      stroke-width="2" />
+                                      stroke-width="2"/>
                                 <path id="Stroke_15" data-name="Stroke 15" d="M.5.5H.5"
                                       transform="translate(6.7 11.4)" fill="none" stroke="#9498ac"
                                       stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                      stroke-width="2" />
+                                      stroke-width="2"/>
                             </g>
                         </svg>
                     </div>
 
-                    <div class="txt__tile"style="width: 60px;">이용권구매</div>
+                    <div class="txt__tile" style="width: 60px;">이용권구매</div>
                 </a>
             </div>
             <div class="item_link">
@@ -181,11 +182,11 @@
                                 <path id="Stroke_1" data-name="Stroke 1" d="M0,.5H4.846"
                                       transform="translate(5.566 11.28)" fill="none" stroke="#fff"
                                       stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                      stroke-width="1.5" />
+                                      stroke-width="1.5"/>
                                 <path id="Stroke_2" data-name="Stroke 2"
                                       d="M0,9.761C0,5.068.512,5.4,3.266,2.842,4.471,1.872,6.346,0,7.965,0S11.5,1.862,12.712,2.842c2.754,2.554,3.265,2.227,3.265,6.919,0,6.906-1.633,6.906-7.988,6.906S0,16.667,0,9.761Z"
                                       transform="translate(0)" fill="none" stroke="#fff" stroke-linecap="round"
-                                      stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
+                                      stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
                             </g>
                         </svg>
 
@@ -201,24 +202,24 @@
                                 <path id="Stroke_1" data-name="Stroke 1" d="M8.659,4.32A4.33,4.33,0,0,0,0,4.3V4.32"
                                       transform="translate(4.755 0)" fill="none" stroke="#9498ac"
                                       stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                      stroke-width="1.5" />
+                                      stroke-width="1.5"/>
                                 <path id="Stroke_3" data-name="Stroke 3" d="M.523.5H.477"
                                       transform="translate(11.5 8.324)" fill="none" stroke="#9498ac"
                                       stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                      stroke-width="1.5" />
+                                      stroke-width="1.5"/>
                                 <path id="Stroke_5" data-name="Stroke 5" d="M.523.5H.477"
                                       transform="translate(5.669 8.324)" fill="none" stroke="#9498ac"
                                       stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                      stroke-width="1.5" />
+                                      stroke-width="1.5"/>
                                 <path id="Stroke_7" data-name="Stroke 7"
                                       d="M9.084,14.934c-6.508,0-7.257-2.05-8.718-7.467C-1.1,2.033,1.841,0,9.084,0S19.268,2.033,17.8,7.467C16.341,12.884,15.592,14.934,9.084,14.934Z"
                                       transform="translate(0 4.006)" fill="none" stroke="#9498ac"
                                       stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                      stroke-width="1.5" />
+                                      stroke-width="1.5"/>
                             </g>
                         </svg>
                     </div>
-<%--                    <div class="items_basket_circle">2</div>--%>
+                    <%--                    <div class="items_basket_circle">2</div>--%>
                     <div class="txt__tile" style="width: 60px;">조인헬쓱</div>
                 </a>
             </div>
@@ -231,11 +232,11 @@
                                 <path id="Stroke_1" data-name="Stroke 1"
                                       d="M2.5,0A2.5,2.5,0,1,1,0,2.5,2.5,2.5,0,0,1,2.5,0Z" transform="translate(6 7)"
                                       fill="none" stroke="#9498ac" stroke-linecap="round" stroke-linejoin="round"
-                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                 <path id="Stroke_3" data-name="Stroke 3"
                                       d="M16.668,4.75h0a2.464,2.464,0,0,0-3.379-.912,1.543,1.543,0,0,1-2.314-1.346A2.484,2.484,0,0,0,8.5,0h0A2.484,2.484,0,0,0,6.025,2.492,1.543,1.543,0,0,1,3.712,3.839a2.465,2.465,0,0,0-3.38.912,2.5,2.5,0,0,0,.906,3.4,1.56,1.56,0,0,1,0,2.692,2.5,2.5,0,0,0-.906,3.4,2.465,2.465,0,0,0,3.379.913h0a1.542,1.542,0,0,1,2.313,1.345h0A2.484,2.484,0,0,0,8.5,19h0a2.484,2.484,0,0,0,2.474-2.492h0a1.543,1.543,0,0,1,2.314-1.345,2.465,2.465,0,0,0,3.379-.913,2.5,2.5,0,0,0-.905-3.4h0a1.56,1.56,0,0,1,0-2.692A2.5,2.5,0,0,0,16.668,4.75Z"
                                       fill="none" stroke="#9498ac" stroke-linecap="round" stroke-linejoin="round"
-                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                      stroke-miterlimit="10" stroke-width="1.5"/>
                             </g>
                         </svg>
 
@@ -305,16 +306,16 @@
                                         <path id="Stroke_1" data-name="Stroke 1" d="M.526,0V5.957"
                                               transform="translate(7.588 5.136)" fill="none" stroke="#0e132d"
                                               stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                              stroke-width="1.5" />
+                                              stroke-width="1.5"/>
                                         <path id="Stroke_2" data-name="Stroke 2" d="M5.963.526H0"
                                               transform="translate(5.132 7.588)" fill="none" stroke="#0e132d"
                                               stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                              stroke-width="1.5" />
+                                              stroke-width="1.5"/>
                                         <path id="Stroke_3" data-name="Stroke 3"
                                               d="M0,8.114C0,2.029,2.029,0,8.114,0s8.114,2.029,8.114,8.114S14.2,16.228,8.114,16.228,0,14.2,0,8.114Z"
                                               transform="translate(0)" fill="none" stroke="#0e132d"
                                               stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                              stroke-width="1.5" />
+                                              stroke-width="1.5"/>
                                     </g>
                                 </svg>
                             </a>
@@ -336,12 +337,12 @@
                                                       d="M0,7.708c0,5.781,1.927,7.708,7.708,7.708s7.708-1.927,7.708-7.708S13.489,0,7.708,0,0,1.927,0,7.708Z"
                                                       transform="translate(0 0)" fill="none" stroke="#9498ac"
                                                       stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                                 <path id="Stroke_3" data-name="Stroke 3"
                                                       d="M0,5.5,1.312,1.312,5.5,0,4.192,4.191Z"
                                                       transform="translate(4.957 4.957)" fill="none" stroke="#9498ac"
                                                       stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                             </g>
                                         </svg>
                                     </div>
@@ -360,12 +361,12 @@
                                                 <path id="Stroke_1" data-name="Stroke 1" d="M0,.5H4.846"
                                                       transform="translate(5.566 11.28)" fill="none" stroke="#9498ac"
                                                       stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                                 <path id="Stroke_2" data-name="Stroke 2"
                                                       d="M0,9.761C0,5.068.512,5.4,3.266,2.842,4.471,1.872,6.346,0,7.965,0S11.5,1.862,12.712,2.842c2.754,2.554,3.265,2.227,3.265,6.919,0,6.906-1.633,6.906-7.988,6.906S0,16.667,0,9.761Z"
                                                       transform="translate(0)" fill="none" stroke="#9498ac"
                                                       stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                             </g>
                                         </svg>
                                     </div>
@@ -386,19 +387,19 @@
                                                       d="M0,7.708C0,1.927,1.927,0,7.708,0s7.708,1.927,7.708,7.708-1.927,7.708-7.708,7.708S0,13.489,0,7.708Z"
                                                       transform="translate(0 0)" fill="none" stroke="#556fff"
                                                       stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                                 <path id="Stroke_11" data-name="Stroke 11" d="M.5.5H.5"
                                                       transform="translate(9.883 8.792)" fill="none" stroke="#556fff"
                                                       stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="2" />
+                                                      stroke-miterlimit="10" stroke-width="2"/>
                                                 <path id="Stroke_13" data-name="Stroke 13" d="M.5.5H.5"
                                                       transform="translate(7.383 5.458)" fill="none" stroke="#556fff"
                                                       stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="2" />
+                                                      stroke-miterlimit="10" stroke-width="2"/>
                                                 <path id="Stroke_15" data-name="Stroke 15" d="M.5.5H.5"
                                                       transform="translate(4.876 8.792)" fill="none" stroke="#556fff"
                                                       stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="2" />
+                                                      stroke-miterlimit="10" stroke-width="2"/>
                                             </g>
                                         </svg>
                                     </div>
@@ -417,20 +418,20 @@
                                                 <path id="Stroke_1" data-name="Stroke 1" d="M6.017.5H0"
                                                       transform="translate(3.971 10.289)" fill="none" stroke="#9498ac"
                                                       stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                                 <path id="Stroke_2" data-name="Stroke 2" d="M6.017.5H0"
                                                       transform="translate(3.971 7.155)" fill="none" stroke="#9498ac"
                                                       stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                                 <path id="Stroke_3" data-name="Stroke 3" d="M2.3.5H0"
                                                       transform="translate(3.972 4.023)" fill="none" stroke="#9498ac"
                                                       stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                                 <path id="Stroke_4" data-name="Stroke 4"
                                                       d="M0,7.708c0,5.781,1.748,7.708,6.992,7.708s6.992-1.927,6.992-7.708S12.238,0,6.992,0,0,1.927,0,7.708Z"
                                                       transform="translate(0)" fill="none" stroke="#9498ac"
                                                       stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                             </g>
                                         </svg>
                                     </div>
@@ -452,20 +453,20 @@
                                                       d="M7.216,3.6A3.608,3.608,0,0,0,0,3.584V3.6"
                                                       transform="translate(3.962)" fill="none" stroke="#9498ac"
                                                       stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                                 <path id="Stroke_3" data-name="Stroke 3" d="M.515.5H.477"
                                                       transform="translate(9.504 6.853)" fill="none" stroke="#9498ac"
                                                       stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                                 <path id="Stroke_5" data-name="Stroke 5" d="M.515.5H.477"
                                                       transform="translate(4.644 6.853)" fill="none" stroke="#9498ac"
                                                       stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                                 <path id="Stroke_7" data-name="Stroke 7"
                                                       d="M7.57,12.445c-5.423,0-6.047-1.708-7.265-6.222S1.534,0,7.57,0s8.487,1.694,7.265,6.222S12.994,12.445,7.57,12.445Z"
                                                       transform="translate(0 3.338)" fill="none" stroke="#9498ac"
                                                       stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                             </g>
                                         </svg>
                                     </div>
@@ -488,12 +489,12 @@
                                                       d="M2.083,0A2.083,2.083,0,1,1,0,2.083,2.083,2.083,0,0,1,2.083,0Z"
                                                       transform="translate(5 5.833)" fill="none" stroke="#9498ac"
                                                       stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                                 <path id="Stroke_3" data-name="Stroke 3"
                                                       d="M13.89,3.959h0a2.053,2.053,0,0,0-2.816-.76A1.286,1.286,0,0,1,9.145,2.077,2.07,2.07,0,0,0,7.083,0h0A2.07,2.07,0,0,0,5.021,2.077,1.286,1.286,0,0,1,3.093,3.2a2.054,2.054,0,0,0-2.817.76A2.085,2.085,0,0,0,1.031,6.8a1.3,1.3,0,0,1,0,2.243,2.085,2.085,0,0,0-.755,2.837,2.054,2.054,0,0,0,2.816.761h0a1.285,1.285,0,0,1,1.928,1.121h0a2.07,2.07,0,0,0,2.062,2.077h0a2.07,2.07,0,0,0,2.062-2.077h0a1.286,1.286,0,0,1,1.929-1.121,2.054,2.054,0,0,0,2.816-.761,2.085,2.085,0,0,0-.754-2.837h0a1.3,1.3,0,0,1,0-2.243A2.085,2.085,0,0,0,13.89,3.959Z"
                                                       transform="translate(0)" fill="none" stroke="#9498ac"
                                                       stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                             </g>
                                         </svg>
                                     </div>
@@ -516,12 +517,12 @@
                                                       d="M9.292,0S6.617,3.211,4.661,3.211,0,0,0,0"
                                                       transform="translate(3.285 5.139)" fill="none" stroke="#9498ac"
                                                       stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                                 <path id="Stroke_3" data-name="Stroke 3"
                                                       d="M0,7.6C0,1.9,1.984,0,7.937,0s7.937,1.9,7.937,7.6-1.984,7.6-7.937,7.6S0,13.295,0,7.6Z"
                                                       transform="translate(0 0)" fill="none" stroke="#9498ac"
                                                       stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                             </g>
                                         </svg>
                                     </div>
@@ -543,15 +544,15 @@
                                                       d="M0,7.708C0,1.927,1.927,0,7.708,0s7.708,1.927,7.708,7.708-1.927,7.708-7.708,7.708S0,13.489,0,7.708Z"
                                                       transform="translate(15.417 15.417) rotate(180)" fill="none"
                                                       stroke="#9498ac" stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                                 <path id="Stroke_3" data-name="Stroke 3" d="M0,0V3.246"
                                                       transform="translate(7.708 10.954) rotate(180)" fill="none"
                                                       stroke="#9498ac" stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                                 <path id="Stroke_15" data-name="Stroke 15" d="M0,0H.007"
                                                       transform="translate(7.712 4.792) rotate(180)" fill="none"
                                                       stroke="#9498ac" stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5" />
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
                                             </g>
                                         </svg>
                                     </div>
@@ -653,10 +654,10 @@
                                         <g id="Ticket_Star" data-name="Ticket Star" transform="translate(2 3)">
                                             <path id="Fill_1" data-name="Fill 1"
                                                   d="M19.25,10.476a1.476,1.476,0,1,1,0-2.952.754.754,0,0,0,.53-.217A.741.741,0,0,0,20,6.781V4.1A4.129,4.129,0,0,0,15.856,0H4.144A4.129,4.129,0,0,0,0,4.1V6.868a.741.741,0,0,0,.22.526.754.754,0,0,0,.53.217A1.41,1.41,0,0,1,2.239,9,1.484,1.484,0,0,1,.75,10.476.747.747,0,0,0,0,11.22v2.675A4.129,4.129,0,0,0,4.143,18H15.857A4.129,4.129,0,0,0,20,13.895V11.22a.747.747,0,0,0-.75-.743"
-                                                  fill="#556fff" opacity="0.4" />
+                                                  fill="#556fff" opacity="0.4"/>
                                             <path id="Fill_4" data-name="Fill 4"
                                                   d="M7.086,3.388,5.907,4.536l.279,1.623a.741.741,0,0,1-1.076.779L3.655,6.173,2.2,6.939a.739.739,0,0,1-1.072-.78L1.4,4.536.224,3.388A.739.739,0,0,1,.637,2.126l1.626-.237L2.992.412A.738.738,0,0,1,3.655,0h0a.736.736,0,0,1,.662.413l.729,1.476,1.629.238a.739.739,0,0,1,.409,1.261"
-                                                  transform="translate(6.344 5.201)" fill="#556fff" />
+                                                  transform="translate(6.344 5.201)" fill="#556fff"/>
                                         </g>
                                     </svg>
                                 </div>
@@ -672,10 +673,10 @@
                                         <g id="Send" transform="translate(1.833 1.833)">
                                             <path id="Fill_1" data-name="Fill 1"
                                                   d="M17.808.53A1.777,1.777,0,0,0,16.039.072L1.29,4.333A1.754,1.754,0,0,0,.022,5.718,2.049,2.049,0,0,0,.941,7.634L5.553,10.45a1.2,1.2,0,0,0,1.475-.175l5.281-5.281a.674.674,0,0,1,.972,0,.692.692,0,0,1,0,.972L7.99,11.247a1.2,1.2,0,0,0-.177,1.475l2.818,4.629a1.835,1.835,0,0,0,1.751.852,1.782,1.782,0,0,0,1.494-1.265L18.248,2.3A1.781,1.781,0,0,0,17.808.53"
-                                                  transform="translate(0 0)" fill="#de4afd" />
+                                                  transform="translate(0 0)" fill="#de4afd"/>
                                             <path id="Combined_Shape" data-name="Combined Shape"
                                                   d="M4.367,6.99a.688.688,0,0,1,0-.972L5.619,4.766a.688.688,0,1,1,.973.973L5.339,6.99a.687.687,0,0,1-.972,0ZM3.649,3.518a.688.688,0,0,1,0-.972L4.9,1.294a.688.688,0,0,1,.973.973L4.621,3.518a.687.687,0,0,1-.972,0ZM.2,2.425a.688.688,0,0,1,0-.972L1.453.2a.688.688,0,0,1,.973.973L1.173,2.425a.687.687,0,0,1-.972,0Z"
-                                                  transform="translate(0.239 10.948)" fill="#de4afd" opacity="0.4" />
+                                                  transform="translate(0.239 10.948)" fill="#de4afd" opacity="0.4"/>
                                         </g>
                                     </svg>
                                 </div>
@@ -689,10 +690,10 @@
                                         <g id="Document" transform="translate(3 2)">
                                             <path id="Path"
                                                   d="M13.191,0H4.81C1.77,0,0,1.78,0,4.83V15.16C0,18.26,1.77,20,4.81,20h8.381C16.28,20,18,18.26,18,15.16V4.83C18,1.78,16.28,0,13.191,0"
-                                                  fill="#20bbd3" opacity="0.4" />
+                                                  fill="#20bbd3" opacity="0.4"/>
                                             <path id="Combined_Shape" data-name="Combined Shape"
                                                   d="M.12,10.3a.8.8,0,0,1,0-.84A.785.785,0,0,1,.87,9.09H8.71a.79.79,0,0,1,0,1.57H.87a.732.732,0,0,1-.1.007A.783.783,0,0,1,.12,10.3ZM.87,6.09a.781.781,0,0,1,0-1.562H8.71a.781.781,0,0,1,0,1.562Zm0-4.521A.78.78,0,1,1,.87.01V0H3.859a.785.785,0,0,1,0,1.57Z"
-                                                  transform="translate(4.21 4.65)" fill="#20bbd3" />
+                                                  transform="translate(4.21 4.65)" fill="#20bbd3"/>
                                         </g>
                                     </svg>
                                 </div>
@@ -706,12 +707,12 @@
                                         <g id="Wallet" transform="translate(2 3)">
                                             <path id="Fill_1" data-name="Fill 1"
                                                   d="M14.517,18H5.484a5.633,5.633,0,0,1-4.034-1.413A5.332,5.332,0,0,1,0,12.654V5.338A5.32,5.32,0,0,1,1.449,1.409,5.641,5.641,0,0,1,5.484,0h9.03a5.639,5.639,0,0,1,4.034,1.409A5.321,5.321,0,0,1,20,5.338v.037H15.762a3.54,3.54,0,0,0-3.57,3.482,3.421,3.421,0,0,0,1.044,2.467,3.6,3.6,0,0,0,2.527,1.024H20v.306a5.333,5.333,0,0,1-1.449,3.933A5.632,5.632,0,0,1,14.517,18ZM4.739,3.875a.759.759,0,0,0-.761.744.731.731,0,0,0,.222.528.769.769,0,0,0,.54.221H10.39a.769.769,0,0,0,.54-.221.733.733,0,0,0,.222-.529.759.759,0,0,0-.767-.743Z"
-                                                  fill="#694afd" />
+                                                  fill="#694afd"/>
                                             <path id="Fill_4" data-name="Fill 4"
                                                   d="M.037,2.4a2.018,2.018,0,0,0,2,1.6h3.25A.726.726,0,0,0,6,3.266V.734A.728.728,0,0,0,5.283,0H1.956A1.985,1.985,0,0,0,0,2.01,2.031,2.031,0,0,0,.037,2.4"
-                                                  transform="translate(14 6.9)" fill="#694afd" opacity="0.4" />
+                                                  transform="translate(14 6.9)" fill="#694afd" opacity="0.4"/>
                                             <circle id="Oval" cx="1" cy="1" r="1" transform="translate(15 7.9)"
-                                                    fill="#694afd" />
+                                                    fill="#694afd"/>
                                         </g>
                                     </svg>
                                 </div>

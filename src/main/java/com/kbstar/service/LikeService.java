@@ -20,9 +20,10 @@ public class LikeService implements KBService<Integer, Like1> {
     }
 
     @Override
-    public void remove(Integer custNo) throws Exception {
-        mapper.delete(custNo);
+    public void remove(Integer like1) throws Exception {
+        mapper.delete(like1);
     }
+
 
     @Override
     public void modify(Like1 like1) throws Exception {
