@@ -209,59 +209,77 @@ var calendar = new FullCalendar.Calendar(document.getElementById("calendar_check
 
 function addExerciseToCells(eventData) {
     calendar.batchRendering(function () {
-        console.log("진입시작한다!!!");
         calendar.getEventSources().forEach(function (eventSource) {
-            console.log("진입222!!!");
             eventSource.remove(); // 이전에 추가된 이벤트 제거
         });
-        console.log("진입333!!!");
+
         eventData.forEach(function (data) {
             var date = data.date.split(' ')[0];
             var start = data.start.split(' ')[0];
             var myscheduleNo = data.myscheduleNo;
             var classNo = data.classNo;
-            console.log("date 찍어보자" + date);
-            console.log("start 찍어보자" + start);
-            console.log("myscheduleNo 찍어보자" + myscheduleNo);
-            console.log("classNo 찍어보자" + classNo);
 
             var event = {
-                id: 'exercise_' + classNo, // 고유한 ID 생성
+                id: 'exercise_' + date, // 고유한 ID 생성
                 start: date + 'T' + start, // 날짜 및 시간 정보
-                allDay: false,
                 myscheduleNo: myscheduleNo,
                 classNo: classNo
             };
 
-            calendar.addEvent(event); // event 객체를 달력에 추가하는 역할
+            calendar.addEvent(event);
         });
 
         // 각 날짜 셀에 시작 시간 표시
         // fullcalendar 라이브러리의 이벤트 핸들러. 달력에서 각 날짜 셀을 렌더링할 때마다 실행
-        calendar.on('eventDidMount', function (info) {
-            var event = info.event; // 현재 렌더링 중인 이벤트 객체에 접근
-            var date = event.start.toISOString().split('T')[0];
-            var cell = info.el; // 현재 이벤트가 렌더링되는 요소에 접근
+        calendar.on('dayRender', function (info) {
+            var date = info.date;
+            var cell = info.el;
+            var events = calendar.getEvents();
+            var event = events.find(function (ev) {
+                console.log('events:', events);
+                return ev.start.toISOString().split('T')[0] === date.toISOString().split('T')[0];
+            });
 
             if (event) {
                 var start = event.start.getHours() + ':' + event.start.getMinutes(); // 시작 시간 추출
                 var startElement = document.createElement('button');
-                startElement.classList.add('start-time'); // start-time이라는 클래스 속성 부여
+                startElement.classList.add('start-time');
                 startElement.textContent = start;
                 cell.appendChild(startElement);
 
-                startElement.addEventListener('click', function (clickEvent) { // 매개변수 이름 변경: event -> clickEvent
-                    clickEvent.preventDefault();
+                console.log('startElement:', startElement);
 
-                    var startTime = event.start.getHours() + ':' + event.start.getMinutes(); // 시작 시간 추출
-                    var myscheduleNo = event.extendedProps.myscheduleNo;
-                    var classNo = event.extendedProps.classNo;
+                /*
+                <div class="fc-daygrid-event-harness" style="margin-top: 0px;">
+                    <a class="fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end">
+                        <div class="fc-daygrid-event-dot"></div>
+                        <div class="fc-event-time">오전 10:55</div>
+                        <div class="fc-event-title">&nbsp;</div>
+                    </a>
+                </div>
+                 */
 
-                    alert("눌렸음");
 
-                    console.log('Clicked Start Time:', startTime);
-                    console.log('myscheduleNo:', myscheduleNo);
-                    console.log('classNo:', classNo);
+                // 시작 시간 클릭 시 모달 창 열기
+                startElement.addEventListener('click', function (event) {
+                    event.preventDefault(); // 기본 동작 중지
+
+                    // FullCalendar API를 사용하여 이벤트 정보 가져오기
+                    var event = calendar.getEventById('exercise_' + date);
+                    if (event) {
+                        var start = event.start.getHours() + ':' + event.start.getMinutes(); // 시작 시간 추출
+                        var myscheduleNo = event.extendedProps.myscheduleNo;
+                        var classNo = event.extendedProps.classNo;
+
+                        // 모달 창 띄우는 로직 작성
+                        // 모달 창에서 수업 삭제 기능 구현
+
+                        alert("눌렸음");
+
+                        console.log('Clicked Start Time:', start);
+                        console.log('myscheduleNo:', myscheduleNo);
+                        console.log('classNo:', classNo);
+                    }
                 });
             }
         });
@@ -269,29 +287,25 @@ function addExerciseToCells(eventData) {
 }
 
 // 운동 완료 데이터 가져오기
-function getEventData(callback) {
+function getEventData() {
     $.ajax({
         url: '/class/getReservedclass',
         dataType: 'json',
         success: function(data) {
             console.log("======" + JSON.stringify(data) + "=====");
-            callback(data);
+            addExerciseToCells(data);
         },
         error: function() {
             console.log('운동 완료 데이터를 가져오는데 실패했습니다.');
-            callback([]);
         }
     });
 }
 
+// 달력 렌더링 전에 운동 완료 데이터 가져오기
+getEventData();
 
 // 달력 렌더링
 calendar.render();
-
-// 운동 완료 데이터 가져온 후에 달력에 이벤트 추가하기
-getEventData(function(data) {
-    addExerciseToCells(data);
-});
 
 
 // function getEventData(date, callback) {

@@ -175,4 +175,98 @@ public class ClassController {
         return "success";
     }
 
+    @RequestMapping("/my_reservation")
+    public String my_reservation(Model model, String redirectURL) {
+        model.addAttribute("center", dir + "my_reservation");
+        return "index";
+    }
+
+    @RequestMapping("/getReservedclasstime")
+    @ResponseBody
+    public Object getReservedclasstime(Model model, String tdate, HttpSession session) throws Exception {
+        log.info("===== 예약 완료된 time을 찍어보겠습니다 =====");
+
+        Cust cust = null;
+        int custNo = 0;
+        List<MySchedule> list = null;
+        MySchedule ms = new MySchedule();
+        JSONArray ja = new JSONArray();
+
+        // 세션에서 cust, custNo 가져오기
+        if (session != null) {
+            cust = (Cust) session.getAttribute("logincust");
+            custNo = cust.getCustNo();
+
+            log.info("========== 세션의 custNo는 " + custNo + "============");
+
+            ms.setCustNo(custNo); // custNo set
+            ms.setClassDate(tdate); // 특정일자 set
+
+            list = myScheduleService.isReserved_day(ms); // 특정일자 예약된 스케줄 모두 추출
+
+            for (MySchedule obj : list) {
+                JSONObject jo = new JSONObject();
+                jo.put("myscheduleNo", obj.getMyscheduleNo());
+                jo.put("classNo", obj.getClassNo());
+                jo.put("purchaseNo", obj.getPurchaseNo());
+                jo.put("scheduleCompleted", obj.getScheduleCompleted());
+                jo.put("sheduleCanceled", obj.getSheduleCanceled());
+                jo.put("className", obj.getClassName());
+                jo.put("gymName", obj.getGymName());
+                jo.put("trainerName", obj.getTrainerName());
+                jo.put("classDate", obj.getClassDate());
+                jo.put("classStarttime", obj.getClassStarttime());
+                jo.put("classEndtime", obj.getClassEndtime());
+                jo.put("sportsType", obj.getSportsType());
+                jo.put("sportsClasstype", obj.getSportsClasstype());
+
+                ja.add(jo);
+            }
+
+        }
+
+        return ja;
+    }
+
+
+    @RequestMapping("/getReservedclass")
+    @ResponseBody
+    public Object getReservedclass(Model model, HttpSession session) throws Exception {
+        log.info("===== 예약 완료 된 것을 찍어보겠습니다 =====");
+
+        Cust cust = null;
+        int custNo = 0;
+        List<MySchedule> list = null;
+        JSONArray ja = new JSONArray();
+
+        // 세션에서 cust, custNo 가져오기
+        if (session != null) {
+            cust = (Cust) session.getAttribute("logincust");
+            custNo = cust.getCustNo();
+
+            log.info("========== 세션의 custNo는 " + custNo + "============");
+
+            list = myScheduleService.isReserved(custNo); // 예약된 스케줄 모두 추출
+
+            for (MySchedule obj : list) {
+                JSONObject jo = new JSONObject();
+//                jo.put("date", obj.getClassDate());
+//                jo.put("start", DateUtil.getTimeStr(obj.getClassStarttime()));
+//                jo.put("end", DateUtil.getTimeStr(obj.getClassEndtime()));
+                jo.put("title", obj.getClassName());
+                jo.put("date", obj.getClassDate());
+                jo.put("start", DateUtil.getTimeStr(obj.getClassStarttime()));
+                jo.put("end", DateUtil.getTimeStr(obj.getClassEndtime()));
+                jo.put("myscheduleNo", obj.getMyscheduleNo());
+                jo.put("classNo", obj.getClassNo());
+                ja.add(jo);
+            }
+
+        }
+
+        return ja;
+    }
+
+
+
 }

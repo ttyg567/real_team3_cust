@@ -38,17 +38,13 @@ public class MypageController {
     @RequestMapping
     public String main(Model model, HttpSession session) throws Exception {
 
-        Cust cust = (Cust) session.getAttribute("logincust");
-
-        List<Purchase> list = null;
-        list = purchaseService.get();
-
-//        log.info("----------------------------------------");
-//        log.info(list.toString());
-//        log.info("----------------------------------------");
-
-        model.addAttribute("clist", list);
-        session.setAttribute("logincust", cust);
+//        Cust cust = (Cust) session.getAttribute("logincust");
+//
+//        List<Purchase> list = null;
+//        list = purchaseService.get();
+//
+//        model.addAttribute("clist", list);
+//        session.setAttribute("logincust", cust);
         model.addAttribute("center", dir+"center");
         return "index";
     }
@@ -105,33 +101,51 @@ public class MypageController {
 
     @RequestMapping("/getCompleted")
     @ResponseBody
-    public String getCompleted(Model model, String tdate, HttpSession session) throws Exception {
+    public Object getCompleted(Model model, HttpSession session) throws Exception {
         log.info("===== 운동 완료 된 것을 찍어보겠습니다 =====");
 
         Cust cust = null;
         int custNo = 0;
-        MySchedule my = null;
+        MySchedule my = new MySchedule();
         List<MySchedule> list = null;
+        JSONArray ja = new JSONArray();
 
         // 세션에서 cust, custNo 가져오기
         if (session != null) {
             cust = (Cust) session.getAttribute("logincust");
             custNo = cust.getCustNo();
 
-            log.info("========== 세션의 gymNo는 " + custNo + "============");
+            log.info("========== 세션의 custNo는 " + custNo + "============");
 
             my.setCustNo(custNo); // custNo set
-            my.setClassDate(tdate); // 선택한 날짜 set
 
             list = myScheduleService.isCompleted(my); // 운동 완료된 내 스케줄 모두 추출
+
+//            var eventData = [
+//            {
+//                "date": "2023-06-01",
+//                    "completed": true
+//            },
+//            {
+//                "date": "2023-06-05",
+//                    "completed": true
+//            },
+//            {
+//                "date": "2023-06-10",
+//                    "completed": false
+//            },
+//            ];
+
+            for (MySchedule obj : list) {
+                JSONObject jo = new JSONObject();
+                jo.put("date", obj.getClassDate());
+                jo.put("completed", obj.getScheduleCompleted());
+                ja.add(jo);
+            }
+
         }
 
-        if(list == null){
-            return "fail"; // null이면 fail
-        } else {
-            return "success"; // null이 아니면 success
-        }
-
+        return ja;
     }
 
 }

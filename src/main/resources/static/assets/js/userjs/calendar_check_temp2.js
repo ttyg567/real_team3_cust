@@ -123,8 +123,8 @@ function set_time(item) {
     $("#classNo").val(itemObject.classNo); // classNo
 }
 
-// 예약 로직을 처리하는 함수
-function reserveClass(circleCheck) {
+// 예약 취소 로직을 처리하는 함수
+function cancelClass(circleCheck) {
     // 클릭한 circle_check 요소의 부모 요소인 li.item을 찾습니다
     var listItem = circleCheck.closest('.item');
 
@@ -176,10 +176,74 @@ var calendar = new FullCalendar.Calendar(document.getElementById("calendar_check
     initialDate  : '2023-06-05',
 
     /************************ 추가 지정 *************************/
-    // eventColor : 'green',
-    // themeSystem: 'materia',
+    eventColor : 'green',
+    themeSystem: 'materia',
 
-    // events: '/class/getClassdata', // ajax 호출하면 된다. 배열로 주기만 하면 된다.
+    eventClick : function (info) {
+        var eventObj = info.event;
+        console.log("로그" + eventObj.title);
+
+        if (eventObj.url) {
+            alert(
+                'Clicked ' + eventObj.title + '.\n' +
+                'Will open ' + eventObj.url + ' in a new tab'
+            );
+
+            window.open(eventObj.url);
+
+            info.jsEvent.preventDefault(); // prevents browser from following link in current tab.
+        } else {
+            alert(eventObj.title+"모달창을 띄우자");
+        }
+    },
+    eventAdd   : function (obj) { // 이벤트가 추가되면 발생하는 이벤트
+        console.log(obj);
+    },
+    eventChange: function (obj) { // 이벤트가 수정되면 발생하는 이벤트
+        console.log(obj);
+    },
+    eventRemove: function (obj) { // 이벤트가 삭제되면 발생하는 이벤트
+        console.log(obj);
+    },
+
+    // 해당 일자를 누르면 수업 시간표가 나열된다.
+    dateClick: function (info) {
+
+        const date = new Date();
+
+        const year = date.getFullYear();
+        const month = ('0' + (date.getMonth() + 1)).slice(-2);
+        const day = ('0' + date.getDate()).slice(-2);
+        const dateStr = year + '-' + month + '-' + day;
+
+        // $('#tdate').text(info.dateStr);
+        // $('#ttime').text('');
+
+        $.ajax({
+            url     : '/class/getReservedclasstime', // 특정일자 예약된 수업
+            dataType: 'json',
+            data    : {tdate: info.dateStr}
+        }).done(function (data) {
+            let arr = data;
+            let html = '';
+
+            $(arr).each(function(index, item) {
+                console.log(item);
+                // var itemString = JSON.stringify(item); // 직렬화
+                // console.log("json 문자열 확인: " + itemString); // 직렬화 확인
+                // var encodedItemString = encodeURIComponent(itemString); // URL 인코딩
+                // console.log("인코딩된 문자열 확인: " + encodedItemString);
+                // // 다시 디코딩하여 함수 매개변수로 전달
+                // html += '<div><a href="#" class="btn btn-sm btn-outline-primary ml-lg-4" onclick="set_time(decodeURIComponent(\'' + encodedItemString + '\'))">' + item.classTime + '</a></div>';
+            });
+
+            // $('#select_time').show();
+
+            // $('#stime').html(html);
+        });
+    },
+
+    events: '/class/getReservedclass', // ajax 호출하면 된다. 배열로 주기만 하면 된다.
 
     views: {
         month     : {
@@ -207,113 +271,73 @@ var calendar = new FullCalendar.Calendar(document.getElementById("calendar_check
 });
 
 
-function addExerciseToCells(eventData) {
-    calendar.batchRendering(function () {
-        console.log("진입시작한다!!!");
-        calendar.getEventSources().forEach(function (eventSource) {
-            console.log("진입222!!!");
-            eventSource.remove(); // 이전에 추가된 이벤트 제거
-        });
-        console.log("진입333!!!");
-        eventData.forEach(function (data) {
-            var date = data.date.split(' ')[0];
-            var start = data.start.split(' ')[0];
-            var myscheduleNo = data.myscheduleNo;
-            var classNo = data.classNo;
-            console.log("date 찍어보자" + date);
-            console.log("start 찍어보자" + start);
-            console.log("myscheduleNo 찍어보자" + myscheduleNo);
-            console.log("classNo 찍어보자" + classNo);
-
-            var event = {
-                id: 'exercise_' + classNo, // 고유한 ID 생성
-                start: date + 'T' + start, // 날짜 및 시간 정보
-                allDay: false,
-                myscheduleNo: myscheduleNo,
-                classNo: classNo
-            };
-
-            calendar.addEvent(event); // event 객체를 달력에 추가하는 역할
-        });
-
-        // 각 날짜 셀에 시작 시간 표시
-        // fullcalendar 라이브러리의 이벤트 핸들러. 달력에서 각 날짜 셀을 렌더링할 때마다 실행
-        calendar.on('eventDidMount', function (info) {
-            var event = info.event; // 현재 렌더링 중인 이벤트 객체에 접근
-            var date = event.start.toISOString().split('T')[0];
-            var cell = info.el; // 현재 이벤트가 렌더링되는 요소에 접근
-
-            if (event) {
-                var start = event.start.getHours() + ':' + event.start.getMinutes(); // 시작 시간 추출
-                var startElement = document.createElement('button');
-                startElement.classList.add('start-time'); // start-time이라는 클래스 속성 부여
-                startElement.textContent = start;
-                cell.appendChild(startElement);
-
-                startElement.addEventListener('click', function (clickEvent) { // 매개변수 이름 변경: event -> clickEvent
-                    clickEvent.preventDefault();
-
-                    var startTime = event.start.getHours() + ':' + event.start.getMinutes(); // 시작 시간 추출
-                    var myscheduleNo = event.extendedProps.myscheduleNo;
-                    var classNo = event.extendedProps.classNo;
-
-                    alert("눌렸음");
-
-                    console.log('Clicked Start Time:', startTime);
-                    console.log('myscheduleNo:', myscheduleNo);
-                    console.log('classNo:', classNo);
-                });
-            }
-        });
-    });
-}
-
-// 운동 완료 데이터 가져오기
-function getEventData(callback) {
-    $.ajax({
-        url: '/class/getReservedclass',
-        dataType: 'json',
-        success: function(data) {
-            console.log("======" + JSON.stringify(data) + "=====");
-            callback(data);
-        },
-        error: function() {
-            console.log('운동 완료 데이터를 가져오는데 실패했습니다.');
-            callback([]);
-        }
-    });
-}
-
-
 // 달력 렌더링
 calendar.render();
 
-// 운동 완료 데이터 가져온 후에 달력에 이벤트 추가하기
-getEventData(function(data) {
-    addExerciseToCells(data);
-});
 
 
-// function getEventData(date, callback) {
+// // 운동 완료 데이터를 가져오고 날짜별로 셀에 이미지 추가하는 함수
+// function addExerciseImagesToCells(eventData) {
+//     calendar.batchRendering(function() {
+//         calendar.getEventSources().forEach(function(eventSource) {
+//             eventSource.remove(); // 이전에 추가된 이벤트 제거
+//         });
 //
-//     var custNo = $('#custNo').val();
-//     console.log("고객넘버!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + custNo);
+//         var uniqueDates = []; // 중복을 제거하기 위한 배열
 //
-//     $.ajax({
-//         url: '/mypage/getCompleted',
-//         dataType: 'json',
-//         data: {
-//             tdate: date
-//         }
-//     }).done(function (data) {
-//         console.log("운동 완료된 데이터를 찍어보겠습니다");
-//         console.log(data);
-//         callback(data);
-//     }).fail(function () {
-//         callback("fail");
+//         eventData.forEach(function(data) {
+//             // 날짜와 시간 정보를 분리하여 사용
+//             var date = data.date.split(' ')[0];
+//             var time = data.date.split(' ')[1];
+//
+//             // 이미 해당 날짜에 이미지가 추가된 경우 건너뛰기
+//             if (uniqueDates.includes(date)) {
+//                 return;
+//             }
+//
+//             uniqueDates.push(date);
+//
+//             var event = {
+//                 id: 'exercise_' + date, // 고유한 ID 생성
+//                 start: date + 'T' + time, // 날짜 및 시간 정보
+//                 end: date + 'T' + time, // 날짜 및 시간 정보
+//             };
+//
+//             calendar.addEvent(event);
+//         });
+//
+//         // 각 날짜 셀에 이미지 추가
+//         calendar.on('dayRender', function(info) {
+//             var date = info.date;
+//             var cell = info.el;
+//             var events = calendar.getEvents();
+//             var event = events.find(function(ev) {
+//                 return ev.start.toISOString().split('T')[0] === date.toISOString().split('T')[0];
+//             });
+//
+//             if (event && !cell.querySelector('img')) {
+//                 var imageElement = document.createElement('img');
+//                 imageElement.src = "/assets/img/exercise.png";
+//                 cell.appendChild(imageElement);
+//             }
+//         });
 //     });
-//
 // }
 //
+// // 예약한 운동 데이터 가져오기
+// function getEventData() {
+//     $.ajax({
+//         url: '/mypage/getReservedclass',
+//         dataType: 'json',
+//         success: function(data) {
+//             console.log("======" + JSON.stringify(data) + "=====");
+//             addExerciseImagesToCells(data);
+//         },
+//         error: function() {
+//             console.log('운동 완료 데이터를 가져오는데 실패했습니다.');
+//         }
+//     });
+// }
 //
-// calendar.render();
+// // 달력 렌더링 전에 운동 완료 데이터 가져오기
+// getEventData();

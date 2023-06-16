@@ -99,4 +99,3 @@ public class JinController {
         return "index";
     }
 }
-
