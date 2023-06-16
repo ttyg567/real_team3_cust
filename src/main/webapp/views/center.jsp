@@ -155,11 +155,11 @@
           <!-- 카테고리 밑 영역 시작 : 회원 추천 이용권 -->
           <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
               <div>
-                  <h3 class="size-18 weight-500 color-secondary m-0">${logincust.custName}님을 위한 추천 이용권</h3>
-                  <p class="size-13 color-text m-0 pt-1">관심지역 주변 운동센터로 보여드려요</p>
+                  <h3 class="size-18 weight-500 color-secondary m-0">${logincust.custName}님의 운동센터 혼잡도☀️☁️🌩️</h3>
+                  <p class="size-13 color-text m-0 pt-1">운동 예약 전 미리 확인하면 효율 UP!</p>
               </div>
               <a href="/" class="d-block color-text size-12 m-0">더보기</a>
-          </div>
+          </div><br>
               <!-- 이용권 항목들 나열 공간 : Start em_swiper_products -->
               <div class="em_swiper_products margin-b-20">
                   <div class="em_body_products">

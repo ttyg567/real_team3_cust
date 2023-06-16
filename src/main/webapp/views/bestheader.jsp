@@ -152,7 +152,7 @@
                 <a class="nav-link active" href="/best">베스트</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href=/discount>회원할인</a>
+                <a class="nav-link" href=/discount>회원맞춤</a>
             </li>
         </ul>
     </div>
