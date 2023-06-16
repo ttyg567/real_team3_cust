@@ -45,10 +45,12 @@ public class Like1Controller {
 
 //
 @RequestMapping("/like1check")
-public String like1check(Model model, Like1 like1,  HttpSession session) throws Exception {
+public String like1check(Model model, Like1 like1, HttpSession session) throws Exception {
     Cust cust = (Cust) session.getAttribute("logincust");
     List<Like1> list = new ArrayList<>();
-
+    if (cust == null) {
+        return "redirect:/cust/login";
+    }
     list = service.getmylike(cust.getCustNo());
 
     model.addAttribute("center", "myLikeCheck");
