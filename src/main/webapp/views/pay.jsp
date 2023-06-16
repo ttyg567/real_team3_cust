@@ -5,6 +5,7 @@
 
     function executeFunctions() {
         requestPay();
+
     }
 
     function pinsert(){
