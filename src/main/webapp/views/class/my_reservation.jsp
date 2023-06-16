@@ -161,14 +161,14 @@
                         <div class="emBlock__border padding-l-20 bg-snow col-6">
                             <ul class="nav navListProducts">
                                 <li class="nav-item">
-                                    <a id="reservationLink1" class="nav-link active" href="/class/reservation">수업예약</a>
+                                    <a id="reservationLink2" class="nav-link" href="/class/reservation">수업예약</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="emBlock__border padding-l-20 bg-snow col-6">
                             <ul class="nav navListProducts">
                                 <li class="nav-item">
-                                    <a id="myReservationLink1" class="nav-link" href="/class/my_reservation">예약내역조회 및 취소</a>
+                                    <a id="myReservationLink2" class="nav-link active" href="/class/my_reservation">예약내역조회 및 취소</a>
                                 </li>
                             </ul>
                         </div>
@@ -177,16 +177,15 @@
                         <div class="col-12 content_balance bg-white border border-snow padding-10 ">
                             <div class="emTitle_co padding-20">
                                 <h2 class="size-16 weight-500 color-secondary mb-1">${logincust.custName}님, 수업
-                                    예약으로
-                                    매일매일 오운완 도전!</h2>
-                                <p class="size-12 color-text m-0">날짜를 클릭하시면 예약 가능한 수업이 보여집니다.</p>
+                                    예약 현황입니다.</h2>
+                                <p class="size-12 color-text m-0">날짜를 클릭하시면 예약하신 수업 내역이 보여집니다.</p>
                             </div>
                             <!-- 달력 부분 -->
                             <div class="col-12 d-flex justify-content-center"> <!-- 중앙 정렬 스타일 추가 -->
                                 <div class="card card-calendar soft-ui-dashboard">
                                     <div class="card-body p-3">
-                                        <div class="calendar_reserve" data-bs-toggle="calendar_reserve"
-                                             id="calendar_reserve"></div>
+                                        <div class="calendar_check" data-bs-toggle="calendar_check"
+                                             id="calendar_check"></div>
                                     </div>
                                 </div>
                             </div>
@@ -240,4 +239,24 @@
     </form>
 </section>
 
-<script src="/assets/js/userjs/calendar.js"></script>
+<script src="/assets/js/userjs/calendar_check.js"></script>
+
+<script>
+    // 예약내역조회 및 취소 링크를 클릭할 때
+    document.querySelector('.nav-link[href="/class/my_reservation"]').addEventListener('click', function() {
+        // "active" 클래스를 추가
+        this.classList.add('active');
+
+        // 수업예약 링크의 "active" 클래스를 제거
+        document.querySelector('.nav-link[href="/class/reservation"]').classList.remove('active');
+    });
+
+    // 수업예약 링크를 클릭할 때
+    document.querySelector('.nav-link[href="/class/reservation"]').addEventListener('click', function() {
+        // "active" 클래스를 추가
+        this.classList.add('active');
+
+        // 예약내역조회 및 취소 링크의 "active" 클래스를 제거
+        document.querySelector('.nav-link[href="/class/my_reservation"]').classList.remove('active');
+    });
+</script>
