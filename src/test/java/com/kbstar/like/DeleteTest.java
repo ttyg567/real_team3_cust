@@ -17,7 +17,7 @@ class DeleteTest {
     void contextLoads() {
 
          try {
-            service.remove(9);
+            service.remove(33);
 
         } catch (Exception e) {
              log.info("오류");

@@ -1,12 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style>
+    .navListProducts {
+        white-space: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        scroll-padding: 10px;
+    }
 
+    .nav-item {
+        scroll-snap-align: start;
+        display: inline-block;
+        margin-right: 10px;
+    }
+</style>
 <html>
 <head>
     <title>main</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
     </script>
 </head>
+
 <body>
 <div id="wrapper">
     <div id="content">
@@ -37,7 +52,7 @@
             <div class="emBlock__border padding-l-20 bg-snow">
                 <ul class="nav navListProducts">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/ticket/all">전체</a>
+                        <a class="nav-link" href="/ticket/all">전체</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="/ticket/workout">헬스</a>
@@ -62,8 +77,9 @@
                     </li>
                 </ul>
             </div>
-            <!-- 지역 정보가 들어오면 해당 지역의 센터 뿌려주기-->
-            <c:forEach  var="obj" items="${all}" >
+        </section>
+        <!-- 지역 정보가 들어오면 해당 지역의 센터 뿌려주기-->
+        <c:forEach  var="obj" items="${all}" >
             <ul class="itemList__news" style="background-color: white">
 
                 <li class="items-nav">
@@ -71,7 +87,7 @@
                         <div class="media align-items-center">
                             <c:forEach var="img" items="${obj.gymImgname}" varStatus="status">
                                 <c:if test="${status.index eq 0}">
-                                    <img class="img_news" src="/uimg/${img}" alt="">
+                                    <img class="img_news" src="/assets/img/gymImg/${img}" alt="">
                                 </c:if>
                             </c:forEach>
 
@@ -132,7 +148,7 @@
                     </a>
                 </li>
             </ul>
-            </c:forEach>
+        </c:forEach>
         </section>
     </div>
 

@@ -14,7 +14,7 @@ public class SelectMyLikeTest {
     @Test
     void contextLoads(){
         try {
-            service.getmylike(6); // uid 란? 로그인한 고객
+            service.getmylike(8); // uid 란? 로그인한 고객
             log.info("=========== 고객이 like한 상품 조회 완료============");
         } catch (Exception e) {
             log.info("에러...");

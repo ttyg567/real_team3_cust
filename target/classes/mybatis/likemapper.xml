@@ -5,26 +5,31 @@
 <mapper namespace="com.kbstar.mapper.LikeMapper">
     <!-- 본인의 찜만만 조회해주기.
        <a href="/like?custNo=${loginuser.custNo}">-->
-<select id="selectall" resultType="Like1">
-    SELECT * FROM Like1
-</select>
-<select id="getmylike"  resultType="like1" >
-        select * from Like1
-            WHERE  custNo = #{custNo}
-</select>
-<insert id="insert" parameterType="Like1">
-    <selectKey keyProperty="likeNo" resultType="int" order="BEFORE">
-        SELECT Like1_seq.NEXTVAL FROM DUAL
-    </selectKey>
-    INSERT INTO Like1 (likeNo, custNo, ticketNo, likeStatus)
-    SELECT #{likeNo}, #{custNo}, #{ticketNo}, '1' FROM DUAL
-    WHERE NOT EXISTS (
-    SELECT 1 FROM Like1
-    WHERE custNo = #{custNo} AND ticketNo = #{ticketNo}
-    )
-</insert>
-<delete id="delete" parameterType="Like1">
-    DELETE FROM Like1
-    WHERE custNo = #{custNo} AND ticketNo = #{ticketNo}
-</delete>
+    <select id="selectall" resultType="Like1">
+        SELECT * FROM Like1
+    </select>
+    <select id="getmylike"  resultType="Like1" >
+        SELECT t.ticketName, t.ticketCost, gi.gymImgName, g.gymName, g.gymNo, l.likeNo
+        FROM Like1 l
+                 JOIN ticket t ON l.ticketNo = t.ticketNo
+                 JOIN gymImg gi ON t.gymNo = gi.gymNo
+                 JOIN gym g ON t.gymNo = g.gymNo
+        WHERE l.custNo = #{custNo}
+          AND gi.GYMIMGDETAILCK = 0
+    </select>
+    <insert id="insert" parameterType="Like1">
+        <selectKey keyProperty="likeNo" resultType="int" order="BEFORE">
+            SELECT Like1_seq.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO Like1 (likeNo, custNo, ticketNo, likeStatus)
+        SELECT #{likeNo}, #{custNo}, #{ticketNo}, '1' FROM DUAL
+        WHERE NOT EXISTS (
+        SELECT 1 FROM Like1
+        WHERE custNo = #{custNo} AND ticketNo = #{ticketNo}
+        )
+    </insert>
+    <delete id="delete" parameterType="Like1">
+        DELETE FROM Like1
+        WHERE likeNo = #{likeNo}
+    </delete>
 </mapper>

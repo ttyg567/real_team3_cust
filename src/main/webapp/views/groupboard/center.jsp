@@ -172,7 +172,7 @@
 <%--</section>--%>
 </section>
 </section>
-<hr style="height: 30px; color: #EFECEC; border: none; border-top: 5px solid;">
+<hr style="height: 30px; color: #EFECEC; border: none; border-top: 10px solid;">
 <!-- End. emCategories__learning -->
 
 <!-- Start em_swiper_products -->
