@@ -229,73 +229,77 @@ var calendar = new FullCalendar.Calendar(document.getElementById("calendar_reser
         const day = ('0' + date.getDate()).slice(-2);
         const dateStr = year + '-' + month + '-' + day;
 
-        $('#tdate').text(info.dateStr);
-        $('#ttime').text('');
+        $('#tdate').text("수업 예약");
+        // $('#ttime').text('');
 
         // 세션에 담긴 custNo 추출
         var custNo = $('#custNo').val();
         console.log("고객넘버는 " + custNo);
 
         $.ajax({
-            url     : '/class/getMyclass',
+            url: '/class/getMyclass',
             dataType: 'json',
-            data    : {
+            data: {
                 tdate: info.dateStr
             }
-        }).done(function (data) {
-            var itemList = data; // data를 itemList 변수에 담기
-            var listHTML = ''; // 요소를 생성할 HTML 문자열 변수 초기화
+        }).done(function(data) {
+            var itemList = data;
+            var listHTML = '';
 
-            // itemList을 순회하며 요소를 생성하는 코드
-            for (var i = 0; i < itemList.length; i++) {
-                var item = itemList[i];
+            if (itemList.length === 0) {
+                let modal = $('#mdllAdd_Address');
+                listHTML = '<li class="item">예약 가능한 수업이 없습니다.</li>';
+            } else {
+                for (let i = 0; i < itemList.length; i++) {
+                    let item = itemList[i];
 
-                // 숫자에 따라 운동 종목 지정
-                let sportsTypeText = '';
-                if (item.sportsType.trim() === "1") {
-                    sportsTypeText = '헬스';
-                } else if (item.sportsType.trim() === "2") {
-                    sportsTypeText = 'PT';
-                } else if (item.sportsType.trim() === "3") {
-                    sportsTypeText = '크로스핏';
-                } else if (item.sportsType.trim() === "4") {
-                    sportsTypeText = '요가';
-                } else if (item.sportsType.trim() === "5") {
-                    sportsTypeText = '필라테스';
-                } else if (item.sportsType.trim() === "6") {
-                    sportsTypeText = '골프';
-                } else if (item.sportsType.trim() === "7") {
-                    sportsTypeText = '수영';
-                } else {
-                    sportsTypeText = '기타';
+                    // 숫자에 따라 운동 종목 지정
+                    let sportsTypeText = '';
+                    if (item.sportsType.trim() === "1") {
+                        sportsTypeText = '헬스';
+                    } else if (item.sportsType.trim() === "2") {
+                        sportsTypeText = 'PT';
+                    } else if (item.sportsType.trim() === "3") {
+                        sportsTypeText = '크로스핏';
+                    } else if (item.sportsType.trim() === "4") {
+                        sportsTypeText = '요가';
+                    } else if (item.sportsType.trim() === "5") {
+                        sportsTypeText = '필라테스';
+                    } else if (item.sportsType.trim() === "6") {
+                        sportsTypeText = '골프';
+                    } else if (item.sportsType.trim() === "7") {
+                        sportsTypeText = '수영';
+                    } else {
+                        sportsTypeText = '기타';
+                    }
+
+                    // 숫자에 따라 수업 형태 지정
+                    let sportsClasstypeText = '';
+                    if (item.sportsClasstype.trim() === "1") {
+                        sportsClasstypeText = '1:1수업';
+                    } else if (item.sportsClasstype.trim() === "2") {
+                        sportsClasstypeText = '그룹수업';
+                    } else if (item.sportsClasstype.trim() === "3") {
+                        sportsClasstypeText = '자유수업';
+                    } else {
+                        sportsClasstypeText = '기타';
+                    }
+
+                    listHTML += '<li class="item">';
+                    listHTML += '<div class="personal__info">';
+                    listHTML += '<h1 class="size-15 color-secondary weight-400">수업명: ' + item.className + '</h1>';
+                    listHTML += '<span class="size-13 color-text weight-400 d-inline-block" id="gymName">센터: ' + item.gymName + ',' + '</span>&nbsp;&nbsp;';
+                    listHTML += '<span class="size-13 color-text weight-400 d-inline-block" id="trainerName">강사: ' + item.trainerName + '</span>';
+                    listHTML += '<p class="size-13 color-text weight-400" id="classTime">수업시간: ' + item.classTime + '</p>';
+                    listHTML += '<span class="size-13 color-text weight-400 d-inline-block" id="sportsType">운동종목: ' + sportsTypeText + ',' + '</span>&nbsp;&nbsp;';
+                    listHTML += '<span class="size-13 color-text weight-400 d-inline-block" id="sportsClasstype">수업형태: ' + sportsClasstypeText + '</span>';
+                    listHTML += '<input type="hidden" id="classNo" value="' + item.classNo + '"/>'; // hidden으로 classNo 추가
+                    listHTML += '</div>';
+                    listHTML += '<div class="areaRight">';
+                    listHTML += '<span class="circle_check"></span>';
+                    listHTML += '</div>';
+                    listHTML += '</li>';
                 }
-
-                // 숫자에 따라 수업 형태 지정
-                let sportsClasstypeText = '';
-                if (item.sportsClasstype.trim() === "1") {
-                    sportsClasstypeText = '1:1수업';
-                } else if (item.sportsClasstype.trim() === "2") {
-                    sportsClasstypeText = '그룹수업';
-                } else if (item.sportsClasstype.trim() === "3") {
-                    sportsClasstypeText = '자유수업';
-                } else {
-                    sportsClasstypeText = '기타';
-                }
-
-                listHTML += '<li class="item">';
-                listHTML += '<div class="personal__info">';
-                listHTML += '<h1 class="size-15 color-secondary weight-400">수업명 : ' + item.className + '</h1>';
-                listHTML += '<span class="size-13 color-text weight-400 d-inline-block" id="gymName">센터 : ' + item.gymName + ',' + '</span>&nbsp;&nbsp;';
-                listHTML += '<span class="size-13 color-text weight-400 d-inline-block" id="trainerName">강사 : ' + item.trainerName + '</span>';
-                listHTML += '<p class="size-13 color-text weight-400" id="classTime">수업시간 : ' + item.classTime + '</p>';
-                listHTML += '<span class="size-13 color-text weight-400 d-inline-block" id="sportsType">운동종목: ' + sportsTypeText + ',' + '</span>&nbsp;&nbsp;';
-                listHTML += '<span class="size-13 color-text weight-400 d-inline-block" id="sportsClasstype">수업형태: ' + sportsClasstypeText + '</span>';
-                listHTML += '<input type="hidden" id="classNo" value="' + item.classNo + '"/>'; // hidden으로 classNo 추가
-                listHTML += '</div>';
-                listHTML += '<div class="areaRight">';
-                listHTML += '<span class="circle_check"></span>';
-                listHTML += '</div>';
-                listHTML += '</li>';
             }
 
             // 생성된 요소를 ul 요소에 추가
@@ -313,25 +317,38 @@ var calendar = new FullCalendar.Calendar(document.getElementById("calendar_reser
         //     // reserveClass($(this));
         // });
 
-        // 모달 창이 열릴 때마다 .circle_check 요소 클릭 이벤트 핸들러 추가
-        $('#mdllAdd_Address').on('shown.bs.modal', function () {
-            $(this).find('.circle_check').click(function () {
-                $(this).toggleClass('active');
+        // 모달 창 열릴 때 클릭 이벤트 핸들러 추가
+        $(document).on('shown.bs.modal', '#mdllAdd_Address', function () {
+            $('.circle_check').click(function () {
+                console.log("클릭되었습니다.");
+
+                if ($(this).hasClass('active')) {
+                    // 이미 활성화된 요소를 클릭한 경우
+                    $(this).removeClass('active');
+                } else {
+                    // 비활성화된 요소를 클릭한 경우
+                    $('.circle_check').removeClass('active');
+                    $(this).addClass('active');
+                }
             });
         });
 
-        // 모달 창이 닫힐 때마다 .circle_check 요소 클릭 이벤트 핸들러 제거
-        $('#mdllAdd_Address').on('hidden.bs.modal', function () {
-            $(this).find('.circle_check').off('click');
+        // 모달 창 닫힐 때 클릭 이벤트 핸들러 제거
+        $(document).on('hidden.bs.modal', '#mdllAdd_Address', function () {
+            console.log("모달 창 닫혔다 !! ");
+            $('.circle_check').off('click');
         });
 
-        // 예약 버튼 눌렀을 때
-        $('#reserve_btn').click(function () {
+// 예약 버튼 눌렀을 때
+        $(document).on('click', '#reserve_btn', function () {
             // 정보가 있는지 확인
             if ($('.circle_check.active').length === 0) {
                 alert("예약하실 수업을 선택해주세요."); // 정보가 없을 경우 alert 창을 띄웁니다.
                 return;
             }
+
+            // 버튼 비활성화
+            $(this).prop('disabled', true);
 
             let classNo = $('.circle_check.active').closest('.item').find('#classNo').val();
 
@@ -344,6 +361,7 @@ var calendar = new FullCalendar.Calendar(document.getElementById("calendar_reser
                     if (response === "success") {
                         alert("예약이 완료되었습니다");
                         $('#mdllAdd_Address').modal('hide'); // 모달 창을 닫습니다
+                        window.location.href = "/class/my_reservation"; // 페이지 이동
                     } else {
                         alert("예약에 실패하였습니다");
                         $('#mdllAdd_Address').modal('hide'); // 모달 창을 닫습니다
@@ -352,6 +370,10 @@ var calendar = new FullCalendar.Calendar(document.getElementById("calendar_reser
                 error: function (error) {
                     alert("예약에 실패하였습니다");
                     $('#mdllAdd_Address').modal('hide');
+                },
+                complete: function () {
+                    // 버튼 다시 활성화
+                    $('#reserve_btn').prop('disabled', false);
                 }
             });
         });

@@ -139,7 +139,7 @@
                                                     </g>
                                                 </svg>
                                             </div>
-                                            <span>좋아요 수 </span>
+                                            <span>${obj.likecount} </span>
                                         </div>
                                     </div>
                                 </div>

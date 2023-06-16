@@ -1,6 +1,97 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script>
+    let websocket = {
+        id:null,
+        stompClient:null,
+        init:function(){
+            this.id = $('#adm_id').text();
+            $("#connect").click(function() {
+                websocket.connect();
+            });
+            $("#disconnect").click(function() {
+                websocket.disconnect();
+            });
+            // $("#sendall").click(function() {
+            //     websocket.sendAll();
+            // });
+            // $("#sendme").click(function() {
+            //     websocket.sendMe();
+            // });
+            $("#sendto").click(function() {
+                websocket.sendTo();
+            });
+        },
+        connect:function(){
+            var sid = this.id;
+            var socket = new SockJS('${adminserver}/ws');
+            this.stompClient = Stomp.over(socket);
+
+            this.stompClient.connect({}, function(frame) {
+                websocket.setConnected(true);
+                console.log('Connected: ' + frame);
+                this.subscribe('/send', function(msg) {
+                    $("#all").prepend(
+                        "<h4>" + JSON.parse(msg.body).sendid +":"+
+                        JSON.parse(msg.body).content1
+                        + "</h4>");
+                });
+                this.subscribe('/send/'+sid, function(msg) {
+                    $("#me").prepend(
+                        "<h4>" + JSON.parse(msg.body).sendid +":"+
+                        JSON.parse(msg.body).content1+ "</h4>");
+                });
+                this.subscribe('/send/to/'+sid, function(msg) {
+                    $("#to").prepend(
+                        "<h4>" + JSON.parse(msg.body).sendid +":"+
+                        JSON.parse(msg.body).content1
+                        + "</h4>");
+                });
+            });
+        },
+        disconnect:function(){
+            if (this.stompClient !== null) {
+                this.stompClient.disconnect();
+            }
+            websocket.setConnected(false);
+            console.log("Disconnected");
+        },
+        setConnected:function(connected){
+            if (connected) {
+                $("#status").text("Connected");
+            } else {
+                $("#status").text("Disconnected");
+            }
+        },
+        sendAll:function(){
+            var msg = JSON.stringify({
+                'sendid' : this.id,
+                'content1' : $("#alltext").val()
+            });
+            this.stompClient.send("/receiveall", {}, msg);
+        },
+        sendTo:function(){
+            var msg = JSON.stringify({
+                'sendid' : this.id,
+                'receiveid' : $('#target').val(),
+                'content1' : $('#totext').val()
+            });
+            this.stompClient.send('/receiveto', {}, msg);
+        },
+        sendMe:function(){
+            var msg = JSON.stringify({
+                'sendid' : this.id,
+                'content1' : $('#metext').val()
+            });
+            this.stompClient.send("/receiveme", {}, msg);
+        }
+    };
+    $(function(){
+        websocket.init();
+    })
+
+</script>
 
 <html>
 <head>
@@ -78,80 +169,9 @@
                     </div>
                 </div>
             </div>
-            <div class="item_user">
-                <div class="media">
-                    <div class="imgProfile">
-                        <img src="assets/img/persons/16.png" alt="">
-                    </div>
-                    <div class="media-body">
-                        <div class="content_sms">
-                            <p class="item_msg">
-                                I bought a ticket, but did <br> not reach me !
-                            </p>
-                            <div class="time">09:33 AM</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="dividar_time d-flex justify-content-center text-center">
-                <span class="size-13 color-snow">15 Jun, 2020</span>
-            </div>
-            <div class="item_user __me">
-                <div class="media">
-                    <div class="media-body">
-                        <div class="content_sms">
-                            <p class="item_msg">
-                                How long the purchase
-                            </p>
-                            <button type="button" class="btn btn_file_down">
-                                <i class="tio-download_to"></i>
-                                <span>126545645.pdf</span>
-                            </button>
-                            <div class="time">
-                                <span>09:42 AM</span>
-                                <div class="icon ml-1">
-                                    <i class="ri-check-double-line color-text size-18"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item_user">
-                <div class="media">
-                    <div class="imgProfile">
-                        <img src="assets/img/persons/16.png" alt="">
-                    </div>
-                    <div class="media-body">
-                        <div class="content_sms">
-                            <p class="item_msg">
-                                Id No: 165805 😁
-                            </p>
-                            <div class="time">09:46 AM</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item_user __me">
-                <div class="media">
-                    <div class="media-body">
-                        <div class="content_sms">
-                            <p class="item_msg">
-                                How long the purchase
-                            </p>
-                            <div class="time">
-                                <span>09:52 AM</span>
-                                <div class="icon ml-1">
-                                    <i class="ri-check-line color-text size-18"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <div class="env-pb bg-white fixed w-100 bottom-0">
-                <div class="bk_footer_input emBK__buttonsShare">
+                <div class="bk_footer_input emBK__buttonsShare" style="margin-bottom: 30%">
                     <button type="button" class="btn btn_upload p-0" data-toggle="modal" data-target="#mdllButtons">
                         <div class="icon bg-snow rounded-10">
                             <i class="ri-attachment-line size-20"></i>
@@ -182,56 +202,7 @@
 
 
     <!-- Modal Buttons Share -->
-    <div class="modal transition-bottom -inside screenFull defaultModal mdlladd__rate fade" id="mdllButtons_share"
-         tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content rounded-15">
 
-                <div class="modal-body rounded-15 p-0">
-                    <div class="emBK__buttonsShare icon__share padding-20">
-                        <button type="button" class="btn" data-sharer="facebook" data-hashtag="hashtag"
-                                data-url="https://orinostudio.com/nepro/">
-                            <div class="icon bg-facebook rounded-10">
-                                <i class="tio-facebook_square"></i>
-                            </div>
-                        </button>
-                        <button type="button" class="btn" data-sharer="telegram" data-title="Checkout Nepro!"
-                                data-url="https://orinostudio.com/nepro/" data-to="+44555-5555">
-                            <div class="icon bg-telegram rounded-10">
-                                <i class="tio-telegram"></i>
-                            </div>
-                        </button>
-                        <button type="button" class="btn" data-sharer="skype"
-                                data-url="https://orinostudio.com/nepro/" data-title="Checkout Nepro!">
-                            <div class="icon bg-skype rounded-10">
-                                <i class="tio-skype"></i>
-                            </div>
-                        </button>
-                        <button type="button" class="btn" data-sharer="linkedin"
-                                data-url="https://orinostudio.com/nepro/">
-                            <div class="icon bg-linkedin rounded-10">
-                                <i class="tio-linkedin_square"></i>
-                            </div>
-                        </button>
-                        <button type="button" class="btn" data-sharer="twitter" data-title="Checkout Nepro!"
-                                data-hashtags="pwa, Nepro, template, mobile, app, shopping, ecommerce"
-                                data-url="https://orinostudio.com/nepro/">
-                            <div class="icon bg-twitter rounded-10">
-                                <i class="tio-twitter"></i>
-                            </div>
-                        </button>
-                        <button type="button" class="btn" data-sharer="whatsapp" data-title="Checkout Nepro!"
-                                data-url="https://orinostudio.com/nepro/">
-                            <div class="icon bg-whatsapp rounded-10">
-                                <i class="tio-whatsapp_outlined"></i>
-                            </div>
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Modal Content -->
     <div class="modal transition-bottom screenFull defaultModal mdlladd__rate fade" id="mdllButtons" tabindex="-1"

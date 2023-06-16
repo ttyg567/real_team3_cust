@@ -44,8 +44,10 @@ public class Gym {
     private String rank;
     //Marketing정보
     private int ticketNo;
+    private String ticketName;
     private int ticketPrice;
     private int minTicketPrice;
     private int ticketDiscount;
 
+    private int likecount;
 }

@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
+<%-- 베스트센터 이미지 : 규격에 꽉차게 함. --%>
+    .image_bg {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+    }
 <%-- 운동 종목 : 텍스트 글씨 진하게 --%>
   .em__actions span{
     font-weight: bolder;
@@ -74,9 +82,11 @@
                                   <div
                                           class="text_img position-absolute bottom-0 padding-b-50 padding-l-20 text-left">
                                       <h2 data-swiper-parallax="-300"
-                                          class="size-27 weight-600 color-white text-uppercase mb-1">
+                                          class="size-27 weight-600 color-white text-uppercase mb-1"
+                                          style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);">
                                           헬쓱 최다검색 센터<br>성수 밥불러스</h2>
-                                      <p data-swiper-parallax="-200" class="size-12 color-white">
+                                      <p data-swiper-parallax="-200" class="size-12 color-white"
+                                         style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);">
                                           조인인원 모집 시 20% 할인 쿠폰 증정</p>
                                   </div>
                               </a>
@@ -89,14 +99,16 @@
                       <div class="--item-inside">
                           <div class="cover_img">
                               <a href="/groupboard">
-                                  <img src="/assets/img/health3.jpg" alt="">
+                                  <img src="/assets/img/gymImg/yoga_main_7.jpg" alt="">
                                   <div
                                           class="text_img position-absolute bottom-0 padding-b-50 padding-l-20 text-left">
                                       <h2 data-swiper-parallax="-300"
-                                          class="size-27 weight-600 color-white text-uppercase mb-1">
-                                          헬쓱 최다검색 센터<br>성수 밥불러스</h2>
-                                      <p data-swiper-parallax="-200" class="size-12 color-white">
-                                          조인인원 모집 시 20% 할인 쿠폰 증정</p>
+                                          class="size-27 weight-600 color-black text-uppercase mb-1"
+                                          style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);">
+                                          체계적인 커리큘럼과 회원 바디관리<br>클라임 요가원</h2>
+                                      <p data-swiper-parallax="-200" class="size-12 color-black"
+                                         style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);">
+                                          조인인원 모집 시 15% 할인 쿠폰 증정</p>
                                   </div>
                               </a>
                           </div>
@@ -107,14 +119,16 @@
                       <div class="--item-inside">
                           <div class="cover_img">
                               <a href="/groupboard">
-                                  <img src="/assets/img/health3.jpg" alt="">
+                                  <img src="/assets/img/gymImg/crossfit_main_12.jpg" alt="">
                                   <div
                                           class="text_img position-absolute bottom-0 padding-b-50 padding-l-20 text-left">
                                       <h2 data-swiper-parallax="-300"
-                                          class="size-27 weight-600 color-white text-uppercase mb-1">
-                                          헬쓱 최다검색 센터<br>성수 밥불러스</h2>
-                                      <p data-swiper-parallax="-200" class="size-12 color-white">
-                                          조인인원 모집 시 20% 할인 쿠폰 증정</p>
+                                          class="size-27 weight-600 color-white text-uppercase mb-1"
+                                          style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);">
+                                          WOMEN 전용 크로스핏 센터 오픈<br>리베핏</h2>
+                                      <p data-swiper-parallax="-200" class="size-12 color-white"
+                                         style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);">
+                                          20% 할인 쿠폰 증정</p>
                                   </div>
                               </a>
                           </div>
@@ -129,10 +143,10 @@
       </div><!-- End. banner_sliderFull -->
       <div class="title d-flex justify-content-between align-items-center padding-t-20 padding-l-20 padding-r-20">
           <div>
-              <h3 class="size-18 weight-500 color-secondary m-0">6월 베스트</h3>
+              <h3 class="size-18 weight-500 color-secondary m-0">6월 베스트 센터</h3>
               <p class="size-13 color-text m-0 pt-1">운동환경 관리에 우수한 센터들이 선정됐어요😷</p>
           </div>
-          <a href="/groupboard/groupboard_list" class="d-block color-text size-12">더보기</a>
+          <a href="/ticket/all" class="d-block color-text size-12">더보기</a>
       </div>
       <!-- 베스트 선정 항목 카데고리들  Start navListProducts -->
       <!-- Start navListProducts -->
@@ -195,7 +209,7 @@
                       <div class="item em_item_product item_list">
                           <div class="em_head">
                               <a href="#" class="image_product">
-                                  <img src="/assets/img/gymImg/${gym.gymImgname}" alt="">
+                                  <div class="image_bg" style="background-image: url('/assets/img/gymImg/${gym.gymImgname}');"></div>
                               </a>
                           </div>
                           <div class="title_product">
@@ -214,27 +228,62 @@
 
                               <div class="itemRating">
                                   <span class="number">우수</span>
-                                  <span class="users">9 Reviews</span>
+                                  <span class="users">좋아요 수</span>
                               </div>
-                              <h3>Mens 100% Cotton Solid Color Panda Print Thin Casual T-Shirt</h3>
-                              <p class="item_price">$23.00</p>
-
-                              <button type="button" class="btn btn_addCart item-active">
-                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                       xmlns="http://www.w3.org/2000/svg">
-                                      <path opacity="0.4" fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M12.75 8.32727C12.75 7.91306 12.4142 7.57727 12 7.57727C11.5858 7.57727 11.25 7.91306 11.25 8.32727V11.2405H8.33333C7.91911 11.2405 7.58333 11.5763 7.58333 11.9905C7.58333 12.4047 7.91911 12.7405 8.33333 12.7405H11.25V15.6536C11.25 16.0678 11.5858 16.4036 12 16.4036C12.4142 16.4036 12.75 16.0678 12.75 15.6536V12.7405H15.6667C16.0809 12.7405 16.4167 12.4047 16.4167 11.9905C16.4167 11.5763 16.0809 11.2405 15.6667 11.2405H12.75V8.32727Z"
-                                            fill="#200E32" />
-                                      <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M16.6857 2H7.31429C4.04762 2 2 4.31208 2 7.58516V16.4148C2 19.6879 4.0381 22 7.31429 22H16.6857C19.9619 22 22 19.6879 22 16.4148V7.58516C22 4.31208 19.9619 2 16.6857 2Z"
-                                            stroke="#200E32" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                  </svg>
-                                  <div class="icon_active"></div>
-                                  <span class="txt_added">Added!</span>
-                              </button>
+                              <h3>최신시설과 쾌적한 센터환경 유지로 헬쓱이용 회원 최고 만족도!</h3>
+                              <p class="item_price">${gym.gymName}</p>
                           </div>
                       </div>
+                    <%--    이용권 리스트 아코디언 : component-multiple-listview.html   --%>
+                        <!-- Start emPage___profile -->
+                        <div class="em__pkLink accordion bg-white" id="accordionExample5">
+                            <ul class="nav__list with_border fullBorder">
+
+                                <li>
+                                    <div id="headingTwo-text">
+                                        <div class="item-link main_item" data-toggle="collapse"
+                                             data-target="#collapseTwo-text"
+                                             aria-expanded="false" aria-controls="collapseTwo-text">
+                                            <div class="group">
+
+                                                <div>
+                                                    <span class="path__name">운동 이용권</span>
+                                                </div>
+                                            </div>
+                                            <div class="group">
+                                                <span class="short__name"></span>
+                                                <i class="tio-chevron_right -arrwo"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </li>
+                                    <%-- 운동 이용권 선택 시 나오는 아코디언 --%>
+                                <div id="collapseTwo-text" class="collapse" aria-labelledby="headingTwo-text"
+                                     data-parent="#accordionExample5">
+                                    <div class="em__pkLink">
+                                        <c:forEach var="gym" items="${allGym}">
+                                            <ul class="nav__list with_border fullBorder mb-0">
+                                                <li class="border-0">
+                                                    <a href="#" class="item-link">
+                                                        <div class="group">
+                                                            <span class="path__name">${gym.ticketName}</span>
+                                                                <%--                                                            <span class="path__name">${gym.ticketName}</span>--%>
+                                                        </div>
+                                                        <div class="group">
+                                                            <span class="short__name"></span>
+                                                            <i class="tio-chevron_right -arrwo"></i>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </c:forEach>
+                                    </div>
+                                </div>
+
+                            </ul>
+                        </div>
+                        <!-- End. emPage___profile  -->
                     </c:forEach>
                   </div>
 
@@ -249,7 +298,7 @@
                       <div class="item em_item_product item_list">
                           <div class="em_head">
                               <a href="#" class="image_product">
-                                  <img src="/assets/img/gymImg/${gym.gymImgname}" alt="">
+                                  <div class="image_bg" style="background-image: url('/assets/img/gymImg/${gym.gymImgname}');"></div>
                               </a>
                           </div>
                           <div class="title_product">
@@ -272,21 +321,6 @@
                               </div>
                               <h3>베스트 헬스장</h3>
                               <p class="item_price">$23.00</p>
-
-                              <button type="button" class="btn btn_addCart item-active">
-                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                       xmlns="http://www.w3.org/2000/svg">
-                                      <path opacity="0.4" fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M12.75 8.32727C12.75 7.91306 12.4142 7.57727 12 7.57727C11.5858 7.57727 11.25 7.91306 11.25 8.32727V11.2405H8.33333C7.91911 11.2405 7.58333 11.5763 7.58333 11.9905C7.58333 12.4047 7.91911 12.7405 8.33333 12.7405H11.25V15.6536C11.25 16.0678 11.5858 16.4036 12 16.4036C12.4142 16.4036 12.75 16.0678 12.75 15.6536V12.7405H15.6667C16.0809 12.7405 16.4167 12.4047 16.4167 11.9905C16.4167 11.5763 16.0809 11.2405 15.6667 11.2405H12.75V8.32727Z"
-                                            fill="#200E32" />
-                                      <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M16.6857 2H7.31429C4.04762 2 2 4.31208 2 7.58516V16.4148C2 19.6879 4.0381 22 7.31429 22H16.6857C19.9619 22 22 19.6879 22 16.4148V7.58516C22 4.31208 19.9619 2 16.6857 2Z"
-                                            stroke="#200E32" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                  </svg>
-                                  <div class="icon_active"></div>
-                                  <span class="txt_added">Added!</span>
-                              </button>
                           </div>
                       </div>
                     </c:forEach>
@@ -301,7 +335,7 @@
                       <div class="item em_item_product item_list">
                           <div class="em_head">
                               <a href="#" class="image_product">
-                                  <img src="/assets/img/gymImg/${gym.gymImgname}" alt="">
+                                  <div class="image_bg" style="background-image: url('/assets/img/gymImg/${gym.gymImgname}');"></div>
                               </a>
                           </div>
                           <div class="title_product">
@@ -324,21 +358,6 @@
                               </div>
                               <h3>베스트 PT</h3>
                               <p class="item_price">$23.00</p>
-
-                              <button type="button" class="btn btn_addCart item-active">
-                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                       xmlns="http://www.w3.org/2000/svg">
-                                      <path opacity="0.4" fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M12.75 8.32727C12.75 7.91306 12.4142 7.57727 12 7.57727C11.5858 7.57727 11.25 7.91306 11.25 8.32727V11.2405H8.33333C7.91911 11.2405 7.58333 11.5763 7.58333 11.9905C7.58333 12.4047 7.91911 12.7405 8.33333 12.7405H11.25V15.6536C11.25 16.0678 11.5858 16.4036 12 16.4036C12.4142 16.4036 12.75 16.0678 12.75 15.6536V12.7405H15.6667C16.0809 12.7405 16.4167 12.4047 16.4167 11.9905C16.4167 11.5763 16.0809 11.2405 15.6667 11.2405H12.75V8.32727Z"
-                                            fill="#200E32" />
-                                      <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M16.6857 2H7.31429C4.04762 2 2 4.31208 2 7.58516V16.4148C2 19.6879 4.0381 22 7.31429 22H16.6857C19.9619 22 22 19.6879 22 16.4148V7.58516C22 4.31208 19.9619 2 16.6857 2Z"
-                                            stroke="#200E32" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                  </svg>
-                                  <div class="icon_active"></div>
-                                  <span class="txt_added">Added!</span>
-                              </button>
                           </div>
                       </div>
                     </c:forEach>
@@ -353,7 +372,7 @@
                       <div class="item em_item_product item_list">
                           <div class="em_head">
                               <a href="#" class="image_product">
-                                 <img src="/assets/img/gymImg/${gym.gymImgname}" alt="">
+                                  <div class="image_bg" style="background-image: url('/assets/img/gymImg/${gym.gymImgname}');"></div>
                               </a>
                           </div>
                           <div class="title_product">
@@ -376,21 +395,6 @@
                               </div>
                               <h3>베스트 crossfit</h3>
                               <p class="item_price">$23.00</p>
-
-                              <button type="button" class="btn btn_addCart item-active">
-                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                       xmlns="http://www.w3.org/2000/svg">
-                                      <path opacity="0.4" fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M12.75 8.32727C12.75 7.91306 12.4142 7.57727 12 7.57727C11.5858 7.57727 11.25 7.91306 11.25 8.32727V11.2405H8.33333C7.91911 11.2405 7.58333 11.5763 7.58333 11.9905C7.58333 12.4047 7.91911 12.7405 8.33333 12.7405H11.25V15.6536C11.25 16.0678 11.5858 16.4036 12 16.4036C12.4142 16.4036 12.75 16.0678 12.75 15.6536V12.7405H15.6667C16.0809 12.7405 16.4167 12.4047 16.4167 11.9905C16.4167 11.5763 16.0809 11.2405 15.6667 11.2405H12.75V8.32727Z"
-                                            fill="#200E32" />
-                                      <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M16.6857 2H7.31429C4.04762 2 2 4.31208 2 7.58516V16.4148C2 19.6879 4.0381 22 7.31429 22H16.6857C19.9619 22 22 19.6879 22 16.4148V7.58516C22 4.31208 19.9619 2 16.6857 2Z"
-                                            stroke="#200E32" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                  </svg>
-                                  <div class="icon_active"></div>
-                                  <span class="txt_added">Added!</span>
-                              </button>
                           </div>
                       </div>
                     </c:forEach>
@@ -405,7 +409,7 @@
                       <div class="item em_item_product item_list">
                           <div class="em_head">
                               <a href="#" class="image_product">
-                                  <img src="/assets/img/gymImg/${gym.gymImgname}" alt="">
+                                  <div class="image_bg" style="background-image: url('/assets/img/gymImg/${gym.gymImgname}');"></div>
                               </a>
                           </div>
                           <div class="title_product">
@@ -428,21 +432,6 @@
                               </div>
                               <h3>베스트 yoga</h3>
                               <p class="item_price">$23.00</p>
-
-                              <button type="button" class="btn btn_addCart item-active">
-                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                       xmlns="http://www.w3.org/2000/svg">
-                                      <path opacity="0.4" fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M12.75 8.32727C12.75 7.91306 12.4142 7.57727 12 7.57727C11.5858 7.57727 11.25 7.91306 11.25 8.32727V11.2405H8.33333C7.91911 11.2405 7.58333 11.5763 7.58333 11.9905C7.58333 12.4047 7.91911 12.7405 8.33333 12.7405H11.25V15.6536C11.25 16.0678 11.5858 16.4036 12 16.4036C12.4142 16.4036 12.75 16.0678 12.75 15.6536V12.7405H15.6667C16.0809 12.7405 16.4167 12.4047 16.4167 11.9905C16.4167 11.5763 16.0809 11.2405 15.6667 11.2405H12.75V8.32727Z"
-                                            fill="#200E32" />
-                                      <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M16.6857 2H7.31429C4.04762 2 2 4.31208 2 7.58516V16.4148C2 19.6879 4.0381 22 7.31429 22H16.6857C19.9619 22 22 19.6879 22 16.4148V7.58516C22 4.31208 19.9619 2 16.6857 2Z"
-                                            stroke="#200E32" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                  </svg>
-                                  <div class="icon_active"></div>
-                                  <span class="txt_added">Added!</span>
-                              </button>
                           </div>
                       </div>
                     </c:forEach>
@@ -457,7 +446,7 @@
                       <div class="item em_item_product item_list">
                           <div class="em_head">
                               <a href="#" class="image_product">
-                                <img src="/assets/img/gymImg/${gym.gymImgname}" alt="">
+                                  <div class="image_bg" style="background-image: url('/assets/img/gymImg/${gym.gymImgname}');"></div>
                               </a>
                           </div>
                           <div class="title_product">
@@ -480,21 +469,6 @@
                               </div>
                               <h3>베스트 pilates</h3>
                               <p class="item_price">$23.00</p>
-
-                              <button type="button" class="btn btn_addCart item-active">
-                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                       xmlns="http://www.w3.org/2000/svg">
-                                      <path opacity="0.4" fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M12.75 8.32727C12.75 7.91306 12.4142 7.57727 12 7.57727C11.5858 7.57727 11.25 7.91306 11.25 8.32727V11.2405H8.33333C7.91911 11.2405 7.58333 11.5763 7.58333 11.9905C7.58333 12.4047 7.91911 12.7405 8.33333 12.7405H11.25V15.6536C11.25 16.0678 11.5858 16.4036 12 16.4036C12.4142 16.4036 12.75 16.0678 12.75 15.6536V12.7405H15.6667C16.0809 12.7405 16.4167 12.4047 16.4167 11.9905C16.4167 11.5763 16.0809 11.2405 15.6667 11.2405H12.75V8.32727Z"
-                                            fill="#200E32" />
-                                      <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M16.6857 2H7.31429C4.04762 2 2 4.31208 2 7.58516V16.4148C2 19.6879 4.0381 22 7.31429 22H16.6857C19.9619 22 22 19.6879 22 16.4148V7.58516C22 4.31208 19.9619 2 16.6857 2Z"
-                                            stroke="#200E32" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                  </svg>
-                                  <div class="icon_active"></div>
-                                  <span class="txt_added">Added!</span>
-                              </button>
                           </div>
                       </div>
                     </c:forEach>
@@ -509,7 +483,7 @@
                       <div class="item em_item_product item_list">
                           <div class="em_head">
                               <a href="#" class="image_product">
-                                  <img src="/assets/img/gymImg/${gym.gymImgname}" alt="">
+                                  <div class="image_bg" style="background-image: url('/assets/img/gymImg/${gym.gymImgname}');"></div>
                               </a>
                           </div>
                           <div class="title_product">
@@ -532,21 +506,6 @@
                               </div>
                               <h3>베스트 golf</h3>
                               <p class="item_price">$23.00</p>
-
-                              <button type="button" class="btn btn_addCart item-active">
-                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                       xmlns="http://www.w3.org/2000/svg">
-                                      <path opacity="0.4" fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M12.75 8.32727C12.75 7.91306 12.4142 7.57727 12 7.57727C11.5858 7.57727 11.25 7.91306 11.25 8.32727V11.2405H8.33333C7.91911 11.2405 7.58333 11.5763 7.58333 11.9905C7.58333 12.4047 7.91911 12.7405 8.33333 12.7405H11.25V15.6536C11.25 16.0678 11.5858 16.4036 12 16.4036C12.4142 16.4036 12.75 16.0678 12.75 15.6536V12.7405H15.6667C16.0809 12.7405 16.4167 12.4047 16.4167 11.9905C16.4167 11.5763 16.0809 11.2405 15.6667 11.2405H12.75V8.32727Z"
-                                            fill="#200E32" />
-                                      <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M16.6857 2H7.31429C4.04762 2 2 4.31208 2 7.58516V16.4148C2 19.6879 4.0381 22 7.31429 22H16.6857C19.9619 22 22 19.6879 22 16.4148V7.58516C22 4.31208 19.9619 2 16.6857 2Z"
-                                            stroke="#200E32" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                  </svg>
-                                  <div class="icon_active"></div>
-                                  <span class="txt_added">Added!</span>
-                              </button>
                           </div>
                       </div>
                     </c:forEach>
@@ -561,7 +520,7 @@
                       <div class="item em_item_product item_list">
                           <div class="em_head">
                               <a href="#" class="image_product">
-                                <img src="/assets/img/gymImg/${gym.gymImgname}" alt="">
+                                  <div class="image_bg" style="background-image: url('/assets/img/gymImg/${gym.gymImgname}');"></div>
                               </a>
                           </div>
                           <div class="title_product">
@@ -584,21 +543,6 @@
                               </div>
                               <h3>베스트 swim</h3>
                               <p class="item_price">$23.00</p>
-
-                              <button type="button" class="btn btn_addCart item-active">
-                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                       xmlns="http://www.w3.org/2000/svg">
-                                      <path opacity="0.4" fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M12.75 8.32727C12.75 7.91306 12.4142 7.57727 12 7.57727C11.5858 7.57727 11.25 7.91306 11.25 8.32727V11.2405H8.33333C7.91911 11.2405 7.58333 11.5763 7.58333 11.9905C7.58333 12.4047 7.91911 12.7405 8.33333 12.7405H11.25V15.6536C11.25 16.0678 11.5858 16.4036 12 16.4036C12.4142 16.4036 12.75 16.0678 12.75 15.6536V12.7405H15.6667C16.0809 12.7405 16.4167 12.4047 16.4167 11.9905C16.4167 11.5763 16.0809 11.2405 15.6667 11.2405H12.75V8.32727Z"
-                                            fill="#200E32" />
-                                      <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M16.6857 2H7.31429C4.04762 2 2 4.31208 2 7.58516V16.4148C2 19.6879 4.0381 22 7.31429 22H16.6857C19.9619 22 22 19.6879 22 16.4148V7.58516C22 4.31208 19.9619 2 16.6857 2Z"
-                                            stroke="#200E32" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                  </svg>
-                                  <div class="icon_active"></div>
-                                  <span class="txt_added">Added!</span>
-                              </button>
                           </div>
                       </div>
                     </c:forEach>
@@ -609,3 +553,4 @@
 
       </section>
   </div></div><%--  끝.  --%>
+

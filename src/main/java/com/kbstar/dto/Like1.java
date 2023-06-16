@@ -23,4 +23,5 @@ public class Like1 {
     //insert할때 필요 (likeStatus =1) 로 들어가니까
     public Like1(int custNo, int ticketNo) {
     }
+    private int likecount;
 }

@@ -17,6 +17,12 @@
         WHERE l.custNo = #{custNo}
           AND gi.GYMIMGDETAILCK = 0
     </select>
+    <select id="getGymLike" parameterType="int" resultType="Like1">
+        SELECT COUNT(l.likeNo) as likecount
+        FROM Like1 l
+                 JOIN ticket t ON t.ticketNo = l.ticketNo
+        WHERE t.gymNo = #{gymNo}
+    </select>
     <insert id="insert" parameterType="Like1">
         <selectKey keyProperty="likeNo" resultType="int" order="BEFORE">
             SELECT Like1_seq.NEXTVAL FROM DUAL
