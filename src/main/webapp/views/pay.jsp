@@ -26,7 +26,7 @@
                 pay_method: "card",
                 merchant_uid: 'merchant_'+new Date().getTime(),
                 name: "${gymName} ${ticket_pay_option.substring(0, 3)}",
-                amount: parseInt("${ticket_pay_option.substring(ticket_pay_option.lastIndexOf('-') + 1)}"),
+                amount: parseInt("${ticket_pay_option.substring(ticket_pay_option.lastIndexOf('-', ticket_pay_option.lastIndexOf('-') - 1) + 1, ticket_pay_option.lastIndexOf('-'))}"),
                 buyer_email: "${logincust.custEmail}",
                 buyer_name: "${logincust.custName}",
                 buyer_tel: "${logincust.custPhone}",
@@ -54,7 +54,7 @@
                 pay_method: "kakaopay",
                 merchant_uid: 'merchant_'+new Date().getTime(),
                 name: "${gymName} ${ticket_pay_option.substring(0, 3)}",
-                amount: parseInt("${ticket_pay_option.substring(ticket_pay_option.lastIndexOf('-') + 1)}"),
+                amount: parseInt("${ticket_pay_option.substring(ticket_pay_option.lastIndexOf('-', ticket_pay_option.lastIndexOf('-') - 1) + 1, ticket_pay_option.lastIndexOf('-'))}"),
                 buyer_email: "${logincust.custEmail}",
                 buyer_name: "${logincust.custName}",
                 buyer_tel: "${logincust.custPhone}",
@@ -110,8 +110,9 @@
               </div>
                 <label>가격</label>
                 <div class="input_group">
-                <input type="text" class="form-control is-valid" id="ticketPriceValue" value="${ticket_pay_option.substring(ticket_pay_option.indexOf('-') + 1, ticket_pay_option.lastIndexOf('-') - 1)}원" readonly>
-              </div>
+                    <input type="text" class="form-control is-valid" id="ticketPriceValue" value="${ticket_pay_option.substring(ticket_pay_option.lastIndexOf('-', ticket_pay_option.lastIndexOf('-') - 1) + 1, ticket_pay_option.lastIndexOf('-'))}" readonly>
+
+                </div>
 
                 <div class="padding-20 px-0">
                   <p class="size-14 color-text m-0">결제수단을 선택해주세요</p>

@@ -37,7 +37,7 @@
             <div class="emBlock__border padding-l-20 bg-snow">
                 <ul class="nav navListProducts">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/ticket/all">전체</a>
+                        <a class="nav-link" href="/ticket/all">전체</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/ticket/workout">헬스</a>

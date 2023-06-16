@@ -31,6 +31,7 @@
         WHERE
             ticketDiscount IS NOT NULL
     </select>
+
     <select id="selectTicketsByGymNo" parameterType="int" resultType="Ticket">
         SELECT * FROM Ticket WHERE gymNo = #{gymNo}
     </select>
@@ -43,4 +44,6 @@
             </if>
         </where>
     </select>
+
+
 </mapper>

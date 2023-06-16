@@ -5,6 +5,17 @@
 
 <mapper namespace="com.kbstar.mapper.PurchaseMapper">
 
+
+    <insert id="pinsert" parameterType="purchase">
+        INSERT INTO purchase
+        VALUES (Purchase_seq.NextVAL, #{custNo}, #{ticketNo},
+                #{gymNo}, #{sportsType}, #{sportsClasstype},
+                #{ticketType}, #{ticketMonth}, #{ticketNumber},
+                #{ticketJoin}, '',
+                SYSDATE, #{purchasePrice},
+                0, '0', SYSDATE+365)
+    </insert>
+
     <select id="select" parameterType="Integer" resultType="purchase">
         SELECT p.*, g.gymName FROM purchase p
                  LEFT JOIN gym g on p.gymNo = g.gymNo
@@ -46,6 +57,10 @@
         ORDER BY c.classstarttime
     </select>
 
+    <insert id="insert" parameterType="mySchedule">
+        INSERT INTO myschedule VALUES (myschedule_seq.NextVAL, #{classNo},
+                                       #{purchaseNo}, 0, 0, #{custNo})
+    </insert>
 
 
 </mapper>
