@@ -20,11 +20,13 @@ public class JinController {
         return "index";
     }
 
+    // 알림함
     @RequestMapping("/notification")
     public String notification(Model model){
         model.addAttribute("center","notification");
         return "index";
     }
+
     @RequestMapping("/payment_method")
     public String payment_method(Model model){
         model.addAttribute("center","payment_method");

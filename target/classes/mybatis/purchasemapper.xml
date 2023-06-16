@@ -46,6 +46,10 @@
         ORDER BY c.classstarttime
     </select>
 
+    <insert id="insert" parameterType="mySchedule">
+        INSERT INTO myschedule VALUES (myschedule_seq.NextVAL, #{classNo},
+                                       #{purchaseNo}, 0, 0, #{custNo})
+    </insert>
 
 
 </mapper>
