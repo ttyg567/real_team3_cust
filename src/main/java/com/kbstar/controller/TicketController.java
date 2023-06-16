@@ -1,8 +1,10 @@
 package com.kbstar.controller;
 
 import com.kbstar.dto.Gym;
+import com.kbstar.dto.Like1;
 import com.kbstar.dto.Ticket;
 import com.kbstar.service.GymService;
+import com.kbstar.service.LikeService;
 import com.kbstar.service.TicketService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,22 +29,33 @@ public class TicketController {
     @Autowired
     TicketService ticketService;
 
-
+    @Autowired
+    LikeService likeService;
 
     @RequestMapping("/all")
-    public String all(Model model) throws Exception {
-        List<Gym> list =  null;
-
+    public String all(Model model, Integer gymNo) throws Exception {
+        List<Gym> list = null;
+// 내가 필요한 것은 gymNo
         try {
             list = gymService.selectlistimg();
-
         } catch (Exception e) {
             throw new Exception("전체조회 중 오류가 발생했습니다.");
         }
+
+//        List<Integer> gymNoList = new ArrayList<>(); // gymNo를 저장할 리스트 생성
+//        for (Gym gym : list) {
+//            gymNoList.add(gym.getGymNo()); // 각 Gym 객체의 gymNo를 추출하여 리스트에 추가
+//        }
+
+//        Like1 likeCount = likeService.getgymlike(gymNo); // 리스트를 전달하여 좋아요 카운트를 받아옴
+
         model.addAttribute("all", list);
         model.addAttribute("center", dir + "all");
+ //       model.addAttribute("likeCount", likeCount); // 모델에 좋아요 카운트를 추가
+
         return "index";
     }
+
     @RequestMapping("/workout")
     public String workout(Model model) throws Exception {
         List<Gym> list = null;

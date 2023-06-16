@@ -263,11 +263,11 @@
     </div>
 </div>
 
-<div class="embody__content">
+<div class="embody__content"style="margin-top: 18%">
     <!-- 내용 -->
 
     <c:forEach var="detailImg" items="${gdetail_detail_img}">
-        <div class="cover" style="margin-top: 1vh">
+        <div class="cover" >
             <img class="item_img_detail" src="/assets/img/gymImg/${detailImg}" alt="${detailImg}"
                  style="width: 90%; margin-left: 5vw;">
             <span class="item_category"></span>
@@ -567,41 +567,6 @@
     $(function (){
         ticket_pay_form.init();
     })
-
-    <%--let save = {--%>
-    <%--    resultHTML: "",--%>
-    <%--    init: function () {--%>
-    <%--        $('#itemSave').click(function () {--%>
-    <%--            // 데이터를 전송할 객체 생성--%>
-    <%--            let data = {--%>
-    <%--                custNo: ${logincust.custNo}, // 고객 번호 설정--%>
-    <%--                ticketNo: ${selectedOption} // 이용권 번호 설정--%>
-    <%--            };--%>
-
-
-
-
-
-    <%--            $.ajax({--%>
-    <%--                url: '/like1', // 서버 URL 설정--%>
-    <%--                method: 'POST', // HTTP 요청 메서드 설정--%>
-    <%--                data: data, // 전송할 데이터 설정--%>
-    <%--                success: function (response) {--%>
-    <%--                    console.log('like1 데이터 삽입 성공');--%>
-    <%--                    // 추가적인 동작이 필요한 경우 여기에 작성--%>
-    <%--                },--%>
-    <%--                error: function (xhr, status, error) {--%>
-    <%--                    console.error('like1 데이터 삽입 실패:', error);--%>
-    <%--                    // 실패 처리 로직 작성--%>
-    <%--                }--%>
-    <%--            });--%>
-    <%--        });--%>
-    <%--    }--%>
-    <%--};--%>
-
-    <%--$(function () {--%>
-    <%--    save.init();--%>
-    <%--});--%>
 
 </script>
 

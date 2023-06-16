@@ -43,4 +43,8 @@ public class LikeService implements KBService<Integer, Like1> {
         return mapper.getmylike(custNo);
         // 전체회원의 장바구니 조회 아니고, loginuser의 장바구니만 조회하기.( = uid)
     }
+
+    public Like1 getgymlike(int integer) throws Exception {
+       return mapper.getGymLike(integer);
+    }
 }

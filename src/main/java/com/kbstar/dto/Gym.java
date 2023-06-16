@@ -48,4 +48,5 @@ public class Gym {
     private int minTicketPrice;
     private int ticketDiscount;
 
+    private int likecount;
 }
