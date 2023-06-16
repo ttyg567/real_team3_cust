@@ -1,12 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
+<%-- 조인헬쓱 홍보 배너 이미지와 텍스트 규격 변경   --%>
+    #joinbanner .text_img {
+        position: relative;
+        height: 60px;
+
+    }
+    #joinbanner.text_img h2 {
+        position: absolute;
+        bottom: 10px;
+        left: 20px;
+    }
+
+    #joinbanner.text_img p {
+        position: absolute;
+        bottom: -10px;
+        left: 20px;
+    }
     #ringBtn{
         border-radius: 15px;
         border-color: gray;
         background-color: lavender;
         background-color-opacity: 20;
     }
+<%-- 베스트센터 이미지 : 규격에 꽉차게 함. --%>
+    .join_image_bg {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+    }
+/* 모달창 안에 아이콘 */
+.embody__content svg{
+    margin-right: 15px;
+}
+.joincontent{
+    margin-bottom: 15px;
+}
 <%-- 운동 종목 : 텍스트 글씨 진하게 --%>
   .em__actions span{
     font-weight: bolder;
@@ -72,49 +105,49 @@
     <div class="em__actions">
         <a href="/ticket/workout" class="btn">
             <div class="icon bg-blue bg-opacity-10">
-                <img src="/assets/img/gymImg/cate2.png" alt="">
+                <img src="/assets/img/cate2.png" alt="">
                 <%--                    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><path d="M22.942,6.837,20.76,4.654l.947-.947a1,1,0,1,0-1.414-1.414l-.947.947L17.163,1.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L14.24,8.346,8.346,14.24,6.163,12.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L3.24,19.346l-.947.947a1,1,0,1,0,1.414,1.414l.947-.947,2.183,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105L9.76,15.655l5.9-5.895,2.182,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105ZM11,20.39a1.6,1.6,0,0,1-.472,1.138,1.647,1.647,0,0,1-2.277,0L2.472,15.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779A1.6,1.6,0,0,1,11,20.39Zm10.528-9.862a1.647,1.647,0,0,1-2.277,0L13.472,4.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779a1.609,1.609,0,0,1,0,2.277Z"/></svg>--%>
             </div>
             <span>헬스</span>
         </a>
         <a href="/ticket/pt" class="btn">
             <div class="icon bg-green bg-opacity-10">
-                <img src="/assets/img/gymImg/cate1.png" alt="">
+                <img src="/assets/img/cate1.png" alt="">
                 <%--                    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><path d="M22.942,6.837,20.76,4.654l.947-.947a1,1,0,1,0-1.414-1.414l-.947.947L17.163,1.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L14.24,8.346,8.346,14.24,6.163,12.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L3.24,19.346l-.947.947a1,1,0,1,0,1.414,1.414l.947-.947,2.183,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105L9.76,15.655l5.9-5.895,2.182,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105ZM11,20.39a1.6,1.6,0,0,1-.472,1.138,1.647,1.647,0,0,1-2.277,0L2.472,15.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779A1.6,1.6,0,0,1,11,20.39Zm10.528-9.862a1.647,1.647,0,0,1-2.277,0L13.472,4.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779a1.609,1.609,0,0,1,0,2.277Z"/></svg>--%>
             </div>
             <span>PT</span>
         </a>
         <a href="/ticket/crossfit" class="btn">
             <div class="icon bg-yellow bg-opacity-10">
-                <img src="/assets/img/gymImg/cate3.png" alt="">
+                <img src="/assets/img/cate3.png" alt="">
                 <%--                    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><path d="M22.942,6.837,20.76,4.654l.947-.947a1,1,0,1,0-1.414-1.414l-.947.947L17.163,1.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L14.24,8.346,8.346,14.24,6.163,12.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L3.24,19.346l-.947.947a1,1,0,1,0,1.414,1.414l.947-.947,2.183,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105L9.76,15.655l5.9-5.895,2.182,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105ZM11,20.39a1.6,1.6,0,0,1-.472,1.138,1.647,1.647,0,0,1-2.277,0L2.472,15.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779A1.6,1.6,0,0,1,11,20.39Zm10.528-9.862a1.647,1.647,0,0,1-2.277,0L13.472,4.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779a1.609,1.609,0,0,1,0,2.277Z"/></svg>--%>
             </div>
             <span>크로스핏</span>
         </a>
         <a href="/ticket/yoga" class="btn">
             <div class="icon bg-red bg-opacity-10">
-                <img src="/assets/img/gymImg/cate4.png" alt="">
+                <img src="/assets/img/cate4.png" alt="">
                 <%--                    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><path d="M22.942,6.837,20.76,4.654l.947-.947a1,1,0,1,0-1.414-1.414l-.947.947L17.163,1.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L14.24,8.346,8.346,14.24,6.163,12.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L3.24,19.346l-.947.947a1,1,0,1,0,1.414,1.414l.947-.947,2.183,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105L9.76,15.655l5.9-5.895,2.182,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105ZM11,20.39a1.6,1.6,0,0,1-.472,1.138,1.647,1.647,0,0,1-2.277,0L2.472,15.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779A1.6,1.6,0,0,1,11,20.39Zm10.528-9.862a1.647,1.647,0,0,1-2.277,0L13.472,4.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779a1.609,1.609,0,0,1,0,2.277Z"/></svg>--%>
             </div>
             <span>요가</span>
         </a>
         <a href="/ticket/pilates" class="btn">
             <div class="icon bg-yellow bg-opacity-10">
-                <img src="/assets/img/gymImg/cate5.png" alt="">
+                <img src="/assets/img/cate5.png" alt="">
                 <%--                    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><path d="M22.942,6.837,20.76,4.654l.947-.947a1,1,0,1,0-1.414-1.414l-.947.947L17.163,1.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L14.24,8.346,8.346,14.24,6.163,12.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L3.24,19.346l-.947.947a1,1,0,1,0,1.414,1.414l.947-.947,2.183,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105L9.76,15.655l5.9-5.895,2.182,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105ZM11,20.39a1.6,1.6,0,0,1-.472,1.138,1.647,1.647,0,0,1-2.277,0L2.472,15.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779A1.6,1.6,0,0,1,11,20.39Zm10.528-9.862a1.647,1.647,0,0,1-2.277,0L13.472,4.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779a1.609,1.609,0,0,1,0,2.277Z"/></svg>--%>
             </div>
             <span>필라테스</span>
         </a>
         <a href="/ticket/golf" class="btn">
             <div class="icon bg-green bg-opacity-10">
-                <img src="/assets/img/gymImg/cate6.png" alt="">
+                <img src="/assets/img/cate6.png" alt="">
                 <%--                    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><path d="M22.942,6.837,20.76,4.654l.947-.947a1,1,0,1,0-1.414-1.414l-.947.947L17.163,1.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L14.24,8.346,8.346,14.24,6.163,12.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L3.24,19.346l-.947.947a1,1,0,1,0,1.414,1.414l.947-.947,2.183,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105L9.76,15.655l5.9-5.895,2.182,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105ZM11,20.39a1.6,1.6,0,0,1-.472,1.138,1.647,1.647,0,0,1-2.277,0L2.472,15.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779A1.6,1.6,0,0,1,11,20.39Zm10.528-9.862a1.647,1.647,0,0,1-2.277,0L13.472,4.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779a1.609,1.609,0,0,1,0,2.277Z"/></svg>--%>
             </div>
             <span>골프</span>
         </a>
         <a href="/ticket/swimming" class="btn">
             <div class="icon bg-blue bg-opacity-10">
-                <img src="/assets/img/gymImg/cate7.png" alt="">
+                <img src="/assets/img/cate7.png" alt="">
                 <%--                    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><path d="M22.942,6.837,20.76,4.654l.947-.947a1,1,0,1,0-1.414-1.414l-.947.947L17.163,1.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L14.24,8.346,8.346,14.24,6.163,12.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L3.24,19.346l-.947.947a1,1,0,1,0,1.414,1.414l.947-.947,2.183,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105L9.76,15.655l5.9-5.895,2.182,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105ZM11,20.39a1.6,1.6,0,0,1-.472,1.138,1.647,1.647,0,0,1-2.277,0L2.472,15.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779A1.6,1.6,0,0,1,11,20.39Zm10.528-9.862a1.647,1.647,0,0,1-2.277,0L13.472,4.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779a1.609,1.609,0,0,1,0,2.277Z"/></svg>--%>
             </div>
             <span>수영</span>
@@ -169,7 +202,7 @@
                 <div class="item em_item_product">
                     <div class="em_head"><!-- 선택 시 센터 상세페이지로 이동 -->
                         <a href="/ticket/detail?gymNo=${gym.gymNo}" >
-                            <img src="/assets/img/gymImg/gym/${gym.gymImgname}" alt="">
+                            <img src="/assets/img/gymImg/${gym.gymImgname}" alt="">
                         </a>
                         <!-- 찜버튼! -->
                         <button type="button" class="btn rounded-8 btn_addBookmark item-active" id="itemSave">
@@ -206,17 +239,87 @@
 
         </div>
     </div>
-</div>
+</div><br>
 <!-- End. em_swiper_products -->
-<!-- 조인헬쓱 홍보 구간 -->
-<div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
-    <div>
-        <h3 class="size-18 weight-500 color-secondary m-0">조인 가능한 이용권</h3>
-        <p class="size-13 color-text m-0 pt-1">다른 회원들과 이용권을 함께 구매하고 추가 할인 받으세요</p>
+<!-- 조인헬쓱 홍보 배너 구간 -->
+<div class="--item-inside" id="joinbanner">
+    <div class="cover_img" >
+        <a href="/groupboard">
+            <img src="/img/joinbanner1.jpg" alt=""
+                 style="width: 100%;">
+            <%--  문구를 이미지의 좌측 하단에 배치   --%>
+            <div
+                    class="text_img position-absolute bottom-0 padding-0 padding-l-20 text-left">
+                <h2 data-swiper-parallax="-300"
+                    style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);"
+                    class="size-27 weight-600 color-white text-uppercase mb-1">
+                    내가 관심있게 본 운동?<br>남도 관심 있어요</h2>
+                <p data-swiper-parallax="-200" class="size-12 color-white"
+                   style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);">
+                    조인할 인원 모아서 최대 20% 동시할인 ></p>
+            </div>
+        </a>
     </div>
-    <a href="/" class="d-block color-text size-12 m-0">더보기</a>
+<br>
 </div>
+    <!-- 조인헬쓱 이용권 -->
+    <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
+        <div>
+            <h3 class="size-18 weight-500 color-secondary m-0">조인 가능한 이용권</h3>
+        </div>
+        <a href="/groupboard/groupboard_list" class="d-block color-text size-12 m-0">더보기</a>
+    </div><br>
+<!-- 조인헬쓱 항목 나열 구간 -->
+        <div class="em_swiper_products margin-b-20">
+            <div class="em_body_products">
+                <div class="owl-carousel owl-theme em-owlRight">
+                    <c:forEach var="obj" items="${alljoin}">
+                        <div class="item em_item_product">
+                            <div class="em_head" id="join_em_head"><!-- 선택 시 센터 상세페이지로 이동 -->
+                                <a data-toggle="modal"
+                                   data-target="#mdllJobDetails${obj.groupboardNo}" class="image_product text-decoration-none">
+                                    <div class="join_image_bg" style="background-image: url('/assets/img/${obj.groupboardImgname}');"></div>
+<%--                                  <img src="/assets/img/${obj.groupboardImgname}" alt=""--%>
+<%--                                  style="width: 250px; height: 280px">--%>
+                                </a>
 
+                                <div class="item_discount"><fmt:formatNumber value="${obj.ticketDiscount}"/>%</div>
+                            </div>
+                            <div class="title_product">
+                                <div class="color-black">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-geo-alt color-text" viewBox="0 0 16 16">
+                                        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                                        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                    </svg>
+                                    <span class="card-text color-black">${obj.gymName}</span>
+                                    <div class="main_joincontent" style="text-align: left">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-ticket-perforated color-text" viewBox="0 0 16 16">
+                                            <path d="M4 4.85v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Z"/>
+                                            <path d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z"/>
+                                        </svg>
+                                    <span>
+                                    ${obj.ticketName}
+                                    <span class="item_price"><span class="price_old" style="font-size: 9px">390,000원</span></span>
+                                    </span>
+                                    </div>
+                                </div>
+
+                                <div class="card_user color-text">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                                    </svg>
+                                        <%-- 모집인원 - 신청된 인원 = 신청가능 인원   --%>
+                                    <c:set var="canapplymember" value="${canapplymember = (obj.expectMember - obj.applicationMember) }" />
+                                    <span style="font-size: smaller; color: #5d6072; font-weight: bold "><fmt:formatNumber value="${canapplymember}" />명 조인 시 </span>
+                                    <span style="color: blueviolet; font-weight: bold">358,000원</span>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+
+                </div>
+            </div>
+        </div>
 <%-- 알림받기 버튼 모달창 --%>
 <div class="modal transition-bottom screenFull defaultModal mdlladd__rate fade" id="mdllContent" tabindex="-1"
      aria-labelledby="exampleModalLabel" aria-hidden="true">

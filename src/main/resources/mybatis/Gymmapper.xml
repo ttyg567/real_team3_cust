@@ -181,6 +181,7 @@
             gymName,
             ticketPrice,
             ticketNo,
+            ticketName,
             ticketDiscount,
             gymImgName
         FROM (
@@ -189,6 +190,7 @@
                      G.gymName,
                      T.ticketPrice,
                      T.ticketNo,
+                     T.ticketName,
                      T.ticketDiscount,
                      GI.gymImgname AS gymImgName,
                      ROW_NUMBER() OVER (PARTITION BY G.gymNo ORDER BY T.ticketDiscount DESC) AS rn
@@ -200,6 +202,7 @@
                              gymNo,
                              ticketPrice,
                              ticketNo,
+                             ticketName,
                              ticketDiscount
                          FROM
                              Ticket
