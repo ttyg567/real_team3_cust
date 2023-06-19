@@ -1,5 +1,6 @@
 package com.kbstar.controller;
 
+import com.kbstar.dto.Cust;
 import com.kbstar.dto.Gym;
 import com.kbstar.dto.Like1;
 import com.kbstar.dto.Ticket;
@@ -8,6 +9,7 @@ import com.kbstar.service.LikeService;
 import com.kbstar.service.TicketService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,14 +31,15 @@ public class TicketController {
     GymService gymService;
     @Autowired
     TicketService ticketService;
-
     @Autowired
     LikeService likeService;
 
+    @Value("${adminserver}")
+    String adminserver;
     @RequestMapping("/all")
     public String all(Model model, Integer gymNo) throws Exception {
         List<Gym> list = null;
-// 내가 필요한 것은 gymNo
+
         try {
             list = gymService.selectlistimg();
         } catch (Exception e) {
@@ -204,53 +208,18 @@ public class TicketController {
         return matchingTickets;
     }
 
-//    @GetMapping("/pay")
-//    public String pay(@RequestParam("gymNo") int gymNo,
-//                      @RequestParam("ticketType") String ticketType,
-//                      @RequestParam("ticketDuration") String ticketDuration,
-//                      @RequestParam("ticketPrice") String ticketPrice,
-//                      @RequestParam("ticketvalue") String ticketvalue,
-//                      Model model) throws Exception {
-//@GetMapping("/pay")
-//public String pay(@RequestParam("ticketvalue") String ticketvalue) throws Exception {
-////        Gym gym = null;
-////        // 해당 gymNo에 해당하는 이용권 목록 가져오기
-////        List<Ticket> ticketList = ticketService.getTicketsByGymNo(gymNo);
-////        // 필요한 로직 수행
-////        // 모델에 값을 담아서 pay 페이지로 전달
-////        model.addAttribute("gymNo", gymNo);
-////        model.addAttribute("ticketType", ticketType);
-////        model.addAttribute("ticketDuration", ticketDuration);
-////        model.addAttribute("ticketPrice", ticketPrice);
-////        model.addAttribute("ticketList", ticketList);
-//        // pay 페이지로 이동
-//        log.info("==========ticketvalue" + ticketvalue);
-//        return "pay";
-//    }
-//@PostMapping("/pay")
-//public String handlePostRequest(@RequestParam("ticket") String selectedTicket, @RequestParam("gymNo") int gymNo) {
-//    // 이용권 값 및 gymNo 처리 로직을 작성합니다.
-//    System.out.println("선택된 이용권: " + selectedTicket);
-//    System.out.println("선택된 체육관 번호: " + gymNo);
-//
-//    // 필요한 로직을 수행한 후, 다른 페이지로 리디렉션하거나 응답을 반환합니다.
-//    return "redirect:/otherPage";
-//}
-
-
-//    @PostMapping("/pay")
-//    public String handlePostRequest(@RequestParam("ticket") String selectedTicket, @RequestParam("gymNo") int gymNo, Model model) {
-//        // Extract the required values from the selectedTicket string
-//        String[] ticketValues = selectedTicket.split("-");
-//        String ticketType = ticketValues[0];
-//        String ticketInfo = ticketValues[1];
-//        // Add the values to the model to pass them to the pay.jsp page
-//        model.addAttribute("ticketType", ticketType);
-//        model.addAttribute("ticketInfo", ticketInfo);
-//        model.addAttribute("gymNo", gymNo);
-//        // Return the view name for the pay.jsp page
-//        return "pay";
-//    }
+    @RequestMapping("/chat")
+    public String chat(Model model, HttpSession session, @RequestParam("gymNo") int gymNo) throws Exception {
+        Gym gym = gymService.get(gymNo);
+//        Cust cust = (Cust) session.getAttribute("logincust");
+//        if (cust == null) {
+//            return "redirect:/cust/login";
+//        }
+        model.addAttribute("center", "chat");
+        model.addAttribute("gdetail", gym);
+        model.addAttribute("adminserver", adminserver);
+        return "index";
+    }
 
 
 }

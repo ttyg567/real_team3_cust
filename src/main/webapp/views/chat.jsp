@@ -1,95 +1,94 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<script>
-    let websocket = {
-        id:null,
-        stompClient:null,
-        init:function(){
-            this.id = $('#adm_id').text();
-            $("#connect").click(function() {
-                websocket.connect();
-            });
-            $("#disconnect").click(function() {
-                websocket.disconnect();
-            });
-            // $("#sendall").click(function() {
-            //     websocket.sendAll();
-            // });
-            // $("#sendme").click(function() {
-            //     websocket.sendMe();
-            // });
-            $("#sendto").click(function() {
-                websocket.sendTo();
-            });
-        },
-        connect:function(){
-            var sid = this.id;
-            var socket = new SockJS('${adminserver}/ws');
-            this.stompClient = Stomp.over(socket);
+<script type="text/javascript">
+    var ws;
 
-            this.stompClient.connect({}, function(frame) {
-                websocket.setConnected(true);
-                console.log('Connected: ' + frame);
-                this.subscribe('/send', function(msg) {
-                    $("#all").prepend(
-                        "<h4>" + JSON.parse(msg.body).sendid +":"+
-                        JSON.parse(msg.body).content1
-                        + "</h4>");
-                });
-                this.subscribe('/send/'+sid, function(msg) {
-                    $("#me").prepend(
-                        "<h4>" + JSON.parse(msg.body).sendid +":"+
-                        JSON.parse(msg.body).content1+ "</h4>");
-                });
-                this.subscribe('/send/to/'+sid, function(msg) {
-                    $("#to").prepend(
-                        "<h4>" + JSON.parse(msg.body).sendid +":"+
-                        JSON.parse(msg.body).content1
-                        + "</h4>");
-                });
-            });
-        },
-        disconnect:function(){
-            if (this.stompClient !== null) {
-                this.stompClient.disconnect();
-            }
-            websocket.setConnected(false);
-            console.log("Disconnected");
-        },
-        setConnected:function(connected){
-            if (connected) {
-                $("#status").text("Connected");
-            } else {
-                $("#status").text("Disconnected");
-            }
-        },
-        sendAll:function(){
-            var msg = JSON.stringify({
-                'sendid' : this.id,
-                'content1' : $("#alltext").val()
-            });
-            this.stompClient.send("/receiveall", {}, msg);
-        },
-        sendTo:function(){
-            var msg = JSON.stringify({
-                'sendid' : this.id,
-                'receiveid' : $('#target').val(),
-                'content1' : $('#totext').val()
-            });
-            this.stompClient.send('/receiveto', {}, msg);
-        },
-        sendMe:function(){
-            var msg = JSON.stringify({
-                'sendid' : this.id,
-                'content1' : $('#metext').val()
-            });
-            this.stompClient.send("/receiveme", {}, msg);
+    function wsOpen(){
+        ws = new WebSocket("ws://" + location.host + "/chating");
+        wsEvt();
+    }
+
+    function wsEvt() {
+        ws.onopen = function(data){
+            //소켓이 열리면 초기화 세팅하기
         }
-    };
-    $(function(){
-        websocket.init();
-    })
+
+        ws.onmessage = function(data) {
+            //메시지를 받으면 동작
+            var msg = data.data;
+            if(msg != null && msg.trim() != ''){
+                var d = JSON.parse(msg);
+                if(d.type == "message"){
+                    if(d.sessionId == $("#sessionId").val()){
+                        $("#chating").append('<div class="item_user __me"><div class="media"><div class="media-body"><div class="content_sms"><p class="item_msg">' + msg + '</p><div class="time"><span>' + getCurrentTime() + '</span><div class="icon ml-1"><i class="ri-check-double-line color-primary size-18"></i></div></div></div></div></div>');
+                    }else{
+                        $("#chating").append('<div class="item_user"><div class="media"><div class="media-body"><div class="content_sms"><p class="item_msg">' + msg + '</p><div class="time"><span>' + getCurrentTime() + '</span><div class="icon ml-1"><i class="ri-check-double-line color-primary size-18"></i></div></div></div></div></div>');
+                    }
+
+                }else{
+                    console.warn("unknown type!")
+                }
+            }
+        }
+
+        document.addEventListener("keypress", function(e){
+            if(e.keyCode == 13){ //enter press
+                send();
+            }
+        });
+    }
+
+
+    function chatName(){
+        var userName = $("#userName").val();
+        if(userName == null || userName.trim() == ""){
+            alert("사용자 이름을 입력해주세요.");
+            $("#userName").focus();
+        }else{
+            wsOpen();
+            $("#yourName").hide();
+            $("#yourMsg").show();
+        }
+    }
+
+    function send() {
+        var msg = $("#chatting").val();
+        var sessionId = $("#sessionId").val(); // 세션 ID 가져오기
+        var userName = $("#userName").val(); // 사용자 이름 가져오기
+
+        if (sessionId) {
+            // 세션 ID가 존재하면서
+            // 사용자 이름이 입력되었을 때만 메시지 전송
+            var option = {
+                type: "message",
+                sessionId: sessionId,
+                userName: userName,
+                msg: msg
+            };
+
+            ws.send(JSON.stringify(option));
+        }
+
+        $("#chating").append('<div class="item_user __me"><div class="media"><div class="media-body"><div class="content_sms"><p class="item_msg">' + msg + '</p><div class="time"><span>' + getCurrentTime() + '</span><div class="icon ml-1"><i class="ri-check-double-line color-primary size-18"></i></div></div></div></div></div></div>');
+        $('#chatting').val("");
+        // 웹소켓 등을 사용하여 메시지 전송 등의 작업을 수행하면 됩니다.
+    }
+
+
+
+
+    function getCurrentTime() {
+        var currentTime = new Date();
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // 0시일 경우 12로 표시
+        minutes = minutes < 10 ? '0' + minutes : minutes; // 10분 미만은 0을 붙여 표시
+        var time = hours + ':' + minutes + ' ' + ampm;
+        return time;
+    }
 
 </script>
 
@@ -109,16 +108,17 @@
         <header class="header_tab head_conversation border-b border-b-solid border-snow">
             <div class="main_haeder multi_item">
                 <div class="em_side_right">
+                    <input type="hidden" id="sessionId" value="">
                     <a class="btn bg-transparent rounded-circle justify-content-start" href="app-pages.html">
                         <i class="tio-chevron_left"></i>
                     </a>
                 </div>
                 <div class="item_userChat ml-0">
                     <div class="media">
-                        <img class="img-user" src="assets/img/persons/16.png" alt="">
+                        <img class="img-user" src="/assets/img/persons/16.png" alt="">
                         <div class="media-body my-auto">
                             <div class="txt">
-                                <h1>스포애니 성수점</h1>
+                                <h1>${gdetail.gymName}</h1>
                                 <p class="color-green">Online</p>
                             </div>
                         </div>
@@ -132,10 +132,28 @@
         <!-- End.main_haeder -->
 
         <section class="emPage__conversation padding-t-70 padding-b-80">
+            <div id="container" class="container">
+                <h1>채팅</h1>
+                <div id="chating" class="chating">
+                </div>
+
+                <div id="yourName">
+
+                </div>
+                <div id="yourMsg">
+                    <table class="inputTable">
+<%--                        <tr>--%>
+<%--                            <th>메시지</th>--%>
+<%--                            <th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>--%>
+<%--                            <th><button onclick="send()" id="sendBtn">보내기</button></th>--%>
+<%--                        </tr>--%>
+                    </table>
+                </div>
+            </div>
             <div class="item_user">
                 <div class="media">
                     <div class="imgProfile">
-                        <img src="assets/img/persons/16.png" alt="">
+                        <img src="/assets/img/persons/16.png" alt="">
                     </div>
                     <div class="media-body">
                         <div class="content_sms">
@@ -171,16 +189,19 @@
             </div>
 
             <div class="env-pb bg-white fixed w-100 bottom-0">
-                <div class="bk_footer_input emBK__buttonsShare" style="margin-bottom: 30%">
+                <div class="bk_footer_input emBK__buttonsShare" style="margin-bottom: 10%">
                     <button type="button" class="btn btn_upload p-0" data-toggle="modal" data-target="#mdllButtons">
                         <div class="icon bg-snow rounded-10">
                             <i class="ri-attachment-line size-20"></i>
                         </div>
                     </button>
+
                     <div class="form-group m-0">
-                        <input type="text" class="form-control" placeholder="Type a message here">
+                        <input type="hidden" class="form-control" id="target" value="${gdetail.gymName}">
+                        <input type="text"  input id="chatting" class="form-control" placeholder="Type a message here">
                     </div>
-                    <button type="button" class="btn btn_defSend rounded-10">
+
+                    <button type="button" id="sendBtn" class="btn btn_defSend rounded-10"  onclick="send()">
                         <svg id="Iconly_Bulk_Send" data-name="Iconly/Bulk/Send" xmlns="http://www.w3.org/2000/svg"
                              width="20" height="20" viewBox="0 0 20 20">
                             <g id="Send" transform="translate(1.667 1.667)">

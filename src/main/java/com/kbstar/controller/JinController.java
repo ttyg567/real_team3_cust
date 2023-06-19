@@ -1,8 +1,10 @@
 package com.kbstar.controller;
 
 import com.kbstar.dto.Cust;
+import com.kbstar.dto.Gym;
 import com.kbstar.dto.Purchase;
 import com.kbstar.dto.Ticket;
+import com.kbstar.service.GymService;
 import com.kbstar.service.PurchaseService;
 import com.kbstar.service.TicketService;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,7 +28,8 @@ public class JinController {
     @Autowired
     TicketService ticketService;
 
-
+    @Autowired
+    GymService gymService;
 
     @RequestMapping("/ticket")
     public String main(Model model){
@@ -44,11 +49,7 @@ public class JinController {
         model.addAttribute("center","payment_method");
         return "index";
     }
-    @RequestMapping("/chat")
-    public String chat(Model model){
-        model.addAttribute("center","chat");
-        return "index";
-    }
+
 
     @RequestMapping("/paySuccess")
     public String paySuccess(Model model , String ticket_pay_option){
