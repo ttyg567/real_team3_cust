@@ -27,4 +27,5 @@ public class Ticket {
     private String sportsClasstype;
 
    private String ticketValue;
+
 }

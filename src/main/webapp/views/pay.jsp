@@ -8,6 +8,11 @@
 
     }
 
+    function executeFunctions2() {
+        requestKPay();
+
+    }
+
     function pinsert(){
         $('#insert_form').attr({
             method : 'post',
@@ -66,6 +71,7 @@
                 if (rsp.success) {
                   alert(`결제성공`);
                   location.href= "/paySuccess";
+                  pinsert();
                 } else {
                   alert(`결제에 실패하였습니다. 에러 내용: ${rsp.error_msg}`);
                 }
@@ -145,7 +151,7 @@
                 </button>
 
                 <button type="button" id="check2" href="#" class="btn itemPay"
-                      onclick="requestKPay()">
+                        onclick="executeFunctions2()">
                     <span>카카오페이</span>
                     <div class="icon__payment">
                       <img src="assets/img/kakaopay.png" alt="kakaopay">

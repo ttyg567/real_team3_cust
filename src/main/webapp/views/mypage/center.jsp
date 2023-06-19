@@ -233,6 +233,7 @@
                                         <h6 class="color-white">
                                             나의 이용권</h6>
                                         <h6 class="color-secondary">
+                                            ${obj2.gymName}
                                             <c:choose>
                                                 <c:when test="${obj2.ticketType == '1'}">
                                                     기간권 ${obj2.ticketMonth}개월
