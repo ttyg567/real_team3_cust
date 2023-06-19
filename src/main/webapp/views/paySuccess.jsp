@@ -31,7 +31,7 @@
         <h2 class="size-18 weight-500 color-secondary margin-b-10">감사합니다.</h2>
         <p class="size-13 color-text margin-b-40">결제가 완료되었어요, </p>
         <p class="size-13 color-text margin-b-40">이제 열심히 운동하는 일만 남았네요 !</p>
-        <a href="#"
+        <a href="/class/reservation"
            class="btn rounded-10 h-48 min-w-130 size-14 color-secondary border-snow border-solid d-inline-flex align-items-center justify-content-center">
           수업 예약하러가기</a>
       </div>
