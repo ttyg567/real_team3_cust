@@ -27,4 +27,17 @@ public class MySchedule {
     private String classEndtime; // 수업종료시간
     private String sportsType; // 운동종목구분
     private String sportsClasstype; // 운동수업형태
+
+    // 수업 예약, 취소시 이용권 수업정보 업데이트를 위해 추가
+    private Integer classJoin;
+    private String classFullbooked;
+
+    // 수업 예약, 취소시 이용권 사용횟수 업데이트를 위해 추가
+    private Integer ticketNo;
+    private Integer ticketNumber;
+    private Integer usedCnt;
+    private String ticketEx;
+    
+    // 마이페이지에서 사용, 오늘의 운동, 내일의 운동, 이번주의 운동, 다음주의 운동
+    private String dateCategory; //
 }

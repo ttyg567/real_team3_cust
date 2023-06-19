@@ -6,6 +6,7 @@ import com.kbstar.dto.Gym;
 import com.kbstar.dto.MySchedule;
 import com.kbstar.service.ClassService;
 import com.kbstar.service.MyScheduleService;
+import com.kbstar.service.PurchaseService;
 import com.kbstar.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
@@ -33,6 +34,11 @@ public class ClassController {
 
     @Autowired
     MyScheduleService myScheduleService;
+
+    @Autowired
+    PurchaseService purchaseService;
+
+    ////////////////////// 수업예약 ///////////////////////
 
     @RequestMapping("/reservation")
     public String reservation(Model model, String redirectURL) {
@@ -88,6 +94,8 @@ public class ClassController {
                 jo.put("classFullbooked", obj.getClassFullbooked());
                 jo.put("sportsType", obj.getSportsType());
                 jo.put("sportsClasstype", obj.getSportsClasstype());
+                jo.put("purchaseNo", obj.getPurchaseNo());
+                jo.put("ticketNo", obj.getTicketNo());
                 ja.add(jo);
             }
 
@@ -114,31 +122,18 @@ public class ClassController {
 
             class_all_list = classService.selectAllclass(custNo); // 내가 예약 가능한 수업 가져오기
 
-            // Java Object ---> JSON
-            // JSON(JavaScript Object Notation)
-            // [시간1, 시간2, ... ]
-//            for (Class obj : list) {
-//                ja.add(obj.getClassStarttime()+"~"+obj.getClassEndtime()); // 수업시작시간 select하여 add
-//            }
-            // [ {classNo: , gymNo; , gymMasterCk: , trainerNo: , className: ,
-            // classDate: , classStarttime: , classEndtime: , classMaximum: , classJoin: ,
-            // classFullbooked: , sportsType: , sportsClasstype: }, {} ]
-
+            // title, start, end는 필수이고, start와 end는 반드시 밑에처럼 써야 함. 날짜만 쓰면 안나옴 //
             if (class_all_list == null) {
                 log.info("null 이다..");
             } else {
                 for (Class obj : class_all_list) {
                     JSONObject jo = new JSONObject();
 
-//                jo.put("title",obj.getClassName());
-//                    jo.put("start", DateUtil.getDateStr(obj.getClassDate()) + "T" + DateUtil.getTimeStr(obj.getClassStarttime()));
-//                    jo.put("end", DateUtil.getDateStr(obj.getClassDate()) + "T" + DateUtil.getTimeStr(obj.getClassEndtime()));
-
-//                    if (obj.getClassFullbooked().equals("1")) { // 수업 마감시 빨간색
-//                        jo.put("className", "bg-gradient-danger");
-//                    } else {
-//                        jo.put("className", "bg-gradient-success"); // 마감 안되었으면 초록색
-//                    }
+                    jo.put("title",obj.getClassName());
+                    jo.put("start", DateUtil.getDateStr(obj.getClassDate()) + "T" + DateUtil.getTimeStr(obj.getClassStarttime()));
+                    jo.put("end", DateUtil.getDateStr(obj.getClassDate()) + "T" + DateUtil.getTimeStr(obj.getClassEndtime()));
+//                    jo.put("start", DateUtil.getDateStr(obj.getClassDate()));
+//                    jo.put("end", DateUtil.getDateStr(obj.getClassDate()));
 
                     ja.add(jo);
                 }
@@ -149,7 +144,7 @@ public class ClassController {
 
     @RequestMapping("/reserve")
     @ResponseBody
-    public String reserve(Model model, Integer classNo, HttpSession session) throws Exception {
+    public String reserve(Model model, Integer classNo, Integer purchaseNo, Integer ticketNo, HttpSession session) throws Exception {
         log.info("수업을 예약하겠습니다.");
         log.info("수업 번호는 " + classNo);
 
@@ -165,15 +160,21 @@ public class ClassController {
             log.info("========== 세션의 custNo는 " + custNo + "============");
 
             ms.setClassNo(classNo);
-            ms.setPurchaseNo(100); /* 가상 set */
+            ms.setPurchaseNo(purchaseNo);
             ms.setCustNo(custNo);
 
-            myScheduleService.register(ms);
+            myScheduleService.register(ms); // 수업예약
+            myScheduleService.reserve_update_classJoin(ms); // 수업예약하면 수업정보에 참가인원을 +1 해줌
+            myScheduleService.reserve_update_usedCnt(ms); // 수업예약하면 구매 이용권에 사용횟수를 +1 해줌
+
+            return "success";
 
         }
 
-        return "success";
+        return "fail";
     }
+
+    ////////////////////// 예약내역조회 및 취소 ///////////////////////
 
     @RequestMapping("/my_reservation")
     public String my_reservation(Model model, String redirectURL) {
@@ -219,6 +220,7 @@ public class ClassController {
                 jo.put("classEndtime", obj.getClassEndtime());
                 jo.put("sportsType", obj.getSportsType());
                 jo.put("sportsClasstype", obj.getSportsClasstype());
+                jo.put("purchaseNo", obj.getPurchaseNo());
 
                 ja.add(jo);
             }
@@ -253,18 +255,54 @@ public class ClassController {
 //                jo.put("date", obj.getClassDate());
 //                jo.put("start", DateUtil.getTimeStr(obj.getClassStarttime()));
 //                jo.put("end", DateUtil.getTimeStr(obj.getClassEndtime()));
+                jo.put("id", obj.getMyscheduleNo()); // id 속성 추가
                 jo.put("title", obj.getClassName());
+                jo.put("start", DateUtil.getDateStr(obj.getClassDate()) + "T" + DateUtil.getTimeStr(obj.getClassStarttime()));
+                jo.put("end", DateUtil.getDateStr(obj.getClassDate()) + "T" + DateUtil.getTimeStr(obj.getClassEndtime()));
                 jo.put("date", obj.getClassDate());
-                jo.put("start", DateUtil.getTimeStr(obj.getClassStarttime()));
-                jo.put("end", DateUtil.getTimeStr(obj.getClassEndtime()));
                 jo.put("myscheduleNo", obj.getMyscheduleNo());
                 jo.put("classNo", obj.getClassNo());
+                jo.put("purchaseNo", obj.getPurchaseNo()); // 여기 넣어줘야 함!!
                 ja.add(jo);
             }
 
         }
 
+        log.info("=1=1=" + ja.toJSONString() + "=1=1=");
         return ja;
+    }
+
+    @RequestMapping("/cancel")
+    @ResponseBody
+    public String cancel(Model model, Integer classNo, Integer purchaseNo, HttpSession session) throws Exception {
+        log.info("수업을 취소하겠습니다.");
+        log.info("수업 번호는 " + classNo);
+
+        MySchedule ms = new MySchedule();
+        Cust cust = null;
+        int custNo = 0;
+
+        if (session != null) {
+
+            cust = (Cust) session.getAttribute("logincust");
+            custNo = cust.getCustNo();
+
+            log.info("========== 세션의 custNo는 " + custNo + "============");
+
+            ms.setClassNo(classNo);
+            ms.setPurchaseNo(purchaseNo);
+            ms.setCustNo(custNo);
+
+            myScheduleService.cancelClass(ms); // 예약한 수업 취소
+            myScheduleService.cancel_update_sheduleCanceled(ms); // 수업취소하면 고객 예약에서 운동 취소여부를 '여'로 바꿔줌
+            myScheduleService.cancel_update_classJoin(ms); // 수업취소하면 수업정보에 참가인원을 -1 해줌
+            myScheduleService.cancel_update_usedCnt(ms);  // 수업취소하면 구매 이용권에 사용횟수를 -1 해줌
+
+            return "success";
+
+        }
+
+        return "fail";
     }
 
 

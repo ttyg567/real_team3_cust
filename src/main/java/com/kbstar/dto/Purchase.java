@@ -29,6 +29,9 @@ public class Purchase {
     private String ticketEx; // 이용권 만료 여부
     private Date exDate; // 만료 일자
 
+    private Integer remaining; // 잔여 횟수 (마이페이지 나의 이용권 화면에 뿌려주기 위한 용도)
+    private String purchaseDate_str; // 구매일자 string
+
     private String gymName;
 
     // gymName 제외한 constructor

@@ -21,33 +21,6 @@ public class PurchaseService implements KBService<Integer, Purchase>{
 
 
     @Override
-    public Purchase get(Integer integer) throws Exception {
-        return mapper.select(integer);
-    }
-
-    @Override
-    public List<Purchase> get() throws Exception {
-        return mapper.selectall();
-    }
-
-
-    public List<Purchase> getvalid() throws Exception {
-        return mapper.selectallvalid();
-    }
-
-    public List<Purchase> getinvalid() throws Exception {
-        return mapper.selectallinvalid();
-    }
-
-    public List<Class> getcustclass(Integer integer) throws Exception {
-        return mapper.selectcustclass(integer);
-    }
-
-    public List<Class> getdayclass(Cust cust) throws Exception {
-        return mapper.selectdayclass(cust);
-    }
-
-    @Override
     public void register(Purchase purchase) throws Exception {
         mapper.pinsert(purchase);
     }
@@ -62,6 +35,31 @@ public class PurchaseService implements KBService<Integer, Purchase>{
 
     }
 
+    @Override
+    public Purchase get(Integer integer) throws Exception {
+        return mapper.select(integer);
+    }
+
+    @Override
+    public List<Purchase> get() throws Exception {
+        return mapper.selectall();
+    }
+
+    public List<Purchase> getvalid(Integer custNo) throws Exception {
+        return mapper.selectallvalid(custNo);
+    }
+
+    public List<Purchase> getinvalid(Integer custNo) throws Exception {
+        return mapper.selectallinvalid(custNo);
+    }
+
+//    public List<Class> getcustclass(Integer integer) throws Exception {
+//        return mapper.selectcustclass(integer);
+//    }
+//
+//    public List<Class> getdayclass(Cust cust) throws Exception {
+//        return mapper.selectdayclass(cust);
+//    }
 
 
 }

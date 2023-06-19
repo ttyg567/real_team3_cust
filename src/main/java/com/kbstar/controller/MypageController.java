@@ -6,6 +6,7 @@ import com.kbstar.service.ClassService;
 import com.kbstar.service.MyScheduleService;
 import com.kbstar.service.PurchaseService;
 import com.kbstar.service.TicketService;
+import io.github.flashvayne.chatgpt.service.ChatgptService;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -33,18 +35,47 @@ public class MypageController {
     ClassService classService;
     @Autowired
     MyScheduleService myScheduleService;
+    @Autowired
+    ChatgptService chatgptService;
     String dir = "mypage/";
 
     @RequestMapping
     public String main(Model model, HttpSession session) throws Exception {
 
-//        Cust cust = (Cust) session.getAttribute("logincust");
-//
-//        List<Purchase> list = null;
-//        list = purchaseService.get();
-//
-//        model.addAttribute("clist", list);
-//        session.setAttribute("logincust", cust);
+        Cust cust = null;
+        MySchedule my = new MySchedule();
+        List<MySchedule> list = null;
+        List<Purchase> my_ticket_list = null;
+
+        if (session != null) {
+            cust = (Cust) session.getAttribute("logincust");
+            // 오늘의 운동 일정 추출
+            list = myScheduleService.mypageReserved(cust.getCustNo());
+            // 나의 티켓 추출
+            my_ticket_list = purchaseService.getvalid(cust.getCustNo());
+
+            if  (list != null) {
+                // 날짜 형식 변경 날짜만 나오게
+                for (MySchedule item : list) {
+                    String formattedDate = formatDate(item.getClassDate());
+                    item.setClassDate(formattedDate);
+                }
+            }
+
+            if  (my_ticket_list != null) {
+                // 날짜 형식 변경 날짜만 나오게
+                for (Purchase item : my_ticket_list) {
+                    String exDate = new SimpleDateFormat("yyyy-MM-dd").format(item.getExDate());
+                    log.info("===== 날짜 찍어보자 " + exDate + "======");
+                    item.setPurchaseDate_str(exDate);
+
+                    log.info("===== 잔여횟수 찍어보자 " + item.getRemaining() + "======");
+                }
+            }
+        }
+
+        model.addAttribute("my_reservation_list", list);
+        model.addAttribute("my_ticket_list", my_ticket_list);
         model.addAttribute("center", dir+"center");
         return "index";
     }
@@ -55,7 +86,7 @@ public class MypageController {
         Cust cust = (Cust) session.getAttribute("logincust");
 
         List<Purchase> list = null;
-        list = purchaseService.getvalid();
+        list = purchaseService.getvalid(cust.getCustNo());
 //        log.info("----------------------------------------");
 //        log.info(list.toString());
 //        log.info("----------------------------------------");
@@ -87,7 +118,7 @@ public class MypageController {
 
 
         List<Purchase> invalidList = null;
-        invalidList = purchaseService.getinvalid();
+        invalidList = purchaseService.getinvalid(cust.getCustNo());
 
 
         model.addAttribute("cmap", remainDays);
@@ -121,21 +152,6 @@ public class MypageController {
 
             list = myScheduleService.isCompleted(my); // 운동 완료된 내 스케줄 모두 추출
 
-//            var eventData = [
-//            {
-//                "date": "2023-06-01",
-//                    "completed": true
-//            },
-//            {
-//                "date": "2023-06-05",
-//                    "completed": true
-//            },
-//            {
-//                "date": "2023-06-10",
-//                    "completed": false
-//            },
-//            ];
-
             for (MySchedule obj : list) {
                 JSONObject jo = new JSONObject();
                 jo.put("date", obj.getClassDate());
@@ -147,6 +163,53 @@ public class MypageController {
 
         return ja;
     }
+
+    // Date 형식을 원하는 형태로 변환하는 메소드
+    private String formatDate(String dateString) {
+        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        DateFormat outputFormat = new SimpleDateFormat("MM월 dd일");
+        Date date = null;
+        try {
+            date = inputFormat.parse(dateString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return outputFormat.format(date);
+    }
+
+    @RequestMapping("/gptchatbot")
+    public String gptchatbot(Model model, HttpSession session) throws Exception {
+
+        model.addAttribute("center", dir+"gptchatbot");
+        return "index";
+    }
+
+    @RequestMapping("/gptchatting")
+    @ResponseBody
+    public Object gptchatting(String question) throws Exception {
+        log.info("챗지티피 시작하자!!");
+        String answer ="";
+        try {
+            answer = chatgptService.sendMessage(question);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        log.info("============= 대답 출력: ");
+        log.info(answer);
+        String imageUrl = chatgptService.imageGenerate("boy");
+        log.info(imageUrl);  // image url
+
+        JSONArray ja = new JSONArray();
+        JSONObject jo = new JSONObject();
+
+        jo.put("question", question);
+        jo.put("answer", answer);
+        ja.add(jo);
+
+        return ja;
+    }
+
+
 
 }
 

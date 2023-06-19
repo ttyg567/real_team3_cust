@@ -178,7 +178,7 @@
                             <div class="emTitle_co padding-20">
                                 <h2 class="size-16 weight-500 color-secondary mb-1">${logincust.custName}님, 수업
                                     예약 현황입니다.</h2>
-                                <p class="size-12 color-text m-0">날짜를 클릭하시면 예약하신 수업 내역이 보여집니다.</p>
+                                <p class="size-12 color-text m-0">시간을 클릭하시면 수업을 취소하실 수 있습니다.</p>
                             </div>
                             <!-- 달력 부분 -->
                             <div class="col-12 d-flex justify-content-center"> <!-- 중앙 정렬 스타일 추가 -->
@@ -239,24 +239,46 @@
     </form>
 </section>
 
+<!-- Modalmdll_removeStand -->
+<div class="modal bttom_show defaultModal mdll_removeStand fade" id="mdllRemoveStand" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="content__remove">
+                    <div class="media">
+                        <div class="icon">
+                            <svg id="Iconly_Bulk_Delete" data-name="Iconly/Bulk/Delete"
+                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <g id="Delete" transform="translate(3 2)">
+                                    <path id="Fill_1" data-name="Fill 1"
+                                          d="M15.289.792c0,.068-.533,6.809-.837,9.646a2.918,2.918,0,0,1-3,2.827c-1.293.029-2.56.039-3.806.039-1.323,0-2.616-.01-3.872-.039A2.917,2.917,0,0,1,.847,10.438C.534,7.591.011.86,0,.792A.794.794,0,0,1,.192.234.71.71,0,0,1,.715,0H14.585a.73.73,0,0,1,.523.234.748.748,0,0,1,.181.558"
+                                          transform="translate(1.354 6.696)" fill="#200e32" opacity="0.4" />
+                                    <path id="Fill_4" data-name="Fill 4"
+                                          d="M18,3.977a.722.722,0,0,0-.713-.733H14.371A1.281,1.281,0,0,1,13.13,2.227L12.967,1.5a1.985,1.985,0,0,0-1.9-1.5H6.936A1.988,1.988,0,0,0,5.023,1.546l-.153.682A1.283,1.283,0,0,1,3.63,3.244H.714A.722.722,0,0,0,0,3.977v.38a.729.729,0,0,0,.714.733H17.287A.729.729,0,0,0,18,4.357Z"
+                                          transform="translate(0 0)" fill="#200e32" />
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="media-body">
+                            <div class="txt">
+                                <h2>수업 예약을 취소하시겠습니까?</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal"
+                        class="btn btn__cancel mr-1 size-15 color-text min-w-100 h-40 d-flex align-items-center rounded-10 justify-content-center">닫기</button>
+                <a href=""
+                   class="btn bg-primary min-w-100 m-0 size-15 color-white h-40 d-flex align-items-center rounded-10 justify-content-center">
+                    수업 취소하기
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="/assets/js/userjs/calendar_check.js"></script>
-
-<script>
-    // 예약내역조회 및 취소 링크를 클릭할 때
-    document.querySelector('.nav-link[href="/class/my_reservation"]').addEventListener('click', function() {
-        // "active" 클래스를 추가
-        this.classList.add('active');
-
-        // 수업예약 링크의 "active" 클래스를 제거
-        document.querySelector('.nav-link[href="/class/reservation"]').classList.remove('active');
-    });
-
-    // 수업예약 링크를 클릭할 때
-    document.querySelector('.nav-link[href="/class/reservation"]').addEventListener('click', function() {
-        // "active" 클래스를 추가
-        this.classList.add('active');
-
-        // 예약내역조회 및 취소 링크의 "active" 클래스를 제거
-        document.querySelector('.nav-link[href="/class/my_reservation"]').classList.remove('active');
-    });
-</script>

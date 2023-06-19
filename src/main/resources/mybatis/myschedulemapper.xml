@@ -5,39 +5,192 @@
 
 <mapper namespace="com.kbstar.mapper.MyScheduleMapper">
 
+    <!-- 수업예약 -->
     <insert id="insert" parameterType="mySchedule">
-    INSERT INTO myschedule (MYSCHEDULENO, CLASSNO, PURCHASENO, SCHEDULECOMPLETED, SHEDULECANCELED, CUSTNO)
-    VALUES (myschedule_seq.NextVAL, #{classNo}, #{purchaseNo}, '0', '0', #{custNo})
+        INSERT INTO myschedule (MYSCHEDULENO, CLASSNO, PURCHASENO, SCHEDULECOMPLETED, SHEDULECANCELED, CUSTNO)
+        VALUES (myschedule_seq.NextVAL, #{classNo}, #{purchaseNo}, '0', '0', #{custNo})
     </insert>
+
+    <!-- 수업예약하면 수업정보에 참가인원을 +1 해줌 -->
+    <update id="reserve_update_classJoin" parameterType="mySchedule">
+        UPDATE class
+        SET
+            classJoin = classJoin + 1,
+            classFullbooked = CASE WHEN classJoin + 1 >= classMaximum THEN '1' ELSE '0'
+                END
+        WHERE classNo = #{classNo}
+    </update>
+
+    <!-- 수업예약하면 구매 이용권에 사용횟수를 +1 해줌 -->
+    <update id="reserve_update_usedCnt" parameterType="mySchedule">
+        UPDATE purchase
+        SET
+            usedCnt = usedCnt + 1,
+            ticketEx = CASE WHEN ticketEx + 1 >= ticketNumber THEN '1' ELSE '0'
+                END
+        WHERE purchaseNo = #{purchaseNo}
+    </update>
+
+    <!-- 수업취소(delete 안하고 취소여부만 '1'로 변경 -->
+    <update id="cancelClass" parameterType="mySchedule">
+        update myschedule
+        set
+            SHEDULECANCELED = '1'
+        where classNo=#{classNo}
+    </update>
+
+    <!-- 수업취소하면 고객 예약에서 운동 취소여부를 '여'로 바꿔줌 -->
+    <update id="cancel_update_sheduleCanceled" parameterType="mySchedule">
+        UPDATE mySchedule
+        SET
+            sheduleCanceled = '1'
+        where custNo=#{custNo} and classNo=#{classNo}
+    </update>
+
+    <!-- 수업취소하면 수업정보에 참가인원을 -1 해줌 -->
+    <update id="cancel_update_classJoin" parameterType="mySchedule">
+        UPDATE class
+        SET
+            classJoin = classJoin - 1,
+            classFullbooked = CASE WHEN classJoin - 1 >= classMaximum THEN '1' ELSE '0'
+            END
+        WHERE classNo = #{classNo}
+    </update>
+
+    <!-- 수업취소하면 구매 이용권에 사용횟수를 -1 해줌 -->
+    <update id="cancel_update_usedCnt" parameterType="mySchedule">
+        UPDATE purchase
+        SET
+            usedCnt = usedCnt - 1,
+            ticketEx = CASE WHEN ticketEx - 1 >= ticketNumber THEN '1' ELSE '0'
+                END
+        WHERE purchaseNo = #{purchaseNo}
+    </update>
 
     <!-- 특정일자 예약한 수업 조회 (운동 취소여부 : '0', 대표계정 : '1') -->
     <select id="isReserved_day" parameterType="mySchedule" resultType="mySchedule">
-        select m.*, c.className, c.classDate, c.classStarttime, c.classEndtime, c.sportsType, c.sportsClasstype
-             , g.gymName, t.trainerName
+        select m.*
+             , c.className
+             , c.classDate
+             , c.classStarttime
+             , c.classEndtime
+             , c.sportsType
+             , c.sportsClasstype
+             , g.gymName
+             , t.trainerName
+             , m.purchaseNo
         from myschedule m
-                 left join class c on m.classNo =  c.classNo
+                 left join class c on m.classNo = c.classNo
                  left join gym g on c.gymNo = g.gymNo
                  left join trainer t on c.trainerNo = t.trainerNo
-        where m.custno = #{custNo} and SHEDULECANCELED ='0' and g.gymMasterCk = '1' and c.classDate=#{classDate}
+        where m.custno = #{custNo}
+          and SHEDULECANCELED = '0'
+          and g.gymMasterCk = '1'
+          and c.classDate = #{classDate}
     </select>
 
     <!-- 예약한 수업 조회 (운동 취소여부 : '0', 대표계정 : '1') -->
     <select id="isReserved" parameterType="Integer" resultType="mySchedule">
-        select m.*, c.className, c.classDate, c.classStarttime, c.classEndtime, c.sportsType, c.sportsClasstype
-        , g.gymName, t.trainerName
+        select m.*
+             , c.className
+             , c.classDate
+             , c.classStarttime
+             , c.classEndtime
+             , c.sportsType
+             , c.sportsClasstype
+             , g.gymName
+             , t.trainerName
+             , m.purchaseNo
         from myschedule m
-            left join class c on m.classNo =  c.classNo
-            left join gym g on c.gymNo = g.gymNo
-            left join trainer t on c.trainerNo = t.trainerNo
-        where m.custno = #{custNo} and SHEDULECANCELED ='0' and g.gymMasterCk = '1'
+                 left join class c on m.classNo = c.classNo
+                 left join gym g on c.gymNo = g.gymNo
+                 left join trainer t on c.trainerNo = t.trainerNo
+        where m.custno = #{custNo}
+          and SHEDULECANCELED = '0'
+          and g.gymMasterCk = '1'
     </select>
+
+    <!-- 오늘 이후 이번주, 다음주 예약한 수업 조회 (운동 취소여부 : '0', 대표계정 : '1') -->
+    <select id="mypageReserved" parameterType="Integer" resultType="mySchedule">
+  <![CDATA[
+        SELECT m.*,
+               c.className,
+               c.classDate,
+               c.classStarttime,
+               c.classEndtime,
+               c.sportsType,
+               c.sportsClasstype,
+               g.gymName,
+               t.trainerName,
+               CASE
+                   WHEN c.classDate = TRUNC(SYSDATE) THEN '오늘'
+                   WHEN c.classDate = TRUNC(SYSDATE) + 1 THEN '내일'
+                   WHEN c.classDate >= TRUNC(SYSDATE, 'IW') AND c.classDate < TRUNC(SYSDATE, 'IW') + 7 THEN '이번주'
+                   WHEN c.classDate >= TRUNC(SYSDATE, 'IW') + 7 AND c.classDate < TRUNC(SYSDATE, 'IW') + 14 THEN '다음주'
+                   ELSE '기타'
+                   END AS dateCategory
+        FROM myschedule m
+                 LEFT JOIN class c ON m.classNo = c.classNo
+                 LEFT JOIN gym g ON c.gymNo = g.gymNo
+                 LEFT JOIN trainer t ON c.trainerNo = t.trainerNo
+        WHERE m.custno = #{custNo}
+          AND SHEDULECANCELED = '0'
+          AND g.gymMasterCk = '1'
+          AND c.classDate >= TRUNC(SYSDATE)
+          AND (CASE
+                   WHEN c.classDate = TRUNC(SYSDATE) THEN '오늘'
+                   WHEN c.classDate = TRUNC(SYSDATE) + 1 THEN '내일'
+                   WHEN c.classDate >= TRUNC(SYSDATE, 'IW') AND c.classDate < TRUNC(SYSDATE, 'IW') + 7 THEN '이번주'
+                   WHEN c.classDate >= TRUNC(SYSDATE, 'IW') + 7 AND c.classDate < TRUNC(SYSDATE, 'IW') + 14 THEN '다음주'
+                   ELSE '기타'
+            END) IN ('오늘', '내일', '이번주', '다음주')
+        ORDER BY c.classDate
+        ]]>
+</select>
 
     <!-- 운동완료 리스트 추출-->
     <select id="isCompleted" parameterType="mySchedule" resultType="mySchedule">
         select m.*, c.classDate
-        from myschedule m left join class c on m.classNo =  c.classNo
-        where m.custno = #{custNo} and m.SCHEDULECOMPLETED = '1'
+        from myschedule m
+                 left join class c on m.classNo = c.classNo
+        where m.custno = #{custNo}
+          and m.SCHEDULECOMPLETED = '1' and SHEDULECANCELED = '0'
+          and extract(year from c.classDate) = extract(year from sysdate)
+          and extract(month from c.classDate) = extract(month from sysdate)
     </select>
+
+    <!-- 오늘 예약한 수업 조회 (운동 취소여부 : '0', 대표계정 : '1') -->
+    <select id="todayClass" parameterType="mySchedule" resultType="mySchedule">
+        select m.*
+             , c.className
+             , c.classDate
+             , c.classStarttime
+             , c.classEndtime
+             , c.sportsType
+             , c.sportsClasstype
+             , g.gymName
+             , t.trainerName
+        from myschedule m
+                 left join class c on m.classNo = c.classNo
+                 left join gym g on c.gymNo = g.gymNo
+                 left join trainer t on c.trainerNo = t.trainerNo
+        where m.custno = #{custno}
+          and m.SHEDULECANCELED = '0'
+          and g.gymMasterCk = '1'
+          and c.classDate = TRUNC(sysdate)
+    </select>
+
+    <!-- 운동완료 업데이트 -->
+    <update id="update" parameterType="mySchedule">
+        UPDATE mySchedule
+        SET schedulecompleted = '1'
+        WHERE custNo = #{custNo}
+          AND classno IN (SELECT m.classno
+                          FROM myschedule m
+                                   JOIN class c ON m.classno = c.classno
+                          WHERE m.custNo = #{custNo}
+                            AND TRUNC(c.classdate) = TRUNC(sysdate))
+    </update>
 
 
 </mapper>

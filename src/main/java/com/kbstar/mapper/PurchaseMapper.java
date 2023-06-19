@@ -14,9 +14,9 @@ import java.util.List;
 @Repository
 @Mapper
 public interface PurchaseMapper extends KBMapper<Integer, Purchase> {
-    public List<Purchase> selectallvalid();
+    public List<Purchase> selectallvalid(Integer custNo);
 
-    public List<Purchase> selectallinvalid();
+    public List<Purchase> selectallinvalid(Integer custNo);
 
     List<Class> selectcustclass(Integer integer);
 

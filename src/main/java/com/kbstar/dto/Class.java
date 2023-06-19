@@ -31,6 +31,9 @@ public class Class {
     private String trainerName;
     private String gymName;
 
+    private Integer purchaseNo;
+    private Integer ticketNo;
+
     public Class(Integer gymNo, Integer trainerNo, String className, String classDate, String classStarttime, String classEndtime, Integer classMaximum, String sportsType, String sportsClasstype) {
         this.gymNo = gymNo;
         this.trainerNo = trainerNo;

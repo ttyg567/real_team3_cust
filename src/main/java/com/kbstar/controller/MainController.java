@@ -21,17 +21,17 @@ public class MainController {
     GroupboardService groupboardService;
     @RequestMapping("/")
     public String main(Model model, Gym gym) throws Exception {
-        List<Gym> list = null;
-        List<Gym> listGym = null;
-        try {
-            list = gymService.selectWithMarketing();
-            listGym = gymService.selectDiscount();
-        }
-        catch (Exception e){
-            throw new Exception("error");
-        }
-        model.addAttribute("all",list);
-        model.addAttribute("allGym",listGym);
+//        List<Gym> list = null;
+//        List<Gym> listGym = null;
+//        try {
+//            list = gymService.selectWithMarketing();
+//            listGym = gymService.selectDiscount();
+//        }
+//        catch (Exception e){
+//            throw new Exception("error");
+//        }
+//        model.addAttribute("all",list);
+//        model.addAttribute("allGym",listGym);
         return "index";
     }
     @RequestMapping("/best")

@@ -119,21 +119,32 @@
         color: white; /* 버튼의 텍스트색 */
     }
 
-    /*.fc-toolbar .fc-prev-button.active,*/
-    /*.fc-toolbar .fc-next-button.active {*/
-    /*    background-color: #cbb3fd; !* 클릭 시 버튼의 배경색 *!*/
-    /*    border-color: #cbb3fd;*/
-    /*    color: white; !* 클릭 시 버튼의 텍스트색 *!*/
-    /*}*/
-
+    .circle_check.active::before {
+        content: "" !important;
+        background-image: url("data:image/svg+xml,%3Csvg id='done' xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath id='Icon_color' data-name='Icon color' d='M8.424.782l-5.3,5.3a.25.25,0,0,1-.355,0L.074,3.387a.25.25,0,0,1,0-.355l.35-.35a.25.25,0,0,1,.355,0L2.944,4.847,7.719.072a.255.255,0,0,1,.355,0l.35.355a.25.25,0,0,1,0,.355Z' transform='translate(1.501 2.843)' fill='%23fff' stroke='%23fff' stroke-miterlimit='10' stroke-width='0.5'/%3E%3C/svg%3E%0A") !important;
+        background-repeat: no-repeat !important;
+        width: 12px !important;
+        height: 12px !important;
+        background-size: 12px !important;
+        position: absolute !important;
+        opacity: 0 !important;
+        -webkit-transform: scale(1.1, -1.2) !important;
+        -moz-transform: scale(1.1, -1.2) !important;
+        -o-transform: scale(1.1, -1.2) !important;
+        -ms-transform: scale(1.1, -1.2) !important;
+        transform: scale(1.1, -1.2) !important;
+    }
     .circle_check.active {
         background-color: var(--bg-green) !important;
         border-color: var(--border-green) !important;
+        -webkit-animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) both !important;
+        -moz-animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) both !important;
+        -o-animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) both !important;
+        -ms-animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) both !important;
+        animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) both !important;
     }
-
     .circle_check.active::before {
         opacity: 1 !important;
-        background-position: center !important; /* 배경 이미지를 가운데로 정렬 */
     }
 
 </style>
@@ -214,20 +225,20 @@
                     <div class="modal-body emPage__shippingAddress withBorder__sm bg-white">
                         <ul class="nav__listAddress itemSingle">
                             <li class="item">
-                                <div class="personal__info">
-                                    <h1 class="size-15 color-secondary weight-400">수업명 : </h1>
-                                    <span class="size-13 color-text weight-400 d-inline-block" id="gymName">센터 : </span>
-                                    <span class="size-13 color-text weight-400 d-inline-block"
-                                          id="trainerName">강사 : </span>
-                                    <p class="size-13 color-text weight-400" id="classTime">수업시간 : </p>
-                                    <span class="size-13 color-text weight-400 d-inline-block"
-                                          id="sportsType">운동종목: </span>
-                                    <span class="size-13 color-text weight-400 d-inline-block"
-                                          id="sportsClasstype">수업형태: </span>
-                                </div>
-                                <div class="areaRight">
-                                    <span class="circle_check"></span>
-                                </div>
+<%--                                <div class="personal__info">--%>
+<%--                                    <h1 class="size-15 color-secondary weight-400">수업명 : </h1>--%>
+<%--                                    <span class="size-13 color-text weight-400 d-inline-block" id="gymName">센터 : </span>--%>
+<%--                                    <span class="size-13 color-text weight-400 d-inline-block"--%>
+<%--                                          id="trainerName">강사 : </span>--%>
+<%--                                    <p class="size-13 color-text weight-400" id="classTime">수업시간 : </p>--%>
+<%--                                    <span class="size-13 color-text weight-400 d-inline-block"--%>
+<%--                                          id="sportsType">운동종목: </span>--%>
+<%--                                    <span class="size-13 color-text weight-400 d-inline-block"--%>
+<%--                                          id="sportsClasstype">수업형태: </span>--%>
+<%--                                </div>--%>
+<%--                                <div class="areaRight">--%>
+<%--                                    <span class="circle_check"></span>--%>
+<%--                                </div>--%>
                             </li>
                         </ul>
                     </div>

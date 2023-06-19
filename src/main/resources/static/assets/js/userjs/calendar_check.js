@@ -21,7 +21,7 @@ var calFunc = {
             }
         }
 
-        if (allDay) { //하루종일이면
+        if (allDay) {//하루종일이면
             var start = arg.start.toISOString().slice(0, 10); //returnCdate(calendar,arg.start);
             var end = null;
             if (arg.end != "" && arg.end != null && arg.end != undefined) {
@@ -85,75 +85,17 @@ var calFunc = {
 
 };
 
-function set_time(item) {
-    // 역직렬화
-    let itemObject = JSON.parse(item);
-
-    // 수업 시간 set
-    let time = itemObject.classTime;
-    console.log("시간 확인: " + time);
-    $('#ttime').text(time);
-
-    // 수업 상세 내용 set
-    $('#className').val(itemObject.className); // 수업명
-    $("#trainerNo").val(itemObject.trainerNo); // 트레이너
-    $("#trainerNo option[value='" + itemObject.trainerNo + "']").text(itemObject.trainerName); // 트레이너
-
-    // $("#classDate").val(itemObject.classDate).trigger("change");
-
-    $("#classDate").val(itemObject.classDate); // 수업일시
-    console.log("====" + itemObject.sportsClasstype + "====" + typeof itemObject.sportsClasstype);
-    if (itemObject.sportsClasstype.replace(" ", "") === "1") {
-        $("#sportsClasstype").val("1");
-        $("#sportsClasstype option[value='1']").text("1:1수업");
-    } else if (itemObject.sportsClasstype.replace(" ", "") === "2") {
-        $("#sportsClasstype").val("2");
-        $("#sportsClasstype option[value='2']").text("그룹수업");
-    } else {
-        $("#sportsClasstype").val("3");
-        $("#sportsClasstype option[value='3']").text("자유수업");
-    }
-    $('#classStarttime').val(itemObject.classStarttime); // 수업시작시간
-    $("#classEndtime").val(itemObject.classEndtime); // 수업종료시간
-    $("#classMaximum").val(itemObject.classMaximum); // 최대 인원
-    $("#classJoin").val(itemObject.classJoin); // 참여 인원
-    $("#classFullbooked").val(itemObject.classFullbooked); // 마감 여부
-
-    // classNo set
-    $("#classNo").val(itemObject.classNo); // classNo
-}
-
-// 예약 로직을 처리하는 함수
-function reserveClass(circleCheck) {
-    // 클릭한 circle_check 요소의 부모 요소인 li.item을 찾습니다
-    var listItem = circleCheck.closest('.item');
-
-    // listItem에서 필요한 정보를 가져와서 예약 처리를 수행합니다
-    var classNo = listItem.find('#classNo').val();
-    var className = listItem.find('.size-15').text();
-    var gymName = listItem.find('#gymName').text();
-    var trainerName = listItem.find('#trainerName').text();
-    var classTime = listItem.find('#classTime').text();
-    var sportsType = listItem.find('#sportsType').text();
-    var sportsClasstype = listItem.find('#sportsClasstype').text();
-
-
-    // 예약 처리 로직을 작성합니다
-    // 여기서는 간단히 console.log로 예약 정보를 출력하는 것으로 대체합니다
-    console.log("=== 예약 클래스를 다음과 같이 출력 ==== ");
-    // console.log('고객고유번호:', custNo);
-    console.log('수업고유번호:', classNo);
-    console.log('수업명:', className);
-    console.log('센터:', gymName);
-    console.log('강사:', trainerName);
-    console.log('수업시간:', classTime);
-    console.log('운동종목:', sportsType);
-    console.log('수업형태:', sportsClasstype);
-
-}
-
 var calendar = new FullCalendar.Calendar(document.getElementById("calendar_check"), {
 
+    /** 구글 공휴일 지정 **/
+    // googleCalendarApiKey: "AIzaSyD1IVA95RXsFpj3FngyLcClyP-RE4axSQw",
+    // eventSources        : [
+    //     {
+    //         googleCalendarId: 'ko.south_korea.official#holiday@group.v.calendar.google.com'
+    //         , color         : 'white'   // an option!
+    //         , textColor     : 'red' // an option!
+    //     }
+    // ],
     /************************ 추가 지정 *************************/
     locale              : 'ko',
     timeZone            : 'Asia/Seoul', // 반드시 세팅해줄 것!
@@ -176,10 +118,72 @@ var calendar = new FullCalendar.Calendar(document.getElementById("calendar_check
     initialDate  : '2023-06-05',
 
     /************************ 추가 지정 *************************/
-    // eventColor : 'green',
-    // themeSystem: 'materia',
+    eventColor : 'purple',
+    themeSystem: 'materia',
 
-    // events: '/class/getClassdata', // ajax 호출하면 된다. 배열로 주기만 하면 된다.
+    eventClick : function (info) {
+        var eventObj = info.event;
+        console.log("로그" + eventObj.title);
+        var classNo = eventObj.extendedProps.classNo; // classNo 가져오기
+        var purchaseNo = eventObj.extendedProps.purchaseNo; // purchaseNo 가져오기
+        console.log("classNo: " + classNo);
+        console.log("purchaseNo: " + purchaseNo);
+
+
+        if (eventObj.url) {
+            alert(
+                'Clicked ' + eventObj.title + '.\n' +
+                'Will open ' + eventObj.url + ' in a new tab'
+            );
+
+            window.open(eventObj.url);
+
+            info.jsEvent.preventDefault(); // prevents browser from following link in current tab.
+        } else {
+            // alert("["+eventObj.title+"]"+" 날짜를 선택")
+            // 예약 취소 모달을 열고 classNo를 전달
+            openCancelModal(classNo, purchaseNo);
+
+        }
+    },
+    eventAdd   : function (obj) { // 이벤트가 추가되면 발생하는 이벤트
+        console.log(obj);
+    },
+    eventChange: function (obj) { // 이벤트가 수정되면 발생하는 이벤트
+        console.log(obj);
+    },
+    eventRemove: function (obj) { // 이벤트가 삭제되면 발생하는 이벤트
+        console.log(obj);
+    },
+
+    // 해당 일자를 누르면 수업 시간표가 나열된다.
+    dateClick: function (info) {
+
+        const date = new Date();
+
+        const year = date.getFullYear();
+        const month = ('0' + (date.getMonth() + 1)).slice(-2);
+        const day = ('0' + date.getDate()).slice(-2);
+        const dateStr = year + '-' + month + '-' + day;
+
+        $('#tdate').text(info.dateStr);
+
+        $.ajax({
+            url     : '/class/getReservedclasstime',
+            dataType: 'json',
+            data    : {tdate: info.dateStr}
+        }).done(function (data) {
+            let arr = data;
+            let html = '';
+            $(arr).each(function(index, item) {
+                console.log(item);
+                var itemString = JSON.stringify(item); // 직렬화
+                console.log("json 문자열 확인: " + itemString); // 직렬화 확인
+            });
+        });
+    },
+
+    events: '/class/getReservedclass', // ajax 호출하면 된다. 배열로 주기만 하면 된다.
 
     views: {
         month     : {
@@ -202,118 +206,45 @@ var calendar = new FullCalendar.Calendar(document.getElementById("calendar_check
                 day  : "numeric"
             }
         }
-    }
-
+    },
 });
 
+calendar.render();
 
-function addExerciseToCells(eventData) {
-    calendar.batchRendering(function () {
-        console.log("진입시작한다!!!");
-        calendar.getEventSources().forEach(function (eventSource) {
-            console.log("진입222!!!");
-            eventSource.remove(); // 이전에 추가된 이벤트 제거
-        });
-        console.log("진입333!!!");
-        eventData.forEach(function (data) {
-            var date = data.date.split(' ')[0];
-            var start = data.start.split(' ')[0];
-            var myscheduleNo = data.myscheduleNo;
-            var classNo = data.classNo;
-            console.log("date 찍어보자" + date);
-            console.log("start 찍어보자" + start);
-            console.log("myscheduleNo 찍어보자" + myscheduleNo);
-            console.log("classNo 찍어보자" + classNo);
+// 예약 취소 모달 열기
+function openCancelModal(classNo, purchaseNo) {
 
-            var event = {
-                id: 'exercise_' + classNo, // 고유한 ID 생성
-                start: date + 'T' + start, // 날짜 및 시간 정보
-                allDay: false,
-                myscheduleNo: myscheduleNo,
-                classNo: classNo
-            };
+    // 모달 열기
+    $('#mdllRemoveStand').modal('show');
 
-            calendar.addEvent(event); // event 객체를 달력에 추가하는 역할
-        });
+    // Remove 버튼 클릭 시 AJAX 호출
+    var removeButton = document.querySelector('#mdllRemoveStand .modal-footer a');
+    removeButton.addEventListener('click', function (event) {
+        event.preventDefault(); // 기본 동작 방지
 
-        // 각 날짜 셀에 시작 시간 표시
-        // fullcalendar 라이브러리의 이벤트 핸들러. 달력에서 각 날짜 셀을 렌더링할 때마다 실행
-        calendar.on('eventDidMount', function (info) {
-            var event = info.event; // 현재 렌더링 중인 이벤트 객체에 접근
-            var date = event.start.toISOString().split('T')[0];
-            var cell = info.el; // 현재 이벤트가 렌더링되는 요소에 접근
-
-            if (event) {
-                var start = event.start.getHours() + ':' + event.start.getMinutes(); // 시작 시간 추출
-                var startElement = document.createElement('button');
-                startElement.classList.add('start-time'); // start-time이라는 클래스 속성 부여
-                startElement.textContent = start;
-                cell.appendChild(startElement);
-
-                startElement.addEventListener('click', function (clickEvent) { // 매개변수 이름 변경: event -> clickEvent
-                    clickEvent.preventDefault();
-
-                    var startTime = event.start.getHours() + ':' + event.start.getMinutes(); // 시작 시간 추출
-                    var myscheduleNo = event.extendedProps.myscheduleNo;
-                    var classNo = event.extendedProps.classNo;
-
-                    alert("눌렸음");
-
-                    console.log('Clicked Start Time:', startTime);
-                    console.log('myscheduleNo:', myscheduleNo);
-                    console.log('classNo:', classNo);
-                });
+        // AJAX 호출
+        $.ajax({
+            url: '/class/cancel',
+            type: 'GET',
+            data: { classNo: classNo,
+                purchaseNo : purchaseNo},
+            success: function (response) {
+                if (response === "success") {
+                    alert("예약취소가 완료되었습니다");
+                    $('#mdllRemoveStand').modal('hide'); // 모달 창을 닫습니다
+                    window.location.href = "/class/my_reservation"; // 페이지 이동
+                } else {
+                    alert("예약취소에 실패하였습니다");
+                    $('#mdllRemoveStand').modal('hide'); // 모달 창을 닫습니다
+                }
+            },
+            error: function (error) {
+                alert("예약취소에 실패하였습니다");
+                $('#mdllRemoveStand').modal('hide'); // 모달 창을 닫습니다
+            },
+            complete: function () {
+                // AJAX 요청 완료 후 필요한 작업을 수행할 수 있습니다.
             }
         });
     });
 }
-
-// 운동 완료 데이터 가져오기
-function getEventData(callback) {
-    $.ajax({
-        url: '/class/getReservedclass',
-        dataType: 'json',
-        success: function(data) {
-            console.log("======" + JSON.stringify(data) + "=====");
-            callback(data);
-        },
-        error: function() {
-            console.log('운동 완료 데이터를 가져오는데 실패했습니다.');
-            callback([]);
-        }
-    });
-}
-
-
-// 달력 렌더링
-calendar.render();
-
-// 운동 완료 데이터 가져온 후에 달력에 이벤트 추가하기
-getEventData(function(data) {
-    addExerciseToCells(data);
-});
-
-
-// function getEventData(date, callback) {
-//
-//     var custNo = $('#custNo').val();
-//     console.log("고객넘버!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + custNo);
-//
-//     $.ajax({
-//         url: '/mypage/getCompleted',
-//         dataType: 'json',
-//         data: {
-//             tdate: date
-//         }
-//     }).done(function (data) {
-//         console.log("운동 완료된 데이터를 찍어보겠습니다");
-//         console.log(data);
-//         callback(data);
-//     }).fail(function () {
-//         callback("fail");
-//     });
-//
-// }
-//
-//
-// calendar.render();
