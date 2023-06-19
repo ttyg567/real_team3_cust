@@ -330,7 +330,7 @@
                 </div>
 <!--이용권 끝-->
         <div style="position: fixed; z-index:9999;  bottom: 200px; right: 50px">
-            <a href="/chat"><img src="/img/chat.png" style="width:50px; height: 50px;" title="1:1문의"></a>
+            <a href="/ticket/chat?gymNo=${gdetail.gymNo}"><img src="/img/chat.png" style="width:50px; height: 50px;" title="1:1문의"></a>
         </div>
 
         <div class="padding-t-100">
