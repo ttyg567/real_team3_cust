@@ -32,7 +32,7 @@ public class Cust {
     private String custSocialmedia; // 소셜미디어여부 // 0:부, 1:여
     private String custSnstype; // SNS종류 // 0:부, 1:카카오
     private String custJoindate; // 가입일시
-
+    private String custImgName; // 사진추가
     // 소셜 로그인 위해 추가
     private Map<String, Object> attributes; // 구글 로그인을 통해서 받은 정보들을 그대로 담아 return 해주는 역할
 
@@ -77,5 +77,8 @@ public class Cust {
         this.custEmail=email;
         this.picture=picture;
         this.role=role;
+    }
+
+    public void updateCustImgName(Cust cust) {
     }
 }

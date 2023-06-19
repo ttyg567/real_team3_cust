@@ -66,6 +66,21 @@
     .joincontent{
         margin-bottom: 15px;
     }
+
+ .nav-item .title_link {
+     margin-left: 10%;
+     width: 100%; /* 원하는 너비 값으로 변경하세요 */
+     display: inline-block;
+     overflow: hidden;
+     white-space: nowrap;
+     text-overflow: ellipsis;
+ }
+.nav-link{
+    margin-left: 50px;
+}
+a.nav-link.active::after{
+    width: 100%;
+}
 </style>
 <body>
 
@@ -77,39 +92,7 @@
 
 <div id="wrapper">
 
-    <!-- 기본헤더 스타일 Start main_haeder -->
-    <%--    <header class="main_haeder header-sticky multi_item">--%>
-    <%--        <div class="em_menu_sidebar">--%>
-    <%--            <a href="/">--%>
-    <%--                <img src="/assets/img/logo.jpg" alt="" style="width: 80px; height:60px; margin-top: 5px">--%>
-    <%--            </a>--%>
-    <%--        </div>--%>
-    <%--        <div class="em_brand">--%>
 
-    <%--        </div>--%>
-    <%--        <div class="em_side_right">--%>
-    <%--            <a href="/notification" class="btn justify-content-center relative">--%>
-    <%--                <svg class="color-secondary" id="Iconly_Two-tone_Notification"--%>
-    <%--                     data-name="Iconly/Two-tone/Notification" xmlns="http://www.w3.org/2000/svg" width="24"--%>
-    <%--                     height="24" viewBox="0 0 24 24">--%>
-    <%--                    <g id="Notification" transform="translate(3.5 2)">--%>
-    <%--                        <path id="Path_425"--%>
-    <%--                              d="M0,11.787v-.219A3.6,3.6,0,0,1,.6,9.75,4.87,4.87,0,0,0,1.8,7.436c0-.666,0-1.342.058-2.009C2.155,2.218,5.327,0,8.461,0h.078c3.134,0,6.306,2.218,6.617,5.427.058.666,0,1.342.049,2.009A4.955,4.955,0,0,0,16.4,9.759a3.506,3.506,0,0,1,.6,1.809v.209a3.566,3.566,0,0,1-.844,2.39A4.505,4.505,0,0,1,13.3,15.538a45.078,45.078,0,0,1-9.615,0A4.554,4.554,0,0,1,.835,14.167,3.6,3.6,0,0,1,0,11.787Z"--%>
-    <%--                              transform="translate(0 0)" fill="none" stroke="#200e32" stroke-linecap="round"--%>
-    <%--                              stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />--%>
-    <%--                        <path id="Path_421"--%>
-    <%--                              d="M0,0A3.061,3.061,0,0,0,2.037,1.127,3.088,3.088,0,0,0,4.288.5,2.886,2.886,0,0,0,4.812,0"--%>
-    <%--                              transform="translate(6.055 18.852)" fill="none" stroke="#200e32"--%>
-    <%--                              stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"--%>
-    <%--                              stroke-width="1.5" opacity="0.4" />--%>
-    <%--                    </g>--%>
-    <%--                </svg>--%>
-    <%--                <span class="flashCircle"></span>--%>
-    <%--            </a>--%>
-    <%--        </div>--%>
-    <%--    </header>--%>
-    <!-- End.main_haeder -->
-    <!-- center 시작 -->
     <c:choose>
         <c:when test="${center == null}">
             <jsp:include page="center.jsp"/>
@@ -287,14 +270,23 @@
                                 <!-- You can use an image -->
                                 <!-- <img class="_imgUser" src="/assets/img/person.png" alt=""> -->
                                 <div class="letter bg-yellow">
-                                    <span>c</span>
+                                   <img src="/uimg/${logincust.custImgName}">
                                 </div>
                             </a>
                             <div class="media-body">
                                 <div class="txt">
-                                    <h3>Calvin Bell</h3>
-                                    <p>+1 6540 605 490</p>
-                                    <a href="/cust/login" class="btn btn_logOut">로그인</a>
+                                    <!--로그인 여부에따라-->
+                                    <c:choose>
+                                    <c:when test="${logincust == null}">
+                                        <h3>로그인을 해주세요, </h3>
+                                        <a href="/cust/login" class="btn btn_logOut">로그인</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <h3>${logincust.custName}</h3>
+                                        <p>${logincust.custPhone}</p>
+                                        <a href="/cust/logoutimpl" class="btn btn_logOut">로그아웃</a>
+                                    </c:otherwise>
+                                    </c:choose>
                                 </div>
                             </div>
                         </div>
@@ -353,12 +345,12 @@
                                             </g>
                                         </svg>
                                     </div>
-                                    <span class="title_link">Discover</span>
+                                    <span class="title_link">헬쓱 홈</span>
                                 </div>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="app-homes.html">
+                            <a class="nav-link" href="/like1check">
                                 <div class="">
                                     <div class="icon_current">
                                         <svg id="Iconly_Curved_Home" data-name="Iconly/Curved/Home"
@@ -377,12 +369,12 @@
                                             </g>
                                         </svg>
                                     </div>
-                                    <span class="title_link">Homepages</span>
+                                    <span class="title_link">나의 찜</span>
                                 </div>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="app-components.html">
+                            <a class="nav-link" href="/groupboard/my_applyjoin?custNo=${logincust.custNo}">
                                 <div class="">
                                     <div class="icon_current">
                                         <svg id="Iconly_Curved_More_Circle" data-name="Iconly/Curved/More Circle"
@@ -410,44 +402,11 @@
                                             </g>
                                         </svg>
                                     </div>
-                                    <span class="title_link">Components</span>
+                                    <span class="title_link">나의 조인</span>
                                 </div>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="app-pages.html">
-                                <div class="">
-                                    <div class="icon_current">
-                                        <svg id="Iconly_Curved_Document" data-name="Iconly/Curved/Document"
-                                             xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                             viewBox="0 0 20 20">
-                                            <g id="Document" transform="translate(3.008 2.292)">
-                                                <path id="Stroke_1" data-name="Stroke 1" d="M6.017.5H0"
-                                                      transform="translate(3.971 10.289)" fill="none" stroke="#9498ac"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5"/>
-                                                <path id="Stroke_2" data-name="Stroke 2" d="M6.017.5H0"
-                                                      transform="translate(3.971 7.155)" fill="none" stroke="#9498ac"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5"/>
-                                                <path id="Stroke_3" data-name="Stroke 3" d="M2.3.5H0"
-                                                      transform="translate(3.972 4.023)" fill="none" stroke="#9498ac"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5"/>
-                                                <path id="Stroke_4" data-name="Stroke 4"
-                                                      d="M0,7.708c0,5.781,1.748,7.708,6.992,7.708s6.992-1.927,6.992-7.708S12.238,0,6.992,0,0,1.927,0,7.708Z"
-                                                      transform="translate(0)" fill="none" stroke="#9498ac"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5"/>
-                                            </g>
-                                        </svg>
-                                    </div>
 
-                                    <span class="title_link">Pages</span>
-                                </div>
-
-                            </a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="page-products-fullwidth.html">
                                 <div class="">
@@ -483,7 +442,7 @@
                                         class="bg-red rounded-7 px-1 color-white min-w-25 px-1 h-28 d-flex align-items-center justify-content-center">3</span>
                             </a>
                         </li>
-                        <label class="title__label">other</label>
+                        <label class="title__label">내 정보</label>
                         <li class="nav-item">
                             <a class="nav-link" href="page-profile.html">
                                 <div class="">
@@ -505,15 +464,13 @@
                                             </g>
                                         </svg>
                                     </div>
-                                    <span class="title_link">Settings</span>
+                                    <span class="title_link">비밀번호 변경 </span>
                                 </div>
-                                <div class="em_pulp">
-                                    <span class="doted_item"></span>
-                                </div>
+
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="page-support.html">
+                            <a class="nav-link" href="/cust/pic">
                                 <div class="">
                                     <div class="icon_current">
                                         <svg id="Iconly_Curved_Message" data-name="Iconly/Curved/Message"
@@ -533,7 +490,7 @@
                                             </g>
                                         </svg>
                                     </div>
-                                    <span class="title_link">Support</span>
+                                    <span class="title_link" >프로필사진 변경</span>
                                 </div>
 
                             </a>

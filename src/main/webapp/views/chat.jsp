@@ -40,17 +40,17 @@
     }
 
 
-    function chatName(){
-        var userName = $("#userName").val();
-        if(userName == null || userName.trim() == ""){
-            alert("사용자 이름을 입력해주세요.");
-            $("#userName").focus();
-        }else{
-            wsOpen();
-            $("#yourName").hide();
-            $("#yourMsg").show();
-        }
-    }
+    // function chatName(){
+    //     var userName = $("#userName").val();
+    //     if(userName == null || userName.trim() == ""){
+    //         alert("사용자 이름을 입력해주세요.");
+    //         $("#userName").focus();
+    //     }else{
+    //         wsOpen();
+    //         $("#yourName").hide();
+    //         $("#yourMsg").show();
+    //     }
+    // }
 
     function send() {
         var msg = $("#chatting").val();
@@ -63,7 +63,6 @@
             var option = {
                 type: "message",
                 sessionId: sessionId,
-                userName: userName,
                 msg: msg
             };
 

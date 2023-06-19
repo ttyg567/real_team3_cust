@@ -63,4 +63,8 @@ public class CustService implements KBService<String, Cust> {
     public void update_social_name(Cust c) throws Exception {
         mapper.update_social_name(c);
     }
+
+    public void updateCustImgName(Cust cust) throws Exception {
+        mapper.updateCustImgName(cust);;
+    }
 }

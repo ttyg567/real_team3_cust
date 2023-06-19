@@ -3,6 +3,7 @@ package com.kbstar.controller;
 import com.kbstar.dto.Cust;
 import com.kbstar.service.CustService;
 import com.kbstar.util.AddressUtil;
+import com.kbstar.util.FileUploadUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -18,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
@@ -29,6 +31,9 @@ import java.util.*;
 public class CustController {
     Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
     String dir = "cust/";
+
+    @Value("${uploadimgdir}")
+    String imgdir;
 
     @Autowired
     CustService custService;
@@ -42,8 +47,6 @@ public class CustController {
     @Value("${spring.mail.username}")
     private String username;
 
-    @Value("${uploadimgdir}")
-    String imgdir;
 
     private final HttpSession session = null;
 
@@ -196,4 +199,16 @@ public class CustController {
         return jsonArray;
     }
 
+
+    @RequestMapping("/saveimg")
+    public String saveimg(MultipartFile file){
+        String filename = file.getOriginalFilename();
+        FileUploadUtil.saveFile(file, imgdir);
+        return filename;
+    }
+    @RequestMapping("/pic")
+    public String pic(Model model){
+        model.addAttribute("center", dir + "pic");
+        return "index";
+    }
 }

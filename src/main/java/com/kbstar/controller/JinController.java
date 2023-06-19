@@ -101,4 +101,12 @@ public class JinController {
 
         return "index";
     }
+//로그아웃
+    @RequestMapping("/logoutimpl")
+    public String logoutimpl(HttpSession session){
+        if(session != null){
+            session.invalidate();
+        }
+        return "redirect:/";
+    }
 }

@@ -15,6 +15,11 @@
     <select id="selectall" resultType="cust">
         SELECT * FROM cust
     </select>
+    <!-- 사진 이미지 -->
+    <update id="updateCustImgName" parameterType="cust">
+        UPDATE cust SET custImgName = #{custImgName}
+        WHERE custNo = #{custNo}
+    </update>
     <!-- insert -->
     <insert id="insert" parameterType="cust">
         INSERT INTO cust (custNo, custEmail, custPwd, custName, custPhone, custBirth, custGender, custSido, custSigungu, sportsType,
