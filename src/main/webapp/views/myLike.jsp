@@ -29,7 +29,7 @@
     <div class="emTitle_co padding-20" style="background-color: #F8F8FF">
         <h2 class="size-16 weight-500 color-secondary mb-1">나의 찜</h2>
         <p class="size-12 color-text m-0">
-            ${logincust.custName} 님이 찜한 이용권이에요,🥰
+            ${logincust.custName} 님이 찜한 이용권이에요.🥰
         </p>
     </div>
 </header>

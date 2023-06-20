@@ -120,6 +120,7 @@
                  JOIN Gymtype gt ON g.gymNo = gt.gymNo
         WHERE gt.typeNo = 1
     </select>
+<!-- 디테일까지 조회   -->
     <select id="selectimg" parameterType="Integer" resultType="gym">
         SELECT gymNo,gymImgname, gymImgdetailCk
         FROM
@@ -144,6 +145,7 @@
         ) likeCount on likeCount.gymNo = t.gymNo
         where t.rank = 1
     </select>
+<!--  디테일 사진까지 조회  -->
     <select id="selectMarketing" resultType="gym">
         SELECT
             G.gymNo,

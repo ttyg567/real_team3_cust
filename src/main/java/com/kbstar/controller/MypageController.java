@@ -1,11 +1,10 @@
 package com.kbstar.controller;
 
 import com.kbstar.dto.*;
-import com.kbstar.dto.Class;
+
 import com.kbstar.service.ClassService;
 import com.kbstar.service.MyScheduleService;
 import com.kbstar.service.PurchaseService;
-import com.kbstar.service.TicketService;
 import io.github.flashvayne.chatgpt.service.ChatgptService;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;

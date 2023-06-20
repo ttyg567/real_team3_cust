@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
 <%-- 운동 종목 : 텍스트 글씨 진하게 --%>
   .em__actions span{
@@ -37,6 +38,10 @@
     top: 0;
     z-index: 100;
   }
+  /*label.btn.btn-outline-primary{*/
+  /*    display: flex;*/
+  /*    justify-content: center;*/
+  /*}*/
   /*.em_modal {*/
   /*    position: fixed;*/
   /*    z-index: 9999; !* 다른 요소들보다 큰 값으로 설정 *!*/
@@ -59,6 +64,8 @@
     display: block; /* 커서를 올렸을 때 기본 이미지 숨김 */
   }
 </style>
+
+
 
 <div id="wrapper">
   <div id="content">
@@ -99,7 +106,7 @@
             </div>
             <br>
             <%--  카테고리 시작  --%>
-            <section class="np__bkOperationsService padding-10">
+                <section class="np__bkOperationsService padding-10">
               <%--<section class="banner_swiper bg-white np__ServicePackage padding-t-10 mt-0 padding-b-10">--%>
               <div class="em__actions">
                 <a href="/ticket/workout" class="btn">
@@ -159,8 +166,8 @@
           <!-- 카테고리 밑 혼잡도 안내 시작 -->
           <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
               <div>
-                  <h3 class="size-18 weight-500 color-secondary m-0">지금 ${logincust.custName}님의 운동센터 혼잡도는 <span style="color: limegreen; font-weight: bold;">맑음</span> 이에요</h3>
-                  <p class="size-13 color-text m-0 pt-1">헬쓱에서 운동 수업을 예약하시기 전에 활용할 수 있어요</p>
+                  <h3 class="size-15 weight-500 color-secondary m-0">지금 ${logincust.custName}님의 운동센터 혼잡도는 <span style="color: limegreen; font-weight: bold;">맑음</span> 이에요</h3>
+                  <p class="size-9 color-text m-0 pt-1">헬쓱에서 운동 수업을 예약하시기 전에 활용할 수 있어요</p>
               </div>
           </div><br>
               <!-- 센터 기구 항목 나열. page-balance-provider.html
@@ -173,7 +180,7 @@
                               <div class="emBoxRating">
                                   <div class="row" style="height: 160px">
                                       <div class="col-4" style="height: 150px; padding-right: 0px">
-                                          <img src="/img/good.png"  alt="" style="height: 100%; padding-left: 15px;">
+                                          <img src="/img/good.png"  alt="" style="height: 90%; padding-bottom: 15px; padding-top: 15px;">
 <%--                                           <div class="item_rate">--%>
 <%--                                              <!-- 그래프바 : value 값 조절하면 그래프도 움직임-->--%>
 <%--                                              <div class="item_progress">--%>
@@ -234,9 +241,13 @@
 
                               </div>
                           </div>
-                    <%-- 기구 나열 --%>
+                    <%-- 센터가 보유한 운동기구 나열 --%>
                               <p class="size-14 color-black m-0 pt-1" style="font-weight: bold; padding-bottom: 10px">이용이 가능한 운동기구</p>
                           <%-- 검색 버튼 --%>
+                          <a href="/">
+                          <button type="button" class="btn btn-outline-secondary"
+                                  style="border-radius: 15px; font-size: 12px;">전체
+                          </button></a>
                           <button type="button" class="btn btn-outline-secondary"
                                   data-toggle="modal"
                                   data-target="#mdllFilter"
@@ -249,17 +260,49 @@
                           </button>
                           <%-- 기구 리스트 나열 --%>
                           <section class="emPage__basket npPkg__basket default" style="padding-top: 10px">
-                              <div class="itemPkg_cart">
+                          <form name="machine_form" id="machine_form">
+                            <c:forEach  var="obj" items="${gymAllMachine}" >
+                              <div class="itemPkg_cart" data-toggle="modal"
+                                   data-target="#mdllAdd_Address${obj.machineNo}"><!-- 클릭 시 상세 기구보기 모달로 이동 -->
                                   <div class="sideleft" style="height: 60px">
                                       <div class="item_rate">
                                           <!-- 그래프바 : value 값 조절하면 그래프도 움직임-->
                                           <div class="item_progress">
-                                              <div class="itemCircle" style="height: 60px; padding-right: 15px; padding-top: 0px">
-                                                  <input type="image" data-width="60" value="60" data-fgColor="#ff8000"
-                                                         data-bgColor="#E9EAEC" data-thickness=".15" class="circleFull"
-                                                         src="/img/런닝머신.png" style="width: 25px; height: 25px; "
-                                                         data-readOnly="true" data-linecap="round">
-                                              </div>
+                                              <c:set var="canQuantity" value="${canQuantity = (obj.holdingQuantity - obj.usingQuantity) }" />
+                                              <!-- canQuantity : 사용가능한 기구가 0이면 빨강(혼잡) 2이하면 파랑(보통) 3이상이면 여유(녹색)-->
+                                              <c:choose>
+                                                   <c:when test="${canQuantity == 0}">
+                                                      <div class="itemCircle" style="height: 60px; padding-right: 15px; padding-top: 0px">
+                                                          <input type="image" data-width="60" value="100" data-fgColor="#ff8000"
+                                                                 data-bgColor="#E9EAEC" data-thickness=".15" class="circleFull"
+                                                                 src="/img/${obj.machineImgname}" style="width: 25px; height: 25px; "
+                                                                 data-readOnly="true" data-linecap="round">
+                                                      </div>
+                                                  </c:when>
+                                                  <c:when test="${canQuantity <= 2}">
+                                                      <div class="itemCircle" style="height: 60px; padding-right: 15px; padding-top: 0px">
+                                                          <input type="image" data-width="60" value="60" data-fgColor="#1E90FF"
+                                                                 data-bgColor="#E9EAEC" data-thickness=".15" class="circleFull"
+                                                                 src="/img/${obj.machineImgname}" style="width: 25px; height: 25px; "
+                                                                 data-readOnly="true" data-linecap="round">
+                                                      </div>
+                                                  </c:when>
+                                                  <c:otherwise>
+                                                      <div class="itemCircle" style="height: 60px; padding-right: 15px; padding-top: 0px">
+                                                          <input type="image" data-width="60" value="20" data-fgColor="#32CD32"
+                                                                 data-bgColor="#E9EAEC" data-thickness=".15" class="circleFull"
+                                                                 src="/img/${obj.machineImgname}" style="width: 25px; height: 25px; "
+                                                                 data-readOnly="true" data-linecap="round">
+                                                      </div>
+                                                  </c:otherwise>
+                                              </c:choose>
+
+<%--                                              <div class="itemCircle" style="height: 60px; padding-right: 15px; padding-top: 0px">--%>
+<%--                                                  <input type="image" data-width="60" value="60" data-fgColor="#ff8000"--%>
+<%--                                                         data-bgColor="#E9EAEC" data-thickness=".15" class="circleFull"--%>
+<%--                                                         src="/img/${obj.machineImgname}" style="width: 25px; height: 25px; "--%>
+<%--                                                         data-readOnly="true" data-linecap="round">--%>
+<%--                                              </div>--%>
                                           </div>
                                       </div>
                                       <div>
@@ -269,8 +312,19 @@
                                               <div class="item-link hoverNone" style="padding: 0">
                                                   <div class="group">
                                                       <span class="short__name"></span>
-                                                      <span>런닝머신</span>
-                                                      <span class="number_item" style="margin-left: 6px">혼잡</span>
+                                                      <span>${obj.machineName}</span>
+                                                        <c:choose>
+                                                            <c:when test="${canQuantity == 0}">
+                                                                <span class="number_item" style="margin-left: 6px">혼잡</span>
+                                                            </c:when>
+                                                            <c:when test="${canQuantity <= 2}">
+                                                                <span class="number_item" style="margin-left: 6px; color: blue; border: 1px solid blue;">보통</span>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <span class="number_item" style="margin-left: 6px; color: limegreen; border: 1px solid limegreen;">여유</span>
+                                                            </c:otherwise>
+                                                         </c:choose>
+
 
                                                   </div>
                                               </div>
@@ -281,96 +335,9 @@
                                           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
                                               <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
                                           </svg>
-                                          <span style="font-size: 12px; font-weight: bold">3대 남음</span>
-                                      </div>
-                                  </div>
-                                  <%--  즐겨찾기 버튼   --%>
-                                  <div class="npPage__balanceProvider" style="padding: 0; ">
-                                      <div class="npblock__favorite" style="padding: 0; border: none;">
-                                          <button type="button" class="btn btn_favorite item-active" style="border: none;">
-                                              <i class="ri-star-s-line"></i>
-                                          </button>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="itemPkg_cart">
-                                  <div class="sideleft" style="height: 60px">
-                                      <div class="item_rate">
-                                          <!-- 그래프바 : value 값 조절하면 그래프도 움직임-->
-                                          <div class="item_progress">
-                                              <div class="itemCircle" style="height: 60px; padding-right: 15px; padding-top: 0px;">
-                                                  <input type="image" data-width="60" value="20" data-fgColor="#32CD32"
-                                                         data-bgColor="#E9EAEC" data-thickness=".15" class="circleFull"
-                                                         src="/img/스미스 머신.png" style="width: 25px; height: 25px;"
-                                                         data-readOnly="true" data-linecap="round">
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div>
-                                          <div class="em__pkLink">
-                                              <ul class="nav__list with_border fullBorder mb-0">
-                                                  <li>
-                                                      <div class="item-link hoverNone" style="padding: 0">
-                                                          <div class="group">
-                                                              <span class="short__name"></span>
-                                                              <span>스미스 머신</span>
-                                                              <span class="number_item" style="margin-left: 6px; color: limegreen;
-                                                               border: 1px solid limegreen;">여유</span>
-                                                          </div>
-                                                      </div>
-                                                  </li>
-                                              </ul>
-                                          </div>
-                                          <p style="font-size: 9px;" class="color-text">#멀티기구 #이두박근 #어깨 #삼두근 #허벅지</p>
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                                              <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-                                          </svg>
-                                          <span style="font-size: 12px; font-weight: bold">2대 남음</span>
-                                      </div>
-                                  </div>
-                                  <%--  즐겨찾기 버튼   --%>
-                                  <div class="npPage__balanceProvider" style="padding: 0px;">
-                                      <div class="npblock__favorite" style="padding: 0px; border: none;">
-                                          <button type="button" class="btn btn_favorite item-active" style="border: none;">
-                                              <i class="ri-star-s-line"></i>
-                                          </button>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="itemPkg_cart">
-                                  <div class="sideleft" style="height: 60px">
-                                      <div class="item_rate">
-                                          <!-- 그래프바 : value 값 조절하면 그래프도 움직임-->
-                                          <div class="item_progress">
-                                              <div class="itemCircle" style="height: 60px; padding-right: 15px; padding-top: 0px">
-                                                  <input type="image" data-width="60" value="50" data-fgColor="#1E90FF"
-                                                         data-bgColor="#E9EAEC" data-thickness=".15" class="circleFull"
-                                                         src="/img/와이드 풀다운.png" style="width: 25px; height: 25px; "
-                                                         data-readOnly="true" data-linecap="round">
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div>
-                                          <div class="em__pkLink">
-                                              <ul class="nav__list with_border fullBorder mb-0">
-                                                  <li>
-                                                      <div class="item-link hoverNone" style="padding: 0">
-                                                          <div class="group">
-                                                              <span class="short__name"></span>
-                                                              <span>와이드 풀다운</span>
-                                                              <span class="number_item" style="margin-left: 6px; color: blue;
-                                                               border: 1px solid blue;">보통</span>
+                                          <c:set var="canQuantity" value="${canQuantity = (obj.holdingQuantity - obj.usingQuantity) }" />
+                                          <span style="font-size: 12px; font-weight: bold"><fmt:formatNumber value="${canQuantity}" />대 남음</span>
 
-                                                          </div>
-                                                      </div>
-                                                  </li>
-                                              </ul>
-                                          </div>
-                                          <p style="font-size: 9px;" class="color-text">#악랄한 #광배근운동 #원터치좌석조정</p>
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                                              <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-                                          </svg>
-                                          <span style="font-size: 12px; font-weight: bold">1대 남음</span>
                                       </div>
                                   </div>
                                   <%--  즐겨찾기 버튼   --%>
@@ -382,181 +349,8 @@
                                       </div>
                                   </div>
                               </div>
-                              <div class="itemPkg_cart">
-                                  <div class="sideleft" style="height: 60px">
-                                      <div class="item_rate">
-                                          <!-- 그래프바 : value 값 조절하면 그래프도 움직임-->
-                                          <div class="item_progress">
-                                              <div class="itemCircle" style="height: 60px; padding-right: 15px; padding-top: 0px">
-                                                  <input type="image" data-width="60" value="0" data-fgColor="#1E90FF"
-                                                         data-bgColor="#E9EAEC" data-thickness=".15" class="circleFull"
-                                                         src="/img/다리 프레스 머신.png" style="width: 25px; height: 25px; "
-                                                         data-readOnly="true" data-linecap="round">
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div>
-                                          <div class="em__pkLink">
-                                              <ul class="nav__list with_border fullBorder mb-0">
-                                                  <li>
-                                                      <div class="item-link hoverNone" style="padding: 0">
-                                                          <div class="group">
-                                                              <span class="short__name"></span>
-                                                              <span>다리 프레스 머신</span>
-                                                              <span class="number_item" style="margin-left: 6px; color: limegreen;
-                                                               border: 1px solid limegreen;">여유</span>
-                                                          </div>
-                                                      </div>
-                                                  </li>
-                                              </ul>
-                                          </div>
-                                          <p style="font-size: 9px;" class="color-text">#다리운동기본서</p>
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                                              <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-                                          </svg>
-                                          <span style="font-size: 12px; font-weight: bold">1대 남음</span>
-                                      </div>
-                                  </div>
-                                  <%--  즐겨찾기 버튼   --%>
-                                  <div class="npPage__balanceProvider" style="padding: 0; ">
-                                      <div class="npblock__favorite" style="padding: 0; border: none;">
-                                          <button type="button" class="btn btn_favorite item-active" style="border: none;">
-                                              <i class="ri-star-s-line"></i>
-                                          </button>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="itemPkg_cart">
-                                  <div class="sideleft" style="height: 60px">
-                                      <div class="item_rate">
-                                          <!-- 그래프바 : value 값 조절하면 그래프도 움직임-->
-                                          <div class="item_progress">
-                                              <div class="itemCircle" style="height: 60px; padding-right: 15px; padding-top: 0px">
-                                                  <input type="image" data-width="60" value="40" data-fgColor="#32CD32"
-                                                         data-bgColor="#E9EAEC" data-thickness=".15" class="circleFull"
-                                                         src="/img/machine1.png" style="width: 25px; height: 25px; "
-                                                         data-readOnly="true" data-linecap="round">
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div>
-                                          <div class="em__pkLink">
-                                              <ul class="nav__list with_border fullBorder mb-0">
-                                                  <li>
-                                                      <div class="item-link hoverNone" style="padding: 0">
-                                                          <div class="group">
-                                                              <span class="short__name"></span>
-                                                              <span>핵스쿼트 머신</span>
-                                                              <span class="number_item" style="margin-left: 6px; color: limegreen;
-                                                               border: 1px solid limegreen;">여유</span>
-                                                          </div>
-                                                      </div>
-                                                  </li>
-                                              </ul>
-                                          </div>
-                                          <p style="font-size: 9px; " class="color-text">#엉덩이운동</p>
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                                              <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-                                          </svg>
-                                          <span style="font-size: 12px; font-weight: bold">1대 남음</span>
-                                      </div>
-                                  </div>
-                                  <%--  즐겨찾기 버튼   --%>
-                                  <div class="npPage__balanceProvider" style="padding: 0; ">
-                                      <div class="npblock__favorite" style="padding: 0; border: none;">
-                                          <button type="button" class="btn btn_favorite item-active" style="border: none;">
-                                              <i class="ri-star-s-line"></i>
-                                          </button>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="itemPkg_cart">
-                                  <div class="sideleft" style="height: 60px">
-                                      <div class="item_rate">
-                                          <!-- 그래프바 : value 값 조절하면 그래프도 움직임-->
-                                          <div class="item_progress">
-                                              <div class="itemCircle" style="height: 60px; padding-right: 15px; padding-top: 0px">
-                                                  <input type="image" data-width="60" value="100" data-fgColor="#ff8000"
-                                                         data-bgColor="#E9EAEC" data-thickness=".15" class="circleFull"
-                                                         src="/img/machine2.png" style="width: 25px; height: 25px; "
-                                                         data-readOnly="true" data-linecap="round">
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div>
-                                          <div class="em__pkLink">
-                                              <ul class="nav__list with_border fullBorder mb-0">
-                                                  <li>
-                                                      <div class="item-link hoverNone" style="padding: 0">
-                                                          <div class="group">
-                                                              <span class="short__name"></span>
-                                                              <span>하이풀 머신</span>
-                                                              <span class="number_item" style="margin-left: 6px">혼잡</span>
-                                                          </div>
-                                                      </div>
-                                                  </li>
-                                              </ul>
-                                          </div>
-                                          <p style="font-size: 9px;" class="color-text">#다용도운동기구</p>
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                                              <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-                                          </svg>
-                                          <span style="font-size: 12px; font-weight: bold">0대 남음</span>
-                                      </div>
-                                  </div>
-                                  <%--  즐겨찾기 버튼   --%>
-                                  <div class="npPage__balanceProvider" style="padding: 0; ">
-                                      <div class="npblock__favorite" style="padding: 0; border: none;">
-                                          <button type="button" class="btn btn_favorite item-active" style="border: none;">
-                                              <i class="ri-star-s-line"></i>
-                                          </button>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="itemPkg_cart">
-                                  <div class="sideleft" style="height: 60px">
-                                      <div class="item_rate">
-                                          <!-- 그래프바 : value 값 조절하면 그래프도 움직임-->
-                                          <div class="item_progress">
-                                              <div class="itemCircle" style="height: 60px; padding-right: 15px; padding-top: 0px">
-                                                  <input type="image" data-width="60" value="50" data-fgColor="#1E90FF"
-                                                         data-bgColor="#E9EAEC" data-thickness=".15" class="circleFull"
-                                                         src="/img/machine3.png" style="width: 25px; height: 25px; "
-                                                         data-readOnly="true" data-linecap="round">
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div>
-                                          <div class="em__pkLink">
-                                              <ul class="nav__list with_border fullBorder mb-0">
-                                                  <li>
-                                                      <div class="item-link hoverNone" style="padding: 0">
-                                                          <div class="group">
-                                                              <span class="short__name"></span>
-                                                              <span>로우풀 머신</span>
-                                                              <span class="number_item" style="margin-left: 6px; color: blue;
-                                                               border: 1px solid blue;">보통</span>
-                                                          </div>
-                                                      </div>
-                                                  </li>
-                                              </ul>
-                                          </div>
-                                          <p style="font-size: 9px;" class="color-text">#어깨 #등운동</p>
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                                              <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-                                          </svg>
-                                          <span style="font-size: 12px; font-weight: bold">1대 남음</span>
-                                      </div>
-                                  </div>
-                                  <%--  즐겨찾기 버튼   --%>
-                                  <div class="npPage__balanceProvider" style="padding: 0; ">
-                                      <div class="npblock__favorite" style="padding: 0; border: none;">
-                                          <button type="button" class="btn btn_favorite item-active" style="border: none;">
-                                              <i class="ri-star-s-line"></i>
-                                          </button>
-                                      </div>
-                                  </div>
-                              </div>
+                            </c:forEach>
+                              </form>
                           </section>
                           <!-- 즐겨찾기 삭제할 때 쓸것. page-basket-provider.html -->
 
@@ -581,11 +375,15 @@
   </div>
 </div>
 
-<%-- 기구 검색 필터 모달 --%>
+
+
+<%-- 기구 검색 필터 모달 1 --%>
 <!-- Modal Content -->
 <div class="modal transition-bottom screenFull defaultModal emModal__filters fade" id="mdllFilter" tabindex="-1"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form id="search_form">
     <div class="modal-dialog modal-dialog-scrollable">
+
         <div class="modal-content">
             <div class="modal-header border-0 padding-l-20 padding-r-20 justify-content-center">
                 <div class="itemProduct_sm">
@@ -593,24 +391,28 @@
                 </div>
             </div>
             <div class="modal-body padding-b-100">
-
                 <div class="em_box_content_filter">
                     <div class="title_bk">
                         <h2>상체</h2>
                     </div>
                     <div class="buttons_select">
                         <div class="items">
-                            <div class="group">
-                                 <button type="button" class="btn item-active">등</button>
-                                <button type="button" class="btn item-active">팔(이두)</button>
-                                <button type="button" class="btn item-active">팔(삼두)</button>
-                            </div>
-                            <div class="group">
-                                <button type="button" class="btn item-active">어깨</button>
-                                <button type="button" class="btn item-active">가슴</button>
-                                <button type="button" class="btn item-active -active">복부</button>
+                            <div class="btn-group" role="group"
+                                 name="exerciseType"
+                                 aria-label="Basic checkbox toggle button group">
+                                <input type="checkbox" class="btn-check" id="btncheck1" value="1" autocomplete="off" name="exerciseType" style="display: none;"
+                                       <c:if test="${ms.exerciseType == '1'}"></c:if>>
+                                <label class="btn btn-outline-primary" for="btncheck1">등</label>
 
+                                <input type="checkbox" class="btn-check" id="btncheck2" value="1" autocomplete="off" name="exerciseType" style="display: none;"
+                                <c:if test="${ms.exerciseType == '1'}"></c:if>>
+                                <label class="btn btn-outline-primary" for="btncheck2">어깨</label>
+
+                                <input type="checkbox" class="btn-check" id="btncheck3" value="1" autocomplete="off" name="exerciseType" style="display: none;"
+                                       <c:if test="${ms.exerciseType == '1'}"></c:if>>
+                                <label class="btn btn-outline-primary" for="btncheck3">팔</label>
                             </div>
+
                         </div>
                     </div>
                     <br>
@@ -619,11 +421,26 @@
                     </div>
                     <div class="buttons_select">
                         <div class="items">
-                            <div class="group">
-                                <button type="button" class="btn item-active">허벅지</button>
-                                <button type="button" class="btn item-active">종아리</button>
-                                <button type="button" class="btn item-active">엉덩이</button>
+                            <div class="btn-group" role="group"
+                                 name="exerciseType"
+                                 aria-label="Basic checkbox toggle button group">
+                                <input type="checkbox" class="btn-check" id="btncheck4" value="2" autocomplete="off" name="exerciseType" style="display: none;"
+                                <c:if test="${ms.exerciseType == '2'}"></c:if>>
+                                <label class="btn btn-outline-primary" for="btncheck4">허벅지</label>
+
+                                <input type="checkbox" class="btn-check" id="btncheck5" value="2" autocomplete="off" name="exerciseType" style="display: none;"
+                                <c:if test="${ms.exerciseType == '2'}"></c:if>>
+                                <label class="btn btn-outline-primary" for="btncheck5">종아리</label>
+
+                                <input type="checkbox" class="btn-check" id="btncheck6" value="2" autocomplete="off" name="exerciseType" style="display: none;"
+                                <c:if test="${ms.exerciseType == '2'}"></c:if>>
+                                <label class="btn btn-outline-primary" for="btncheck6">엉덩이</label>
                             </div>
+<%--                            <div class="group">--%>
+<%--                                <button type="button"  class="btn item-active">허벅지</button>--%>
+<%--                                <button type="button" class="btn item-active">종아리</button>--%>
+<%--                                <button type="button" class="btn item-active">엉덩이</button>--%>
+<%--                            </div>--%>
                         </div>
                     </div>
 
@@ -643,16 +460,132 @@
                     </div>
 
                 </div>
-
-            </div>
             <div class="modal-footer border-0 pt-0 env-pb">
-                <a href="#"
-                   class="btn min-w-140 bg-secondary m-0 hover:color-white color-white h-46 d-flex align-items-center rounded-8 justify-content-center">
-                    선택
-                </a>
+                <button id="search_btn" type="button" class="btn btn-info">검색하기</button>
+            </div>
+            </div>
+
+
+
+        </div>
+    </form>
+
+
+    </div>
+<%-- 기구 상세보기 모달 2 --%>
+<!-- Modal -->
+<c:forEach  var="obj" items="${gymAllMachine}" >
+<div class="modal defaultModal modalCentered change__address fade" id="mdllAdd_Address${obj.machineNo}" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0 padding-l-20 padding-r-20 justify-content-center">
+                <div class="itemProduct_sm">
+                    <h1 class="size-18 weight-600 color-secondary m-0">${obj.machineName}</h1>
+                </div>
+                <%--    즐겨찾기 버튼   --%>
+                <div class="npPage__balanceProvider" style="padding: 0; ">
+                    <div class="npblock__favorite" style="padding: 0; border: none; ">
+                        <button type="button" id="machineSave"
+                                class="btn btn_favorite item-active" style="border: none;">
+                            <i class="ri-star-s-line"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <ul class="nav__listAddress itemSingle"  style="display: flex; align-items: center; flex-direction: column;">
+                       <img src="/img/${obj.machineImgname}" alt="" style="width: 120px; height: 120px;"><br>
+                        <p class="size-12 color-text" style="text-align: center;">
+                            <span style="color: black">인기시간대 <span style="color: blueviolet; font-weight: bold; font-size: 14px;">오후 6시 23분🌟</span></span><br>
+                            <span style="color: black">평균 이용회원이 지난 주보다</span> <span style="color: blueviolet; font-weight: bold;  font-size: 14px;">2.6명 ↑</span><br>
+                            <span style="color: black">보통 이 기구에서 회원들이</span> <span style="color: blueviolet; font-weight: bold;  font-size: 14px;">${obj.usingTime} 머물러요</span>
+                        </p><br>
+                    <li class="item selected">
+                        <div class="personal__info">
+                            <div class="areaRight">
+                                <span class="circle_check" style="width: 15px; height: 15px; margin-right: 5px;"></span>
+                                <p  class="size-15 color-secondary weight-400">기구 사용 Tip</p>
+                            </div>
+                            <p class="size-11 color-text weight-400">등 근육을 키울 때 매우 적합한 운동으로,<br> 손잡이의 너비를 조절해가며 다양한 운동부위를 타깃으로 정할 수 있어요!</p>
+                        </div>
+
+                    </li>
+<%--                    <li class="item">--%>
+<%--                        <div class="personal__info">--%>
+<%--                            <h2 class="size-15 color-secondary weight-400">Family Home</h2>--%>
+<%--                            <p class="size-13 color-text weight-400">3187 Shinn Avenue</p>--%>
+<%--                            <span class="size-14 color-secondary weight-500">+417-855-3556</span>--%>
+<%--                        </div>--%>
+<%--                        <div class="areaRight">--%>
+<%--                            <span class="circle_check"></span>--%>
+<%--                        </div>--%>
+<%--                    </li>--%>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn_default_lg"
+                        data-dismiss="modal" aria-label="Close">확인</button>
+
             </div>
         </div>
     </div>
 </div>
+</c:forEach>
+</div>
 
 </div>
+
+
+
+<script>
+    <%--   search 기능     --%>
+    let machine_search = {
+        init : function () {
+            $('#search_btn').click(function (){
+                machine_search.send();
+            });
+        },
+        send : function () {
+            $('#search_form').attr({
+                action: '/selectExerciseType', // main 컨트롤러에서 처리.
+                method: 'get'
+            });
+            $('#search_form').submit();
+        }
+    }
+    <%--   나의 운동기구 즐겨찾기 기능     --%>
+    let myMachine_form = {
+        init: function () {
+            //  btn btn_addCart
+            // $('#ticket_pay_btn').click(function () {
+            //     myMachine_form.send();
+            // });
+            $('#machineSave').click(function () {
+                console.log("savetest");
+                myMachine_form.save();
+            });
+        },
+        send: function () {
+
+
+        },
+        save : function (){
+            $('#machine_form').attr({
+                'action':'/like1',
+                'method':'post'
+            });
+            $('#machine_form').submit();
+        }
+
+    };
+
+
+
+    // 실행
+    $(function (){
+        machine_search.init();
+        myMachine_form.init();
+    });
+
+</script>
