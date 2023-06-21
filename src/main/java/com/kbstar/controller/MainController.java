@@ -28,23 +28,57 @@ public class MainController {
     // 투데이 페이지 : 헬쓱 메인 페이지로, 광고배너 노출 + 카테고리별 운동센터 조회 +
     // 운동이용권을 결제한 회원의 경우 -> 나의 운동센터 혼잡도 보여주기
     @RequestMapping("/")
-    public String main(Model model, Gym gym, Integer gymNo) throws Exception {
+    public String main(Model model, Gym gym, Integer gymNo, MyMachine myMachine,  HttpSession session) throws Exception {
+        Cust cust = (Cust) session.getAttribute("logincust");
         List<Gym> list = null;
         List<GymMachine> list2 = null;
-
-        model.addAttribute("searchType", list); //jsp파일에서 뿌릴 이름 정하기
+        List<MyMachine> list3 = null;
         try {
+            // 미로그인 고객을 위한 정보 : 이용권 정보 보임 + 센터의 운동기구 정보 보임
             list = gymService.get();
             list2 = gymMachineService.get();
 
-           // list2 = gymMachineService.selectGymMachine(gymNo); // 센터가 보유한 기계 가져오기
+            // 로그인 고객만을 위한 정보 : 나의 운동기구로 즐겨찾기한 리스트를 메인페이지에서 보여준다.
+            if (cust != null) {
+                list3 = myMachineService.getmymachine(cust.getCustNo()); // 즐겨찾기 보여주기
+            }
+            // list2 = gymMachineService.selectGymMachine(gymNo); // 센터가 보유한 기계 가져오기
         }
         catch (Exception e){
             throw new Exception("error");
         }
         model.addAttribute("allGym",list);
-        model.addAttribute("gymAllMachine",list2); //센터의 기계들
+        model.addAttribute("gymAllMachine",list2); //센터의 기계들 보여주기
+
+
+        if (cust != null) {
+            //list3 = myMachineService.getmymachine(cust.getCustNo()); // 즐겨찾기 보여주기.
+            model.addAttribute("myMachine", list3); // 즐겨찾기된 기구들 보여주기
+        }
+
+        model.addAttribute("center","center");
         return "index";
+    }
+    // 나의 운동기구 조회!
+    @RequestMapping("/getmymachine")
+    public String getmymachine(Model model, HttpSession session) throws Exception {
+        Cust cust = (Cust) session.getAttribute("logincust");
+        List<MyMachine> list = null;
+
+        list = myMachineService.getmymachine(cust.getCustNo()); // 발생하면 리스트에 바로 담아주기.
+
+        model.addAttribute("myMachine",list);
+        model.addAttribute("center", "center");
+        return "index";
+    }
+    // 나의 운동기구 등록하기
+    @RequestMapping("/addmymachine")
+    public String addmymachine(Model model, MyMachine myMachine) throws Exception {
+        // 즐겨찾기 버튼을 누른 운동기구가, 이미 담겨있는 상태(1) 였으면 set > 해제(0)
+
+        myMachineService.register(myMachine); // 즐겨찾기 신규등록!
+        //log.info("======================="+myMachine);
+        return "redirect:/"; // 메인(투데이) 페이지로 바로 이동.
     }
     // 베스트 페이지 : 특정 기준으로(아직 미정) 베스트에 선정된 센터들을 보여주기.
     @RequestMapping("/best")
@@ -103,5 +137,6 @@ public class MainController {
         model.addAttribute("center", "center");
         return "index";
     }
+
 
 }

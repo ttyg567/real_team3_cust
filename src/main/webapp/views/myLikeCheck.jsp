@@ -15,7 +15,7 @@
     <div class="main_haeder multi_item">
         <div class="em_side_right">
             <a class="rounded-circle d-flex align-items-center text-decoration-none"
-               href="/groupboard">
+               href="/">
                 <i class="tio-chevron_left size-24 color-secondary"></i>
             </a>
         </div>

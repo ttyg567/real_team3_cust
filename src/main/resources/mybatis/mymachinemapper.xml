@@ -6,7 +6,7 @@
 
     <!-- 로그인한 회원이 즐겨찾기한 나의 운동기구 가져오기 -->
     <select id="getmymachine"  resultType="mymachine">
-        SELECT mm.myMachineNo, mm.custNo, mm.gymNo, mm.machineNo,
+        SELECT mm.custNo, mm.gymNo, mm.machineNo,
                gm.machineName, gm.machineImgname, gm.holdingQuantity, gm.usingQuantity
         FROM mymachine mm
                  JOIN GYMMACHINE gm ON mm.machineNo = gm.machineNo
@@ -17,19 +17,19 @@
     <!-- 수정가능한 항목 1가지. : 회원이 별 다시 누르거나, 해제버튼 누르면. -->
     <update id="update" parameterType="mymachine">
         UPDATE mymachine SET myMachineStatus = '0'
-        WHERE myMachineNo=#{myMachineNo}
+        WHERE custNo=#{custNo}
+        AND machineNo=#{machineNo}
     </update>
-<!-- 즐겨찾기 등록   -->
+<!-- 즐겨찾기 등록. 기존에 등록된 건이 있으면 즐겨찾기 상태를 0으로 바꾸고, 아니면 1로 등록   -->
     <insert id="insert" parameterType="mymachine">
-        <selectKey keyProperty="myMachineNo" resultType="int" order="BEFORE">
-            SELECT mymachine_seq.NEXTVAL FROM DUAL
-        </selectKey>
-        INSERT INTO mymachine (myMachineNo, custNo, gymNo, machineNo, myMachineStatus)
-        SELECT #{myMachineNo}, #{custNo}, #{gymNo}, #{machineNo}, '1' FROM DUAL
-        WHERE NOT EXISTS (
-        SELECT 1 FROM mymachine
-        WHERE custNo = #{custNo}
-          AND machineNo = #{machineNo}
-        )
+        MERGE INTO mymachine
+            USING dual
+            ON (custNo = #{custNo} AND machineNo = #{machineNo})
+            WHEN NOT MATCHED THEN
+                INSERT (custNo, machineNo, gymNo, myMachineStatus)
+                    VALUES (#{custNo}, #{machineNo}, #{gymNo}, '1')
+            WHEN MATCHED THEN
+                UPDATE SET
+                    myMachineStatus = '0'
     </insert>
 </mapper>

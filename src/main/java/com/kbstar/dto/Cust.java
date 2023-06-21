@@ -44,7 +44,7 @@ public class Cust {
 
     // 캘린더 관련
     private String classDate; // 로그인 된 cust 기준 수업 시간 select 해오기 위해 추가
-
+    private String  custImageName;
     // insert
     public Cust(String custEmail, String custPwd, String custName, String custPhone, int custBirth, String custGender, String custSido, String custSigungu, String sportsType, String sportsClasstype, String custSocialmedia, String custSnstype) {
         this.custEmail = custEmail;
@@ -68,6 +68,15 @@ public class Cust {
         this.custPhone = custPhone;
         this.custBirth = custBirth;
         this.custGender = custGender;
+    }
+//진 update
+    public Cust(String custPhone, String sportsType, String sportsClasstype, String custSido, String custSigungu ) {
+        this.custPhone = custPhone;
+        this.sportsType = sportsType;
+        this.sportsClasstype = sportsClasstype;
+        this.custSido = custSido;
+        this.custSigungu = custSigungu;
+
     }
 
     // 소셜 로그인 시 cust 빌드
