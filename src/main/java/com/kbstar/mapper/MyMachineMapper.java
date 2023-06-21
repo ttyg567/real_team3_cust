@@ -13,4 +13,5 @@ import java.util.List;
 @Mapper
 public interface MyMachineMapper extends KBMapper<Integer, MyMachine> {
     public List<MyMachine> getmymachine(Integer custNo); // 회원의 즐겨찾기 가져오기
+    public void updateMyMachineStatus(int machineNo, String myMachineStatus); //
 }

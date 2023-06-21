@@ -359,26 +359,79 @@
                   <!-- 미로그인 고객이 메인페이지 오면, 카카오 지도로 센터 추천과 검색 기능보이게. -->
                   <c:choose>
                   <c:when test="${logincust == null}">
-                      <div class="map_wrap">
-                          <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-
-                          <div id="menu_wrap" class="bg_white">
-                              <div class="option">
-                                  <div>
-                                      <form onsubmit="searchPlaces(); return false;">
-                                          지역 :
-                                          <input type="text" value="성수" id="keyword" size="15">
-                                          <button type="submit">검색하기</button>
-                                      </form>
+                      <!-- Start 검색창 -->
+                      <section class="margin-t-10 padding-t-50 padding-l-20 padding-r-20 padding-b-20 bg-white"
+                               id="searchDefault">
+                          <div class="input_SaerchDefault">
+                              <div class="form-group with_icon mb-0">
+                                  <div class="input_group">
+                                      <input type="search" class="form-control h-48" placeholder="둘러볼 지역명으로 검색">
+                                      <div class="icon">
+                                          <svg id="Iconly_Two-tone_Search" data-name="Iconly/Two-tone/Search"
+                                               xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                              <g id="Search" transform="translate(2 2)">
+                                                  <circle id="Ellipse_739" cx="8.989" cy="8.989" r="8.989"
+                                                          transform="translate(0.778 0.778)" fill="none" stroke="#200e32"
+                                                          stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+                                                          stroke-width="1.5" />
+                                                  <path id="Line_181" d="M0,0,3.524,3.515" transform="translate(16.018 16.485)"
+                                                        fill="none" stroke="#200e32" stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-miterlimit="10" stroke-width="1.5" opacity="0.4" />
+                                              </g>
+                                          </svg>
+                                      </div>
+                                      <div class="side_voice">
+                                          <svg id="Iconly_Two-tone_Search" data-name="Iconly/Two-tone/Search"
+                                               xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                              <g id="Search" transform="translate(2 2)">
+                                                  <circle id="Ellipse_739" cx="8.989" cy="8.989" r="8.989"
+                                                          transform="translate(0.778 0.778)" fill="none" stroke="#200e32"
+                                                          stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+                                                          stroke-width="1.5" />
+                                                  <path id="Line_181" d="M0,0,3.524,3.515" transform="translate(16.018 16.485)"
+                                                        fill="none" stroke="#200e32" stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-miterlimit="10" stroke-width="1.5" opacity="0.4" />
+                                              </g>
+                                          </svg>
+                                      </div>
                                   </div>
                               </div>
-                              <hr>
-                              <ul id="placesList"></ul>
-                              <div id="pagination"></div>
                           </div>
+                      </section>
+                      <!-- End. 검색창 -->
+                      <div class="map_wrap">
+                          <div class="search_area">
+                              <form onsubmit="searchPlaces(); return false;">
+                                  <label for="keyword">지역 :</label>
+                                  <input type="text" value="성수" id="keyword" size="15">
+                                  <button type="submit">검색하기</button>
+                              </form>
+                          </div>
+                          <div id="map" style="width: 100%; height: 400px; position: relative; overflow: hidden;"></div>
+                          <div id="placesList"></div>
+                          <div id="pagination"></div>
                       </div>
+
                   </c:when>
                   <c:otherwise><!-- 로그인 고객에겐, 이용중인 센터 혼잡도 -->
+                      <%--                      <div class="map_wrap">--%>
+                      <%--                          <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>--%>
+
+                      <%--                          <div id="menu_wrap" class="bg_white">--%>
+                      <%--                              <div class="option">--%>
+                      <%--                                  <div>--%>
+                      <%--                                      <form onsubmit="searchPlaces(); return false;">--%>
+                      <%--                                          지역 :--%>
+                      <%--                                                  <input type="text" value="성수" id="keyword" size="15">--%>
+                      <%--                                          <button type="submit">검색하기</button>--%>
+                      <%--                                      </form>--%>
+                      <%--                                  </div>--%>
+                      <%--                              </div>--%>
+                      <%--                              <hr>--%>
+                      <%--                              <ul id="placesList"></ul>--%>
+                      <%--                              <div id="pagination"></div>--%>
+                      <%--                          </div>--%>
+                      <%--                      </div>--%>
                   <div class="pt_simpleDetails m-0 py-2 rounded-0 emBlock__border">
                       <div class="em_bodyinner">
                           <div class="embkRateCustomer" >

@@ -321,6 +321,9 @@
             </div>
         </div>
 <%-- 알림받기 버튼 모달창 --%>
+<form name="updatemarketing_form" id="updatemarketing_form"  action="/notificationimpl" method="get">
+<input type="hidden" name="custNo" value="${logincust.custNo}"/>
+<input type="hidden" name="marketingStatus" value="0"/>
 <div class="modal transition-bottom screenFull defaultModal mdlladd__rate fade" id="mdllContent" tabindex="-1"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -329,11 +332,6 @@
                 <div class="itemProduct_sm">
                     <h1 class="size-18 weight-600 color-secondary m-0">맞춤 혜택을 받아보시겠어요?</h1>
                 </div>
-<%--           창닫기 아이콘     <div class="absolute right-0 padding-r-20">--%>
-<%--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--%>
-<%--                        <i class="tio-clear"></i>--%>
-<%--                    </button>--%>
-<%--                </div>--%>
             </div>
 
             <div class="modal-body" style="display: flex; align-items: center; flex-direction: column;"><%-- 가운데정렬처리  --%>
@@ -344,11 +342,10 @@
                 </p><br>
             </div>
             <div class="modal-footer">
-                <a href="/notificationimpl"
-                   class="btn w-100 bg-primary m-0 color-white h-52 d-flex align-items-center rounded-10 justify-content-center">
-                    좋아요
-                </a>
+                <button type="submit" class="btn w-100 bg-primary m-0 color-white h-52 d-flex align-items-center rounded-10 justify-content-center">
+                    좋아요</button>
             </div>
         </div>
     </div>
 </div>
+</form>

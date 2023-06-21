@@ -115,11 +115,7 @@ public class InboAjaxController {
 
         return jo;
     }
-    // 알림 받기 동의 : 인보
-    @RequestMapping("/notificationimpl")
-    public String notificationimpl(Model model){
-        return "index";
-    }
+
 
 
 }
