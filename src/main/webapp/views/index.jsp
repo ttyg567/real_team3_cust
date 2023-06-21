@@ -357,6 +357,7 @@ np_balanceDefault {
 <%--                    </div>--%>
 
                 </div>
+                <!--좌측 메뉴 이진 -->
                 <div class="modal-body" >
                     <ul class="nav flex-column -links"
                     style="margin-left: 10px">
