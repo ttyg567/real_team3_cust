@@ -121,14 +121,5 @@ public class InboAjaxController {
         return "index";
     }
 
-    // 나의 운동기구 등록하기.
-    @RequestMapping("/addmymachine")
-    public String addmymachine(Model model, MyMachine myMachine) throws Exception {
-        // 즐겨찾기 버튼을 누른 운동기구가, 이미 담겨있는 상태(1) 였으면 set > 해제(0)
-
-        myMachineService.register(myMachine); // 즐겨찾기 신규등록!
-        //log.info("======================="+myMachine);
-        return ""; // 메인(투데이) 페이지로 바로 이동.
-    }
 
 }
