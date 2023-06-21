@@ -79,4 +79,12 @@ public class CustService implements KBService<String, Cust> {
     public void updateInfo(Cust cust) {
         mapper.updateInfo(cust);
     }
+
+    // 인보 : 마케팅동의 상태 변경
+    public void updateNoti(Cust cust) {
+        mapper.updateNoti(cust);
+    }
+    public void clearNoti(Cust cust) {
+        mapper.clearNoti(cust);
+    }
 }

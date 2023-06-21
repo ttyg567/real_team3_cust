@@ -1,10 +1,8 @@
 package com.kbstar.service;
 
 
-import com.kbstar.dto.Like1;
 import com.kbstar.dto.MyMachine;
 import com.kbstar.frame.KBService;
-import com.kbstar.mapper.GymMachineMapper;
 import com.kbstar.mapper.MyMachineMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +47,10 @@ public class MyMachineService implements KBService<Integer, MyMachine> {
     // 회원이 즐겨찾기한 운동기구 보여주기
     public List<MyMachine> getmymachine(Integer custNo) throws Exception {
         return myMachineMapper.getmymachine(custNo);
+    }
+
+
+    public void updateMyMachineStatus(int machineNo, String myMachineStatus) {
+        myMachineMapper.updateMyMachineStatus(machineNo, myMachineStatus);
     }
 }
