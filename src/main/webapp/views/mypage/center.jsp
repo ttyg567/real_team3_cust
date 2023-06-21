@@ -62,12 +62,41 @@
         color: black;
     }
 
+    @keyframes moveText {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-5px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    /* Apply the animation to the moving text */
+    .moving-text {
+        animation: moveText 2s infinite;
+    }
+
 
 </style>
 
 <c:choose>
     <c:when test="${logincust == null}">
-        <jsp:include page="loginplz.jsp"/>
+        <div style="display: flex; justify-content: center; height: 100vh; margin-top: 200px;">
+            <div id="content1">
+                <section class="emPage__ResultPayment">
+                    <div class="em__seccess">
+                        <h2 class="size-20 weight-500 color-secondary margin-b-10">로그인 후 이용해주세요</h2>
+                        <p class="size-15 color-text margin-b-10 moving-text">▼ 저를 클릭해주세요! ▼</p>
+                    </div>
+                    <div id="notification" style="text-align: center;">
+                        <img id="loginplzIcon" src="/assets/img/login/loginplz.gif" style="cursor: pointer;">
+                    </div>
+                </section>
+            </div>
+        </div>
     </c:when>
     <c:otherwise>
         <!-- Start main_haeder -->
@@ -84,13 +113,13 @@
         </header>
 
         <section class="page_news">
-
             <div id="wrapper">
                 <div id="content">
                     <!-- Start 헬쓱이 지피티 -->
                     <section class="npBalabce_section padding-20 pb-0 d-flex align-items-center">
                         <div class="txt d-flex align-items-center">
-                            <img src="/assets/img/candy/chatbot.png" class="d-inline animated-bounce" id="chatbot" alt="chatbot"
+                            <img src="/assets/img/candy/chatbot.png" class="d-inline animated-bounce" id="chatbot"
+                                 alt="chatbot"
                                  style="width: 50px; height: 50px;">
                         </div>
                         <div class="text-left" style="margin-left: 20px">
@@ -122,7 +151,8 @@
                                                 <h7 class="color-snow">${obj.classDate}</h7>
                                                 <br>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                     fill="currentColor" class="bi bi-alarm color-snow" viewBox="0 0 16 16">
+                                                     fill="currentColor" class="bi bi-alarm color-snow"
+                                                     viewBox="0 0 16 16">
                                                     <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"/>
                                                     <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
                                                 </svg>&nbsp;
@@ -165,7 +195,7 @@
                             <div class="txt">
                                 <h6 class="color-white">
                                     이 달의 프로틴 사탕</h6>
-                                <h6 class="color-secondary">매일매일 건강도 챙기고, 혜택도 챙겨가자!</h6>
+                                <h6 class="color-secondary">매일매일 건강도 챙기고, <br/> 혜택도 챙겨가자!</h6>
                                 <h7 class="color-snow">월급날에 운동하면 쿠폰을 쏜다!!</h7>
                                 <br>
                                 <h7 id="candyCount" class="color-snow"></h7>
@@ -238,7 +268,7 @@
                                                 <h6 class="color-white">
                                                     나의 이용권</h6>
                                                 <h6 class="color-secondary">
-                                                        ${obj2.gymName}
+                                                        ${obj2.gymName}<br/>
                                                     <c:choose>
                                                         <c:when test="${obj2.ticketType == '1'}">
                                                             기간권 ${obj2.ticketMonth}개월
@@ -257,10 +287,10 @@
                                                 <h7 class="color-snow">
                                                     <c:choose>
                                                         <c:when test="${obj2.ticketType == '1'}">
-                                                            사용횟수 : ${obj2.usedCnt}회
+                                                            사용 : ${obj2.usedCnt}회
                                                         </c:when>
                                                         <c:when test="${obj2.ticketType == '2'}">
-                                                            잔여횟수 : ${obj2.remaining}회 / ${obj2.ticketNumber}회
+                                                            잔여 : ${obj2.remaining}회 / ${obj2.ticketNumber}회
                                                         </c:when>
                                                     </c:choose>
                                                 </h7>
@@ -272,7 +302,18 @@
                                                     <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
                                                     <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
                                                 </svg>
-                                                <h7 class="color-snow"> 만료일자 : ${obj2.purchaseDate_str}</h7>
+                                                <h7 class="color-snow"> 만료 : ${obj2.purchaseDate_str}</h7>
+                                                <button type="button" class="btn btn_smView" data-toggle="modal"
+                                                        data-target="#mdllAddRate" id="review-link"
+                                                        style="margin-top: 7px; color: white; background-color: #a361e9; border: none; border-radius: 7px; cursor: pointer; padding: 4px 8px;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                         fill="currentColor" class="bi bi-postcard-heart-fill"
+                                                         viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                              d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2Zm6 2.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7Zm3.5.878c1.482-1.42 4.795 1.392 0 4.622-4.795-3.23-1.482-6.043 0-4.622ZM2 5.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5Zm0 2a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5Zm0 2a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5Z"/>
+                                                    </svg>
+                                                    <span style="margin-left: 4px;">이용후기 남기기</span>
+                                                </button>
                                             </div>
                                             <div class="action">
                                                 <a href="/ticket/all" class="btn">
@@ -335,6 +376,69 @@
     </c:otherwise>
 </c:choose>
 
+<c:forEach var="obj" items="${my_ticket_list}">
+    <form id="review-form">
+        <input type="hidden" name="gymNo" value="${obj.gymNo}"/>
+        <input type="hidden" name="purchaseNo" value="${obj.purchaseNo}"/>
+        <!-- Modal Add Rate -->
+        <div class="modal transition-bottom screenFull defaultModal mdlladd__rate fade" id="mdllAddRate" tabindex="-1"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header padding-l-20 padding-r-20">
+                        <div class="itemProduct_sm">
+                            <div class="media">
+                                <div class="imgProd">
+                                    <img src="/assets/img/candy/star_active.png" alt="">
+                                </div><br>
+                                <div class="media-body">
+                                    <div class="txt">
+                                        <h2>${obj.gymName}</h2>
+                                        <p>별점과 후기를 남겨주세요!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="tio-clear"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="margin-t-20">
+                            <div class="emRatingPoint">
+                                <input type="radio" name="reviewRate" value="5" id="mdll-rating-5">
+                                <label for="mdll-rating-5"></label>
+                                <input type="radio" name="reviewRate" value="4" id="mdll-rating-4">
+                                <label for="mdll-rating-4"></label>
+                                <input type="radio" name="reviewRate" value="3" id="mdll-rating-3">
+                                <label for="mdll-rating-3"></label>
+                                <input type="radio" name="reviewRate" value="2" id="mdll-rating-2">
+                                <label for="mdll-rating-2"></label>
+                                <input type="radio" name="reviewRate" value="1" id="mdll-rating-1">
+                                <label class="mdll-rating-1" for="mdll-rating-1"></label>
+                            </div>
+                        </div>
+                        <div style="margin-top: 35px;">
+                            <div class="form-group">
+                                <textarea rows="2" class="form-control number__letters" id="reviewContents"
+                                          placeholder="다른 헬쓱이들을 위해 후기를 남겨주세요"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="review_register_btn"
+                                class="btn w-100 bg-primary m-0 color-white h-52 d-flex align-items-center rounded-10 justify-content-center">
+                            등록
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</c:forEach>
+
 <script>
     $(document).ready(function () {
         getCompleted();
@@ -343,6 +447,45 @@
             window.location.href = "/mypage/gptchatbot";
         });
 
+        document.getElementById('loginplzIcon').addEventListener('click', function () {
+            window.location.href = '/cust/login';
+        });
+
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('review_register_btn').addEventListener('click', function () {
+            console.log("눌렸다!");
+            // 눌린 갯수 세기
+            var selectedRates = $('input[name="reviewRate"]:checked').map(function() {
+                return $(this).val();
+            }).get();
+
+            var reviewContents = $('#reviewContents').val();
+            var gymNo = $('[name="gymNo"]').val();
+            var purchaseNo = $('[name="purchaseNo"]').val();
+
+            // AJAX 요청 보내기
+            $.ajax({
+                url    : '/review/add',
+                method : 'POST',
+                data   : {
+                    reviewRate: selectedRates,
+                    reviewContents: reviewContents,
+                    gymNo         : gymNo,
+                    purchaseNo    : purchaseNo
+                },
+                success: function (response) {
+                    if (response === "success") {
+                        $('#mdllAddRate').modal('hide'); // 모달을 감추는 코드 추가
+                        alert('리뷰가 등록되었습니다.');
+                    }
+                },
+                error  : function () {
+                    alert('오류가 발생했습니다.');
+                }
+            });
+        });
     });
 
     // 모달창 열기

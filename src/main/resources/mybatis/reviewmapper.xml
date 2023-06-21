@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kbstar.mapper.ReviewMapper">
+    <select id="insert" parameterType="review">
+        INSERT INTO REVIEW (reviewNo, reviewRate, custNo, reviewDate, reviewContents, purchaseNo)
+        VALUES (Review_seq.NEXTVAL, #{reviewRate}, #{custNo}, sysdate,  #{reviewContents}, #{purchaseNo})
+    </select>
+    <select id="getGymreview" parameterType="Integer" resultType="review">
+        SELECT r.*, c.custName, g.gymNo, g.gymName
+        FROM review r left join cust c on r.custNo = c.custNo
+        left join purchase p on r.purchaseNo = p.purchaseNo
+        left join gym g on p.gymNo = g.gymNo and g.gymMasterCk = '1'
+        where g.gymNo = #{gymNo}
+        ORDER BY r.reviewDate desc
+    </select>
+    <select id="getAvgrate" parameterType="Integer" resultType="review">
+        SELECT ROUND(AVG(r.reviewRate), 2) AS averageRate
+        FROM review r left join cust c on r.custNo = c.custNo
+                      left join purchase p on r.purchaseNo = p.purchaseNo
+                      left join gym g on p.gymNo = g.gymNo and g.gymMasterCk = '1'
+        where g.gymNo = #{gymNo}
+    </select>
+    <select id="usersByrate" parameterType="Integer" resultType="review">
+        SELECT rates.reviewRate, COALESCE(users.users, 0) AS users
+        FROM (
+                 SELECT 1 AS reviewRate FROM DUAL
+                 UNION ALL SELECT 2 FROM DUAL
+                 UNION ALL SELECT 3 FROM DUAL
+                 UNION ALL SELECT 4 FROM DUAL
+                 UNION ALL SELECT 5 FROM DUAL
+             ) rates
+                 LEFT JOIN (
+            SELECT r.reviewRate, COUNT(*) AS users
+            FROM review r
+                     LEFT JOIN cust c ON r.custNo = c.custNo
+                     LEFT JOIN purchase p ON r.purchaseNo = p.purchaseNo
+                     LEFT JOIN gym g ON p.gymNo = g.gymNo AND g.gymMasterCk = '1'
+            WHERE g.gymNo = #{gymNo}
+            GROUP BY r.reviewRate
+        ) users ON rates.reviewRate = users.reviewRate
+        ORDER BY rates.reviewRate desc
+    </select>
+</mapper>

@@ -252,11 +252,17 @@ public class CustController {
             return "error";
         }
     }
-        @RequestMapping("/notification")
-        public String notification(Model model) {
-            model.addAttribute("center", dir + "notification");
-            return "index";
-        }
-    // Other controller methods...
+
+    @RequestMapping("/notification")
+    public String notification(Model model) {
+        model.addAttribute("center", dir + "notification");
+        return "index";
+    }
+
+    @RequestMapping("/forgotpwd")
+    public String forgotpwd(Model model) {
+        model.addAttribute("center", dir + "forgotpwd");
+        return "index";
+    }
 }
 

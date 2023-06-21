@@ -81,7 +81,7 @@
     <!--        SELECT * FROM Gym WHERE gymEmail=#{gymEmail}-->
     <!--    </select>-->
     <select id="select" parameterType="Integer" resultType="gym">
-        SELECT * FROM Gym WHERE gymNo=#{gymNo}
+        SELECT * FROM Gym WHERE gymNo=#{gymNo} and gymMasterCk ='1'
     </select>
     <select id="selectall" resultType="gym">
         SELECT * FROM gym WHERE gymMasterCk ='1'

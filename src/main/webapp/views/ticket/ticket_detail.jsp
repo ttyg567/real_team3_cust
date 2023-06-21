@@ -1,43 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" href="https://resource.everyfit.co.kr/EF/res/css/style.css?202302221" />
+<link rel="stylesheet" href="https://resource.everyfit.co.kr/EF/res/css/style.css?202302221"/>
 
 <style>
     dt {
         display: block;
     }
+
     :root {
         --swiper-theme-color: #007aff;
     }
 
     element.style {
     }
+
     .shop-info > div + div {
         border-top: 8px solid #f5f5f5;
     }
+
     html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
         margin: 0;
         padding: 0;
         border: 0;
         background: transparent;
     }
+
     user agent stylesheet
     div {
         display: block;
     }
+
     body, th, td, input, select, textarea, button {
-        font-family: 'Noto Sans Korean', 'Apple SD Gothic', "맑은고딕", malgun gothic, "돋움",Dotum,Helvetica,sans-serif;
+        font-family: 'Noto Sans Korean', 'Apple SD Gothic', "맑은고딕", malgun gothic, "돋움", Dotum, Helvetica, sans-serif;
         font-size: 14px;
         line-height: 1.5;
         color: #333;
     }
+
     body {
         -webkit-text-size-adjust: none;
         background: #fff;
     }
+
     :root {
         --swiper-navigation-size: 44px;
     }
+
     .slideshow-container {
         position: relative;
         width: 100%;
@@ -92,12 +100,13 @@
         font-size: 14px;
     }
 
-    .itemSave{
+    .itemSave {
         border-color: white;
         width: 30%;
         border-radius: 10px;
         background-color: white;
     }
+
     /*#ticket_pay_btn:hover {*/
     /*    background-color: #f0f0f0;*/
     /*    color: #292e34;*/
@@ -181,7 +190,8 @@
                 <c:forEach var="centerImg" items="${gdetail_center_img}">
                     <div class="slide">
 
-                        <img class="item_img_top" src="/assets/img/gymImg/${centerImg}" alt="${centerImg}" style="height: 100%">
+                        <img class="item_img_top" src="/assets/img/gymImg/${centerImg}" alt="${centerImg}"
+                             style="height: 100%">
                     </div>
                 </c:forEach>
                 <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
@@ -196,63 +206,72 @@
 
                     <div class="item_person">
 
-                        <div class="icon" style="margin-left: 2vw;margin-top: 3vh; margin-bottom: 3vh";>
+                        <div class="icon" style="margin-left: 2vw;margin-top: 3vh; margin-bottom: 3vh" ;>
                             <svg id="Iconly_Two-tone_Home" data-name="Iconly/Two-tone/Home"
                                  xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
-                             >
+                            >
                                 <g id="Home" transform="translate(2.5 2)">
                                     <path id="Home-2" data-name="Home"
                                           d="M6.657,18.771V15.7a1.426,1.426,0,0,1,1.424-1.419h2.886A1.426,1.426,0,0,1,12.4,15.7h0v3.076A1.225,1.225,0,0,0,13.6,20h1.924A3.456,3.456,0,0,0,19,16.562h0V7.838a2.439,2.439,0,0,0-.962-1.9L11.458.685a3.18,3.18,0,0,0-3.944,0L.962,5.943A2.42,2.42,0,0,0,0,7.847v8.714A3.456,3.456,0,0,0,3.473,20H5.4a1.235,1.235,0,0,0,1.241-1.229h0"
                                           fill="none" stroke="#293343" stroke-linecap="round"
-                                          stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
+                                          stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
                                 </g>
                             </svg>
-                            <span style="margin-left: 2vw; color: grey" >${gdetail.gymName}</span>
+                            <span style="margin-left: 2vw; color: grey">${gdetail.gymName}</span>
                             <br>
-                        <svg id="Iconly_Two-tone_Location" data-name="Iconly/Two-tone/Location"
-                             xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
-                            <g id="Location" transform="translate(3.5 2)" >
-                                <path id="Path_33958"
-                                      d="M0,7.652A7.678,7.678,0,1,1,15.357,7.7v.087a11.338,11.338,0,0,1-3.478,7.3,20.183,20.183,0,0,1-3.591,2.957.93.93,0,0,1-1.217,0,19.817,19.817,0,0,1-5.052-4.73A9.826,9.826,0,0,1,0,7.678Z"
-                                      transform="translate(0.739 0.739)" fill="none" stroke="#200e32"
-                                      stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                      stroke-width="1.5" />
-                                <circle id="Ellipse_740" cx="2.461" cy="2.461" r="2.461"
-                                        transform="translate(5.957 6.078)" fill="none" stroke="#200e32"
-                                        stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                        stroke-width="1.5" opacity="0.4" />
-                            </g>
-                        </svg>
-                        <span style="margin-left: 2vw; color: grey">${gdetail.gymAddress1}</span>
-                        <br>
-                            <svg id="Iconly_Two-tone_Calendar" data-name="Iconly/Two-tone/Calendar" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 18 19.579">
-                            <g id="Calendar" transform="translate(3 2)">
-                                <path id="Line_200" d="M0,.473H17.824" transform="translate(0.093 6.931)"
-                                      fill="none" stroke="#200e32" stroke-linecap="round"
-                                      stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"
-                                      opacity="0.4" />
-                                <path id="Combined_Shape" data-name="Combined Shape"
-                                      d="M9.343,4.36h.009Zm-4.438,0h.01Zm-4.446,0H.468ZM9.343.473h.009Zm-4.438,0h.01ZM.459.473H.468Z"
-                                      transform="translate(4.099 10.837)" fill="none" stroke="#200e32"
-                                      stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                      stroke-width="1.5" opacity="0.4" />
-                                <path id="Line_207" d="M.463,0V3.291" transform="translate(12.581 0)"
-                                      fill="none" stroke="#200e32" stroke-linecap="round"
-                                      stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
-                                <path id="Line_208" d="M.463,0V3.291" transform="translate(4.502 0)"
-                                      fill="none" stroke="#200e32" stroke-linecap="round"
-                                      stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
-                                <path id="Path"
-                                      d="M13.238,0H4.771C1.834,0,0,1.636,0,4.643v9.05c0,3.054,1.834,4.728,4.771,4.728h8.458c2.946,0,4.771-1.645,4.771-4.652V4.643C18.009,1.636,16.184,0,13.238,0Z"
-                                      transform="translate(0 1.579)" fill="none" stroke="#200e32"
-                                      stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                      stroke-width="1.5" />
-                            </g>
-                        </svg>
+                            <svg id="Iconly_Two-tone_Location" data-name="Iconly/Two-tone/Location"
+                                 xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+                                <g id="Location" transform="translate(3.5 2)">
+                                    <path id="Path_33958"
+                                          d="M0,7.652A7.678,7.678,0,1,1,15.357,7.7v.087a11.338,11.338,0,0,1-3.478,7.3,20.183,20.183,0,0,1-3.591,2.957.93.93,0,0,1-1.217,0,19.817,19.817,0,0,1-5.052-4.73A9.826,9.826,0,0,1,0,7.678Z"
+                                          transform="translate(0.739 0.739)" fill="none" stroke="#200e32"
+                                          stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+                                          stroke-width="1.5"/>
+                                    <circle id="Ellipse_740" cx="2.461" cy="2.461" r="2.461"
+                                            transform="translate(5.957 6.078)" fill="none" stroke="#200e32"
+                                            stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+                                            stroke-width="1.5" opacity="0.4"/>
+                                </g>
+                            </svg>
+                            <span style="margin-left: 2vw; color: grey">${gdetail.gymAddress1}</span>
+                            <br>
+                            <svg id="Iconly_Two-tone_Calendar" data-name="Iconly/Two-tone/Calendar"
+                                 xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 18 19.579">
+                                <g id="Calendar" transform="translate(3 2)">
+                                    <path id="Line_200" d="M0,.473H17.824" transform="translate(0.093 6.931)"
+                                          fill="none" stroke="#200e32" stroke-linecap="round"
+                                          stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"
+                                          opacity="0.4"/>
+                                    <path id="Combined_Shape" data-name="Combined Shape"
+                                          d="M9.343,4.36h.009Zm-4.438,0h.01Zm-4.446,0H.468ZM9.343.473h.009Zm-4.438,0h.01ZM.459.473H.468Z"
+                                          transform="translate(4.099 10.837)" fill="none" stroke="#200e32"
+                                          stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+                                          stroke-width="1.5" opacity="0.4"/>
+                                    <path id="Line_207" d="M.463,0V3.291" transform="translate(12.581 0)"
+                                          fill="none" stroke="#200e32" stroke-linecap="round"
+                                          stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+                                    <path id="Line_208" d="M.463,0V3.291" transform="translate(4.502 0)"
+                                          fill="none" stroke="#200e32" stroke-linecap="round"
+                                          stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+                                    <path id="Path"
+                                          d="M13.238,0H4.771C1.834,0,0,1.636,0,4.643v9.05c0,3.054,1.834,4.728,4.771,4.728h8.458c2.946,0,4.771-1.645,4.771-4.652V4.643C18.009,1.636,16.184,0,13.238,0Z"
+                                          transform="translate(0 1.579)" fill="none" stroke="#200e32"
+                                          stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+                                          stroke-width="1.5"/>
+                                </g>
+                            </svg>
 
-                        <span style="margin-left: 2vw;color: grey">예약 필수 </span>
+                            <span style="margin-left: 2vw;color: grey">예약 필수 </span>
+                            <br>
+                            <div style="display: flex; justify-content: flex-end; margin-right: 20px">
+                            <button id="review-link" style="display: flex; align-items: center; justify-content: center; margin-left: 2vw; color: white; background-color: #ba97dd; border: none; border-radius: 4px; cursor: pointer; padding: 4px 8px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                                </svg>
+                                <span style="margin-left: 4px;">이용자 후기 보기</span>
+                            </button>
+                            </div>
                         </div>
-
 
 
                         <h2></h2>
@@ -263,11 +282,11 @@
     </div>
 </div>
 
-<div class="embody__content"style="margin-top: 18%">
+<div class="embody__content" style="margin-top: 18%">
     <!-- 내용 -->
 
     <c:forEach var="detailImg" items="${gdetail_detail_img}">
-        <div class="cover" >
+        <div class="cover">
             <img class="item_img_detail" src="/assets/img/gymImg/${detailImg}" alt="${detailImg}"
                  style="width: 90%; margin-left: 5vw;">
             <span class="item_category"></span>
@@ -297,12 +316,14 @@
             </div>
         </section>
         <!--이용권-->
-        <form name="ticket_pay_form" id="ticket_pay_form"  >
-        <div>
-            <dl class="list-type-goods01" id="list"><dt>헬쓱 ONLY</dt><dd>
-                <div class="goods-component">
-                    <a href="javascript:goGoodsDetail(22853, 71075, 6, 04, 'N');">
-                        <c:forEach var="ticket" items="${tickets}">
+        <form name="ticket_pay_form" id="ticket_pay_form">
+            <div>
+                <dl class="list-type-goods01" id="list">
+                    <dt>헬쓱 ONLY</dt>
+                    <dd>
+                        <div class="goods-component">
+                            <a href="javascript:goGoodsDetail(22853, 71075, 6, 04, 'N');">
+                                <c:forEach var="ticket" items="${tickets}">
                         <span class="top" id="topId-71075">
 
                             <span class="tit">
@@ -316,56 +337,59 @@
 
                             </span>
                         </span>
-                        <span class="bottom">
+                                    <span class="bottom">
                 <span class="label">
                 </span>
                 <span class="price"
-                style="margin-right: 3vw; color: purple">
+                      style="margin-right: 3vw; color: purple">
                         ${ticket.ticketCost} 원</span>
                 </span>
-                            <button type="button" class="itemSave" data-like-type="G" class="btn-like gray x16" value="${ticket.ticketNo}"></button>
-                <hr class="solid">
-                        </c:forEach>
-                </a>
-                </div>
-<!--이용권 끝-->
-        <div style="position: fixed; z-index:9999;  bottom: 200px; right: 50px">
-            <a href="/ticket/chat?gymNo=${gdetail.gymNo}"><img src="/img/chat.png" style="width:50px; height: 50px;" title="1:1문의"></a>
-        </div>
+                                    <button type="button" class="itemSave" data-like-type="G" class="btn-like gray x16"
+                                            value="${ticket.ticketNo}"></button>
+                                    <hr class="solid">
+                                </c:forEach>
+                            </a>
+                        </div>
+                        <!--이용권 끝-->
+                        <div style="position: fixed; z-index:9999;  bottom: 200px; right: 50px">
+                            <a href="/ticket/chat?gymNo=${gdetail.gymNo}"><img src="/img/chat.png"
+                                                                               style="width:50px; height: 50px;"
+                                                                               title="1:1문의"></a>
+                        </div>
 
-        <div class="padding-t-100">
+                        <div class="padding-t-100">
 
-                <input type="hidden"  name="gymName" value="${gdetail.gymName}">
-                <input type="hidden"  name="gymNo" value="${gdetail.gymNo}">
+                            <input type="hidden" name="gymName" value="${gdetail.gymName}">
+                            <input type="hidden" name="gymNo" id="gymNo" value="${gdetail.gymNo}">
 
-                <select name="ticket_pay_option" id="ticket_pay_option"
-                        style="width: 100%;  position: fixed;  z-index:9999; bottom:120px;  display: inline-block;
+                            <select name="ticket_pay_option" id="ticket_pay_option"
+                                    style="width: 100%;  position: fixed;  z-index:9999; bottom:120px;  display: inline-block;
                           padding: 10px; font-size: 16px; border-radius: 4px; background-color: #F2EFFB;  border: none; cursor: pointer; outline: none;">
-                    <option selected id="unselected" class="unselected">구매하실 이용권을 선택해주세요.</option>
-                    <c:forEach var="ticket" items="${tickets}">
-                        <c:choose>
-                            <c:when test="${ticket.ticketType == '1'}">
-                                <option name="ticket_pay_option" class="ticket_pay_option" value="기간권-${ticket.ticketMonth}개월-${ticket.ticketCost}원-${ticket.ticketNo}">
-                                    <p>기간권</p> ${ticket.ticketMonth}개월 ${ticket.ticketCost}원
-                                </option>
-                            </c:when>
-                            <c:when test="${ticket.ticketType == '2'}">
-                                <option name="ticket_pay_option" class="ticket_pay_option" value="횟수권-${ticket.ticketNumber}회-${ticket.ticketCost}원-${ticket.ticketNo}">
-                                    <p>횟수권</p> ${ticket.ticketNumber}회 ${ticket.ticketCost}원
-                                </option>
+                                <option selected id="unselected" class="unselected">구매하실 이용권을 선택해주세요.</option>
+                                <c:forEach var="ticket" items="${tickets}">
+                                    <c:choose>
+                                        <c:when test="${ticket.ticketType == '1'}">
+                                            <option name="ticket_pay_option" class="ticket_pay_option"
+                                                    value="기간권-${ticket.ticketMonth}개월-${ticket.ticketCost}원-${ticket.ticketNo}">
+                                                <p>기간권</p> ${ticket.ticketMonth}개월 ${ticket.ticketCost}원
+                                            </option>
+                                        </c:when>
+                                        <c:when test="${ticket.ticketType == '2'}">
+                                            <option name="ticket_pay_option" class="ticket_pay_option"
+                                                    value="횟수권-${ticket.ticketNumber}회-${ticket.ticketCost}원-${ticket.ticketNo}">
+                                                <p>횟수권</p> ${ticket.ticketNumber}회 ${ticket.ticketCost}원
+                                            </option>
 
-                            </c:when>
-                        </c:choose>
-                    </c:forEach>
+                                        </c:when>
+                                    </c:choose>
+                                </c:forEach>
 
-                </select>
+                            </select>
 
-            </form>
-        </div>
-
+        </form>
     </div>
 
-
+    </div>
 
 
     <div class="padding-t-100">
@@ -398,7 +422,6 @@
                         style="width: 130%; margin-left: 5%; text-align: center; display: flex; justify-content: center; align-items: center;">
                     결제하기
                 </button>
-
 
 
             </div>
@@ -541,31 +564,37 @@
         },
         send: function () {
             let selectedOption = $('#ticket_pay_option').val();
-            if (selectedOption === "unselected")
-            {
+            if (selectedOption === "unselected") {
                 alert("구매하실 이용권을 선택해주세요.");
                 return;
             }
 
             $('#ticket_pay_form').attr({
-                'action':'/pay',
-                'method':'post'
+                'action': '/pay',
+                'method': 'post'
             });
             $('#ticket_pay_form').submit();
 
         },
-        save : function (){
+        save: function () {
             $('#ticket_pay_form').attr({
-                'action':'/like1',
-                'method':'post'
+                'action': '/like1',
+                'method': 'post'
             });
             $('#ticket_pay_form').submit();
         }
 
     };
 
-    $(function (){
+    $(function () {
         ticket_pay_form.init();
+
+
+        document.getElementById("review-link").addEventListener("click", function () {
+            var gymNo = $("#gymNo").val(); // 센터번호를 가져옴
+            window.location.href = "/review/list?gymNo=" + gymNo; // 새로운 페이지로 전환
+        });
+
     })
 
 </script>
