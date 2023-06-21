@@ -123,7 +123,7 @@
                                                     </g>
                                                 </svg>
                                             </div>
-                                            <span>좋아요 수 </span>
+                                            <span>좋아요${obj.likecount} 개</span>
                                         </div>
                                     </div>
                                 </div>

@@ -20,7 +20,7 @@ public class CustomErrorController implements ErrorController {
     public String handleError(Exception e) {
         e.printStackTrace();
         // 에러 페이지로 이동하도록 설정
-        return "/error/error_page1"; // 에러 페이지의 뷰 이름
+        return "error_page"; // 에러 페이지의 뷰 이름
     }
 
     public String getErrorPath() {

@@ -139,7 +139,7 @@
                                                     </g>
                                                 </svg>
                                             </div>
-                                            <span>${obj.likecount} </span>
+                                            <span>좋아요 ${obj.likecount}개 </span>
                                         </div>
                                     </div>
                                 </div>

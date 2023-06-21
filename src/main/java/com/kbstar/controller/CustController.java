@@ -250,7 +250,11 @@ public class CustController {
             return "error";
         }
     }
-
+        @RequestMapping("/notification")
+        public String notification(Model model) {
+            model.addAttribute("center", dir + "notification");
+            return "index";
+        }
     // Other controller methods...
 }
 

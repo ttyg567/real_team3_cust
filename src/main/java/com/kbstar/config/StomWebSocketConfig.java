@@ -16,8 +16,8 @@ public class StomWebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-    // StompEndpointRegistrys는 STOMP 연결을 등록하는 인터페이스
-    // 다음과 같이 /ws, /chbot, /wss 경로를 각각 STOMP 연결 엔드포인트로 등록합니다.
+        // StompEndpointRegistrys는 STOMP 연결을 등록하는 인터페이스
+        // 다음과 같이 /ws, /chbot, /wss 경로를 각각 STOMP 연결 엔드포인트로 등록합니다.
         // 이거 안해주면 CORS 에러 남
         // 관리자 사용자가 접속하여 채팅을 하는 경로
         // 2. ok. chbot 허용할게
