@@ -67,6 +67,8 @@ public class CustController {
                 nextPage = "loginok";
                 session.setMaxInactiveInterval(100000);
                 session.setAttribute("logincust", cust);
+                model.addAttribute("center", dir + nextPage);
+                return "redirect:/";
             }
         } catch (Exception e) {
             throw new Exception("시스템 장애. 잠시 후 다시 로그인 하세요");
