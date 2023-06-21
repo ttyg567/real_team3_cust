@@ -159,9 +159,9 @@
                      style="background-image: linear-gradient(to right, #e66176, #5065da)">
                     <div class="txt">
                         <h6 class="color-white">
-                            이 달의 운동 사탕</h6>
+                            이 달의 프로틴 사탕</h6>
                         <h6 class="color-secondary">매일매일 건강도 챙기고, 혜택도 챙겨가자!</h6>
-                        <h7 class="color-snow">월급날에 운동하면 혜택이 더 빵빵!!</h7>
+                        <h7 class="color-snow">월급날에 운동하면 쿠폰을 쏜다!!</h7>
                         <br>
                         <h7 id="candyCount" class="color-snow"></h7>
                     </div>

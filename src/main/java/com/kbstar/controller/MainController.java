@@ -29,21 +29,21 @@ public class MainController {
     // 운동이용권을 결제한 회원의 경우 -> 나의 운동센터 혼잡도 보여주기
     @RequestMapping("/")
     public String main(Model model, Gym gym, Integer gymNo) throws Exception {
-        List<Gym> list = null;
-        List<GymMachine> list2 = null;
-
-        model.addAttribute("searchType", list); //jsp파일에서 뿌릴 이름 정하기
-        try {
-            list = gymService.get();
-            list2 = gymMachineService.get();
-
-           // list2 = gymMachineService.selectGymMachine(gymNo); // 센터가 보유한 기계 가져오기
-        }
-        catch (Exception e){
-            throw new Exception("error");
-        }
-        model.addAttribute("allGym",list);
-        model.addAttribute("gymAllMachine",list2); //센터의 기계들
+//        List<Gym> list = null;
+//        List<GymMachine> list2 = null;
+//
+//        model.addAttribute("searchType", list); //jsp파일에서 뿌릴 이름 정하기
+//        try {
+//            list = gymService.get();
+//            list2 = gymMachineService.get();
+//
+//           // list2 = gymMachineService.selectGymMachine(gymNo); // 센터가 보유한 기계 가져오기
+//        }
+//        catch (Exception e){
+//            throw new Exception("error");
+//        }
+//        model.addAttribute("allGym",list);
+//        model.addAttribute("gymAllMachine",list2); //센터의 기계들
         return "index";
     }
     // 베스트 페이지 : 특정 기준으로(아직 미정) 베스트에 선정된 센터들을 보여주기.

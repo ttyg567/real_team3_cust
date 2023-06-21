@@ -179,7 +179,7 @@
                         <div class="emBlock__border padding-l-20 bg-snow col-6">
                             <ul class="nav navListProducts">
                                 <li class="nav-item">
-                                    <a id="myReservationLink1" class="nav-link" href="/class/my_reservation">예약내역조회 및 취소</a>
+                                    <a id="myReservationLink1" class="nav-link" href="/class/my_reservation">조회 및 취소</a>
                                 </li>
                             </ul>
                         </div>

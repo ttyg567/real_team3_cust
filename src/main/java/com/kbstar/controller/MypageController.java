@@ -189,7 +189,7 @@ public class MypageController {
         log.info("챗지티피 시작하자!!");
         String answer ="";
         try {
-            answer = chatgptService.sendMessage(question);
+            answer = chatgptService.sendMessage(question + "20자 이내로 답변줘");
         } catch (Exception e){
             e.printStackTrace();
         }
