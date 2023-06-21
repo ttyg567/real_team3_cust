@@ -60,9 +60,9 @@
     <!-- Start main_haeder -->
     <header class="main_haeder header-sticky multi_item bg-transparent d-lfex justify-content-end">
       <div class="em_side_right">
-        <a href="index.html"
+        <a href="/view/1"
            class="link__forgot d-block size-14 color-white text-decoration-none hover:color-secondary transition-all">
-          Skip
+          둘러보기
         </a>
       </div>
     </header>
@@ -78,20 +78,20 @@
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <div class="content_text">
-                <h2>Browse All Branches</h2>
-                <p>Discover products easily by swiping from one branch to another</p>
+                <h2>내게 맞는 센터와 혼잡도를 한눈에</h2>
+                <p>헬쓱 센터와 효율적으로 운동을 시작해보세요</p>
               </div>
             </div>
             <div class="swiper-slide">
               <div class="content_text">
-                <h2>Browse All Branches</h2>
-                <p>Discover products easily by swiping from one branch to another</p>
+                <h2>조인을 통해 함께 하는 즐거움을</h2>
+                <p>이용권도 할인 받고, 함께 오운완 하세요</p>
               </div>
             </div>
             <div class="swiper-slide">
               <div class="content_text">
-                <h2>Browse All Branches</h2>
-                <p>Discover products easily by swiping from one branch to another</p>
+                <h2>운동은 하루를 채우는 비타민</h2>
+                <p>오늘의 운동을 체크하고, 혜택도 받아가세요</p>
               </div>
             </div>
           </div>
@@ -100,8 +100,8 @@
         </div>
 
         <div class="actionSign">
-          <a href="page-register.html" class="btn btn__icon bg-white h-52 rounded-8">
-            Sign Up
+          <a href="/cust/login" class="btn btn__icon bg-white h-52 rounded-8">
+            로그인하기
             <div class="icon">
               <svg id="Iconly_Light_Arrow_-_Right_Square"
                    data-name="Iconly/Light/Arrow - Right Square" xmlns="http://www.w3.org/2000/svg"
@@ -125,8 +125,8 @@
               </svg>
             </div>
           </a>
-          <a href="page-signin.html" class="btn color-white min-w-150 h-52 justify-content-center">
-            Sign In
+          <a href="/cust/register_intro" class="btn color-white min-w-150 h-52 justify-content-center">
+            가입하기
           </a>
         </div>
       </div>

@@ -9,7 +9,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -25,14 +28,26 @@ public class MainController {
     GroupboardService groupboardService;
     @Autowired
     MyMachineService myMachineService;
+    
     // 투데이 페이지 : 헬쓱 메인 페이지로, 광고배너 노출 + 카테고리별 운동센터 조회 +
     // 운동이용권을 결제한 회원의 경우 -> 나의 운동센터 혼잡도 보여주기
-    @RequestMapping("/")
-    public String main(Model model, Gym gym, Integer gymNo, MyMachine myMachine,  HttpSession session) throws Exception {
-        Cust cust = (Cust) session.getAttribute("logincust");
+    @GetMapping(value= {"/", "/view/{name}"})
+    public String main(@PathVariable(required = false) Integer name, Model model, Gym gym, Integer gymNo, MyMachine myMachine, HttpSession session) throws Exception {
+        Cust cust = null;
+        cust = (Cust) session.getAttribute("logincust"); // 세션 담기
+
+        log.info("========세션 찍기1 =====" + cust);
+        log.info("========파라미터 찍기2 =====" + name);
+
+        // 로그인을 안할 경우 && 둘러보기를 안눌렀을 때 웰컴 페이지로
+        if (cust == null && (name == null || !(name == 1))) {
+            return "redirect:/welcome";
+        }
+
         List<Gym> list = null;
         List<GymMachine> list2 = null;
         List<MyMachine> list3 = null;
+
         try {
             // 미로그인 고객을 위한 정보 : 이용권 정보 보임 + 센터의 운동기구 정보 보임
             list = gymService.get();
@@ -59,6 +74,12 @@ public class MainController {
         model.addAttribute("center","center");
         return "index";
     }
+
+    @RequestMapping("/welcome")
+    public String welcome(){
+        return "welcome";
+    }
+
     // 나의 운동기구 조회!
     @RequestMapping("/getmymachine")
     public String getmymachine(Model model, HttpSession session) throws Exception {
@@ -78,7 +99,7 @@ public class MainController {
 
         myMachineService.register(myMachine); // 즐겨찾기 신규등록!
         //log.info("======================="+myMachine);
-        return "redirect:/"; // 메인(투데이) 페이지로 바로 이동.
+        return "redirect:/view/1"; // 메인(투데이) 페이지로 바로 이동.
     }
     // 베스트 페이지 : 특정 기준으로(아직 미정) 베스트에 선정된 센터들을 보여주기.
     @RequestMapping("/best")
@@ -138,5 +159,9 @@ public class MainController {
         return "index";
     }
 
-
+    @RequestMapping("/loginplz")
+    public String loginplz(Model model) throws Exception {
+        model.addAttribute("center", "loginplz");
+        return "loginplz";
+    }
 }

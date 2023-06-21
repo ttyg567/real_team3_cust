@@ -24,12 +24,11 @@
     <div id="content">
         <section class="emPage__ResultPayment">
             <div class="em__seccess">
-                <h2 class="size-20 weight-500 color-secondary margin-b-10">죄송합니다. 잠시 후에 시도해주세요</h2>
-                <p class="size-15 color-text margin-b-40">헬쓱 고객센터: 1234-5678</p>
+                <h2 class="size-20 weight-500 color-secondary margin-b-10">로그인 후 이용해주세요</h2>
                 <p class="size-15 color-text margin-b-10 moving-text">▼ 저를 클릭해주세요! ▼</p>
             </div>
             <div id="notification" style="text-align: center;">
-                <img id="failIcon" src="/assets/img/login/fail.gif" style="cursor: pointer;">
+                <img id="loginplzIcon" src="/assets/img/login/loginplz.gif" style="cursor: pointer;">
             </div>
         </section>
     </div>
@@ -37,8 +36,8 @@
 
 <script>
     // Handle the click event on the gift icon
-    document.getElementById('failIcon').addEventListener('click', function () {
+    document.getElementById('loginplzIcon').addEventListener('click', function () {
         // Redirect to the desired page when the gift icon is clicked
-        window.location.href = "/view/1";
+        window.location.href = '/cust/login';
     });
 </script>

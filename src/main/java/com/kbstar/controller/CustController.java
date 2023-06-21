@@ -67,11 +67,6 @@ public class CustController {
                 nextPage = "loginok";
                 session.setMaxInactiveInterval(100000);
                 session.setAttribute("logincust", cust);
-                if (redirectURL == null || redirectURL.equals("")) {
-                    return "redirect:/";
-                } else {
-                    return "redirect:" + redirectURL;
-                }
             }
         } catch (Exception e) {
             throw new Exception("시스템 장애. 잠시 후 다시 로그인 하세요");
@@ -91,6 +86,12 @@ public class CustController {
     @RequestMapping("/register")
     public String register(Model model) {
         model.addAttribute("center", dir + "register");
+        return "index";
+    }
+
+    @RequestMapping("/register_intro")
+    public String register_intro(Model model) {
+        model.addAttribute("center", dir + "register_intro");
         return "index";
     }
 
@@ -162,7 +163,7 @@ public class CustController {
         }
 
         model.addAttribute("rcust", cust);
-        return "redirect:/";
+        return "redirect:/view/1";
     }
 
     @RequestMapping("/getaddress")
@@ -217,15 +218,6 @@ public class CustController {
         return "index";
     }
 
-    //    @RequestMapping("/updateimpl")
-//    public String updateimpl(Model model, Cust cust, HttpSession session){
-//        custService.updateInfo(cust);
-//        session.setAttribute("logincust", cust);
-//
-//        model.addAttribute("rcust", cust);
-//        return "redirect:/";
-//
-//    }
     @RequestMapping("/updateimpl")
     public String updateimpl(@ModelAttribute Cust cust, Model model, HttpSession session) {
         // cust 객체에는 form 데이터가 자동으로 바인딩되어 전달됩니다.
