@@ -2,10 +2,7 @@ package com.kbstar.controller;
 
 
 import com.kbstar.dto.*;
-import com.kbstar.service.GBMemberService;
-import com.kbstar.service.GroupboardService;
-import com.kbstar.service.GymService;
-import com.kbstar.service.TicketService;
+import com.kbstar.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -18,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Slf4j
@@ -35,7 +33,26 @@ public class InboAjaxController {
     GymService gymService;
     @Autowired
     TicketService ticketService;
+    @Autowired
+    GymMachineService gymMachineService;
+    @Autowired
+    MyMachineService myMachineService;
     String dir = "groupboard/";
+
+    // 나의 운동기구 등록!
+    @RequestMapping("/getmymachine")
+    public String getmymachine(Model model, HttpSession session, MyMachine myMachine) throws Exception {
+        Cust cust = (Cust) session.getAttribute("logincust");
+        List<MyMachine> list = null;
+
+        myMachineService.register(myMachine); // 즐겨찾기 등록 행위 발생
+
+        list = myMachineService.getmymachine(cust.getCustNo()); // 발생하면 리스트에 바로 담아주기.
+
+        model.addAttribute("myMachine",list);
+        model.addAttribute("center", "discount");
+        return "index";
+    }
 
     // 4-2-2. 센터 검색
     @RequestMapping(value = "/search", method = RequestMethod.GET)
@@ -116,4 +133,7 @@ public class InboAjaxController {
     public String notificationimpl(Model model){
         return "index";
     }
+
+
+
 }

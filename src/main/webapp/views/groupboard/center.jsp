@@ -49,11 +49,10 @@
         margin-bottom: 15px;
     }
 </style>
-<%--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4617571d8f9917ae900e8b494a093c31"></script>--%>
-
 
 <!-- header 구간  -->
 <jsp:include page="/views/groupboard/groupboardheader.jsp" />
+
 <!-- Start input_SaerchDefault -->
 <section class="padding-t-70 change_colorSearch">
     <div class="title_welcome">
@@ -253,7 +252,6 @@
 </c:choose>
 <!-- End. em_swiper_products -->
 
-<%--</div>--%>
 
 <!-- Modal로 보여지는 창 : mdllJobDetails -->
 <!-- Modal : center 에서 사용한 것 처럼 모달로 각 조인들 상세보기-->
@@ -533,77 +531,3 @@
         </div>
     </form>
 </c:forEach>
-
-<%--<script>// 지도의 크기를 동적으로 변경해주는 함수--%>
-<%--// (모달창일 경우 필요) 지도가 있는 영역을 누를 때(모달이 열릴 때) 호출되도록 할 것!--%>
-<%--    $(document).ready(function() {--%>
-<%--        $('.modal').on('shown.bs.modal', function () {--%>
-<%--            setTimeout(function (){--%>
-<%--                map.relayout();--%>
-<%--            }, 0);--%>
-<%--        });--%>
-<%--    });--%>
-<%--</script>--%>
-<%--<script>--%>
-<%--    var mapContainer = document.getElementById('map'), // 지도를 표시할 div--%>
-<%--        mapOption = {--%>
-<%--            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표--%>
-<%--            level: 5 // 지도의 확대 레벨--%>
-<%--        };--%>
-
-<%--    // 지도를 생성합니다--%>
-<%--    var map = new kakao.maps.Map(mapContainer, mapOption);--%>
-
-<%--       // 아래는 하드코딩한 방식으로 테스트 성공--%>
-<%--        // var gymData = [--%>
-<%--        //     {"gymName": "헬스장2",--%>
-<%--        //         "gymAddress1": "서울특별시 강남구 테헤란로 123" },--%>
-<%--        //     // 추가적인 헬스장 데이터...--%>
-<%--        // ];--%>
-
-<%--    // JSON 형식의 데이터--%>
-<%--    $.ajax({--%>
-<%--        url:'/getgymaddress', // ajaxImpl컨트롤러에서 처리--%>
-<%--        data:{'gymAddress1':gymAddress1}, // *데이터 줘~ 요청:결과--%>
-
-<%--    });--%>
-<%--    // 주소로 좌표를 검색하여 지도에 표시하는 함수--%>
-<%--    function displayMarkers() {--%>
-<%--        //--%>
-
-<%--            // var gymAddress = null;--%>
-<%--            // var gymName = null;--%>
-
-<%--            // 주소-좌표 변환 객체를 생성합니다--%>
-<%--            var geocoder = new kakao.maps.services.Geocoder();--%>
-
-<%--            // 주소로 좌표를 검색합니다--%>
-<%--            geocoder.addressSearch(gymAddress, function (result, status) {--%>
-
-<%--                // 정상적으로 검색이 완료됐으면--%>
-<%--                if (status === kakao.maps.services.Status.OK) {--%>
-
-<%--                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);--%>
-
-<%--                    // 결과값으로 받은 위치를 마커로 표시합니다--%>
-<%--                    var marker = new kakao.maps.Marker({--%>
-<%--                        map: map,--%>
-<%--                        position: coords--%>
-<%--                    });--%>
-
-
-<%--                    // 인포윈도우로 장소에 대한 설명을 표시합니다--%>
-<%--                    var infowindow = new kakao.maps.InfoWindow({--%>
-<%--                        content: '<div style="width:150px;text-align:center;padding:6px 0;">'+gymName+'</div>'--%>
-<%--                    });--%>
-<%--                    infowindow.open(map, marker);--%>
-
-<%--                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다--%>
-<%--                    map.setCenter(coords);--%>
-<%--                }--%>
-<%--            });--%>
-
-<%--    }--%>
-<%--    // displayMarkers 함수 호출--%>
-<%--    displayMarkers();--%>
-<%--</script>--%>

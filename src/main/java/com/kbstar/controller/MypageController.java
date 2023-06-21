@@ -1,11 +1,10 @@
 package com.kbstar.controller;
 
 import com.kbstar.dto.*;
-import com.kbstar.dto.Class;
+
 import com.kbstar.service.ClassService;
 import com.kbstar.service.MyScheduleService;
 import com.kbstar.service.PurchaseService;
-import com.kbstar.service.TicketService;
 import io.github.flashvayne.chatgpt.service.ChatgptService;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
@@ -190,7 +189,7 @@ public class MypageController {
         log.info("챗지티피 시작하자!!");
         String answer ="";
         try {
-            answer = chatgptService.sendMessage(question);
+            answer = chatgptService.sendMessage(question + "20자 이내로 답변줘");
         } catch (Exception e){
             e.printStackTrace();
         }
