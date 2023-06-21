@@ -260,9 +260,14 @@
                           </button>
                           <%-- 기구 리스트 나열 --%>
                           <section class="emPage__basket npPkg__basket default" style="padding-top: 10px">
-                          <form name="machine_form" id="machine_form">
                             <c:forEach  var="obj" items="${gymAllMachine}" >
-                              <div class="itemPkg_cart" data-toggle="modal"
+                              <form name="machine_form" id="machine_form"  action="/addmymachine" method="get">
+                                  <input type="hidden" name="custNo" value="${logincust.custNo}"/>
+                                  <input type="hidden" name="machineNo" value="${obj.machineNo}"/>
+                                  <input type="hidden" name="gymNo" value="${obj.gymNo}"/>
+                                  <input type="hidden" name="myMachineStatus" value="1"/>
+<%--                                  <input type="hidden" name="myMachineStatus" value="${obj.myMachineStatus}"/>--%>
+                                  <div class="itemPkg_cart" data-toggle="modal"
                                    data-target="#mdllAdd_Address${obj.machineNo}"><!-- 클릭 시 상세 기구보기 모달로 이동 -->
                                   <div class="sideleft" style="height: 60px">
                                       <div class="item_rate">
@@ -340,17 +345,19 @@
 
                                       </div>
                                   </div>
-                                  <%--  즐겨찾기 버튼   --%>
+                                  <%--  즐겨찾기 버튼 id :  machineSave  --%>
                                   <div class="npPage__balanceProvider" style="padding: 0; ">
                                       <div class="npblock__favorite" style="padding: 0; border: none;">
-                                          <button type="button" class="btn btn_favorite item-active" style="border: none;">
+                                          <button type="submit" id="machineSave"
+                                                  class="btn btn_favorite item-active" style="border: none;">
                                               <i class="ri-star-s-line"></i>
                                           </button>
                                       </div>
                                   </div>
                               </div>
-                            </c:forEach>
                               </form>
+                            </c:forEach>
+
                           </section>
                           <!-- 즐겨찾기 삭제할 때 쓸것. page-basket-provider.html -->
 
@@ -486,7 +493,7 @@
                 <%--    즐겨찾기 버튼   --%>
                 <div class="npPage__balanceProvider" style="padding: 0; ">
                     <div class="npblock__favorite" style="padding: 0; border: none; ">
-                        <button type="button" id="machineSave"
+                        <button type="submit" id="machineSave"
                                 class="btn btn_favorite item-active" style="border: none;">
                             <i class="ri-star-s-line"></i>
                         </button>
@@ -554,38 +561,38 @@
             $('#search_form').submit();
         }
     }
-    <%--   나의 운동기구 즐겨찾기 기능     --%>
-    let myMachine_form = {
-        init: function () {
-            //  btn btn_addCart
-            // $('#ticket_pay_btn').click(function () {
-            //     myMachine_form.send();
-            // });
-            $('#machineSave').click(function () {
-                console.log("savetest");
-                myMachine_form.save();
-            });
-        },
-        send: function () {
-
-
-        },
-        save : function (){
-            $('#machine_form').attr({
-                'action':'/like1',
-                'method':'post'
-            });
-            $('#machine_form').submit();
-        }
-
-    };
+    <%--   나의 운동기구 즐겨찾기 하기     --%>
+    // let myMachine_form = {
+    //     init: function () {
+    //         //  btn btn_addCart
+    //         // $('#ticket_pay_btn').click(function () {
+    //         //     myMachine_form.send();
+    //         // });
+    //         $('#machineSave').click(function () {
+    //             console.log("savetest");
+    //             myMachine_form.save();
+    //         });
+    //     },
+    //     send: function () {
+    //
+    //
+    //     },
+    //     save : function (){
+    //         $('#machine_form').attr({
+    //             'action':'/like1',
+    //             'method':'post'
+    //         });
+    //         $('#machine_form').submit();
+    //     }
+    //
+    // };
 
 
 
     // 실행
     $(function (){
         machine_search.init();
-        myMachine_form.init();
+        //myMachine_form.init();
     });
 
 </script>

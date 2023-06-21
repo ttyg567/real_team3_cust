@@ -39,20 +39,7 @@ public class InboAjaxController {
     MyMachineService myMachineService;
     String dir = "groupboard/";
 
-    // 나의 운동기구 등록!
-    @RequestMapping("/getmymachine")
-    public String getmymachine(Model model, HttpSession session, MyMachine myMachine) throws Exception {
-        Cust cust = (Cust) session.getAttribute("logincust");
-        List<MyMachine> list = null;
 
-        myMachineService.register(myMachine); // 즐겨찾기 등록 행위 발생
-
-        list = myMachineService.getmymachine(cust.getCustNo()); // 발생하면 리스트에 바로 담아주기.
-
-        model.addAttribute("myMachine",list);
-        model.addAttribute("center", "discount");
-        return "index";
-    }
 
     // 4-2-2. 센터 검색
     @RequestMapping(value = "/search", method = RequestMethod.GET)
@@ -134,6 +121,14 @@ public class InboAjaxController {
         return "index";
     }
 
+    // 나의 운동기구 등록하기.
+    @RequestMapping("/addmymachine")
+    public String addmymachine(Model model, MyMachine myMachine) throws Exception {
+        // 즐겨찾기 버튼을 누른 운동기구가, 이미 담겨있는 상태(1) 였으면 set > 해제(0)
 
+        myMachineService.register(myMachine); // 즐겨찾기 신규등록!
+        //log.info("======================="+myMachine);
+        return ""; // 메인(투데이) 페이지로 바로 이동.
+    }
 
 }
