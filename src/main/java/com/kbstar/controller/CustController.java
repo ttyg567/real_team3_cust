@@ -16,9 +16,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.internet.MimeMessage;
@@ -53,7 +51,7 @@ public class CustController {
     @RequestMapping("/login")
     public String login(Model model, String redirectURL) {
         model.addAttribute("redirectURL", redirectURL); // 다음페이지를 숨겨 놓고
-        model.addAttribute("center", dir+"login");
+        model.addAttribute("center", dir + "login");
         return "index";
     }
 
@@ -65,33 +63,33 @@ public class CustController {
         try {
             cust = custService.get(custEmail);
             // 나중에 수정하기!!!!!!!1
-            if(cust != null && (encoder.matches(custPwd, cust.getCustPwd())|| (custPwd.equals(cust.getCustPwd())))){
+            if (cust != null && (encoder.matches(custPwd, cust.getCustPwd()) || (custPwd.equals(cust.getCustPwd())))) {
                 nextPage = "loginok";
                 session.setMaxInactiveInterval(100000);
-                session.setAttribute("logincust",cust);
+                session.setAttribute("logincust", cust);
                 if (redirectURL == null || redirectURL.equals("")) {
                     return "redirect:/";
-                }else {
-                    return "redirect:"+redirectURL;
+                } else {
+                    return "redirect:" + redirectURL;
                 }
             }
         } catch (Exception e) {
             throw new Exception("시스템 장애. 잠시 후 다시 로그인 하세요");
         }
-        model.addAttribute("center",dir + nextPage);
+        model.addAttribute("center", dir + nextPage);
         return "index";
     }
 
     @RequestMapping("/logoutimpl")
-    public String logoutimpl(HttpSession session){
-        if(session != null){
+    public String logoutimpl(HttpSession session) {
+        if (session != null) {
             session.invalidate();
         }
         return "redirect:/";
     }
 
     @RequestMapping("/register")
-    public String register(Model model){
+    public String register(Model model) {
         model.addAttribute("center", dir + "register");
         return "index";
     }
@@ -112,14 +110,14 @@ public class CustController {
     }
 
     // 이메일 인증
-    @RequestMapping(value = "/mailCheck", method= RequestMethod.GET)
+    @RequestMapping(value = "/mailCheck", method = RequestMethod.GET)
     @ResponseBody
     public String mailCheck(String custEmail) throws Exception {
         /* 뷰로 넘어온 데이터 확인 */
         logger.info("이메일 데이터 전송 확인: " + custEmail);
         /* 인증번호 난수 생성 */
         Random random = new Random();
-        int checkNum = random.nextInt(888888) +111111; /* 0 ~ 888887 */ /* 111111~999998 */
+        int checkNum = random.nextInt(888888) + 111111; /* 0 ~ 888887 */ /* 111111~999998 */
         logger.info("인증번호: " + checkNum);
 
         /* 이메일 보내기 */
@@ -129,11 +127,11 @@ public class CustController {
         String content =
                 "헬쓱 홈페이지를 방문해주셔서 감사합니다. " +
                         "<br><br>" +
-                        "인증번호는 " + checkNum + "입니다. "+
+                        "인증번호는 " + checkNum + "입니다. " +
                         "<br>" +
                         "해당 인증번호를 인증번호 확인란에 넣어주세요.";
 
-        try{
+        try {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
             helper.setFrom(setForm);
@@ -141,7 +139,7 @@ public class CustController {
             helper.setSubject(title);
             helper.setText(content, true);
             mailSender.send(message);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -158,7 +156,7 @@ public class CustController {
             // DB 가입
             custService.register(cust);
             session.setAttribute("logincust", cust);
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new Exception("가입오류");
         }
@@ -176,7 +174,7 @@ public class CustController {
 
         Set<String> distinctWords = new HashSet<>();
 
-        for (int i = 0 ; i < result.size() ; i++){
+        for (int i = 0; i < result.size(); i++) {
             JSONObject jsonObject = (JSONObject) result.get(i);
             log.info("===========진입1===========");
             String locatadd_nm = (String) jsonObject.get("locatadd_nm");
@@ -201,14 +199,66 @@ public class CustController {
 
 
     @RequestMapping("/saveimg")
-    public String saveimg(MultipartFile file){
+    public String saveimg(MultipartFile file) {
         String filename = file.getOriginalFilename();
         FileUploadUtil.saveFile(file, imgdir);
         return filename;
     }
+
     @RequestMapping("/pic")
-    public String pic(Model model){
+    public String pic(Model model) {
         model.addAttribute("center", dir + "pic");
         return "index";
     }
+
+    @RequestMapping("/information")
+    public String information(Model model) {
+        model.addAttribute("center", dir + "information");
+        return "index";
+    }
+
+    //    @RequestMapping("/updateimpl")
+//    public String updateimpl(Model model, Cust cust, HttpSession session){
+//        custService.updateInfo(cust);
+//        session.setAttribute("logincust", cust);
+//
+//        model.addAttribute("rcust", cust);
+//        return "redirect:/";
+//
+//    }
+    @RequestMapping("/updateimpl")
+    public String updateimpl(@ModelAttribute Cust cust, Model model, HttpSession session) {
+        // cust 객체에는 form 데이터가 자동으로 바인딩되어 전달됩니다.
+        custService.updateInfo(cust);
+        session.setAttribute("logincust", cust);
+        model.addAttribute("rcust", cust);
+        return "redirect:/cust/information";
+    }
+
+    @RequestMapping("/password")
+    public String password(Model model) {
+        model.addAttribute("center", dir + "password");
+        return "index";
+    }
+
+    @RequestMapping("/passwordImpl")
+    public String passwordImple(HttpSession session,
+                                @RequestParam("new_password") String newPassword) {
+        Cust cust = (Cust) session.getAttribute("logincust");
+        cust.setCustPwd(newPassword);
+
+        try {
+            custService.updatePwd(cust);
+            // Perform any additional logic after the update
+
+            return "index";
+        } catch (Exception e) {
+            // Handle any exceptions that occur during the update process
+            // You can redirect to an error page or return an appropriate response
+            return "error";
+        }
+    }
+
+    // Other controller methods...
 }
+

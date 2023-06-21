@@ -54,4 +54,14 @@
     <delete id="delete" parameterType="cust">
         DELETE FROM cust WHERE custEmail=#{custEmail}
     </delete>
+    <update id="updateInfo" parameterType="cust">
+        UPDATE cust SET custPhone=#{custPhone},
+                       custSido=#{custSido}, custSigungu=#{custSigungu},
+                        sportsType=#{sportsType}, sportsClasstype=#{sportsClasstype}
+        WHERE custEmail=#{custEmail}
+    </update>
+    <update id="updatePwd" parameterType="cust">
+        UPDATE cust SET custPwd = #{custPwd}
+        WHERE custEmail=#{custEmail}
+    </update>
 </mapper>

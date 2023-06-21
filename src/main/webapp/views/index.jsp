@@ -68,19 +68,56 @@
     }
 
  .nav-item .title_link {
-     margin-left: 10%;
+
      width: 100%; /* 원하는 너비 값으로 변경하세요 */
      display: inline-block;
      overflow: hidden;
      white-space: nowrap;
      text-overflow: ellipsis;
  }
-.nav-link{
-    margin-left: 50px;
+.title_link {
+    display: inline-block;
+    width: 100px; /* Adjust the width as needed */
 }
-a.nav-link.active::after{
-    width: 100%;
+
+np_balanceDefault {
+     background-color: purple;
+     color: white;
+     padding: 20px;
+     border-radius: 10px;
+ }
+
+.np_balanceDefault .title_sm {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
+
+.np_balanceDefault .txt h8 {
+    margin: 5px 0;
+}
+
+.np_balanceDefault .action .btn {
+    background-color: violet;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav.flex-column.-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.nav.flex-column.-links .nav-item {
+    display: flex;
+    align-items: center;
+
+}
+
 </style>
 <body>
 
@@ -267,10 +304,18 @@ a.nav-link.active::after{
                     <div class="em_profile_user">
                         <div class="media">
                             <a href="page-profile.html">
+                                <div class="letter bg-purple">
                                 <!-- You can use an image -->
-                                <!-- <img class="_imgUser" src="/assets/img/person.png" alt=""> -->
-                                <div class="letter bg-yellow">
-                                   <img src="/uimg/${logincust.custImgName}">
+                                    <c:choose>
+                                        <c:when test="${logincust == null || logincust.custImgName == null}">
+                                            <p style="color: white; font-size: 7px; margin-top: 5px">Healssg</p>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="/uimg/${logincust.custImgName}"
+                                                 alt="User Image" style="border-radius: 50%; width: 100%; height: 100%">
+
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
                             </a>
                             <div class="media-body">
@@ -279,51 +324,42 @@ a.nav-link.active::after{
                                     <c:choose>
                                     <c:when test="${logincust == null}">
                                         <h3>로그인을 해주세요, </h3>
-                                        <a href="/cust/login" class="btn btn_logOut">로그인</a>
+                                        <a href="/cust/login" class="btn btn_logOut"
+                                        style="background-color: #DAD2E9;  width: 8px; height: 30px;">로그인</a>
                                     </c:when>
                                     <c:otherwise>
                                         <h3>${logincust.custName}</h3>
                                         <p>${logincust.custPhone}</p>
-                                        <a href="/cust/logoutimpl" class="btn btn_logOut">로그아웃</a>
+                                        <a href="/cust/logoutimpl" class="btn btn_logOut"
+                                           style="background-color: #DAD2E9">로그아웃</a>
                                     </c:otherwise>
                                     </c:choose>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="np_balanceDefault emBlock__border with_bg">
-                        <div class="txt">
-                            <span class="title_sm">My Balance</span>
-                            <h3>95.00 <span>USD</span></h3>
-                            <p>Exp on Jan 15, 2021</p>
-                        </div>
-                        <div class="npRight">
-                            <a href="page-add-balance.html" class="btn">
-                                <svg id="Iconly_Curved_Plus" data-name="Iconly/Curved/Plus"
-                                     xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                                    <g id="Plus" transform="translate(1.917 1.917)">
-                                        <path id="Stroke_1" data-name="Stroke 1" d="M.526,0V5.957"
-                                              transform="translate(7.588 5.136)" fill="none" stroke="#0e132d"
-                                              stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                              stroke-width="1.5"/>
-                                        <path id="Stroke_2" data-name="Stroke 2" d="M5.963.526H0"
-                                              transform="translate(5.132 7.588)" fill="none" stroke="#0e132d"
-                                              stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                              stroke-width="1.5"/>
-                                        <path id="Stroke_3" data-name="Stroke 3"
-                                              d="M0,8.114C0,2.029,2.029,0,8.114,0s8.114,2.029,8.114,8.114S14.2,16.228,8.114,16.228,0,14.2,0,8.114Z"
-                                              transform="translate(0)" fill="none" stroke="#0e132d"
-                                              stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                              stroke-width="1.5"/>
-                                    </g>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
+<%--                    <div class="content_balance bg-white border border-snow"--%>
+<%--                         style="background-color: lightgoldenrodyellow;">--%>
+<%--                        <div class="txt">--%>
+<%--                            <span class="title_sm">나의 일정</span>--%>
+<%--                            <div class="txt">--%>
+<%--                                <h8 class="color-white">--%>
+<%--                                    ${logincust.custName}님의 운동 일정이 당분간 없어요</h8>--%>
+<%--                                <h8 class="color-snow">바로 수업 예약하세요</h8>--%>
+<%--                            </div>--%>
+<%--                            <div class="action">--%>
+<%--                                <a href="/class/reservation" class="btn">--%>
+<%--                                    수업 예약하기--%>
+<%--                                </a>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+
+<%--                    </div>--%>
 
                 </div>
-                <div class="modal-body">
-                    <ul class="nav flex-column -active-links">
+                <div class="modal-body" >
+                    <ul class="nav flex-column -links"
+                    style="margin-left: 10px">
                         <li class="nav-item">
                             <a class="nav-link" href="/">
                                 <div class="">
@@ -407,44 +443,19 @@ a.nav-link.active::after{
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="page-products-fullwidth.html">
-                                <div class="">
-                                    <div class="icon_current">
-                                        <svg id="Iconly_Curved_Bag" data-name="Iconly/Curved/Bag"
-                                             xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                             viewBox="0 0 20 20">
-                                            <g id="Bag" transform="translate(2.458 2.125)">
-                                                <path id="Stroke_1" data-name="Stroke 1"
-                                                      d="M7.216,3.6A3.608,3.608,0,0,0,0,3.584V3.6"
-                                                      transform="translate(3.962)" fill="none" stroke="#9498ac"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5"/>
-                                                <path id="Stroke_3" data-name="Stroke 3" d="M.515.5H.477"
-                                                      transform="translate(9.504 6.853)" fill="none" stroke="#9498ac"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5"/>
-                                                <path id="Stroke_5" data-name="Stroke 5" d="M.515.5H.477"
-                                                      transform="translate(4.644 6.853)" fill="none" stroke="#9498ac"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5"/>
-                                                <path id="Stroke_7" data-name="Stroke 7"
-                                                      d="M7.57,12.445c-5.423,0-6.047-1.708-7.265-6.222S1.534,0,7.57,0s8.487,1.694,7.265,6.222S12.994,12.445,7.57,12.445Z"
-                                                      transform="translate(0 3.338)" fill="none" stroke="#9498ac"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5"/>
-                                            </g>
-                                        </svg>
-                                    </div>
-                                    <span class="title_link">Shop</span>
-                                </div>
-                                <span
-                                        class="bg-red rounded-7 px-1 color-white min-w-25 px-1 h-28 d-flex align-items-center justify-content-center">3</span>
-                            </a>
-                        </li>
+
                         <label class="title__label">내 정보</label>
                         <li class="nav-item">
-                            <a class="nav-link" href="page-profile.html">
+                            <c:choose>
+                            <c:when test="${logincust == null}">
+                                <!--로그인정보 없으면 로그인-->
+                                    <a class="nav-link" href="/cust/login">
+                                </c:when>
+                                <c:otherwise>
+                                    <!--로그인정보 있으면 정보수정 페이지-->
+                                    <a class="nav-link" href="/cust/information">
+                                </c:otherwise>
+                                </c:choose>
                                 <div class="">
                                     <div class="icon_current">
                                         <svg id="Iconly_Curved_Setting" data-name="Iconly/Curved/Setting"
@@ -464,7 +475,10 @@ a.nav-link.active::after{
                                             </g>
                                         </svg>
                                     </div>
-                                    <span class="title_link">비밀번호 변경 </span>
+
+                                        <!--로그인정보 있으면 정보수정 페이지-->
+                                            <span class="title_link">  내 정보 수정</span>
+
                                 </div>
 
                             </a>
@@ -496,6 +510,36 @@ a.nav-link.active::after{
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="/cust/password">
+                                <div class="">
+                                    <div class="icon_current">
+                                        <svg id="Iconly_Curved_Info_Square" data-name="Iconly/Curved/Info Square"
+                                             xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                             viewBox="0 0 20 20">
+                                            <g id="Info_Square" data-name="Info Square"
+                                               transform="translate(2.292 2.292)">
+                                                <path id="Stroke_1" data-name="Stroke 1"
+                                                      d="M0,7.708C0,1.927,1.927,0,7.708,0s7.708,1.927,7.708,7.708-1.927,7.708-7.708,7.708S0,13.489,0,7.708Z"
+                                                      transform="translate(15.417 15.417) rotate(180)" fill="none"
+                                                      stroke="#9498ac" stroke-linecap="round" stroke-linejoin="round"
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
+                                                <path id="Stroke_3" data-name="Stroke 3" d="M0,0V3.246"
+                                                      transform="translate(7.708 10.954) rotate(180)" fill="none"
+                                                      stroke="#9498ac" stroke-linecap="round" stroke-linejoin="round"
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
+                                                <path id="Stroke_15" data-name="Stroke 15" d="M0,0H.007"
+                                                      transform="translate(7.712 4.792) rotate(180)" fill="none"
+                                                      stroke="#9498ac" stroke-linecap="round" stroke-linejoin="round"
+                                                      stroke-miterlimit="10" stroke-width="1.5"/>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <span class="title_link">비밀번호 변경</span>
+                                </div>
+
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="page-about.html">
                                 <div class="">
                                     <div class="icon_current">
@@ -520,7 +564,7 @@ a.nav-link.active::after{
                                             </g>
                                         </svg>
                                     </div>
-                                    <span class="title_link">About</span>
+                                    <span class="title_link">강아지는 귀여워</span>
                                 </div>
 
                             </a>

@@ -18,4 +18,9 @@ public interface CustMapper extends KBMapper<String, Cust> {
     public void update_social(Cust c) throws Exception;
     public void update_social_name(Cust c) throws Exception;
     public void updateCustImgName(Cust cust) throws Exception;
+
+
+   // public void updateInfo(String custPhone, String sportsType, String sportsClasstype, String custSido, String custSigungu);
+    public void updateInfo(Cust cust);
+    public void updatePwd(Cust cust);
 }
