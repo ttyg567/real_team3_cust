@@ -390,20 +390,10 @@ np_balanceDefault {
                             <a class="nav-link" href="/like1check">
                                 <div class="">
                                     <div class="icon_current">
-                                        <svg id="Iconly_Curved_Home" data-name="Iconly/Curved/Home"
-                                             xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                             viewBox="0 0 20 20">
-                                            <g id="Home" transform="translate(2 1.667)">
-                                                <path id="Stroke_1" data-name="Stroke 1" d="M0,.5H4.846"
-                                                      transform="translate(5.566 11.28)" fill="none" stroke="#9498ac"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5"/>
-                                                <path id="Stroke_2" data-name="Stroke 2"
-                                                      d="M0,9.761C0,5.068.512,5.4,3.266,2.842,4.471,1.872,6.346,0,7.965,0S11.5,1.862,12.712,2.842c2.754,2.554,3.265,2.227,3.265,6.919,0,6.906-1.633,6.906-7.988,6.906S0,16.667,0,9.761Z"
-                                                      transform="translate(0)" fill="none" stroke="#9498ac"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5"/>
-                                            </g>
+
+                                        <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                                        <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="#555" d="M13.6816069,1.68151414 C15.6886881,1.20225236 17.3492986,1.70793555 18.5305552,2.77637221 C19.5626391,3.70988338 20.1587415,5.33450059 19.9630126,7.16572033 C19.8161255,8.53998089 19.0697083,9.93491864 17.720706,11.386568 L10.4473397,18.3091773 C10.1789774,18.5645979 9.75131756,18.5634627 9.48437469,18.306621 L2.26602773,11.360285 C1.19796664,10.2267143 0.516216376,9.15006254 0.232531945,8.11775634 C-0.179041108,6.62007311 -0.0389102525,5.1069236 0.610402012,3.87469373 C1.38014048,2.41392548 2.91616709,1.54639939 5.14169869,1.54639939 C6.66436262,1.54639939 8.26181311,2.29873453 9.94732517,3.76705682 C11.0946237,2.70056091 12.3405404,2.00174132 13.6816069,1.68151414 Z M9.96986805,16.8832036 L16.7307562,10.4500428 C17.8683506,9.22426481 18.4802442,8.08073063 18.593038,7.02544401 C18.7443646,5.60964799 18.3027389,4.40604174 17.5956909,3.76652276 C16.7370508,2.98989 15.5402429,2.62544232 14.0080827,2.99129989 C12.7513412,3.29139148 11.5737369,4.01053975 10.4701027,5.16500603 C10.2073896,5.43981945 9.76565601,5.45085998 9.4889549,5.1895285 C7.85204028,3.64353785 6.39709722,2.89460061 5.14169869,2.89460061 C3.41950102,2.89460061 2.36199017,3.49186778 1.83462163,4.49267941 C1.34644218,5.41912009 1.23828402,6.58702475 1.56270689,7.76757505 C1.78126554,8.56289346 2.34931983,9.45999126 3.25514439,10.4225684 L9.96986805,16.8832036 Z"/>
                                         </svg>
                                     </div>
                                     <span class="title_link">나의 찜</span>
@@ -414,30 +404,9 @@ np_balanceDefault {
                             <a class="nav-link" href="/groupboard/my_applyjoin?custNo=${logincust.custNo}">
                                 <div class="">
                                     <div class="icon_current">
-                                        <svg id="Iconly_Curved_More_Circle" data-name="Iconly/Curved/More Circle"
-                                             xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                             viewBox="0 0 20 20">
-                                            <g id="More_Circle" data-name="More Circle"
-                                               transform="translate(2.292 2.292)">
-                                                <path id="Stroke_4" data-name="Stroke 4"
-                                                      d="M0,7.708C0,1.927,1.927,0,7.708,0s7.708,1.927,7.708,7.708-1.927,7.708-7.708,7.708S0,13.489,0,7.708Z"
-                                                      transform="translate(0 0)" fill="none" stroke="#556fff"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5"/>
-                                                <path id="Stroke_11" data-name="Stroke 11" d="M.5.5H.5"
-                                                      transform="translate(9.883 8.792)" fill="none" stroke="#556fff"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="2"/>
-                                                <path id="Stroke_13" data-name="Stroke 13" d="M.5.5H.5"
-                                                      transform="translate(7.383 5.458)" fill="none" stroke="#556fff"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="2"/>
-                                                <path id="Stroke_15" data-name="Stroke 15" d="M.5.5H.5"
-                                                      transform="translate(4.876 8.792)" fill="none" stroke="#556fff"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="2"/>
-                                            </g>
-                                        </svg>
+
+                                        <?xml version="1.0" ?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                                        <svg width="800px" height="800px" viewBox="0 0 32 32" data-name="Layer 1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#4d4d4d;}</style></defs><title/><path class="cls-1" d="M30.68,19.05l-1.9.64-1.65-9.06,4.24-1.7a1,1,0,1,0-.74-1.86l-5,2A1,1,0,0,0,25,10.18l0,.18-2.39,1.19a1,1,0,0,1-1.05-.09L19.13,9.6a3,3,0,0,0-1.8-.6H14.62a2,2,0,0,0-1.78,1.09L11.05,10a1,1,0,0,0-.5.11l-1.67.83L6,10.22l0-.13a1,1,0,0,0-.55-1l-4-2a1,1,0,0,0-.9,1.78l3.39,1.7-.82,9.06-1.8-.6A1,1,0,1,0,.68,21l3,1A1.19,1.19,0,0,0,4,22a1.1,1.1,0,0,0,.55-.16A1,1,0,0,0,5,21.09l.08-.93,1.29.64a3.07,3.07,0,0,0,1.09,1.89l5.77,4.14a2,2,0,0,0,2.84-.3,2.91,2.91,0,0,0,2.36-.13l5.41-2.7A2.31,2.31,0,0,0,25.08,22a1.71,1.71,0,0,0,0-.32l1.9-.63,0,.12a1,1,0,0,0,.47.68A1,1,0,0,0,28,22a1.19,1.19,0,0,0,.32-.05l3-1a1,1,0,1,0-.64-1.9Zm-22,2.06A1,1,0,0,1,8.38,20a.2.2,0,0,1,.15-.14c.06,0,.14,0,.26.08l6.05,4.37-.33,1,0,0Zm14.26.8-5.41,2.7a1,1,0,0,1-.76.06,2,2,0,0,0-.72-1.92l-6-4.37A2.22,2.22,0,0,0,8,18a2.19,2.19,0,0,0-1.18.84l-1.36-.68a.61.61,0,0,0-.18-.05l.53-5.83,3,.74L9,13a1,1,0,0,0,.45-.11L11.21,12l.65,0-.75,1.51a1,1,0,0,0,.44,1.34l.21.11a3,3,0,0,0,3.83-1h1l6.38,7.29a1.19,1.19,0,0,0,.09.15.26.26,0,0,1,.08.25A.27.27,0,0,1,23,21.91Zm1.36-2.07-6.56-7.5A1,1,0,0,0,17,12H15a1,1,0,0,0-.89.55l-.11.21a1,1,0,0,1-.5.47L14.62,11h2.71a1,1,0,0,1,.6.2l2.48,1.86a3,3,0,0,0,3.14.28l1.87-.93,1.21,6.66Z"/></svg>
                                     </div>
                                     <span class="title_link">나의 조인</span>
                                 </div>
@@ -488,22 +457,8 @@ np_balanceDefault {
                             <a class="nav-link" href="/cust/pic">
                                 <div class="">
                                     <div class="icon_current">
-                                        <svg id="Iconly_Curved_Message" data-name="Iconly/Curved/Message"
-                                             xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                             viewBox="0 0 20 20">
-                                            <g id="Message" transform="translate(2.043 2.377)">
-                                                <path id="Stroke_1" data-name="Stroke 1"
-                                                      d="M9.292,0S6.617,3.211,4.661,3.211,0,0,0,0"
-                                                      transform="translate(3.285 5.139)" fill="none" stroke="#9498ac"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5"/>
-                                                <path id="Stroke_3" data-name="Stroke 3"
-                                                      d="M0,7.6C0,1.9,1.984,0,7.937,0s7.937,1.9,7.937,7.6-1.984,7.6-7.937,7.6S0,13.295,0,7.6Z"
-                                                      transform="translate(0 0)" fill="none" stroke="#9498ac"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5"/>
-                                            </g>
-                                        </svg>
+                                        <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                                        <svg width="800px" height="800px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><defs><style>.a{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;}</style></defs><path class="a" d="M19.8665,14.7011V11.5046H12.2856v3.1965"/><circle class="a" cx="26.956" cy="25.9237" r="12.6998"/><path class="a" d="M22.6634,37.876H6.7749a2.26,2.26,0,0,1-2.26-2.26h0V13.9714H22.6634m8.5852,0H43.5145V35.6156a2.26,2.26,0,0,1-2.26,2.26H31.2486"/><path class="a" d="M42.7153,13.9714V10.4781H34.4306v3.4933"/><path class="a" d="M34.4306,13.9714V10.8107L31.9418,6.5H21.97l-2.4888,4.3107v3.1607"/><circle class="a" cx="26.956" cy="25.9274" r="6.5725"/><circle class="a" cx="26.956" cy="25.9274" r="10.1727"/><path class="a" d="M34.4306,11.4168H19.4814"/></svg>
                                     </div>
                                     <span class="title_link" >프로필사진 변경</span>
                                 </div>
@@ -514,25 +469,9 @@ np_balanceDefault {
                             <a class="nav-link" href="/cust/password">
                                 <div class="">
                                     <div class="icon_current">
-                                        <svg id="Iconly_Curved_Info_Square" data-name="Iconly/Curved/Info Square"
-                                             xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                             viewBox="0 0 20 20">
-                                            <g id="Info_Square" data-name="Info Square"
-                                               transform="translate(2.292 2.292)">
-                                                <path id="Stroke_1" data-name="Stroke 1"
-                                                      d="M0,7.708C0,1.927,1.927,0,7.708,0s7.708,1.927,7.708,7.708-1.927,7.708-7.708,7.708S0,13.489,0,7.708Z"
-                                                      transform="translate(15.417 15.417) rotate(180)" fill="none"
-                                                      stroke="#9498ac" stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5"/>
-                                                <path id="Stroke_3" data-name="Stroke 3" d="M0,0V3.246"
-                                                      transform="translate(7.708 10.954) rotate(180)" fill="none"
-                                                      stroke="#9498ac" stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5"/>
-                                                <path id="Stroke_15" data-name="Stroke 15" d="M0,0H.007"
-                                                      transform="translate(7.712 4.792) rotate(180)" fill="none"
-                                                      stroke="#9498ac" stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-miterlimit="10" stroke-width="1.5"/>
-                                            </g>
+                                        <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                                        <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M16.9499909,19 C16.7183558,20.1411202 15.709479,21 14.5,21 L5.5,21 C4.11928813,21 3,19.8807119 3,18.5 L3,11.5 C3,10.290521 3.85887984,9.28164422 5,9.05000906 L5,8 C5,5.23857625 7.23857625,3 10,3 C12.7614237,3 15,5.23857625 15,8 L15,9.05000906 C16.1411202,9.28164422 17,10.290521 17,11.5 L17,13 L18.5,13 C19.8807119,13 21,14.1192881 21,15.5 L21,16.5 C21,17.8807119 19.8807119,19 18.5,19 L16.9499909,19 L16.9499909,19 Z M15.9146471,19 L11.5,19 C10.1192881,19 9,17.8807119 9,16.5 L9,15.5 C9,14.1192881 10.1192881,13 11.5,13 L16,13 L16,11.5 C16,10.710487 15.3900375,10.0634383 14.6156506,10.0043921 C14.5785296,10.0131823 14.5398081,10.0178344 14.5,10.0178344 C14.4540106,10.0178344 14.4094714,10.0116254 14.367175,10 L5.5,10 C4.67157288,10 4,10.6715729 4,11.5 L4,18.5 C4,19.3284271 4.67157288,20 5.5,20 L14.5,20 C15.1531094,20 15.7087289,19.5825962 15.9146471,19 L15.9146471,19 Z M6,9 L14,9 L14,8 C14,5.790861 12.209139,4 10,4 C7.790861,4 6,5.790861 6,8 L6,9 Z M20,16.5 L20,15.5 C20,14.6715729 19.3284271,14 18.5,14 L11.5,14 C10.6715729,14 10,14.6715729 10,15.5 L10,16.5 C10,17.3284271 10.6715729,18 11.5,18 L18.5,18 C19.3284271,18 20,17.3284271 20,16.5 Z M11.5,15 L12.5,15 C12.7761424,15 13,15.2238576 13,15.5 L13,16.5 C13,16.7761424 12.7761424,17 12.5,17 L11.5,17 C11.2238576,17 11,16.7761424 11,16.5 L11,15.5 C11,15.2238576 11.2238576,15 11.5,15 Z M14.5,15 L15.5,15 C15.7761424,15 16,15.2238576 16,15.5 L16,16.5 C16,16.7761424 15.7761424,17 15.5,17 L14.5,17 C14.2238576,17 14,16.7761424 14,16.5 L14,15.5 C14,15.2238576 14.2238576,15 14.5,15 Z M17.5,15 L18.5,15 C18.7761424,15 19,15.2238576 19,15.5 L19,16.5 C19,16.7761424 18.7761424,17 18.5,17 L17.5,17 C17.2238576,17 17,16.7761424 17,16.5 L17,15.5 C17,15.2238576 17.2238576,15 17.5,15 Z"/>
                                         </svg>
                                     </div>
                                     <span class="title_link">비밀번호 변경</span>

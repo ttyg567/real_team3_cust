@@ -65,7 +65,8 @@
                 buyer_name: "${logincust.custName}",
                 buyer_tel: "${logincust.custPhone}",
                 buyer_addr: "서울특별시 강남구 신사동",
-                buyer_postcode: "01181"
+                buyer_postcode: "01181",
+
               },
               rsp => {
                 if (rsp.success) {
