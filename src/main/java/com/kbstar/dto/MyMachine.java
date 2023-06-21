@@ -26,4 +26,9 @@ public class MyMachine {
         this.machineNo = machineNo;
         this.myMachineStatus = myMachineStatus;
     }
+
+    public MyMachine(int machineNo, String myMachineStatus) {
+        this.machineNo = machineNo;
+        this.myMachineStatus = myMachineStatus;
+    }
 }

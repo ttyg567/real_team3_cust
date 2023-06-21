@@ -13,13 +13,16 @@
         WHERE mm.custNo = #{custNo}
           AND mm.myMachineStatus = '1'
     </select>
-
-    <!-- 수정가능한 항목 1가지. : 회원이 별 다시 누르거나, 해제버튼 누르면. -->
-    <update id="update" parameterType="mymachine">
-        UPDATE mymachine SET myMachineStatus = '0'
-        WHERE custNo=#{custNo}
-        AND machineNo=#{machineNo}
+    <!-- 삭제버튼 누른 것 말고, 즐겨찾기 해제했던 거 다시 누를 경우는 update -->
+    <update id="updateMyMachineStatus" parameterType="mymachine">
+        UPDATE mymachine SET myMachineStatus = #{myMachineStatus}
+        WHERE machineNo=#{machineNo}
     </update>
+    <!-- 즐겨찾기 삭제버튼 선택 시 데이터 삭제 -->
+    <delete id="delete" parameterType="integer">
+        DELETE mymachine
+        WHERE machineNo=#{machineNo}
+    </delete>
 <!-- 즐겨찾기 등록. 기존에 등록된 건이 있으면 즐겨찾기 상태를 0으로 바꾸고, 아니면 1로 등록   -->
     <insert id="insert" parameterType="mymachine">
         MERGE INTO mymachine

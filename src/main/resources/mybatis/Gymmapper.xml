@@ -93,7 +93,7 @@
     <!--            typeNo = #{typeNo}-->
     <!--    </select>-->
     <select id="selectByTypeNo" parameterType="Integer" resultType="gym">
-        SELECT t.*
+        SELECT t.gymNo, t.gymName, t.gymPhone, t.gymAddress1, t.gymAddress2, t.gymAddress3, t.gymTitle, t.gymImgname, COUNT(l.likeNo) AS likecount
         FROM (
                  SELECT g.gymNo, g.gymName, g.gymPhone, g.gymAddress1, g.gymAddress2, g.gymAddress3, g.gymTitle, gi.gymImgname,
                         RANK() OVER (PARTITION BY g.gymNo ORDER BY gi.gymImgNo) AS rank
@@ -101,7 +101,10 @@
                           JOIN GymImg gi ON g.gymNo = gi.gymNo
                  WHERE gi.gymImgdetailCk = '0' AND g.typeNo = #{typeNo}
              ) t
+                 LEFT JOIN ticket tk ON tk.gymNo = t.gymNo
+                 LEFT JOIN Like1 l ON l.ticketNo = tk.ticketNo
         WHERE t.rank = 1
+        GROUP BY t.gymNo, t.gymName, t.gymPhone, t.gymAddress1, t.gymAddress2, t.gymAddress3, t.gymTitle, t.gymImgname
     </select>
     <!--    1: 헬스                workout                             wo-->
     <!--    2: PT.                  personalTraining.         pt-->

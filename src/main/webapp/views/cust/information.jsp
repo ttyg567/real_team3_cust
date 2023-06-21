@@ -14,7 +14,14 @@
         <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/cust/login">
             <i class="tio-chevron_left size-24 color-text"></i>
             <span class="color-text size-14">Back</span>
+
         </a>
+
+    </div>
+    <div class="title_page">
+                        <span class="page_name">
+                          내 정보
+                        </span>
     </div>
     <div class="title_page">
                     <span class="page_name">
@@ -25,37 +32,27 @@
 <!-- End.main_haeder -->
 
 <section class="em__signTypeOne padding-t-50">
-    <div class="em_titleSign">
+    <div class="em_titleSign" style="margin-bottom: 10px">
         <div class="brand mb-3">
-            <img src="/assets/img/logo.jpg" alt="">
+            <a id="custLink" href="/cust/pic">
+            <div class="circle-background">
+                <img id="custImage" alt="" style="width: 130px">
+                <span id="custText" class="image-text">클릭하여<br>프로필 사진등록</span>
+            </div>
+            </a>
         </div>
-        <h4>내 정보 수정</h4>
+<%--        <h6>${logincust.custName} 님의 정보</h6>--%>
     </div>
     <div class="em__body">
         <form role="form" id="information_form">
             <div class="form-group with_icon">
                 <label>이름</label>
                 <div class="input_group">
-                    <input type="text" class="form-control" value="${logincust.custName}" id="custName" name="custName"
-                           readonly>
-                    <div class="icon">
-                        <svg id="Iconly_Two-tone_Profile" data-name="Iconly/Two-tone/Profile"
-                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <g id="Profile" transform="translate(4 2)">
-                                <circle id="Ellipse_736" cx="4.778" cy="4.778" r="4.778"
-                                        transform="translate(2.801 0)" fill="none" stroke="#200e32"
-                                        stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                        stroke-width="1.5" opacity="0.4"/>
-                                <path id="Path_33945"
-                                      d="M0,3.016a2.215,2.215,0,0,1,.22-.97A4.042,4.042,0,0,1,3.039.426,16.787,16.787,0,0,1,5.382.1,25.053,25.053,0,0,1,9.767.1a16.979,16.979,0,0,1,2.343.33c1.071.22,2.362.659,2.819,1.62a2.27,2.27,0,0,1,0,1.95c-.458.961-1.748,1.4-2.819,1.611a15.716,15.716,0,0,1-2.343.339A25.822,25.822,0,0,1,6.2,6a4.066,4.066,0,0,1-.815-.055,15.423,15.423,0,0,1-2.334-.339C1.968,5.4.687,4.957.22,4A2.279,2.279,0,0,1,0,3.016Z"
-                                      transform="translate(0 13.185)" fill="none" stroke="#200e32"
-                                      stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                      stroke-width="1.5"/>
-                            </g>
-                        </svg>
-                    </div>
+                    <input type="email" class="form-control"  value="${logincust.custName}" id="custName"
+                           name="custEmail" readonly>
+
                 </div>
-            </div>
+                <br>
             <div class="form-group with_icon">
                 <label>이메일 주소</label>
                 <div class="input_group">
@@ -150,26 +147,27 @@
     </div>
     <div class="form-group with_icon">
 
-<c:choose>
-    <c:when test="${logincust.custImageName == null || logincust.custImageName == ''}">
-        <!-- 이미지가 없을 때의 처리 -->
-        <label>프로필 사진</label>
-        <a class="btn btn-outline-secondary" href="/cust/pic">
-            등록
-        </a>
-    </c:when>
-    <c:otherwise>
-        <label>프로필 사진 </label><br>
-        <img src="/uimg/${logincust.custImageName}"><br>
-        <a class="btn btn-outline-secondary" href="/cust/pic">
-            변경
-        </a>
-    </c:otherwise>
-</c:choose>
+        <c:choose>
+            <c:when test="${logincust.custImageName == null || logincust.custImageName == ''}">
+                <!-- 이미지가 없을 때의 처리 -->
+                <label>프로필 사진</label>
+                <a class="btn btn-outline-secondary" href="/cust/pic">
+                    등록
+                </a>
+            </c:when>
+            <c:otherwise>
+                <label>프로필 사진</label><br>
+                <img src="/uimg/${logincust.custImageName}"><br>
+                <a class="btn btn-outline-secondary" href="/cust/pic">
+                    변경
+                </a>
+            </c:otherwise>
+        </c:choose>
     </div>
 
     <div class="em__footer">
-        <button type="button" class="btn bg-primary color-white justify-content-center" id="update_btn">변경하기</button>
+        <button type="button" class="btn bg-primary color-white justify-content-center" id="update_btn"
+        >변경하기</button>
         <a href="/cust/login" class="btn hover:color-secondary justify-content-center">로그인 화면으로</a>
     </div>
 </section>
@@ -321,7 +319,52 @@
             }
         }).open();
     }
+    var custImgName = "${logincust.custImgName}";
 
-
+    if (custImgName == null || !custImgName.endsWith('.jpg')) {
+        document.getElementById('custLink').setAttribute("href", "/cust/pic");
+        document.getElementById('custImage').setAttribute("src", '/assets/img/customer.png');
+        document.getElementById('custText').style.display = "block";
+    } else {
+        document.getElementById('custLink').setAttribute("href", '/uimg/' + custImgName);
+        document.getElementById('custImage').setAttribute("src", '/uimg/' + custImgName);
+        document.getElementById('custText').style.display = "none";
+    }
 </script>
+<style>
+    img#custImage{
+        place-content: center;
+    }
+    .circle-background {
+        margin-top: 25px;
+        position: relative;
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        background-color: #f5f5fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
+    .circle-background img {
+
+        position: relative;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .image-text {
+        position: absolute;
+        bottom: 50px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+        color: purple;
+        display: none;
+    }
+</style>

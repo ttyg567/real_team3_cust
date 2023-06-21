@@ -23,4 +23,8 @@ public interface CustMapper extends KBMapper<String, Cust> {
    // public void updateInfo(String custPhone, String sportsType, String sportsClasstype, String custSido, String custSigungu);
     public void updateInfo(Cust cust);
     public void updatePwd(Cust cust);
+
+    // 인보 : 마케팅동의 상태 변경
+    public void updateNoti(Cust cust);
+    public void clearNoti(Cust cust);
 }
