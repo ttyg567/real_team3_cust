@@ -38,15 +38,7 @@
     top: 0;
     z-index: 100;
   }
-  /*label.btn.btn-outline-primary{*/
-  /*    display: flex;*/
-  /*    justify-content: center;*/
-  /*}*/
-  /*.em_modal {*/
-  /*    position: fixed;*/
-  /*    z-index: 9999; !* 다른 요소들보다 큰 값으로 설정 *!*/
-  /*    !* 추가적인 스타일 및 내용 설정 *!*/
-  /*}*/
+
   .btn {
     display: inline-block;
   }
@@ -63,6 +55,188 @@
   .btn:hover .hover_ico {
     display: block; /* 커서를 올렸을 때 기본 이미지 숨김 */
   }
+/* 지도 */
+.map_wrap, .map_wrap * {
+    margin: 0;
+    padding: 0;
+    font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+    font-size: 12px;
+}
+
+.map_wrap a, .map_wrap a:hover, .map_wrap a:active {
+    color: #000;
+    text-decoration: none;
+}
+
+.map_wrap {
+    position: relative;
+    width: 100%;
+    height: 500px;
+}
+
+#menu_wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    margin: 10px 0 30px 10px;
+    padding: 5px;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 1;
+    font-size: 12px;
+    border-radius: 10px;
+}
+
+.bg_white {
+    background: #fff;
+}
+
+#menu_wrap hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 2px solid #5F5F5F;
+    margin: 3px 0;
+}
+
+#menu_wrap .option {
+    text-align: center;
+}
+
+#menu_wrap .option p {
+    margin: 10px 0;
+}
+
+#menu_wrap .option button {
+    margin-left: 5px;
+}
+
+#placesList li {
+    list-style: none;
+}
+
+#placesList .item {
+    position: relative;
+    border-bottom: 1px solid #888;
+    overflow: hidden;
+    cursor: pointer;
+    min-height: 65px;
+}
+
+#placesList .item span {
+    display: block;
+    margin-top: 4px;
+}
+
+#placesList .item h5, #placesList .item .info {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#placesList .item .info {
+    padding: 10px 0 10px 55px;
+}
+
+#placesList .info .gray {
+    color: #8a8a8a;
+}
+
+#placesList .info .jibun {
+    padding-left: 26px;
+    background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;
+}
+
+#placesList .info .tel {
+    color: #009900;
+}
+
+#placesList .item .markerbg {
+    float: left;
+    position: absolute;
+    width: 36px;
+    height: 37px;
+    margin: 10px 0 0 10px;
+    background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;
+}
+
+#placesList .item .marker_1 {
+    background-position: 0 -10px;
+}
+
+#placesList .item .marker_2 {
+    background-position: 0 -56px;
+}
+
+#placesList .item .marker_3 {
+    background-position: 0 -102px
+}
+
+#placesList .item .marker_4 {
+    background-position: 0 -148px;
+}
+
+#placesList .item .marker_5 {
+    background-position: 0 -194px;
+}
+
+#placesList .item .marker_6 {
+    background-position: 0 -240px;
+}
+
+#placesList .item .marker_7 {
+    background-position: 0 -286px;
+}
+
+#placesList .item .marker_8 {
+    background-position: 0 -332px;
+}
+
+#placesList .item .marker_9 {
+    background-position: 0 -378px;
+}
+
+#placesList .item .marker_10 {
+    background-position: 0 -423px;
+}
+
+#placesList .item .marker_11 {
+    background-position: 0 -470px;
+}
+
+#placesList .item .marker_12 {
+    background-position: 0 -516px;
+}
+
+#placesList .item .marker_13 {
+    background-position: 0 -562px;
+}
+
+#placesList .item .marker_14 {
+    background-position: 0 -608px;
+}
+
+#placesList .item .marker_15 {
+    background-position: 0 -654px;
+}
+
+#pagination {
+    margin: 10px auto;
+    text-align: center;
+}
+
+#pagination a {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#pagination .on {
+    font-weight: bold;
+    cursor: default;
+    color: #777;
+}
 </style>
 
 
@@ -165,15 +339,46 @@
 
           <!-- 카테고리 밑 혼잡도 안내 시작 -->
           <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
-              <div>
-                  <h3 class="size-15 weight-500 color-secondary m-0">지금 ${logincust.custName}님의 운동센터 혼잡도는 <span style="color: limegreen; font-weight: bold;">맑음</span> 이에요</h3>
-                  <p class="size-9 color-text m-0 pt-1">헬쓱에서 운동 수업을 예약하시기 전에 활용할 수 있어요</p>
-              </div>
+            <c:choose>
+                <c:when test="${logincust == null}">
+                  <div>
+                      <h3 class="size-15 weight-500 color-secondary m-0">회원님 주변 헬쓱 운동센터를 둘러보세요</h3>
+                      <p class="size-9 color-text m-0 pt-1">헬쓱에서 운동이용권을 결제하시면 운동수업 예약이 더욱 편리해져요</p>
+                  </div>
+                </c:when>
+                <c:otherwise>
+                    <div>
+                        <h3 class="size-15 weight-500 color-secondary m-0">지금 ${logincust.custName}님의 운동센터 혼잡도는 <span style="color: limegreen; font-weight: bold;">맑음</span> 이에요</h3>
+                        <p class="size-9 color-text m-0 pt-1">자주 이용하는 운동기구를 즐겨찾기하고 빠르게 확인해요</p>
+                    </div>
+                </c:otherwise>
+            </c:choose>
           </div><br>
-              <!-- 센터 기구 항목 나열. page-balance-provider.html
-              진척도 :  page-my-savings-wallet.html -->
+              <!-- 센터 기구 항목 나열 -->
               <section class=" components_page padding-b-30">
+                  <!-- 미로그인 고객이 메인페이지 오면, 센터 추천과 검색 기능보이게. -->
+                  <c:choose>
+                  <c:when test="${logincust == null}">
+                      <div class="map_wrap">
+                          <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
+                          <div id="menu_wrap" class="bg_white">
+                              <div class="option">
+                                  <div>
+                                      <form onsubmit="searchPlaces(); return false;">
+                                          지역 :
+                                                  <input type="text" value="성수" id="keyword" size="15">
+                                          <button type="submit">검색하기</button>
+                                      </form>
+                                  </div>
+                              </div>
+                              <hr>
+                              <ul id="placesList"></ul>
+                              <div id="pagination"></div>
+                          </div>
+                      </div>
+                  </c:when>
+                  <c:otherwise><!-- 로그인 고객에겐, 이용중인 센터 혼잡도 -->
                   <div class="pt_simpleDetails m-0 py-2 rounded-0 emBlock__border">
                       <div class="em_bodyinner">
                           <div class="embkRateCustomer" >
@@ -181,18 +386,6 @@
                                   <div class="row" style="height: 160px">
                                       <div class="col-4" style="height: 150px; padding-right: 0px">
                                           <img src="/img/good.png"  alt="" style="height: 90%; padding-bottom: 15px; padding-top: 15px;">
-<%--                                           <div class="item_rate">--%>
-<%--                                              <!-- 그래프바 : value 값 조절하면 그래프도 움직임-->--%>
-<%--                                              <div class="item_progress">--%>
-<%--                                                  <div class="itemCircle" style="height: 90%">--%>
-<%--                                                      <input type="text" data-width="120" value="20" data-fgColor="#556FFF"--%>
-<%--                                                             data-bgColor="#E9EAEC" data-thickness=".15" class="circleFull"--%>
-<%--                                                             data-readOnly="true" data-linecap="round">--%>
-<%--                                                  </div>--%>
-
-<%--                                              </div>--%>
-<%--                                           </div>--%>
-
                                       </div>
                                       <div class="col-8" style="height: 150px">
                                           <span class="size-13 color-black m-0 pt-1" style="font-weight: bold">나의 운동기구</span>
@@ -201,39 +394,44 @@
                                           </svg>
                                           <div class="progress__rate">
                                               <div class="">
-                                                  <div class="item" style="height: 40px;  display: flex; align-items: center;">
-                                                      <div  style="width: 100%">
-                                                      <p class="size-13 color-black m-0 pt-1">스미스 머신</p>
-                                                      <div class="progress" style="height: 8px;">
-                                                          <div class="progress-bar" role="progressbar" style="width: 20%; background-color: #32CD32;"
-                                                               aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                                                          </div>
-                                                      </div>
-                                                      </div>
+                                                        <c:forEach var="obj" items="${myMachine}">
+                                                            <c:set var="canQuantity" value="${canQuantity = (obj.holdingQuantity - obj.usingQuantity) }" />
+                                                            <input type="hidden" name="holdingQuantity" value="${obj.holdingQuantity}"/>
+                                                              <input type="hidden" name="usingQuantity" value="${obj.usingQuantity}"/>
+                                                              <div class="item" style="height: 40px;  display: flex; align-items: center;">
+                                                                  <div  style="width: 100%">
+                                                                      <p class="size-13 color-black m-0 pt-1">${obj.machineName}</p>
 
-                                                  </div>
-                                                  <div class="item" style="height: 40px;  display: flex; align-items: center;">
-                                                      <div  style="width: 100%">
-                                                          <p class="size-13 color-black m-0 pt-1">런닝머신</p>
-                                                          <div class="progress" style="height: 8px;">
-                                                              <div class="progress-bar" role="progressbar" style="width: 70%"
-                                                                   aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                                                      <c:choose>
+                                                                          <c:when test="${canQuantity == 0}">
+                                                                              <div class="progress" style="height: 8px;">
+                                                                                  <div class="progress-bar" role="progressbar" style="width: 100%; background-color: #ff8000;"
+                                                                                       aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                                                                  </div>
+                                                                              </div>
+                                                                          </c:when>
+                                                                          <c:when test="${canQuantity <= 2}">
+                                                                                  <div class="progress" style="height: 8px;">
+                                                                                      <div class="progress-bar" role="progressbar" style="width: 60%; background-color: #1E90FF;"
+                                                                                           aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                                                                      </div>
+                                                                                  </div>
+                                                                          </c:when>
+                                                                          <c:otherwise>
+                                                                              <div class="progress" style="height: 8px;">
+                                                                                  <div class="progress-bar" role="progressbar" style="width: 20%; background-color: #32CD32;"
+                                                                                       aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                                                                  </div>
+                                                                              </div>
+                                                                          </c:otherwise>
+                                                                      </c:choose>
+
+
+                                                                  </div>
                                                               </div>
-                                                          </div>
-                                                      </div>
+                                                          </c:forEach>
 
-                                                  </div>
-                                                  <div class="item" style="height: 40px;  display: flex; align-items: center;">
-                                                      <div  style="width: 100%;">
-                                                          <p class="size-13 color-black m-0 pt-1">와일드 풀다운</p>
-                                                          <div class="progress" style="height: 8px;">
-                                                              <div class="progress-bar" role="progressbar" style="width: 50%;  background-color: #1E90FF"
-                                                                   aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                                                              </div>
-                                                          </div>
-                                                      </div>
 
-                                                  </div>
                                               </div>
                                           </div>
                                       </div>
@@ -242,11 +440,11 @@
                               </div>
                           </div>
                     <%-- 센터가 보유한 운동기구 나열 --%>
-                              <p class="size-14 color-black m-0 pt-1" style="font-weight: bold; padding-bottom: 10px">이용이 가능한 운동기구</p>
+                          <p class="size-14 color-black m-0 pt-1" style="font-weight: bold; padding-bottom: 10px">이용이 가능한 운동기구</p>
                           <%-- 검색 버튼 --%>
-                          <a href="/">
+                          <a href="/getmymachine">
                           <button type="button" class="btn btn-outline-secondary"
-                                  style="border-radius: 15px; font-size: 12px;">전체
+                                  style="border-radius: 15px; font-size: 12px;">My기구
                           </button></a>
                           <button type="button" class="btn btn-outline-secondary"
                                   data-toggle="modal"
@@ -260,9 +458,14 @@
                           </button>
                           <%-- 기구 리스트 나열 --%>
                           <section class="emPage__basket npPkg__basket default" style="padding-top: 10px">
-                          <form name="machine_form" id="machine_form">
                             <c:forEach  var="obj" items="${gymAllMachine}" >
-                              <div class="itemPkg_cart" data-toggle="modal"
+                              <form name="machine_form" id="machine_form"  action="/addmymachine" method="get">
+                                  <input type="hidden" name="custNo" value="${logincust.custNo}"/>
+                                  <input type="hidden" name="machineNo" value="${obj.machineNo}"/>
+                                  <input type="hidden" name="gymNo" value="${obj.gymNo}"/>
+                                  <input type="hidden" name="myMachineStatus" value="1"/>
+<%--                                  <input type="hidden" name="myMachineStatus" value="${obj.myMachineStatus}"/>--%>
+                                  <div class="itemPkg_cart" data-toggle="modal"
                                    data-target="#mdllAdd_Address${obj.machineNo}"><!-- 클릭 시 상세 기구보기 모달로 이동 -->
                                   <div class="sideleft" style="height: 60px">
                                       <div class="item_rate">
@@ -297,12 +500,6 @@
                                                   </c:otherwise>
                                               </c:choose>
 
-<%--                                              <div class="itemCircle" style="height: 60px; padding-right: 15px; padding-top: 0px">--%>
-<%--                                                  <input type="image" data-width="60" value="60" data-fgColor="#ff8000"--%>
-<%--                                                         data-bgColor="#E9EAEC" data-thickness=".15" class="circleFull"--%>
-<%--                                                         src="/img/${obj.machineImgname}" style="width: 25px; height: 25px; "--%>
-<%--                                                         data-readOnly="true" data-linecap="round">--%>
-<%--                                              </div>--%>
                                           </div>
                                       </div>
                                       <div>
@@ -340,17 +537,19 @@
 
                                       </div>
                                   </div>
-                                  <%--  즐겨찾기 버튼   --%>
+                                  <%--  즐겨찾기 버튼 id :  machineSave  --%>
                                   <div class="npPage__balanceProvider" style="padding: 0; ">
                                       <div class="npblock__favorite" style="padding: 0; border: none;">
-                                          <button type="button" class="btn btn_favorite item-active" style="border: none;">
+                                          <button type="submit" id="machineSave"
+                                                  class="btn btn_favorite item-active" style="border: none;">
                                               <i class="ri-star-s-line"></i>
                                           </button>
                                       </div>
                                   </div>
                               </div>
-                            </c:forEach>
                               </form>
+                            </c:forEach>
+
                           </section>
                           <!-- 즐겨찾기 삭제할 때 쓸것. page-basket-provider.html -->
 
@@ -364,7 +563,8 @@
 
           </div><!-- 첫번째 탭 끝. -->
         </div>
-
+      </c:otherwise>
+      </c:choose>
 
               </section>
         </div>
@@ -475,6 +675,11 @@
 <%-- 기구 상세보기 모달 2 --%>
 <!-- Modal -->
 <c:forEach  var="obj" items="${gymAllMachine}" >
+<form name="machine_form" id="machine_form"  action="/addmymachine" method="get">
+<input type="hidden" name="custNo" value="${logincust.custNo}"/>
+<input type="hidden" name="machineNo" value="${obj.machineNo}"/>
+<input type="hidden" name="gymNo" value="${obj.gymNo}"/>
+<input type="hidden" name="myMachineStatus" value="1"/>
 <div class="modal defaultModal modalCentered change__address fade" id="mdllAdd_Address${obj.machineNo}" tabindex="-1"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -486,7 +691,7 @@
                 <%--    즐겨찾기 버튼   --%>
                 <div class="npPage__balanceProvider" style="padding: 0; ">
                     <div class="npblock__favorite" style="padding: 0; border: none; ">
-                        <button type="button" id="machineSave"
+                        <button type="submit" id="machineSave"
                                 class="btn btn_favorite item-active" style="border: none;">
                             <i class="ri-star-s-line"></i>
                         </button>
@@ -511,16 +716,7 @@
                         </div>
 
                     </li>
-<%--                    <li class="item">--%>
-<%--                        <div class="personal__info">--%>
-<%--                            <h2 class="size-15 color-secondary weight-400">Family Home</h2>--%>
-<%--                            <p class="size-13 color-text weight-400">3187 Shinn Avenue</p>--%>
-<%--                            <span class="size-14 color-secondary weight-500">+417-855-3556</span>--%>
-<%--                        </div>--%>
-<%--                        <div class="areaRight">--%>
-<%--                            <span class="circle_check"></span>--%>
-<%--                        </div>--%>
-<%--                    </li>--%>
+
                 </ul>
             </div>
             <div class="modal-footer">
@@ -531,6 +727,7 @@
         </div>
     </div>
 </div>
+</form>
 </c:forEach>
 </div>
 
@@ -554,38 +751,250 @@
             $('#search_form').submit();
         }
     }
-    <%--   나의 운동기구 즐겨찾기 기능     --%>
-    let myMachine_form = {
-        init: function () {
-            //  btn btn_addCart
-            // $('#ticket_pay_btn').click(function () {
-            //     myMachine_form.send();
-            // });
-            $('#machineSave').click(function () {
-                console.log("savetest");
-                myMachine_form.save();
-            });
-        },
-        send: function () {
+    // 마커를 담을 배열입니다
+    var markers = [];
 
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+            level : 3 // 지도의 확대 레벨
+        };
 
-        },
-        save : function (){
-            $('#machine_form').attr({
-                'action':'/like1',
-                'method':'post'
-            });
-            $('#machine_form').submit();
+    // 지도를 생성합니다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // 주소-좌표 변환 객체를 생성합니다
+    var geocoder = new kakao.maps.services.Geocoder();
+
+    // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
+    var infowindow = new kakao.maps.InfoWindow({zIndex: 1});
+
+    // 키워드로 장소를 검색
+    searchPlaces();
+
+    // 키워드 검색을 요청하는 함수
+    function searchPlaces() {
+        var keyword = document.getElementById('keyword').value;
+
+        if (!keyword.replace(/^\s+|\s+$/g, '')) {
+            // alert('키워드를 입력해주세요!');
+            return false;
         }
 
-    };
+        // getDBResults 함수를 구현하여 해당 키워드에 맞는 헬스장 정보를 get
+        getDBResults(keyword, function (results) {
+            console.log("키워드 '" + keyword + "'로 검색 결과:");
+            console.log(results);
+
+            // 주소를 좌표로 변환하여 지도에 마커를 표시
+            geocodeAddress(results);
+
+        });
+    }
+
+    function getDBResults(keyword, callback) {
+        // DB 주소 정보 가져오기
+        $.ajax({
+            url     : '/map/getaddress',
+            dataType: 'json',
+            success : function (data) {
+                let gymAddresses = data;
+
+                let filteredResults = gymAddresses.filter(function (result) {
+                    // 추후 종목 추가할 것!
+                    return result.gymAddress.includes(keyword);
+                });
+
+                callback(filteredResults);
+            },
+            error   : function () {
+                console.log('error');
+                callback([]);
+            }
+        });
+    }
+
+    // 주소를 좌표로 변환하여 지도에 마커를 표시하는 함수
+    function geocodeAddress(gymAddresses) {
+
+        var listEl = document.getElementById('placesList'),
+            menuEl = document.getElementById('menu_wrap'),
+            fragment = document.createDocumentFragment(),
+            bounds = new kakao.maps.LatLngBounds(),
+            listStr = '';
+
+        // 검색 결과 목록에 추가된 항목들을 제거합니다
+        removeAllChildNods(listEl);
+
+        // 지도에 표시되고 있는 마커를 제거합니다
+        removeMarker();
+
+        for (let i = 0; i < gymAddresses.length; i++) {
+            let gymAddress = gymAddresses[i].gymAddress;
+            let gymName = gymAddresses[i].gymName;
+
+            // 비동기
+            // 주소를 좌표로 변환합니다
+            // geocoder.addressSearch 비동기 함수로 변환 작업이 완료되기 전에 다음 작업을 실행하게 되면 마커가 찍히지 않는다. 해결방법으로는 비동기 작업이 완료된 후에 마커를 추가하고 지도 범위를 설정
+            // 콜백함수 또는 프로미스를 사용하거나 한꺼번에 처리
+            geocoder.addressSearch(gymAddress, function (result, status) {
+                // 정상적으로 좌표 검색이 완료됐으면
+                if (status === kakao.maps.services.Status.OK) {
+                    // 마커를 생성하고 지도에 표시합니다
+                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+                    var marker = addMarker(coords, i);
+                    console.log("좌표 찍겠습니다" + coords);
+                    // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+                    // LatLngBounds 객체에 좌표를 추가합니다
+                    bounds.extend(coords);
+
+                    let itemEl = getListItem(i, gymAddresses[i]);  // 검색 결과 항목 Element를 생성합니다
+                    fragment.appendChild(itemEl);
+                    // 검색결과 항목들을 검색결과 목록 Element에 추가합니다
+                    listEl.appendChild(fragment);
+                    menuEl.scrollTop = 0;
+                    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+                    map.setBounds(bounds);
+
+                    // 페이지 번호를 표출합니다
+                    displayPagination(pagination);
+
+                    // 마커와 검색결과 항목에 mouseover 했을때
+                    // 해당 장소에 인포윈도우에 장소명을 표시합니다
+                    // mouseout 했을 때는 인포윈도우를 닫습니다
+                    (function (marker, title) {
+                        kakao.maps.event.addListener(marker, 'mouseover', function () {
+                            displayInfowindow(marker, title);
+                        });
+                        kakao.maps.event.addListener(marker, 'mouseout', function () {
+                            infowindow.close();
+                        });
+                        itemEl.onmouseover = function () {
+                            displayInfowindow(marker, title);
+                        };
+
+                        itemEl.onmouseout = function () {
+                            infowindow.close();
+                        };
+                    })(marker, gymName);
+                } else {
+                    console.log("실패한 주소 찍겠습니다" + gymAddresses[i].gymAddress);
+                    console.log("실패한 센터 번호 찍겠습니다" + gymAddresses[i].gymNo);
+                }
+            });
+        }
+    }
+
+    // 검색결과 항목을 Element로 반환하는 함수입니다
+    function getListItem(index, places) {
+
+        var el = document.createElement('li'),
+            itemStr = '<span class="markerbg marker_' + (index + 1) + '"></span>' +
+                '<div class="info" data-gymNo="' + places.gymNo + '">' +
+                '   <h5>' + places.gymName + '</h5>';
+        itemStr += '    <span>' + places.gymAddress + '</span>';
+        itemStr += '  <span class="tel">' + places.gymPhone + '</span>' +
+            '</div>';
+
+        el.innerHTML = itemStr;
+        el.className = 'item';
+
+        // 검색결과 항목 클릭 이벤트 처리
+        el.addEventListener('click', function () {
+            var gymNo = this.querySelector('.info').getAttribute('data-gymNo');
+            navigateToDetailPage(gymNo); // 디테일 화면으로 이동하는 함수 호출
+        });
+
+        return el;
+    }
+
+    // 디테일 화면으로 이동하는 함수
+    function navigateToDetailPage(gymNo) {
+        window.location.href = '/ticket/detail?gymNo=' + gymNo;
+    }
+
+    // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
+    function addMarker(position, idx, title) {
+        var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+            imageSize = new kakao.maps.Size(36, 37),  // 마커 이미지의 크기
+            imgOptions = {
+                spriteSize  : new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
+                spriteOrigin: new kakao.maps.Point(0, (idx * 46) + 10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+                offset      : new kakao.maps.Point(13, 37) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+            },
+            markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+            marker = new kakao.maps.Marker({
+                position: position, // 마커의 위치
+                image   : markerImage
+            });
+
+        marker.setMap(map); // 지도 위에 마커를 표출합니다
+        markers.push(marker);  // 배열에 생성된 마커를 추가합니다
+
+        return marker;
+    }
+
+    // 지도 위에 표시되고 있는 마커를 모두 제거합니다
+    function removeMarker() {
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(null);
+        }
+        markers = [];
+    }
+
+    // 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
+    function displayPagination(pagination) {
+        var paginationEl = document.getElementById('pagination'),
+            fragment = document.createDocumentFragment(),
+            i;
+
+        // 기존에 추가된 페이지번호를 삭제합니다
+        while (paginationEl.hasChildNodes()) {
+            paginationEl.removeChild(paginationEl.lastChild);
+        }
+
+        for (i = 1; i <= pagination.last; i++) {
+            var el = document.createElement('a');
+            el.href = "#";
+            el.innerHTML = i;
+
+            if (i === pagination.current) {
+                el.className = 'on';
+            } else {
+                el.onclick = (function (i) {
+                    return function () {
+                        pagination.gotoPage(i);
+                    }
+                })(i);
+            }
+
+            fragment.appendChild(el);
+        }
+        paginationEl.appendChild(fragment);
+    }
+
+    // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
+    // 인포윈도우에 장소명을 표시합니다
+    function displayInfowindow(marker, title) {
+        var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
+
+        infowindow.setContent(content);
+        infowindow.open(map, marker);
+    }
+
+    // 검색결과 목록의 자식 Element를 제거하는 함수입니다
+    function removeAllChildNods(el) {
+        while (el.hasChildNodes()) {
+            el.removeChild(el.lastChild);
+        }
+    }
 
 
 
     // 실행
     $(function (){
         machine_search.init();
-        myMachine_form.init();
+        //myMachine_form.init();
     });
 
 </script>

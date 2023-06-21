@@ -9,7 +9,6 @@ import lombok.*;
 @Getter
 @ToString
 public class MyMachine {
-    private int myMachineNo; // 내가 즐겨찾기 등록한 번호
     private int custNo; // 회원 번호
     private int gymNo; // 센터 번호
     private int machineNo; // 운동기구 번호
@@ -20,8 +19,11 @@ public class MyMachine {
     private String machineImgname; // 기계 사진
     private int holdingQuantity; // 기계 보유수량
     private int usingQuantity; // 기계를 사용 중인 수량
-    public MyMachine(int custNo, int machineNo) {
+
+    public MyMachine(int custNo, int gymNo, int machineNo, String myMachineStatus) {
         this.custNo = custNo;
+        this.gymNo = gymNo;
         this.machineNo = machineNo;
+        this.myMachineStatus = myMachineStatus;
     }
 }
