@@ -179,7 +179,7 @@
                         <div class="emBlock__border padding-l-20 bg-snow col-6">
                             <ul class="nav navListProducts">
                                 <li class="nav-item">
-                                    <a id="myReservationLink1" class="nav-link" href="/class/my_reservation">조회 및 취소</a>
+                                    <a id="myReservationLink1" class="nav-link" href="/class/my_reservation">예약내역</a>
                                 </li>
                             </ul>
                         </div>
@@ -187,9 +187,7 @@
                     <section class="row">
                         <div class="col-12 content_balance bg-white border border-snow padding-10 ">
                             <div class="emTitle_co padding-20">
-                                <h2 class="size-16 weight-500 color-secondary mb-1">${logincust.custName}님, 수업
-                                    예약으로
-                                    매일매일 오운완 도전!</h2>
+                                <h2 class="size-16 weight-500 color-secondary mb-1">${logincust.custName}님, 매일매일 오운완 도전!</h2>
                                 <p class="size-12 color-text m-0">날짜를 클릭하시면 예약 가능한 수업이 보여집니다.</p>
                             </div>
                             <!-- 달력 부분 -->
