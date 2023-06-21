@@ -146,7 +146,7 @@
     <div class="padding-l-20 padding-t-10">
         <ul class="nav navListProducts with__lined navWhite">
             <li class="nav-item">
-                <a class="nav-link" href="/">투데이</a>
+                <a class="nav-link" href="/view/1">투데이</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/best">베스트</a>

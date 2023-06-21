@@ -59,6 +59,6 @@ public class CouponController {
             return "index";
         }
 
-        return "redirect:/"; // 다른 페이지를 개설 할 것! 로그인 후 이용해주세요 !!!!!
+        return "redirect:/loginplz"; // 로그인 후 이용해주세요 !!!!!
     }
 }

@@ -65,268 +65,275 @@
 
 </style>
 
-<!-- Start main_haeder -->
-<header class="main_haeder header-sticky multi_item">
-    <div class="em_side_right">
-        <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/">
-            <i class="tio-chevron_left size-24 color-text"></i>
-            <span class="color-text size-14">Back</span>
-        </a>
-    </div>
-    <div class="title_page">
-        <span class="page_name">헬쓱</span>
-    </div>
-</header>
-
-<section class="page_news">
-
-    <div id="wrapper">
-        <div id="content">
-            <!-- Start 헬쓱이 지피티 -->
-            <section class="npBalabce_section padding-20 pb-0 d-flex align-items-center">
-                <div class="txt d-flex align-items-center">
-                    <img src="/assets/img/candy/chatbot.png" class="d-inline animated-bounce" id="chatbot" alt="chatbot"
-                         style="width: 50px; height: 50px;">
-                </div>
-                <div class="text-left" style="margin-left: 20px">
-                    <h6 class="color-secondary">안녕, ${logincust.custName}님! 나는 헬쓱 지피티야!</h6>
-                    <span class="color-snow h7">나에게는 무엇이든 물어봐도 좋아!</span>
-                </div>
-            </section>
-            <!-- End 헬쓱이 지피티 -->
-            <br>
-            <!-- Start 오늘의 일정 -->
-            <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe">
-                <c:choose>
-                    <c:when test="${my_reservation_list != '[]'}">
-                        <c:forEach var="obj" items="${my_reservation_list}">
-                            <section class="npBalabce_section padding-5 pb-0">
-                                <div class="content_balance bg-white border border-snow"
-                                     style="background-image: linear-gradient(to right, rgba(214, 59, 81, 0.5), rgba(46, 65, 183, 0.5))">
-                                    <div class="txt">
-                                        <h6 class="color-white">
-                                                ${obj.dateCategory}의 운동 일정</h6>
-                                        <h6 class="color-secondary">${obj.className}</h6>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             fill="currentColor"
-                                             class="bi bi-calendar2-check color-snow" viewBox="0 0 16 16">
-                                            <path d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
-                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
-                                            <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
-                                        </svg>&nbsp;
-                                        <h7 class="color-snow">${obj.classDate}</h7>
-                                        <br>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             fill="currentColor" class="bi bi-alarm color-snow" viewBox="0 0 16 16">
-                                            <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"/>
-                                            <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
-                                        </svg>&nbsp;
-                                        <h7 class="color-snow">${obj.classStarttime}~${obj.classEndtime}</h7>
-                                    </div>
-                                    <div class="action">
-                                        <a href="/class/my_reservation" class="btn">
-                                            나의 일정 보기
-                                        </a>
-                                    </div>
-                                </div>
-                            </section>
-                        </c:forEach>
-                    </c:when>
-                    <c:otherwise>
-                        <section class="npBalabce_section padding-5 pb-0">
-                            <div class="content_balance bg-white border border-snow"
-                                 style="background-image: linear-gradient(to right, rgba(214, 59, 81, 0.5), rgba(46, 65, 183, 0.5))">
-                                <div class="txt">
-                                    <h6 class="color-white">
-                                            ${logincust.custName}님의 운동 일정이 당분간 없어요</h6>
-                                    <h7 class="color-snow">바로 수업 예약하세요</h7>
-                                </div>
-                                <div class="action">
-                                    <a href="/class/reservation" class="btn">
-                                        수업 예약하기
-                                    </a>
-                                </div>
-                            </div>
-                        </section>
-                    </c:otherwise>
-                </c:choose>
+<c:choose>
+    <c:when test="${logincust == null}">
+        <jsp:include page="loginplz.jsp"/>
+    </c:when>
+    <c:otherwise>
+        <!-- Start main_haeder -->
+        <header class="main_haeder header-sticky multi_item">
+            <div class="em_side_right">
+                <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/">
+                    <i class="tio-chevron_left size-24 color-text"></i>
+                    <span class="color-text size-14">Back</span>
+                </a>
             </div>
-            <hr>
-            <!-- End. 오늘의 일정 -->
-            <!-- Start. 운동 완료 별사탕 -->
-            <section class="npBalabce_section padding-20 pb-0">
-                <div class="content_balance bg-white border border-snow"
-                     style="background-image: linear-gradient(to right, #e66176, #5065da)">
-                    <div class="txt">
-                        <h6 class="color-white">
-                            이 달의 프로틴 사탕</h6>
-                        <h6 class="color-secondary">매일매일 건강도 챙기고, 혜택도 챙겨가자!</h6>
-                        <h7 class="color-snow">월급날에 운동하면 쿠폰을 쏜다!!</h7>
-                        <br>
-                        <h7 id="candyCount" class="color-snow"></h7>
+            <div class="title_page">
+                <span class="page_name">헬쓱</span>
+            </div>
+        </header>
+
+        <section class="page_news">
+
+            <div id="wrapper">
+                <div id="content">
+                    <!-- Start 헬쓱이 지피티 -->
+                    <section class="npBalabce_section padding-20 pb-0 d-flex align-items-center">
+                        <div class="txt d-flex align-items-center">
+                            <img src="/assets/img/candy/chatbot.png" class="d-inline animated-bounce" id="chatbot" alt="chatbot"
+                                 style="width: 50px; height: 50px;">
+                        </div>
+                        <div class="text-left" style="margin-left: 20px">
+                            <h6 class="color-secondary">안녕, ${logincust.custName}님! 나는 헬쓱 지피티야!</h6>
+                            <span class="color-snow h7">나에게는 무엇이든 물어봐도 좋아!</span>
+                        </div>
+                    </section>
+                    <!-- End 헬쓱이 지피티 -->
+                    <br>
+                    <!-- Start 오늘의 일정 -->
+                    <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe">
+                        <c:choose>
+                            <c:when test="${my_reservation_list != '[]'}">
+                                <c:forEach var="obj" items="${my_reservation_list}">
+                                    <section class="npBalabce_section padding-5 pb-0">
+                                        <div class="content_balance bg-white border border-snow"
+                                             style="background-image: linear-gradient(to right, rgba(214, 59, 81, 0.5), rgba(46, 65, 183, 0.5))">
+                                            <div class="txt">
+                                                <h6 class="color-white">
+                                                        ${obj.dateCategory}의 운동 일정</h6>
+                                                <h6 class="color-secondary">${obj.className}</h6>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     fill="currentColor"
+                                                     class="bi bi-calendar2-check color-snow" viewBox="0 0 16 16">
+                                                    <path d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+                                                    <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
+                                                </svg>&nbsp;
+                                                <h7 class="color-snow">${obj.classDate}</h7>
+                                                <br>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     fill="currentColor" class="bi bi-alarm color-snow" viewBox="0 0 16 16">
+                                                    <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"/>
+                                                    <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
+                                                </svg>&nbsp;
+                                                <h7 class="color-snow">${obj.classStarttime}~${obj.classEndtime}</h7>
+                                            </div>
+                                            <div class="action">
+                                                <a href="/class/my_reservation" class="btn">
+                                                    나의 일정 보기
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <section class="npBalabce_section padding-5 pb-0">
+                                    <div class="content_balance bg-white border border-snow"
+                                         style="background-image: linear-gradient(to right, rgba(214, 59, 81, 0.5), rgba(46, 65, 183, 0.5))">
+                                        <div class="txt">
+                                            <h6 class="color-white">
+                                                    ${logincust.custName}님의 운동 일정이 당분간 없어요</h6>
+                                            <h7 class="color-snow">바로 수업 예약하세요</h7>
+                                        </div>
+                                        <div class="action">
+                                            <a href="/class/reservation" class="btn">
+                                                수업 예약하기
+                                            </a>
+                                        </div>
+                                    </div>
+                                </section>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
-                    <div>
-                        <button id="qrCodeContainer" onclick="openModal()">
-                            <img src="/assets/img/qr/qr.png" style="width: 50px; height: 50px">
+                    <hr>
+                    <!-- End. 오늘의 일정 -->
+                    <!-- Start. 운동 완료 별사탕 -->
+                    <section class="npBalabce_section padding-20 pb-0">
+                        <div class="content_balance bg-white border border-snow"
+                             style="background-image: linear-gradient(to right, #e66176, #5065da)">
+                            <div class="txt">
+                                <h6 class="color-white">
+                                    이 달의 프로틴 사탕</h6>
+                                <h6 class="color-secondary">매일매일 건강도 챙기고, 혜택도 챙겨가자!</h6>
+                                <h7 class="color-snow">월급날에 운동하면 쿠폰을 쏜다!!</h7>
+                                <br>
+                                <h7 id="candyCount" class="color-snow"></h7>
+                            </div>
+                            <div>
+                                <button id="qrCodeContainer" onclick="openModal()">
+                                    <img src="/assets/img/qr/qr.png" style="width: 50px; height: 50px">
+                                </button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="content_balance bg-white border border-snow" id="candy_list">
+                            <div class="image_list">
+                                <img src="/assets/img/candy/star_default_01.png" id="day01" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_02.png" id="day02" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_03.png" id="day03" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_04.png" id="day04" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_05.png" id="day05" class="candy" alt="candy">
+                            </div>
+                            <div class="image_list">
+                                <img src="/assets/img/candy/star_default_06.png" id="day06" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_07.png" id="day07" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_08.png" id="day08" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_09.png" id="day09" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_10.png" id="day10" class="candy" alt="candy">
+                            </div>
+                            <div class="image_list">
+                                <img src="/assets/img/candy/star_default_11.png" id="day11" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_12.png" id="day12" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_13.png" id="day13" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_14.png" id="day14" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_15.png" id="day15" class="candy" alt="candy">
+                            </div>
+                            <div class="image_list">
+                                <img src="/assets/img/candy/star_default_16.png" id="day16" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_17.png" id="day17" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_18.png" id="day18" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_19.png" id="day19" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_20.png" id="day20" class="candy" alt="candy">
+                            </div>
+                            <div class="image_list">
+                                <img src="/assets/img/candy/star_default_21.png" id="day21" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_22.png" id="day22" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_23.png" id="day23" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_24.png" id="day24" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_25.png" id="day25" class="candy" alt="candy">
+                            </div>
+                            <div class="image_list">
+                                <img src="/assets/img/candy/star_default_26.png" id="day26" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_27.png" id="day27" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_28.png" id="day28" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_29.png" id="day29" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_30.png" id="day30" class="candy" alt="candy">
+                            </div>
+                        </div>
+                    </section>
+                    <!-- End. 운동 완료 별사탕 -->
+                    <hr>
+                    <!-- End. 수업 예약-->
+
+                    <!-- Start 나의 이용권 -->
+                    <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe">
+                        <c:choose>
+                            <c:when test="${my_ticket_list != '[]'}">
+                                <c:forEach var="obj2" items="${my_ticket_list}">
+                                    <section class="npBalabce_section padding-5 pb-0">
+                                        <div class="content_balance bg-white border border-snow"
+                                             style="background-image: linear-gradient(to right, rgba(214, 59, 81, 0.5), rgba(46, 65, 183, 0.5))">
+                                            <div class="txt">
+                                                <h6 class="color-white">
+                                                    나의 이용권</h6>
+                                                <h6 class="color-secondary">
+                                                        ${obj2.gymName}
+                                                    <c:choose>
+                                                        <c:when test="${obj2.ticketType == '1'}">
+                                                            기간권 ${obj2.ticketMonth}개월
+                                                        </c:when>
+                                                        <c:when test="${obj2.ticketType == '2'}">
+                                                            횟수권 ${obj2.ticketNumber}회
+                                                        </c:when>
+                                                    </c:choose>
+                                                </h6>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     fill="currentColor" class="bi bi-ticket-detailed color-snow"
+                                                     viewBox="0 0 16 16">
+                                                    <path d="M4 5.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5Zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5ZM5 7a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z"/>
+                                                    <path d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6V4.5ZM1.5 4a.5.5 0 0 0-.5.5v1.05a2.5 2.5 0 0 1 0 4.9v1.05a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-1.05a2.5 2.5 0 0 1 0-4.9V4.5a.5.5 0 0 0-.5-.5h-13Z"/>
+                                                </svg>
+                                                <h7 class="color-snow">
+                                                    <c:choose>
+                                                        <c:when test="${obj2.ticketType == '1'}">
+                                                            사용횟수 : ${obj2.usedCnt}회
+                                                        </c:when>
+                                                        <c:when test="${obj2.ticketType == '2'}">
+                                                            잔여횟수 : ${obj2.remaining}회 / ${obj2.ticketNumber}회
+                                                        </c:when>
+                                                    </c:choose>
+                                                </h7>
+                                                <br>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     fill="currentColor" class="bi bi-calendar2-x color-snow"
+                                                     viewBox="0 0 16 16">
+                                                    <path d="M6.146 8.146a.5.5 0 0 1 .708 0L8 9.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 10l1.147 1.146a.5.5 0 0 1-.708.708L8 10.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 10 6.146 8.854a.5.5 0 0 1 0-.708z"/>
+                                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+                                                    <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
+                                                </svg>
+                                                <h7 class="color-snow"> 만료일자 : ${obj2.purchaseDate_str}</h7>
+                                            </div>
+                                            <div class="action">
+                                                <a href="/ticket/all" class="btn">
+                                                    이용권 구매하기
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <section class="npBalabce_section padding-5 pb-0">
+                                    <div class="content_balance bg-white border border-snow"
+                                         style="background-image: linear-gradient(to right, rgba(214, 59, 81, 0.5), rgba(46, 65, 183, 0.5))">
+                                        <div class="txt">
+                                            <h6 class="color-white">
+                                                    ${logincust.custName}님의 이용권이 없어요</h6>
+                                            <h7 class="color-snow">딱 맞는 운동으로 이용권을 구매하세요</h7>
+                                        </div>
+                                        <div class="action">
+                                            <a href="/ticket/all" class="btn">
+                                                이용권 구매하기
+                                            </a>
+                                        </div>
+                                    </div>
+                                </section>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                    <hr>
+                    <!-- End. 오늘의 일정 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal -->
+        <div class="modal defaultModal modalCentered change__address fade" id="mdllAdd_Address" tabindex="-1"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header border-0 padding-l-20 padding-r-20 justify-content-center">
+                        <div class="itemProduct_sm">
+                            <h1 class="size-18 weight-600 color-secondary m-0" id="tdate">QR 인증</h1>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="tio-clear"></i>
                         </button>
                     </div>
-                </div>
-                <br>
-                <div class="content_balance bg-white border border-snow" id="candy_list">
-                    <div class="image_list">
-                        <img src="/assets/img/candy/star_default_01.png" id="day01" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_02.png" id="day02" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_03.png" id="day03" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_04.png" id="day04" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_05.png" id="day05" class="candy" alt="candy">
+                    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <div>
+                            <p>오늘도 고생하셨어요! 오늘의 운동 완료를 인증해주세요. </p>
+                        </div>
+                        <div id="qrcode_scanner_container">
+                            <img id="qrcode_img" style="display:none" onload="this.style.display='block'">
+                        </div>
                     </div>
-                    <div class="image_list">
-                        <img src="/assets/img/candy/star_default_06.png" id="day06" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_07.png" id="day07" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_08.png" id="day08" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_09.png" id="day09" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_10.png" id="day10" class="candy" alt="candy">
-                    </div>
-                    <div class="image_list">
-                        <img src="/assets/img/candy/star_default_11.png" id="day11" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_12.png" id="day12" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_13.png" id="day13" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_14.png" id="day14" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_15.png" id="day15" class="candy" alt="candy">
-                    </div>
-                    <div class="image_list">
-                        <img src="/assets/img/candy/star_default_16.png" id="day16" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_17.png" id="day17" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_18.png" id="day18" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_19.png" id="day19" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_20.png" id="day20" class="candy" alt="candy">
-                    </div>
-                    <div class="image_list">
-                        <img src="/assets/img/candy/star_default_21.png" id="day21" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_22.png" id="day22" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_23.png" id="day23" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_24.png" id="day24" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_25.png" id="day25" class="candy" alt="candy">
-                    </div>
-                    <div class="image_list">
-                        <img src="/assets/img/candy/star_default_26.png" id="day26" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_27.png" id="day27" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_28.png" id="day28" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_29.png" id="day29" class="candy" alt="candy">
-                        <img src="/assets/img/candy/star_default_30.png" id="day30" class="candy" alt="candy">
-                    </div>
-                </div>
-            </section>
-            <!-- End. 운동 완료 별사탕 -->
-            <hr>
-            <!-- End. 수업 예약-->
-
-            <!-- Start 나의 이용권 -->
-            <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe">
-                <c:choose>
-                    <c:when test="${my_ticket_list != '[]'}">
-                        <c:forEach var="obj2" items="${my_ticket_list}">
-                            <section class="npBalabce_section padding-5 pb-0">
-                                <div class="content_balance bg-white border border-snow"
-                                     style="background-image: linear-gradient(to right, rgba(214, 59, 81, 0.5), rgba(46, 65, 183, 0.5))">
-                                    <div class="txt">
-                                        <h6 class="color-white">
-                                            나의 이용권</h6>
-                                        <h6 class="color-secondary">
-                                            ${obj2.gymName}
-                                            <c:choose>
-                                                <c:when test="${obj2.ticketType == '1'}">
-                                                    기간권 ${obj2.ticketMonth}개월
-                                                </c:when>
-                                                <c:when test="${obj2.ticketType == '2'}">
-                                                    횟수권 ${obj2.ticketNumber}회
-                                                </c:when>
-                                            </c:choose>
-                                        </h6>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             fill="currentColor" class="bi bi-ticket-detailed color-snow"
-                                             viewBox="0 0 16 16">
-                                            <path d="M4 5.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5Zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5ZM5 7a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z"/>
-                                            <path d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6V4.5ZM1.5 4a.5.5 0 0 0-.5.5v1.05a2.5 2.5 0 0 1 0 4.9v1.05a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-1.05a2.5 2.5 0 0 1 0-4.9V4.5a.5.5 0 0 0-.5-.5h-13Z"/>
-                                        </svg>
-                                        <h7 class="color-snow">
-                                            <c:choose>
-                                                <c:when test="${obj2.ticketType == '1'}">
-                                                    사용횟수 : ${obj2.usedCnt}회
-                                                </c:when>
-                                                <c:when test="${obj2.ticketType == '2'}">
-                                                    잔여횟수 : ${obj2.remaining}회 / ${obj2.ticketNumber}회
-                                                </c:when>
-                                            </c:choose>
-                                        </h7>
-                                        <br>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             fill="currentColor" class="bi bi-calendar2-x color-snow"
-                                             viewBox="0 0 16 16">
-                                            <path d="M6.146 8.146a.5.5 0 0 1 .708 0L8 9.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 10l1.147 1.146a.5.5 0 0 1-.708.708L8 10.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 10 6.146 8.854a.5.5 0 0 1 0-.708z"/>
-                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
-                                            <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
-                                        </svg>
-                                        <h7 class="color-snow"> 만료일자 : ${obj2.purchaseDate_str}</h7>
-                                    </div>
-                                    <div class="action">
-                                        <a href="/ticket/all" class="btn">
-                                            이용권 구매하기
-                                        </a>
-                                    </div>
-                                </div>
-                            </section>
-                        </c:forEach>
-                    </c:when>
-                    <c:otherwise>
-                        <section class="npBalabce_section padding-5 pb-0">
-                            <div class="content_balance bg-white border border-snow"
-                                 style="background-image: linear-gradient(to right, rgba(214, 59, 81, 0.5), rgba(46, 65, 183, 0.5))">
-                                <div class="txt">
-                                    <h6 class="color-white">
-                                            ${logincust.custName}님의 이용권이 없어요</h6>
-                                    <h7 class="color-snow">딱 맞는 운동으로 이용권을 구매하세요</h7>
-                                </div>
-                                <div class="action">
-                                    <a href="/ticket/all" class="btn">
-                                        이용권 구매하기
-                                    </a>
-                                </div>
-                            </div>
-                        </section>
-                    </c:otherwise>
-                </c:choose>
-            </div>
-            <hr>
-            <!-- End. 오늘의 일정 -->
-        </div>
-    </div>
-</section>
-
-<!-- Modal -->
-<div class="modal defaultModal modalCentered change__address fade" id="mdllAdd_Address" tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header border-0 padding-l-20 padding-r-20 justify-content-center">
-                <div class="itemProduct_sm">
-                    <h1 class="size-18 weight-600 color-secondary m-0" id="tdate">QR 인증</h1>
-                </div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="tio-clear"></i>
-                </button>
-            </div>
-            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                <div>
-                    <p>오늘도 고생하셨어요! 오늘의 운동 완료를 인증해주세요. </p>
-                </div>
-                <div id="qrcode_scanner_container">
-                    <img id="qrcode_img" style="display:none" onload="this.style.display='block'">
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </c:otherwise>
+</c:choose>
 
 <script>
     $(document).ready(function () {

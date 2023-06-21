@@ -6,11 +6,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
-
+//
 @Slf4j
 @Controller
 public class MainController {
@@ -26,9 +28,18 @@ public class MainController {
     CustService custService;
     // 투데이 페이지 : 헬쓱 메인 페이지로, 광고배너 노출 + 카테고리별 운동센터 조회 +
     // 운동이용권을 결제한 회원의 경우 -> 나의 운동센터 혼잡도 보여주기
-    @RequestMapping("/")
-    public String main(Model model, Gym gym, Integer gymNo, MyMachine myMachine,  HttpSession session) throws Exception {
-        Cust cust = (Cust) session.getAttribute("logincust");
+    // 투데이 페이지 : 헬쓱 메인 페이지로, 광고배너 노출 + 카테고리별 운동센터 조회 +
+    // 운동이용권을 결제한 회원의 경우 -> 나의 운동센터 혼잡도 보여주기
+    @GetMapping(value= {"/", "/view/{name}"})
+    public String main(@PathVariable(required = false) Integer name, Model model, Gym gym, Integer gymNo, MyMachine myMachine, HttpSession session) throws Exception {
+        Cust cust = null;
+        cust = (Cust) session.getAttribute("logincust");
+
+        // 로그인을 안할 경우 && 둘러보기를 안눌렀을 때 웰컴 페이지로
+        if (cust == null && (name == null || !(name == 1))) {
+            return "redirect:/welcome";
+        }
+
         List<Gym> list = null;
         List<GymMachine> list2 = null;
         List<MyMachine> list3 = null;
@@ -59,6 +70,12 @@ public class MainController {
         model.addAttribute("center","center");
         return "index";
     }
+
+    @RequestMapping("/welcome")
+    public String welcome(){
+        return "welcome";
+    }
+
     // 나의 운동기구 조회!
     @RequestMapping("/getmymachine")
     public String getmymachine(Model model, HttpSession session) throws Exception {
@@ -77,7 +94,7 @@ public class MainController {
         // 즐겨찾기 버튼을 누른 운동기구가, 이미 담겨있는 상태(1) 였으면 set > 해제(0) : 작동실패
 
         if (myMachine.getMyMachineStatus().equals("0")) {
-           // myMachineService.updateMyMachineStatus(myMachine.getMachineNo(), "1");
+            // myMachineService.updateMyMachineStatus(myMachine.getMachineNo(), "1");
         } else {
             myMachineService.register(myMachine); // 즐겨찾기 신규 등록
         }
