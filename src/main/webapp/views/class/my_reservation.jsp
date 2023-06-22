@@ -270,12 +270,12 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" data-dismiss="modal"
-                        class="btn btn__cancel mr-1 size-15 color-text min-w-100 h-40 d-flex align-items-center rounded-10 justify-content-center">닫기</button>
                 <a href=""
                    class="btn bg-primary min-w-100 m-0 size-15 color-white h-40 d-flex align-items-center rounded-10 justify-content-center">
                     수업 취소하기
                 </a>
+                <button type="button" data-dismiss="modal"
+                        class="btn btn__cancel mr-1 size-15 color-text min-w-100 h-40 d-flex align-items-center rounded-10 justify-content-center">닫기</button>
             </div>
         </div>
     </div>

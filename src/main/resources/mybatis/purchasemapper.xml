@@ -13,7 +13,7 @@
                 #{ticketType}, #{ticketMonth}, #{ticketNumber},
                 #{ticketJoin}, '',
                 SYSDATE, #{purchasePrice},
-                0, '0', SYSDATE+365)
+                0, '0', SYSDATE+365, '0')
     </insert>
 
     <!-- purchaseNo로 조회 -->

@@ -249,7 +249,6 @@ np_balanceDefault {
                                       stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
                             </g>
                         </svg>
-                        //
                     </button>
                 </a>
             </div>

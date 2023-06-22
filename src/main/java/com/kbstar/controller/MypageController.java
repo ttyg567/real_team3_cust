@@ -195,8 +195,8 @@ public class MypageController {
         }
         log.info("============= 대답 출력: ");
         log.info(answer);
-        String imageUrl = chatgptService.imageGenerate("boy");
-        log.info(imageUrl);  // image url
+//        String imageUrl = chatgptService.imageGenerate("boy");
+//        log.info(imageUrl);  // image url
 
         JSONArray ja = new JSONArray();
         JSONObject jo = new JSONObject();
