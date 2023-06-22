@@ -31,12 +31,12 @@ public class MainController {
     // 투데이 페이지 : 헬쓱 메인 페이지로, 광고배너 노출 + 카테고리별 운동센터 조회 +
     // 운동이용권을 결제한 회원의 경우 -> 나의 운동센터 혼잡도 보여주기
     @GetMapping(value= {"/", "/view/{name}"})
-    public String main(@PathVariable(required = false) Integer name, Model model, Gym gym, Integer gymNo, MyMachine myMachine, HttpSession session) throws Exception {
+    public String main(@PathVariable(required = false) String name, Model model, Gym gym, Integer gymNo, MyMachine myMachine, HttpSession session) throws Exception {
         Cust cust = null;
         cust = (Cust) session.getAttribute("logincust");
 
         // 로그인을 안할 경우 && 둘러보기를 안눌렀을 때 웰컴 페이지로
-        if (cust == null && (name == null || !(name == 1))) {
+        if (cust == null && (name == null || !(name.trim().equals("1")))) {
             return "redirect:/welcome";
         }
 
