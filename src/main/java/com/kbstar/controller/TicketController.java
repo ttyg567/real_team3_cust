@@ -1,12 +1,7 @@
 package com.kbstar.controller;
 
-import com.kbstar.dto.Cust;
-import com.kbstar.dto.Gym;
-import com.kbstar.dto.Like1;
-import com.kbstar.dto.Ticket;
-import com.kbstar.service.GymService;
-import com.kbstar.service.LikeService;
-import com.kbstar.service.TicketService;
+import com.kbstar.dto.*;
+import com.kbstar.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,7 +28,10 @@ public class TicketController {
     TicketService ticketService;
     @Autowired
     LikeService likeService;
-
+    @Autowired
+    ReviewService reviewService;
+    @Autowired
+    TrainerService trainerService;
     @Value("${adminserver}")
     String adminserver;
     @RequestMapping("/all")
@@ -149,31 +147,37 @@ public class TicketController {
 
     @RequestMapping("/detail")
     public String detail(Model model, @RequestParam("gymNo") int gymNo) throws Exception {
-        log.info("-------------------------------------");
-        log.info("디테일 화면 진입 전");
+        List<Review> relist = null;
+        List<Trainer> trainer = null;
+        Review review_avg = null;
         Gym gym = null;
         // 해당 gymNo에 해당하는 이용권 목록 가져오기
         List<Ticket> ticket_list = ticketService.getTicketsByGymNo(gymNo);
         gym = gymService.get(gymNo);
-        //그 센터가 등록한 이용권을 가져온다.
 
-//        ticket_list = ticketService.get();
-
+        //리뷰때문에 추가
+        relist = reviewService.getGymreview(gymNo);
+        gym = gymService.get(gymNo);
+        review_avg = reviewService.getAvgrate(gymNo);
+        //이제 트레이너
+        trainer = trainerService.getAll(gymNo);
 
         // 이미지 추출
         List<Gym> gym_list = null;
+
         try {
             gym_list = gymService.selectImg(gymNo);
-        } catch (Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
         String[] gdetail_center_img = null; // 디테일에서 top에 위치한 센터 이미지
         String[] gdetail_detail_img = null; // 디테일 화면에서 디테일 이미지
         List<String> centerImages = new ArrayList<>(); // center 이미지를 저장할 리스트
         List<String> detailImages = new ArrayList<>(); // detail 이미지를 저장할 리스트
-        for(Gym item : gym_list){
+        for (Gym item : gym_list) {
             // 디테일 이미지가 아니면
-            if(item.getGymImgdetailCk().equals("0")){
+            if (item.getGymImgdetailCk().equals("0")) {
                 centerImages.add(item.getGymImgname()); // center 이미지를 리스트에 추가
             } else {  // 디테일 이미지 이면
                 detailImages.add(item.getGymImgname()); // center 이미지를 리스트에 추가
@@ -191,7 +195,17 @@ public class TicketController {
         model.addAttribute("tickets", getMatchingTickets(gymNo, ticket_list));
         model.addAttribute("gdetail_center_img", gdetail_center_img);
         model.addAttribute("gdetail_detail_img", gdetail_detail_img);
+        //리뷰때문에 추가
+        log.info(relist.toString());
+        log.info("relist");
+        model.addAttribute("relist", relist);
+        model.addAttribute("regymName", gym.getGymName());
+        model.addAttribute("regymNo", gymNo);
+        model.addAttribute("review_avg", review_avg.getAverageRate());
         model.addAttribute("center", dir + "ticket_detail");
+        model.addAttribute("teacher", trainer);
+        log.info(trainer.toString());
+        log.info("trainer트레이너0000000000000000000000000000000000000000000000");
         return "index";
     }
 

@@ -27484,7 +27484,7 @@ i {
   transition: left 0.25s;
 }
 .em_toggle .btn-toggle.active {
-  background-color: var(--bg-green);
+  background-color: var(--bg-purple);
 }
 .em_toggle .btn-toggle.active > .handle {
   left: 15px;
@@ -27592,7 +27592,7 @@ i {
   height: 0;
 }
 .switch_toggle input:checked ~ .handle {
-  background-color: var(--bg-green);
+  background-color: var(--bg-purple);
 }
 .switch_toggle input:checked ~ .handle::before {
   -webkit-transform: translateX(14px);

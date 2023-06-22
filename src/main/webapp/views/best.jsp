@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
+    .nav .nav-item{
+        width: 120px;
+    }
 <%-- 베스트센터 이미지 : 규격에 꽉차게 함. --%>
     .image_bg {
         background-size: cover;
@@ -50,7 +53,7 @@
     display: inline-block;
   }
   .btn svg {
-    display: block;
+    /*display: block;*/
     pointer-events: none; /* SVG 영역은 클릭 이벤트를 가로채지 않도록 함 */
   }
   .btn .hover_ico {
@@ -65,10 +68,85 @@
 </style>
 
 <div id="wrapper">
-  <div id="content">
       <!--별도의 mainheader 구간  -->
-      <jsp:include page="/views/bestheader.jsp" />
+    <!-- Start main_haeder -->
+    <header class="main_haeder header-sticky multi_item header-white">
+        <div class="em_menu_sidebar">
+            <button type="button" class="btn btn_menuSidebar item-show" data-toggle="modal"
+                    data-target="#mdllSidebarMenu-background">
+                <i class="ri-menu-fill"></i>
+            </button>
+        </div>
+        <div class="title_page">
+                    <span class="page_name">
+                        헬쓱
+                    </span>
+        </div>
+        <div class="em_side_right">
+            <%--  나의 알림 아이콘  --%>
+            <a href="/notification" class="btn justify-content-center relative">
+                <svg class="ico color-secondary" id="Iconly_Two-tone_Notification" data-name="Iconly/Two-tone/Notification"
+                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <g id="Notification" transform="translate(3.5 2)">
+                        <path id="Path_425"
+                              d="M0,11.787v-.219A3.6,3.6,0,0,1,.6,9.75,4.87,4.87,0,0,0,1.8,7.436c0-.666,0-1.342.058-2.009C2.155,2.218,5.327,0,8.461,0h.078c3.134,0,6.306,2.218,6.617,5.427.058.666,0,1.342.049,2.009A4.955,4.955,0,0,0,16.4,9.759a3.506,3.506,0,0,1,.6,1.809v.209a3.566,3.566,0,0,1-.844,2.39A4.505,4.505,0,0,1,13.3,15.538a45.078,45.078,0,0,1-9.615,0A4.554,4.554,0,0,1,.835,14.167,3.6,3.6,0,0,1,0,11.787Z"
+                              transform="translate(0 0)" fill="none" stroke="#200e32" stroke-linecap="round"
+                              stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
+                        <path id="Path_421"
+                              d="M0,0A3.061,3.061,0,0,0,2.037,1.127,3.088,3.088,0,0,0,4.288.5,2.886,2.886,0,0,0,4.812,0"
+                              transform="translate(6.055 18.852)" fill="none" stroke="#200e32"
+                              stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+                              stroke-width="1.5" opacity="0.4" />
+                    </g>
+                </svg>
+                <svg class="hover_ico color-primary" id="Iconly_Two-tone_Notification" data-name="Iconly/Two-tone/Notification"
+                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <g id="Notification" transform="translate(3.5 2)">
+                        <path id="Path_425"
+                              d="M0,11.787v-.219A3.6,3.6,0,0,1,.6,9.75,4.87,4.87,0,0,0,1.8,7.436c0-.666,0-1.342.058-2.009C2.155,2.218,5.327,0,8.461,0h.078c3.134,0,6.306,2.218,6.617,5.427.058.666,0,1.342.049,2.009A4.955,4.955,0,0,0,16.4,9.759a3.506,3.506,0,0,1,.6,1.809v.209a3.566,3.566,0,0,1-.844,2.39A4.505,4.505,0,0,1,13.3,15.538a45.078,45.078,0,0,1-9.615,0A4.554,4.554,0,0,1,.835,14.167,3.6,3.6,0,0,1,0,11.787Z"
+                              transform="translate(0 0)" fill="none" stroke="#200e32" stroke-linecap="round"
+                              stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
+                        <path id="Path_421"
+                              d="M0,0A3.061,3.061,0,0,0,2.037,1.127,3.088,3.088,0,0,0,4.288.5,2.886,2.886,0,0,0,4.812,0"
+                              transform="translate(6.055 18.852)" fill="none" stroke="#200e32"
+                              stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+                              stroke-width="1.5" opacity="0.4" />
+                    </g>
+                </svg>
+                <span class="flashCircle"></span>
+            </a>
 
+        </div><!-- 우측상단 아이콘 모으는 영역 끝. -->
+
+    </header>
+    <!-- End.main_haeder -->
+    <section class="background_header gradient h-100">
+
+        <!-- Start input_SaerchDefault -->
+        <div class="padding-t-70 padding-l-20 padding-r-20" id="searchDefault">
+            <div class="input_SaerchDefault">
+            </div>
+        </div>
+        <!-- End. input_SaerchDefault -->
+
+        <!-- Start navListProducts -->
+        <div class="padding-l-50 padding-t-10">
+            <ul class="nav navListProducts with__lined navWhite">
+                <li class="nav-item">
+                    <a class="nav-link" href="/view/1">투데이</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/best">베스트</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href=/discount>회원맞춤</a>
+                </li>
+            </ul>
+        </div>
+        <!-- End. navListProducts -->
+
+    </section>
+    <!-- End.main_haeder -->
       <div class="banner_sliderFull margin-b-20">
           <!-- Swiper -->
           <div class="swiper-container em-swiperSliderFull">
@@ -228,7 +306,9 @@
 
                               <div class="itemRating">
                                   <span class="number">우수</span>
-                                  <span class="users">좋아요 수</span>
+                                  <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                      <path fill="#555" d="M13.6816069,1.68151414 C15.6886881,1.20225236 17.3492986,1.70793555 18.5305552,2.77637221 C19.5626391,3.70988338 20.1587415,5.33450059 19.9630126,7.16572033 C19.8161255,8.53998089 19.0697083,9.93491864 17.720706,11.386568 L10.4473397,18.3091773 C10.1789774,18.5645979 9.75131756,18.5634627 9.48437469,18.306621 L2.26602773,11.360285 C1.19796664,10.2267143 0.516216376,9.15006254 0.232531945,8.11775634 C-0.179041108,6.62007311 -0.0389102525,5.1069236 0.610402012,3.87469373 C1.38014048,2.41392548 2.91616709,1.54639939 5.14169869,1.54639939 C6.66436262,1.54639939 8.26181311,2.29873453 9.94732517,3.76705682 C11.0946237,2.70056091 12.3405404,2.00174132 13.6816069,1.68151414 Z M9.96986805,16.8832036 L16.7307562,10.4500428 C17.8683506,9.22426481 18.4802442,8.08073063 18.593038,7.02544401 C18.7443646,5.60964799 18.3027389,4.40604174 17.5956909,3.76652276 C16.7370508,2.98989 15.5402429,2.62544232 14.0080827,2.99129989 C12.7513412,3.29139148 11.5737369,4.01053975 10.4701027,5.16500603 C10.2073896,5.43981945 9.76565601,5.45085998 9.4889549,5.1895285 C7.85204028,3.64353785 6.39709722,2.89460061 5.14169869,2.89460061 C3.41950102,2.89460061 2.36199017,3.49186778 1.83462163,4.49267941 C1.34644218,5.41912009 1.23828402,6.58702475 1.56270689,7.76757505 C1.78126554,8.56289346 2.34931983,9.45999126 3.25514439,10.4225684 L9.96986805,16.8832036 Z"/>
+                                  </svg> <span class="users">　${gym.likecount} likes</span>
                               </div>
                               <h3>최신시설과 쾌적한 센터환경 유지로 헬쓱이용 회원 최고 만족도!</h3>
                               <p class="item_price">${gym.gymName}</p>
@@ -262,22 +342,33 @@
                                 <div id="collapseTwo-text" class="collapse" aria-labelledby="headingTwo-text"
                                      data-parent="#accordionExample5">
                                     <div class="em__pkLink">
-                                        <c:forEach var="gym" items="${allGym}">
+
                                             <ul class="nav__list with_border fullBorder mb-0">
                                                 <li class="border-0">
-                                                    <a href="#" class="item-link">
+
                                                         <div class="group">
-                                                            <span class="path__name">${gym.ticketName}</span>
-                                                                <%--                                                            <span class="path__name">${gym.ticketName}</span>--%>
+                                                            <span class="path__name">
+                                                                <!--간격용  -->
+                                                                <a href="#" class="item-link"></a>
+                                                                <a href="/ticket/detail?gymNo=${gym.gymNo}"
+                                                                style="color: gray; text-decoration: none; font-size: 16px; font-weight: bold;
+                                                                margin-left: 20px">${gym.gymName} ${gym.ticketName}</a>
+
+                                                                <span class="short__name"></span>
+                                                                <i class="tio-chevron_right -arrwo"></i>
+                                                                <!--간격용  -->
+                                                                <a href="#" class="item-link"></a>
+                                                            </span>
+                                                            <div class="group">
+
+                                                            </div>
+
                                                         </div>
-                                                        <div class="group">
-                                                            <span class="short__name"></span>
-                                                            <i class="tio-chevron_right -arrwo"></i>
-                                                        </div>
+
                                                     </a>
                                                 </li>
                                             </ul>
-                                        </c:forEach>
+
                                     </div>
                                 </div>
 
@@ -552,5 +643,5 @@
 
 
       </section>
-  </div></div><%--  끝.  --%>
+  </div><%--  끝.  --%>
 
