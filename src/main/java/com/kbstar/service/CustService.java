@@ -87,4 +87,7 @@ public class CustService implements KBService<String, Cust> {
     public void clearNoti(Cust cust) {
         mapper.clearNoti(cust);
     }
+    public void reUpdateNoti(Cust cust) {
+        mapper.reUpdateNoti(cust);
+    }
 }

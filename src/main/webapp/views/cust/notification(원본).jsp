@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<style>
-</style>
+
+<html>
+<head>
+    <title>main</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    </script>
+</head>
+
 <body>
 
 
@@ -13,6 +19,7 @@
       <div class="em_side_right">
         <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/">
           <i class="tio-chevron_left size-24 color-text"></i>
+          <span class="color-text size-14">Back</span>
         </a>
       </div>
       <div class="title_page">
@@ -96,17 +103,12 @@
 
 </div>
 <script>
-
-  <!-- 혜택알림 스위치 버튼 동작 & 마케팅상태를 1이었다 0으로, 다시 1로 변경 기능 -->
+  <!-- 혜택알림 스위치 버튼 동작기능 -->
   const toggleButton = document.getElementById('toggleTwo');
   toggleButton.addEventListener('click', function () {
-    const custNo = '${logincust.custNo}';
-    const marketingStatus = toggleButton.getAttribute('aria-pressed') === 'true' ? '0' : '1';
+    const custNo = '${logincust.custNo}'; // 사용자의 custNo 값
+    const marketingStatus = toggleButton.getAttribute('aria-pressed') === 'false' ? '1' : '0'; // 토글된 상태에 따라 marketingStatus 값을 결정
     updateMarketingStatus(custNo, marketingStatus);
-
-    // 변경된 부분: 스위치 버튼의 상태를 업데이트
-    toggleButton.setAttribute('aria-pressed', marketingStatus === '1' ? 'true' : 'false');
-    toggleButton.classList.toggle('active', marketingStatus === '1');
   });
 
   function updateMarketingStatus(custNo, marketingStatus) {
@@ -117,7 +119,9 @@
     xhr.open('GET', url + '?' + params, true);
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
-        console.log(xhr.responseText);
+        // 응답 처리 로직을 추가하세요
+        // 서버로부터 받은 응답에 따라 필요한 동작을 수행합니다.
+        console.log(xhr.responseText); // 예시: 응답 내용을 콘솔에 출력
       }
     };
     xhr.send();
