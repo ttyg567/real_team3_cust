@@ -20,16 +20,26 @@
         UPDATE cust SET custImgName = #{custImgName}
         WHERE custNo = #{custNo}
     </update>
-    <!-- 마케팅 최초동의 시 1이라는 상태로 입력시키기 : 인보 -->
+    <!-- 0이거나 null인 고객이 알림받기 버튼 클릭 시 상태를 1로 변경시키기 : 인보 -->
     <insert id="updateNoti" parameterType="cust">
         UPDATE cust
         SET marketingStatus = '1'
         WHERE custNo = #{custNo}
     </insert>
-    <!-- 마케팅 동의고객이 다시 버튼을 눌러 미동의로 변경하면 0으로 상태로 변경시키기 : 인보 -->
+    <!-- 상태가 1인 마케팅 동의고객이 다시 버튼을 눌러 미동의로 변경하면 9-거절로 상태로 변경시키기 : 인보 -->
     <update id="clearNoti" parameterType="cust">
         UPDATE cust
-        SET marketingStatus = '0'
+        SET marketingStatus = CASE
+                                  WHEN marketingStatus = '0' THEN '1'
+                                  WHEN marketingStatus = '1' THEN '0'
+                                  ELSE marketingStatus
+            END
+        WHERE custNo = #{custNo}
+    </update>
+    <!-- 다시 상태가 9인 고객이 마케팅동의 버튼 누르면 1-동의로 상태로 변경시키기 : 인보 -->
+    <update id="reUpdateNoti" parameterType="cust">
+        UPDATE cust
+        SET marketingStatus = '1'
         WHERE custNo = #{custNo}
     </update>
     <!-- insert -->

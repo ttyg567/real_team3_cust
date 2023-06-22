@@ -37,11 +37,28 @@ public class InboAjaxController {
     GymMachineService gymMachineService;
     @Autowired
     MyMachineService myMachineService;
+    @Autowired
+    CustService custService;
     String dir = "groupboard/";
 
+    @RequestMapping("/notificationimpl")
+    public String notificationimpl(Model model, Integer custNo,HttpSession session) throws Exception {
+        Cust cust = (Cust) session.getAttribute("logincust");
+        // cust 객체에는 form 데이터가 자동으로 바인딩되어 전달됩니다.
+        if (cust.getMarketingStatus() == null || cust.getMarketingStatus().equals("0")) {
+            custService.updateNoti(cust); // 최초 등록 시엔 마케팅 동의여부를 '1'로 인서트하기
+        }
+        // 재등록 시엔 마케팅 동의여부를 '0'으로 변경하고,
+        // '0'으로 변경한 고객이 다시 버튼 누르면 '1'로 또 바꿔주기
+        else if (cust.getMarketingStatus().equals("1")) {
+            custService.clearNoti(cust);
+        }
+        session.setAttribute("logincust", cust);
+        return "redirect:/discount/";
+    }
 
 
-    // 4-2-2. 센터 검색
+    // 4-2-2. 조인 만들기에서 센터 검색
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public Object search(@RequestParam("gymName") String gymName, Integer gymNo,Model model) {
 
@@ -68,7 +85,7 @@ public class InboAjaxController {
 
 
     }
-    // 4-2-3. 이용권 검색
+    // 4-2-3. 조인 만들기에서 이용권 검색
     @RequestMapping(value = "/ticketsearch", method = RequestMethod.GET)
     public Object ticketsearch(@RequestParam("ticketName") String ticketName, Integer ticketNo,Model model) {
 

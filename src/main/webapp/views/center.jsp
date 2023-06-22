@@ -2,6 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
+    .nav .nav-item{
+        width: 120px;
+    }
     <%-- 지도 꾸미기 2 --%>
     #map .map_wrap #menu_wrap {
         font-family : 'KBFGTextM'!important; /* 변경할 글꼴 지정 */
@@ -86,6 +89,9 @@
         text-align: center;
     }
     <%-- 운동 종목 : 아이콘 사진 크기 조정 --%>
+    .em__actions span{
+        font-weight: bold;
+    }
     .icon img{
         width: 30px;
         height: 30px;
@@ -119,7 +125,7 @@
         display: inline-block;
     }
     .btn svg {
-        display: block;
+        /*display: block;*/
         pointer-events: none; /* SVG 영역은 클릭 이벤트를 가로채지 않도록 함 */
     }
     .btn .hover_ico {
@@ -315,22 +321,86 @@
     }
 </style>
 
-
-
 <div id="wrapper">
-    <div id="content">
-        <!--별도의 mainheader 구간  -->
-        <jsp:include page="/views/mainheader.jsp" />
+    <!--별도의 mainheader 구간  -->
+    <!-- Start main_haeder -->
+    <header class="main_haeder header-sticky multi_item header-white">
+        <div class="em_menu_sidebar">
+            <button type="button" class="btn btn_menuSidebar item-show" data-toggle="modal"
+                    data-target="#mdllSidebarMenu-background">
+                <i class="ri-menu-fill"></i>
+            </button>
+        </div>
+        <div class="title_page">
+                    <span class="page_name">
+                        헬쓱
+                    </span>
+        </div>
+        <div class="em_side_right">
+            <%--  나의 알림 아이콘  --%>
+            <a href="/notification" class="btn justify-content-center relative">
+                <svg class="ico color-secondary" id="Iconly_Two-tone_Notification" data-name="Iconly/Two-tone/Notification"
+                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <g id="Notification" transform="translate(3.5 2)">
+                        <path id="Path_425"
+                              d="M0,11.787v-.219A3.6,3.6,0,0,1,.6,9.75,4.87,4.87,0,0,0,1.8,7.436c0-.666,0-1.342.058-2.009C2.155,2.218,5.327,0,8.461,0h.078c3.134,0,6.306,2.218,6.617,5.427.058.666,0,1.342.049,2.009A4.955,4.955,0,0,0,16.4,9.759a3.506,3.506,0,0,1,.6,1.809v.209a3.566,3.566,0,0,1-.844,2.39A4.505,4.505,0,0,1,13.3,15.538a45.078,45.078,0,0,1-9.615,0A4.554,4.554,0,0,1,.835,14.167,3.6,3.6,0,0,1,0,11.787Z"
+                              transform="translate(0 0)" fill="none" stroke="#200e32" stroke-linecap="round"
+                              stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
+                        <path id="Path_421"
+                              d="M0,0A3.061,3.061,0,0,0,2.037,1.127,3.088,3.088,0,0,0,4.288.5,2.886,2.886,0,0,0,4.812,0"
+                              transform="translate(6.055 18.852)" fill="none" stroke="#200e32"
+                              stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+                              stroke-width="1.5" opacity="0.4" />
+                    </g>
+                </svg>
+                <svg class="hover_ico color-primary" id="Iconly_Two-tone_Notification" data-name="Iconly/Two-tone/Notification"
+                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <g id="Notification" transform="translate(3.5 2)">
+                        <path id="Path_425"
+                              d="M0,11.787v-.219A3.6,3.6,0,0,1,.6,9.75,4.87,4.87,0,0,0,1.8,7.436c0-.666,0-1.342.058-2.009C2.155,2.218,5.327,0,8.461,0h.078c3.134,0,6.306,2.218,6.617,5.427.058.666,0,1.342.049,2.009A4.955,4.955,0,0,0,16.4,9.759a3.506,3.506,0,0,1,.6,1.809v.209a3.566,3.566,0,0,1-.844,2.39A4.505,4.505,0,0,1,13.3,15.538a45.078,45.078,0,0,1-9.615,0A4.554,4.554,0,0,1,.835,14.167,3.6,3.6,0,0,1,0,11.787Z"
+                              transform="translate(0 0)" fill="none" stroke="#200e32" stroke-linecap="round"
+                              stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
+                        <path id="Path_421"
+                              d="M0,0A3.061,3.061,0,0,0,2.037,1.127,3.088,3.088,0,0,0,4.288.5,2.886,2.886,0,0,0,4.812,0"
+                              transform="translate(6.055 18.852)" fill="none" stroke="#200e32"
+                              stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+                              stroke-width="1.5" opacity="0.4" />
+                    </g>
+                </svg>
+                <span class="flashCircle"></span>
+            </a>
+        </div><!-- 우측상단 아이콘 모으는 영역 끝. -->
+    </header>
+    <!-- End.main_haeder -->
+    <section class="background_header gradient h-100">
 
-        <section class="components_page paddingTab_header" style="padding-top: 0px">
+        <!-- Start input_SaerchDefault -->
+        <div class="padding-t-70 padding-l-20 padding-r-20" id="searchDefault">
+            <div class="input_SaerchDefault">
+            </div>
+        </div>
+        <!-- End. input_SaerchDefault -->
 
-            <div class="tab-content padding-0" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                     aria-labelledby="pills-home-tab">
-                    <!-- 첫번째 탭 . 내용넣는 구간 -->
-                    <!-- Start banner_swiper -->
-                    <div class="banner_swiper margin-b-30">
-                        <!-- Swiper -->
+        <!-- Start navListProducts -->
+        <div class="padding-l-50 padding-t-10">
+            <ul class="nav navListProducts with__lined navWhite">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/">투데이</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/best">베스트</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href=/discount>회원맞춤</a>
+                </li>
+            </ul>
+        </div>
+        <!-- End. navListProducts -->
+
+    </section>
+    <!-- End.main_haeder -->
+    <!-- 헤더 끝 -->
+                        <!-- 상단 배너 구간(3개) : Swiper -->
                         <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe margin-t-20">
                             <div class="item em_item"><!-- 1번 배너 -->
                                 <div class="em_img">
@@ -355,9 +425,8 @@
                             </div>
                         </div>
                         <br>
-                        <%--  카테고리 시작  --%>
+                        <%-- 운동 카테고리 : Swiper로 변경 예정 --%>
                         <section class="np__bkOperationsService padding-10">
-                            <%--<section class="banner_swiper bg-white np__ServicePackage padding-t-10 mt-0 padding-b-10">--%>
                             <div class="em__actions">
                                 <a href="/ticket/workout" class="btn">
                                     <div class="icon bg-blue bg-opacity-10">
@@ -409,11 +478,10 @@
                                     <span>수영</span>
                                 </a>
                             </div>
-                            <%--</section>--%>
-                        </section><!-- End. banner_swiper -->
+                        </section><!-- 운동 카테고리 끝 -->
                         <hr style="height: 20px; color: #EFECEC; border: none; border-top: 10px solid;">
 
-                        <!-- 카테고리 밑 혼잡도 안내 시작 -->
+                        <!-- 카카오 지도 / 운동센터 혼잡도 안내 -->
                         <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
                             <c:choose>
                                 <c:when test="${logincust == null}">
@@ -663,20 +731,11 @@
                                     </div>
                                 </c:otherwise>
                             </c:choose>
-
                         </section>
-                    </div>
+
                     <%--      </div>--%>
 
-        </section>
-
-    </div>
-</div>
-
-
-
-<%-- 기구 검색 필터 모달 1 --%>
-<!-- Modal Content -->
+<%-- 운동기구 검색하는 모달 1 --%>
 <div class="modal transition-bottom screenFull defaultModal emModal__filters fade" id="mdllFilter" tabindex="-1"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <form id="search_form" action="/selectExerciseType" method="get">
@@ -769,8 +828,8 @@
 
 
 </div>
-<%-- 기구 상세보기 모달 2 --%>
-<!-- Modal -->
+
+<%-- 운동기구 상세 보기 모달 2 --%>
 <c:forEach  var="obj" items="${gymAllMachine}" >
     <form name="machine_form" id="machine_form"  action="/addmymachine" method="get">
         <input type="hidden" name="custNo" value="${logincust.custNo}"/>
@@ -826,29 +885,12 @@
         </div>
     </form>
 </c:forEach>
+
+
 </div>
-
-</div>
-
-
 
 <script>
-    <%--   운동기구 search 기능     --%>
-    // let machine_search = {
-    //     init : function () {
-    //         $('#search_btn').click(function (){
-    //             machine_search.send();
-    //         });
-    //     },
-    //     send : function () {
-    //         $('#search_form').attr({
-    //             action: '/selectExerciseType', // main 컨트롤러에서 처리.
-    //             method: 'get'
-    //         });
-    //         $('#search_form').submit();
-    //     }
-    // }
-    // 마커를 담을 배열입니다
+    // 지도 마커를 담을 배열입니다
     var markers = [];
 
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div

@@ -17,7 +17,7 @@ import java.util.Map;
 @ToString
 public class Cust {
 
-    private int custNo; // 개인회원번호
+    private Integer custNo; // 개인회원번호
     private String custEmail; // 이메일 ㅇ
     private String custPwd; // 패스워드 ㅇ
     private String custName; // 이름(닉네임) ㅇ
@@ -49,7 +49,7 @@ public class Cust {
     // 마케팅 동의를 위해 추가
     private String marketingStatus; // 마케팅동의여부 1:동의, 0:미동의
 
-    public Cust(int custNo, String marketingStatus) {
+    public Cust(Integer custNo, String marketingStatus) {
         this.custNo = custNo;
         this.marketingStatus = marketingStatus;
     }
