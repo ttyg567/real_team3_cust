@@ -51,12 +51,16 @@ public class JinController {
     }
 
 
-    @RequestMapping("/paySuccess")
-    public String paySuccess(Model model , String ticket_pay_option){
-        model.addAttribute("center","paySuccess");
-        model.addAttribute("ticket_pay_option", ticket_pay_option);
-        return "index";
-    }
+//    @RequestMapping("/paySuccess")
+//    public String paySuccess(Model model , String ticket_pay_option){
+//        purchaseService.register(purchase);
+//
+//
+//
+//        model.addAttribute("center","paySuccess");
+//        model.addAttribute("ticket_pay_option", ticket_pay_option);
+//        return "index";
+//    }
     @RequestMapping("/payFailed")
     public String payFailed(Model model){
         model.addAttribute("center","payFailed");
@@ -91,16 +95,16 @@ public class JinController {
 
 
     // 결제하기 버튼 누를 때, 바로 DB에 저장되도록 작동(차후 실제 완료된 결제인지 검증하는 컬럼을 넣어줄 수 있으면..)
-    @RequestMapping("/purchaseimpl")
-    public String purchaseimpl(Model model, Purchase purchase) throws Exception {
-
-        log.info("---------------%%%%%%%%%%%%%테스트테스트----------------------------");
-        log.info(String.valueOf(purchase));
-
-        purchaseService.register(purchase);
-
-        return "index";
-    }
+//    @RequestMapping("/purchaseimpl")
+//    public String purchaseimpl(Model model, Purchase purchase) throws Exception {
+//
+//        log.info("---------------%%%%%%%%%%%%%테스트테스트----------------------------");
+//        log.info(String.valueOf(purchase));
+//
+//        purchaseService.register(purchase);
+//
+//        return "index";
+//    }
 //로그아웃
     @RequestMapping("/logoutimpl")
     public String logoutimpl(HttpSession session){

@@ -17,10 +17,13 @@
 
         <section class="padding-t-70 components_page padding-b-30">
             <c:choose>
-                <c:when test="${relist == null}">
+                <c:when test="${relist == null or relist == '[]'}">
+                    <!-- Start title -->
                     <div class="emTitle_co padding-20">
-                        <h2 class="size-16 weight-500 color-secondary mb-1">후기가 없습니다.</h2>
+                        <h2 class="size-16 weight-500 color-secondary mb-1">${regymName}</h2>
+                        <p class="size-12 color-text m-0">후기가 없습니다.</p>
                     </div>
+                    <!-- End. title -->
                 </c:when>
                 <c:otherwise>
                     <input type="hidden" id="gymNo" value="${regymNo}">
@@ -50,63 +53,6 @@
                                         </div>
                                         <div class="col-8">
                                             <div class="progress__rate">
-
-                                                    <%--                                                    <div class="item">--%>
-                                                    <%--                                                        <div class="progress">--%>
-                                                    <%--                                                            <div class="progress-bar" role="progressbar"--%>
-                                                    <%--                                                                 style="width: 70%"--%>
-                                                    <%--                                                                 aria-valuenow="70" aria-valuemin="0"--%>
-                                                    <%--                                                                 aria-valuemax="100">--%>
-                                                    <%--                                                            </div>--%>
-                                                    <%--                                                        </div>--%>
-                                                    <%--                                                        <span class="txt">5</span>--%>
-                                                    <%--                                                        <span class="circle"></span>--%>
-                                                    <%--                                                    </div>--%>
-                                                    <%--                                                    <div class="item">--%>
-                                                    <%--                                                        <div class="progress">--%>
-                                                    <%--                                                            <div class="progress-bar" role="progressbar"--%>
-                                                    <%--                                                                 style="width: 30%"--%>
-                                                    <%--                                                                 aria-valuenow="30" aria-valuemin="0"--%>
-                                                    <%--                                                                 aria-valuemax="100">--%>
-                                                    <%--                                                            </div>--%>
-                                                    <%--                                                        </div>--%>
-                                                    <%--                                                        <span class="txt">4</span>--%>
-                                                    <%--                                                        <span class="circle"></span>--%>
-                                                    <%--                                                    </div>--%>
-                                                    <%--                                                    <div class="item">--%>
-                                                    <%--                                                        <div class="progress">--%>
-                                                    <%--                                                            <div class="progress-bar" role="progressbar"--%>
-                                                    <%--                                                                 style="width: 8%"--%>
-                                                    <%--                                                                 aria-valuenow="8" aria-valuemin="0"--%>
-                                                    <%--                                                                 aria-valuemax="100">--%>
-                                                    <%--                                                            </div>--%>
-                                                    <%--                                                        </div>--%>
-                                                    <%--                                                        <span class="txt">3</span>--%>
-                                                    <%--                                                        <span class="circle"></span>--%>
-                                                    <%--                                                    </div>--%>
-                                                    <%--                                                    <div class="item">--%>
-                                                    <%--                                                        <div class="progress">--%>
-                                                    <%--                                                            <div class="progress-bar" role="progressbar"--%>
-                                                    <%--                                                                 style="width: 5%"--%>
-                                                    <%--                                                                 aria-valuenow="5" aria-valuemin="0"--%>
-                                                    <%--                                                                 aria-valuemax="100">--%>
-                                                    <%--                                                            </div>--%>
-                                                    <%--                                                        </div>--%>
-                                                    <%--                                                        <span class="txt">2</span>--%>
-                                                    <%--                                                        <span class="circle"></span>--%>
-                                                    <%--                                                    </div>--%>
-                                                    <%--                                                    <div class="item">--%>
-                                                    <%--                                                        <div class="progress">--%>
-                                                    <%--                                                            <div class="progress-bar" role="progressbar"--%>
-                                                    <%--                                                                 style="width:15%"--%>
-                                                    <%--                                                                 aria-valuenow="15" aria-valuemin="0"--%>
-                                                    <%--                                                                 aria-valuemax="100">--%>
-                                                    <%--                                                            </div>--%>
-                                                    <%--                                                        </div>--%>
-                                                    <%--                                                        <span class="txt">1</span>--%>
-                                                    <%--                                                        <span class="circle"></span>--%>
-                                                    <%--                                                    </div>--%>
-
                                             </div>
                                         </div>
                                     </div>

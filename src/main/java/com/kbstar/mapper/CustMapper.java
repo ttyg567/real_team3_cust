@@ -27,4 +27,5 @@ public interface CustMapper extends KBMapper<String, Cust> {
     // 인보 : 마케팅동의 상태 변경
     public void updateNoti(Cust cust);
     public void clearNoti(Cust cust);
+    public void reUpdateNoti(Cust cust);
 }

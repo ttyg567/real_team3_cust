@@ -13,13 +13,13 @@
 
     }
 
-    function pinsert(){
-        $('#insert_form').attr({
-            method : 'post',
-            action : '/purchaseimpl'
-        });
-        $('#insert_form').submit();
-    }
+    // function pinsert(){
+    //     $('#insert_form').attr({
+    //         method : 'post',
+    //         action : '/purchaseimpl'
+    //     });
+    //     $('#insert_form').submit();
+    // }
 
 
 
@@ -38,7 +38,7 @@
                 buyer_tel: "${logincust.custPhone}",
                 buyer_addr: "서울특별시 강남구 신사동",
                 buyer_postcode: "01181",
-                // m_redirect_url: "/paySuccess"
+                m_redirect_url: "/paySuccess"
                 },
               rsp => {
                 if (rsp.success) {
@@ -55,6 +55,19 @@
     function requestKPay() {
       var IMP = window.IMP; // 생략 가능
       IMP.init("imp43288400"); // 예: imp00000000
+
+        var ticketNo = document.getElementById('ticketNo').value;
+        var gymNo = document.getElementById('gymNo').value;
+        var sportsType = document.getElementById('sportsType').value;
+        var sportsClasstype = document.getElementById('sportsClasstype').value;
+        var ticketType = document.getElementById('ticketType').value;
+        var ticketMonth = document.getElementById('ticketMonth').value;
+        var ticketNumber = document.getElementById('ticketNumber').value;
+        var ticketJoin = document.getElementById('ticketJoin').value;
+        var purchasePrice = document.getElementById('purchasePrice').value;
+        var custNo = document.getElementById('custNo').value;
+
+
     //IMP.request_pay(param, callback) 결제창 호출
       IMP.request_pay({
                 pg: "kakaopay",
@@ -65,9 +78,9 @@
                 buyer_email: "${logincust.custEmail}",
                 buyer_name: "${logincust.custName}",
                 buyer_tel: "${logincust.custPhone}",
-                buyer_addr: "서울특별시 강남구 신사동",
-                buyer_postcode: "01181",
-                // m_redirect_url: "/paySuccess"
+                buyer_addr: "${logincust.custSido} ${logincust.custSigungu}",
+                buyer_postcode: "12345",
+                m_redirect_url: "/paySuccess"
               },
               rsp => {
                 if (rsp.success) {
