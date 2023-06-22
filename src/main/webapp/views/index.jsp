@@ -445,7 +445,7 @@ np_balanceDefault {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/groupboard/my_applyjoin?custNo=${logincust.custNo}">
+                            <a class="nav-link" href="/coupon/my_coupon?custNo=${logincust.custNo}">
                                 <div class="">
                                     <div class="icon_current">
                                     <?xml version="1.0" encoding="iso-8859-1"?>

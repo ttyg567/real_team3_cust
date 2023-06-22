@@ -35,18 +35,24 @@ public class ReviewController {
 
         List<Review> relist = null;
         Gym gym = null;
-        Review review_avg = null;
+        float review_avg = 0;
+        String regymName ="";
 
-
-        relist = reviewService.getGymreview(gymNo);
         gym = gymService.get(gymNo);
-        review_avg = reviewService.getAvgrate(gymNo);
+        regymName = gym.getGymName();
 
+        model.addAttribute("regymNo", gymNo);
+        model.addAttribute("regymName", regymName);
+
+        try {
+            relist = reviewService.getGymreview(gymNo);
+            review_avg = reviewService.getAvgrate(gymNo).getAverageRate();
+        } catch (Exception e){
+
+        }
 
         model.addAttribute("relist", relist);
-        model.addAttribute("regymName", gym.getGymName());
-        model.addAttribute("regymNo", gymNo);
-        model.addAttribute("review_avg", review_avg.getAverageRate());
+        model.addAttribute("review_avg", review_avg);
 
         model.addAttribute("center", dir + "list");
         return "index";
