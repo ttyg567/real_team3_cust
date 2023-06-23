@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
+    <%-- 투데이/베스트/회원맞춤 너비   --%>
     .nav .nav-item{
         width: 120px;
     }
@@ -75,14 +76,7 @@
     top: 0;
     z-index: 100;
   }
-  /*.em_modal {*/
-  /*    position: fixed;*/
-  /*    z-index: 9999; !* 다른 요소들보다 큰 값으로 설정 *!*/
-  /*    !* 추가적인 스타일 및 내용 설정 *!*/
-  /*}*/
-  .btn {
-    /*display: inline-block;*/
-  }
+  /* 상단 헤더 아이콘 */
   .btn svg {
     /*display: block;*/
     pointer-events: none; /* SVG 영역은 클릭 이벤트를 가로채지 않도록 함 */
@@ -159,18 +153,30 @@
         </div>
         <!-- End. input_SaerchDefault -->
 
-        <!-- Start navListProducts -->
+        <!-- 홈에서 3개의 댑스(미로그인은 2개만 보임) : Start navListProducts -->
         <div class="padding-l-50 padding-t-10">
             <ul class="nav navListProducts with__lined navWhite">
-                <li class="nav-item">
-                    <a class="nav-link" href="/view/1">투데이</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/best">베스트</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href=/discount>회원맞춤</a>
-                </li>
+                <c:choose>
+                    <c:when test="${logincust == null}">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/">투데이</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/best">베스트</a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/">투데이</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/best">베스트</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href=/discount>회원맞춤</a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
             </ul>
         </div>
         <!-- End. navListProducts -->
@@ -363,8 +369,6 @@
                                 <a data-toggle="modal"
                                    data-target="#mdllJobDetails${obj.groupboardNo}" class="image_product text-decoration-none">
                                     <div class="join_image_bg" style="background-image: url('/assets/img/${obj.groupboardImgname}');"></div>
-<%--                                  <img src="/assets/img/${obj.groupboardImgname}" alt=""--%>
-<%--                                  style="width: 250px; height: 280px">--%>
                                 </a>
 
                                 <div class="item_discount"><fmt:formatNumber value="${obj.ticketDiscount}"/>%</div>
@@ -430,7 +434,8 @@
                 </p><br>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn w-100 bg-primary m-0 color-white h-52 d-flex align-items-center rounded-10 justify-content-center">
+                <button type="submit" id="good_btn"
+                        class="btn w-100 bg-primary m-0 color-white h-52 d-flex align-items-center rounded-10 justify-content-center">
                     좋아요</button>
             </div>
         </div>
@@ -439,3 +444,10 @@
 </form>
 
 </div>
+
+<%--<script type="text/javascript">--%>
+<%--        $('#good_btn').on('click', function(){--%>
+<%--        toastr.success('2023.06.23 Push알림 수신 동의 완료');--%>
+
+<%--    });--%>
+<%--</script>--%>

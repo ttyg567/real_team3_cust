@@ -234,7 +234,7 @@
                                                 stroke-width="1.5" opacity="0.4"/>
                                     </g>
                                 </svg>
-                                <span style="margin-left: 2vw; color: grey">${gdetail.gymAddress1}</span>
+                                <span style="margin-left: 2vw; ">${gdetail.gymAddress1}</span>
                                 <br>
                                 <svg id="Iconly_Two-tone_Calendar" data-name="Iconly/Two-tone/Calendar"
                                      xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 18 19.579">
@@ -348,7 +348,7 @@
                                         <span class="bottom">
                                             <span class="label"></span>
                                             <span class="price" style="margin-right: 3vw; color: purple">
-                                                <fmt:formatNumber value="${ticket.ticketCost}" type="number" pattern="#,##0 원" />
+                                                <fmt:formatNumber value="${ticket.ticketPrice}" type="number" pattern="#,##0원" />
                                             </span>
                                         </span>
                                         <button type="button" class="itemSave" data-like-type="G" class="btn-like gray x16" value="${ticket.ticketNo}"></button>
@@ -365,18 +365,18 @@
                             <div class="padding-t-100">
                                 <input type="hidden" name="gymName" value="${gdetail.gymName}">
                                 <input type="hidden" name="gymNo" id="gymNo1" value="${gdetail.gymNo}">
-                                <select name="ticket_pay_option" id="ticket_pay_option" style="width: 100%;  position: fixed;  z-index:9999; bottom:120px;  display: inline-block; padding: 10px; font-size: 16px; border-radius: 4px; background-color: #F2EFFB;  border: none; cursor: pointer; outline: none;">
+                                <select name="ticket_pay_option" id="ticket_pay_option" style="width: 90%;  position: fixed;  z-index:9999; bottom:120px;  display: inline-block; padding: 10px; font-size: 16px; border-radius: 4px; background-color: #F2EFFB;  border: none; cursor: pointer; outline: none;">
                                     <option selected id="unselected" class="unselected">구매하실 이용권을 선택해주세요.</option>
                                     <c:forEach var="ticket" items="${tickets}">
                                         <c:choose>
                                             <c:when test="${ticket.ticketType == '1'}">
-                                                <option name="ticket_pay_option" class="ticket_pay_option" value="기간권-${ticket.ticketMonth}개월-${ticket.ticketCost}원-${ticket.ticketNo}">
-                                                    <p>기간권</p> ${ticket.ticketMonth}개월 <fmt:formatNumber value="${ticket.ticketCost}" type="number" pattern="#,##0 원" />
+                                                <option name="ticket_pay_option" class="ticket_pay_option" value="기간권-${ticket.ticketMonth}개월-${ticket.ticketPrice}원-${ticket.ticketNo}">
+                                                    <p>기간권</p> ${ticket.ticketMonth}개월 <fmt:formatNumber value="${ticket.ticketPrice}" type="number" pattern="#,##0원" />
                                                 </option>
                                             </c:when>
                                             <c:when test="${ticket.ticketType == '2'}">
-                                                <option name="ticket_pay_option" class="ticket_pay_option" value="횟수권-${ticket.ticketNumber}회-${ticket.ticketCost}원-${ticket.ticketNo}">
-                                                    <p>횟수권</p> ${ticket.ticketNumber}회 <fmt:formatNumber value="${ticket.ticketCost}" type="number" pattern="#,##0 원" />
+                                                <option name="ticket_pay_option" class="ticket_pay_option" value="횟수권-${ticket.ticketNumber}회-${ticket.ticketPrice}원-${ticket.ticketNo}">
+                                                    <p>횟수권</p> ${ticket.ticketNumber}회 <fmt:formatNumber value="${ticket.ticketPrice}" type="number" pattern="#,##0원" />
                                                 </option>
                                             </c:when>
                                         </c:choose>
@@ -390,7 +390,7 @@
         </div>
         <div class="padding-t-100">
             <div class="em_footerinner" style="margin-bottom: 50px">
-                <div class="emfo_button __withIcon">
+                <div class="emfo_button __withIcon" >
                     <button type="button" class="itemSave" id="itemSave">
                         <div class="ico icon_current">
                             <svg id="Iconly_Two-tone_Heart" data-name="Iconly/Two-tone/Heart" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
@@ -402,12 +402,14 @@
                         </div>
                         <span class="textCart color-secondary d-inline-block">Save</span>
                     </button>
-                    <button type="button" id="ticket_pay_btn" class="button" style="width: 130%; margin-left: 5%; text-align: center; display: flex; justify-content: center; align-items: center;">
+                    <button type="button" id="ticket_pay_btn" class="button"
+                            style="width: 160%; margin-left: 5%; text-align: center;
+                            display: flex; justify-content: center; align-items: center;">
                         결제하기
                     </button>
-                </div>
             </div>
         </div>
+            </div>
         <!-- End. comments -->
         </section>
             </div>
@@ -517,7 +519,8 @@
                                     <c:forEach var="obj" items="${relist}">
                                         <div class="itemUser">
                                             <div class="media">
-                                                <img class="x_img" src="" alt="프로필사진">
+                                                <!-- 후기란에 고객 이미지 경로 없어서 추가 . uimg -->
+                                                <img class="x_img" src="/uimg/${obj.custImgName}" alt="프로필사진">
                                                 <div class="media-body">
                                                     <div class="txt_details">
                                                         <h4 class="username">${obj.custName}

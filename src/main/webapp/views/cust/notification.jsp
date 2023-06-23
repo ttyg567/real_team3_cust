@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
+
 </style>
 <body>
 
@@ -96,7 +97,6 @@
 
 </div>
 <script>
-
   <!-- 혜택알림 스위치 버튼 동작 & 마케팅상태를 1이었다 0으로, 다시 1로 변경 기능 -->
   const toggleButton = document.getElementById('toggleTwo');
   toggleButton.addEventListener('click', function () {
@@ -107,6 +107,12 @@
     // 변경된 부분: 스위치 버튼의 상태를 업데이트
     toggleButton.setAttribute('aria-pressed', marketingStatus === '1' ? 'true' : 'false');
     toggleButton.classList.toggle('active', marketingStatus === '1');
+
+     // 스위치 버튼 작동 시 알럿창
+      toastr.options.positionClass = "toast-top-full-width";
+      toastr.options.timeOut = 3000;
+      toastr.success('헬쓱 Push알림 상태 변경 완료(2023.06.23)', {timeOut: 3000});
+
   });
 
   function updateMarketingStatus(custNo, marketingStatus) {

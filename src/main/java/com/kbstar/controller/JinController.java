@@ -1,10 +1,8 @@
 package com.kbstar.controller;
 
-import com.kbstar.dto.Cust;
-import com.kbstar.dto.Gym;
-import com.kbstar.dto.Purchase;
-import com.kbstar.dto.Ticket;
+import com.kbstar.dto.*;
 import com.kbstar.service.GymService;
+import com.kbstar.service.NotificationService;
 import com.kbstar.service.PurchaseService;
 import com.kbstar.service.TicketService;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.net.URLDecoder;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -33,15 +32,23 @@ public class JinController {
     @Autowired
     GymService gymService;
 
+    @Autowired
+    NotificationService notificationService;
+
     @RequestMapping("/ticket")
     public String main(Model model){
         model.addAttribute("center","ticket");
         return "index";
     }
 
-    // 알림함
+    // 나의 알림함
     @RequestMapping("/notification")
-    public String notification(Model model){
+    public String notification(Model model, HttpSession session) throws Exception {
+        Cust cust = (Cust) session.getAttribute("logincust");
+        List<Notification> list = null;
+        list = notificationService.getMyNoti(cust.getCustNo()); // 로그인고객의 알림내역 가져오기.
+
+        model.addAttribute("myNoti",list);
         model.addAttribute("center","notification");
         return "index";
     }

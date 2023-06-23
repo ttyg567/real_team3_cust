@@ -30,18 +30,33 @@
         <header class="main_haeder header-sticky multi_item">
             <div class="em_side_right">
                 <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/">
-                    <i class="tio-chevron_left size-24 color-text"></i>
+                    <i class="tio-chevron_left size-24 color-black"></i>
                 </a>
             </div>
             <div class="title_page">
                     <span class="page_name">
-                        헬쓱
+                        운동 이용권
                     </span>
             </div>
             <div class="em_side_right">
-                <button type="button" class="btn btn_meunSearch" id="saerch-On-header">
-                    <i class="ri-search-2-line"></i>
-                </button>
+                <a href="/notification" class="btn justify-content-center relative">
+                    <svg class="color-secondary" id="Iconly_Two-tone_Notification"
+                         data-name="Iconly/Two-tone/Notification" xmlns="http://www.w3.org/2000/svg" width="24"
+                         height="24" viewBox="0 0 24 24">
+                        <g id="Notification" transform="translate(3.5 2)">
+                            <path id="Path_425"
+                                  d="M0,11.787v-.219A3.6,3.6,0,0,1,.6,9.75,4.87,4.87,0,0,0,1.8,7.436c0-.666,0-1.342.058-2.009C2.155,2.218,5.327,0,8.461,0h.078c3.134,0,6.306,2.218,6.617,5.427.058.666,0,1.342.049,2.009A4.955,4.955,0,0,0,16.4,9.759a3.506,3.506,0,0,1,.6,1.809v.209a3.566,3.566,0,0,1-.844,2.39A4.505,4.505,0,0,1,13.3,15.538a45.078,45.078,0,0,1-9.615,0A4.554,4.554,0,0,1,.835,14.167,3.6,3.6,0,0,1,0,11.787Z"
+                                  transform="translate(0 0)" fill="none" stroke="#200e32" stroke-linecap="round"
+                                  stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
+                            <path id="Path_421"
+                                  d="M0,0A3.061,3.061,0,0,0,2.037,1.127,3.088,3.088,0,0,0,4.288.5,2.886,2.886,0,0,0,4.812,0"
+                                  transform="translate(6.055 18.852)" fill="none" stroke="#200e32"
+                                  stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+                                  stroke-width="1.5" opacity="0.4" />
+                        </g>
+                    </svg>
+                    <span class="flashCircle"></span>
+                </a>
             </div>
         </header>
         <!-- End.main_haeder -->
@@ -92,7 +107,7 @@
 
                             <div class="media-body">
                                 <div class="txt">
-                                    <h2>${obj.gymName}</h2>
+                                    <h2 style="margin-bottom: -10px">${obj.gymName}</h2>
                                     <div class="info_bottom">
                                         <div class="time">
                                             <div class="icon">
@@ -116,41 +131,32 @@
                                                     </g>
                                                 </svg>
                                             </div>
-                                            <span>${obj.gymAddress1}</span>
+
+                                            <span style="color: black">${obj.gymAddress1}</span>
                                         </div>
+                                    </div>
                                           <div class="view">
                                             <div class="icon">
-                                                <svg id="Iconly_Curved_Show" data-name="Iconly/Curved/Show"
-                                                     xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                                     viewBox="0 0 15 15">
-                                                    <g id="Show" transform="translate(1.719 2.969)">
-                                                        <path id="Stroke_1" data-name="Stroke 1"
-                                                              d="M3.952,1.976A1.976,1.976,0,1,1,1.976,0,1.977,1.977,0,0,1,3.952,1.976Z"
-                                                              transform="translate(3.806 2.588)" fill="none"
-                                                              stroke="#cbcdd8" stroke-linecap="round"
-                                                              stroke-linejoin="round" stroke-miterlimit="10"
-                                                              stroke-width="1.5" />
-                                                        <path id="Stroke_3" data-name="Stroke 3"
-                                                              d="M0,4.564c0,2.05,2.589,4.564,5.782,4.564s5.782-2.512,5.782-4.564S8.976,0,5.782,0,0,2.514,0,4.564Z"
-                                                              fill="none" stroke="#cbcdd8" stroke-linecap="round"
-                                                              stroke-linejoin="round" stroke-miterlimit="10"
-                                                              stroke-width="1.5" />
+                                                <svg id="Iconly_Two-tone_Heart" data-name="Iconly/Two-tone/Heart" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                                    <g id="Heart" transform="translate(1.667 2.5)">
+                                                        <path id="Path_33961" d="M8.124,14.878a30.408,30.408,0,0,1-5.282-3.907A9.935,9.935,0,0,1,.327,7.163,5.229,5.229,0,0,1,3.571.24,5.469,5.469,0,0,1,8.33,1h0A5.477,5.477,0,0,1,13.089.24,5.232,5.232,0,0,1,16.34,7.163a9.935,9.935,0,0,1-2.514,3.808,30.408,30.408,0,0,1-5.282,3.907L8.338,15Z" transform="translate(0 0)" fill="none" stroke="#292e34" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+                                                        <path id="Path_33964" d="M0,0A2.345,2.345,0,0,1,1.681,2.018" transform="translate(11.613 3.378)" fill="none" stroke="#292e34" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" opacity="0.4"/>
                                                     </g>
                                                 </svg>
                                             </div>
-                                            <span>${obj.likecount} likes </span>
+                                            <span>${obj.likecount}명이 관심있는 곳</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+
                     </a>
                 </li>
             </ul>
             </c:forEach>
         </section>
     </div>
-
+</div>
 
     <!-- Start searchMenu__hdr -->
     <section class="searchMenu__hdr">

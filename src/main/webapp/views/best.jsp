@@ -142,18 +142,30 @@
         </div>
         <!-- End. input_SaerchDefault -->
 
-        <!-- Start navListProducts -->
+        <!-- 홈에서 3개의 댑스(미로그인은 2개만 보임) : Start navListProducts -->
         <div class="padding-l-50 padding-t-10">
             <ul class="nav navListProducts with__lined navWhite">
-                <li class="nav-item">
-                    <a class="nav-link" href="/view/1">투데이</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/best">베스트</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href=/discount>회원맞춤</a>
-                </li>
+                <c:choose>
+                    <c:when test="${logincust == null}">
+                        <li class="nav-item">
+                            <a class="nav-link " href="/">투데이</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/best">베스트</a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/">투데이</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/best">베스트</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=/discount>회원맞춤</a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
             </ul>
         </div>
         <!-- End. navListProducts -->

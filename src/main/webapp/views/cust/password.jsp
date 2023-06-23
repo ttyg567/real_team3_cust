@@ -35,7 +35,7 @@
                 <div class="margin-b-30">
                     <div class="form-group input-lined lined__iconed">
                         <div class="input_group">
-                            <input type="password" name="current_password" class="form-control" placeholder="enter current password" required="">
+                            <input type="password" name="current_password" class="form-control" placeholder="기존 비밀번호를 입력해주세요" required="">
                             <div class="icon">
                                 <svg id="Iconly_Curved_Password" data-name="Iconly/Curved/Password"
                                      xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
@@ -69,7 +69,7 @@
                 <div class="margin-b-30">
                     <div class="form-group input-lined lined__iconed" id="show_hide_password">
                         <div class="input_group">
-                            <input type="password" name="new_password" id="pass" class="form-control" placeholder="enter new password" required="">
+                            <input type="password" name="new_password" id="pass" class="form-control" placeholder="새로운 비밀번호를 입력해주세요" required="">
                             <div class="icon">
                                 <svg id="Iconly_Curved_Password" data-name="Iconly/Curved/Password"
                                      xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
@@ -105,7 +105,7 @@
                 <div class="margin-b-30">
                     <div class="form-group input-lined lined__iconed">
                         <div class="input_group">
-                            <input type="password" name="new_password2" class="form-control" placeholder="confirm password" required="">
+                            <input type="password" name="new_password2" class="form-control" placeholder="새로운 비밀번호를 한번 더 입력해주세요" required="">
                             <div class="icon">
                                 <svg id="Iconly_Curved_Password" data-name="Iconly/Curved/Password"
                                      xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
@@ -145,7 +145,7 @@
             <div class="env-pb">
                 <button class="btn bg-primary rounded-pill btn__default" id="password_btn"
                 style="margin-bottom: 50px">
-                    <span class="color-white">Save Changes</span>
+                    <span class="color-white">비밀번호 변경하기</span>
                     <div class="icon rounded-circle">
                         <i class="tio-chevron_right"></i>
                     </div>

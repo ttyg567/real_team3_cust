@@ -78,7 +78,7 @@
         <!-- Start main_haeder -->
         <header class="main_haeder header-sticky multi_item">
             <div class="em_side_right">
-                <a class="rounded-circle d-flex align-items-center text-decoration-none" href="app-pages.html">
+                <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/">
                     <i class="tio-chevron_left size-24 color-text"></i>
                     <span class="color-text size-14">Back</span>
                 </a>
@@ -104,7 +104,7 @@
             <div class="em__body" style="margin-top: 0">
                 <form action="">
                     <input type=button; class="btn btn-outline-secondary" value="카메라 켜기" onclick="pic.getVideo();"
-                           style="width: 30%; margin-bottom: 10px; "></button>
+                           style="width: 38%; margin-bottom: 10px; "></button>
                     <div class="verification__Code" style="display: flex; justify-content: center;">
                         <video  id="myVideo" width="200" height="200" style="border: 1px solid mediumpurple; margin-bottom: 30px"></video><br>
                     </div>

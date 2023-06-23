@@ -10,12 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -40,7 +38,6 @@ public class InboAjaxController {
     @Autowired
     CustService custService;
     String dir = "groupboard/";
-
     @RequestMapping("/notificationimpl")
     public String notificationimpl(Model model, Integer custNo,HttpSession session) throws Exception {
         Cust cust = (Cust) session.getAttribute("logincust");
@@ -56,6 +53,8 @@ public class InboAjaxController {
         session.setAttribute("logincust", cust);
         return "redirect:/discount/";
     }
+
+
 
 
     // 4-2-2. 조인 만들기에서 센터 검색
