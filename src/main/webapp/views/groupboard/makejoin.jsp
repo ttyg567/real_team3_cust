@@ -277,16 +277,16 @@ let center2 = {
 <!-- Start main_haeder -->
 <header class="main_haeder header-sticky multi_item">
     <div class="em_side_right">
-        <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/groupboard">
-            <i class="tio-chevron_left size-24 color-secondary"></i>
-<%--            <span class="color-text size-14">Back</span>--%>
+        <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/">
+            <i class="tio-chevron_left size-24 color-black"></i>
         </a>
     </div>
     <div class="title_page">
                     <span class="page_name">
-                        <!-- title -->
+                        조인 만들기
                     </span>
     </div>
+
 </header>
 <!-- End.main_haeder -->
 
@@ -295,8 +295,7 @@ let center2 = {
         <div class="brand mb-3">
             <img src="/uimg/logo.jpg" alt="">
         </div>
-        <h1>조인 만들기</h1>
-        <p class="size-11 color-text">헬쓱 회원들과 조인으로 같이 할인받고 <br>운동의 즐거움은 두 배로 누릴 거에요!</p>
+        <p class="size-12 color-text">이용권 구매할 인원을 모아서 동시할인받고 <br>운동의 즐거움은 두 배로 누려보세요!</p>
     </div>
     <div class="em__body">
         <!-- form 태그 시작.  안에 입력!  -->

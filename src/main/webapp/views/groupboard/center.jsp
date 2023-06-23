@@ -90,14 +90,10 @@
             <%--            <span class="color-text size-14">Back</span>--%>
         </a>
     </div>
-    <div class="em_brand">
-        <div class="title_welcome">
-            <%--        <a href="/groupboard">--%>
-            <span class="color-secondary size-16 weight-500">
-                           조인헬쓱
-                        </span>
-            <%--        </a>--%>
-        </div>
+    <div class="title_page">
+                    <span class="page_name">
+                        조인헬쓱
+                    </span>
     </div>
     <div class="em_side_right" >
         <%--      </a>--%>
