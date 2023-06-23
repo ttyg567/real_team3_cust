@@ -4,6 +4,7 @@ import com.kbstar.dto.*;
 import com.kbstar.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,13 @@ import java.util.List;
 @Slf4j
 @Controller
 public class MainController {
+
+    @Value("${adminserver}")
+    String adminserver;
+
+    @Value("${serviceserver}")
+    String serviceserver;
+
     @Autowired
     GymService gymService;
     @Autowired
@@ -67,6 +75,8 @@ public class MainController {
             model.addAttribute("myMachine", list3); // 즐겨찾기된 기구들 보여주기
         }
 
+        model.addAttribute("adminserver", adminserver);
+        model.addAttribute("serviceserver", serviceserver);
         model.addAttribute("center","center");
         return "index";
     }
