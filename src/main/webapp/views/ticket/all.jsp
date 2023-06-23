@@ -31,7 +31,6 @@
             <div class="em_side_right">
                 <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/">
                     <i class="tio-chevron_left size-24 color-text"></i>
-                    <span class="color-text size-14">Back</span>
                 </a>
             </div>
             <div class="title_page">
@@ -119,7 +118,7 @@
                                             </div>
                                             <span>${obj.gymAddress1}</span>
                                         </div>
-                                        <div class="view">
+                                          <div class="view">
                                             <div class="icon">
                                                 <svg id="Iconly_Curved_Show" data-name="Iconly/Curved/Show"
                                                      xmlns="http://www.w3.org/2000/svg" width="15" height="15"
@@ -139,7 +138,7 @@
                                                     </g>
                                                 </svg>
                                             </div>
-                                            <span>좋아요 ${obj.likecount}개 </span>
+                                            <span>${obj.likecount} likes </span>
                                         </div>
                                     </div>
                                 </div>

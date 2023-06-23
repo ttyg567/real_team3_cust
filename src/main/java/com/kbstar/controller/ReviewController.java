@@ -30,33 +30,27 @@ public class ReviewController {
     @Autowired
     GymService gymService;
 
-    @RequestMapping("/list")
-    public String list(Model model, Integer gymNo) throws Exception {
-
-        List<Review> relist = null;
-        Gym gym = null;
-        float review_avg = 0;
-        String regymName ="";
-
-        gym = gymService.get(gymNo);
-        regymName = gym.getGymName();
-
-        model.addAttribute("regymNo", gymNo);
-        model.addAttribute("regymName", regymName);
-
-        try {
-            relist = reviewService.getGymreview(gymNo);
-            review_avg = reviewService.getAvgrate(gymNo).getAverageRate();
-        } catch (Exception e){
-
-        }
-
-        model.addAttribute("relist", relist);
-        model.addAttribute("review_avg", review_avg);
-
-        model.addAttribute("center", dir + "list");
-        return "index";
-    }
+//    @RequestMapping("/list")
+//    public String list(Model model, Integer gymNo) throws Exception {
+//
+//        List<Review> relist = null;
+//        Gym gym = null;
+//        Review review_avg = null;
+//
+//
+//        relist = reviewService.getGymreview(gymNo);
+//        gym = gymService.get(gymNo);
+//        review_avg = reviewService.getAvgrate(gymNo);
+//
+//
+//        model.addAttribute("relist", relist);
+//        model.addAttribute("regymName", gym.getGymName());
+//        model.addAttribute("regymNo", gymNo);
+//        model.addAttribute("review_avg", review_avg.getAverageRate());
+//
+//        model.addAttribute("center", dir + "list");
+//        return "index";
+//    }
 
     @RequestMapping("/add")
     @ResponseBody

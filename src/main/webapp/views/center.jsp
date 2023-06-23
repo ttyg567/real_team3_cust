@@ -2,10 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
+    *{
+        font-family : 'KBFGTextM';!important;
+    }
     .nav .nav-item{
         width: 120px;
     }
     <%-- 지도 꾸미기 2 --%>
+    #menu_wrap.animate-bg {
+        background-position: -100% 0;
+        transition: background-position 1s;
+    }
     #map .map_wrap #menu_wrap {
         font-family : 'KBFGTextM'!important; /* 변경할 글꼴 지정 */
     }
@@ -33,6 +40,11 @@
         background-color: #fff;
         opacity: 0.9;
         z-index: 1;
+    /*    */
+        position: fixed;
+        top: 0;
+        left: -100%;
+        transition: left 0.5s ease;
     }
 
     .option {
@@ -75,6 +87,7 @@
         padding: 0;
         margin: 0;
         overflow-y: scroll;
+
     }
 
     #placesList li {
@@ -479,7 +492,7 @@
                                 </a>
                             </div>
                         </section><!-- 운동 카테고리 끝 -->
-                        <hr style="height: 20px; color: #EFECEC; border: none; border-top: 10px solid;">
+                        <hr style="height: 20px; color: #f7edfa; border: none; border-top: 10px solid;">
 
                         <!-- 카카오 지도 / 운동센터 혼잡도 안내 -->
                         <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
@@ -610,21 +623,32 @@
                                             </div>
                                                 <%-- 센터가 보유한 운동기구 나열 --%>
                                             <p class="size-14 color-black m-0 pt-1" style="font-weight: bold; padding-bottom: 10px">이용이 가능한 운동기구</p>
-                                                <%-- 검색 버튼 --%>
-                                            <a href="/getmymachine">
+                                            <%-- 검색 버튼 --%>
+                                            <div class="d-flex justify-content-between">
+                                            <div class="d-flex justify-content-start">
+                                            <a href="/">
                                                 <button type="button" class="btn btn-outline-secondary"
-                                                        style="border-radius: 15px; font-size: 8px;">My기구
-                                                </button></a>
+                                                        style="border-radius: 15px; font-size: 8px; width: 45px; height: 33px; margin-right: 5px;">전체
+                                                </button>
+                                            </a>
                                             <button type="button" class="btn btn-outline-secondary"
                                                     data-toggle="modal"
                                                     data-target="#mdllFilter"
-                                                    style="border-radius: 15px; font-size: 8px;">시간대별 <i class="tio-chevron_down -arrwo"></i>
+                                                    style="border-radius: 15px; font-size: 8px; margin-right: 5px;">시간대별 <i class="tio-chevron_down -arrwo"></i>
                                             </button>
                                             <button type="button" class="btn btn-outline-secondary"
                                                     data-toggle="modal"
                                                     data-target="#mdllFilter"
-                                                    style="border-radius: 15px; font-size: 8px;">부위별 <i class="tio-chevron_down -arrwo"></i>
+                                                    style="border-radius: 15px; font-size: 8px; margin-right: 5px;">부위별 <i class="tio-chevron_down -arrwo"></i>
                                             </button>
+                                            </div>
+                                            <div></div>
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                    data-toggle="modal"
+                                                    data-target="#"
+                                                    style="border-radius: 15px; font-size: 8px;"><img src="/img/cctv.png" style="width: 20px; height: 20px;">
+                                            </button>
+                                            </div>
                                                 <%-- 기구 리스트 나열 --%>
                                             <section class="emPage__basket npPkg__basket default" style="padding-top: 10px">
                                                 <c:forEach  var="obj" items="${gymAllMachine}" >
@@ -1136,4 +1160,22 @@
         //myMachine_form.init();
     });
 
+    // 페이지 로드 시 배경 숨기기
+    window.addEventListener('load', function() {
+        var scrollBackground = document.getElementById('menu_wrap');
+        scrollBackground.style.left = '-100%';
+    });
+
+
+    window.addEventListener('scroll', function() {
+        var scrollBackground = document.getElementById('menu_wrap');
+        var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        var triggerPosition = 100; // 배경이 나타나는 스크롤 위치
+
+        if (scrollPosition >= triggerPosition) {
+            scrollBackground.style.left = '0';
+        } else {
+            scrollBackground.style.left = '-100%';
+        }
+    });
 </script>
