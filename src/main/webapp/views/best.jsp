@@ -65,6 +65,19 @@
   .btn:hover .hover_ico {
     display: block; /* 커서를 올렸을 때 기본 이미지 숨김 */
   }
+    .navListProducts {
+        white-space: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        scroll-padding: 10px;
+    }
+
+    .nav-item {
+        scroll-snap-align: start;
+        display: inline-block;
+        margin-right: 10px;
+    }
 </style>
 
 <div id="wrapper">

@@ -172,7 +172,6 @@ public class MainController {
     @RequestMapping("/discount")
     public String discount(Model model, Gym gym) throws Exception {
         List<Gym> list = null;
-
         List<Groupboard> list2 = null;
 
         try {
@@ -192,20 +191,20 @@ public class MainController {
     }
     // 알림 받기 동의-거절 기능(로그인고객 가능) : 인보
     // marketingStatus : 마케팅 동의여부 null은 해당무, 1이면 동의, 0이면 거절
-//    @RequestMapping("/notificationimpl")
-//    public String notificationimpl(Model model, Cust cust, Integer custNo,HttpSession session) throws Exception {
-//        // cust 객체에는 form 데이터가 자동으로 바인딩되어 전달됩니다.
-//        if (cust.getMarketingStatus() == null || cust.getMarketingStatus().equals("0")) {
-//            custService.updateNoti(cust); // 최초 등록 시엔 마케팅 동의여부를 '1'로 인서트하기
-//        }
-//        // 재등록 시엔 마케팅 동의여부를 '0'으로 변경하고,
-//        // '0'으로 변경한 고객이 다시 버튼 누르면 '1'로 또 바꿔주기
-//        else if (cust.getMarketingStatus().equals("1")) {
-//            custService.clearNoti(cust);
-//        }
-//        session.setAttribute("logincust", cust);
-//        return "redirect:/discount/";
-//    }
+    @RequestMapping("/custnotificationimpl")
+    public String custnotificationimpl(Model model, Cust cust, Integer custNo,HttpSession session) throws Exception {
+        // cust 객체에는 form 데이터가 자동으로 바인딩되어 전달됩니다.
+        if (cust.getMarketingStatus() == null || cust.getMarketingStatus().equals("0")) {
+            custService.updateNoti(cust); // 최초 등록 시엔 마케팅 동의여부를 '1'로 인서트하기
+        }
+        // 재등록 시엔 마케팅 동의여부를 '0'으로 변경하고,
+        // '0'으로 변경한 고객이 다시 버튼 누르면 '1'로 또 바꿔주기
+        else if (cust.getMarketingStatus().equals("1")) {
+            custService.clearNoti(cust);
+        }
+        session.setAttribute("logincust", cust);
+        return "redirect:/discount/";
+    }
 
 
 
