@@ -26828,7 +26828,7 @@ layout
 }
 .em_main_footer .em_body_navigation .item_link .btn_navLink::after {
   content: "";
-  background-color: var(--bg-secondary);
+  background-color: blueviolet;
   width: 15px;
   height: 3.5px;
   border-bottom-left-radius: 3px;

@@ -296,7 +296,7 @@ let center2 = {
             <img src="/uimg/logo.jpg" alt="">
         </div>
         <h1>조인 만들기</h1>
-        <p class="size-13 color-text">헬쓱 회원들과 조인하면 운동 이용권을 할인된 금액으로 함께 구매할 수 있어요</p>
+        <p class="size-11 color-text">헬쓱 회원들과 조인으로 같이 할인받고 <br>운동의 즐거움은 두 배로 누릴 거에요!</p>
     </div>
     <div class="em__body">
         <!-- form 태그 시작.  안에 입력!  -->
@@ -309,13 +309,13 @@ let center2 = {
                     <!-- 1. 초기 센터정보 가져오는창 -->
                     <input type="search" class="form-control" name="gymName"
                                id="gymName"  style="margin-right: 10px"
-                               placeholder="이용할 센터 정보를 입력해 주세요" required readonly>
+                               placeholder="센터명 검색" required readonly>
                     <!-- 센터번호 : 테스트할 땐 type 을 text로 -->
                     <input type="hidden" name="gymNo" id="gymNo" value="" />
                     <button type="button" class="btn btn-outline-secondary col-3" style="width: 35%; height: 100%;"
                             data-toggle="modal" id="gymModal"
                             data-target="#duplicateCheck" >  <!--data-target="#duplicateCheck" -->
-                        가져오기
+                        찾기
                     </button>
 
                 </div>
@@ -327,14 +327,14 @@ let center2 = {
                 <div class="input_group">
                     <!-- 2. 초기화면 이용권정보 가져오는 창 -->
                     <input type="search" class="form-control" style="margin-right: 10px"
-                           placeholder="공동 구매하고 싶은 이용권을 검색해 주세요"
+                           placeholder="이용권명 검색"
                            id="ticketName" name="ticketName" required readonly>
                     <!-- 이용권 번호 : 테스트할 땐 type 을 text로 -->
                     <input type="hidden" name="ticketNo" id="ticketNo" value="" />
                     <button type="button" class="btn btn-outline-secondary" style="width: 35%; height: 100%;"
                             data-toggle="modal" data-target="#duplicateCheck2"
                             id="ticketModal">  <!--data-target="#duplicateCheck" -->
-                        가져오기
+                        찾기
                     </button>
                 </div>
                 <br>
@@ -442,8 +442,9 @@ let center2 = {
         <span id="register_info_msg"></span>
     </div>
     <div class="em__footer">
-        <button type="button" class="btn bg-primary color-white justify-content-center" id="register_btn">작성 완료</button>
-        <a href="/groupboard/success_create" class="btn hover:color-secondary justify-content-center">작성 완료</a>
+        <button type="button" style="background-color: blueviolet"
+                class="btn color-white justify-content-center" id="register_btn">작성 완료</button>
+        <a href="/groupboard/success_create"class="btn hover:color-secondary justify-content-center">작성 완료</a>
     </div>
     </form><!-- from 태그 종료 -->
 
@@ -456,7 +457,7 @@ let center2 = {
         <div class="modal-content">
             <div class="modal-header border-0 padding-l-20 padding-r-20 justify-content-center">
                 <div class="itemProduct_sm">
-                    <h1 class="size-18 weight-600 color-secondary m-0">공동구매가 가능한 센터 검색하기</h1>
+                    <h1 class="size-18 weight-600 color-secondary m-0">조인 가능한 센터</h1>
                 </div>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="tio-clear"></i>
@@ -471,7 +472,7 @@ let center2 = {
                                 <div class="col-9">
                                     <input type="search" class="form-control" name="modal_search_gymName" placeholder="센터 이름" required>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-3" style="padding-left: 0px">
                                     <button type="button" class="btn btn-outline-secondary" id="gymSearchBtn">검색</button>
                                 </div>
                             </div>
@@ -503,7 +504,8 @@ let center2 = {
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="gymChoiceBtn" class="btn btn_default_lg" data-dismiss="modal" aria-label="Close">선택 완료</button>
+                <button type="button" style="background-color: blueviolet"
+                        id="gymChoiceBtn" class="btn btn_default_lg" data-dismiss="modal" aria-label="Close">선택 완료</button>
             </div>
         </div>
     </div>
@@ -517,7 +519,7 @@ let center2 = {
         <div class="modal-content">
             <div class="modal-header border-0 padding-l-20 padding-r-20 justify-content-center">
                 <div class="itemProduct_sm">
-                    <h1 class="size-18 weight-600 color-secondary m-0">공동구매가 가능한 이용권 검색하기</h1>
+                    <h1 class="size-18 weight-600 color-secondary m-0">조인 가능한 이용권</h1>
                 </div>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="tio-clear"></i>
@@ -530,10 +532,11 @@ let center2 = {
                         <form id="ticket-search-form" action="/groupboard/ticketsearch">
                             <div class="row">
                                 <div class="col-9">
-                                    <input type="search" class="form-control" name="modal_search_ticketName" placeholder="센터 이름" required>
+                                    <input type="search" class="form-control" name="modal_search_ticketName" placeholder="이용권 이름" required>
                                 </div>
-                                <div class="col-3">
-                                    <button type="button" class="btn btn-outline-secondary" id="ticketSearchBtn">검색</button>
+                                <div class="col-3" style="padding-left: 0px">
+                                    <button type="button" class="btn btn-outline-secondary" id="ticketSearchBtn"
+                                    >검색</button>
                                 </div>
                             </div>
                         </form>
@@ -564,7 +567,8 @@ let center2 = {
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="ticketChoiceBtn" class="btn btn_default_lg" data-dismiss="modal" aria-label="Close">선택 완료</button>
+                <button type="button" style="background-color: blueviolet"
+                        id="ticketChoiceBtn" class="btn btn_default_lg" data-dismiss="modal" aria-label="Close">선택 완료</button>
             </div>
         </div>
     </div>

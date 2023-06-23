@@ -235,7 +235,7 @@
     </div>
     <%--</section>--%>
 </section><!-- End. banner_swiper -->
-<hr style="height: 30px; color: #EFECEC; border: none; border-top: 10px solid; margin-bottom: 0px;">
+<hr style="height: 30px; color: #f7edfa; border: none; border-top: 10px solid; margin-bottom: 0px;">
 <!-- 알림 설정 component-action-sheet.html 로 모달창 활용해보기. -->
 <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
     <div>
@@ -409,7 +409,7 @@
             </div>
         </div>
 <%-- 알림받기 버튼 모달창 --%>
-<form name="updatemarketing_form" id="updatemarketing_form"  action="/notificationimpl" method="get">
+<form name="updatemarketing_form" id="updatemarketing_form"  action="/custnotificationimpl" method="get">
 <input type="hidden" name="custNo" value="${logincust.custNo}"/>
 <input type="hidden" name="marketingStatus" value="${logincust.marketingStatus}"/>
 <div class="modal transition-bottom screenFull defaultModal mdlladd__rate fade" id="mdllContent" tabindex="-1"

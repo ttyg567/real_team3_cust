@@ -15,7 +15,7 @@
     <!-- Start main_haeder -->
     <header class="main_haeder bg-transparent">
       <div class="em_side_right absolute top-0 padding-t-20">
-        <a class="btn btn__back rounded-10" href="index.html">
+        <a class="btn btn__back rounded-10" href="/">
           <i class="tio-clear"></i>
         </a>
       </div>

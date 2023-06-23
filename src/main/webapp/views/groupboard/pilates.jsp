@@ -1,6 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
+  .header-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  /*.em_modal {*/
+  /*    position: fixed;*/
+  /*    z-index: 9999; !* 다른 요소들보다 큰 값으로 설정 *!*/
+  /*    !* 추가적인 스타일 및 내용 설정 *!*/
+  /*}*/
+  .btn {
+    display: inline-block;
+  }
+  .btn svg {
+    /*display: block;*/
+    pointer-events: none; /* SVG 영역은 클릭 이벤트를 가로채지 않도록 함 */
+  }
+  .btn .hover_ico {
+    display: none; /* 커서 올리기 전까진, 변경될 아이콘은 미리 보여주지 않음 */
+  }
+  .btn:hover .ico {
+    display: none; /* 커서를 올렸을 때 보여줌 */
+  }
+  .btn:hover .hover_ico {
+    display: block; /* 커서를 올렸을 때 기본 이미지 숨김 */
+  }
   #map img{
     border-radius: 15px;
     width: 100%;
