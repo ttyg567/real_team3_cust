@@ -224,13 +224,19 @@ public class TicketController {
 
     @RequestMapping("/chat")
     public String chat(Model model, HttpSession session, @RequestParam("gymNo") int gymNo) throws Exception {
+
         Gym gym = gymService.get(gymNo);
-//        Cust cust = (Cust) session.getAttribute("logincust");
-//        if (cust == null) {
-//            return "redirect:/cust/login";
-//        }
+
+        log.info(String.valueOf(gym));
+
+        Cust cust = (Cust) session.getAttribute("logincust");
+
+        if (cust == null) {
+            return "redirect:/cust/login";
+        }
         model.addAttribute("center", "chat");
-        model.addAttribute("gdetail", gym);
+        session.setAttribute("logincust", cust);
+        model.addAttribute("targetGym", gym);
         model.addAttribute("adminserver", adminserver);
         return "index";
     }

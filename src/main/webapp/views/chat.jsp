@@ -3,12 +3,47 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <script>
+    // $(document).ready(function () {
+    //     var loadingCount = 0; // 로딩 중인 요청 수를 추적하는 변수 추가
+    //
+    //     // 스피너 숨기기 함수
+    //     function hideLoading() {
+    //         loadingCount--; // 로딩 완료시 카운트 감소
+    //         if (loadingCount === 0) {
+    //             $('.spinner-container').hide(); // 모든 요청이 완료되었을 때만 로딩바 숨기기
+    //         }
+    //     }
+    //
+    //     // 스피너 표시 함수
+    //     function showLoading() {
+    //         loadingCount++; // 로딩 시작시 카운트 증가
+    //         $('.spinner-container').show();
+    //     }
+    // });
+
+
     let callcenter = {
         id:null,
         stompClient:null,
         init:function(){
+            let time1 = new Date().toLocaleTimeString();
             this.id = $('#adm_id').text();
+
+            // 접속하면 바로 연결
             callcenter.connect();
+
+
+            // 스크롤 맨 아래로 이동
+            //var conversationSection = $('.emPage__conversation');
+            //conversationSection.scrollTop(conversationSection.prop("scrollHeight"));
+
+            // 답변 내용이 화면에 다 나오지 않을 경우 스크롤을 아래로 이동
+            //var itemMsgHeight = itemMsg.outerHeight();
+            //var contentSmsHeight = contentSms.outerHeight();
+            // if (itemMsgHeight > contentSmsHeight) {
+            //     conversationSection.scrollTop(conversationSection.scrollTop() + itemMsgHeight - contentSmsHeight);
+            // }
+
 
             $("#disconnect").click(function() {
                 callcenter.disconnect();
@@ -26,11 +61,42 @@
             this.stompClient.connect({}, function(frame) {
                 callcenter.setConnected(true);
                 console.log('Connected: ' + frame);
+                var time2 = new Date().toLocaleTimeString();
+
+                // // 내 질문 먼저 표출
+                // var conversationItemUserMe = $('<div class="item_user __me">').appendTo('.emPage__conversation');
+                // var mediaMe = $('<div class="media">').appendTo(conversationItemUserMe);
+                // // 질문과 시간을 세로로 정렬
+                // var mediaBodyMe = $('<div class="media-body flex-column">').appendTo(mediaMe);
+                // var contentSmsMe = $('<div class="content_sms">').appendTo(mediaBodyMe);
+                // $('<p class="item_msg">').text(question).appendTo(contentSmsMe);
+                // var timeMe = $('<div class="time">').appendTo(contentSmsMe);
+                // $('<span>').text(time1).appendTo(timeMe);
+                // $('<div class="icon ml-1">').append('<i class="ri-check-double-line color-primary size-18"></i>').appendTo(timeMe);
+
+                this.subscribe('/send/'+sid, function(msg) {
+                    // 들어온 대화 내용 표시
+                    var conversationItemUser = $('<div class="item_user">').appendTo('.emPage__conversation');
+                    var media = $('<div class="media">').appendTo(conversationItemUser);
+                    $('<div class="imgProfile">').append('<img src="/assets/img/candy/chatbot.png" alt="">').appendTo(media);
+                    var mediaBody = $('<div class="media-body">').appendTo(media);
+                    var contentSms = $('<div class="content_sms">').appendTo(mediaBody);
+                    var itemMsg = $('<p class="item_msg">').text(JSON.parse(msg.body).content1).appendTo(contentSms);
+                    $('<div class="time">').text(time2).appendTo(contentSms);
+                });
+
                 this.subscribe('/send/to/'+sid, function(msg) {
-                    $("#to").prepend(
-                        "<h4>" + JSON.parse(msg.body).sendid +":"+
-                        JSON.parse(msg.body).content1
-                        + "</h4>");
+                    // $("#to").prepend(
+                    //     "<h4>" + JSON.parse(msg.body).sendid +":"+
+                    //     JSON.parse(msg.body).content1
+                    //     + "</h4>");
+                    var conversationItemUser = $('<div class="item_user">').appendTo('.emPage__conversation');
+                    var media = $('<div class="media">').appendTo(conversationItemUser);
+                    $('<div class="imgProfile">').append('<img src="/assets/img/candy/chatbot.png" alt="">').appendTo(media);
+                    var mediaBody = $('<div class="media-body">').appendTo(media);
+                    var contentSms = $('<div class="content_sms">').appendTo(mediaBody);
+                    var itemMsg = $('<p class="item_msg">').text(JSON.parse(msg.body).content1).appendTo(contentSms);
+                    $('<div class="time">').text(time2).appendTo(contentSms);
                 });
             });
         },
@@ -49,12 +115,33 @@
             }
         },
         sendTo:function(){
-            var msg = JSON.stringify({
+            console.log("sendTO 도달함");
+            var msgTo = JSON.stringify({
                 'sendid' : this.id,
                 'receiveid' : $('#target').val(),
                 'content1' : $('#totext').val()
             });
-            this.stompClient.send('/receiveto', {}, msg);
+
+            var msgMe = JSON.stringify({
+                'sendid' : this.id,
+                'content1' : $('#metext').val()
+            });
+
+            this.stompClient.send('/receiveto', {}, msgTo);
+            this.stompClient.send('/receiveme', {}, msgMe);
+        //     var msg = JSON.stringify({
+        //         'sendid' : this.id,
+        //         'receiveid' : $('#target').val(),
+        //         'content1' : $('#totext').val()
+        //     });
+        //     this.stompClient.send('/receiveto', {}, msg);
+        // },
+        // sendMe:function(){
+        //     var msg = JSON.stringify({
+        //         'sendid' : this.id,
+        //         'content1' : $('#metext').val()
+        //     });
+        //     this.stompClient.send("/receiveme", {}, msg);
         }
     };
     $(function(){
@@ -65,7 +152,7 @@
 
 <div id="wrapper">
     <div id="content">
-        <!-- Start main_haeder -->
+        <!-- 상단 센터 정보 표출 및 상태 표출 -->
         <header class="header_tab head_conversation border-b border-b-solid border-snow">
             <div class="main_haeder multi_item">
                 <div class="em_side_right">
@@ -78,9 +165,10 @@
                         <img class="img-user" src="/assets/img/candy/chatbot.png" alt="">
                         <div class="media-body my-auto">
                             <div class="txt">
-                                <h1>헬쓱 지피티</h1>
+                                <h1>${targetGym.gymName}</h1>
                                 <p class="color-green" id="status">Status</p>
                                 <h1 id="adm_id" style="display:none;">${logincust.custNo}</h1>
+<%--                                <input type="hidden" value="${targetGym.gymNo}" id="target">--%>
                                 <input type="hidden" value="adm33" id="target">
                             </div>
                         </div>
@@ -90,9 +178,10 @@
                 </div>
             </div>
         </header>
-        <!-- End.main_haeder -->
+        <!-- 상단 센터 정보 표출 및 상태 표출 -->
 
         <section class="emPage__conversation padding-t-70 padding-b-80">
+            <!-- ============= 센터 답변창 ================= -->
             <div class="item_user">
                 <div class="media">
                     <div class="imgProfile">
@@ -101,13 +190,15 @@
                     <div class="media-body">
                         <div class="content_sms">
                             <p class="item_msg">
-                                안녕하세요! ㅇㅇㅇ센터 입니다. <br/> 상담원이 연결되면 상담을 도와드리겠습니다.
+                                안녕하세요! '${targetGym.gymName}' 입니다. <br/> 상담원이 연결되면 상담을 도와드리겠습니다.
                             </p>
                             <div class="time"></div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- ============= 센터 답변창 ================= -->
+
             <div class="env-pb bg-white fixed w-100" style="bottom: 55px">
                 <div class="bk_footer_input emBK__buttonsShare">
                     <button type="button" class="btn btn_upload p-0" data-toggle="modal" data-target="#mdllButtons">
@@ -115,9 +206,13 @@
                             <i class="ri-attachment-line size-20"></i>
                         </div>
                     </button>
+                    <!-- ====================질문창============================= -->
                     <div class="form-group m-0">
                         <input type="text" class="form-control" placeholder="여기에 질문하실 내용을 적어주세요" id="totext">
                     </div>
+                    <!-- ====================질문창============================= -->
+
+                    <!-- ====================질문 버튼============================= -->
                     <button type="button" class="btn btn_defSend rounded-10" id="sendto">
                         <svg id="Iconly_Bulk_Send" data-name="Iconly/Bulk/Send" xmlns="http://www.w3.org/2000/svg"
                              width="20" height="20" viewBox="0 0 20 20">
@@ -131,6 +226,7 @@
                             </g>
                         </svg>
                     </button>
+                    <!-- ====================질문 버튼============================= -->
                 </div>
 
             </div>
