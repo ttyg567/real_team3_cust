@@ -107,7 +107,7 @@
 
                             <div class="media-body">
                                 <div class="txt">
-                                    <h2>${obj.gymName}</h2>
+                                    <h2 style="margin-bottom: -10px">${obj.gymName}</h2>
                                     <div class="info_bottom">
                                         <div class="time">
                                             <div class="icon">
@@ -131,41 +131,32 @@
                                                     </g>
                                                 </svg>
                                             </div>
-                                            <span>${obj.gymAddress1}</span>
+
+                                            <span style="color: black">${obj.gymAddress1}</span>
                                         </div>
+                                    </div>
                                           <div class="view">
                                             <div class="icon">
-                                                <svg id="Iconly_Curved_Show" data-name="Iconly/Curved/Show"
-                                                     xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                                     viewBox="0 0 15 15">
-                                                    <g id="Show" transform="translate(1.719 2.969)">
-                                                        <path id="Stroke_1" data-name="Stroke 1"
-                                                              d="M3.952,1.976A1.976,1.976,0,1,1,1.976,0,1.977,1.977,0,0,1,3.952,1.976Z"
-                                                              transform="translate(3.806 2.588)" fill="none"
-                                                              stroke="#cbcdd8" stroke-linecap="round"
-                                                              stroke-linejoin="round" stroke-miterlimit="10"
-                                                              stroke-width="1.5" />
-                                                        <path id="Stroke_3" data-name="Stroke 3"
-                                                              d="M0,4.564c0,2.05,2.589,4.564,5.782,4.564s5.782-2.512,5.782-4.564S8.976,0,5.782,0,0,2.514,0,4.564Z"
-                                                              fill="none" stroke="#cbcdd8" stroke-linecap="round"
-                                                              stroke-linejoin="round" stroke-miterlimit="10"
-                                                              stroke-width="1.5" />
+                                                <svg id="Iconly_Two-tone_Heart" data-name="Iconly/Two-tone/Heart" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                                    <g id="Heart" transform="translate(1.667 2.5)">
+                                                        <path id="Path_33961" d="M8.124,14.878a30.408,30.408,0,0,1-5.282-3.907A9.935,9.935,0,0,1,.327,7.163,5.229,5.229,0,0,1,3.571.24,5.469,5.469,0,0,1,8.33,1h0A5.477,5.477,0,0,1,13.089.24,5.232,5.232,0,0,1,16.34,7.163a9.935,9.935,0,0,1-2.514,3.808,30.408,30.408,0,0,1-5.282,3.907L8.338,15Z" transform="translate(0 0)" fill="none" stroke="#292e34" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+                                                        <path id="Path_33964" d="M0,0A2.345,2.345,0,0,1,1.681,2.018" transform="translate(11.613 3.378)" fill="none" stroke="#292e34" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" opacity="0.4"/>
                                                     </g>
                                                 </svg>
                                             </div>
-                                            <span>${obj.likecount} likes </span>
+                                            <span>${obj.likecount}명이 관심있는 곳</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+
                     </a>
                 </li>
             </ul>
             </c:forEach>
         </section>
     </div>
-
+</div>
 
     <!-- Start searchMenu__hdr -->
     <section class="searchMenu__hdr">
