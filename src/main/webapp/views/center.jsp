@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
-    *{
+    .info span{
         font-family : 'KBFGTextM';!important;
     }
     .nav .nav-item{
@@ -229,14 +229,17 @@
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
+        font-family : 'KBFGTextM'!important;
     }
 
     #placesList .item .info {
         padding: 10px 0 10px 55px;
+        font-family : 'KBFGTextM'!important;
     }
 
     #placesList .info .gray {
         color: #8a8a8a;
+        font-family : 'KBFGTextM'!important;
     }
 
     #placesList .info .jibun {
@@ -246,6 +249,7 @@
 
     #placesList .info .tel {
         color: #009900;
+        font-family : 'KBFGTextM'!important;
     }
 
     #placesList .item .markerbg {
