@@ -218,6 +218,4 @@ public class MainController {
         return "redirect:/discount/";
     }
 
-
-
 }
