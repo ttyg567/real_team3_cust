@@ -60,9 +60,11 @@
     <!--Websocket 관련 library 추가-->
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
-</head>
-<style>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <style>
 <%--  모달창 안에 아이콘 정렬  --%>
     .embody__content svg{
         margin-right: 15px;
@@ -342,7 +344,7 @@ np_balanceDefault {
                                     <!--로그인 여부에따라-->
                                     <c:choose>
                                     <c:when test="${logincust == null}">
-                                        <h3>로그인을 해주세요, </h3>
+                                        <h3>로그인을 해주세요 </h3>
                                         <a href="/cust/login" class="btn btn_logOut"
                                         style="background-color: #DAD2E9;  width: 8px; height: 30px;">로그인</a>
                                     </c:when>

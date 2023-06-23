@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <style>
     .info span{
         font-family : 'KBFGTextM';!important;
@@ -61,6 +65,7 @@
         border: 1px solid #ccc;
         border-radius: 5px;
         outline: none;
+        font-weight: bold;
     }
 
     .option button[type="submit"] {
@@ -150,7 +155,7 @@
     .btn:hover .hover_ico {
         display: block; /* 커서를 올렸을 때 기본 이미지 숨김 */
     }
-    /* 지도 */
+    /* 지도 꾸미기 원본 */
     .map_wrap, .map_wrap * {
         margin: 0;
         padding: 0;
@@ -218,11 +223,13 @@
         overflow: hidden;
         cursor: pointer;
         min-height: 65px;
+        font-weight: bold;
     }
 
     #placesList .item span {
         display: block;
         margin-top: 4px;
+        font-weight: bold;
     }
 
     #placesList .item h5, #placesList .item .info {
@@ -230,26 +237,35 @@
         overflow: hidden;
         white-space: nowrap;
         font-family : 'KBFGTextM'!important;
+        font-weight: bold;
+        font-size: 14px;
     }
 
     #placesList .item .info {
         padding: 10px 0 10px 55px;
         font-family : 'KBFGTextM'!important;
+        font-weight: bold;
     }
 
     #placesList .info .gray {
         color: #8a8a8a;
         font-family : 'KBFGTextM'!important;
+        font-weight: bold;
+        font-size: 14px;
     }
 
     #placesList .info .jibun {
         padding-left: 26px;
         background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;
+        font-weight: bold;
+        font-size: 14px;
     }
 
     #placesList .info .tel {
         color: #009900;
         font-family : 'KBFGTextM'!important;
+        font-weight: bold;
+        font-size: 14px;
     }
 
     #placesList .item .markerbg {
@@ -337,7 +353,32 @@
         color: #777;
     }
 </style>
+<script>
+    // 서버시간 보여주기
+    let ajax01 = {
+        init:function (){
+            setInterval(function (){ // setInterval : 00초 마다 함수 호출(비동기 함수)
+                $.ajax({ // ajax 부르기. (ajax 요청 처리하는 곳 : 일반 컨트롤러 아님 / 별도 존재)
+                    url:'/getservertime', // 여기 적은 서버에게 요청하기
+                    success:function (data){
+                        ajax01.display(data); // 결과 : 성공 시 값을 알럿창  또는 화면에 알려줘
+                    },
+                    error:function (){
+                        alert('Error!');// 결과 : 실패 시 실행되는 함수 다르게.
+                    }
+                });
+            }, 3000);
+        },
 
+        display:function (data){ // 성공 시 display로 띄우기 위해  data 여기로-
+            $('#server_time').text(data); // html.에서 지정한 id값
+        }
+    };
+    // 실행
+    $(function (){
+        ajax01.init();
+    });
+</script>
 <div id="wrapper">
     <!--별도의 mainheader 구간  -->
     <!-- Start main_haeder -->
@@ -398,18 +439,30 @@
         </div>
         <!-- End. input_SaerchDefault -->
 
-        <!-- Start navListProducts -->
+        <!-- 홈에서 3개의 댑스(미로그인은 2개만 보임) : Start navListProducts -->
         <div class="padding-l-50 padding-t-10">
             <ul class="nav navListProducts with__lined navWhite">
-                <li class="nav-item">
-                    <a class="nav-link active" href="/">투데이</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/best">베스트</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href=/discount>회원맞춤</a>
-                </li>
+                <c:choose>
+                    <c:when test="${logincust == null}">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/">투데이</a><!-- 인트로화면 말고!!! -->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/best">베스트</a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/">투데이</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/best">베스트</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=/discount>회원맞춤</a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
             </ul>
         </div>
         <!-- End. navListProducts -->
@@ -647,12 +700,15 @@
                                             </button>
                                             </div>
                                             <div></div>
-                                            <button type="button" class="btn btn-outline-secondary"
-                                                    data-toggle="modal"
-                                                    data-target="#"
-                                                    style="border-radius: 15px; font-size: 8px;"><img src="/img/cctv.png" style="width: 20px; height: 20px;">
-                                            </button>
+                                            <%-- cctv가 작동하고 있다는 의미로 모달에 서버시간 나타내주기 --%>
+                                            <div class="itemPkg_cart" data-toggle="modal"
+                                                 data-target="#mdllAdd_Address">
+                                                <div type="button" class="btn btn-outline-secondary"
+                                                        style="border-radius: 15px; font-size: 8px;"><img src="/img/cctv.png" style="width: 20px; height: 20px;">
+                                                </div>
                                             </div>
+                                            </div>
+
                                                 <%-- 기구 리스트 나열 --%>
                                             <section class="emPage__basket npPkg__basket default" style="padding-top: 10px">
                                                 <c:forEach  var="obj" items="${gymAllMachine}" >
@@ -734,7 +790,7 @@
 
                                                                 </div>
                                                             </div>
-                                                                <%-- 상세페이지 내 즐겨찾기 버튼 id :  machineSave  --%>
+                                                                <%-- 기구리스트 내 즐겨찾기 버튼 id :  machineSave.  --%>
                                                             <div class="npPage__balanceProvider" style="padding: 0; ">
                                                                 <div class="npblock__favorite" style="padding: 0; border: none;">
                                                                     <button type="submit" id="machineSave"
@@ -914,6 +970,48 @@
     </form>
 </c:forEach>
 
+    <%-- 운동센터 실시간 현황 CCTV 모달 3 --%>
+    <c:forEach  var="obj" items="${gymAllMachine}" >
+            <div class="modal defaultModal modalCentered change__address fade" id="mdllAdd_Address" tabindex="-1"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header border-0 padding-l-20 padding-r-20 justify-content-center">
+                            <div class="itemProduct_sm">
+                                <h1 class="size-18 weight-600 color-secondary m-0">실시간 스마트 정보</h1>
+                            </div>
+
+                        </div>
+                        <div class="modal-body" style="height: 360px;">
+                            <ul class="nav__listAddress itemSingle"  style="display: flex; align-items: center; flex-direction: column;">
+                                <%-- 운동센터명  --%>
+                                <p style="font-size: 14px; font-weight: bold">${obj.gymName}</p>
+                                <%-- cctv영상이 표출되는 실시간 서버 시간   --%>
+                                <p id="server_time" style="font-size: 12px; font-weight: bold"></p>
+                                <img src="/assets/img/gym/health1.jpg" alt="" style="width: 90%; height: 140px;"><br>
+                                <p class="size-12 color-text" style="text-align: center;">
+                                    <div style="border-radius: 5px; background-color: red;
+                                    width: 60px; height: 20px; text-align: center;
+                                    padding-right: 3px; padding-left: 3px; ">
+                                    <p style="color: white; font-weight: bold; font-size: 14px; text-align: center;">TODAY</p>
+                                    </div>
+                                    <span style="color: blueviolet; font-weight: bold;
+                                    font-size: 14px; padding-top: 5px;">회원 수가 가장 많은 금요일🌟</span><br>
+                                    <span style="color: black; font-weight: bold; font-size: 14px;">오늘은 "등" 운동기구가 가장 붐벼요!</span><br>
+                                </p><br>
+
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/class/reservation" class="btn btn_default_lg"
+                            style="text-align: center; display: flex; justify-content: center;">
+                           운동수업 예약하기
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </c:forEach>
 
 </div>
 
@@ -1157,20 +1255,13 @@
     }
 
 
-
-    // 실행
-    $(function (){
-        machine_search.init();
-        //myMachine_form.init();
-    });
-
-    // 페이지 로드 시 배경 숨기기
+    // * 카카오지도에서 흰색 불투명 배경이 스크롤되면 내려오도록 표현 중 1. 페이지 로드 전 배경 숨기기 *
     window.addEventListener('load', function() {
         var scrollBackground = document.getElementById('menu_wrap');
         scrollBackground.style.left = '-100%';
     });
 
-
+    // 페이지까지 스크롤 내려오면 배경이 오른쪽으로 보여지도록 표현
     window.addEventListener('scroll', function() {
         var scrollBackground = document.getElementById('menu_wrap');
         var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
@@ -1182,4 +1273,132 @@
             scrollBackground.style.left = '-100%';
         }
     });
+
+</script>
+<script>
+    // window.onload = function() {
+    //     // console.log("");
+    //     // console.log("[window onload] : [start]");
+    //     // console.log("");
+    //
+    //     // 이벤트 함수 호출
+    //     toastShow("2023.06.23 Push알림 수신 동의 완료", "헬쓱 안내"); // [내용, 제목 표시]
+    //     //toastShow("", "Please Wait ... "); // [제목만 표시]
+    // };
+    document.getElementById("machineSave").addEventListener("click", function() {
+        // machineSave 버튼이 클릭되었을 때 실행될 코드
+        toastShow("machineSave 버튼이 클릭되었습니다.", "버튼 클릭 이벤트");
+    });
+
+    /* [이벤트 수행 함수] */
+    function toastShow(title, content){
+        console.log("");
+        console.log("[toastShow] : [start]");
+        console.log("");
+
+        // [토스트 옵션 지정 실시]
+        toastr.options.escapeHtml = true; // [escapeHtml 허용여부]
+        toastr.options.closeButton = true; // [closeButton을 생성여부]
+        toastr.options.progressBar = true; // [프로그래스바 표시 여부]
+        // toastr.options.newestOnTop = false; // [창의 위치, true이면 가장 위 포지션, false면 가장 아래 포지션]
+        //toastr.options.rtl = true; // [글자를 오른쪽 정렬 여부]
+        //toastr.options.closeDuration = 300; // [메시지 창의 애니메이션 효과 시간]
+        //toastr.options.onShown = function() { console.log("show"); } // [추가될 때 이벤트]
+        //toastr.options.onHidden = function() { console.log("hide"); } // [사라질 때 이벤트]
+        // machineSave 버튼이 클릭되었을 때 이벤트 핸들러
+
+        // toastr.options.onclick = function() { console.log("click"); } // [클릭될 때 이벤트]
+        //toastr.options.onCloseClick = function() { console.log("close"); } // [닫기 버튼이 눌릴 때 이벤트]
+        //toastr.options.preventDuplicates = true; // [메시지 중복 허용 여부, 두개 이상 메시지가 생성될 때 이 전꺼는 사라짐]
+        //toastr.options.timeOut = 30; // [메시지가 표시되는 시간]
+        //toastr.options.extendedTimeOut = 60; // [메시지 위로 커서를 올렸을 때 표시되는 시간]
+        //toastr.remove(); // [fadeout 효과없이 바로 메시지 창을 제거]
+        //toastr.clear(); // [fadeout 효과로 메시지창을 닫기]
+
+
+
+        // [토스트 위치 지정 실시]
+        //toastr.options.positionClass = "toast-bottom-full-width"; // [위치 및 크기 설정 : 바닥 >> 꽉차게 설정]
+        //toastr.options.positionClass = "toast-bottom-right"; // [위치 및 크기 설정 : 바닥 >> 오른쪽]
+        //toastr.options.positionClass = "toast-bottom-left"; // [위치 및 크기 설정 : 바닥 >> 왼쪽]
+        //toastr.options.positionClass = "toast-bottom-center"; // [위치 및 크기 설정 : 바닥 >> 중앙]
+
+        //toastr.options.positionClass = "toast-top-full-width"; // [위치 및 크기 설정 : 위쪽 >> 꽉차게 설정]
+        //toastr.options.positionClass = "toast-top-right"; // [위치 및 크기 설정 : 위쪽 >> 오른쪽]
+        //toastr.options.positionClass = "toast-top-left"; // [위치 및 크기 설정 : 위쪽 >> 왼쪽]
+        //toastr.options.positionClass = "toast-top-center"; // [위치 및 크기 설정 : 위쪽 >> 중앙]
+
+
+
+        // [토스트 위치 지정 실시 : 커스텀]
+        toastr.options.positionClass = "toast-top-full-width"; // [위치 및 크기 설정 : css 커스텀 설정 : 위쪽 표시 >> top 5% 조정]
+        /*
+        [css 코드]
+        .toast-bottom-full-width {
+            top:5%;
+        }
+        */
+
+
+
+        // [토스트 위치 지정 실시 : 커스텀]
+        //toastr.options.positionClass = "toast-bottom-full-width"; // [위치 및 크기 설정 : css 커스텀 설정 : 아래 표시 >> top 93% 조정]
+        /*
+        [css 코드]
+        .toast-bottom-full-width {
+            top:88%;
+        }
+        */
+
+
+
+        // [토스트 위치 지정 실시 : 커스텀]
+        //toastr.options.positionClass = "toast-bottom-center"; // [위치 및 크기 설정 : css 커스텀 설정 : 중앙 표시 >> top 45% 조정]
+        /*
+        [css 코드]
+        .toast-bottom-center {
+            top:45%;
+        }
+        */
+
+
+
+        // [토스트 애니메이션 지정 실시]
+        /*toastr.options.showEasing = 'swing';
+        toastr.options.hideEasing = 'linear';
+        toastr.options.closeEasing = 'linear';
+        toastr.options.showMethod = 'slideDown'; // [fadeIn, slideDown]
+        toastr.options.hideMethod = 'slideUp'; // [fadeOut, slideUp]
+        toastr.options.closeMethod = 'slideUp'; // [fadeOut, slideUp]*/
+
+
+
+        // [토스트 활성 실시]
+        toastr.info(title, content, {timeOut: 3000}); // [일반]
+        //toastr.success(title, content, {timeOut: 5000}); // [성공]
+        //toastr.warning(title, content, {timeOut: 5000}); // [경고]
+        //toastr.error(title, content, {timeOut: 5000}); // [에러]
+
+
+
+        // [토스트 커스텀 스타일 지정 실시]
+        /*
+        [css 코드 : 투명도 설정]
+        .toast {
+            opacity: 1 !important;
+        }
+        */
+
+
+        /*
+        [css 코드 : 커스텀 폰트 사이즈 변경]
+        .toast-title {
+            font-size: 100%;
+        }
+
+        .toast-message {
+            font-size: 100%;
+        }
+        */
+    };
 </script>

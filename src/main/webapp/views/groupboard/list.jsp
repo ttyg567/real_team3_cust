@@ -91,9 +91,6 @@
 
 
 <!-- header 구간  -->
-<!-- header 구간  -->
-<!-- header 구간  -->
-<!-- Start main_haeder -->
 <header class="main_haeder header-sticky multi_item" >
   <div class="em_side_right">
     <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/groupboard">
@@ -111,36 +108,6 @@
     </div>
   </div>
   <div class="em_side_right" >
-    <%--  검색 아이콘  --%>
-    <%--      <a href="/groupboard/myjoin" class="btn justify-content-center">--%>
-    <button type="button" class="btn btn_smView" data-toggle="modal"
-            data-target="#mdllSidebarMenu-guest">
-      <svg class="ico color-secondary" id="Iconly_Two-tone_Search" data-name="Iconly/Two-tone/Search"
-           xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-        <g id="Search" transform="translate(2 2)">
-          <circle id="Ellipse_739" cx="8.989" cy="8.989" r="8.989"
-                  transform="translate(0.778 0.778)" fill="none" stroke="#200e32"
-                  stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                  stroke-width="1.5" />
-          <path id="Line_181" d="M0,0,3.524,3.515" transform="translate(16.018 16.485)"
-                fill="none" stroke="#200e32" stroke-linecap="round" stroke-linejoin="round"
-                stroke-miterlimit="10" stroke-width="1.5" opacity="0.4" />
-        </g>
-      </svg>
-      <%--  커서올리면 교체될 아이콘   --%>
-      <svg class="hover_ico color-primary" id="Iconly_Two-tone_Search" data-name="Iconly/Two-tone/Search"
-           xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-        <g id="Search" transform="translate(2 2)">
-          <circle id="Ellipse_739" cx="8.989" cy="8.989" r="8.989"
-                  transform="translate(0.778 0.778)" fill="none" stroke="#200e32"
-                  stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                  stroke-width="1.5" />
-          <path id="Line_181" d="M0,0,3.524,3.515" transform="translate(16.018 16.485)"
-                fill="none" stroke="#200e32" stroke-linecap="round" stroke-linejoin="round"
-                stroke-miterlimit="10" stroke-width="1.5" opacity="0.4" />
-        </g>
-      </svg>
-    </button>
     <%--      </a>--%>
     <%--  나의조인으로 이동하기 아이콘 : 로그인 고객은 조회 가능, 비로그인 고객은 로그인 유도 창 안내  --%>
     <c:choose>

@@ -42,8 +42,7 @@
 <%--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4617571d8f9917ae900e8b494a093c31"></script>--%>
 
 
-<!-- header 구간 -->
-<jsp:include page="/views/header.jsp"/>
+
 <!-- Start input_SaerchDefault -->
 <section class="padding-t-70 change_colorSearch">
     <div class="title_welcome">
