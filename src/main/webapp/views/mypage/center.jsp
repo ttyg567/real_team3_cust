@@ -172,8 +172,8 @@
                                          style="background-image: linear-gradient(to right, rgba(214, 59, 81, 0.5), rgba(46, 65, 183, 0.5))">
                                         <div class="txt">
                                             <h6 class="color-white">
-                                                    ${logincust.custName}님의 운동 일정이 당분간 없어요</h6>
-                                            <h7 class="color-snow">바로 수업 예약하세요</h7>
+                                                    ${logincust.custName}님의 일정이 <br> 당분간 없어요</h6>
+                                            <h7 class="color-snow">바로 수업을 예약하세요</h7>
                                         </div>
                                         <div class="action">
                                             <a href="/class/reservation" class="btn">
@@ -303,7 +303,7 @@
                                                 </svg>
                                                 <h7 class="color-snow"> 만료 : ${obj2.purchaseDate_str}</h7>
                                                 <button type="button" class="btn btn_smView" data-toggle="modal"
-                                                        data-target="#mdllAddRate" id="review-link"
+                                                        data-target="#mdllAddRate-${obj2.gymNo}" id="review-link"
                                                         style="margin-top: 7px; color: white; background-color: #a361e9; border: none; border-radius: 7px; cursor: pointer; padding: 4px 8px;">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                          fill="currentColor" class="bi bi-postcard-heart-fill"
@@ -329,8 +329,8 @@
                                          style="background-image: linear-gradient(to right, rgba(214, 59, 81, 0.5), rgba(46, 65, 183, 0.5))">
                                         <div class="txt">
                                             <h6 class="color-white">
-                                                    ${logincust.custName}님의 이용권이 없어요</h6>
-                                            <h7 class="color-snow">딱 맞는 운동으로 이용권을 구매하세요</h7>
+                                                    ${logincust.custName}님의 <br> 이용권이 없어요</h6>
+                                            <h7 class="color-snow">딱 맞는 운동으로  <br> 이용권을 구매하세요</h7>
                                         </div>
                                         <div class="action">
                                             <a href="/ticket/all" class="btn">
@@ -375,13 +375,13 @@
     </c:otherwise>
 </c:choose>
 
-<c:forEach var="obj" items="${my_ticket_list}">
-    <form id="review-form">
-        <input type="hidden" name="gymNo" value="${obj.gymNo}"/>
-        <input type="hidden" name="purchaseNo" value="${obj.purchaseNo}"/>
+<c:forEach var="obj" items="${my_ticket_list}" varStatus="status">
+    <form id="review-form-${obj.gymNo}">
         <!-- Modal Add Rate -->
-        <div class="modal transition-bottom screenFull defaultModal mdlladd__rate fade" id="mdllAddRate" tabindex="-1"
+        <div class="modal transition-bottom screenFull defaultModal mdlladd__rate fade" id="mdllAddRate-${obj.gymNo}" tabindex="-1"
              aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <input type="hidden" name="gymNo" value="${obj.gymNo}"/>
+            <input type="hidden" name="purchaseNo" value="${obj.purchaseNo}"/>
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header padding-l-20 padding-r-20">
@@ -406,16 +406,16 @@
 
                         <div class="margin-t-20">
                             <div class="emRatingPoint">
-                                <input type="radio" name="reviewRate" value="5" id="mdll-rating-5">
-                                <label for="mdll-rating-5"></label>
-                                <input type="radio" name="reviewRate" value="4" id="mdll-rating-4">
-                                <label for="mdll-rating-4"></label>
-                                <input type="radio" name="reviewRate" value="3" id="mdll-rating-3">
-                                <label for="mdll-rating-3"></label>
-                                <input type="radio" name="reviewRate" value="2" id="mdll-rating-2">
-                                <label for="mdll-rating-2"></label>
-                                <input type="radio" name="reviewRate" value="1" id="mdll-rating-1">
-                                <label class="mdll-rating-1" for="mdll-rating-1"></label>
+                                <input type="radio" name="reviewRate" value="5" id="mdll-rating-5-${status.index}">
+                                <label for="mdll-rating-5-${status.index}"></label>
+                                <input type="radio" name="reviewRate" value="4" id="mdll-rating-4-${status.index}">
+                                <label for="mdll-rating-4-${status.index}"></label>
+                                <input type="radio" name="reviewRate" value="3" id="mdll-rating-3-${status.index}">
+                                <label for="mdll-rating-3-${status.index}"></label>
+                                <input type="radio" name="reviewRate" value="2" id="mdll-rating-2-${status.index}">
+                                <label for="mdll-rating-2-${status.index}"></label>
+                                <input type="radio" name="reviewRate" value="1" id="mdll-rating-1-${status.index}">
+                                <label class="mdll-rating-1" for="mdll-rating-1-${status.index}"></label>
                             </div>
                         </div>
                         <div style="margin-top: 35px;">
@@ -453,37 +453,44 @@
     });
 
     document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('review_register_btn').addEventListener('click', function () {
-            console.log("눌렸다!");
-            // 눌린 갯수 세기
-            var selectedRates = $('input[name="reviewRate"]:checked').map(function() {
-                return $(this).val();
-            }).get();
+        // 이벤트 위임 사용
+        document.addEventListener('click', function(event) {
+            if (event.target && event.target.id === 'review_register_btn') {
+                console.log("눌렸다!");
 
-            var reviewContents = $('#reviewContents').val();
-            var gymNo = $('[name="gymNo"]').val();
-            var purchaseNo = $('[name="purchaseNo"]').val();
+                var selectedRates = $(event.target).closest('form').find('input[name="reviewRate"]:checked').map(function() {
+                    return $(this).val();
+                }).get();
 
-            // AJAX 요청 보내기
-            $.ajax({
-                url    : '/review/add',
-                method : 'POST',
-                data   : {
-                    reviewRate: selectedRates,
-                    reviewContents: reviewContents,
-                    gymNo         : gymNo,
-                    purchaseNo    : purchaseNo
-                },
-                success: function (response) {
-                    if (response === "success") {
-                        $('#mdllAddRate').modal('hide'); // 모달을 감추는 코드 추가
-                        alert('리뷰가 등록되었습니다.');
+                var reviewContents = $(event.target).closest('form').find('#reviewContents').val();
+                var gymNo = $(event.target).closest('form').find('[name="gymNo"]').val();
+                var purchaseNo = $(event.target).closest('form').find('[name="purchaseNo"]').val();
+
+                console.log("reviewContents: " + reviewContents);
+                console.log("gymNo: " + gymNo);
+                console.log("purchaseNo: " + purchaseNo);
+
+                // AJAX 요청 보내기
+                $.ajax({
+                    url    : '/review/add',
+                    method : 'POST',
+                    data   : {
+                        reviewRate: selectedRates,
+                        reviewContents: reviewContents,
+                        gymNo         : gymNo,
+                        purchaseNo    : purchaseNo
+                    },
+                    success: function (response) {
+                        if (response === "success") {
+                            $('#mdllAddRate-' + gymNo).modal('hide'); // 모달을 감추는 코드 추가
+                            alert('리뷰가 등록되었습니다.');
+                        }
+                    },
+                    error  : function () {
+                        alert('오류가 발생했습니다.');
                     }
-                },
-                error  : function () {
-                    alert('오류가 발생했습니다.');
-                }
-            });
+                });
+            }
         });
     });
 

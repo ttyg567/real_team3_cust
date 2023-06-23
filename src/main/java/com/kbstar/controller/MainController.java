@@ -164,6 +164,8 @@ public class MainController {
         catch (Exception e){
             throw new Exception("error");
         }
+//        log.info("----------------------##########gym");
+//        log.info(String.valueOf(gym));
         model.addAttribute("allGym",list);
         model.addAttribute("center", "best");
         return "index";
