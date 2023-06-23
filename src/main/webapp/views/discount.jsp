@@ -310,8 +310,12 @@
                     <div class="title_product">
                         <h3>${gym.gymName}</h3>
                         <div class="bottom_info">
-                            <p class="item_price">358,000원 <span class="price_old">390,000원</span></p>
-
+                            <p class="item_price">
+                                <fmt:formatNumber value="${gym.ticketPrice}" type="number" pattern="#,##0 원" />
+                                <span class="price_old">
+                                <fmt:formatNumber value="${gym.ticketPrice}" type="number" pattern="#,##0 원" />
+                                </span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -379,7 +383,9 @@
                                         </svg>
                                     <span>
                                     ${obj.ticketName}
-                                    <span class="item_price"><span class="price_old" style="font-size: 9px">390,000원</span></span>
+                                    <span class="item_price"><span class="price_old" style="font-size: 9px">
+                                          <fmt:formatNumber value="${obj.ticketPrice}" type="number" pattern="#,##0 원" />
+                                    </span></span>
                                     </span>
                                     </div>
                                 </div>
@@ -391,7 +397,9 @@
                                         <%-- 모집인원 - 신청된 인원 = 신청가능 인원   --%>
                                     <c:set var="canapplymember" value="${canapplymember = (obj.expectMember - obj.applicationMember) }" />
                                     <span style="font-size: smaller; color: #5d6072; font-weight: bold "><fmt:formatNumber value="${canapplymember}" />명 조인 시 </span>
-                                    <span style="color: blueviolet; font-weight: bold">358,000원</span>
+                                    <span style="color: blueviolet; font-weight: bold">
+                                                     <fmt:formatNumber value="${obj.ticketCost}" type="number" pattern="#,##0 원" />
+                                    </span>
                                 </div>
                             </div>
                         </div>

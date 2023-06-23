@@ -204,8 +204,7 @@ public class TicketController {
         model.addAttribute("review_avg", review_avg.getAverageRate());
         model.addAttribute("center", dir + "ticket_detail");
         model.addAttribute("teacher", trainer);
-        log.info(trainer.toString());
-        log.info("trainer트레이너0000000000000000000000000000000000000000000000");
+
         return "index";
     }
 

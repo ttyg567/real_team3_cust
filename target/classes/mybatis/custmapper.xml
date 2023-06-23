@@ -15,6 +15,33 @@
     <select id="selectall" resultType="cust">
         SELECT * FROM cust
     </select>
+    <!-- 사진 이미지 -->
+    <update id="updateCustImgName" parameterType="cust">
+        UPDATE cust SET custImgName = #{custImgName}
+        WHERE custNo = #{custNo}
+    </update>
+    <!-- 0이거나 null인 고객이 알림받기 버튼 클릭 시 상태를 1로 변경시키기 : 인보 -->
+    <insert id="updateNoti" parameterType="cust">
+        UPDATE cust
+        SET marketingStatus = '1'
+        WHERE custNo = #{custNo}
+    </insert>
+    <!-- 상태가 1인 마케팅 동의고객이 다시 버튼을 눌러 미동의로 변경하면 9-거절로 상태로 변경시키기 : 인보 -->
+    <update id="clearNoti" parameterType="cust">
+        UPDATE cust
+        SET marketingStatus = CASE
+                                  WHEN marketingStatus = '0' THEN '1'
+                                  WHEN marketingStatus = '1' THEN '0'
+                                  ELSE marketingStatus
+            END
+        WHERE custNo = #{custNo}
+    </update>
+    <!-- 다시 상태가 9인 고객이 마케팅동의 버튼 누르면 1-동의로 상태로 변경시키기 : 인보 -->
+    <update id="reUpdateNoti" parameterType="cust">
+        UPDATE cust
+        SET marketingStatus = '1'
+        WHERE custNo = #{custNo}
+    </update>
     <!-- insert -->
     <insert id="insert" parameterType="cust">
         INSERT INTO cust (custNo, custEmail, custPwd, custName, custPhone, custBirth, custGender, custSido, custSigungu, sportsType,
@@ -49,4 +76,14 @@
     <delete id="delete" parameterType="cust">
         DELETE FROM cust WHERE custEmail=#{custEmail}
     </delete>
+    <update id="updateInfo" parameterType="cust">
+        UPDATE cust SET custPhone=#{custPhone},
+                       custSido=#{custSido}, custSigungu=#{custSigungu},
+                        sportsType=#{sportsType}, sportsClasstype=#{sportsClasstype}
+        WHERE custEmail=#{custEmail}
+    </update>
+    <update id="updatePwd" parameterType="cust">
+        UPDATE cust SET custPwd = #{custPwd}
+        WHERE custEmail=#{custEmail}
+    </update>
 </mapper>
