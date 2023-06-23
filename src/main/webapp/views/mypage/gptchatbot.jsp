@@ -337,6 +337,7 @@
                     var itemMsg = $('<p class="item_msg">').text(answer).appendTo(contentSms);
                     $('<div class="time">').text(time2).appendTo(contentSms);
 
+
                     // 스크롤 맨 아래로 이동
                     var conversationSection = $('.emPage__conversation');
                     conversationSection.scrollTop(conversationSection.prop("scrollHeight"));
@@ -348,6 +349,7 @@
                         conversationSection.scrollTop(conversationSection.scrollTop() + itemMsgHeight - contentSmsHeight);
                     }
                 },
+
                 error   : function () {
                     console.log('error');
                     hideLoading();
@@ -358,6 +360,5 @@
 
 
     });
-
 
 </script>

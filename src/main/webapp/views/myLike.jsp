@@ -15,7 +15,7 @@
     <div class="main_haeder multi_item">
         <div class="em_side_right">
             <a class="rounded-circle d-flex align-items-center text-decoration-none"
-               href="/groupboard">
+               href="/">
                 <i class="tio-chevron_left size-24 color-secondary"></i>
             </a>
         </div>
@@ -29,91 +29,91 @@
     <div class="emTitle_co padding-20" style="background-color: #F8F8FF">
         <h2 class="size-16 weight-500 color-secondary mb-1">나의 찜</h2>
         <p class="size-12 color-text m-0">
-            ${logincust.custName} 님이 찜한 이용권이에요.🥰
+            ${logincust.custName} 님이 찜한 이용권이에요,🥰
         </p>
     </div>
 </header>
 <!-- End.main_haeder -->
 
-<section class="components_page paddingTab_header">
+<section class="components_page paddingTab_header" >
 
-            <!-- 참여한 조인 시작 title -->
-<%--    <p> ${logincust.custName} 님이 찜한 이용권이에요,</p>--%>
-            <c:forEach var="obj" items="${myLike}">
-                <ul class="itemList__news" style="background-color: white;padding-top: 0;padding-bottom: 0; margin-top: 3vh">
-                    <li class="items-nav">
-                        <a href="/like1Delete?likeNo=${obj.likeNo}" style="color: purple; margin-left: 80%">
-                            x
-                        </a>
-                        <a href="/ticket/detail?gymNo=${obj.gymNo}" class="btn">
-                            <div class="media align-items-center">
-                                <img class="img_news" src="/assets/img/gymImg/${obj.gymImgName}" alt="">
-                                <div class="media-body">
-                                    <div class="txt">
-                                        <h2 style="margin-bottom: 0px">${obj.gymName}</h2>
-                                        <div class="view">
+    <!-- 참여한 조인 시작 title -->
+    <%--    <p> ${logincust.custName} 님이 찜한 이용권이에요,</p>--%>
+    <c:forEach var="obj" items="${myLike}">
+        <ul class="itemList__news" style="background-color: white;padding-top: 0;padding-bottom: 0; margin-top: 2vh">
+            <li class="items-nav">
+                <a href="/like1Delete?likeNo=${obj.likeNo}" style="color: purple; margin-left: 99%">
+                    x
+                </a>
+                <a href="/ticket/detail?gymNo=${obj.gymNo}" class="btn">
+                    <div class="media align-items-center">
+                        <img class="img_news" src="/assets/img/gymImg/${obj.gymImgName}" alt="">
+                        <div class="media-body">
+                            <div class="txt">
+                                <h2 style="margin-bottom: 0px">${obj.gymName}</h2>
+                                <div class="view">
 
-                                            <div class="icon">
-                                                <svg id="Iconly_Curved_Show" data-name="Iconly/Curved/Show"
-                                                     xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                                     viewBox="0 0 15 15">
-                                                    <g id="Show" transform="translate(1.719 2.969)">
-                                                        <path id="Stroke_1" data-name="Stroke 1"
-                                                              d="M3.952,1.976A1.976,1.976,0,1,1,1.976,0,1.977,1.977,0,0,1,3.952,1.976Z"
-                                                              transform="translate(3.806 2.588)" fill="none"
-                                                              stroke="#cbcdd8" stroke-linecap="round"
-                                                              stroke-linejoin="round" stroke-miterlimit="10"
-                                                              stroke-width="1.5" />
-                                                        <path id="Stroke_3" data-name="Stroke 3"
-                                                              d="M0,4.564c0,2.05,2.589,4.564,5.782,4.564s5.782-2.512,5.782-4.564S8.976,0,5.782,0,0,2.514,0,4.564Z"
-                                                              fill="none" stroke="#cbcdd8" stroke-linecap="round"
-                                                              stroke-linejoin="round" stroke-miterlimit="10"
-                                                              stroke-width="1.5" />
-                                                    </g>
-                                                </svg>
-                                            </div>
-                                            <span>${obj.ticketName}</span>
-                                        </div>
-                                        <div class="info_bottom">
-                                            <div class="time">
-                                                <div class="icon">
-                                                    <svg id="Iconly_Curved_Time_Square"
-                                                         data-name="Iconly/Curved/Time Square"
-                                                         xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                                         viewBox="0 0 15 15">
-                                                        <g id="Time_Square" data-name="Time Square"
-                                                           transform="translate(1.719 1.719)">
-                                                            <path id="Stroke_1" data-name="Stroke 1"
-                                                                  d="M0,5.781c0,4.336,1.446,5.781,5.781,5.781s5.781-1.446,5.781-5.781S10.117,0,5.781,0,0,1.446,0,5.781Z"
-                                                                  fill="none" stroke="#cbcdd8" stroke-linecap="round"
-                                                                  stroke-linejoin="round" stroke-miterlimit="10"
-                                                                  stroke-width="1.5" />
-                                                            <path id="Stroke_3" data-name="Stroke 3"
-                                                                  d="M2.119,3.99,0,2.726V0"
-                                                                  transform="translate(5.781 3.053)" fill="none"
-                                                                  stroke="#cbcdd8" stroke-linecap="round"
-                                                                  stroke-linejoin="round" stroke-miterlimit="10"
-                                                                  stroke-width="1.5" />
-                                                        </g>
-                                                    </svg>
-                                                </div>
-                                                <span>${obj.ticketCost}원</span>
-                                            </div>
-
-                                        </div>
-
+                                    <div class="icon">
+                                        <svg id="Iconly_Curved_Show" data-name="Iconly/Curved/Show"
+                                             xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                             viewBox="0 0 15 15">
+                                            <g id="Show" transform="translate(1.719 2.969)">
+                                                <path id="Stroke_1" data-name="Stroke 1"
+                                                      d="M3.952,1.976A1.976,1.976,0,1,1,1.976,0,1.977,1.977,0,0,1,3.952,1.976Z"
+                                                      transform="translate(3.806 2.588)" fill="none"
+                                                      stroke="#cbcdd8" stroke-linecap="round"
+                                                      stroke-linejoin="round" stroke-miterlimit="10"
+                                                      stroke-width="1.5" />
+                                                <path id="Stroke_3" data-name="Stroke 3"
+                                                      d="M0,4.564c0,2.05,2.589,4.564,5.782,4.564s5.782-2.512,5.782-4.564S8.976,0,5.782,0,0,2.514,0,4.564Z"
+                                                      fill="none" stroke="#cbcdd8" stroke-linecap="round"
+                                                      stroke-linejoin="round" stroke-miterlimit="10"
+                                                      stroke-width="1.5" />
+                                            </g>
+                                        </svg>
                                     </div>
+                                    <span>${obj.ticketName}</span>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
-                    <hr class="solid">
-                </ul>
-            </c:forEach>
-            </form>
-        </div><!-- 참여한 조인 영역 끝. -->
+                                <div class="info_bottom">
+                                    <div class="time">
+                                        <div class="icon">
+                                            <svg id="Iconly_Curved_Time_Square"
+                                                 data-name="Iconly/Curved/Time Square"
+                                                 xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                                 viewBox="0 0 15 15">
+                                                <g id="Time_Square" data-name="Time Square"
+                                                   transform="translate(1.719 1.719)">
+                                                    <path id="Stroke_1" data-name="Stroke 1"
+                                                          d="M0,5.781c0,4.336,1.446,5.781,5.781,5.781s5.781-1.446,5.781-5.781S10.117,0,5.781,0,0,1.446,0,5.781Z"
+                                                          fill="none" stroke="#cbcdd8" stroke-linecap="round"
+                                                          stroke-linejoin="round" stroke-miterlimit="10"
+                                                          stroke-width="1.5" />
+                                                    <path id="Stroke_3" data-name="Stroke 3"
+                                                          d="M2.119,3.99,0,2.726V0"
+                                                          transform="translate(5.781 3.053)" fill="none"
+                                                          stroke="#cbcdd8" stroke-linecap="round"
+                                                          stroke-linejoin="round" stroke-miterlimit="10"
+                                                          stroke-width="1.5" />
+                                                </g>
+                                            </svg>
+                                        </div>
+                                        <span>${obj.ticketCost}원</span>
+                                    </div>
 
-        <!-- 개설한 조인 시작 -->
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <hr class="solid">
+        </ul>
+    </c:forEach>
+    </form>
+    </div><!-- 참여한 조인 영역 끝. -->
+
+    <!-- 개설한 조인 시작 -->
 
 
     </div>

@@ -18851,7 +18851,7 @@ layout
   opacity: 0;
 }
 .sidebarMenu.-left .modal-dialog .modal-content .modal-body .nav .nav-item .nav-link .em_pulp .doted_item {
-  width: 5px;
+  width: 50px;
   height: 5px;
   background-color: var(--bg-red);
   border-radius: 20px;
@@ -18888,10 +18888,10 @@ layout
   padding-left: 35px;
 }
 .sidebarMenu.-left .modal-dialog .modal-content .modal-body .nav .nav-item .nav-link.active::before {
-  opacity: 1;
+  opacity: 5;
 }
 .sidebarMenu.-left .modal-dialog .modal-content .modal-body .nav .nav-item .nav-link.active::after {
-  opacity: 1;
+  opacity: 5;
 }
 .sidebarMenu.-left .modal-dialog .modal-content .modal-body .nav .nav-item .nav-link.active svg path {
   stroke: var(--color-primary);
@@ -27484,7 +27484,7 @@ i {
   transition: left 0.25s;
 }
 .em_toggle .btn-toggle.active {
-  background-color: var(--bg-green);
+  background-color: var(--bg-purple);
 }
 .em_toggle .btn-toggle.active > .handle {
   left: 15px;
@@ -27592,7 +27592,7 @@ i {
   height: 0;
 }
 .switch_toggle input:checked ~ .handle {
-  background-color: var(--bg-green);
+  background-color: var(--bg-purple);
 }
 .switch_toggle input:checked ~ .handle::before {
   -webkit-transform: translateX(14px);

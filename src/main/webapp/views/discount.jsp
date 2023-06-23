@@ -235,7 +235,7 @@
     </div>
     <%--</section>--%>
 </section><!-- End. banner_swiper -->
-<hr style="height: 30px; color: #EFECEC; border: none; border-top: 10px solid; margin-bottom: 0px;">
+<hr style="height: 30px; color: #f7edfa; border: none; border-top: 10px solid; margin-bottom: 0px;">
 <!-- 알림 설정 component-action-sheet.html 로 모달창 활용해보기. -->
 <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
     <div>
@@ -310,8 +310,12 @@
                     <div class="title_product">
                         <h3>${gym.gymName}</h3>
                         <div class="bottom_info">
-                            <p class="item_price">358,000원 <span class="price_old">390,000원</span></p>
-
+                            <p class="item_price">
+                                <fmt:formatNumber value="${gym.ticketPrice}" type="number" pattern="#,##0 원" />
+                                <span class="price_old">
+                                <fmt:formatNumber value="${gym.ticketPrice}" type="number" pattern="#,##0 원" />
+                                </span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -379,7 +383,9 @@
                                         </svg>
                                     <span>
                                     ${obj.ticketName}
-                                    <span class="item_price"><span class="price_old" style="font-size: 9px">390,000원</span></span>
+                                    <span class="item_price"><span class="price_old" style="font-size: 9px">
+                                          <fmt:formatNumber value="${obj.ticketPrice}" type="number" pattern="#,##0 원" />
+                                    </span></span>
                                     </span>
                                     </div>
                                 </div>
@@ -391,7 +397,9 @@
                                         <%-- 모집인원 - 신청된 인원 = 신청가능 인원   --%>
                                     <c:set var="canapplymember" value="${canapplymember = (obj.expectMember - obj.applicationMember) }" />
                                     <span style="font-size: smaller; color: #5d6072; font-weight: bold "><fmt:formatNumber value="${canapplymember}" />명 조인 시 </span>
-                                    <span style="color: blueviolet; font-weight: bold">358,000원</span>
+                                    <span style="color: blueviolet; font-weight: bold">
+                                                     <fmt:formatNumber value="${obj.ticketCost}" type="number" pattern="#,##0 원" />
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -401,7 +409,7 @@
             </div>
         </div>
 <%-- 알림받기 버튼 모달창 --%>
-<form name="updatemarketing_form" id="updatemarketing_form"  action="/notificationimpl" method="get">
+<form name="updatemarketing_form" id="updatemarketing_form"  action="/custnotificationimpl" method="get">
 <input type="hidden" name="custNo" value="${logincust.custNo}"/>
 <input type="hidden" name="marketingStatus" value="${logincust.marketingStatus}"/>
 <div class="modal transition-bottom screenFull defaultModal mdlladd__rate fade" id="mdllContent" tabindex="-1"
