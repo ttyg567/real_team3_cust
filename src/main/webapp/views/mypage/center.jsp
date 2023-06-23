@@ -168,12 +168,12 @@
                             </c:when>
                             <c:otherwise>
                                 <section class="npBalabce_section padding-5 pb-0">
-                                    <div class="content_balance bg-white border border-snow"
-                                         style="background-image: linear-gradient(to right, rgba(214, 59, 81, 0.5), rgba(46, 65, 183, 0.5))">
+                                    <div class="content_balance bg-white border border-gray">
                                         <div class="txt">
-                                            <h6 class="color-white">
-                                                    ${logincust.custName}님의 일정이 <br> 당분간 없어요</h6>
-                                            <h7 class="color-snow">바로 수업을 예약하세요</h7>
+                                            <h6 >
+                                                    ${logincust.custName}님의 일정이
+                                                        <br>당분간 없어요</h6>
+                                            <h7 style="color: gray">바로 수업을 예약하세요</h7>
                                         </div>
                                         <div class="action">
                                             <a href="/class/reservation" class="btn">
@@ -261,13 +261,11 @@
                             <c:when test="${my_ticket_list != '[]'}">
                                 <c:forEach var="obj2" items="${my_ticket_list}">
                                     <section class="npBalabce_section padding-5 pb-0">
-                                        <div class="content_balance bg-white border border-snow"
-                                             style="background-image: linear-gradient(to right, rgba(214, 59, 81, 0.5), rgba(46, 65, 183, 0.5))">
+                                        <div class="content_balance bg-white border border-snow" >
                                             <div class="txt">
-                                                <h6 class="color-white">
-                                                    나의 이용권</h6>
+                                                <h6 style="color: rebeccapurple">잔여 이용권</h6>
                                                 <h6 class="color-secondary">
-                                                        ${obj2.gymName}<br/>
+                                                        ${obj2.gymName}
                                                     <c:choose>
                                                         <c:when test="${obj2.ticketType == '1'}">
                                                             기간권 ${obj2.ticketMonth}개월
@@ -314,20 +312,15 @@
                                                     <span style="margin-left: 4px;">이용후기 남기기</span>
                                                 </button>
                                             </div>
-                                            <div class="action">
-                                                <a href="/ticket/all" class="btn">
-                                                    이용권 구매하기
-                                                </a>
-                                            </div>
                                         </div>
                                     </section>
                                 </c:forEach>
                             </c:when>
                             <c:otherwise>
                                 <section class="npBalabce_section padding-5 pb-0">
-                                    <div class="content_balance bg-white border border-snow"
-                                         style="background-image: linear-gradient(to right, rgba(214, 59, 81, 0.5), rgba(46, 65, 183, 0.5))">
-                                        <div class="txt">
+                                    <div class="content_balance bg-white border border-snow">
+
+                                        <div class="txt" style="text-align: center">
                                             <h6 class="color-white">
                                                     ${logincust.custName}님의 <br> 이용권이 없어요</h6>
                                             <h7 class="color-snow">딱 맞는 운동으로  <br> 이용권을 구매하세요</h7>
