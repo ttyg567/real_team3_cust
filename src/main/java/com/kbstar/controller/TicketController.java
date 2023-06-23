@@ -221,12 +221,13 @@ public class TicketController {
         return matchingTickets;
     }
 
+    // 1:1 채팅
     @RequestMapping("/chat")
     public String chat(Model model, HttpSession session, @RequestParam("gymNo") int gymNo) throws Exception {
 
         Gym gym = gymService.get(gymNo);
 
-        log.info(String.valueOf(gym));
+        //log.info(String.valueOf(gym));
 
         Cust cust = (Cust) session.getAttribute("logincust");
 
