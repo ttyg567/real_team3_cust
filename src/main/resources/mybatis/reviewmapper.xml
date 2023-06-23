@@ -9,7 +9,8 @@
         VALUES (Review_seq.NEXTVAL, #{reviewRate}, #{custNo}, sysdate,  #{reviewContents}, #{purchaseNo})
     </select>
     <select id="getGymreview" parameterType="Integer" resultType="review">
-        SELECT r.*, c.custName, g.gymNo, g.gymName
+        <!--리뷰 보여줄때 custImgName필요하여 c.custImgName 추가 (이진) -->
+        SELECT r.*, c.custName, c.custImgName, g.gymNo, g.gymName
         FROM review r left join cust c on r.custNo = c.custNo
         left join purchase p on r.purchaseNo = p.purchaseNo
         left join gym g on p.gymNo = g.gymNo and g.gymMasterCk = '1'

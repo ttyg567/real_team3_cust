@@ -24,5 +24,5 @@ public class Review {
     private float averageRate;
     private Integer users;
     private float percentage; // 평점별 백분율
-
+    private String custImgName;
 }

@@ -104,7 +104,7 @@
             <div class="em__body" style="margin-top: 0">
                 <form action="">
                     <input type=button; class="btn btn-outline-secondary" value="카메라 켜기" onclick="pic.getVideo();"
-                           style="width: 30%; margin-bottom: 10px; "></button>
+                           style="width: 38%; margin-bottom: 10px; "></button>
                     <div class="verification__Code" style="display: flex; justify-content: center;">
                         <video  id="myVideo" width="200" height="200" style="border: 1px solid mediumpurple; margin-bottom: 30px"></video><br>
                     </div>
