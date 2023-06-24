@@ -18,8 +18,16 @@ public class Coupon {
     private String couponUsed;
     private Integer custNo;
     private String couponName;
-
     private Integer couponAmount;
     private String sendDate;
+
+    // 추가
+    private String custName;
+
+    // 추가
+    private String couponCode;
+    private Integer groupboardNo;
+    private String custToken;
+
 
 }

@@ -37,11 +37,11 @@
 
         <section class="emPage__ResultPayment">
             <div class="em__seccess">
-                <h2 class="size-20 weight-500 color-secondary margin-b-10">헬쓱이를 위해 열심히 선물을 챙겨왔어요</h2>
+                <h2 class="size-20 weight-500 color-secondary margin-b-10">헬쓱이를 위해 선물을 챙겨왔어요</h2>
                 <p class="size-15 color-text margin-b-40 moving-text">▼ 저를 클릭해주세요! ▼</p>
             </div>
             <div id="notification">
-                <img id="giftIcon" src="/assets/img/gift/kolly.gif" style="cursor: pointer;">
+                <img id="giftIcon" src="/assets/img/gift/kolly.gif" style="cursor: pointer; width: 200px; width: 200px;">
             </div>
         </section>
     </div>

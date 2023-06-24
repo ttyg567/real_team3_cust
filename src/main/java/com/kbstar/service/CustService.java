@@ -90,4 +90,7 @@ public class CustService implements KBService<String, Cust> {
     public void reUpdateNoti(Cust cust) {
         mapper.reUpdateNoti(cust);
     }
+
+    // 성영
+    public Integer getGeneratedCustNo(){ return mapper.getGeneratedCustNo();}
 }

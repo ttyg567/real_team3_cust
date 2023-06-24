@@ -26,6 +26,68 @@
         SELECT * FROM coupon where  couponNo = #{couponNo}
     </select>
 
+    <!-- 월급날 운동 완료된 custNo 중 당일 coupon 발송 내역이 없는 고객 추출 -->
+    <!-- AND (EXTRACT(DAY FROM c.classDate) IN (24, 25, 26, 30)) -->
+    <select id="getCouponcust_completed" resultType="coupon">
+        <![CDATA[
+        SELECT t.custNo, cu.custName, cu.custToken
+        FROM (
+                 SELECT DISTINCT m.custNo
+                 FROM mySchedule m
+                          JOIN class c ON m.classNo = c.classNo
+                          LEFT JOIN coupon cp ON m.custNo = cp.custNo
+                 WHERE m.SHEDULECANCELED= '0' AND m.scheduleCompleted = '1'
+                   AND ((cp.sendDate IS NULL OR cp.sendDate < TRUNC(SYSDATE)) OR (cp.sendDate = TRUNC(SYSDATE) AND cp.couponCode <> '1'))
+             ) t
+                 LEFT JOIN cust cu ON t.custNo = cu.custNo
+        ]]>
+    </select>
+
+    <!-- 운동완료는 스타벅스 -->
+    <!-- 쿠폰이 발송되면 쿠폰 발송일자로부터 만료일자가 재계산 -->
+    <!-- 안쓴 쿠폰부터 쭉 발송 -->
+    <select id="getCouponcust_update" parameterType="coupon">
+        UPDATE coupon
+        SET sendDate = SYSDATE,
+            custNo = #{custNo},
+            couponExdate = ADD_MONTHS(SYSDATE, 2),
+            COUPONCODE = '1'
+        WHERE couponNo = (
+            SELECT couponNo
+            FROM (
+                     SELECT couponNo
+                     FROM coupon
+                     WHERE sendDate IS NULL
+                       and trim(COUPONNAME) = '스타벅스'
+                     ORDER BY couponNo ASC
+                 )
+            WHERE ROWNUM = 1
+        )
+    </select>
+
+    <!-- 조인완료는 할인권 -->
+    <!-- 쿠폰이 발송되면 쿠폰 발송일자로부터 만료일자가 재계산 -->
+    <!-- 안쓴 쿠폰부터 쭉 발송 -->
+    <select id="getCouponcust_update_discount" parameterType="groupboard">
+        UPDATE coupon
+        SET sendDate = SYSDATE,
+            custNo = #{custNo},
+            couponExdate = ADD_MONTHS(SYSDATE, 2),
+            COUPONCODE = '3' <!-- 1: 운동완료(스타벅스), 2:이벤트(신세계), 3: 조인(할인권) -->
+        WHERE couponNo = (
+            SELECT couponNo
+            FROM (
+                     SELECT couponNo
+                     FROM coupon
+                     WHERE sendDate IS NULL
+                       and trim(COUPONNAME) = '할인권'
+                     ORDER BY couponNo ASC
+                 )
+            WHERE ROWNUM = 1
+        )
+    </select>
+
+
     <!-- 오늘 발송된 나의 쿠폰 확인  : 현재 시간 기준으로 직전에 보낸 쿠폰을 추출-->
     <select id="getTodaymycoupon" resultType="coupon">
         <![CDATA[
@@ -39,6 +101,17 @@
              )
         WHERE ROWNUM = 1
         ]]>
+    </select>
+
+    <!-- 니의 쿠폰함 -->
+    <select id="getMycoupon" resultType="coupon">
+        select * from coupon
+        where custno = #{custNo} and (COUPONUSED is null or COUPONUSED != '1')
+    </select>
+    <!-- 사용한 쿠폰함 -->
+    <select id="getMyusedcoupon" resultType="coupon">
+        select * from coupon
+        where custno = #{custNo} and COUPONUSED = '1'
     </select>
 
 </mapper>

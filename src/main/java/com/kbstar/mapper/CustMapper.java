@@ -28,4 +28,7 @@ public interface CustMapper extends KBMapper<String, Cust> {
     public void updateNoti(Cust cust);
     public void clearNoti(Cust cust);
     public void reUpdateNoti(Cust cust);
+
+    // 성영 : 회원가입시 메인화면으로 가기 위해 custNo set 해주기 위해 가져와야 함
+    public Integer getGeneratedCustNo();
 }

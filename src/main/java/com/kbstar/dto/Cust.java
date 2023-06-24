@@ -42,6 +42,9 @@ public class Cust {
     private String picture;
     private Role role;
 
+    // 토근 관련(알람)
+    private String custToken;
+
     // 캘린더 관련
     private String classDate; // 로그인 된 cust 기준 수업 시간 select 해오기 위해 추가
     private String  custImageName;

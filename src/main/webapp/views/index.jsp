@@ -47,9 +47,12 @@
     <script src="/assets/js/jquery-3.6.0.js"></script>
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- 카카오지도 성영 -->
+        <script type="text/javascript"
+                src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fedd7ae53186e30e0b2f11f102dd9180&libraries=services"></script>
     <!-- 카카오지도 인보 -->
-    <script type="text/javascript"
-            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4617571d8f9917ae900e8b494a093c31&libraries=services"></script>
+<%--    <script type="text/javascript"--%>
+<%--            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4617571d8f9917ae900e8b494a093c31&libraries=services"></script>--%>
     <%--    <script type="text/javascript"--%>
     <%--            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	0f0752ec20b8a0352c5794754058b576&libraries=services"></script>--%>
 

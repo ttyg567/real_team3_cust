@@ -217,7 +217,7 @@
                                 <h6 class="color-white">
                                     이 달의 프로틴 사탕</h6>
                                 <h6 class="color-secondary">매일매일 건강도 챙기고, <br/> 혜택도 챙겨가자!</h6>
-                                <h7 class="color-snow">월급날에 운동하면 쿠폰을 쏜다!!</h7>
+                                <h7 class="color-snow">이벤트날에 운동하면 쿠폰을 쏜다!!</h7>
                                 <br>
                                 <h7 id="candyCount" class="color-snow"></h7>
                             </div>
@@ -343,9 +343,9 @@
                                     <div class="content_balance bg-white border border-snow">
 
                                         <div class="txt" style="text-align: center">
-                                            <h6 class="color-white">
-                                                    ${logincust.custName}님의 <br> 이용권이 없어요</h6>
-                                            <h7 class="color-snow">딱 맞는 운동으로  <br> 이용권을 구매하세요</h7>
+                                            <h6>
+                                                    ${logincust.custName} 님의 <br> 이용권이 없어요</h6>
+                                            <h7 style="color: gray">딱 맞는 운동으로  <br> 이용권을 구매하세요</h7>
                                         </div>
                                         <div class="action">
                                             <a href="/ticket/all" class="btn">

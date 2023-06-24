@@ -43,6 +43,7 @@ public class MainController {
         Cust cust = null;
         cust = (Cust) session.getAttribute("logincust");
 
+
         // 로그인을 안할 경우 && 둘러보기를 안눌렀을 때 웰컴 페이지로
         if (cust == null && (name == null || !(name.trim().equals("1")))) {
             return "redirect:/welcome";
@@ -59,7 +60,7 @@ public class MainController {
 
             // 로그인 고객만을 위한 정보 : 나의 운동기구로 즐겨찾기한 리스트를 메인페이지에서 보여준다.
             if (cust != null) {
-                list3 = myMachineService.getmymachine(cust.getCustNo()); // 즐겨찾기 보여주기
+                list3 = myMachineService.getmymachine(cust.getCustNo()); // 즐겨찾기 보여주기 // 로그인시 오면 여기서 에러남
             }
             // list2 = gymMachineService.selectGymMachine(gymNo); // 센터가 보유한 기계 가져오기
         }

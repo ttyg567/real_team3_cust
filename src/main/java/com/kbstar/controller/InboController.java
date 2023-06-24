@@ -1,10 +1,12 @@
 package com.kbstar.controller;
 
 import com.kbstar.dto.*;
+import com.kbstar.service.CouponService;
 import com.kbstar.service.GBMemberService;
 import com.kbstar.service.GroupboardService;
 import com.kbstar.service.GymService;
 import com.kbstar.util.FileUploadUtil;
+import com.kbstar.util.PushNotificationUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,6 +33,11 @@ public class InboController {
     GBMemberService gbMemberService;
     @Autowired
     GymService gymService;
+    @Autowired
+    private PushNotificationUtil pushNotificationUtil; // 푸쉬알림
+
+    @Autowired
+    private CouponService couponService;
     String dir = "groupboard/";
     // 4-1 조인 메인페이지
     @RequestMapping("")
@@ -237,12 +244,29 @@ public class InboController {
     // 4-6 조인 신청하기 기능 + 신청완료 페이지 이동
     @RequestMapping("/success_apply")
     public String success_apply(Model model, GBMember gbMember) throws Exception {
+
+        List<Groupboard> groupboard_is_completed = null;
+
         // 조인 신청회원으로 등록해주기
         gbMemberService.register(gbMember);
+
+        // 멤버가 신청할 때마다 신청인원 +1, 확정인원 +1 하고,
+        // 모집인원과 확정인원이 같으면 상태를 '5'로 바꿔준다.
+        groupboardService.updateStatus(gbMember.getGroupboardNo());
+
+        groupboard_is_completed = groupboardService.selectGroupboardCompleted(gbMember.getGroupboardNo()); // 모집완료된거 추출
+
+        // 꽉 차면 각 사용자들에게 쿠폰을 보낸다.
+        if(groupboard_is_completed!=null || !groupboard_is_completed.isEmpty()){
+            joinCompleted(gbMember.getGroupboardNo());
+        }
+
+        model.addAttribute("groupboard_is_completed", groupboard_is_completed);
         
         // webapp > groupboard > apply 페이지로 전체 교체(center만 교체되는 것 아님)
        return dir + "apply";
     }
+
     // 4-7-1 나의 조인 보기
     @RequestMapping("/my_applyjoin")
     public String my_applyjoin(Model model, Integer custNo, HttpSession session, HttpServletRequest request) throws Exception {
@@ -270,9 +294,32 @@ public class InboController {
         return "index"; // 로그인 후 "my_applyjoin" 페이지로 이동
     }
 
+    public void joinCompleted(Integer getGroupboardNo) throws Exception {
 
+        List<Groupboard> target_list = null;
+
+        // 쿠폰 발송 대상인 cust를 긁어온다.
+        target_list = groupboardService.selectJoincompletedmember(getGroupboardNo);
+
+        log.info("==상태를 봐야겠음==" + target_list);
+
+        if (target_list != null && !target_list.isEmpty()) {  // 빈열이여도 실행이 되네
+//        if (target_list != null) {
+            for (Groupboard item : target_list) { // 그래도 여긴 안돈다.....
+                log.info("쿠폰 알림 진입");
+                String clientToken = item.getCustToken().replaceAll("\\s+", ""); // 토큰에서 공백 제거
+                log.info("=== 쿠폰 대상 번호는 === " + item.getCustNo() + "=====");
+                log.info("=== 쿠폰 대상 이름은 === " + item.getCustName() + "====="); // null 확인하기
+                log.info("=== 쿠폰 대상 토큰은 === " + item.getCustToken() + "=====");
+                couponService.getCouponcust_update_discount(item);
+                // 푸쉬 알람은 cust에 등록된 토큰으로 보낸다.
+                pushNotificationUtil.sendCommonMessage("Open Coupon Box", "Open Coupon Box", "/coupon/show", clientToken);
+            }
+        }
 
     }
+
+}
 
 
 
