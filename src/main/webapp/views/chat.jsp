@@ -212,7 +212,7 @@
             $('<p class="item_msg">').text(question).appendTo(contentSmsMe);
             var timeMe = $('<div class="time">').appendTo(contentSmsMe);
             //$('<span>').text(time2).appendTo(timeMe);
-            $('<div class="icon ml-1">').append('<i class="ri-check-double-line color-primary size-18"></i>').appendTo(timeMe);
+            //$('<div class="icon ml-1">').append('<i class="ri-check-double-line color-primary size-18"></i>').appendTo(timeMe);
 
             var msg = JSON.stringify({
                 'sendid' : this.id,
@@ -226,6 +226,8 @@
             // });
 
             this.stompClient.send('/receiveto', {}, msg);
+
+            $("#totext").val(""); // 질문 초기화
 
         }
     };

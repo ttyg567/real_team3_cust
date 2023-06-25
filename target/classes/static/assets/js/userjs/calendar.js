@@ -85,63 +85,6 @@ var calFunc = {
 
 };
 
-function set_time(item) {
-    // 역직렬화
-    let itemObject = JSON.parse(item);
-
-    // 수업 시간 set
-    let time = itemObject.classTime;
-    console.log("시간 확인: " + time);
-    $('#ttime').text(time);
-
-    // 수업 상세 내용 set
-    $('#className').val(itemObject.className); // 수업명
-    $("#trainerNo").val(itemObject.trainerNo); // 트레이너
-    $("#trainerNo option[value='" + itemObject.trainerNo + "']").text(itemObject.trainerName); // 트레이너
-
-    // $("#classDate").val(itemObject.classDate).trigger("change");
-
-    $("#classDate").val(itemObject.classDate); // 수업일시
-    console.log("====" + itemObject.sportsClasstype + "====" + typeof itemObject.sportsClasstype);
-    if (itemObject.sportsClasstype.replace(" ", "") === "1") {
-        $("#sportsClasstype").val("1");
-        $("#sportsClasstype option[value='1']").text("1:1수업");
-    } else if (itemObject.sportsClasstype.replace(" ", "") === "2") {
-        $("#sportsClasstype").val("2");
-        $("#sportsClasstype option[value='2']").text("그룹수업");
-    } else {
-        $("#sportsClasstype").val("3");
-        $("#sportsClasstype option[value='3']").text("자유수업");
-    }
-    $('#classStarttime').val(itemObject.classStarttime); // 수업시작시간
-    $("#classEndtime").val(itemObject.classEndtime); // 수업종료시간
-    $("#classMaximum").val(itemObject.classMaximum); // 최대 인원
-    $("#classJoin").val(itemObject.classJoin); // 참여 인원
-    $("#classFullbooked").val(itemObject.classFullbooked); // 마감 여부
-
-    // classNo set
-    $("#classNo").val(itemObject.classNo); // classNo
-}
-
-// 스크롤 안됨. 나중에 해결하기 //
-// var classDetailDiv = $("#class_detail");
-// var scrollPosition = classDetailDiv.offset().top; // #class_detail의 위치를 가져옵니다.
-// $('html, body').animate({ scrollTop: scrollPosition }, 'slow'); // 해당 위치로 스크롤 이동합니다.
-//
-// if (isScrollable(classDetailDiv)) {
-//     console.log("스크롤 가능한 상태입니다.");
-// } else {
-//     console.log("스크롤 불가능한 상태입니다.");
-// }
-///////////////////////////////////////////////////////////////
-
-
-function isScrollable(element) {
-    console.log(element.scrollHeight + ",    ");
-    console.log(element.clientHeight);
-    return element.scrollHeight > element.clientHeight;
-}
-
 // 예약 로직을 처리하는 함수
 function reserveClass(circleCheck) {
     // 클릭한 circle_check 요소의 부모 요소인 li.item을 찾습니다
@@ -204,11 +147,13 @@ var calendar = new FullCalendar.Calendar(document.getElementById("calendar_reser
     initialDate  : '2023-06-05',
 
     /************************ 추가 지정 *************************/
-    // eventColor : 'green',
-    // themeSystem: 'materia',
-    // eventClick : function (info) {
-    //    console.log(info);
-    // },
+    eventColor : '#fbd597',
+    themeSystem: 'materia',
+    // eventDisplay: 'block',
+
+    eventClick : function (info) {
+       console.log(info);
+    },
     eventAdd   : function (obj) { // 이벤트가 추가되면 발생하는 이벤트
         console.log(obj);
     },
@@ -230,7 +175,6 @@ var calendar = new FullCalendar.Calendar(document.getElementById("calendar_reser
         const dateStr = year + '-' + month + '-' + day;
 
         $('#tdate').text("수업 예약");
-        // $('#ttime').text('');
 
         // 세션에 담긴 custNo 추출
         var custNo = $('#custNo').val();
@@ -247,7 +191,6 @@ var calendar = new FullCalendar.Calendar(document.getElementById("calendar_reser
             var listHTML = '';
 
             if (itemList.length === 0) {
-                let modal = $('#mdllAdd_Address');
                 listHTML = '<li class="item">예약 가능한 수업이 없습니다.</li>';
             } else {
                 for (let i = 0; i < itemList.length; i++) {
@@ -294,6 +237,8 @@ var calendar = new FullCalendar.Calendar(document.getElementById("calendar_reser
                     listHTML += '<span class="size-13 color-text weight-400 d-inline-block" id="sportsType">운동종목: ' + sportsTypeText + ',' + '</span>&nbsp;&nbsp;';
                     listHTML += '<span class="size-13 color-text weight-400 d-inline-block" id="sportsClasstype">수업형태: ' + sportsClasstypeText + '</span>';
                     listHTML += '<input type="hidden" id="classNo" value="' + item.classNo + '"/>'; // hidden으로 classNo 추가
+                    listHTML += '<input type="hidden" id="purchaseNo" value="' + item.purchaseNo + '"/>'; // hidden으로 purchaseNo 추가
+                    listHTML += '<input type="hidden" id="ticketNo" value="' + item.ticketNo + '"/>'; // hidden으로 ticketNo 추가
                     listHTML += '</div>';
                     listHTML += '<div class="areaRight">';
                     listHTML += '<span class="circle_check"></span>';
@@ -317,15 +262,24 @@ var calendar = new FullCalendar.Calendar(document.getElementById("calendar_reser
         //     // reserveClass($(this));
         // });
 
-        // 모달 창 열릴 때 클릭 이벤트 핸들러 추가
+        // 모달 창 열릴 때 클릭 이벤트 핸들러 등록
         $(document).on('shown.bs.modal', '#mdllAdd_Address', function () {
-            $('.circle_check').click(function () {
+            // 이전에 선택된 요소 초기화
+            $('.circle_check').removeClass('active');
+
+            // circle_check 요소에 클릭 이벤트 핸들러 추가
+            $('.nav__listAddress').on('click', '.circle_check', function () {
                 console.log("클릭되었습니다.");
+                console.log("this는 " + $(this));
 
                 if ($(this).hasClass('active')) {
+                    console.log("====" + " 활성화 되어 있으니 비활성화 하겠습니다 " + "====");
+                    console.log("====" + $(this).hasClass('active') + "====");
                     // 이미 활성화된 요소를 클릭한 경우
                     $(this).removeClass('active');
                 } else {
+                    console.log("====" + " 비활성화 되어 있으니 활성화 하겠습니다 " + "====");
+                    console.log("====" + $(this).hasClass('active') + "====");
                     // 비활성화된 요소를 클릭한 경우
                     $('.circle_check').removeClass('active');
                     $(this).addClass('active');
@@ -336,10 +290,11 @@ var calendar = new FullCalendar.Calendar(document.getElementById("calendar_reser
         // 모달 창 닫힐 때 클릭 이벤트 핸들러 제거
         $(document).on('hidden.bs.modal', '#mdllAdd_Address', function () {
             console.log("모달 창 닫혔다 !! ");
-            $('.circle_check').off('click');
+            // 닫힐 때 활성화된거 제거
+            $('.circle_check').removeClass('active');
         });
 
-// 예약 버튼 눌렀을 때
+        // 예약 버튼 눌렀을 때
         $(document).on('click', '#reserve_btn', function () {
             // 정보가 있는지 확인
             if ($('.circle_check.active').length === 0) {
@@ -351,12 +306,16 @@ var calendar = new FullCalendar.Calendar(document.getElementById("calendar_reser
             $(this).prop('disabled', true);
 
             let classNo = $('.circle_check.active').closest('.item').find('#classNo').val();
+            let purchaseNo = $('#purchaseNo').val();
+            let ticketNo = $('#ticketNo').val();
 
             // GET 요청으로 예약 정보를 서버에 전송합니다
             $.ajax({
                 url: '/class/reserve',
                 type: 'GET',
-                data: { classNo: classNo },
+                data: { classNo: classNo,
+                    purchaseNo: purchaseNo,
+                    ticketNo: ticketNo},
                 success: function (response) {
                     if (response === "success") {
                         alert("예약이 완료되었습니다");
