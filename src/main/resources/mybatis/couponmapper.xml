@@ -22,9 +22,71 @@
         SELECT * FROM coupon
     </select>
 
-    <select id="select" resultType="coupon">
-        SELECT * FROM coupon where  couponNo = #{couponNo}
+    <select id="select" resultType="coupon" parameterType="Integer">
+        SELECT c.*, t.gymno, g.gymName, t.ticketNo, t.ticketName, t.ticketPrice, g.groupboardTitle, g.groupboardImgname FROM coupon c
+          left join groupboard g on c.GROUPBOARDNO = g.GROUPBOARDNO
+          left join ticket t on g.TICKETNO = t.TICKETNO
+          left join gym g on t.gymNo = g.gymNo
+        where c.couponNo = #{couponNo}
     </select>
+    <!-- 당일 운동 완료했는지 조회 -> 했으면 토큰 반환 -->
+    <!-- 오늘 운동 완료된 custNo. 당일 coupon 발송 내역이 없는 고객 그냥 고려치 않음 -->
+    <!-- AND (EXTRACT(DAY FROM c.classDate) IN (24, 25, 26, 30)) -->
+  <select id="getCouponcust_completed" resultType="coupon" parameterType="Integer">
+      SELECT m.custNo, cu.custName, cu.custToken
+      FROM mySchedule m
+               JOIN class c ON m.classNo = c.classNo
+               JOIN cust cu ON m.custNo = cu.custNo
+      WHERE m.SHEDULECANCELED = '0' AND m.scheduleCompleted = '1'
+        AND TRUNC(c.classDate) = TRUNC(SYSDATE)
+        AND m.custNo = #{custNo}
+    </select>
+
+    <!-- 운동완료는 스타벅스 -->
+    <!-- 쿠폰이 발송되면 쿠폰 발송일자로부터 만료일자가 재계산 -->
+    <!-- 안쓴 쿠폰부터 쭉 발송 -->
+    <update id="getCouponcust_update" parameterType="coupon">
+        UPDATE coupon
+        SET sendDate = SYSDATE,
+            custNo = #{custNo},
+            couponExdate = ADD_MONTHS(SYSDATE, 2),
+            COUPONCODE = '1'
+        WHERE couponNo = (
+            SELECT couponNo
+            FROM (
+                     SELECT couponNo
+                     FROM coupon
+                     WHERE sendDate IS NULL
+                       and trim(COUPONNAME) = '스타벅스'
+                     ORDER BY couponNo ASC
+                 )
+            WHERE ROWNUM = 1
+        )
+    </update>
+
+    <!-- 조인완료는 할인권 -->
+    <!-- 쿠폰이 발송되면 쿠폰 발송일자로부터 만료일자가 재계산 -->
+    <!-- 안쓴 쿠폰부터 쭉 발송 -->
+    <update id="getCouponcust_update_discount" parameterType="groupboard">
+        UPDATE coupon
+        SET sendDate = SYSDATE,
+            custNo = #{custNo},
+            couponExdate = ADD_MONTHS(SYSDATE, 2),
+            COUPONCODE = '3', <!-- 1: 운동완료(스타벅스), 2:이벤트(신세계), 3: 조인(할인권) -->
+            groupBoardno =  #{groupBoardno}
+        WHERE couponNo = (
+            SELECT couponNo
+            FROM (
+                     SELECT couponNo
+                     FROM coupon
+                     WHERE sendDate IS NULL
+                       and trim(COUPONNAME) = '할인권'
+                     ORDER BY couponNo ASC
+                 )
+            WHERE ROWNUM = 1
+        )
+    </update>
+
 
     <!-- 오늘 발송된 나의 쿠폰 확인  : 현재 시간 기준으로 직전에 보낸 쿠폰을 추출-->
     <select id="getTodaymycoupon" resultType="coupon">
@@ -41,4 +103,73 @@
         ]]>
     </select>
 
+    <!-- 니의 쿠폰함 -->
+    <select id="getMycoupon" resultType="coupon">
+        select c.*, g.ticketno, t.ticketname, t.TICKETCOST, t.TICKETDISCOUNT, t.TICKETPRICE, t.ticketName, g.gymName
+        from coupon c left join GROUPBOARD g
+                           on c.GROUPBOARDNO = g.GROUPBOARDNO
+                      left join ticket t on g.ticketno = t.ticketno
+                      join gym g on t.gymNo = g.gymNo
+        where c.custno = #{custNo} and (c.COUPONUSED is null or c.COUPONUSED != '1')
+    </select>
+    <!-- 사용한 쿠폰함 -->
+    <select id="getMyusedcoupon" resultType="coupon">
+        select c.*, g.ticketno, t.ticketname, t.TICKETCOST, t.TICKETDISCOUNT, t.TICKETPRICE, t.ticketName, g.gymName
+        from coupon c left join GROUPBOARD g
+                           on c.GROUPBOARDNO = g.GROUPBOARDNO
+                      left join ticket t on g.ticketno = t.ticketno
+                      join gym g on t.gymNo = g.gymNo
+        where c.custno = #{custNo} and c.COUPONUSED = '1'
+    </select>
+    <!-- 결제시 사용 가능한 나의 쿠폰 -->
+    <select id="payMycoupon" resultType="coupon" parameterType="Coupon">
+        select c.*, g.ticketno, t.ticketname, t.TICKETCOST, t.TICKETDISCOUNT, t.TICKETPRICE
+        from coupon c join GROUPBOARD g
+                           on c.GROUPBOARDNO = g.GROUPBOARDNO
+                      join ticket t on g.ticketno = t.ticketno
+        where c.custno = #{custNo} and (c.COUPONUSED is null or c.COUPONUSED != '1')
+        and t.ticketno = #{ticketNo}
+    </select>
+
+    <!-- 사용했다고 상태변경 -->
+    <update id="updateUsed" parameterType="Integer">
+        UPDATE coupon
+        SET COUPONUSED = '1'
+        WHERE couponNo =  #{couponNo}
+    </update>
+
 </mapper>
+
+<!--
+        <![CDATA[
+        SELECT t.custNo, cu.custName, cu.custToken
+        FROM (
+                 SELECT DISTINCT m.custNo
+                 FROM mySchedule m
+                          JOIN class c ON m.classNo = c.classNo
+                          LEFT JOIN coupon cp ON m.custNo = cp.custNo
+                 WHERE m.SCHEDULECANCELED = '0' AND m.scheduleCompleted = '1'
+                   AND ((cp.sendDate IS NULL OR cp.sendDate < TRUNC(SYSDATE))
+                     OR (cp.sendDate = TRUNC(SYSDATE) AND (cp.couponCode <> '1' OR cp.couponCode IS NULL))
+                     )
+                 GROUP BY m.custNo
+                 HAVING COUNT(cp.couponCode) = 0
+             ) t
+                 LEFT JOIN cust cu ON t.custNo = cu.custNo
+        ]]> -->
+
+<!--
+        <![CDATA[
+        SELECT t.custNo, cu.custName, cu.custToken
+        FROM (
+                 SELECT DISTINCT m.custNo
+                 FROM mySchedule m
+                          JOIN class c ON m.classNo = c.classNo
+                          LEFT JOIN coupon cp ON m.custNo = cp.custNo
+                 WHERE m.SCHEDULECANCELED = '0' AND m.scheduleCompleted = '1'
+                   AND TRUNC(c.classDate) = TRUNC(SYSDATE)
+                   AND m.custNo = #{custNo}
+             ) t
+                 LEFT JOIN cust cu ON t.custNo = cu.custNo
+        ]]>
+-->

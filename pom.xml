@@ -162,6 +162,12 @@
             <artifactId>chatgpt-spring-boot-starter</artifactId>
             <version>1.0.4</version>
         </dependency>
+        <!-- firebase -->
+        <dependency>
+            <groupId>com.google.firebase</groupId>
+            <artifactId>firebase-admin</artifactId>
+            <version>8.1.0</version>
+        </dependency>
     </dependencies>
 <repositories>
 <repository>

@@ -114,4 +114,39 @@
     <delete id="delete" parameterType="Integer">
         DELETE FROM groupboard WHERE groupboardNo=#{groupboardNo}
     </delete>
+
+    <!-- 멤버가 신청할 때마다 신청인원 +1, 확정인원 +1 하고, 모집인원과 확정인원이 같으면 상태를 '5'로 바꿔준다. -->
+    <update id="updateStatus" parameterType="Integer">
+        UPDATE groupboard
+        SET
+            applicationMember = COALESCE(applicationMember, 0) + 1,
+            confirmMember = COALESCE(confirmMember, 0) + 1,
+            expectMember = COALESCE(expectMember, 0),
+            groupboardStatus = CASE
+                                   WHEN COALESCE(applicationMember, 0) + 1 >= COALESCE(expectMember, 0) THEN '5'
+                                   ELSE '0'
+                END
+        WHERE groupboardNo = #{groupboardNo}
+
+    </update>
+
+    <!-- 모집완료된 것 추출 -->
+    <select id="selectGroupboardCompleted" resultType="groupboard">
+        select g1.*
+        from groupboard g1
+        where g1.groupboardStatus = '5' and g1.groupboardNo = #{groupboardNo}
+    </select>
+
+    <!-- 모집 완료된 멤버(글쓴이 포함) 추출 -->
+    <select id="selectJoincompletedmember" resultType="groupboard">
+        SELECT g1.custNo, c.custToken
+        FROM GroupBoard g1 left join cust c on g1.custNo = c.custNo
+        WHERE g1.groupboardNo = #{groupboardNo} AND g1.groupboardStatus = '5'
+        UNION
+        SELECT g2.custNo, c.custToken
+        FROM GroupBoard g1
+                 left join GBMember g2 ON g1.groupboardNo = g2.groupboardNo
+                 left join cust c on g2.custNo = c.custNo
+        WHERE g1.groupboardNo = #{groupboardNo} AND g1.groupboardStatus = '5' AND g2.custNo IS NOT NULL
+    </select>
 </mapper>

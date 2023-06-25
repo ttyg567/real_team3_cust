@@ -156,10 +156,9 @@
                             <c:when test="${my_reservation_list != '[]'}">
                                 <c:forEach var="obj" items="${my_reservation_list}">
                                     <section class="npBalabce_section padding-5 pb-0">
-                                        <div class="content_balance bg-white border border-snow"
-                                             style="background-image: linear-gradient(to right, rgba(214, 59, 81, 0.5), rgba(46, 65, 183, 0.5))">
+                                        <div class="content_balance bg-white border border-snow">
                                             <div class="txt">
-                                                <h6 class="color-white">
+                                                <h6 style="color: rebeccapurple">
                                                         ${obj.dateCategory}의 운동 일정</h6>
                                                 <h6 class="color-secondary">${obj.className}</h6>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -217,7 +216,7 @@
                                 <h6 class="color-white">
                                     이 달의 프로틴 사탕</h6>
                                 <h6 class="color-secondary">매일매일 건강도 챙기고, <br/> 혜택도 챙겨가자!</h6>
-                                <h7 class="color-snow">월급날에 운동하면 쿠폰을 쏜다!!</h7>
+                                <h7 class="color-snow">이벤트날에 운동하면 쿠폰을 쏜다!!</h7>
                                 <br>
                                 <h7 id="candyCount" class="color-snow"></h7>
                             </div>
@@ -343,9 +342,9 @@
                                     <div class="content_balance bg-white border border-snow">
 
                                         <div class="txt" style="text-align: center">
-                                            <h6 class="color-white">
-                                                    ${logincust.custName}님의 <br> 이용권이 없어요</h6>
-                                            <h7 class="color-snow">딱 맞는 운동으로  <br> 이용권을 구매하세요</h7>
+                                            <h6>
+                                                    ${logincust.custName} 님의 <br> 이용권이 없어요</h6>
+                                            <h7 style="color: gray">딱 맞는 운동으로  <br> 이용권을 구매하세요</h7>
                                         </div>
                                         <div class="action">
                                             <a href="/ticket/all" class="btn">

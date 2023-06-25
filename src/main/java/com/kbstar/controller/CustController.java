@@ -158,9 +158,14 @@ public class CustController {
             cust.setCustPwd((encoder.encode(cust.getCustPwd())));
             // DB 가입
             custService.register(cust);
+            // 등록된 후에 생성된 custNo 값을 가져와서 cust 객체에 반영
+            int generatedCustNo = custService.getGeneratedCustNo();
+            cust.setCustNo(generatedCustNo);
+
             session.setAttribute("logincust", cust);
         } catch (Exception e) {
             e.printStackTrace();
+
             throw new Exception("가입오류");
         }
 

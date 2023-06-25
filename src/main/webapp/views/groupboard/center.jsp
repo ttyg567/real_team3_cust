@@ -85,7 +85,7 @@
 <!-- header 구간  -->
 <header class="main_haeder header-sticky multi_item" >
     <div class="em_side_right">
-        <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/groupboard">
+        <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/">
             <i class="tio-chevron_left size-24 color-secondary"></i>
             <%--            <span class="color-text size-14">Back</span>--%>
         </a>
@@ -339,7 +339,7 @@
                                 <c:set var="canapplymember" value="${canapplymember = (obj.expectMember - obj.applicationMember) }" />
                                 <span style="font-size: smaller; color: #5d6072; font-weight: bold "><fmt:formatNumber value="${canapplymember}" />명 조인 시 </span>
                                 <span style="color: blueviolet; font-weight: bold">
-                                                     <fmt:formatNumber value="${obj.ticketCost}" type="number" pattern="#,##0 원" />
+                                                     <fmt:formatNumber value="${obj.ticketJoinPrice}" type="number" pattern="#,##0 원" />
                                     </span>
                             </div>
                         </div>
@@ -404,7 +404,7 @@
                                 <c:set var="canapplymember" value="${canapplymember = (obj.expectMember - obj.applicationMember) }" />
                                 <span style="font-size: smaller; color: #5d6072; font-weight: bold "><fmt:formatNumber value="${canapplymember}" />명 조인 시 </span>
                                 <span style="color: blueviolet; font-weight: bold">
-                                                     <fmt:formatNumber value="${obj.ticketCost}" type="number" pattern="#,##0 원" />
+                                                     <fmt:formatNumber value="${obj.ticketJoinPrice}" type="number" pattern="#,##0 원" />
                                     </span>
                             </div>
                         </div>

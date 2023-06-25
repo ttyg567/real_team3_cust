@@ -27,6 +27,9 @@ public class Groupboard {
     private int boardViews; // 글 조회수
     private Date writeDate; // 글 작성일자
 
+    // 알람 메세지 토큰 떄문에 추가
+    private String custToken;
+
     // insert 2
     public Groupboard(int groupboardNo, int custNo, int ticketNo, String groupboardTitle, String groupboardContents, String groupboardImgname, String categoryNo, int expectMember, String groupboardStatus, Date writeDate, int boardViews,int gymNo,  String gymName) {
         this.groupboardNo = groupboardNo;
@@ -101,4 +104,5 @@ public class Groupboard {
     private int ticketCost;
     private double ticketDiscount;
     private int ticketPrice;
+    private int ticketJoinPrice; //화면에 뿌려주기 위한 용도...!!!
 }

@@ -117,7 +117,7 @@
                                                    aria-describedby="cNumberInput" style="display: none; width:70%">
                                             <button class="btn btn-outline-secondary mb-0" type="button"
                                                     id="btnConfirmcnum"
-                                                    style="display: none; width:30%">인증번호 확인
+                                                    style="display: none; width:30%">번호입력
                                             </button>
                                         </div>
                                     </li>
