@@ -59,7 +59,7 @@
                     <div class="em__seccess">
                         <h2 class="size-20 weight-500 color-secondary margin-b-10">축하드려요! ${couponOpen.couponName} 쿠폰 당첨!</h2>
                         <p class="size-15 color-text margin-b-10 moving-text">▼ 커피 한 잔으로 오늘도 이겨내보아요! ▼</p>
-                        <a href="/coupon/my_coupon"
+                        <a href="/coupon/my_coupon?custNo=${logincust.custNo}"
                            class="btn rounded-10 h-48 min-w-130 size-14 color-secondary border-snow border-solid d-inline-flex align-items-center justify-content-center">
                             내 쿠폰함 보기</a>
                     </div><br/>

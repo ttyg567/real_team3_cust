@@ -144,8 +144,13 @@
                                  style="width: 50px; height: 50px;">
                         </div>
                         <div class="text-left" style="margin-left: 20px">
-                            <h6 class="color-secondary">안녕, ${logincust.custName}님! 나는 헬쓱 지피티야!</h6>
-                            <span class="color-snow h7">나에게는 무엇이든 물어봐도 좋아!</span>
+                            <h6 class="color-secondary">안녕, ${logincust.custName}님! <br> 나는 헬쓱 지피티야!</h6>
+                            <span class="color-snow h7">나에게는 <br> 무엇이든 물어봐도 좋아!</span>
+                        </div>
+                        <div class="action" style="margin-left: auto;">
+                            <button href="/" class="btn" style="background-color: #815cdf; color: white; font-size: 13px;">
+                                로봇사양변경
+                            </button>
                         </div>
                     </section>
                     <!-- End 헬쓱이 지피티 -->

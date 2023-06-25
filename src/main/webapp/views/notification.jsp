@@ -47,7 +47,7 @@
                       <br> ${obj.classStarttime} ${obj.notiMessage}
                   </h2>
 <%--                <h2>오늘의 '필라테스' '1:1' 수업이 <span>'19:00'에 예정되어 있습니다.</span></h2>--%>
-                <p>3 min ago</p>
+                <p>${obj.notiDate}</p>
               </div>
             </div>
           </div>

@@ -1,11 +1,10 @@
 package com.kbstar.controller;
 
+import com.kbstar.dto.*;
 import com.kbstar.dto.Class;
-import com.kbstar.dto.Cust;
-import com.kbstar.dto.Gym;
-import com.kbstar.dto.MySchedule;
 import com.kbstar.service.ClassService;
 import com.kbstar.service.MyScheduleService;
+import com.kbstar.service.NotificationService;
 import com.kbstar.service.PurchaseService;
 import com.kbstar.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +36,9 @@ public class ClassController {
 
     @Autowired
     PurchaseService purchaseService;
+
+    @Autowired
+    NotificationService notificationService;
 
     ////////////////////// 수업예약 ///////////////////////
 
@@ -166,6 +168,16 @@ public class ClassController {
             myScheduleService.register(ms); // 수업예약
             myScheduleService.reserve_update_classJoin(ms); // 수업예약하면 수업정보에 참가인원을 +1 해줌
             myScheduleService.reserve_update_usedCnt(ms); // 수업예약하면 구매 이용권에 사용횟수를 +1 해줌
+            
+            // 알림 설정(추가)
+            Notification noti = new Notification();
+            noti.setCustNo(cust.getCustNo()); //custNo
+            noti.setGymNo(purchaseService.get(purchaseNo).getGymNo()); // gymNo
+            noti.setTicketNo(purchaseService.get(purchaseNo).getTicketNo()); // ticketNo
+            noti.setNotiTitle("예약완료");
+            noti.setNotiMessage("수업 예약이 완료되었어요");
+            noti.setNotiType("1");
+            notificationService.register(noti);
 
             return "success";
 
