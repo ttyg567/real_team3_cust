@@ -1,6 +1,7 @@
 package com.kbstar.controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
@@ -59,7 +60,7 @@ public class QRCodeController {
             try {
                 myScheduleService.modify(mySchedule);
                 // 운동완료 이벤트 대상이면 쿠폰을 발송한다!
-                custCompletedUpdate();
+                custCompletedUpdate(custNo);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -72,27 +73,27 @@ public class QRCodeController {
         sos.close();
     }
 
-    public void custCompletedUpdate() throws Exception {
+    public void custCompletedUpdate(Integer custNo) throws Exception {
 
-        List<Coupon> target_list = null;
+        log.info("알람 진입");
 
-        // 쿠폰 발송 대상인 cust를 긁어온다. cust 1개만 나오게 할거얌.........
-        target_list = couponService.getCouponcust_completed();
+        Coupon target_list = null;
+        Coupon cp = null;
+
+        // 당일 운동 완료 내역 있으면 토큰을 걍 받아오자.
+        target_list = couponService.getCouponcust_completed(custNo);
 
         log.info("==상태를 봐야겠음==" + target_list);
 
-        if (target_list != null && !target_list.isEmpty()) {  // 빈열이여도 실행이 되네
-//        if (target_list != null) {
-            for (Coupon item : target_list) { // 그래도 여긴 안돈다.....
-                String clientToken = item.getCustToken().replaceAll("\\s+", ""); // 토큰에서 공백 제거
-                log.info("=== 쿠폰 대상 번호는 === " + item.getCustNo() + "=====");
-                log.info("=== 쿠폰 대상 이름은 === " + item.getCustName() + "=====");
-                log.info("=== 쿠폰 대상 토큰은 === " + item.getCustToken() + "=====");
-                couponService.getCouponcust_update(item);
-                // 푸쉬 알람은 cust에 등록된 토큰으로 보낸다.
-                pushNotificationUtil.sendCommonMessage("Open Coupon Box", "Open Coupon Box", "/coupon/show", clientToken);
-            }
-        }
+        String clientToken = target_list.getCustToken().replaceAll("\\s+", ""); // 토큰에서 공백 제거
+        log.info("=== 쿠폰 대상 번호는 === " + target_list.getCustNo() + "=====");
+        log.info("=== 쿠폰 대상 이름은 === " + target_list.getCustName() + "=====");
+        log.info("=== 쿠폰 대상 토큰은 === " + clientToken + "=====");
+
+        couponService.getCouponcust_update(target_list); // 쿠폰 발행으로 업데이트
+        cp = couponService.getTodaymycoupon(target_list.getCustNo()); // 현재 시간 기준으로 직전에 보낸 쿠폰을 추출
+
+        pushNotificationUtil.sendCommonMessage("Open Coupon Box", "Open Coupon Box", "/coupon/show?couponNo="+cp.getCouponNo(), clientToken);
 
     }
 }

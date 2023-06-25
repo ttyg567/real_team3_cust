@@ -34,6 +34,9 @@ public class Class {
     private Integer purchaseNo;
     private Integer ticketNo;
 
+    // 추가
+    private String gymPhone;
+
     public Class(Integer gymNo, Integer trainerNo, String className, String classDate, String classStarttime, String classEndtime, Integer classMaximum, String sportsType, String sportsClasstype) {
         this.gymNo = gymNo;
         this.trainerNo = trainerNo;

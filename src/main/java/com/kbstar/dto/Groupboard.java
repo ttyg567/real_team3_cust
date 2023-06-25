@@ -104,4 +104,5 @@ public class Groupboard {
     private int ticketCost;
     private double ticketDiscount;
     private int ticketPrice;
+    private int ticketJoinPrice; //화면에 뿌려주기 위한 용도...!!!
 }

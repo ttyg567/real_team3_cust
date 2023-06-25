@@ -25,32 +25,36 @@
 
 <div id="wrapper">
     <div id="content">
-        <!-- Start main_haeder -->
-        <header class="main_haeder bg-transparent">
-            <div class="em_side_right absolute top-0 right-0 padding-t-20">
-                <a class="btn btn__back rounded-10" href="/">
-                    <i class="tio-clear"></i>
-                </a>
-            </div>
-        </header>
-        <!-- End.main_haeder -->
+        <form id="gift_form">
+            <input type="hidden" id="couponNo" value="${couponNo}">
+            <!-- Start main_haeder -->
+            <header class="main_haeder bg-transparent">
+                <div class="em_side_right absolute top-0 right-0 padding-t-20">
+                    <a class="btn btn__back rounded-10" href="/">
+                        <i class="tio-clear"></i>
+                    </a>
+                </div>
+            </header>
+            <!-- End.main_haeder -->
 
-        <section class="emPage__ResultPayment">
-            <div class="em__seccess">
-                <h2 class="size-20 weight-500 color-secondary margin-b-10">헬쓱이를 위해 선물을 챙겨왔어요</h2>
-                <p class="size-15 color-text margin-b-40 moving-text">▼ 저를 클릭해주세요! ▼</p>
-            </div>
-            <div id="notification">
-                <img id="giftIcon" src="/assets/img/gift/kolly.gif" style="cursor: pointer; width: 200px; width: 200px;">
-            </div>
-        </section>
+            <section class="emPage__ResultPayment">
+                <div class="em__seccess">
+                    <h2 class="size-20 weight-500 color-secondary margin-b-10">헬쓱이를 위한 선물이 도착했어요</h2>
+                    <p class="size-15 color-text margin-b-40 moving-text">▼ 저를 클릭해주세요! ▼</p>
+                </div>
+                <div id="notification">
+                    <img id="giftIcon" src="/assets/img/gift/kolly.gif"
+                         style="cursor: pointer; width: 200px; width: 200px;">
+                </div>
+            </section>
+        </form>
     </div>
 </div>
 
 <script>
     // Handle the click event on the gift icon
     document.getElementById('giftIcon').addEventListener('click', function () {
-        // Redirect to the desired page when the gift icon is clicked
-        window.location.href = '/coupon/received';
+        let couponNo = document.getElementById('couponNo').value;
+        window.location.href = '/coupon/received?couponNo='+couponNo;
     });
 </script>

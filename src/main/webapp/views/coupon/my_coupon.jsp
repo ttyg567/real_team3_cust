@@ -2,15 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<!-- Start em_loading -->
-<%--<section class="em_loading" id="loaderPage">--%>
-<%--  <div class="spinner_flash"></div>--%>
-<%--</section>--%>
-<!-- End. em_loading -->
-
-<%--<div id="wrapper">--%>
-<%--  <div id="content">--%>
-<!-- Start main_haeder -->
 <header class="header_tab">
     <div class="main_haeder multi_item">
         <div class="em_side_right">
@@ -48,27 +39,29 @@
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
              aria-labelledby="pills-home-tab">
 
-            <!-- 사용가능 쿠폰 시작 title -->
-            <div class="emTitle_co padding-20">
-                <h2 class="size-16 weight-500 color-secondary mb-1">만료되기 전에 얼른 사용하세요!</h2>
-            </div>
-            <!-- 사용가능 쿠폰 끝. title -->
-
-            <!-- 리스트 넣는 공간 -->
-            <c:forEach var="obj" items="${mycoupon}">
-                <ul class="itemList__news" style="background-color: white">
-                    <li class="items-nav">
-                        <a href="/coupon/received" class="btn">
-                            <div class="media align-items-center">
-                                <div class="media-body">
-                                    <div class="txt">
-                                        <h2>${obj.couponName}</h2>
-                                        <div class="view">
-                                            <div class="icon">
-                                                <svg fill="#000000" height="800px" width="800px" version="1.1"
-                                                     id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                                                     xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                     viewBox="0 0 503.607 503.607" xml:space="preserve">
+            <!-- 사용가능 쿠폰 시작 -->
+            <c:choose>
+                <c:when test="${mycoupon == null || empty mycoupon}">
+                    <div class="emTitle_co padding-20">
+                        <h2 class="size-16 weight-500 color-secondary mb-1">쿠폰함이 텅~ <br> 조인과 운동완료를 통해 쿠폰을 획득하세요!</h2>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach var="obj" items="${mycoupon}">
+                        <ul class="itemList__news" style="background-color: white">
+                            <li class="items-nav">
+                                <a href="/coupon/received" class="btn">
+                                    <div class="media align-items-center">
+                                        <div class="media-body">
+                                            <div class="txt">
+                                                <h2>${obj.couponName}</h2>
+                                                <div class="view">
+                                                    <div class="icon">
+                                                        <svg fill="#000000" height="800px" width="800px" version="1.1"
+                                                             id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                                             xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                             viewBox="0 0 503.607 503.607" xml:space="preserve"
+                                                             class="border-snow">
                                     <g>
                                         <g>
                                             <g>
@@ -96,136 +89,99 @@
                                         </g>
                                     </g>
                                     </svg>
-                                            </div>
-                                            <c:choose>
-                                                <c:when test="${obj.couponName == '할인권'}">
-                                                    <span> 할인율 :  ${obj.couponRate} </span>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <span> 매장에서 사용 가능해요! </span>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </div>
-                                        <div class="info_bottom">
-                                            <div class="time">
-                                                <div class="icon">
-                                                    <svg id="Iconly_Curved_Time_Square"
-                                                         data-name="Iconly/Curved/Time Square"
-                                                         xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                                         viewBox="0 0 15 15">
-                                                        <g id="Time_Square" data-name="Time Square"
-                                                           transform="translate(1.719 1.719)">
-                                                            <path id="Stroke_1" data-name="Stroke 1"
-                                                                  d="M0,5.781c0,4.336,1.446,5.781,5.781,5.781s5.781-1.446,5.781-5.781S10.117,0,5.781,0,0,1.446,0,5.781Z"
-                                                                  fill="none" stroke="#cbcdd8" stroke-linecap="round"
-                                                                  stroke-linejoin="round" stroke-miterlimit="10"
-                                                                  stroke-width="1.5"/>
-                                                            <path id="Stroke_3" data-name="Stroke 3"
-                                                                  d="M2.119,3.99,0,2.726V0"
-                                                                  transform="translate(5.781 3.053)" fill="none"
-                                                                  stroke="#cbcdd8" stroke-linecap="round"
-                                                                  stroke-linejoin="round" stroke-miterlimit="10"
-                                                                  stroke-width="1.5"/>
-                                                        </g>
-                                                    </svg>
+                                                    </div>
+                                                    <c:choose>
+                                                        <c:when test="${obj.couponName == '할인권'}">
+                                                            <span> 할인율 :  ${obj.couponRate}% </span>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span> 매장에서 사용 가능해요! </span>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </div>
-                                                <span> 발행일 : ${obj.couponIsdate}<br>
+                                                <div class="info_bottom">
+                                                    <div class="time">
+                                                        <div class="icon">
+                                                            <svg id="Iconly_Curved_Time_Square"
+                                                                 data-name="Iconly/Curved/Time Square"
+                                                                 xmlns="http://www.w3.org/2000/svg" width="15"
+                                                                 height="15"
+                                                                 viewBox="0 0 15 15">
+                                                                <g id="Time_Square" data-name="Time Square"
+                                                                   transform="translate(1.719 1.719)">
+                                                                    <path id="Stroke_1" data-name="Stroke 1"
+                                                                          d="M0,5.781c0,4.336,1.446,5.781,5.781,5.781s5.781-1.446,5.781-5.781S10.117,0,5.781,0,0,1.446,0,5.781Z"
+                                                                          fill="none" stroke="#cbcdd8"
+                                                                          stroke-linecap="round"
+                                                                          stroke-linejoin="round" stroke-miterlimit="10"
+                                                                          stroke-width="1.5"/>
+                                                                    <path id="Stroke_3" data-name="Stroke 3"
+                                                                          d="M2.119,3.99,0,2.726V0"
+                                                                          transform="translate(5.781 3.053)" fill="none"
+                                                                          stroke="#cbcdd8" stroke-linecap="round"
+                                                                          stroke-linejoin="round" stroke-miterlimit="10"
+                                                                          stroke-width="1.5"/>
+                                                                </g>
+                                                            </svg>
+                                                        </div>
+                                                        <span> 발행일 : ${obj.couponIsdate}<br>
                           만료일 : ${obj.couponExdate}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </c:forEach>
-            <!-- 조인리스트 넣는 공간 끝 -->
-
-
-        </div><!-- 참여한 조인 영역 끝. -->
-
-        <!-- 개설한 조인 시작 -->
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-            <!-- 개설한 조인 Start title -->
-            <div class="emTitle_co padding-20">
-                <h2 class="size-16 weight-500 color-secondary mb-0">개설한 조인의 모집인원이 모두 모여 확정되면 알림을 드려요!</h2>
-            </div>
-            <!-- End. title -->
-            <!-- 조인리스트 넣는 공간 -->
-            <c:forEach var="obj" items="${myusedcoupon}">
-                <ul class="itemList__news" style="background-color: white">
-                    <li class="items-nav">
-                        <a href="/ticket_detail" class="btn">
-                            <div class="media align-items-center">
-                                <div class="media-body">
-                                    <div class="txt">
-                                        <h2>${obj.couponName}</h2>
-                                        <div class="view">
-                                            <div class="icon">
-                                                <svg id="Iconly_Curved_Show" data-name="Iconly/Curved/Show"
-                                                     xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                                     viewBox="0 0 15 15">
-                                                    <g id="Show" transform="translate(1.719 2.969)">
-                                                        <path id="Stroke_1" data-name="Stroke 1"
-                                                              d="M3.952,1.976A1.976,1.976,0,1,1,1.976,0,1.977,1.977,0,0,1,3.952,1.976Z"
-                                                              transform="translate(3.806 2.588)" fill="none"
-                                                              stroke="#cbcdd8" stroke-linecap="round"
-                                                              stroke-linejoin="round" stroke-miterlimit="10"
-                                                              stroke-width="1.5"/>
-                                                        <path id="Stroke_3" data-name="Stroke 3"
-                                                              d="M0,4.564c0,2.05,2.589,4.564,5.782,4.564s5.782-2.512,5.782-4.564S8.976,0,5.782,0,0,2.514,0,4.564Z"
-                                                              fill="none" stroke="#cbcdd8" stroke-linecap="round"
-                                                              stroke-linejoin="round" stroke-miterlimit="10"
-                                                              stroke-width="1.5"/>
-                                                    </g>
-                                                </svg>
-                                            </div>
-                                            <span> 할인율 :  ${obj.couponRate} </span>
-                                            <span> 발행일 : ${obj.couponIsdate} | 만료일 : ${obj.couponExdate}</span>
-                                        </div>
-                                        <div class="info_bottom">
-                                            <div class="time">
-                                                <div class="icon">
-                                                    <svg id="Iconly_Curved_Time_Square"
-                                                         data-name="Iconly/Curved/Time Square"
-                                                         xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                                         viewBox="0 0 15 15">
-                                                        <g id="Time_Square" data-name="Time Square"
-                                                           transform="translate(1.719 1.719)">
-                                                            <path id="Stroke_1" data-name="Stroke 1"
-                                                                  d="M0,5.781c0,4.336,1.446,5.781,5.781,5.781s5.781-1.446,5.781-5.781S10.117,0,5.781,0,0,1.446,0,5.781Z"
-                                                                  fill="none" stroke="#cbcdd8" stroke-linecap="round"
-                                                                  stroke-linejoin="round" stroke-miterlimit="10"
-                                                                  stroke-width="1.5"/>
-                                                            <path id="Stroke_3" data-name="Stroke 3"
-                                                                  d="M2.119,3.99,0,2.726V0"
-                                                                  transform="translate(5.781 3.053)" fill="none"
-                                                                  stroke="#cbcdd8" stroke-linecap="round"
-                                                                  stroke-linejoin="round" stroke-miterlimit="10"
-                                                                  stroke-width="1.5"/>
-                                                        </g>
-                                                    </svg>
+                                                    </div>
                                                 </div>
-                                                <span>06월 30일(목) 마감 ㅣ 성수 피트니스</span>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </c:forEach>
-            <!-- 조인리스트 넣는 공간 끝 -->
+                                </a>
+                            </li>
+                        </ul>
+                    </c:forEach>
+                    <!-- 쿠폰 넣는 공간 끝 -->
+                </c:otherwise>
+            </c:choose>
+            <!-- 리스트 넣는 공간 -->
+        </div><!-- 사용가능 쿠폰 영역 끝. -->
 
-        </div> <!-- 개설한 조인 끝. -->
-
+        <!-- 사용/만료쿠폰 시작 -->
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <c:choose>
+                <c:when test="${myusedcoupon == null || empty myusedcoupon}">
+                    <!-- 사용/만료쿠폰  Start title -->
+                    <div class="emTitle_co padding-20">
+                        <h2 class="size-16 weight-500 color-secondary mb-0">사용 및 만료된 쿠폰이 없어요! </h2>
+                    </div>
+                    <!-- 사용/만료쿠폰  End title -->
+                </c:when>
+                <c:otherwise>
+                    <!-- 사용/만료쿠폰 넣는 공간 -->
+                    <c:forEach var="obj" items="${myusedcoupon}">
+                        <ul class="itemList__news" style="background-color: white">
+                            <li class="items-nav">
+                                <a href="/ticket_detail" class="btn">
+                                    <div class="media align-items-center">
+                                        <div class="media-body">
+                                            <div class="txt">
+                                                <h2>${obj.couponName}</h2>
+                                                <div class="info_bottom">
+                                                    <div class="time">
+                                                        <div class="icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">
+                                                                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                                            </svg>
+                                                        </div>
+                                                        <span>사용완료</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </c:forEach>
+                    <!-- 사용/만료쿠폰 넣는 공간 끝 -->
+                </c:otherwise>
+            </c:choose>
+        </div> <!-- 사용/만료쿠폰 끝. -->
     </div>
-
-
 </section>
-
-
-<%--</div>--%>
-<%--</div>--%>

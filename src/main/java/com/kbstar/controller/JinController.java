@@ -1,10 +1,7 @@
 package com.kbstar.controller;
 
 import com.kbstar.dto.*;
-import com.kbstar.service.GymService;
-import com.kbstar.service.NotificationService;
-import com.kbstar.service.PurchaseService;
-import com.kbstar.service.TicketService;
+import com.kbstar.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,6 +32,9 @@ public class JinController {
     @Autowired
     NotificationService notificationService;
 
+    @Autowired
+    CouponService couponService;
+
     @RequestMapping("/ticket")
     public String main(Model model){
         model.addAttribute("center","ticket");
@@ -63,7 +63,7 @@ public class JinController {
     // web_카카오결제 : O
     @RequestMapping("/paySuccess")
     public String paySuccess(Model model , Integer custNo, Integer ticketNo, Integer gymNo, String sportsType, String sportsClasstype
-    , String ticketType, Integer ticketMonth, Integer ticketNumber, String ticketJoin, Integer purchasePrice) throws Exception {
+    , String ticketType, Integer ticketMonth, Integer ticketNumber, String ticketJoin, Integer hiddenFinalPrice, Integer hiddenCouponNo) throws Exception {
         Purchase p = new Purchase();
         p.setCustNo(custNo);
         p.setTicketNo(ticketNo);
@@ -74,7 +74,7 @@ public class JinController {
         p.setTicketMonth(ticketMonth);
         p.setTicketNumber(ticketNumber);
         p.setTicketJoin(ticketJoin);
-        p.setPurchasePrice(purchasePrice);
+        p.setPurchasePrice(hiddenFinalPrice);
 
 //        String decodedCustNo = URLDecoder.decode(String.valueOf(custNo), "UTF-8");
 //        String decodedTicketNo = URLDecoder.decode(String.valueOf(ticketNo), "UTF-8");
@@ -99,7 +99,11 @@ public class JinController {
 //        p.setTicketJoin(decodedTicketJoin);
 //        p.setPurchasePrice(Integer.parseInt(decodedPurchasePrice));
 
-        purchaseService.register(p);
+        purchaseService.register(p); // 구매 이용권에 insert
+
+        if(hiddenCouponNo!= null) {
+            couponService.updateUsed(hiddenCouponNo); // 쿠폰 사용완료로 update
+        }
 
         model.addAttribute("center","paySuccess");
         model.addAttribute("ticket_pay_option", p);
@@ -110,7 +114,7 @@ public class JinController {
 
     @RequestMapping("/paySuccess_mobile")
     public String paySuccess_mobile(Model model , Integer custNo, Integer ticketNo, Integer gymNo, String sportsType, String sportsClasstype
-            , String ticketType, Integer ticketMonth, Integer ticketNumber, String ticketJoin, Integer purchasePrice
+            , String ticketType, Integer ticketMonth, Integer ticketNumber, String ticketJoin, Integer hiddenFinalPrice, Integer hiddenCouponNo
             , String imp_uid, String merchant_uid, String imp_success) throws Exception {
 
         Purchase p = new Purchase();
@@ -123,9 +127,12 @@ public class JinController {
         p.setTicketMonth(ticketMonth);
         p.setTicketNumber(ticketNumber);
         p.setTicketJoin(ticketJoin);
-        p.setPurchasePrice(purchasePrice);
+        p.setPurchasePrice(hiddenFinalPrice);
 
-        purchaseService.register(p);
+        purchaseService.register(p); // 구매 이용권에 insert
+        if(hiddenCouponNo!= null) {
+            couponService.updateUsed(hiddenCouponNo); // 쿠폰 사용완료로 update
+        }
 
         model.addAttribute("center","paySuccess");
         model.addAttribute("ticket_pay_option", p);

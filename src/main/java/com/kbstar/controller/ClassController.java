@@ -305,6 +305,25 @@ public class ClassController {
         return "fail";
     }
 
+    // class 변동/및 삭제 되었을 때 알람 클릭되면 이동
+    @RequestMapping("/classinfo")
+    public String classinfo(Model model, Integer classNo, String status) throws Exception {
+        
+        Class myclass = classService.get(classNo);
+
+        myclass.setClassDate(myclass.getClassDate().substring(0,10));
+        
+        // 수업내용 변경인 경우
+        if(status.equals("update")){
+            model.addAttribute("classStatus", "update");
+            model.addAttribute("update_class", myclass);
+        } else {
+            model.addAttribute("classStatus", "delete"); // 아마 이건 안할듯
+        }
+        model.addAttribute("center", dir + "classinfo");
+        return "index";
+    }
+
 
 
 }

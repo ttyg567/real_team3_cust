@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.net.URLEncoder;
 import java.util.List;
 
 @Slf4j
@@ -45,6 +46,11 @@ public class InboController {
         List<Groupboard> list = null;
         list = groupboardService.get(); // 가져오기.
 
+        // 성영 : pay를 건드리지 않기 위해
+        // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
+        for (Groupboard item : list){
+            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+        }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
         // webapp > groupboard > center 페이지로 변경
@@ -97,6 +103,12 @@ public class InboController {
         } catch (Exception e) {
             throw new Exception("개설된 조인 전체조회 중 오류가 발생했습니다.");
         }
+
+        // 성영 : pay를 건드리지 않기 위해
+        // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
+        for (Groupboard item : list){
+            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+        }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
         // 조인 전체 조회페이지로 전환
@@ -114,6 +126,13 @@ public class InboController {
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
+
+        // 성영 : pay를 건드리지 않기 위해
+        // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
+        for (Groupboard item : list2){
+            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+        }
+
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
 
@@ -134,6 +153,12 @@ public class InboController {
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
+
+        // 성영 : pay를 건드리지 않기 위해
+        // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
+        for (Groupboard item : list2){
+            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+        }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
         // 모달창 오픈 시 해당되는 정보 뿌려주기
@@ -152,6 +177,12 @@ public class InboController {
             list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
+        }
+
+        // 성영 : pay를 건드리지 않기 위해
+        // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
+        for (Groupboard item : list2){
+            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
@@ -173,6 +204,12 @@ public class InboController {
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
+
+        // 성영 : pay를 건드리지 않기 위해
+        // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
+        for (Groupboard item : list2){
+            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+        }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
 
@@ -192,6 +229,12 @@ public class InboController {
             list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
+        }
+
+        // 성영 : pay를 건드리지 않기 위해
+        // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
+        for (Groupboard item : list2){
+            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
@@ -213,6 +256,12 @@ public class InboController {
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
+
+        // 성영 : pay를 건드리지 않기 위해
+        // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
+        for (Groupboard item : list2){
+            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+        }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
 
@@ -232,6 +281,12 @@ public class InboController {
             list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
+        }
+
+        // 성영 : pay를 건드리지 않기 위해
+        // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
+        for (Groupboard item : list2){
+            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
@@ -297,13 +352,20 @@ public class InboController {
     public void joinCompleted(Integer getGroupboardNo) throws Exception {
 
         List<Groupboard> target_list = null;
+        Coupon cp = null;
+
+        String title = "조인이 완료되었어요";
+        String message = "함께 운동을 시작하세요";
+
+        String encodedTitle = URLEncoder.encode(title, "UTF-8");
+        String encodedMessage = URLEncoder.encode(message, "UTF-8");
 
         // 쿠폰 발송 대상인 cust를 긁어온다.
         target_list = groupboardService.selectJoincompletedmember(getGroupboardNo);
 
         log.info("==상태를 봐야겠음==" + target_list);
 
-        if (target_list != null && !target_list.isEmpty()) {  // 빈열이여도 실행이 되네
+        if (target_list != null || !target_list.isEmpty()) {  // 빈열이여도 실행이 되네
 //        if (target_list != null) {
             for (Groupboard item : target_list) { // 그래도 여긴 안돈다.....
                 log.info("쿠폰 알림 진입");
@@ -311,9 +373,12 @@ public class InboController {
                 log.info("=== 쿠폰 대상 번호는 === " + item.getCustNo() + "=====");
                 log.info("=== 쿠폰 대상 이름은 === " + item.getCustName() + "====="); // null 확인하기
                 log.info("=== 쿠폰 대상 토큰은 === " + item.getCustToken() + "=====");
+                item.setGroupboardNo(getGroupboardNo); // getGroupboardNo 셋
                 couponService.getCouponcust_update_discount(item);
+                cp = couponService.getTodaymycoupon(item.getCustNo()); // 현재 시간 기준으로 직전에 보낸 쿠폰을 추출
                 // 푸쉬 알람은 cust에 등록된 토큰으로 보낸다.
-                pushNotificationUtil.sendCommonMessage("Open Coupon Box", "Open Coupon Box", "/coupon/show", clientToken);
+//                pushNotificationUtil.sendCommonMessage("Open Coupon Box", "Open Coupon Box", "/coupon/show?couponNo="+cp.getCustNo(), clientToken);
+                pushNotificationUtil.sendCommonMessage("Open Coupon Box", "Open Coupon Box", "/coupon/show?couponNo="+cp.getCouponNo(), clientToken);
             }
         }
 

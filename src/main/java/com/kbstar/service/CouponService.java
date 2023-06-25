@@ -49,9 +49,9 @@ public class CouponService implements KBService<Integer, Coupon> {
         return mapper.getTodaymycoupon(custNo);
     }
 
-    // 운동완료한 사람 조회
-    public List<Coupon> getCouponcust_completed() throws Exception {
-        return mapper.getCouponcust_completed();
+    // 당일 운동 완료했는지 조회 -> 했으면 토큰 반환
+    public Coupon getCouponcust_completed(Integer custNo) throws Exception {
+        return mapper.getCouponcust_completed(custNo);
     }
 
 
@@ -75,4 +75,16 @@ public class CouponService implements KBService<Integer, Coupon> {
     public List<Coupon> getMyusedcoupon(Integer custNo) throws Exception{
         return mapper.getMyusedcoupon(custNo);
     }
+
+    // 결제시 사용 가능한 쿠폰 조회
+    public List<Coupon> payMycoupon(Coupon cp) throws Exception{
+        return mapper.payMycoupon(cp);
+    }
+
+
+    // 사용했다고 상태변경
+    public void updateUsed(Integer couponNo) throws Exception{
+        mapper.updateUsed(couponNo);
+    }
+
 }
