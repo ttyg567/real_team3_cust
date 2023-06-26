@@ -225,9 +225,20 @@ public class CustController {
         return "index";
     }
 
-    @RequestMapping("/updateimpl")
-    public String updateimpl(@ModelAttribute Cust cust, Model model, HttpSession session) {
-        // cust 객체에는 form 데이터가 자동으로 바인딩되어 전달됩니다.
+    @PostMapping("/updateimpl")
+    public String updateimpl(@RequestParam("custPhone") String custPhone,
+                             @RequestParam("sportsType") String sportsType,
+                             @RequestParam("sportsClasstype") String sportsClasstype,
+                             @RequestParam("custSido") String custSido,
+                             @RequestParam("custSigungu") String custSigungu,
+                             Model model, HttpSession session) {
+        Cust cust = (Cust) session.getAttribute("logincust");
+        cust.setCustPhone(custPhone);
+        cust.setSportsType(sportsType);
+        cust.setSportsClasstype(sportsClasstype);
+        cust.setCustSido(custSido);
+        cust.setCustSigungu(custSigungu);
+
         custService.updateInfo(cust);
         session.setAttribute("logincust", cust);
         model.addAttribute("rcust", cust);
@@ -267,6 +278,13 @@ public class CustController {
     @RequestMapping("/forgotpwd")
     public String forgotpwd(Model model) {
         model.addAttribute("center", dir + "forgotpwd");
+        return "index";
+    }
+
+    @RequestMapping("/bmi")
+    public String bmi(Model model) {
+        model.addAttribute("center", dir + "Bmi");
+
         return "index";
     }
 }

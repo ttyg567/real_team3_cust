@@ -319,7 +319,7 @@
     <!-- End. emPage__detailsBlog -->
 
     <!-- Comments -->
-    <section class="pt_simpleDetails emBlock__border rounded-0 mt-0 padding-b-30">
+    <section class="pt_simpleDetails emBlock__border rounded-0 mt-0 padding-b-30" style="margin-bottom: 30px">
         <div class="emCommentCusomers">
             <div class="title"></div>
             <!-- item -->
@@ -417,14 +417,14 @@
         <!-- 두번째 강사진 탭 시작-->
             <!-- Start emPage__blog -->
             <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-            <section class="padding-t-30 padding-b-30 bg-snow" style=" margin-top: 70px">
+            <section class="padding-t-30 padding-b-30 bg-snow" style=" margin-top: 40px">
                 <div class="padding-l-20 padding-r-20">
                     <h2 class="size-18 weight-500 m-0 color-secondary">최고의 강사진</h2>
                 </div>
                 <ul class="itemList__news">
                     <c:forEach var="obj" items="${teacher}">
                     <li class="items-nav">
-                        <a href="page-news-details.html" class="btn">
+                        <a href="#" class="btn">
                             <div class="media align-items-center">
                                 <img class="img_news" src="/assets/trainer/${obj.trainerImgName}" alt="">
                                 <div class="media-body">
@@ -433,11 +433,12 @@
                                         <h9 style="margin-top: -50px">${obj.trainerCareer}</h9>
                                         <div class="info_bottom">
                                             <div class="time">
-                                                <div class="icon">
+                                                <div class="icon" >
                                                     <svg id="Iconly_Curved_Time_Square"
                                                          data-name="Iconly/Curved/Time Square"
                                                          xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                                         viewBox="0 0 15 15">
+                                                         viewBox="0 0 15 15"
+                                                         style="margin-right: 0px">
                                                         <g id="Time_Square" data-name="Time Square"
                                                            transform="translate(1.719 1.719)">
                                                             <path id="Stroke_1" data-name="Stroke 1"
@@ -493,7 +494,7 @@
                                         <div class="row">
                                             <div class="col-4">
                                                 <div class="item_rate">
-                                                    <span class="noRate" style="font-size: 40px">${review_avg}</span>
+                                                    <span class="noRate" style="font-size: 20px">${review_avg}</span>
                                                     <div class="">
                                                         <p class="rateCutome">평점</p>
                                                         <div class="emPatternRate">

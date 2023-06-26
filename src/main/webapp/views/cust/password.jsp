@@ -144,7 +144,7 @@
         <div class="buttons__footer text-center">
             <div class="env-pb">
                 <button class="btn bg-primary rounded-pill btn__default" id="password_btn"
-                style="margin-bottom: 50px">
+                style="margin-bottom: 50px; margin-left:0px">
                     <span class="color-white">비밀번호 변경하기</span>
                     <div class="icon rounded-circle">
                         <i class="tio-chevron_right"></i>

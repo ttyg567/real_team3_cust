@@ -288,7 +288,8 @@
                 <div class="item em_item_product">
                     <div class="em_head"><!-- 선택 시 센터 상세페이지로 이동 -->
                         <a href="/ticket/detail?gymNo=${gym.gymNo}" >
-                            <img src="/assets/img/gymImg/${gym.gymImgname}" alt="">
+                            <img src="/assets/img/gymImg/${gym.gymImgname}" alt=""
+                            style="width: 150px; height: 80px">
                         </a>
                         <!-- 찜버튼! -->
                         <button type="button" class="btn rounded-8 btn_addBookmark item-active" id="itemSave">
@@ -319,7 +320,7 @@
                             <p class="item_price">
                                 <fmt:formatNumber value="${gym.ticketPrice}" type="number" pattern="#,##0 원" />
                                 <span class="price_old">
-                                <fmt:formatNumber value="${gym.ticketPrice}" type="number" pattern="#,##0 원" />
+                                <fmt:formatNumber value="${gym.ticketCost}" type="number" pattern="#,##0 원" />
                                 </span>
                             </p>
                         </div>
