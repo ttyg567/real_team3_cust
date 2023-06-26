@@ -146,7 +146,8 @@
             this.stompClient.connect({}, function(frame) {
                 callcenter.setConnected(true);
                 console.log('Connected: ' + frame);
-                //var time2 = new Date().toLocaleTimeString();
+                var time2 = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
 
                 // // 내 질문 먼저 표출
                 // var conversationItemUserMe = $('<div class="item_user __me">').appendTo('.emPage__conversation');
@@ -183,7 +184,7 @@
                     var mediaBody = $('<div class="media-body">').appendTo(media);
                     var contentSms = $('<div class="content_sms">').appendTo(mediaBody);
                     var itemMsg = $('<p class="item_msg">').text(JSON.parse(msg.body).content1).appendTo(contentSms);
-                    //$('<div class="time">').text(time2).appendTo(contentSms);
+                    $('<div class="time">').text(time2).appendTo(contentSms);
                 });
             });
         },
@@ -202,6 +203,7 @@
             }
         },
         sendTo:function(){
+            var time2 = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
             var question = $('#totext').val(); // 입력 필드의 값 가져오기
 
@@ -211,7 +213,7 @@
             var contentSmsMe = $('<div class="content_sms">').appendTo(mediaBodyMe);
             $('<p class="item_msg">').text(question).appendTo(contentSmsMe);
             var timeMe = $('<div class="time">').appendTo(contentSmsMe);
-            //$('<span>').text(time2).appendTo(timeMe);
+            $('<span>').text(time2).appendTo(timeMe);
             //$('<div class="icon ml-1">').append('<i class="ri-check-double-line color-primary size-18"></i>').appendTo(timeMe);
 
             var msg = JSON.stringify({
