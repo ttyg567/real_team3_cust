@@ -79,7 +79,6 @@
         animation: moveText 2s infinite;
     }
 
-
 </style>
 
 <c:choose>

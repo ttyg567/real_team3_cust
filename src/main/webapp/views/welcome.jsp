@@ -44,6 +44,10 @@
 
   <!-- manifest meta -->
   <link rel="manifest" href="_manifest.json" />
+  <style>
+
+
+  </style>
 </head>
 
 
@@ -71,27 +75,36 @@
     <!-- Start em_introPage -->
     <section class="em_welcomeClassic __welcomeSwiper">
       <div class="cover_image">
-        <img src="assets/img/065489.jpg" alt="">
+        <img src="/assets/img/welcome1.jpg" alt="">
 
         <!-- Swiper -->
         <div class="swiper-container swiperWelcome">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="content_text">
-                <h2>내게 맞는 센터와 혼잡도를 한눈에</h2>
-                <p>헬쓱 센터와 효율적으로 운동을 시작해보세요</p>
+            <div class="swiper-slide"><!-- 슬라이드 배너 1 -->
+              <div class="cover_image">
+                <img src="/assets/img/welcome1.jpg" alt="">
+                  <div class="content_text">
+                  <h2>내게 맞춘 운동센터 전격 비교<br> 실시간 혼잡도까지 한눈에</h2>
+                  <p>바쁜 일상 속 최적화한 개인별 운동시간 관리 기능</p>
+                  </div>
               </div>
             </div>
-            <div class="swiper-slide">
-              <div class="content_text">
-                <h2>조인을 통해 함께 하는 즐거움을</h2>
-                <p>이용권도 할인 받고, 함께 오운완 하세요</p>
+            <div class="swiper-slide"><!-- 슬라이드 배너 2 -->
+              <div class="cover_image">
+                <img src="/assets/img/welcome3.jpg" alt="">
+                <div class="content_text">
+                  <h2>할인에 할인을 더한<br>운동이용권 조인</h2>
+                  <p>헬쓱조인 멤버들이 모이면 최대 30% 할인</p>
+                </div>
               </div>
             </div>
-            <div class="swiper-slide">
-              <div class="content_text">
-                <h2>운동은 하루를 채우는 비타민</h2>
-                <p>오늘의 운동을 체크하고, 혜택도 받아가세요</p>
+            <div class="swiper-slide"><!-- 슬라이드 배너 3 -->
+              <div class="cover_image">
+                <img src="/assets/img/welcome4.jpg" alt="">
+                <div class="content_text">
+                  <h2>운동 만족도를 높이는<br> 운동완료 인증서비스</h2>
+                  <p>EVERYDAY CHECK 기능과 AI-챗봇 도입</p>
+                </div>
               </div>
             </div>
           </div>

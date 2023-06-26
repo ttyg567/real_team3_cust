@@ -190,6 +190,12 @@ public class MainController {
         try {
             list = gymService.selectDiscount(); // 할인중인 이용권을 가지고 있는 센터정보 가져오기.
             list2 = groupboardService.get(); // 개설된 조인 전체 가져오기.
+
+            // 성영 : pay를 건드리지 않기 위해
+            // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
+            for (Groupboard item : list2){
+                item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            }
         }
         catch (Exception e){
             throw new Exception("error");
@@ -218,5 +224,11 @@ public class MainController {
         session.setAttribute("logincust", cust);
         return "redirect:/discount/";
     }
+    // 회원맞춤 페이지 : 할인하고 있는 이용권 정보 + 할인받을 수 있는 조인 정보 보여주기
+    @RequestMapping("/today_banner")
+    public String today_banner(Model model) throws Exception {
 
+        model.addAttribute("center", "today_banner");
+        return "index";
+    }
 }

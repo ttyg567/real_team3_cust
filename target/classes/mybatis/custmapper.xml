@@ -86,4 +86,8 @@
         UPDATE cust SET custPwd = #{custPwd}
         WHERE custEmail=#{custEmail}
     </update>
+    <!-- 회원가입시 생성된 custNo 가져오기 -->
+    <select id="getGeneratedCustNo" resultType="Integer">
+        SELECT MAX(custno) FROM cust
+    </select>
 </mapper>

@@ -180,17 +180,17 @@
                   <div class="swiper-slide">
                       <div class="--item-inside">
                           <div class="cover_img">
-                              <a href="/groupboard">
-                                  <img src="/assets/img/health3.jpg" alt="">
+                              <a href="/ticket/detail?gymNo=5">
+                                  <img src="/assets/img/gymImg/best_banner2.jpg" alt="">
                                   <div
                                           class="text_img position-absolute bottom-0 padding-b-50 padding-l-20 text-left">
                                       <h2 data-swiper-parallax="-300"
                                           class="size-27 weight-600 color-white text-uppercase mb-1"
                                           style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);">
-                                          헬쓱 최다검색 센터<br>성수 밥불러스</h2>
+                                          베스트 트레이너 보유<br>핏머슬짐</h2>
                                       <p data-swiper-parallax="-200" class="size-12 color-white"
                                          style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);">
-                                          조인인원 모집 시 20% 할인 쿠폰 증정</p>
+                                          조인인원 모집 시 PT 20% 할인 쿠폰 증정</p>
                                   </div>
                               </a>
                           </div>
@@ -201,14 +201,14 @@
                   <div class="swiper-slide">
                       <div class="--item-inside">
                           <div class="cover_img">
-                              <a href="/groupboard">
+                              <a href="/ticket/detail?gymNo=7">
                                   <img src="/assets/img/gymImg/yoga_main_7.jpg" alt="">
                                   <div
                                           class="text_img position-absolute bottom-0 padding-b-50 padding-l-20 text-left">
                                       <h2 data-swiper-parallax="-300"
                                           class="size-27 weight-600 color-black text-uppercase mb-1"
                                           style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);">
-                                          체계적인 커리큘럼과 회원 바디관리<br>클라임 요가원</h2>
+                                          체계적인 바디쉐입 관리<br>클라임 요가원</h2>
                                       <p data-swiper-parallax="-200" class="size-12 color-black"
                                          style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);">
                                           조인인원 모집 시 15% 할인 쿠폰 증정</p>
@@ -221,17 +221,17 @@
                   <div class="swiper-slide">
                       <div class="--item-inside">
                           <div class="cover_img">
-                              <a href="/groupboard">
-                                  <img src="/assets/img/gymImg/crossfit_main_12.jpg" alt="">
+                              <a href="/ticket/detail?gymNo=27">
+                                  <img src="/assets/img/gymImg/best_banner1.jpg" alt="">
                                   <div
                                           class="text_img position-absolute bottom-0 padding-b-50 padding-l-20 text-left">
                                       <h2 data-swiper-parallax="-300"
                                           class="size-27 weight-600 color-white text-uppercase mb-1"
                                           style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);">
-                                          WOMEN 전용 크로스핏 센터 오픈<br>리베핏</h2>
+                                          300평 규모 스크린 골프장<br>골프스타디움 성수본점</h2>
                                       <p data-swiper-parallax="-200" class="size-12 color-white"
                                          style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);">
-                                          20% 할인 쿠폰 증정</p>
+                                          오픈 3주년 기념 20% 할인 쿠폰 증정</p>
                                   </div>
                               </a>
                           </div>

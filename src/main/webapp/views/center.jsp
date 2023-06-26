@@ -470,15 +470,21 @@
     </section>
     <!-- End.main_haeder -->
     <!-- 헤더 끝 -->
-                        <!-- 상단 배너 구간(3개) : Swiper -->
-                        <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe margin-t-20">
+    <!-- Start banner_swiper -->
+    <div class="banner_sliderFull margin-b-10">
+        <!-- 상단 배너 구간(3개) : Swiper -->
+        <div class="swiper-wrapper">
+        <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe margin-t-20">
+                            <div class="swiper-slide">
                             <div class="item em_item"><!-- 1번 배너 -->
                                 <div class="em_img">
-                                    <a href="/groupboard" class="em_link">
+                                    <a href="/today_banner" class="em_link">
                                         <img src="/assets/img/mainbanner1.png" alt="">
                                     </a>
                                 </div>
                             </div>
+                            </div>
+                            <div class="swiper-slide">
                             <div class="item em_item"><!-- 2번 배너 -->
                                 <div class="em_img">
                                     <a href="/groupboard" class="em_link">
@@ -486,6 +492,8 @@
                                     </a>
                                 </div>
                             </div>
+                            </div>
+                             <div class="swiper-slide">
                             <div class="item em_item"><!-- 3번 배너 -->
                                 <div class="em_img">
                                     <a href="/groupboard" class="em_link">
@@ -493,7 +501,11 @@
                                     </a>
                                 </div>
                             </div>
+                             </div>
                         </div>
+
+                         </div>
+        </div>
                         <br>
                         <%-- 운동 카테고리 : Swiper로 변경 예정 --%>
                         <section class="np__bkOperationsService padding-10">
@@ -704,7 +716,8 @@
                                             <div class="itemPkg_cart" data-toggle="modal"
                                                  data-target="#mdllAdd_Address">
                                                 <div type="button" class="btn btn-outline-secondary"
-                                                        style="border-radius: 15px; font-size: 8px;"><img src="/img/cctv.png" style="width: 20px; height: 20px;">
+                                                        style="border-radius: 15px; font-size: 8px;">
+                                                    <img src="/img/cctv.png" style="width: 20px; height: 20px;">
                                                 </div>
                                             </div>
                                             </div>
@@ -961,6 +974,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn_default_lg"
+                                style="background-color: blueviolet"
                                 data-dismiss="modal" aria-label="Close">확인</button>
 
                     </div>
@@ -983,12 +997,18 @@
 
                         </div>
                         <div class="modal-body" style="height: 360px;">
-                            <ul class="nav__listAddress itemSingle"  style="display: flex; align-items: center; flex-direction: column;">
+                            <ul class="nav__listAddress itemSingle"  style="height: 150px; display: flex; align-items: center; flex-direction: column;">
                                 <%-- 운동센터명  --%>
                                 <p style="font-size: 14px; font-weight: bold">${obj.gymName}</p>
                                 <%-- cctv영상이 표출되는 실시간 서버 시간   --%>
                                 <p id="server_time" style="font-size: 12px; font-weight: bold"></p>
-                                <img src="/assets/img/gym/health1.jpg" alt="" style="width: 90%; height: 140px;"><br>
+                                    <div style="width: 90%; height: 140px;">
+                                    <video width="100%" height="140px" autoplay loop muted>
+                                        <source src="/assets/mp4/와이드 풀다운.mp4" type="video/mp4"> <!-- 동영상 파일 경로 및 유형을 지정 -->
+                                    </video>
+                                    </div>
+<%--                                <img src="/assets/img/gym/health1.jpg" alt="" style="width: 90%; height: 140px;">--%>
+                                    <br>
                                 <p class="size-12 color-text" style="text-align: center;">
                                     <div style="border-radius: 5px; background-color: red;
                                     width: 60px; height: 20px; text-align: center;
@@ -1004,7 +1024,8 @@
                         </div>
                         <div class="modal-footer">
                             <a href="/class/reservation" class="btn btn_default_lg"
-                            style="text-align: center; display: flex; justify-content: center;">
+                            style="text-align: center; display: flex; justify-content: center;
+                            background-color: blueviolet">
                            운동수업 예약하기
                             </a>
                         </div>

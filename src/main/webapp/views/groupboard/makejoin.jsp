@@ -343,7 +343,7 @@ let center2 = {
             <div class="item-link hoverNone">
                 <div class="group">
                     <span class="path__name">모집인원 설정</span>
-                    <p style="font-size: small; color:#8890E8">회원님을 제외하고 모집받을 인원 수를 선택해 주세요</p>
+                    <p style="font-size: 12px; color:#8890E8">회원님을 제외하고 모집받을 인원 수를 선택해 주세요</p>
                 </div>
                 <div class="group">
                     <div class="itemCountr_manual horizontal hz-lg" style="width: 100%">
@@ -360,7 +360,7 @@ let center2 = {
             </div><br>
             <div class="form-group with_icon">
                 <label>예상 할인금액</label>
-                <p style="font-size: small; color:#8890E8">회원님이 설정한 모집인원만큼 조인이 신청되면 적용받게 될 금액이에요</p>
+                <p style="font-size: 12px; color:#8890E8">모집인원이 모두 조인을 신청하면 결제할 때 할인이 자동 적용돼요</p>
                 <div class="input_group">
 <%--                    <input type="text" class="form-control" style="margin-right: 10px"--%>
 <%--                           placeholder="할인 금액"--%>
@@ -391,7 +391,7 @@ let center2 = {
             </div><hr><br>
             <!-- 작성내용 -->
             <div class="form-group with_icon">
-                <label>조인 소개내용</label>
+                <label>조인 내용</label>
             </div>
             <label>대표 이미지</label>
             <!-- 4. 업로드하는 파일 -->
@@ -415,12 +415,12 @@ let center2 = {
                             <input class="form-control" rows="6" name="groupboardContents"
                                       id="groupboardContents"
                                       placeholder="내용을 작성해 주세요(150자 이내)">
-                <label for="groupboardContents">상세 소개내용</label>
+                <label for="groupboardContents">소개 내용</label>
             </div>
             <!-- 게시글 종류 선택 -->
             <div class="form-group with_icon">
                 <label>카테고리 선택</label>
-                <p style="font-size: small; color:#8890E8">회원님이 선택하신 종류로 조인이 게시됩니다.</p>
+                <p style="font-size: 12px; color:#8890E8">회원님이 선택하신 종류로 조인이 게시됩니다.</p>
                 <div class="form-group">
 <%--                    <input type="text" name="categoryNo"><!-- 임시 -->--%>
                     <select class="form-control custom-select" id="categoryNo" name="categoryNo">

@@ -83,9 +83,9 @@
                 <p class="size-13 color-text margin-b-40">
                     다른 회원들이 이용권 공동구매 고민을 마칠 동안<br>
                     헬쓱을 더 둘러 보세요.<br><br>
-                    tip. 조인헬쓱을 처음 가입하고 이용권을 구매하면 할인쿠폰 증정
+                    tip. 조인을 개설하고 이용권을 함께 구매하면 할인쿠폰 증정
                 </p>
-                <a href="/groupboard"
+                <a href="/groupboard" style="background-color: blueviolet; color: white; border: none;"
                    class="btn rounded-10 h-48 min-w-130 size-14 color-secondary border-snow border-solid d-inline-flex align-items-center justify-content-center">
                     확인했어요</a>
             </div>

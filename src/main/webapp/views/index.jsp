@@ -287,7 +287,7 @@ np_balanceDefault {
                             </g>
                         </svg>
                     </div>
-                    <div class="txt__tile" style="width: 60px;">조인헬쓱</div>
+                    <div class="txt__tile" style="width: 60px;">조인</div>
                 </a>
             </div>
             <div class="item_link">
@@ -598,9 +598,11 @@ np_balanceDefault {
                     <div class="modal-content">
                         <div class="modal-header padding-l-20 padding-r-50">
                                 <%-- 이미지 넣을 맨 상단 구간 --%>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <i class="tio-clear"></i>
-                            </button>
+                                    <div class="em_side_right">
+                                        <button type="button" class="close d-flex align-items-center" data-dismiss="modal" aria-label="Close">
+                                            <i class="tio-clear"></i>
+                                        </button>
+                                    </div>
 
                         </div>
                         <div class="modal-body p-0"><%-- 제목~내용 구간  --%>
@@ -754,7 +756,7 @@ np_balanceDefault {
                                             <div class="title">
                                                 <h6>센터 상세정보</h6>
                                                     <%--  센터 지도 이미지 --%>
-                                                <div id="map" style="width: 90%; height: 250px; border: #9f9f9f 1px solid; border-radius: 15px;">
+                                                <div id="map" style="width: 100%; height: 250px; border: #9f9f9f 1px solid; border-radius: 15px;">
                                                     <img src="/uimg/gym1_map.jpg" alt="">
                                                 </div>
                                             </div>
@@ -811,38 +813,15 @@ np_balanceDefault {
                                                                 </g>
                                                             </svg>
                                                         </div>
-                                                        <span class="textCart color-secondary d-inline-block" >Save</span>
+                                                        <span class="textCart color-secondary d-inline-block" >찜하기</span>
                                                     </button>
                                                         <%-- get 방식의 submit으로 정보 전송 --%>
-                                                    <button type="submit" id="join_addbtn" style="margin-left: 50px"
-                                                            class="btn btn__icon bg-primary color-white min-w-175 text-left justify-content-between">
-                                                        조인 신청하기
-                                                        <a href="/groupboard/success_apply" >
-                                                            <div class="icon">
-                                                                <svg id="Iconly_Light_Arrow_-_Right_Square"
-                                                                     data-name="Iconly/Light/Arrow - Right Square"
-                                                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                                     viewBox="0 0 24 24">
-                                                                    <g id="Arrow_-_Right_Square" data-name="Arrow - Right Square"
-                                                                       transform="translate(2 22) rotate(-90)">
-                                                                        <path id="Stroke_1" data-name="Stroke 1"
-                                                                              d="M4.916,18.5h8.669c3.02,0,4.915-2.139,4.915-5.166V5.166C18.5,2.139,16.615,0,13.585,0H4.916C1.886,0,0,2.139,0,5.166v8.168C0,16.361,1.886,18.5,4.916,18.5Z"
-                                                                              transform="translate(0.75 0.75)" fill="none" stroke="#200e32"
-                                                                              stroke-linecap="round" stroke-linejoin="round"
-                                                                              stroke-miterlimit="10" stroke-width="1.5" opacity="0.4"></path>
-                                                                        <path id="Stroke_3" data-name="Stroke 3" d="M.5,8.172V0"
-                                                                              transform="translate(9.5 5.914)" fill="none" stroke="#200e32"
-                                                                              stroke-linecap="round" stroke-linejoin="round"
-                                                                              stroke-miterlimit="10" stroke-width="1.5"></path>
-                                                                        <path id="Stroke_5" data-name="Stroke 5" d="M7.5,0,3.748,3.764,0,0"
-                                                                              transform="translate(6.252 10.322)" fill="none" stroke="#200e32"
-                                                                              stroke-linecap="round" stroke-linejoin="round"
-                                                                              stroke-miterlimit="10" stroke-width="1.5"></path>
-                                                                    </g>
-                                                                </svg>
-
-                                                            </div>
-                                                        </a>
+                                                    <button type="submit" id="join_addbtn"
+                                                            style="margin-left: 50px; background-color: blueviolet; color: white; border: none;"
+                                                            class="btn btn__icon justify-content-between">
+                                                        <a href="/groupboard/success_apply" style="border: none; color: white"
+                                                           class="btn rounded-10 h-48 min-w-130 size-14 color-secondary border-snow border-solid d-inline-flex align-items-center justify-content-center">
+                                                           조인 신청하기 </a>
                                                     </button>
                                                 </div>
                                             </div>
