@@ -253,52 +253,7 @@
       </div>
       <!-- 베스트 선정 항목 카데고리들  Start navListProducts -->
       <!-- Start navListProducts -->
-      <section class="padding-t-20">
-          <ul class="nav nav-pills navListProducts bg-white" id="pills-tab" role="tablist">
-              <li class="nav-item" role="presentation" >
-                  <a class="nav-link active" id="pills-total-tab" data-toggle="pill" href="#pills-total" role="tab"
-                     aria-controls="pills-total" aria-selected="true"
-                     style="font-size: 14px; padding-left: 10px">전체</a>
-              </li>
-              <li class="nav-item" role="presentation" >
-                  <a class="nav-link" id="pills-workout-tab" data-toggle="pill" href="#pills-workout" role="tab"
-                     aria-controls="pills-workout" aria-selected="false"
-                     style="font-size: 14px">헬스</a>
-              </li>
-              <li class="nav-item" role="presentation">
-                  <a class="nav-link" id="pills-PT-tab" data-toggle="pill" href="#pills-PT" role="tab"
-                     aria-controls="pills-PT" aria-selected="false"
-                     style="font-size: 14px">PT</a>
-              </li>
-              <li class="nav-item" role="presentation" style="font-size: 14px">
-                  <a class="nav-link" id="pills-crossfit-tab" data-toggle="pill" href="#pills-crossfit"
-                     role="tab" aria-controls="pills-crossfit" aria-selected="false"
-                     style="font-size: 14px; width: 80px;">크로스핏</a>
-              </li>
-              <li class="nav-item" role="presentation">
-                  <a class="nav-link" id="pills-yoga-tab" data-toggle="pill" href="#pills-yoga" role="tab"
-                     aria-controls="pills-yoga" aria-selected="false"
-                     style="font-size: 14px">요가</a>
-              </li>
-              <li class="nav-item" role="presentation">
-                  <a class="nav-link" id="pills-pilates-tab" data-toggle="pill" href="#pills-pilates" role="tab"
-                     aria-controls="pills-pilates" aria-selected="false"
-                     style="font-size: 14px; width: 80px;">필라테스</a>
-              </li>
-              <li class="nav-item" role="presentation">
-                  <a class="nav-link" id="pills-golf-tab" data-toggle="pill" href="#pills-golf" role="tab"
-                     aria-controls="pills-golf" aria-selected="false"
-                     style="font-size: 14px">골프</a>
-              </li>
-              <li class="nav-item" role="presentation">
-                  <a class="nav-link" id="pills-swim-tab" data-toggle="pill" href="#pills-swim" role="tab"
-                     aria-controls="pills-swim" aria-selected="false"
-                     style="font-size: 14px">수영</a>
-              </li>
-          </ul>
 
-      </section>
-      <!-- End. navListProducts -->
 
       <section class="em_masonry__layout bg-snow em_list_layout widthFull">
           <!-- 0.전체 : 카테고리 선택 시 보이는 아이템들(pills-total) -->

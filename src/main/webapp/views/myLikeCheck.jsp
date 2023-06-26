@@ -36,7 +36,7 @@
 <!-- End.main_haeder -->
 
 <section class="components_page paddingTab_header" >
-
+    <hr>
     <!-- 참여한 조인 시작 title -->
     <%--    <p> ${logincust.custName} 님이 찜한 이용권이에요,</p>--%>
     <c:forEach var="obj" items="${myLike}">

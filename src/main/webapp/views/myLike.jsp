@@ -38,6 +38,7 @@
 <section class="components_page paddingTab_header" >
 
     <!-- 참여한 조인 시작 title -->
+    <hr>
     <%--    <p> ${logincust.custName} 님이 찜한 이용권이에요,</p>--%>
     <c:forEach var="obj" items="${myLike}">
         <ul class="itemList__news" style="background-color: white;padding-top: 0;padding-bottom: 0; margin-top: 2vh">
