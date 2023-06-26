@@ -157,6 +157,7 @@
         /* Solid border */
         hr.solid {
             border-top: 1px solid lightgrey;
+        }
     </style>
 
     <div id="wrapper" style="height:55%">
@@ -167,7 +168,6 @@
                 <div class="em_side_right">
                     <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/ticket/all">
                         <i class="tio-chevron_left size-24 color-text"></i>
-                        <span class="color-text size-14">Back</span>
                     </a>
                 </div>
                 <div class="title_page">
@@ -319,7 +319,7 @@
     <!-- End. emPage__detailsBlog -->
 
     <!-- Comments -->
-    <section class="pt_simpleDetails emBlock__border rounded-0 mt-0 padding-b-30">
+    <section class="pt_simpleDetails emBlock__border rounded-0 mt-0 padding-b-30" style="margin-bottom: 30px">
         <div class="emCommentCusomers">
             <div class="title"></div>
             <!-- item -->
@@ -389,22 +389,24 @@
             </form>
         </div>
         <div class="padding-t-100">
-            <div class="em_footerinner" style="margin-bottom: 50px">
+            <div class="em_footerinner" style="margin-bottom: 50px;">
                 <div class="emfo_button __withIcon" >
                     <button type="button" class="itemSave" id="itemSave">
-                        <div class="ico icon_current">
+                        <div class="ico icon_current" style="width: 80px">
                             <svg id="Iconly_Two-tone_Heart" data-name="Iconly/Two-tone/Heart" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
                                 <g id="Heart" transform="translate(1.667 2.5)">
                                     <path id="Path_33961" d="M8.124,14.878a30.408,30.408,0,0,1-5.282-3.907A9.935,9.935,0,0,1,.327,7.163,5.229,5.229,0,0,1,3.571.24,5.469,5.469,0,0,1,8.33,1h0A5.477,5.477,0,0,1,13.089.24,5.232,5.232,0,0,1,16.34,7.163a9.935,9.935,0,0,1-2.514,3.808,30.408,30.408,0,0,1-5.282,3.907L8.338,15Z" transform="translate(0 0)" fill="none" stroke="#292e34" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
                                     <path id="Path_33964" d="M0,0A2.345,2.345,0,0,1,1.681,2.018" transform="translate(11.613 3.378)" fill="none" stroke="#292e34" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" opacity="0.4"/>
                                 </g>
                             </svg>
+
+                        <span class="textCart color-secondary d-inline-block" style="text-align: left">찜하기</span>
                         </div>
-                        <span class="textCart color-secondary d-inline-block">Save</span>
                     </button>
                     <button type="button" id="ticket_pay_btn" class="button"
-                            style="width: 160%; margin-left: 5%; text-align: center;
-                            display: flex; justify-content: center; align-items: center;">
+                            style="width: 80%; margin-left: 5%; text-align: center;
+                            display: flex; justify-content: center; align-items: center;
+                            background-color: blueviolet;">
                         결제하기
                     </button>
             </div>
@@ -417,14 +419,14 @@
         <!-- 두번째 강사진 탭 시작-->
             <!-- Start emPage__blog -->
             <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-            <section class="padding-t-30 padding-b-30 bg-snow" style=" margin-top: 70px">
+            <section class="padding-t-30 padding-b-30 bg-snow" style=" margin-top: 40px">
                 <div class="padding-l-20 padding-r-20">
                     <h2 class="size-18 weight-500 m-0 color-secondary">최고의 강사진</h2>
                 </div>
                 <ul class="itemList__news">
                     <c:forEach var="obj" items="${teacher}">
                     <li class="items-nav">
-                        <a href="page-news-details.html" class="btn">
+                        <a href="#" class="btn">
                             <div class="media align-items-center">
                                 <img class="img_news" src="/assets/trainer/${obj.trainerImgName}" alt="">
                                 <div class="media-body">
@@ -433,11 +435,12 @@
                                         <h9 style="margin-top: -50px">${obj.trainerCareer}</h9>
                                         <div class="info_bottom">
                                             <div class="time">
-                                                <div class="icon">
+                                                <div class="icon" >
                                                     <svg id="Iconly_Curved_Time_Square"
                                                          data-name="Iconly/Curved/Time Square"
                                                          xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                                         viewBox="0 0 15 15">
+                                                         viewBox="0 0 15 15"
+                                                         style="margin-right: 0px">
                                                         <g id="Time_Square" data-name="Time Square"
                                                            transform="translate(1.719 1.719)">
                                                             <path id="Stroke_1" data-name="Stroke 1"
@@ -493,7 +496,7 @@
                                         <div class="row">
                                             <div class="col-4">
                                                 <div class="item_rate">
-                                                    <span class="noRate" style="font-size: 40px">${review_avg}</span>
+                                                    <span class="noRate" style="font-size: 20px">${review_avg}</span>
                                                     <div class="">
                                                         <p class="rateCutome">평점</p>
                                                         <div class="emPatternRate">

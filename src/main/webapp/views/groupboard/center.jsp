@@ -80,6 +80,10 @@
         width: 100%;
         height: 100%;
     }
+    /* 조인가능한 이용권 할인율 박스 색 변경 */
+    #join_discount{
+        background-color: blueviolet;
+    }
 </style>
 
 <!-- header 구간  -->
@@ -92,7 +96,7 @@
     </div>
     <div class="title_page">
                     <span class="page_name">
-                        조인헬쓱
+                        조인
                     </span>
     </div>
     <div class="em_side_right" >
@@ -208,8 +212,7 @@
                             성동구
                              <i class="tio-chevron_down -arrwo"></i>
                         </span>
-        <p class="size-13 weight-400 color-text mb-0" style="font-size: 5px; color:#8890E8">
-            ${logincust.custName}님이 참여하기 좋은 조인 위주로 보여드렸어요.
+        <p class="size-12 weight-400 color-text mb-0" style="font-size: 5px; font-weight: bold; color:#8890E8">참여하기 수월하도록 관심지역 위주로 보여드렸어요
         </p>
     </div>
 
@@ -296,7 +299,7 @@
         <a href="/groupboard/groupboard_list" class="d-block color-text size-12 m-0">더보기</a>
     </div>
     <!-- 1.조인 관심지역 리스트 슬라이드. Swiper -->
-    <!-- 조인헬쓱 항목 나열 구간 -->
+    <!-- 조인 항목 나열 구간 -->
     <div class="em_swiper_products margin-b-20">
         <div class="em_body_products">
             <div class="owl-carousel owl-theme em-owlRight">
@@ -307,8 +310,8 @@
                                data-target="#mdllJobDetails${obj.groupboardNo}" class="image_product text-decoration-none">
                                 <div class="join_image_bg" style="background-image: url('/assets/img/${obj.groupboardImgname}');"></div>
                             </a>
-
-                            <div class="item_discount"><fmt:formatNumber value="${obj.ticketDiscount}"/>%</div>
+                            <c:set var="joinDiscount" value="${obj.ticketDiscount + 10}" />
+                            <div id="join_discount" class="item_discount"><fmt:formatNumber value="${joinDiscount}"/>%</div>
                         </div>
                         <div class="title_product">
                             <div class="color-black">
@@ -361,7 +364,7 @@
         <a href="/groupboard/groupboard_list" class="d-block color-text size-12 m-0">더보기</a>
     </div>
     <%--2. 선호운동 비슷한 조인 리스트 나열--%>
-    <!-- 조인헬쓱 항목 나열 구간 -->
+    <!-- 조인 항목 나열 구간 -->
     <div class="em_swiper_products margin-b-20">
         <div class="em_body_products">
             <div class="owl-carousel owl-theme em-owlRight">
@@ -372,8 +375,8 @@
                                data-target="#mdllJobDetails${obj.groupboardNo}" class="image_product text-decoration-none">
                                 <div class="join_image_bg" style="background-image: url('/assets/img/${obj.groupboardImgname}');"></div>
                             </a>
-
-                            <div class="item_discount"><fmt:formatNumber value="${obj.ticketDiscount}"/>%</div>
+                            <c:set var="joinDiscount" value="${obj.ticketDiscount + 10}" />
+                            <div id="join_discount" class="item_discount"><fmt:formatNumber value="${joinDiscount}"/>%</div>
                         </div>
                         <div class="title_product">
                             <div class="color-black">

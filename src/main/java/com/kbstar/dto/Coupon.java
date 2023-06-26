@@ -43,4 +43,6 @@ public class Coupon {
     private int ticketDiscount;
     private int ticketPrice;
 
+    private int rank_num;
+
 }

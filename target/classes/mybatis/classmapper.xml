@@ -3,9 +3,12 @@
         PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kbstar.mapper.ClassMapper">
-    <!-- 수업번호로 조회 (pk : classNo(수업번호) ) -->
+    <!-- 수업번호로 조회 (pk : classNo(수업번호) ) --> <!-- 성영 trainerName, gymName 추가 -->
     <select id="select" parameterType="Integer" resultType="class">
-        SELECT * FROM class WHERE classNo=#{classNo}
+        SELECT cl.*, t.trainerName, g.gymName, g.gymPhone
+        FROM class cl join trainer t on cl.trainerNo = t.trainerNo
+                      join gym g on cl.gymNo = g.gymNo and g.gymMasterCk = '1'
+        WHERE cl.classNo=#{classNo}
     </select>
     <!-- 모든 수업 추출 -->
     <select id="selectall" resultType="class">

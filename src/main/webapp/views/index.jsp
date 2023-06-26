@@ -287,7 +287,7 @@ np_balanceDefault {
                             </g>
                         </svg>
                     </div>
-                    <div class="txt__tile" style="width: 60px;">조인헬쓱</div>
+                    <div class="txt__tile" style="width: 60px;">조인</div>
                 </a>
             </div>
             <div class="item_link">
@@ -321,7 +321,7 @@ np_balanceDefault {
          aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
-                <div class="modal-header d-block">
+                <div class="modal-header d-block" style="margin-bottom: -20px">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i class="tio-clear"></i>
                     </button>
@@ -384,7 +384,7 @@ np_balanceDefault {
                 <!--좌측 메뉴 이진 -->
                 <div class="modal-body" >
                     <ul class="nav flex-column -links"
-                    style="margin-left: 10px">
+                    style="margin-left: 10px ; margin-top: 0px">
                         <li class="nav-item">
                             <a class="nav-link" href="/">
                                 <div class="">
@@ -476,7 +476,92 @@ np_balanceDefault {
                                 </div>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="/cust/bmi">
+                                <div class="">
+                                    <div class="icon_current">
+                                        <?xml version="1.0" encoding="iso-8859-1"?>
+                                        <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                                        <svg fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                             viewBox="0 0 512 512" xml:space="preserve">
+<g>
+    <g>
+        <path d="M315.429,146.286h-4.937c8.722-9.719,14.08-22.51,14.08-36.571c0-30.254-24.603-54.857-54.857-54.857
+			s-54.857,24.603-54.857,54.857c0,14.062,5.358,26.853,14.08,36.571H224c-25.207,0-45.714,20.507-45.714,45.714v128
+			c0,5.047,4.087,9.143,9.143,9.143h27.429v173.714c0,5.047,4.087,9.143,9.143,9.143h45.714h9.143
+			c25.207,0,45.714-20.507,45.714-45.714V329.143H352c5.056,0,9.143-4.096,9.143-9.143V192
+			C361.143,166.793,340.635,146.286,315.429,146.286z M269.714,73.143c20.169,0,36.571,16.402,36.571,36.571
+			s-16.402,36.571-36.571,36.571s-36.571-16.402-36.571-36.571S249.545,73.143,269.714,73.143z M275.319,164.571l-5.605,16.805
+			l-5.605-16.805H275.319z M342.857,310.857h-18.286V192h-18.286v274.286c0,15.122-12.306,27.429-27.429,27.429V329.143h-18.286
+			v164.571h-27.429V192h-18.286v118.857h-18.286V192c0-15.122,12.306-27.429,27.429-27.429h20.846l16.201,48.603
+			c1.243,3.739,4.727,6.254,8.667,6.254s7.424-2.514,8.667-6.254l16.201-48.603h20.846c15.122,0,27.429,12.306,27.429,27.429
+			V310.857z"/>
+    </g>
+</g>
+                                            <g>
+                                                <g>
+                                                    <path d="M150.857,0H59.429c-5.056,0-9.143,4.096-9.143,9.143v493.714c0,5.047,4.087,9.143,9.143,9.143h91.429
+			c5.056,0,9.143-4.096,9.143-9.143V9.143C160,4.096,155.913,0,150.857,0z M141.714,54.857h-18.286v18.286h18.286v36.571h-36.571
+			V128h36.571v36.571h-18.286v18.286h18.286v36.571h-36.571v18.286h36.571v36.571h-18.286v18.286h18.286v36.571h-36.571v18.286
+			h36.571V384h-18.286v18.286h18.286v36.571h-36.571v18.286h36.571v36.571H68.571V18.286h73.143V54.857z"/>
+                                                </g>
+                                            </g>
+                                            <g>
+                                                <g>
+                                                    <rect x="178.286" y="18.286" width="18.286" height="18.286"/>
+                                                </g>
+                                            </g>
+                                            <g>
+                                                <g>
+                                                    <rect x="214.857" y="18.286" width="18.286" height="18.286"/>
+                                                </g>
+                                            </g>
+                                            <g>
+                                                <g>
+                                                    <rect x="251.429" y="18.286" width="18.286" height="18.286"/>
+                                                </g>
+                                            </g>
+                                            <g>
+                                                <g>
+                                                    <rect x="288" y="18.286" width="18.286" height="18.286"/>
+                                                </g>
+                                            </g>
+                                            <g>
+                                                <g>
+                                                    <rect x="324.571" y="18.286" width="18.286" height="18.286"/>
+                                                </g>
+                                            </g>
+                                            <g>
+                                                <g>
+                                                    <rect x="361.143" y="18.286" width="18.286" height="18.286"/>
+                                                </g>
+                                            </g>
+                                            <g>
+                                                <g>
+                                                    <rect x="333.714" y="493.714" width="18.286" height="18.286"/>
+                                                </g>
+                                            </g>
+                                            <g>
+                                                <g>
+                                                    <rect x="370.286" y="493.714" width="18.286" height="18.286"/>
+                                                </g>
+                                            </g>
+                                            <g>
+                                                <g>
+                                                    <rect x="406.857" y="493.714" width="18.286" height="18.286"/>
+                                                </g>
+                                            </g>
+                                            <g>
+                                                <g>
+                                                    <rect x="443.429" y="493.714" width="18.286" height="18.286"/>
+                                                </g>
+                                            </g>
+</svg>
+                                    </div>
+                                    <span class="title_link">나의 BMI 지수</span>
+                                </div>
+                            </a>
+                        </li>
 
                         <label class="title__label">내 정보</label>
                         <li class="nav-item">
@@ -598,9 +683,11 @@ np_balanceDefault {
                     <div class="modal-content">
                         <div class="modal-header padding-l-20 padding-r-50">
                                 <%-- 이미지 넣을 맨 상단 구간 --%>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <i class="tio-clear"></i>
-                            </button>
+                                    <div class="em_side_right">
+                                        <button type="button" class="close d-flex align-items-center" data-dismiss="modal" aria-label="Close">
+                                            <i class="tio-clear"></i>
+                                        </button>
+                                    </div>
 
                         </div>
                         <div class="modal-body p-0"><%-- 제목~내용 구간  --%>
@@ -754,7 +841,7 @@ np_balanceDefault {
                                             <div class="title">
                                                 <h6>센터 상세정보</h6>
                                                     <%--  센터 지도 이미지 --%>
-                                                <div id="map" style="width: 90%; height: 250px; border: #9f9f9f 1px solid; border-radius: 15px;">
+                                                <div id="map" style="width: 100%; height: 250px; border: #9f9f9f 1px solid; border-radius: 15px;">
                                                     <img src="/uimg/gym1_map.jpg" alt="">
                                                 </div>
                                             </div>
@@ -811,38 +898,15 @@ np_balanceDefault {
                                                                 </g>
                                                             </svg>
                                                         </div>
-                                                        <span class="textCart color-secondary d-inline-block" >Save</span>
+                                                        <span class="textCart color-secondary d-inline-block" >찜하기</span>
                                                     </button>
                                                         <%-- get 방식의 submit으로 정보 전송 --%>
-                                                    <button type="submit" id="join_addbtn" style="margin-left: 50px"
-                                                            class="btn btn__icon bg-primary color-white min-w-175 text-left justify-content-between">
-                                                        조인 신청하기
-                                                        <a href="/groupboard/success_apply" >
-                                                            <div class="icon">
-                                                                <svg id="Iconly_Light_Arrow_-_Right_Square"
-                                                                     data-name="Iconly/Light/Arrow - Right Square"
-                                                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                                     viewBox="0 0 24 24">
-                                                                    <g id="Arrow_-_Right_Square" data-name="Arrow - Right Square"
-                                                                       transform="translate(2 22) rotate(-90)">
-                                                                        <path id="Stroke_1" data-name="Stroke 1"
-                                                                              d="M4.916,18.5h8.669c3.02,0,4.915-2.139,4.915-5.166V5.166C18.5,2.139,16.615,0,13.585,0H4.916C1.886,0,0,2.139,0,5.166v8.168C0,16.361,1.886,18.5,4.916,18.5Z"
-                                                                              transform="translate(0.75 0.75)" fill="none" stroke="#200e32"
-                                                                              stroke-linecap="round" stroke-linejoin="round"
-                                                                              stroke-miterlimit="10" stroke-width="1.5" opacity="0.4"></path>
-                                                                        <path id="Stroke_3" data-name="Stroke 3" d="M.5,8.172V0"
-                                                                              transform="translate(9.5 5.914)" fill="none" stroke="#200e32"
-                                                                              stroke-linecap="round" stroke-linejoin="round"
-                                                                              stroke-miterlimit="10" stroke-width="1.5"></path>
-                                                                        <path id="Stroke_5" data-name="Stroke 5" d="M7.5,0,3.748,3.764,0,0"
-                                                                              transform="translate(6.252 10.322)" fill="none" stroke="#200e32"
-                                                                              stroke-linecap="round" stroke-linejoin="round"
-                                                                              stroke-miterlimit="10" stroke-width="1.5"></path>
-                                                                    </g>
-                                                                </svg>
-
-                                                            </div>
-                                                        </a>
+                                                    <button type="submit" id="join_addbtn"
+                                                            style="margin-left: 50px; background-color: blueviolet; color: white; border: none;"
+                                                            class="btn btn__icon justify-content-between">
+                                                        <a href="/groupboard/success_apply" style="border: none; color: white"
+                                                           class="btn rounded-10 h-48 min-w-130 size-14 color-secondary border-snow border-solid d-inline-flex align-items-center justify-content-center">
+                                                           조인 신청하기 </a>
                                                     </button>
                                                 </div>
                                             </div>

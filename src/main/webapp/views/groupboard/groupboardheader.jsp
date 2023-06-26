@@ -46,7 +46,7 @@
     <div class="title_welcome">
 <%--        <a href="/groupboard">--%>
                         <span class="color-secondary size-16 weight-500">
-                           조인헬쓱
+                           조인
                         </span>
 <%--        </a>--%>
     </div>

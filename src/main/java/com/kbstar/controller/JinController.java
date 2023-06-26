@@ -47,6 +47,7 @@ public class JinController {
         Cust cust = (Cust) session.getAttribute("logincust");
         List<Notification> list = null;
         list = notificationService.getMyNoti(cust.getCustNo()); // 로그인고객의 알림내역 가져오기.
+        log.info("추출" + list);
 
         model.addAttribute("myNoti",list);
         model.addAttribute("center","notification");

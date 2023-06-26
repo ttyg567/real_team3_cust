@@ -6,7 +6,7 @@
     .nav .nav-item{
         width: 120px;
     }
-<%-- 조인헬쓱 홍보 배너 이미지와 텍스트 규격 변경   --%>
+<%-- 조인 홍보 배너 이미지와 텍스트 규격 변경   --%>
     #joinbanner .text_img {
         position: relative;
         height: 60px;
@@ -28,6 +28,17 @@
         border-color: gray;
         background-color: lavender;
         background-color-opacity: 20;
+    }
+    <%-- 할인 중인 이용권의 이미지 : 규격에 꽉차게 함. --%>
+    .ticket_image_bg {
+        width: 100%; /* 이미지의 가로 크기 */
+        height: 100px; /* 이미지의 세로 크기 */
+        overflow: hidden; /* 크기를 초과하는 이미지는 숨김 처리 */
+    }
+    .ticket_image {
+        width: 100%; /* 부모 요소에 맞게 이미지 크기 조정 */
+        height: 100%; /* 부모 요소에 맞게 이미지 크기 조정 */
+        object-fit: cover; /* 이미지 비율 유지하며 부모 요소에 맞게 조정 */
     }
 <%-- 베스트센터 이미지 : 규격에 꽉차게 함. --%>
     .join_image_bg {
@@ -90,6 +101,10 @@
   .btn:hover .hover_ico {
     display: block; /* 커서를 올렸을 때 기본 이미지 숨김 */
   }
+    /* 조인가능한 이용권 할인율 박스 색 변경 */
+    #join_discount{
+        background-color: blueviolet;
+    }
 </style>
 
 <div id="wrapper">
@@ -288,7 +303,9 @@
                 <div class="item em_item_product">
                     <div class="em_head"><!-- 선택 시 센터 상세페이지로 이동 -->
                         <a href="/ticket/detail?gymNo=${gym.gymNo}" >
-                            <img src="/assets/img/gymImg/${gym.gymImgname}" alt="">
+                            <div class="ticket_image_bg">
+                                <img  class="ticket_image" src="/assets/img/gymImg/${gym.gymImgname}" alt="">
+                            </div>
                         </a>
                         <!-- 찜버튼! -->
                         <button type="button" class="btn rounded-8 btn_addBookmark item-active" id="itemSave">

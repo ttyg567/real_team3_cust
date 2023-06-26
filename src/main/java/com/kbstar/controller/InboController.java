@@ -1,10 +1,7 @@
 package com.kbstar.controller;
 
 import com.kbstar.dto.*;
-import com.kbstar.service.CouponService;
-import com.kbstar.service.GBMemberService;
-import com.kbstar.service.GroupboardService;
-import com.kbstar.service.GymService;
+import com.kbstar.service.*;
 import com.kbstar.util.FileUploadUtil;
 import com.kbstar.util.PushNotificationUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +36,8 @@ public class InboController {
 
     @Autowired
     private CouponService couponService;
+    @Autowired
+    private NotificationService notificationService;
     String dir = "groupboard/";
     // 4-1 조인 메인페이지
     @RequestMapping("")
@@ -349,6 +348,7 @@ public class InboController {
         return "index"; // 로그인 후 "my_applyjoin" 페이지로 이동
     }
 
+    // 성영 추가
     public void joinCompleted(Integer getGroupboardNo) throws Exception {
 
         List<Groupboard> target_list = null;
@@ -375,6 +375,16 @@ public class InboController {
                 log.info("=== 쿠폰 대상 토큰은 === " + item.getCustToken() + "=====");
                 item.setGroupboardNo(getGroupboardNo); // getGroupboardNo 셋
                 couponService.getCouponcust_update_discount(item);
+
+                Notification noti = new Notification();
+                noti.setCustNo(item.getCustNo()); //custNo
+                noti.setGymNo(999999); // gymNo (가상)
+                noti.setTicketNo(999999); // ticketNo(가상)
+                noti.setNotiTitle("쿠폰발행");
+                noti.setNotiMessage("조인완료 이용권 할인쿠폰이 발행되었어요");
+                noti.setNotiType("4");
+                notificationService.register(noti);
+
                 cp = couponService.getTodaymycoupon(item.getCustNo()); // 현재 시간 기준으로 직전에 보낸 쿠폰을 추출
                 // 푸쉬 알람은 cust에 등록된 토큰으로 보낸다.
 //                pushNotificationUtil.sendCommonMessage("Open Coupon Box", "Open Coupon Box", "/coupon/show?couponNo="+cp.getCustNo(), clientToken);

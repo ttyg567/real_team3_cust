@@ -208,6 +208,12 @@ public class MypageController {
         return ja;
     }
 
+    @RequestMapping("/chatbot")
+    public String chatbot(Model model, HttpSession session) throws Exception {
+
+        model.addAttribute("center", dir+"chatbot");
+        return "index";
+    }
 
 
 }

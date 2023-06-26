@@ -219,7 +219,7 @@
                         </svg>
                     </div>
 <%--                    <div class="items_basket_circle">2</div>--%>
-                    <div class="txt__tile" style="width: 60px;">조인헬쓱</div>
+                    <div class="txt__tile" style="width: 60px;">조인</div>
                 </a>
             </div>
             <div class="item_link">

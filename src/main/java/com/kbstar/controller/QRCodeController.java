@@ -11,8 +11,10 @@ import javax.servlet.http.HttpSession;
 import com.kbstar.dto.Coupon;
 import com.kbstar.dto.Cust;
 import com.kbstar.dto.MySchedule;
+import com.kbstar.dto.Notification;
 import com.kbstar.service.CouponService;
 import com.kbstar.service.MyScheduleService;
+import com.kbstar.service.NotificationService;
 import com.kbstar.util.PushNotificationUtil;
 import com.kbstar.util.QRCodeUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +38,9 @@ public class QRCodeController {
 
     @Autowired
     private PushNotificationUtil pushNotificationUtil; // 푸쉬알림
+
+    @Autowired
+    private NotificationService notificationService;
 
     @RequestMapping("/services/qrcode/text2qrcode.do")
     public void text2QRCode(@RequestParam("width") int width,
@@ -91,7 +96,17 @@ public class QRCodeController {
         log.info("=== 쿠폰 대상 토큰은 === " + clientToken + "=====");
 
         couponService.getCouponcust_update(target_list); // 쿠폰 발행으로 업데이트
-        cp = couponService.getTodaymycoupon(target_list.getCustNo()); // 현재 시간 기준으로 직전에 보낸 쿠폰을 추출
+        cp = couponService.getTodaymycoupon(target_list.getCustNo()); // 현재 시간 기준으로 직전에 보낸 쿠폰을 추출, 시차 때문에 xml 변경
+        
+
+        Notification noti = new Notification();
+        noti.setCustNo(target_list.getCustNo()); //custNo
+        noti.setGymNo(999999); // gymNo (가상)
+        noti.setTicketNo(999999); // ticketNo(가상)
+        noti.setNotiTitle("쿠폰발행");
+        noti.setNotiMessage("오운완 이벤트 쿠폰이 발행되었어요");
+        noti.setNotiType("3");
+        notificationService.register(noti);
 
         pushNotificationUtil.sendCommonMessage("Open Coupon Box", "Open Coupon Box", "/coupon/show?couponNo="+cp.getCouponNo(), clientToken);
 
