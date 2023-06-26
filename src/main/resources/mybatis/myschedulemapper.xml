@@ -174,7 +174,7 @@
                  left join class c on m.classNo = c.classNo
                  left join gym g on c.gymNo = g.gymNo
                  left join trainer t on c.trainerNo = t.trainerNo
-        where m.custno = #{custno}
+        where m.custno = #{custNo}
           and m.SHEDULECANCELED = '0'
           and g.gymMasterCk = '1'
           and c.classDate = TRUNC(sysdate)
@@ -191,6 +191,5 @@
                           WHERE m.custNo = #{custNo}
                             AND TRUNC(c.classdate) = TRUNC(sysdate))
     </update>
-
 
 </mapper>

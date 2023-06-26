@@ -518,10 +518,10 @@
         $('#mdllAdd_Address').modal('show');
         generateQRCode();
 
-        // 5초 후에 모달 창 닫기
+        // 3초 후에 모달 창 닫기
         setTimeout(function () {
             $('#mdllAdd_Address').modal('hide');
-        }, 5000);
+        }, 3000);
     }
 
     // 모달 창이 닫힌 후에 호출되는 함수
