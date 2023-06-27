@@ -11,4 +11,6 @@ import lombok.*;
 public class TicketSearch {
     private String ticketName;
     private int ticketNo;
+
+
 }

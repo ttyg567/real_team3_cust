@@ -56,7 +56,8 @@ public class InboController {
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
-            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+//            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // 선호운동이 일치하는 조인도 동일하게.
         for (Groupboard item : list2){
@@ -117,7 +118,8 @@ public class InboController {
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
-            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+//            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
@@ -140,7 +142,8 @@ public class InboController {
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
-            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+//            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
         }
 
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
@@ -167,7 +170,8 @@ public class InboController {
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
-            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+//            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
@@ -192,7 +196,8 @@ public class InboController {
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
-            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+//            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
@@ -218,7 +223,8 @@ public class InboController {
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
-            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+//            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
@@ -244,7 +250,8 @@ public class InboController {
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
-            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+//            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
@@ -270,7 +277,8 @@ public class InboController {
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
-            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+//            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
@@ -296,7 +304,8 @@ public class InboController {
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
-            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+//            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
