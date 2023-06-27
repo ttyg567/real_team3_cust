@@ -135,24 +135,56 @@
         <section class="page_news">
             <div id="wrapper">
                 <div id="content">
-                    <!-- Start 헬쓱이 지피티 -->
-                    <section class="npBalabce_section padding-20 pb-0 d-flex align-items-center">
-                        <div class="txt d-flex align-items-center">
-                            <img src="/assets/img/candy/chatbot.png" class="d-inline animated-bounce" id="chatbot"
-                                 alt="chatbot"
-                                 style="width: 50px; height: 50px;">
+                    <!-- Start. 챗봇 서비스 -->
+                    <div class="bg-white padding-20">
+                        <div class="item__tab lg_tab">
+                            <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link active" id="pills-personal-tab" data-toggle="pill"
+                                       href="#pills-personal" role="tab" aria-controls="pills-personal"
+                                       aria-selected="true">헬쓱 지피티</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" id="pills-personal2-tab" data-toggle="pill"
+                                       href="#pills-personal2" role="tab" aria-controls="pills-personal2"
+                                       aria-selected="false">헬쓱 클로바</a>
+                                </li>
+                                <span class="indicator__bg_active"></span>
+                            </ul>
                         </div>
-                        <div class="text-left" style="margin-left: 20px">
-                            <h6 class="color-secondary">안녕, ${logincust.custName}님! <br> 나는 헬쓱 지피티야!</h6>
-                            <span class="color-snow h7">나에게는 <br> 무엇이든 물어봐도 좋아!</span>
+
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-personal" role="tabpanel"
+                                 aria-labelledby="pills-personal-tab">
+                                    <section class="npBalabce_section padding-20 pb-0 d-flex align-items-center">
+                                        <div class="txt d-flex align-items-center">
+                                            <img src="/assets/img/candy/chatbot.png" class="d-inline animated-bounce" id="chatbot"
+                                                 alt="chatbot"
+                                                 style="width: 50px; height: 50px;">
+                                        </div>
+                                        <div class="text-left" style="margin-left: 20px">
+                                            <h6 class="color-secondary">안녕, ${logincust.custName}님! <br> 나는 헬쓱 지피티야!</h6>
+                                            <span class="color-snow h7">나에게는 무엇이든 물어봐도 좋아!</span>
+                                        </div>
+                                    </section>
+                            </div>
+                            <div class="tab-pane fade" id="pills-personal2" role="tabpanel"
+                                 aria-labelledby="pills-personal2-tab">
+                                    <section class="npBalabce_section padding-20 pb-0 d-flex align-items-center">
+                                        <div class="txt d-flex align-items-center">
+                                            <img src="/assets/img/candy/clova.png" class="d-inline animated-bounce" id="chatbotclova"
+                                                 alt="chatbot"
+                                                 style="width: 50px; height: 50px;">
+                                        </div>
+                                        <div class="text-left" style="margin-left: 20px">
+                                            <h6 class="color-secondary">안녕, ${logincust.custName}님! <br> 나는 헬쓱 클로바야!</h6>
+                                            <span class="color-snow h7">나에게는 무엇이든 물어봐도 좋아!</span>
+                                        </div>
+                                    </section>
+                            </div>
                         </div>
-                        <div class="action" style="margin-left: auto;">
-                            <button href="/" class="btn" style="background-color: #815cdf; color: white; font-size: 13px;">
-                                로봇사양변경
-                            </button>
-                        </div>
-                    </section>
-                    <!-- End 헬쓱이 지피티 -->
+                    </div>
+                    <!-- End. 챗봇 서비스 -->
                     <br>
                     <!-- Start 오늘의 일정 -->
                     <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe">
@@ -160,30 +192,30 @@
                             <c:when test="${my_reservation_list != '[]'}">
                                 <c:forEach var="obj" items="${my_reservation_list}">
                                     <section class="npBalabce_section padding-5 pb-0">
-                                        <div class="content_balance bg-white border border-snow">
+                                        <div class="content_balance " style="background: #fbebee;">
                                             <div class="txt">
                                                 <h6 style="color: rebeccapurple">
                                                         ${obj.dateCategory}의 운동 일정</h6>
                                                 <h6 class="color-secondary">${obj.className}</h6>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                      fill="currentColor"
-                                                     class="bi bi-calendar2-check color-snow" viewBox="0 0 16 16">
+                                                     class="bi bi-calendar2-check color-instagram" viewBox="0 0 16 16">
                                                     <path d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
                                                     <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
                                                     <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
                                                 </svg>&nbsp;
-                                                <h7 class="color-snow">${obj.classDate}</h7>
+                                                <h7 class="color-instagram">${obj.classDate}</h7>
                                                 <br>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                     fill="currentColor" class="bi bi-alarm color-snow"
+                                                     fill="currentColor" class="bi bi-alarm color-instagram"
                                                      viewBox="0 0 16 16">
                                                     <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"/>
                                                     <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
                                                 </svg>&nbsp;
-                                                <h7 class="color-snow">${obj.classStarttime}~${obj.classEndtime}</h7>
+                                                <h7 class="color-instagram">${obj.classStarttime}~${obj.classEndtime}</h7>
                                             </div>
                                             <div class="action">
-                                                <a href="/class/my_reservation" class="btn">
+                                                <a href="/class/my_reservation" class="btn-">
                                                     나의 일정 보기
                                                 </a>
                                             </div>
@@ -465,6 +497,10 @@
             window.location.href = "/mypage/gptchatbot";
         });
 
+        document.getElementById("chatbotclova").addEventListener("click", function () {
+            window.location.href = "/mypage/chatbot";
+        });
+
         document.getElementById('loginplzIcon').addEventListener('click', function () {
             window.location.href = '/cust/login';
         });
@@ -619,3 +655,47 @@
 
 </script>
 
+<!-- jquery -->
+<script src="assets/js/jquery-3.6.0.js"></script>
+<!-- popper.min.js 1.16.1 -->
+<script src="assets/js/popper.min.js"></script>
+<!-- bootstrap.js v4.6.0 -->
+<script src="assets/js/bootstrap.min.js"></script>
+
+<!-- Owl Carousel v2.3.4 -->
+<script src="assets/js/vendor/owl.carousel.min.js"></script>
+<!-- Swiper 6.4.11 -->
+<script src="assets/js/vendor/swiper-bundle.min.js"></script>
+<!-- sharer 0.4.0 -->
+<script src="assets/js/vendor/sharer.js"></script>
+<!-- short-and-sweet v1.0.2 - Accessible character counter for input elements -->
+<script src="assets/js/vendor/short-and-sweet.min.js"></script>
+<!-- jquery knob -->
+<script src="assets/js/vendor/jquery.knob.min.js"></script>
+<!-- indicator tab -->
+<script src="assets/js/indicator-tab.js"></script>
+<!-- main.js -->
+<script src="assets/js/main.js" defer></script>
+<!-- PWA app service registration and works js -->
+<script src="assets/js/pwa-services.js"></script>
+
+
+
+<!-- Start 헬쓱이 지피티 -->
+<%--                    <section class="npBalabce_section padding-20 pb-0 d-flex align-items-center">--%>
+<%--                        <div class="txt d-flex align-items-center">--%>
+<%--                            <img src="/assets/img/candy/chatbot.png" class="d-inline animated-bounce" id="chatbot"--%>
+<%--                                 alt="chatbot"--%>
+<%--                                 style="width: 50px; height: 50px;">--%>
+<%--                        </div>--%>
+<%--                        <div class="text-left" style="margin-left: 20px">--%>
+<%--                            <h6 class="color-secondary">안녕, ${logincust.custName}님! <br> 나는 헬쓱 지피티야!</h6>--%>
+<%--                            <span class="color-snow h7">나에게는 <br> 무엇이든 물어봐도 좋아!</span>--%>
+<%--                        </div>--%>
+<%--                        <div class="action" style="margin-left: auto;">--%>
+<%--                            <button href="/" class="btn" style="background-color: #815cdf; color: white; font-size: 13px;">--%>
+<%--                                로봇사양변경--%>
+<%--                            </button>--%>
+<%--                        </div>--%>
+<%--                    </section>--%>
+<!-- End 헬쓱이 지피티 -->
