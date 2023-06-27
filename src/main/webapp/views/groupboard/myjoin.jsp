@@ -33,11 +33,13 @@
         <ul class="nav nav-pills" id="pills-tab" role="tablist">
           <li class="nav-item" role="presentation">
             <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
-               role="tab" aria-controls="pills-home" aria-selected="true">참여한 조인</a>
+               role="tab" aria-controls="pills-home" aria-selected="true"
+            style="font-size: 14px;">참여한 조인</a>
           </li>
           <li class="nav-item" role="presentation">
             <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
-               role="tab" aria-controls="pills-profile" aria-selected="false">개설한 조인</a>
+               role="tab" aria-controls="pills-profile" aria-selected="false"
+               style="font-size: 14px;">개설한 조인</a>
           </li>
 
         </ul>
@@ -60,11 +62,12 @@
 
           <!-- 리스트 넣는 공간 -->
           <c:forEach var="obj" items="${myapplyjoin}">
-          <ul class="itemList__news" style="background-color: white">
+
+          <ul class="itemList__news" style="background-color: white" >
             <li class="items-nav">
-              <a href="/ticket_detail" class="btn">
-                <div class="media align-items-center">
-                  <img class="img_news" src="/uimg/${obj.groupboardImgname}" alt="">
+              <a class="btn">
+                <div class="media align-items-center" data-toggle="modal" data-target="#mdllJobDetails${obj.groupboardNo}">
+                  <img class="img_news" src="/assets/img/${obj.groupboardImgname}" alt="">
                   <div class="media-body">
                     <div class="txt">
                       <h2>${obj.groupboardTitle}</h2>
@@ -113,7 +116,7 @@
                               </g>
                             </svg>
                           </div>
-                          <span>06월 30일(목) 마감 ㅣ 성수 피트니스</span>
+                          <span>${obj.gymName}</span>
                         </div>
                       </div>
                     </div>
@@ -141,7 +144,7 @@
               <li class="items-nav">
                 <a href="/ticket_detail" class="btn">
                   <div class="media align-items-center">
-                    <img class="img_news" src="/uimg/${obj.groupboardImgname}" alt="">
+                    <img class="img_news" src="/assets/img/${obj.groupboardImgname}" alt="">
                     <div class="media-body">
                       <div class="txt">
                         <h2>${obj.groupboardTitle}</h2>
@@ -205,10 +208,6 @@
         </div> <!-- 개설한 조인 끝. -->
 
       </div>
-
-
     </section>
 
 
-<%--</div>--%>
-<%--</div>--%>
