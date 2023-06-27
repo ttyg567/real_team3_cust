@@ -43,7 +43,7 @@ public class InboController {
     @RequestMapping("")
     public String main(Model model) throws Exception {
         List<Groupboard> list = null;
-        list = groupboardService.get(); // 가져오기.
+        list = groupboardService.get(); // 조인상태 모집중인 것만 모두 가져오기.
 
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.

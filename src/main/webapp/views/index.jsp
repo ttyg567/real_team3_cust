@@ -798,7 +798,7 @@ np_balanceDefault {
                                                             </svg>
                                                             <span class="item_price">
                                                                 기본금액<span class="price_old">
-                                                              <fmt:formatNumber value="${obj.ticketPrice}" type="number" pattern="#,##0 원" />
+                                                              <fmt:formatNumber value="${obj.ticketCost}" type="number" pattern="#,##0 원" />
                                                                 </span>
                                                             </span>
                                                         </div>
@@ -828,7 +828,7 @@ np_balanceDefault {
                                                             </svg>
                                                             <span class="item_price">
                                                                 기본금액<span class="price_old">
-                                                              <fmt:formatNumber value="${obj.ticketPrice}" type="number" pattern="#,##0 원" />
+                                                              <fmt:formatNumber value="${obj.ticketCost}" type="number" pattern="#,##0 원" />
                                                                 </span>
                                                             </span>
                                                         </div>
@@ -848,7 +848,7 @@ np_balanceDefault {
                                                 <h6>센터 상세정보</h6>
                                                     <%--  센터 지도 이미지 --%>
                                                 <div id="map" style="width: 100%; height: 250px; border: #9f9f9f 1px solid; border-radius: 15px;">
-                                                    <img src="/uimg/gym1_map.jpg" alt="">
+                                                    <img src="/assets/img/gym1_map.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div style="height: 100px; margin-top: 20px;  display: flex; flex-wrap: wrap; flex-direction: column; align-content: flex-start; align-items: flex-start;">
