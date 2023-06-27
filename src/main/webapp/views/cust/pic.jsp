@@ -80,13 +80,12 @@
             <div class="em_side_right">
                 <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/">
                     <i class="tio-chevron_left size-24 color-text"></i>
-                    <span class="color-text size-14">Back</span>
                 </a>
             </div>
             <div class="title_page">
-                    <span class="page_name">
-                        <!-- title -->
-                    </span>
+                        <span class="page_name">
+                          프로필 사진 찍기
+                        </span>
             </div>
 
         </header>

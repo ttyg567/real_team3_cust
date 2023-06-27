@@ -52,25 +52,33 @@ public class MainController {
         List<Gym> list = null;
         List<GymMachine> list2 = null;
         List<MyMachine> list3 = null;
+        List<Groupboard> list4 = null;
+
         model.addAttribute("searchType", list); //jsp파일에서 뿌릴 이름 정하기
         try {
             // 미로그인 고객을 위한 정보 : 이용권 정보 보임 + 센터의 운동기구 정보 보임
             list = gymService.get();
             list2 = gymMachineService.get();
-
+            list4 = groupboardService.get(); // 가져오기.
+            // 성영 : pay를 건드리지 않기 위해
+            // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
+            for (Groupboard item : list4){
+                item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            }
             // 로그인 고객만을 위한 정보 : 나의 운동기구로 즐겨찾기한 리스트를 메인페이지에서 보여준다.
             if (cust != null) {
                 list3 = myMachineService.getmymachine(cust.getCustNo()); // 즐겨찾기 보여주기 // 로그인시 오면 여기서 에러남
             }
-            // list2 = gymMachineService.selectGymMachine(gymNo); // 센터가 보유한 기계 가져오기
+
         }
         catch (Exception e){
             throw new Exception("error");
         }
+
+        // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("allGym",list);
         model.addAttribute("gymAllMachine",list2); //센터의 기계들 보여주기
-
-
+        model.addAttribute("alljoin", list4);
         if (cust != null) {
             //list3 = myMachineService.getmymachine(cust.getCustNo()); // 즐겨찾기 보여주기.
             model.addAttribute("myMachine", list3); // 즐겨찾기된 기구들 보여주기

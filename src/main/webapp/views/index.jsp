@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -414,7 +415,6 @@ np_balanceDefault {
                             <a class="nav-link" href="/like1check">
                                 <div class="">
                                     <div class="icon_current">
-
                                         <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
                                         <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path fill="#555" d="M13.6816069,1.68151414 C15.6886881,1.20225236 17.3492986,1.70793555 18.5305552,2.77637221 C19.5626391,3.70988338 20.1587415,5.33450059 19.9630126,7.16572033 C19.8161255,8.53998089 19.0697083,9.93491864 17.720706,11.386568 L10.4473397,18.3091773 C10.1789774,18.5645979 9.75131756,18.5634627 9.48437469,18.306621 L2.26602773,11.360285 C1.19796664,10.2267143 0.516216376,9.15006254 0.232531945,8.11775634 C-0.179041108,6.62007311 -0.0389102525,5.1069236 0.610402012,3.87469373 C1.38014048,2.41392548 2.91616709,1.54639939 5.14169869,1.54639939 C6.66436262,1.54639939 8.26181311,2.29873453 9.94732517,3.76705682 C11.0946237,2.70056091 12.3405404,2.00174132 13.6816069,1.68151414 Z M9.96986805,16.8832036 L16.7307562,10.4500428 C17.8683506,9.22426481 18.4802442,8.08073063 18.593038,7.02544401 C18.7443646,5.60964799 18.3027389,4.40604174 17.5956909,3.76652276 C16.7370508,2.98989 15.5402429,2.62544232 14.0080827,2.99129989 C12.7513412,3.29139148 11.5737369,4.01053975 10.4701027,5.16500603 C10.2073896,5.43981945 9.76565601,5.45085998 9.4889549,5.1895285 C7.85204028,3.64353785 6.39709722,2.89460061 5.14169869,2.89460061 C3.41950102,2.89460061 2.36199017,3.49186778 1.83462163,4.49267941 C1.34644218,5.41912009 1.23828402,6.58702475 1.56270689,7.76757505 C1.78126554,8.56289346 2.34931983,9.45999126 3.25514439,10.4225684 L9.96986805,16.8832036 Z"/>
@@ -652,11 +652,12 @@ np_balanceDefault {
                         </li>
                     </ul>
                 </div>
-                <div class="modal-footer">
+                <hr>
+                <div class="modal-footer" style="margin-bottom: 10px">
                     <div class="em_darkMode_menu">
                         <label class="text" for="switchDarkMode">
-                            <h3>Dark Mode</h3>
-                            <p>Browsing in night mode</p>
+                            <h3>다크모드로 전환</h3>
+                            <p style="font-size: 11px">눈의 피로를 덜어 드려요</p>
                         </label>
                         <label class="switch_toggle toggle_lg" for="switchDarkMode">
                             <input type="checkbox" class="switchDarkMode" id="switchDarkMode">
@@ -698,7 +699,7 @@ np_balanceDefault {
                                     <section class="emPage__detailsBlog" style="margin-top: -100px">
                                         <div class="emheader_cover">
                                             <div class="cover">
-                                                <img src="/uimg/${obj.groupboardImgname}" alt="" style="height:450px" >
+                                                <img src="/assets/img/${obj.groupboardImgname}" alt="" style="height:450px" >
                                             </div>
                                             <div class="title">
                                                 <div class="size-18 weight-600 color-primary"style="text-align: right">
@@ -727,12 +728,13 @@ np_balanceDefault {
 
                                                 <div class="item__auther emBlock__border">
                                                     <div class="item_person">
-                                                        <img src="/uimg/${obj.groupboardImgname}" alt="">
+                                                        <img src="/assets/img/${obj.groupboardImgname}" alt="">
                                                             <%-- 조인을 만든 고객 이름   --%>
                                                         <h2>${obj.custName}</h2>
                                                     </div>
                                                     <div class="sideRight">
-                                                        <div class="time">
+
+                                                        <div class="time margin-l-10">
                                                             <div class="icon">
                                                                 <svg id="Iconly_Curved_Time_Square" data-name="Iconly/Curved/Time Square"
                                                                      xmlns="http://www.w3.org/2000/svg" width="15" height="15"
@@ -752,33 +754,13 @@ np_balanceDefault {
                                                             </div>
                                                             <span>${obj.writeDate}</span>
                                                         </div>
-                                                        <div class="view margin-l-10">
-                                                            <div class="icon">
-                                                                <svg id="Iconly_Curved_Show" data-name="Iconly/Curved/Show"
-                                                                     xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                                                     viewBox="0 0 15 15">
-                                                                    <g id="Show" transform="translate(1.719 2.969)">
-                                                                        <path id="Stroke_1" data-name="Stroke 1"
-                                                                              d="M3.952,1.976A1.976,1.976,0,1,1,1.976,0,1.977,1.977,0,0,1,3.952,1.976Z"
-                                                                              transform="translate(3.806 2.588)" fill="none" stroke="#cbcdd8"
-                                                                              stroke-linecap="round" stroke-linejoin="round"
-                                                                              stroke-miterlimit="10" stroke-width="1.5" />
-                                                                        <path id="Stroke_3" data-name="Stroke 3"
-                                                                              d="M0,4.564c0,2.05,2.589,4.564,5.782,4.564s5.782-2.512,5.782-4.564S8.976,0,5.782,0,0,2.514,0,4.564Z"
-                                                                              fill="none" stroke="#cbcdd8" stroke-linecap="round"
-                                                                              stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
-                                                                    </g>
-                                                                </svg>
-                                                            </div>
-                                                            <span>${obj.boardViews}</span>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                             <%-- 조인모집 작성내용 적히는 공간  --%>
                                         <div class="embody__content">
-                                            <div style="height: 150px;  display: flex; flex-wrap: wrap; flex-direction: column; align-content: flex-start; align-items: flex-start;">
+                                            <div style="height: 180px;  display: flex; flex-wrap: wrap; flex-direction: column; align-content: flex-start; align-items: flex-start;">
                                                 <div class="joincontent" style=" display: flex; align-items: center;">
                                                         <%-- 센터정보 : 이름 / 위치 --%>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-geo-alt color-primary" viewBox="0 0 16 16">
@@ -805,9 +787,21 @@ np_balanceDefault {
                                                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                                                 <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
                                                             </svg>
-                                                            <span>할인가 <fmt:formatNumber value="${obj.ticketPrice}" pattern="###,### 원" /> | ${obj.ticketDiscount}% 할인 적용 (정상가 <fmt:formatNumber value="${obj.ticketCost}" pattern="###,### 원" />)</span>
+                                                            <c:set var="joinDiscount" value="${obj.ticketDiscount + 10}" />
+                                                            <span>모집완료 시 최종금액 <fmt:formatNumber value="${obj.ticketJoinPrice}" type="number" pattern="#,##0 원" /> | <fmt:formatNumber value="${joinDiscount}"/>% 적용
                                                         </div>
-
+                                                        <div class="joincontent" style="text-align: left">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin color-primary" viewBox="0 0 16 16">
+                                                                <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
+                                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                                <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+                                                            </svg>
+                                                            <span class="item_price">
+                                                                기본금액<span class="price_old">
+                                                              <fmt:formatNumber value="${obj.ticketPrice}" type="number" pattern="#,##0 원" />
+                                                                </span>
+                                                            </span>
+                                                        </div>
                                                     </c:when>
                                                     <c:when test="${obj.ticketType == '2'}">
                                                         <div class="joincontent" style="text-align: left">
@@ -823,9 +817,21 @@ np_balanceDefault {
                                                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                                                 <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
                                                             </svg>
-                                                            <span>할인가 <fmt:formatNumber value="${obj.ticketPrice}" pattern="###,### 원" />(${obj.ticketDiscount}% 할인 적용) | 정상가 <fmt:formatNumber value="${obj.ticketCost}" pattern="###,### 원" /></span>
+                                                            <c:set var="joinDiscount" value="${obj.ticketDiscount + 10}" />
+                                                            <span>모집완료 시 최종금액 <fmt:formatNumber value="${obj.ticketJoinPrice}" type="number" pattern="#,##0 원" /> | <fmt:formatNumber value="${joinDiscount}"/>% 적용
                                                         </div>
-
+                                                        <div class="joincontent" style="text-align: left">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin color-primary" viewBox="0 0 16 16">
+                                                                <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
+                                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                                <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+                                                            </svg>
+                                                            <span class="item_price">
+                                                                기본금액<span class="price_old">
+                                                              <fmt:formatNumber value="${obj.ticketPrice}" type="number" pattern="#,##0 원" />
+                                                                </span>
+                                                            </span>
+                                                        </div>
                                                     </c:when>
                                                 </c:choose>
 
