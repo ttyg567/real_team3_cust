@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
   #map img{
     border-radius: 15px;
@@ -447,11 +448,11 @@
                             </svg>
 
                             <span class="item_price">
-                                                                정상금액
-                                                                <span class="price_old">
-                                                                    <fmt:formatNumber value="${obj.ticketCost}" pattern="###,### 원" />
-                                                                </span>
-                                                            </span>
+                            정상금액
+                            <span class="price_old">
+                                <fmt:formatNumber value="${obj.ticketCost}" pattern="###,### 원" />
+                            </span>
+                        </span>
                           </div>
                         </c:when>
                         <c:when test="${obj.ticketType == '2'}">
