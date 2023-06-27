@@ -86,7 +86,7 @@ public class InboAjaxController {
     }
     // 4-2-3. 조인 만들기에서 이용권 검색
     @RequestMapping(value = "/ticketsearch", method = RequestMethod.GET)
-    public Object ticketsearch(@RequestParam("ticketName") String ticketName, Integer ticketNo,Model model) {
+    public Object ticketsearch(@RequestParam("ticketName") String ticketName,Model model) {
 
         TicketSearch ts = new TicketSearch();
 

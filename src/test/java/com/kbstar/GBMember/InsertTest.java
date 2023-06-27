@@ -20,7 +20,7 @@ class InsertTest {
     @Test
     void contextLoads() {
         GBMember gbMember;
-        gbMember = new GBMember(1, 3, "1" );
+        gbMember = new GBMember(4, 3, "1" );
         try {
             service.register(gbMember);
             service.get();

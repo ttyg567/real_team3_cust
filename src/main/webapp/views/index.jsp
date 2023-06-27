@@ -327,7 +327,7 @@ np_balanceDefault {
                     </button>
                     <div class="em_profile_user">
                         <div class="media">
-                            <a href="page-profile.html">
+                            <a href="/cust/pic">
                                 <div class="letter bg-purple">
                                 <!-- You can use an image -->
                                     <c:choose>
