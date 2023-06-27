@@ -1,7 +1,6 @@
 package com.kbstar.controller;
 
 import com.kbstar.dto.Cust;
-import com.kbstar.dto.Gym;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.json.simple.JSONArray;
