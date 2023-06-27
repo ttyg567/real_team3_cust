@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +38,9 @@ public class MypageController {
     @Autowired
     ChatgptService chatgptService;
     String dir = "mypage/";
+
+    @Value("${adminserver}")
+    String adminserver;
 
     @RequestMapping
     public String main(Model model, HttpSession session) throws Exception {
@@ -211,6 +215,12 @@ public class MypageController {
     @RequestMapping("/chatbot")
     public String chatbot(Model model, HttpSession session) throws Exception {
 
+        Cust cust = null;
+        cust = (Cust) session.getAttribute("logincust");
+
+
+        session.setAttribute("logincust", cust);
+        model.addAttribute("adminserver", adminserver);
         model.addAttribute("center", dir+"chatbot");
         return "index";
     }

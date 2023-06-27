@@ -22,12 +22,12 @@ public class ChatController {
     @RequestMapping("/chat")
     public String chat(Model model, HttpSession session) throws Exception {
 
-//        Cust cust = (Cust) session.getAttribute("logincust");
-//
-//        if (cust == null) {
-//            return "redirect:/cust/login";
-//        }
-        //session.setAttribute("logincust", cust);
+        Cust cust = (Cust) session.getAttribute("logincust");
+
+        if (cust == null) {
+            return "redirect:/cust/login";
+        }
+        session.setAttribute("logincust", cust);
         model.addAttribute("adminserver", adminserver);
         model.addAttribute("center", "chat");
         return "index";
