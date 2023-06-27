@@ -208,12 +208,9 @@
 <!-- Start input_SaerchDefault -->
 <section class="padding-t-70 change_colorSearch">
     <div class="title_welcome">
-                        <span class="color-secondary size-16 weight-500">
-                            성동구
-                             <i class="tio-chevron_down -arrwo"></i>
-                        </span>
-        <p class="size-12 weight-400 color-text mb-0" style="font-size: 5px; font-weight: bold; color:#8890E8">참여하기 수월하도록 관심지역 위주로 보여드렸어요
-        </p>
+
+<%--        <p class="size-12 weight-400 color-text mb-0" style="font-size: 5px; font-weight: bold; color:#8890E8">참여하기 수월하도록 관심지역 위주로 보여드렸어요--%>
+<%--        </p>--%>
     </div>
 
 </section>
@@ -285,19 +282,24 @@
         <%--</section>--%>
     </section><!-- End. banner_swiper -->
 </section>
-<hr style="height: 30px; color: #f7edfa; border: none; border-top: 10px solid;">
+<hr style="height: 20px; color: #f7edfa; border: none; border-top: 10px solid; margin-bottom: 0px">
 <!-- 운동 카테고리 끝 -->
 
 <%--관심지역에 오픈된 조인 : 슬라이드 --%>
 <!-- Start banner_swiper -->
 <section class="banner_swiper npSwiper__ads bg-white np_Package_ac padding-t-0 mt-0 padding-b-0">
-    <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
-        <div>
-            <h3 class="size-18 weight-400 color-secondary m-0">나의 관심지역에 위치한 조인</h3>
-            <p class="size-13 color-text m-0 pt-1">거리가 가까울 수록 포기와는 거리가 멀어져요!</p>
-        </div>
-        <a href="/groupboard/groupboard_list" class="d-block color-text size-12 m-0">더보기</a>
+    <div>
+        <p class="size-14 color-black m-0 pt-1" style="font-weight: bold; padding-left: 10px; padding-bottom: 5px;">${logincust.custName}님 맞춤 추천 조인🌟</p>
     </div>
+    <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
+        <div style="width: 230px">
+            <span class="size-16 weight-100 color-secondary m-0">나의 관심지역<a class="nav-link" href="/cust/information" style="display: inline-block; width: 50%; margin: 0; padding-right: 0px; padding-left: 8px">${logincust.custSigungu}<i class="tio-chevron_down -arrwo"></i></a></span>
+<%--            <p class="size-13 color-text m-0 pt-1">거리가 가까울 수록 포기와는 거리가 멀어져요!</p>--%>
+        </div>
+        <a href="/groupboard/groupboard_list"
+           class="d-block color-text size-12 m-0">더보기</a>
+    </div>
+
     <!-- 1.조인 관심지역 리스트 슬라이드. Swiper -->
     <!-- 조인 항목 나열 구간 -->
     <div class="em_swiper_products margin-b-20">
@@ -355,23 +357,50 @@
 
 </section><!-- End. banner_swiper -->
 
-<section class="banner_swiper npSwiper__ads bg-white np_Package_ac padding-t-10 mt-0 padding-b-40">
+<section class="banner_swiper npSwiper__ads bg-white np_Package_ac padding-t-0 mt-0 padding-b-0">
     <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
-        <div>
-            <h3 class="size-18 weight-400 color-secondary m-0">나의 선호운동과 적합한 조인</h3>
-<%--            <p class="size-13 color-text m-0 pt-1">거리가 가까울 수록 포기와는 거리가 멀어져요!</p>--%>
+        <div style="width: 230px">
+            <span class="size-16 weight-100 color-secondary m-0">나의 선호운동
+                <a class="nav-link" href="/cust/information" style="display: inline-block; width: 50%; margin: 0; padding-right: 0px; padding-left: 8px">
+<%--                ${logincust.sportsType}--%>
+                    <c:choose>
+                        <c:when test="${logincust.sportsType.trim() == '1'}">
+                            <span>헬스</span>
+                        </c:when>
+                        <c:when test="${logincust.sportsType.trim() == '2'}">
+                            PT
+                        </c:when>
+                        <c:when test="${logincust.sportsType.trim() == '3'}">
+                            크로스핏
+                        </c:when>
+                        <c:when test="${logincust.sportsType.trim() == '4'}">
+                            요가
+                        </c:when>
+                        <c:when test="${logincust.sportsType.trim() == '5'}">
+                            필라테스
+                        </c:when>
+                        <c:when test="${logincust.sportsType.trim() == '6'}">
+                            골프
+                        </c:when>
+                        <c:otherwise>
+                            <span>수영</span>
+                        </c:otherwise>
+                    </c:choose>
+                    <i class="tio-chevron_down -arrwo"></i>
+                </a>
+            </span>
+            <%--            <p class="size-13 color-text m-0 pt-1">거리가 가까울 수록 포기와는 거리가 멀어져요!</p>--%>
         </div>
         <a href="/groupboard/groupboard_list" class="d-block color-text size-12 m-0">더보기</a>
     </div>
     <%--2. 선호운동 비슷한 조인 리스트 나열--%>
     <!-- 조인 항목 나열 구간 -->
     <div class="em_swiper_products margin-b-20">
-        <div class="em_body_products" style="">
-            <div class="owl-carousel owl-theme em-owlRight" id="sportsType-owl">
-                <input type="hidden" name="sportsType" value="${obj.sportsType}"/>
+        <div class="em_body_products">
+            <div class="owl-carousel owl-theme em-owlRight">
                 <c:forEach var="obj" items="${mysportstype}">
                     <div class="item em_item_product">
-                        <div class="em_head" id="join_em_head2"><!-- 선택 시 센터 상세페이지로 이동 -->
+                        <div class="em_head" id="join_em_head1"><!-- 선택 시 센터 상세페이지로 이동 -->
                             <a data-toggle="modal"
                                data-target="#mdllJobDetails${obj.groupboardNo}" class="image_product text-decoration-none">
                                 <div class="join_image_bg" style="background-image: url('/assets/img/${obj.groupboardImgname}');"></div>
@@ -394,7 +423,7 @@
                                     <span>
                                     ${obj.ticketName}
                                     <span class="item_price"><span class="price_old" style="font-size: 9px">
-                                          <fmt:formatNumber value="${obj.ticketJoinPrice}" type="number" pattern="#,##0 원" />
+                                          <fmt:formatNumber value="${obj.ticketCost}" type="number" pattern="#,##0 원" />
                                     </span></span>
                                     </span>
                                 </div>
