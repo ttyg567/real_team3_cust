@@ -437,14 +437,17 @@ let center2 = {
             </div>
 
     </div>
+
     <div class="badge badge-danger" id="register_info"
          style="display: none; width: 100%;">
         <span id="register_info_msg"></span>
     </div>
     <div class="em__footer">
-        <button type="button" style="background-color: blueviolet"
-                class="btn color-white justify-content-center" id="register_btn">작성 완료</button>
-<%--        <a href="/groupboard/success_create"class="btn hover:color-secondary justify-content-center">작성 완료</a>--%>
+        <button type="button" class="btn color-white justify-content-center"
+                style="background-color: blueviolet;"
+                id="register_btn">작성 완료</button>
+        <a href="/groupboard/success_create" class="btn justify-content-center"
+       >작성 완료</a>
     </div>
     </form><!-- from 태그 종료 -->
 

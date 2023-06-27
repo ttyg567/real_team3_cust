@@ -39,19 +39,32 @@ public class InboController {
     @Autowired
     private NotificationService notificationService;
     String dir = "groupboard/";
+
+
     // 4-1 조인 메인페이지
     @RequestMapping("")
-    public String main(Model model) throws Exception {
+    public String main(Model model, String sportsType, HttpSession session) throws Exception {
+        Cust cust = null;
+        cust = (Cust) session.getAttribute("logincust");
+
         List<Groupboard> list = null;
+        List<Groupboard> list2 = null;
+
         list = groupboardService.get(); // 조인상태 모집중인 것만 모두 가져오기.
+        list2 = groupboardService.selectMySport(cust.getSportsType()); //관심운동 종목과 일치하는 조인 보여주기
 
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
             item.setTicketJoinPrice(item.getTicketPrice()*90/100);
         }
+        // 선호운동이 일치하는 조인도 동일하게.
+        for (Groupboard item : list2){
+            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+        }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
+        model.addAttribute("mysportstype", list2);
         // webapp > groupboard > center 페이지로 변경
         model.addAttribute("center", dir + "center");
         return "index";
@@ -59,8 +72,6 @@ public class InboController {
     // 4-2-1 조인 만들기
     @RequestMapping("/makejoin")
     public String makejoin(Model model){
-
-
         // webapp > groupboard > makejoin 페이지로 전체 교체(center만 교체되는 것 아님)
         model.addAttribute("center", dir + "makejoin");
         return "index";
@@ -74,7 +85,7 @@ public class InboController {
             MultipartFile mf = groupboard.getGroupboardImgpath(); // 0.tip. getSend_img : 서버전송될 때 이미지 이름
             log.info("=========확인2=========" + mf.toString());
             String Imgname = mf.getOriginalFilename(); // 0.파일 덩어리에서, 이미지이름을 끄집어내기
-            log.info("=========확인2=========" + Imgname.toString());
+            log.info("=========확인3=========" + Imgname.toString());
             groupboard.setGroupboardImgname(Imgname); // 0.서버가 아무이름이나 랜덤으로 저장한 이미지 이름을 다시 원래 가지고 있던 이름으로 set 저장해준다.
             groupboardService.register(groupboard); // 1. 개설을 위해 입력한 내용이 db에 정상입력 되면,
             FileUploadUtil.saveFile(mf, imgdir);  // 2. 그때, 파일 덩어리 > 우리 디렉토리(c > project > uimg)에 저장해주기.
