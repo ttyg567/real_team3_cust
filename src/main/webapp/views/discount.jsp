@@ -124,7 +124,7 @@
         </div>
         <div class="em_side_right">
             <%--  나의 알림 아이콘  --%>
-            <a href="/notification" class="btn justify-content-center relative">
+            <a href="/notification" class="btn justify-content-center relative color_svg">
                 <svg class="ico color-secondary" id="Iconly_Two-tone_Notification" data-name="Iconly/Two-tone/Notification"
                      xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <g id="Notification" transform="translate(3.5 2)">
