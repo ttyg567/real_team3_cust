@@ -30,6 +30,9 @@ public class Groupboard {
     // 알람 메세지 토큰 떄문에 추가
     private String custToken;
 
+    // 로그인고객의 관심운동종목과 일치하는 조인만 가져오기 위해 추가
+    private String sportsType;
+
     // insert 2
     public Groupboard(int groupboardNo, int custNo, int ticketNo, String groupboardTitle, String groupboardContents, String groupboardImgname, String categoryNo, int expectMember, String groupboardStatus, Date writeDate, int boardViews,int gymNo,  String gymName) {
         this.groupboardNo = groupboardNo;

@@ -293,7 +293,7 @@
 <section class="banner_swiper npSwiper__ads bg-white np_Package_ac padding-t-0 mt-0 padding-b-0">
     <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
         <div>
-            <h3 class="size-18 weight-500 color-secondary m-0">나의 관심지역에 위치한 조인</h3>
+            <h3 class="size-18 weight-400 color-secondary m-0">나의 관심지역에 위치한 조인</h3>
             <p class="size-13 color-text m-0 pt-1">거리가 가까울 수록 포기와는 거리가 멀어져요!</p>
         </div>
         <a href="/groupboard/groupboard_list" class="d-block color-text size-12 m-0">더보기</a>
@@ -358,7 +358,7 @@
 <section class="banner_swiper npSwiper__ads bg-white np_Package_ac padding-t-10 mt-0 padding-b-40">
     <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
         <div>
-            <h3 class="size-18 weight-500 color-secondary m-0">나의 선호운동과 적합한 조인</h3>
+            <h3 class="size-18 weight-400 color-secondary m-0">나의 선호운동과 적합한 조인</h3>
 <%--            <p class="size-13 color-text m-0 pt-1">거리가 가까울 수록 포기와는 거리가 멀어져요!</p>--%>
         </div>
         <a href="/groupboard/groupboard_list" class="d-block color-text size-12 m-0">더보기</a>
@@ -366,9 +366,10 @@
     <%--2. 선호운동 비슷한 조인 리스트 나열--%>
     <!-- 조인 항목 나열 구간 -->
     <div class="em_swiper_products margin-b-20">
-        <div class="em_body_products">
-            <div class="owl-carousel owl-theme em-owlRight">
-                <c:forEach var="obj" items="${alljoin}">
+        <div class="em_body_products" style="">
+            <div class="owl-carousel owl-theme em-owlRight" id="sportsType-owl">
+                <input type="hidden" name="sportsType" value="${obj.sportsType}"/>
+                <c:forEach var="obj" items="${mysportstype}">
                     <div class="item em_item_product">
                         <div class="em_head" id="join_em_head2"><!-- 선택 시 센터 상세페이지로 이동 -->
                             <a data-toggle="modal"

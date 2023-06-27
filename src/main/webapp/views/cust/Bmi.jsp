@@ -97,7 +97,6 @@
         <div class="em_side_right">
             <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/">
                 <i class="tio-chevron_left size-24 color-text"></i>
-                <span class="color-text size-14">Back</span>
             </a>
         </div>
         <div class="title_page">
@@ -108,16 +107,26 @@
 
     </header>
 
-    <h6 style="text-align: center">헬쓱이의 비만율를 계산해드려요,</h6>
-    <section class="em__signTypeOne padding-t-50" >
+    <h6 style="text-align: center">비만율을 체크하고 헬쓱을 유지하세요!</h6><br>
+    <p style="font-size: 11px; line-height: 1.5;">
+        <strong>BMI가 무엇인가요?</strong><br>
+        체질량지수를 의미하는 지표로, 체중(kg)을 키의 제곱(㎡)으로 나눈 값을 통해 지방의 양을 추정하는 비만측정법입니다.<br>
+        <br>
+        <strong>신체지수에 의한 비만의 분류표</strong><br>
+        - 정상: BMI 20~25<br>
+        - 과체중(1도 비만): BMI 25~29.9<br>
+        - 비만(2도 비만): BMI 30~40<br>
+        - 고도비만: BMI 40.1 이상
+    </p>
+    <section class="em__signTypeOne padding-t-20" >
           <p >키 (cm)</p>
           <input type="text" id="height">
 
           <p>몸무게 (kg)</p>
           <input type="text" id="weight">
 
-            <button id="btn" class="btn bg-primary color-white justify-content-center"
-            style="text-align: center">계산하기</button>
+            <button id="btn" class="btn color-white justify-content-center"
+            style="text-align: center; background-color: blueviolet; color: white">계산하기</button>
 
           <div id="result"
           style="text-align: center">
