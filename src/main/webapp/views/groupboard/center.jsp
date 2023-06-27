@@ -393,7 +393,7 @@
                                     <span>
                                     ${obj.ticketName}
                                     <span class="item_price"><span class="price_old" style="font-size: 9px">
-                                          <fmt:formatNumber value="${obj.ticketCost}" type="number" pattern="#,##0 원" />
+                                          <fmt:formatNumber value="${obj.ticketJoinPrice}" type="number" pattern="#,##0 원" />
                                     </span></span>
                                     </span>
                                 </div>
