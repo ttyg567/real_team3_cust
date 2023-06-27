@@ -404,6 +404,7 @@
                                         </svg>
                                     <span>
                                     ${obj.ticketName}
+                                    <%-- 할인없는 기본 가격   --%>
                                     <span class="item_price"><span class="price_old" style="font-size: 9px">
                                           <fmt:formatNumber value="${obj.ticketCost}" type="number" pattern="#,##0 원" />
                                     </span></span>
@@ -419,7 +420,8 @@
                                     <c:set var="canapplymember" value="${canapplymember = (obj.expectMember - obj.applicationMember) }" />
                                     <span style="font-size: smaller; color: #5d6072; font-weight: bold "><fmt:formatNumber value="${canapplymember}" />명 조인 시 </span>
                                     <span style="color: blueviolet; font-weight: bold">
-                                                     <fmt:formatNumber value="${obj.ticketJoinPrice}" type="number" pattern="#,##0 원" />
+                                    <%-- 조인 확정 시 최종 할인가격   --%>
+                                      <fmt:formatNumber value="${obj.ticketJoinPrice}" type="number" pattern="#,##0 원" />
                                     </span>
                                 </div>
                             </div>
