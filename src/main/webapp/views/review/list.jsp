@@ -44,6 +44,7 @@
                                                 <div class="">
                                                     <p class="rateCutome">평점</p>
                                                     <div class="emPatternRate">
+
                                                         <c:forEach var="i" begin="1" end="5">
                                                             <span class="ico ${i <= Math.round(review_avg) ? '_rated' : ''}"></span>
                                                         </c:forEach>

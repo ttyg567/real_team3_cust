@@ -69,7 +69,7 @@
           and gb.ticketno = tk.ticketno
           and tk.gymno = gm.gymno
     </select>
-    <!-- 모든 게시글 추출  : 정상 -->
+    <!-- 모든 게시글 추출  : 정상 보드 상태가 모집중 '1'인 것만 가져오기-->
     <select id="selectall" resultType="groupboard">
         SELECT
         gb.groupboardNo, gb.custNo, gb.ticketNo,
@@ -85,6 +85,7 @@
                 where gb.ticketno = tk.ticketno
                   and tk.gymno = gm.gymno
                   and gb.custno = cu.custno
+                and gb.groupboardStatus = '1'
     </select>
     <!-- insert : 게시글 작성  : 정상 -->
     <insert id="insert" parameterType="groupboard">

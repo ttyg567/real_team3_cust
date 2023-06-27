@@ -54,4 +54,5 @@ public interface MyScheduleMapper extends KBMapper<Integer, MySchedule> {
     public List<MySchedule> todayClass(MySchedule my) throws Exception;
 
 
+
 }

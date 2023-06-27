@@ -98,7 +98,8 @@
             </a>
         </div>
         <div style="text-align: center">
-            <button type="button" class="btn bg-primary color-white justify-content-center" id="login_btn">로그인</button>
+            <button type="button" style="background-color: blueviolet; color: white;"
+                    class="btn color-white justify-content-center" id="login_btn">로그인</button>
         </div>
         <br><br>
         <div class="row">

@@ -23,7 +23,7 @@ public class Groupboard {
     private int expectMember; // 모집인원
     private int applicationMember; // 신청인원
     private int confirmMember; // 확정인원
-    private String groupboardStatus; // 상태 // 1: 모집중, 2: 모집취소, 3: 신청중, 4: 신청취소, 5:신청취소, 5:확정
+    private String groupboardStatus; // 상태 // 1: 모집중, 5:확정
     private int boardViews; // 글 조회수
     private Date writeDate; // 글 작성일자
 

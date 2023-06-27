@@ -174,6 +174,7 @@ public class ClassController {
             noti.setCustNo(cust.getCustNo()); //custNo
             noti.setGymNo(purchaseService.get(purchaseNo).getGymNo()); // gymNo
             noti.setTicketNo(purchaseService.get(purchaseNo).getTicketNo()); // ticketNo
+            noti.setClassNo(classNo); // classNo
             noti.setNotiTitle("예약완료");
             noti.setNotiMessage("수업 예약이 완료되었어요");
             noti.setNotiType("1");

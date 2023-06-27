@@ -346,9 +346,11 @@
                                             </span>
                                         </span>
                                         <span class="bottom">
-                                            <span class="label"></span>
+                                            <span class="label" style="display: flex; justify-content: center; text-decoration: line-through;">
+                                                <fmt:formatNumber value="${ticket.ticketCost}" type="number" pattern="일반 회원가   #,##0원" />
+                                            </span>
                                             <span class="price" style="margin-right: 3vw; color: purple">
-                                                <fmt:formatNumber value="${ticket.ticketPrice}" type="number" pattern="#,##0원" />
+                                                <fmt:formatNumber value="${ticket.ticketPrice}" type="number" pattern="헬쓱 회원가   #,##0원" />
                                             </span>
                                         </span>
                                         <button type="button" class="itemSave" data-like-type="G" class="btn-like gray x16" value="${ticket.ticketNo}"></button>
