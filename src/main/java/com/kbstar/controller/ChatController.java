@@ -1,7 +1,6 @@
 package com.kbstar.controller;
 
 import com.kbstar.dto.Cust;
-import com.kbstar.dto.Gym;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;

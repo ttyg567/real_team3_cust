@@ -3,11 +3,24 @@
         PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kbstar.mapper.GroupboardMapper">
-    <!--  조인만들 때 입력한 카테고리번호별로 일치하는 조인들만 조회시켜주기. -->
+    <!--  조인만들 때 입력한 카테고리번호별로 일치하는 조인들만 조회시켜주기 : 모집중인 것만!(인보수정) -->
     <select id="getcategory" parameterType="String" resultType="groupboard">
-        SELECT *
-        FROM groupboard
-        WHERE categoryNo=#{categoryNo}
+        SELECT
+            gb.groupboardNo, gb.custNo, gb.ticketNo,
+            gb.groupboardTitle, gb.groupboardContents,
+            gb.groupboardImgname,
+            gb.categoryNo, gb.expectMember, gb.applicationMember, gb.confirmMember,
+            gb.groupboardStatus, gb.boardViews, gb.writeDate,
+            tk.TICKETTYPE, tk.TICKETMONTH, tk.TICKETNUMBER, tk.TICKETCOST, tk.TICKETDISCOUNT,
+            tk.TICKETPRICE, tk.ticketname,
+            gm.GYMNO, gm.GYMNAME, gm.GYMADDRESS1, gm.GYMADDRESS2, gm.GYMADDRESS3, gm.gymPhone, gm.GYMREGINUMBER
+                , cu.custname
+        FROM groupboard gb, ticket tk, gym gm, cust cu
+        where categoryNo = #{categoryNo}
+          and gb.ticketno = tk.ticketno
+          and tk.gymno = gm.gymno
+          and gb.custno = cu.custno
+          and gb.groupboardStatus = '1'
     </select>
     <!--  getMyJoin : 로그인한 내가 참여한 조인 가져오기  -->
     <select id="getMyJoin"  parameterType="Integer"  resultType="groupboard">
@@ -125,7 +138,7 @@
             expectMember = COALESCE(expectMember, 0),
             groupboardStatus = CASE
                                    WHEN COALESCE(applicationMember, 0) + 1 >= COALESCE(expectMember, 0) THEN '5'
-                                   ELSE '0'
+                                   ELSE '1'
                 END
         WHERE groupboardNo = #{groupboardNo}
 

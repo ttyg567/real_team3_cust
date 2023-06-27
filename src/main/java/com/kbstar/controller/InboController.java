@@ -121,14 +121,14 @@ public class InboController {
         List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("1"); // 가져오기.
-            list2 = groupboardService.get();
+           // list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
 
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
-        for (Groupboard item : list2){
+        for (Groupboard item : list){
             item.setTicketJoinPrice(item.getTicketPrice()*90/100);
         }
 
@@ -136,7 +136,7 @@ public class InboController {
         model.addAttribute("alljoin", list);
 
         // 모달창 오픈 시 해당되는 정보 뿌려주기
-        model.addAttribute("openjoin", list2);
+        //model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "workout");
         return "index";
@@ -145,23 +145,23 @@ public class InboController {
     @RequestMapping("/personaltraining") // PT
     public String personaltraining(Model model) throws Exception {
         List<Groupboard> list = null; // 1.전체 조인 리스트를 보여줄 바구니 준비.
-        List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
+        //List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("2"); // 가져오기.
-            list2 = groupboardService.get();
+            //list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
 
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
-        for (Groupboard item : list2){
+        for (Groupboard item : list){
             item.setTicketJoinPrice(item.getTicketPrice()*90/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
         // 모달창 오픈 시 해당되는 정보 뿌려주기
-        model.addAttribute("openjoin", list2);
+       // model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "personaltraining");
         return "index";
@@ -170,24 +170,24 @@ public class InboController {
     @RequestMapping("/crossfit")
     public String crossfit(Model model) throws Exception {
         List<Groupboard> list = null; // 1.전체 조인 리스트를 보여줄 바구니 준비.
-        List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
+       // List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("3"); // 가져오기.
-            list2 = groupboardService.get();
+            //list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
 
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
-        for (Groupboard item : list2){
+        for (Groupboard item : list){
             item.setTicketJoinPrice(item.getTicketPrice()*90/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
 
         // 모달창 오픈 시 해당되는 정보 뿌려주기
-        model.addAttribute("openjoin", list2);
+       // model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "crossfit");
         return "index";
@@ -196,24 +196,24 @@ public class InboController {
     @RequestMapping("/yoga")
     public String yoga(Model model) throws Exception {
         List<Groupboard> list = null; // 1.전체 조인 리스트를 보여줄 바구니 준비.
-        List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
+       // List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("4"); // 가져오기.
-            list2 = groupboardService.get();
+           // list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
 
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
-        for (Groupboard item : list2){
+        for (Groupboard item : list){
             item.setTicketJoinPrice(item.getTicketPrice()*90/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
 
         // 모달창 오픈 시 해당되는 정보 뿌려주기
-        model.addAttribute("openjoin", list2);
+        // model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "yoga");
         return "index";
@@ -222,24 +222,24 @@ public class InboController {
     @RequestMapping("/pilates")
     public String pilates(Model model) throws Exception {
         List<Groupboard> list = null; // 1.전체 조인 리스트를 보여줄 바구니 준비.
-        List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
+       // List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("5"); // 가져오기.
-            list2 = groupboardService.get();
+           // list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
 
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
-        for (Groupboard item : list2){
+        for (Groupboard item : list){
             item.setTicketJoinPrice(item.getTicketPrice()*90/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
 
         // 모달창 오픈 시 해당되는 정보 뿌려주기
-        model.addAttribute("openjoin", list2);
+       // model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "pilates");
         return "index";
@@ -248,24 +248,24 @@ public class InboController {
     @RequestMapping("/golf")
     public String golf(Model model) throws Exception {
         List<Groupboard> list = null; // 1.전체 조인 리스트를 보여줄 바구니 준비.
-        List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
+        //List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("6"); // 가져오기.
-            list2 = groupboardService.get();
+            //list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
 
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
-        for (Groupboard item : list2){
+        for (Groupboard item : list){
             item.setTicketJoinPrice(item.getTicketPrice()*90/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
 
         // 모달창 오픈 시 해당되는 정보 뿌려주기
-        model.addAttribute("openjoin", list2);
+        //model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "golf");
         return "index";
@@ -274,23 +274,23 @@ public class InboController {
     @RequestMapping("/swimming")
     public String swimming(Model model) throws Exception {
         List<Groupboard> list = null; // 1.전체 조인 리스트를 보여줄 바구니 준비.
-        List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
+        //List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("7"); // 가져오기.
-            list2 = groupboardService.get();
+           // list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
 
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
-        for (Groupboard item : list2){
+        for (Groupboard item : list){
             item.setTicketJoinPrice(item.getTicketPrice()*90/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
         // 모달창 오픈 시 해당되는 정보 뿌려주기
-        model.addAttribute("openjoin", list2);
+        //model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "swimming");
         return "index";

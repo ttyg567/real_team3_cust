@@ -462,9 +462,3 @@
 
 </div>
 
-<%--<script type="text/javascript">--%>
-<%--        $('#good_btn').on('click', function(){--%>
-<%--        toastr.success('2023.06.23 Push알림 수신 동의 완료');--%>
-
-<%--    });--%>
-<%--</script>--%>
