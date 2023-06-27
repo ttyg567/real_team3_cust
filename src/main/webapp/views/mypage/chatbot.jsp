@@ -3,12 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <style>
-    #all {
-        width: 400px;
-        height: 200px;
-        overflow: auto;
-        border: 2px solid red;
-    }
 
     #me {
         width: 400px;
@@ -17,12 +11,6 @@
         border: 2px solid blue;
     }
 
-    #to {
-        width: 400px;
-        height: 200px;
-        overflow: auto;
-        border: 2px solid green;
-    }
 </style>
 
 <script>
@@ -96,10 +84,10 @@
 
 </script>
 
-<div class="col-sm-8 text-left">
+
     <h1>Chatbot</h1>
-    <h1 id="adm_id">${logincust.id}</h1>
-    <H1 id="status">Status</H1>
+    <h1 id="adm_id">${logincust.custNo}</h1>
+    <h1 id="status">Status</h1>
     <button id="connect">Connect</button>
     <button id="disconnect">Disconnect</button>
 
@@ -108,5 +96,5 @@
     <button id="sendme">Send</button>
     <div id="me"></div>
 
-</div>
+
 

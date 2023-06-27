@@ -668,9 +668,9 @@ np_balanceDefault {
             </div>
         </div>
     </div>
-
-    <%-- 모달 인보삽입 : 조인 상세보기를 위한 모달창 index에 삽입하면 각 페이지에 안넣어도됨 --%>
     <!-- Modal로 보여지는 창 : mdllJobDetails -->
+    <!-- Modal : center 에서 사용한 것 처럼 모달로 각 조인들 상세보기-->
+    <!-- 조인 상세보기를 위해선 forEach 한번 더! -->
     <c:forEach  var="obj" items="${alljoin}" >
         <%-- join 신청하는 기능이 페이지에 있을 땐, from 태그와, input hidden이 꼭 있어야해
          action -> 기재된 컨트롤러에서 처리 --%>
@@ -684,11 +684,9 @@ np_balanceDefault {
                     <div class="modal-content">
                         <div class="modal-header padding-l-20 padding-r-50">
                                 <%-- 이미지 넣을 맨 상단 구간 --%>
-                                    <div class="em_side_right">
-                                        <button type="button" class="close d-flex align-items-center" data-dismiss="modal" aria-label="Close">
-                                            <i class="tio-clear"></i>
-                                        </button>
-                                    </div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="tio-clear"></i>
+                            </button>
 
                         </div>
                         <div class="modal-body p-0"><%-- 제목~내용 구간  --%>
@@ -733,8 +731,7 @@ np_balanceDefault {
                                                         <h2>${obj.custName}</h2>
                                                     </div>
                                                     <div class="sideRight">
-
-                                                        <div class="time margin-l-10">
+                                                        <div class="time">
                                                             <div class="icon">
                                                                 <svg id="Iconly_Curved_Time_Square" data-name="Iconly/Curved/Time Square"
                                                                      xmlns="http://www.w3.org/2000/svg" width="15" height="15"
@@ -781,6 +778,7 @@ np_balanceDefault {
                                                             </svg>
                                                             <span>기간권</span> <span>${obj.ticketMonth}개월 이용권</span>
                                                         </div>
+                                                        <%-- 조인 확정시 할인 예상금액 / 기본 할인 0% + 10% --%>
                                                         <div class="joincontent" style="text-align: left">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin color-primary" viewBox="0 0 16 16">
                                                                 <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
@@ -788,17 +786,20 @@ np_balanceDefault {
                                                                 <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
                                                             </svg>
                                                             <c:set var="joinDiscount" value="${obj.ticketDiscount + 10}" />
-                                                            <span>모집완료 시 최종금액 <fmt:formatNumber value="${obj.ticketJoinPrice}" type="number" pattern="#,##0 원" /> | <fmt:formatNumber value="${joinDiscount}"/>% 적용
+                                                            <span style="color: blueviolet; font-weight: bold">조인 확정 시 결제금액 <fmt:formatNumber value="${obj.ticketJoinPrice}" pattern="###,### 원" /> (<fmt:formatNumber value="${joinDiscount}"/>% 적용)</span>
                                                         </div>
+                                                        <%-- 정상금액 --%>
                                                         <div class="joincontent" style="text-align: left">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin color-primary" viewBox="0 0 16 16">
                                                                 <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
                                                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                                                 <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
                                                             </svg>
+
                                                             <span class="item_price">
-                                                                기본금액<span class="price_old">
-                                                              <fmt:formatNumber value="${obj.ticketPrice}" type="number" pattern="#,##0 원" />
+                                                                정상금액
+                                                                <span class="price_old">
+                                                                    <fmt:formatNumber value="${obj.ticketCost}" pattern="###,### 원" />
                                                                 </span>
                                                             </span>
                                                         </div>
@@ -817,21 +818,9 @@ np_balanceDefault {
                                                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                                                 <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
                                                             </svg>
-                                                            <c:set var="joinDiscount" value="${obj.ticketDiscount + 10}" />
-                                                            <span>모집완료 시 최종금액 <fmt:formatNumber value="${obj.ticketJoinPrice}" type="number" pattern="#,##0 원" /> | <fmt:formatNumber value="${joinDiscount}"/>% 적용
+                                                            <span>할인가 <fmt:formatNumber value="${obj.ticketJoinPrice}" pattern="###,### 원" />(${obj.ticketDiscount}% 할인 적용) | 정상가 <fmt:formatNumber value="${obj.ticketCost}" pattern="###,### 원" /></span>
                                                         </div>
-                                                        <div class="joincontent" style="text-align: left">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin color-primary" viewBox="0 0 16 16">
-                                                                <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
-                                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                                                <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
-                                                            </svg>
-                                                            <span class="item_price">
-                                                                기본금액<span class="price_old">
-                                                              <fmt:formatNumber value="${obj.ticketPrice}" type="number" pattern="#,##0 원" />
-                                                                </span>
-                                                            </span>
-                                                        </div>
+
                                                     </c:when>
                                                 </c:choose>
 
@@ -847,8 +836,8 @@ np_balanceDefault {
                                             <div class="title">
                                                 <h6>센터 상세정보</h6>
                                                     <%--  센터 지도 이미지 --%>
-                                                <div id="map" style="width: 100%; height: 250px; border: #9f9f9f 1px solid; border-radius: 15px;">
-                                                    <img src="/uimg/gym1_map.jpg" alt="">
+                                                <div id="map" style="width: 90%; height: 250px; border: #9f9f9f 1px solid; border-radius: 15px;">
+                                                    <img src="/assets/img/gym1_map.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div style="height: 100px; margin-top: 20px;  display: flex; flex-wrap: wrap; flex-direction: column; align-content: flex-start; align-items: flex-start;">
@@ -879,8 +868,6 @@ np_balanceDefault {
                                         </div>
                                     </section>
 
-
-
                                         <%--  모달 맨 밑 푸터   --%>
                                     <div class="modal-footer">
                                         <div class="em__footer">
@@ -904,15 +891,38 @@ np_balanceDefault {
                                                                 </g>
                                                             </svg>
                                                         </div>
-                                                        <span class="textCart color-secondary d-inline-block" >찜하기</span>
+                                                        <span class="textCart color-secondary d-inline-block" >Save</span>
                                                     </button>
                                                         <%-- get 방식의 submit으로 정보 전송 --%>
-                                                    <button type="submit" id="join_addbtn"
-                                                            style="margin-left: 50px; background-color: blueviolet; color: white; border: none;"
-                                                            class="btn btn__icon justify-content-between">
-                                                        <a href="/groupboard/success_apply" style="border: none; color: white"
-                                                           class="btn rounded-10 h-48 min-w-130 size-14 color-secondary border-snow border-solid d-inline-flex align-items-center justify-content-center">
-                                                           조인 신청하기 </a>
+                                                    <button type="submit" id="join_addbtn" style="margin-left: 50px; background-color: blueviolet; color: white"
+                                                            class="btn btn__icon color-white min-w-175 text-left justify-content-between">
+                                                        조인 신청하기
+                                                        <a href="/groupboard/success_apply" >
+                                                            <div class="icon">
+                                                                <svg id="Iconly_Light_Arrow_-_Right_Square"
+                                                                     data-name="Iconly/Light/Arrow - Right Square"
+                                                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                     viewBox="0 0 24 24">
+                                                                    <g id="Arrow_-_Right_Square" data-name="Arrow - Right Square"
+                                                                       transform="translate(2 22) rotate(-90)">
+                                                                        <path id="Stroke_1" data-name="Stroke 1"
+                                                                              d="M4.916,18.5h8.669c3.02,0,4.915-2.139,4.915-5.166V5.166C18.5,2.139,16.615,0,13.585,0H4.916C1.886,0,0,2.139,0,5.166v8.168C0,16.361,1.886,18.5,4.916,18.5Z"
+                                                                              transform="translate(0.75 0.75)" fill="none" stroke="#200e32"
+                                                                              stroke-linecap="round" stroke-linejoin="round"
+                                                                              stroke-miterlimit="10" stroke-width="1.5" opacity="0.4"></path>
+                                                                        <path id="Stroke_3" data-name="Stroke 3" d="M.5,8.172V0"
+                                                                              transform="translate(9.5 5.914)" fill="none" stroke="#200e32"
+                                                                              stroke-linecap="round" stroke-linejoin="round"
+                                                                              stroke-miterlimit="10" stroke-width="1.5"></path>
+                                                                        <path id="Stroke_5" data-name="Stroke 5" d="M7.5,0,3.748,3.764,0,0"
+                                                                              transform="translate(6.252 10.322)" fill="none" stroke="#200e32"
+                                                                              stroke-linecap="round" stroke-linejoin="round"
+                                                                              stroke-miterlimit="10" stroke-width="1.5"></path>
+                                                                    </g>
+                                                                </svg>
+
+                                                            </div>
+                                                        </a>
                                                     </button>
                                                 </div>
                                             </div>
@@ -930,6 +940,8 @@ np_balanceDefault {
             </div>
         </form>
     </c:forEach>
+    <!-- /.modal -->
+
 </div>
 <!-- popper.min.js 1.16.1 -->
 <script src="/assets/js/popper.min.js"></script>

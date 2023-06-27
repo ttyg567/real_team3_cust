@@ -43,12 +43,13 @@ public class InboController {
     @RequestMapping("")
     public String main(Model model) throws Exception {
         List<Groupboard> list = null;
-        list = groupboardService.get(); // 가져오기.
+        list = groupboardService.get(); // 조인상태 모집중인 것만 모두 가져오기.
 
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
-            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+//            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
@@ -83,7 +84,7 @@ public class InboController {
         }
 
         // 3. 등록완료 후엔 그룹보드 메인 페이지로 이동.
-        return  "redirect:/groupboard";
+        return  "redirect:/groupboard/success_create";
     }
 
 
@@ -106,7 +107,8 @@ public class InboController {
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
-            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+//            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
@@ -121,22 +123,23 @@ public class InboController {
         List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("1"); // 가져오기.
-            list2 = groupboardService.get();
+           // list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
 
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
-        for (Groupboard item : list2){
-            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+        for (Groupboard item : list){
+//            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
         }
 
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
 
         // 모달창 오픈 시 해당되는 정보 뿌려주기
-        model.addAttribute("openjoin", list2);
+        //model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "workout");
         return "index";
@@ -145,23 +148,24 @@ public class InboController {
     @RequestMapping("/personaltraining") // PT
     public String personaltraining(Model model) throws Exception {
         List<Groupboard> list = null; // 1.전체 조인 리스트를 보여줄 바구니 준비.
-        List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
+        //List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("2"); // 가져오기.
-            list2 = groupboardService.get();
+            //list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
 
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
-        for (Groupboard item : list2){
-            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+        for (Groupboard item : list){
+//            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
         // 모달창 오픈 시 해당되는 정보 뿌려주기
-        model.addAttribute("openjoin", list2);
+       // model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "personaltraining");
         return "index";
@@ -170,24 +174,25 @@ public class InboController {
     @RequestMapping("/crossfit")
     public String crossfit(Model model) throws Exception {
         List<Groupboard> list = null; // 1.전체 조인 리스트를 보여줄 바구니 준비.
-        List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
+       // List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("3"); // 가져오기.
-            list2 = groupboardService.get();
+            //list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
 
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
-        for (Groupboard item : list2){
-            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+        for (Groupboard item : list){
+//            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
 
         // 모달창 오픈 시 해당되는 정보 뿌려주기
-        model.addAttribute("openjoin", list2);
+       // model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "crossfit");
         return "index";
@@ -196,24 +201,25 @@ public class InboController {
     @RequestMapping("/yoga")
     public String yoga(Model model) throws Exception {
         List<Groupboard> list = null; // 1.전체 조인 리스트를 보여줄 바구니 준비.
-        List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
+       // List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("4"); // 가져오기.
-            list2 = groupboardService.get();
+           // list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
 
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
-        for (Groupboard item : list2){
-            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+        for (Groupboard item : list){
+//            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
 
         // 모달창 오픈 시 해당되는 정보 뿌려주기
-        model.addAttribute("openjoin", list2);
+        // model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "yoga");
         return "index";
@@ -222,24 +228,25 @@ public class InboController {
     @RequestMapping("/pilates")
     public String pilates(Model model) throws Exception {
         List<Groupboard> list = null; // 1.전체 조인 리스트를 보여줄 바구니 준비.
-        List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
+       // List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("5"); // 가져오기.
-            list2 = groupboardService.get();
+           // list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
 
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
-        for (Groupboard item : list2){
-            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+        for (Groupboard item : list){
+//            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
 
         // 모달창 오픈 시 해당되는 정보 뿌려주기
-        model.addAttribute("openjoin", list2);
+       // model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "pilates");
         return "index";
@@ -248,24 +255,25 @@ public class InboController {
     @RequestMapping("/golf")
     public String golf(Model model) throws Exception {
         List<Groupboard> list = null; // 1.전체 조인 리스트를 보여줄 바구니 준비.
-        List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
+        //List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("6"); // 가져오기.
-            list2 = groupboardService.get();
+            //list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
 
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
-        for (Groupboard item : list2){
-            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+        for (Groupboard item : list){
+//            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
 
         // 모달창 오픈 시 해당되는 정보 뿌려주기
-        model.addAttribute("openjoin", list2);
+        //model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "golf");
         return "index";
@@ -274,23 +282,24 @@ public class InboController {
     @RequestMapping("/swimming")
     public String swimming(Model model) throws Exception {
         List<Groupboard> list = null; // 1.전체 조인 리스트를 보여줄 바구니 준비.
-        List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
+        //List<Groupboard> list2 = null; // 2.모달 선택 시 상세내용 보여줄 바구니 준비.
         try {
             list = groupboardService.getcategory("7"); // 가져오기.
-            list2 = groupboardService.get();
+           // list2 = groupboardService.get();
         } catch (Exception e) {
             throw new Exception("개설된 조인 조회 중 오류가 발생했습니다.");
         }
 
         // 성영 : pay를 건드리지 않기 위해
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
-        for (Groupboard item : list2){
-            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+        for (Groupboard item : list){
+//            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
         // 모달창 오픈 시 해당되는 정보 뿌려주기
-        model.addAttribute("openjoin", list2);
+        //model.addAttribute("openjoin", list2);
         // 개설된 조인 전체조회 페이지로 전환
         model.addAttribute("center", dir + "swimming");
         return "index";
@@ -301,8 +310,24 @@ public class InboController {
 
         List<Groupboard> groupboard_is_completed = null;
 
+        log.info("gbMember.getGroupboardNo()" + gbMember.getGroupboardNo());
+        log.info("gbMember.getCustNo()" + gbMember.getCustNo());
+
         // 조인 신청회원으로 등록해주기
         gbMemberService.register(gbMember);
+
+        /*
+         Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-00001: unique constraint (HEALSSG.SYS_C008432) violated
+
+### The error may exist in file [C:\test\real_team3_cust\target\classes\mybatis\gbmembermapper.xml]
+### The error may involve com.kbstar.mapper.GBMemberMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO gbmember (groupboardNo, custNo, MEMBERSTATUS)           VALUES (?, ?, '1')
+### Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-00001: unique constraint (HEALSSG.SYS_C008432) violated
+
+; ORA-00001: unique constraint (HEALSSG.SYS_C008432) violated
+; nested exception is java.sql.SQLIntegrityConstraintViolationException: ORA-00001: unique constraint (HEALSSG.SYS_C008432) violated
+         */
 
         // 멤버가 신청할 때마다 신청인원 +1, 확정인원 +1 하고,
         // 모집인원과 확정인원이 같으면 상태를 '5'로 바꿔준다.
@@ -311,7 +336,7 @@ public class InboController {
         groupboard_is_completed = groupboardService.selectGroupboardCompleted(gbMember.getGroupboardNo()); // 모집완료된거 추출
 
         // 꽉 차면 각 사용자들에게 쿠폰을 보낸다.
-        if(groupboard_is_completed!=null || !groupboard_is_completed.isEmpty()){
+        if(groupboard_is_completed!=null && groupboard_is_completed.size()!=0){
             joinCompleted(gbMember.getGroupboardNo());
         }
 
