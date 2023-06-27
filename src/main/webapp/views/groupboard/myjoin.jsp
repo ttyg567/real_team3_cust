@@ -70,28 +70,18 @@
                   <img class="img_news" src="/assets/img/${obj.groupboardImgname}" alt="">
                   <div class="media-body">
                     <div class="txt">
-                      <h2>${obj.groupboardTitle}</h2>
-                      <div class="view">
-                        <div class="icon">
-                          <svg id="Iconly_Curved_Show" data-name="Iconly/Curved/Show"
-                               xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                               viewBox="0 0 15 15">
-                            <g id="Show" transform="translate(1.719 2.969)">
-                              <path id="Stroke_1" data-name="Stroke 1"
-                                    d="M3.952,1.976A1.976,1.976,0,1,1,1.976,0,1.977,1.977,0,0,1,3.952,1.976Z"
-                                    transform="translate(3.806 2.588)" fill="none"
-                                    stroke="#cbcdd8" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-miterlimit="10"
-                                    stroke-width="1.5" />
-                              <path id="Stroke_3" data-name="Stroke 3"
-                                    d="M0,4.564c0,2.05,2.589,4.564,5.782,4.564s5.782-2.512,5.782-4.564S8.976,0,5.782,0,0,2.514,0,4.564Z"
-                                    fill="none" stroke="#cbcdd8" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-miterlimit="10"
-                                    stroke-width="1.5" />
-                            </g>
-                          </svg>
+                      <h2 style="height: 20px">${obj.groupboardTitle}</h2>
+                      <div class="info_bottom">
+                        <div class="time">
+                          <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-ticket-perforated color-text" viewBox="0 0 16 16">
+                              <path d="M4 4.85v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Z"/>
+                              <path d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z"/>
+                            </svg>
+                          </div>
+                            <%-- 이용권명 --%>
+                          <span  style="color: black;">${obj.ticketName}</span>
                         </div>
-                        <span>${obj.applicationMemberCount}명 신청 | ${obj.expectMember}명 모집</span>
                       </div>
                       <div class="info_bottom">
                         <div class="time">
@@ -116,8 +106,10 @@
                               </g>
                             </svg>
                           </div>
-                          <span>${obj.gymName}</span>
+                            <%--3. 신청인원 / 모집인원 --%>
+                          <span style="color: black;">신청인원 <span style="font-weight: bold; color: blueviolet;">${obj.applicationMember}명</span> | </span> <span>모집인원 ${obj.expectMember}명</span>
                         </div>
+
                       </div>
                     </div>
                   </div>
@@ -147,28 +139,18 @@
                     <img class="img_news" src="/assets/img/${obj.groupboardImgname}" alt="">
                     <div class="media-body">
                       <div class="txt">
-                        <h2>${obj.groupboardTitle}</h2>
-                        <div class="view">
-                          <div class="icon">
-                            <svg id="Iconly_Curved_Show" data-name="Iconly/Curved/Show"
-                                 xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                 viewBox="0 0 15 15">
-                              <g id="Show" transform="translate(1.719 2.969)">
-                                <path id="Stroke_1" data-name="Stroke 1"
-                                      d="M3.952,1.976A1.976,1.976,0,1,1,1.976,0,1.977,1.977,0,0,1,3.952,1.976Z"
-                                      transform="translate(3.806 2.588)" fill="none"
-                                      stroke="#cbcdd8" stroke-linecap="round"
-                                      stroke-linejoin="round" stroke-miterlimit="10"
-                                      stroke-width="1.5" />
-                                <path id="Stroke_3" data-name="Stroke 3"
-                                      d="M0,4.564c0,2.05,2.589,4.564,5.782,4.564s5.782-2.512,5.782-4.564S8.976,0,5.782,0,0,2.514,0,4.564Z"
-                                      fill="none" stroke="#cbcdd8" stroke-linecap="round"
-                                      stroke-linejoin="round" stroke-miterlimit="10"
-                                      stroke-width="1.5" />
-                              </g>
-                            </svg>
+                        <h2 style="height: 20px">${obj.groupboardTitle}</h2>
+                        <div class="info_bottom">
+                          <div class="time">
+                            <div class="icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-ticket-perforated color-text" viewBox="0 0 16 16">
+                                <path d="M4 4.85v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Z"/>
+                                <path d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z"/>
+                              </svg>
+                            </div>
+                              <%-- 이용권명 --%>
+                            <span  style="color: black;">${obj.ticketName}</span>
                           </div>
-                          <span>${obj.applicationMemberCount}명 신청 | ${obj.expectMember}명 모집</span>
                         </div>
                         <div class="info_bottom">
                           <div class="time">
@@ -193,8 +175,10 @@
                                 </g>
                               </svg>
                             </div>
-                            <span>06월 30일(목) 마감 ㅣ 성수 피트니스</span>
+                              <%--3. 신청인원 / 모집인원 --%>
+                            <span style="color: black;">신청인원 <span style="font-weight: bold; color: blueviolet;">${obj.applicationMember}명</span> | </span> <span>모집인원 ${obj.expectMember}명</span>
                           </div>
+
                         </div>
                       </div>
                     </div>
