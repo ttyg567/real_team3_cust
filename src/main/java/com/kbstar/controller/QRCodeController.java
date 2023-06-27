@@ -46,12 +46,12 @@ public class QRCodeController {
     public void text2QRCode(@RequestParam("width") int width,
                             @RequestParam("height") int height,
                             @RequestParam("text") String text, HttpServletResponse response
-                            , HttpSession session)
+            , HttpSession session)
             throws IOException, WriterException {
 
         // custNo를 사용하여 수업 스케줄 조회
         Cust cust = null;
-        int custNo = 0;
+        Integer custNo = 0;
         MySchedule mySchedule = new MySchedule();
 
         // 세션에서 cust, custNo 가져오기
@@ -61,21 +61,27 @@ public class QRCodeController {
             mySchedule.setCustNo(custNo);
             log.info("========== 세션의 custNo는 " + custNo + "============");
 
+
+            // 이미지로 변환하여 응답으로 전송
+            ServletOutputStream sos = response.getOutputStream();
+            QRCodeUtils.text2QRCode(text, width, height, sos);
+            sos.flush();
+            sos.close();
+
             // 이미지 처리 후에 운동 완료 처리
             try {
-                myScheduleService.modify(mySchedule);
-                // 운동완료 이벤트 대상이면 쿠폰을 발송한다!
-                custCompletedUpdate(custNo);
+                myScheduleService.modify(mySchedule); // 당일 운동 예약이 없어도 에러는 안남
+                log.info("찍어보기" + myScheduleService.todayClass(mySchedule)); // 에러남...
+                // 오늘 운동이 있는지 확인하고 업데이트
+                if ((myScheduleService.todayClass(mySchedule) != null) && (myScheduleService.todayClass(mySchedule).size() != 0)) {
+                    // 운동완료 이벤트 대상이면 쿠폰을 발송한다!
+                    custCompletedUpdate(custNo); // 문제는 여기 당일 운동 예약이 없으면 여기 함수에서 에러
+                }
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
 
-        // 이미지로 변환하여 응답으로 전송
-        ServletOutputStream sos = response.getOutputStream();
-        QRCodeUtils.text2QRCode(text, width, height, sos);
-        sos.flush();
-        sos.close();
     }
 
     public void custCompletedUpdate(Integer custNo) throws Exception {
@@ -97,18 +103,19 @@ public class QRCodeController {
 
         couponService.getCouponcust_update(target_list); // 쿠폰 발행으로 업데이트
         cp = couponService.getTodaymycoupon(target_list.getCustNo()); // 현재 시간 기준으로 직전에 보낸 쿠폰을 추출, 시차 때문에 xml 변경
-        
+
 
         Notification noti = new Notification();
         noti.setCustNo(target_list.getCustNo()); //custNo
         noti.setGymNo(999999); // gymNo (가상)
         noti.setTicketNo(999999); // ticketNo(가상)
+        noti.setClassNo(999999); // classNo(가상)
         noti.setNotiTitle("쿠폰발행");
         noti.setNotiMessage("오운완 이벤트 쿠폰이 발행되었어요");
         noti.setNotiType("3");
         notificationService.register(noti);
 
-        pushNotificationUtil.sendCommonMessage("Open Coupon Box", "Open Coupon Box", "/coupon/show?couponNo="+cp.getCouponNo(), clientToken);
+        pushNotificationUtil.sendCommonMessage("Open Coupon Box", "Open Coupon Box", "/coupon/show?couponNo=" + cp.getCouponNo(), clientToken);
 
     }
 }
