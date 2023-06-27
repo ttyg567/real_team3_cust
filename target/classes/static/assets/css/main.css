@@ -23785,10 +23785,10 @@ layout
   padding: 30px 20px;
 }
 .em__bkOperationsWallet.other_option .em__actions {
-  column-gap: 15px;
-  -webkit-column-gap: 15px;
-  -o-column-gap: 15px;
-  -ms-column-gap: 15px;
+  /*column-gap: 15px;*/
+  /*-webkit-column-gap: 15px;*/
+  /*-o-column-gap: 15px;*/
+  /*-ms-column-gap: 15px;*/
 }
 .em__bkOperationsWallet .em__actions {
   display: flex;

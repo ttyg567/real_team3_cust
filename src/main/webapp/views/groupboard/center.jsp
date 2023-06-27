@@ -84,10 +84,19 @@
     #join_discount{
         background-color: blueviolet;
     }
+    /* 흰색 배경의 상단 테두리만 둥글게 */
+    .em__bkOperationsWallet {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    .em__actions a {
+        width: 14%;
+        margin-right: 0px; /* 오른쪽 여백을 5px로 설정 */
+    }
 </style>
 
 <!-- header 구간  -->
-<header class="main_haeder header-sticky multi_item" >
+<header class="main_haeder header-sticky multi_item header-white" >
     <div class="em_side_right">
         <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/">
             <i class="tio-chevron_left size-24 color-secondary"></i>
@@ -135,7 +144,7 @@
                 </a>
             </c:when>
             <c:otherwise>
-                <a href="/groupboard/my_applyjoin?custNo=${logincust.custNo}"  class="btn justify-content-center">
+                <a href="/groupboard/my_applyjoin?custNo=${logincust.custNo}"  class="btn justify-content-center relative color_svg">
                     <svg class="ico color-secondary" id="Iconly_Two-tone_Bookmark" data-name="Iconly/Two-tone/Bookmark"
                          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                         <g id="Bookmark" transform="translate(3.5 2)">
@@ -168,19 +177,19 @@
         </c:choose>
 
         <%--  나의 알림 아이콘  --%>
-        <a href="/notification" class="btn justify-content-center relative">
-            <svg class="ico color-secondary" id="Iconly_Two-tone_Notification" data-name="Iconly/Two-tone/Notification"
+        <a href="/notification" class="btn justify-content-center relative color_svg">
+            <svg id="Iconly_Two-tone_Notification" data-name="Iconly/Two-tone/Notification"
                  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <g id="Notification" transform="translate(3.5 2)">
                     <path id="Path_425"
                           d="M0,11.787v-.219A3.6,3.6,0,0,1,.6,9.75,4.87,4.87,0,0,0,1.8,7.436c0-.666,0-1.342.058-2.009C2.155,2.218,5.327,0,8.461,0h.078c3.134,0,6.306,2.218,6.617,5.427.058.666,0,1.342.049,2.009A4.955,4.955,0,0,0,16.4,9.759a3.506,3.506,0,0,1,.6,1.809v.209a3.566,3.566,0,0,1-.844,2.39A4.505,4.505,0,0,1,13.3,15.538a45.078,45.078,0,0,1-9.615,0A4.554,4.554,0,0,1,.835,14.167,3.6,3.6,0,0,1,0,11.787Z"
                           transform="translate(0 0)" fill="none" stroke="#200e32" stroke-linecap="round"
-                          stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
+                          stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"></path>
                     <path id="Path_421"
                           d="M0,0A3.061,3.061,0,0,0,2.037,1.127,3.088,3.088,0,0,0,4.288.5,2.886,2.886,0,0,0,4.812,0"
                           transform="translate(6.055 18.852)" fill="none" stroke="#200e32"
                           stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                          stroke-width="1.5" opacity="0.4" />
+                          stroke-width="1.5" opacity="0.4"></path>
                 </g>
             </svg>
             <svg class="hover_ico color-primary" id="Iconly_Two-tone_Notification" data-name="Iconly/Two-tone/Notification"
@@ -204,29 +213,33 @@
 
 </header>
 <!-- End.main_haeder -->
-
-<!-- Start input_SaerchDefault -->
-<section class="padding-t-70 change_colorSearch">
-    <div class="title_welcome">
-
-<%--        <p class="size-12 weight-400 color-text mb-0" style="font-size: 5px; font-weight: bold; color:#8890E8">참여하기 수월하도록 관심지역 위주로 보여드렸어요--%>
-<%--        </p>--%>
+<section class="banner__wallet" style="height: 100%;">
+    <div class="emhead d-flex align-items-center justify-content-between">
+        <div class="item__total">
+            <span>헬쓱회원이 조인으로 할인받은 금액</span>
+            <h2>1,765,000 <span>원</span></h2>
+        </div>
+        <div class="side__right">
+            <button type="button" class="btn btn_balance" data-toggle="modal"
+                    data-target="#mdllAddBalance">
+                <a href="/groupboard/groupboard_list"
+                style="color: white">+ 조인 하러가기</a></button>
+        </div>
     </div>
-
 </section>
 <br>
 
-<!-- End. input_SaerchDefault -->
 <!-- 운동 카테고리 -->
-<section class="banner_swiper npSwiper__ads bg-white np_Package_ac padding-t-10 mt-0 padding-b-0">
+<main class="main_Wallet_index">
+<section class="em__bkOperationsWallet npSwiper__ads bg-white np_Package_ac padding-t-0 mt-0 padding-b-0" style="padding-left: 0px; padding-right: 0px; padding-bottom: 0px;">
+<%--<section class="banner_swiper npSwiper__ads bg-white np_Package_ac padding-t-0 mt-0 padding-b-0">--%>
     <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
         <div>
             <h3 class="size-18 weight-500 color-secondary m-0">운동 종목별</h3>
         </div>
-        <a href="/groupboard/groupboard_list" class="d-block color-text size-12 m-0">더보기</a>
     </div>
 
-    <section class="np__bkOperationsService padding-10">
+    <section class="np__bkOperationsService padding-0">
         <%--<section class="banner_swiper bg-white np__ServicePackage padding-t-10 mt-0 padding-b-10">--%>
         <div class="em__actions">
             <a href="/groupboard/workout" class="btn">
@@ -281,6 +294,7 @@
         </div>
         <%--</section>--%>
     </section><!-- End. banner_swiper -->
+<%--</section>--%>
 </section>
 <hr style="height: 20px; color: #f7edfa; border: none; border-top: 10px solid; margin-bottom: 0px">
 <!-- 운동 카테고리 끝 -->
@@ -448,6 +462,7 @@
         </div>
     </div>
 </section>
+</main>
 <!-- End. banner_swiper -->
 
 <!-- 조인만들기 버튼 : 로그인 고객은 만들기 가능, 비로그인 고객은 로그인 유도 창 안내 -->
