@@ -334,7 +334,7 @@
                         <h3>${gym.gymName}</h3>
                         <div class="bottom_info">
                             <p class="item_price">
-                                <fmt:formatNumber value="${gym.ticketPrice}" type="number" pattern="#,##0 원" />
+                                <fmt:formatNumber value="${gym.ticketCost}" type="number" pattern="#,##0 원" />
                                 <span class="price_old">
                                 <fmt:formatNumber value="${gym.ticketPrice}" type="number" pattern="#,##0 원" />
                                 </span>
@@ -363,7 +363,7 @@
                     내가 관심있게 본 운동?<br>남도 관심 있어요</h2>
                 <p data-swiper-parallax="-200" class="size-12 color-white"
                    style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);">
-                    조인할 인원 모아서 최대 20% 동시할인 ></p>
+                    조인할 인원 모아서 최대 30% 동시할인 ></p>
             </div>
         </a>
     </div>
@@ -387,8 +387,8 @@
                                    data-target="#mdllJobDetails${obj.groupboardNo}" class="image_product text-decoration-none">
                                     <div class="join_image_bg" style="background-image: url('/assets/img/${obj.groupboardImgname}');"></div>
                                 </a>
-
-                                <div class="item_discount"><fmt:formatNumber value="${obj.ticketDiscount}"/>%</div>
+                                <c:set var="joinDiscount" value="${obj.ticketDiscount + 10}" />
+                                <div id="join_discount" class="item_discount"><fmt:formatNumber value="${joinDiscount}"/>%</div>
                             </div>
                             <div class="title_product">
                                 <div class="color-black">
@@ -419,7 +419,7 @@
                                     <c:set var="canapplymember" value="${canapplymember = (obj.expectMember - obj.applicationMember) }" />
                                     <span style="font-size: smaller; color: #5d6072; font-weight: bold "><fmt:formatNumber value="${canapplymember}" />명 조인 시 </span>
                                     <span style="color: blueviolet; font-weight: bold">
-                                                     <fmt:formatNumber value="${obj.ticketCost}" type="number" pattern="#,##0 원" />
+                                                     <fmt:formatNumber value="${obj.ticketJoinPrice}" type="number" pattern="#,##0 원" />
                                     </span>
                                 </div>
                             </div>
@@ -447,7 +447,7 @@
                 <img src="/img/ringimg.jpg" alt="" style="width: 100px; height: 110px;"><br>
                 <p class="size-14 color-text" style="text-align: center;">
                    <span style="color: black"> 바쁜 ${logincust.custName}님을 위해 모든 광고알림은 그만!</span><br>
-                    <span style="color: blueviolet"> 관심있는 운동의 이용권 혜택만</span> <span style="color: black">Push알림으로 전달드릴게요🌟</span>
+                    <span style="color: blueviolet"> 관심있는 운동의 이용권 혜택만</span><br> <span style="color: black">Push알림으로 전달드릴게요🌟</span>
                 </p><br>
             </div>
             <div class="modal-footer">

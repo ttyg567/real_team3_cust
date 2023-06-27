@@ -360,6 +360,7 @@ public class InboController {
         }
         model.addAttribute("myapplyjoin", list1); // 내가 참여한 조인정보 보기
         model.addAttribute("mycreatejoin", list2); // 내가 만든 조인정보 보기
+
         model.addAttribute("center", dir + "myjoin");
         return "index"; // 로그인 후 "my_applyjoin" 페이지로 이동
     }

@@ -183,19 +183,23 @@
             gymNo,
             gymName,
             ticketPrice,
+            ticketCost,
             ticketNo,
             ticketName,
             ticketDiscount,
-            gymImgName
+            gymImgName,
+            likeCount
         FROM (
                  SELECT
                      G.gymNo,
                      G.gymName,
                      T.ticketPrice,
                      T.ticketNo,
+                     ticketCost,
                      T.ticketName,
                      T.ticketDiscount,
                      GI.gymImgname AS gymImgName,
+                     (SELECT COUNT(l.likeNo) FROM Like1 l JOIN ticket t ON t.ticketNo = l.ticketNo WHERE t.gymNo = G.gymNo) AS likeCount,
                      ROW_NUMBER() OVER (PARTITION BY G.gymNo ORDER BY T.ticketDiscount DESC) AS rn
                  FROM
                      Gym G
@@ -205,6 +209,7 @@
                              gymNo,
                              ticketPrice,
                              ticketNo,
+                             ticketCost,
                              ticketName,
                              ticketDiscount
                          FROM
