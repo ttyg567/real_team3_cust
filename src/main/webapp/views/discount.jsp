@@ -350,20 +350,16 @@
 <!-- End. em_swiper_products -->
 <!-- 조인헬쓱 홍보 배너 구간 -->
 <div class="--item-inside" id="joinbanner">
-    <div class="cover_img" >
+    <div class="cover_img" style="position: relative;">
         <a href="/groupboard">
-            <img src="/img/joinbanner1.jpg" alt=""
-                 style="width: 100%;">
-            <%--  문구를 이미지의 좌측 하단에 배치   --%>
-            <div
-                    class="text_img position-absolute bottom-0 padding-0 padding-l-20 text-left">
-                <h2 data-swiper-parallax="-300"
-                    style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);"
-                    class="size-27 weight-600 color-white text-uppercase mb-1">
+            <img src="/img/joinbanner1.jpg" alt="" style="width: 100%;">
+            <div class="text_img position-absolute bottom-0 padding-0 padding-l-20 text-left">
+                <h2 data-swiper-parallax="-300" style="position: relative; bottom: 30px; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);" class="size-27 weight-600 color-white text-uppercase mb-1"
+                >
                     내가 관심있게 본 운동?<br>남도 관심 있어요</h2>
-                <p data-swiper-parallax="-200" class="size-12 color-white"
-                   style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);">
-                    조인할 인원 모아서 최대 30% 동시할인 ></p>
+                <p data-swiper-parallax="-200" class="size-12 color-white" style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); position: relative; bottom: 30px;">
+                    조인할 인원 모아서 최대 30% 동시할인 >
+                </p>
             </div>
         </a>
     </div>
