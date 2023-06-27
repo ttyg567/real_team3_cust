@@ -102,21 +102,6 @@
 
     </select>
 
-    <!-- 오늘 발송된 나의 쿠폰 확인  : 현재 시간 기준으로 직전에 보낸 쿠폰을 추출, 시차 때문에 안씀-->
-    <!--    <select id="getTodaymycoupon" resultType="coupon">-->
-    <!--        <![CDATA[-->
-    <!--        SELECT *-->
-    <!--        FROM (-->
-    <!--                 SELECT *-->
-    <!--                 FROM coupon-->
-    <!--                 WHERE custNo = #{custNo}-->
-    <!--                   AND sendDate < SYSDATE-->
-    <!--                 ORDER BY sendDate DESC-->
-    <!--             )-->
-    <!--        WHERE ROWNUM = 1-->
-    <!--        ]]>-->
-    <!--    </select>-->
-
     <!-- 니의 쿠폰함 -->
     <select id="getMycoupon" resultType="coupon">
         select c.*,
@@ -131,7 +116,7 @@
                  left join GROUPBOARD g
                            on c.GROUPBOARDNO = g.GROUPBOARDNO
                  left join ticket t on g.ticketno = t.ticketno
-                 join gym g on t.gymNo = g.gymNo
+                 left join gym g on t.gymNo = g.gymNo
         where c.custno = #{custNo}
           and (c.COUPONUSED is null or c.COUPONUSED != '1')
     </select>
@@ -149,7 +134,7 @@
                  left join GROUPBOARD g
                            on c.GROUPBOARDNO = g.GROUPBOARDNO
                  left join ticket t on g.ticketno = t.ticketno
-                 join gym g on t.gymNo = g.gymNo
+                 left join gym g on t.gymNo = g.gymNo
         where c.custno = #{custNo}
           and c.COUPONUSED = '1'
     </select>
@@ -207,3 +192,19 @@
                          LEFT JOIN cust cu ON t.custNo = cu.custNo
                 ]]>
         -->
+
+
+        <!-- 오늘 발송된 나의 쿠폰 확인  : 현재 시간 기준으로 직전에 보낸 쿠폰을 추출, 시차 때문에 안씀-->
+        <!--    <select id="getTodaymycoupon" resultType="coupon">-->
+        <!--        <![CDATA[-->
+        <!--        SELECT *-->
+        <!--        FROM (-->
+        <!--                 SELECT *-->
+        <!--                 FROM coupon-->
+        <!--                 WHERE custNo = #{custNo}-->
+        <!--                   AND sendDate < SYSDATE-->
+        <!--                 ORDER BY sendDate DESC-->
+        <!--             )-->
+        <!--        WHERE ROWNUM = 1-->
+        <!--        ]]>-->
+        <!--    </select>-->
