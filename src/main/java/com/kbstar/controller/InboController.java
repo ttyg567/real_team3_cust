@@ -83,7 +83,7 @@ public class InboController {
         }
 
         // 3. 등록완료 후엔 그룹보드 메인 페이지로 이동.
-        return  "redirect:/groupboard";
+        return  "redirect:/groupboard/success_create";
     }
 
 
@@ -301,8 +301,24 @@ public class InboController {
 
         List<Groupboard> groupboard_is_completed = null;
 
+        log.info("gbMember.getGroupboardNo()" + gbMember.getGroupboardNo());
+        log.info("gbMember.getCustNo()" + gbMember.getCustNo());
+
         // 조인 신청회원으로 등록해주기
         gbMemberService.register(gbMember);
+
+        /*
+         Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-00001: unique constraint (HEALSSG.SYS_C008432) violated
+
+### The error may exist in file [C:\test\real_team3_cust\target\classes\mybatis\gbmembermapper.xml]
+### The error may involve com.kbstar.mapper.GBMemberMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO gbmember (groupboardNo, custNo, MEMBERSTATUS)           VALUES (?, ?, '1')
+### Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-00001: unique constraint (HEALSSG.SYS_C008432) violated
+
+; ORA-00001: unique constraint (HEALSSG.SYS_C008432) violated
+; nested exception is java.sql.SQLIntegrityConstraintViolationException: ORA-00001: unique constraint (HEALSSG.SYS_C008432) violated
+         */
 
         // 멤버가 신청할 때마다 신청인원 +1, 확정인원 +1 하고,
         // 모집인원과 확정인원이 같으면 상태를 '5'로 바꿔준다.
@@ -311,7 +327,7 @@ public class InboController {
         groupboard_is_completed = groupboardService.selectGroupboardCompleted(gbMember.getGroupboardNo()); // 모집완료된거 추출
 
         // 꽉 차면 각 사용자들에게 쿠폰을 보낸다.
-        if(groupboard_is_completed!=null || !groupboard_is_completed.isEmpty()){
+        if(groupboard_is_completed!=null && groupboard_is_completed.size()!=0){
             joinCompleted(gbMember.getGroupboardNo());
         }
 

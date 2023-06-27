@@ -334,7 +334,7 @@
                         <h3>${gym.gymName}</h3>
                         <div class="bottom_info">
                             <p class="item_price">
-                                <fmt:formatNumber value="${gym.ticketPrice}" type="number" pattern="#,##0 원" />
+                                <fmt:formatNumber value="${gym.ticketCost}" type="number" pattern="#,##0 원" />
                                 <span class="price_old">
                                 <fmt:formatNumber value="${gym.ticketPrice}" type="number" pattern="#,##0 원" />
                                 </span>

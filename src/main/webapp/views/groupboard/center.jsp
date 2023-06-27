@@ -305,7 +305,7 @@
             <div class="owl-carousel owl-theme em-owlRight">
                 <c:forEach var="obj" items="${alljoin}">
                     <div class="item em_item_product">
-                        <div class="em_head" id="join_em_head"><!-- 선택 시 센터 상세페이지로 이동 -->
+                        <div class="em_head" id="join_em_head1"><!-- 선택 시 센터 상세페이지로 이동 -->
                             <a data-toggle="modal"
                                data-target="#mdllJobDetails${obj.groupboardNo}" class="image_product text-decoration-none">
                                 <div class="join_image_bg" style="background-image: url('/assets/img/${obj.groupboardImgname}');"></div>
@@ -370,7 +370,7 @@
             <div class="owl-carousel owl-theme em-owlRight">
                 <c:forEach var="obj" items="${alljoin}">
                     <div class="item em_item_product">
-                        <div class="em_head" id="join_em_head"><!-- 선택 시 센터 상세페이지로 이동 -->
+                        <div class="em_head" id="join_em_head2"><!-- 선택 시 센터 상세페이지로 이동 -->
                             <a data-toggle="modal"
                                data-target="#mdllJobDetails${obj.groupboardNo}" class="image_product text-decoration-none">
                                 <div class="join_image_bg" style="background-image: url('/assets/img/${obj.groupboardImgname}');"></div>
