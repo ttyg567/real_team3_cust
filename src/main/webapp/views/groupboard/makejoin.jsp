@@ -443,7 +443,7 @@ let center2 = {
     <div class="em__footer">
         <button type="button" style="background-color: blueviolet"
                 class="btn color-white justify-content-center" id="register_btn">작성 완료</button>
-        <a href="/groupboard/success_create"class="btn hover:color-secondary justify-content-center">작성 완료</a>
+<%--        <a href="/groupboard/success_create"class="btn hover:color-secondary justify-content-center">작성 완료</a>--%>
     </div>
     </form><!-- from 태그 종료 -->
 

@@ -698,7 +698,7 @@ np_balanceDefault {
                                     <section class="emPage__detailsBlog" style="margin-top: -100px">
                                         <div class="emheader_cover">
                                             <div class="cover">
-                                                <img src="/uimg/${obj.groupboardImgname}" alt="" style="height:450px" >
+                                                <img src="/assets/img/${obj.groupboardImgname}" alt="" style="height:450px" >
                                             </div>
                                             <div class="title">
                                                 <div class="size-18 weight-600 color-primary"style="text-align: right">
@@ -727,7 +727,7 @@ np_balanceDefault {
 
                                                 <div class="item__auther emBlock__border">
                                                     <div class="item_person">
-                                                        <img src="/uimg/${obj.groupboardImgname}" alt="">
+                                                        <img src="/assets/img/${obj.groupboardImgname}" alt="">
                                                             <%-- 조인을 만든 고객 이름   --%>
                                                         <h2>${obj.custName}</h2>
                                                     </div>
@@ -842,7 +842,7 @@ np_balanceDefault {
                                                 <h6>센터 상세정보</h6>
                                                     <%--  센터 지도 이미지 --%>
                                                 <div id="map" style="width: 100%; height: 250px; border: #9f9f9f 1px solid; border-radius: 15px;">
-                                                    <img src="/uimg/gym1_map.jpg" alt="">
+                                                    <img src="/assets/img/gym1_map.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div style="height: 100px; margin-top: 20px;  display: flex; flex-wrap: wrap; flex-direction: column; align-content: flex-start; align-items: flex-start;">
