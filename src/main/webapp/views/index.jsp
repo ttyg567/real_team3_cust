@@ -786,7 +786,7 @@ np_balanceDefault {
                                                                 <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
                                                             </svg>
                                                             <c:set var="joinDiscount" value="${obj.ticketDiscount + 10}" />
-                                                            <span style="color: blueviolet; font-weight: bold">조인 확정 시 결제금액 <fmt:formatNumber value="${obj.ticketJoinPrice}" pattern="###,### 원" /> (<fmt:formatNumber value="${joinDiscount}"/>% 적용)</span>
+                                                            <span style="color: blueviolet; font-weight: bold">조인 헬쓱 회원가 <fmt:formatNumber value="${obj.ticketJoinPrice}" pattern="###,### 원" /> (<fmt:formatNumber value="${joinDiscount}"/>% 적용)</span>
                                                         </div>
                                                         <%-- 정상금액 --%>
                                                         <div class="joincontent" style="text-align: left">
@@ -797,7 +797,7 @@ np_balanceDefault {
                                                             </svg>
 
                                                             <span class="item_price">
-                                                                정상금액
+                                                                일반 회원가
                                                                 <span class="price_old">
                                                                     <fmt:formatNumber value="${obj.ticketCost}" pattern="###,### 원" />
                                                                 </span>

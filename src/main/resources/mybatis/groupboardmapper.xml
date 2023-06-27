@@ -3,6 +3,26 @@
         PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kbstar.mapper.GroupboardMapper">
+    <!-- 로그인 회원의 정보 중 '관심운동종목'과 같은 조인만 보여주기 -->
+    <select id="selectMySport" resultType="groupboard">
+        SELECT
+            gb.groupboardNo, gb.custNo, gb.ticketNo,
+            gb.groupboardTitle, gb.groupboardContents,
+            gb.groupboardImgname,
+            gb.categoryNo, gb.expectMember, gb.applicationMember, gb.confirmMember,
+            gb.groupboardStatus, gb.boardViews, gb.writeDate,
+            tk.TICKETTYPE, tk.TICKETMONTH, tk.TICKETNUMBER, tk.TICKETCOST, tk.TICKETDISCOUNT,
+            tk.TICKETPRICE, tk.ticketname,
+            gm.GYMNO, gm.GYMNAME, gm.GYMADDRESS1, gm.GYMADDRESS2, gm.GYMADDRESS3, gm.gymPhone, gm.GYMREGINUMBER
+                , cu.custname
+        FROM groupboard gb, ticket tk, gym gm, cust cu
+        where cu.SPORTSTYPE = #{SPORTSTYPE}
+          and gb.ticketno = tk.ticketno
+          and tk.gymno = gm.gymno
+          and gb.custno = cu.custno
+          and cu.SPORTSTYPE = gb.CATEGORYNO
+          and gb.groupboardStatus = '1'
+    </select>
     <!--  조인만들 때 입력한 카테고리번호별로 일치하는 조인들만 조회시켜주기 : 모집중인 것만!(인보수정) -->
     <select id="getcategory" parameterType="String" resultType="groupboard">
         SELECT
@@ -24,27 +44,100 @@
     </select>
     <!--  getMyJoin : 로그인한 내가 참여한 조인 가져오기  -->
     <select id="getMyJoin"  parameterType="Integer"  resultType="groupboard">
-        SELECT gb.GROUPBOARDNO, gb.CUSTNO, gb.TICKETNO, gb.GROUPBOARDTITLE, gb.GROUPBOARDcontents, gb.groupboardImgname, gb.EXPECTMEMBER, gb.APPLICATIONMEMBER, gb.CONFIRMMEMBER,
-               gb.GROUPBOARDSTATUS, gb.BOARDVIEWS, gb.WRITEDATE,
-               cu.custno AS applycustno, cu.custName, gm.memberStatus, COUNT(gm.custno) AS applicationMemberCount
-        FROM groupboard gb
-                 JOIN gbmember gm ON gb.GROUPBOARDNO = gm.GROUPBOARDNO
-                 JOIN cust cu ON gm.custno = cu.custno
-        WHERE gm.custNo = #{custNo}
-        GROUP BY gb.GROUPBOARDNO, gb.CUSTNO, gb.TICKETNO, gb.GROUPBOARDTITLE, gb.GROUPBOARDcontents, gb.groupboardImgname, gb.EXPECTMEMBER, gb.APPLICATIONMEMBER, gb.CONFIRMMEMBER,
-                 gb.GROUPBOARDSTATUS, gb.BOARDVIEWS, gb.WRITEDATE, cu.custno, cu.custName, gm.memberStatus
+        SELECT
+            gb.GROUPBOARDNO,
+            gb.CUSTNO,
+            gb.TICKETNO,
+            gb.GROUPBOARDTITLE,
+            gb.GROUPBOARDcontents,
+            gb.groupboardImgname,
+            gb.EXPECTMEMBER,
+            gb.APPLICATIONMEMBER,
+            gb.CONFIRMMEMBER,
+            gb.GROUPBOARDSTATUS,
+            gb.BOARDVIEWS,
+            gb.WRITEDATE,
+            cu.custno AS applycustno,
+            cu.custName,
+            gm.memberStatus,
+            COUNT(gm.custno) AS applicationMemberCount,
+            tk.TICKETTYPE,
+            tk.TICKETMONTH,
+            tk.TICKETNUMBER,
+            tk.TICKETCOST,
+            tk.TICKETDISCOUNT,
+            tk.TICKETPRICE,
+            tk.ticketname
+        FROM
+            groupboard gb
+                JOIN gbmember gm ON gb.GROUPBOARDNO = gm.GROUPBOARDNO
+                JOIN cust cu ON gm.custno = cu.custno
+                JOIN ticket tk ON gb.ticketno = tk.ticketno
+        WHERE
+            gm.custNo = #{custNo}
+        GROUP BY
+            gb.GROUPBOARDNO,
+            gb.CUSTNO,
+            gb.TICKETNO,
+            gb.GROUPBOARDTITLE,
+            gb.GROUPBOARDcontents,
+            gb.groupboardImgname,
+            gb.EXPECTMEMBER,
+            gb.APPLICATIONMEMBER,
+            gb.CONFIRMMEMBER,
+            gb.GROUPBOARDSTATUS,
+            gb.BOARDVIEWS,
+            gb.WRITEDATE,
+            cu.custno,
+            cu.custName,
+            gm.memberStatus,
+            tk.TICKETTYPE,
+            tk.TICKETMONTH,
+            tk.TICKETNUMBER,
+            tk.TICKETCOST,
+            tk.TICKETDISCOUNT,
+            tk.TICKETPRICE,
+            tk.ticketname
     </select>
     <!--  getMyCreateJoin : 로그인한 내가 개설한 조인 가져오기  -->
     <select id="getMyCreateJoin"  parameterType="Integer"  resultType="groupboard">
-        SELECT gb.GROUPBOARDNO, gb.CUSTNO, gb.TICKETNO, gb.GROUPBOARDTITLE, gb.GROUPBOARDcontents, gb.groupboardImgname, gb.EXPECTMEMBER, gb.APPLICATIONMEMBER, gb.CONFIRMMEMBER,
-               gb.GROUPBOARDSTATUS, gb.BOARDVIEWS, gb.WRITEDATE,
-               cu.custno AS applycustno, cu.custName, gm.memberStatus, COUNT(gm.custno) AS applicationMemberCount
-        FROM groupboard gb
-                 JOIN gbmember gm ON gb.GROUPBOARDNO = gm.GROUPBOARDNO
-                 JOIN cust cu ON gm.custno = cu.custno
-        WHERE gb.custNo = #{custNo}
-        GROUP BY gb.GROUPBOARDNO, gb.CUSTNO, gb.TICKETNO, gb.GROUPBOARDTITLE, gb.GROUPBOARDcontents, gb.groupboardImgname, gb.EXPECTMEMBER, gb.APPLICATIONMEMBER, gb.CONFIRMMEMBER,
-                 gb.GROUPBOARDSTATUS, gb.BOARDVIEWS, gb.WRITEDATE, cu.custno, cu.custName, gm.memberStatus
+        SELECT
+            gb.GROUPBOARDNO,
+            gb.CUSTNO,
+            gb.TICKETNO,
+            gb.GROUPBOARDTITLE,
+            gb.GROUPBOARDcontents,
+            gb.groupboardImgname,
+            gb.EXPECTMEMBER,
+            gb.APPLICATIONMEMBER,
+            gb.CONFIRMMEMBER,
+            gb.GROUPBOARDSTATUS,
+            gb.BOARDVIEWS,
+            gb.WRITEDATE,
+            tk.ticketNo,
+            tk.ticketName,
+            COUNT(gm.custno) AS applicationMemberCount
+        FROM
+            groupboard gb
+                LEFT JOIN gbmember gm ON gb.GROUPBOARDNO = gm.GROUPBOARDNO
+                LEFT JOIN ticket tk ON gb.ticketNO = tk.ticketNO
+        WHERE
+            gb.custNo = #{custNo}
+        GROUP BY
+            gb.GROUPBOARDNO,
+            gb.CUSTNO,
+            gb.TICKETNO,
+            gb.GROUPBOARDTITLE,
+            gb.GROUPBOARDcontents,
+            gb.groupboardImgname,
+            gb.EXPECTMEMBER,
+            gb.APPLICATIONMEMBER,
+            gb.CONFIRMMEMBER,
+            gb.GROUPBOARDSTATUS,
+            gb.BOARDVIEWS,
+            gb.WRITEDATE,
+            tk.ticketNo,
+            tk.ticketName
     </select>
     <!--  getWithMembers : 조인을 참여한 회원의 수 등 가져오기  -->
     <select id="getWithMembers" resultType="groupboard">

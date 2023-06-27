@@ -3,35 +3,141 @@
         PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kbstar.mapper.GroupboardMapper">
-    <!--  조인만들 때 입력한 카테고리번호별로 일치하는 조인들만 조회시켜주기. -->
+    <!-- 로그인 회원의 정보 중 '관심운동종목'과 같은 조인만 보여주기 -->
+    <select id="selectMySport" resultType="groupboard">
+        SELECT
+            gb.groupboardNo, gb.custNo, gb.ticketNo,
+            gb.groupboardTitle, gb.groupboardContents,
+            gb.groupboardImgname,
+            gb.categoryNo, gb.expectMember, gb.applicationMember, gb.confirmMember,
+            gb.groupboardStatus, gb.boardViews, gb.writeDate,
+            tk.TICKETTYPE, tk.TICKETMONTH, tk.TICKETNUMBER, tk.TICKETCOST, tk.TICKETDISCOUNT,
+            tk.TICKETPRICE, tk.ticketname,
+            gm.GYMNO, gm.GYMNAME, gm.GYMADDRESS1, gm.GYMADDRESS2, gm.GYMADDRESS3, gm.gymPhone, gm.GYMREGINUMBER
+                , cu.custname
+        FROM groupboard gb, ticket tk, gym gm, cust cu
+        where cu.SPORTSTYPE = #{SPORTSTYPE}
+          and gb.ticketno = tk.ticketno
+          and tk.gymno = gm.gymno
+          and gb.custno = cu.custno
+          and cu.SPORTSTYPE = gb.CATEGORYNO
+          and gb.groupboardStatus = '1'
+    </select>
+    <!--  조인만들 때 입력한 카테고리번호별로 일치하는 조인들만 조회시켜주기 : 모집중인 것만!(인보수정) -->
     <select id="getcategory" parameterType="String" resultType="groupboard">
-        SELECT *
-        FROM groupboard
-        WHERE categoryNo=#{categoryNo}
+        SELECT
+            gb.groupboardNo, gb.custNo, gb.ticketNo,
+            gb.groupboardTitle, gb.groupboardContents,
+            gb.groupboardImgname,
+            gb.categoryNo, gb.expectMember, gb.applicationMember, gb.confirmMember,
+            gb.groupboardStatus, gb.boardViews, gb.writeDate,
+            tk.TICKETTYPE, tk.TICKETMONTH, tk.TICKETNUMBER, tk.TICKETCOST, tk.TICKETDISCOUNT,
+            tk.TICKETPRICE, tk.ticketname,
+            gm.GYMNO, gm.GYMNAME, gm.GYMADDRESS1, gm.GYMADDRESS2, gm.GYMADDRESS3, gm.gymPhone, gm.GYMREGINUMBER
+                , cu.custname
+        FROM groupboard gb, ticket tk, gym gm, cust cu
+        where categoryNo = #{categoryNo}
+          and gb.ticketno = tk.ticketno
+          and tk.gymno = gm.gymno
+          and gb.custno = cu.custno
+          and gb.groupboardStatus = '1'
     </select>
     <!--  getMyJoin : 로그인한 내가 참여한 조인 가져오기  -->
     <select id="getMyJoin"  parameterType="Integer"  resultType="groupboard">
-        SELECT gb.GROUPBOARDNO, gb.CUSTNO, gb.TICKETNO, gb.GROUPBOARDTITLE, gb.GROUPBOARDcontents, gb.groupboardImgname, gb.EXPECTMEMBER, gb.APPLICATIONMEMBER, gb.CONFIRMMEMBER,
-               gb.GROUPBOARDSTATUS, gb.BOARDVIEWS, gb.WRITEDATE,
-               cu.custno AS applycustno, cu.custName, gm.memberStatus, COUNT(gm.custno) AS applicationMemberCount
-        FROM groupboard gb
-                 JOIN gbmember gm ON gb.GROUPBOARDNO = gm.GROUPBOARDNO
-                 JOIN cust cu ON gm.custno = cu.custno
-        WHERE gm.custNo = #{custNo}
-        GROUP BY gb.GROUPBOARDNO, gb.CUSTNO, gb.TICKETNO, gb.GROUPBOARDTITLE, gb.GROUPBOARDcontents, gb.groupboardImgname, gb.EXPECTMEMBER, gb.APPLICATIONMEMBER, gb.CONFIRMMEMBER,
-                 gb.GROUPBOARDSTATUS, gb.BOARDVIEWS, gb.WRITEDATE, cu.custno, cu.custName, gm.memberStatus
+        SELECT
+            gb.GROUPBOARDNO,
+            gb.CUSTNO,
+            gb.TICKETNO,
+            gb.GROUPBOARDTITLE,
+            gb.GROUPBOARDcontents,
+            gb.groupboardImgname,
+            gb.EXPECTMEMBER,
+            gb.APPLICATIONMEMBER,
+            gb.CONFIRMMEMBER,
+            gb.GROUPBOARDSTATUS,
+            gb.BOARDVIEWS,
+            gb.WRITEDATE,
+            cu.custno AS applycustno,
+            cu.custName,
+            gm.memberStatus,
+            COUNT(gm.custno) AS applicationMemberCount,
+            tk.TICKETTYPE,
+            tk.TICKETMONTH,
+            tk.TICKETNUMBER,
+            tk.TICKETCOST,
+            tk.TICKETDISCOUNT,
+            tk.TICKETPRICE,
+            tk.ticketname
+        FROM
+            groupboard gb
+                JOIN gbmember gm ON gb.GROUPBOARDNO = gm.GROUPBOARDNO
+                JOIN cust cu ON gm.custno = cu.custno
+                JOIN ticket tk ON gb.ticketno = tk.ticketno
+        WHERE
+            gm.custNo = #{custNo}
+        GROUP BY
+            gb.GROUPBOARDNO,
+            gb.CUSTNO,
+            gb.TICKETNO,
+            gb.GROUPBOARDTITLE,
+            gb.GROUPBOARDcontents,
+            gb.groupboardImgname,
+            gb.EXPECTMEMBER,
+            gb.APPLICATIONMEMBER,
+            gb.CONFIRMMEMBER,
+            gb.GROUPBOARDSTATUS,
+            gb.BOARDVIEWS,
+            gb.WRITEDATE,
+            cu.custno,
+            cu.custName,
+            gm.memberStatus,
+            tk.TICKETTYPE,
+            tk.TICKETMONTH,
+            tk.TICKETNUMBER,
+            tk.TICKETCOST,
+            tk.TICKETDISCOUNT,
+            tk.TICKETPRICE,
+            tk.ticketname
     </select>
     <!--  getMyCreateJoin : 로그인한 내가 개설한 조인 가져오기  -->
     <select id="getMyCreateJoin"  parameterType="Integer"  resultType="groupboard">
-        SELECT gb.GROUPBOARDNO, gb.CUSTNO, gb.TICKETNO, gb.GROUPBOARDTITLE, gb.GROUPBOARDcontents, gb.groupboardImgname, gb.EXPECTMEMBER, gb.APPLICATIONMEMBER, gb.CONFIRMMEMBER,
-               gb.GROUPBOARDSTATUS, gb.BOARDVIEWS, gb.WRITEDATE,
-               cu.custno AS applycustno, cu.custName, gm.memberStatus, COUNT(gm.custno) AS applicationMemberCount
-        FROM groupboard gb
-                 JOIN gbmember gm ON gb.GROUPBOARDNO = gm.GROUPBOARDNO
-                 JOIN cust cu ON gm.custno = cu.custno
-        WHERE gb.custNo = #{custNo}
-        GROUP BY gb.GROUPBOARDNO, gb.CUSTNO, gb.TICKETNO, gb.GROUPBOARDTITLE, gb.GROUPBOARDcontents, gb.groupboardImgname, gb.EXPECTMEMBER, gb.APPLICATIONMEMBER, gb.CONFIRMMEMBER,
-                 gb.GROUPBOARDSTATUS, gb.BOARDVIEWS, gb.WRITEDATE, cu.custno, cu.custName, gm.memberStatus
+        SELECT
+            gb.GROUPBOARDNO,
+            gb.CUSTNO,
+            gb.TICKETNO,
+            gb.GROUPBOARDTITLE,
+            gb.GROUPBOARDcontents,
+            gb.groupboardImgname,
+            gb.EXPECTMEMBER,
+            gb.APPLICATIONMEMBER,
+            gb.CONFIRMMEMBER,
+            gb.GROUPBOARDSTATUS,
+            gb.BOARDVIEWS,
+            gb.WRITEDATE,
+            tk.ticketNo,
+            tk.ticketName,
+            COUNT(gm.custno) AS applicationMemberCount
+        FROM
+            groupboard gb
+                LEFT JOIN gbmember gm ON gb.GROUPBOARDNO = gm.GROUPBOARDNO
+                LEFT JOIN ticket tk ON gb.ticketNO = tk.ticketNO
+        WHERE
+            gb.custNo = #{custNo}
+        GROUP BY
+            gb.GROUPBOARDNO,
+            gb.CUSTNO,
+            gb.TICKETNO,
+            gb.GROUPBOARDTITLE,
+            gb.GROUPBOARDcontents,
+            gb.groupboardImgname,
+            gb.EXPECTMEMBER,
+            gb.APPLICATIONMEMBER,
+            gb.CONFIRMMEMBER,
+            gb.GROUPBOARDSTATUS,
+            gb.BOARDVIEWS,
+            gb.WRITEDATE,
+            tk.ticketNo,
+            tk.ticketName
     </select>
     <!--  getWithMembers : 조인을 참여한 회원의 수 등 가져오기  -->
     <select id="getWithMembers" resultType="groupboard">
@@ -69,7 +175,7 @@
           and gb.ticketno = tk.ticketno
           and tk.gymno = gm.gymno
     </select>
-    <!-- 모든 게시글 추출  : 정상 -->
+    <!-- 모든 게시글 추출  : 정상 보드 상태가 모집중 '1'인 것만 가져오기-->
     <select id="selectall" resultType="groupboard">
         SELECT
         gb.groupboardNo, gb.custNo, gb.ticketNo,
@@ -85,6 +191,7 @@
                 where gb.ticketno = tk.ticketno
                   and tk.gymno = gm.gymno
                   and gb.custno = cu.custno
+                and gb.groupboardStatus = '1'
     </select>
     <!-- insert : 게시글 작성  : 정상 -->
     <insert id="insert" parameterType="groupboard">
@@ -114,4 +221,39 @@
     <delete id="delete" parameterType="Integer">
         DELETE FROM groupboard WHERE groupboardNo=#{groupboardNo}
     </delete>
+
+    <!-- 멤버가 신청할 때마다 신청인원 +1, 확정인원 +1 하고, 모집인원과 확정인원이 같으면 상태를 '5'로 바꿔준다. -->
+    <update id="updateStatus" parameterType="Integer">
+        UPDATE groupboard
+        SET
+            applicationMember = COALESCE(applicationMember, 0) + 1,
+            confirmMember = COALESCE(confirmMember, 0) + 1,
+            expectMember = COALESCE(expectMember, 0),
+            groupboardStatus = CASE
+                                   WHEN COALESCE(applicationMember, 0) + 1 >= COALESCE(expectMember, 0) THEN '5'
+                                   ELSE '1'
+                END
+        WHERE groupboardNo = #{groupboardNo}
+
+    </update>
+
+    <!-- 모집완료된 것 추출 -->
+    <select id="selectGroupboardCompleted" resultType="groupboard">
+        select g1.*
+        from groupboard g1
+        where g1.groupboardStatus = '5' and g1.groupboardNo = #{groupboardNo}
+    </select>
+
+    <!-- 모집 완료된 멤버(글쓴이 포함) 추출 -->
+    <select id="selectJoincompletedmember" resultType="groupboard">
+        SELECT g1.custNo, c.custToken
+        FROM GroupBoard g1 left join cust c on g1.custNo = c.custNo
+        WHERE g1.groupboardNo = #{groupboardNo} AND g1.groupboardStatus = '5'
+        UNION
+        SELECT g2.custNo, c.custToken
+        FROM GroupBoard g1
+                 left join GBMember g2 ON g1.groupboardNo = g2.groupboardNo
+                 left join cust c on g2.custNo = c.custNo
+        WHERE g1.groupboardNo = #{groupboardNo} AND g1.groupboardStatus = '5' AND g2.custNo IS NOT NULL
+    </select>
 </mapper>

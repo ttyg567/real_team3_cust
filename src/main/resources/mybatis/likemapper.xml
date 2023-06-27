@@ -9,13 +9,26 @@
         SELECT * FROM Like1
     </select>
     <select id="getmylike"  resultType="Like1" >
-        SELECT t.ticketName, t.ticketCost, gi.gymImgName, g.gymName, g.gymNo, l.likeNo
+        SELECT
+            t.ticketName,
+            t.ticketCost,
+            gi.gymImgName,
+            g.gymName,
+            g.gymNo,
+            l.likeNo
         FROM Like1 l
                  JOIN ticket t ON l.ticketNo = t.ticketNo
-                 JOIN gymImg gi ON t.gymNo = gi.gymNo
+                 JOIN (
+            SELECT
+                gi1.gymNo,
+                MIN(gi1.gymImgName) AS gymImgName -- 각 gym에 대해 한 개의 랜덤한 이미지 선택
+            FROM gymImg gi1
+            WHERE gi1.GYMIMGDETAILCK = 0
+            GROUP BY gi1.gymNo
+        ) gi ON t.gymNo = gi.gymNo
                  JOIN gym g ON t.gymNo = g.gymNo
         WHERE l.custNo = #{custNo}
-          AND gi.GYMIMGDETAILCK = 0
+
     </select>
     <select id="getGymLike" parameterType="int" resultType="Like1">
         SELECT COUNT(l.likeNo) as likecount
