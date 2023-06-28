@@ -12,7 +12,6 @@
     <div class="em_side_right">
         <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/cust/register_intro">
             <i class="tio-chevron_left size-24 color-text"></i>
-            <span class="color-text size-14">Back</span>
         </a>
     </div>
     <div class="title_page">
@@ -320,7 +319,7 @@
         <span id="register_info_msg"></span>
     </div>
     <div class="em__footer">
-        <button type="button" class="btn bg-primary color-white justify-content-center" id="register_btn">가입하기</button>
+        <button type="button" class="btn color-white justify-content-center" id="register_btn" style="background-color: blueviolet;">가입하기</button>
         <a href="/cust/login" class="btn hover:color-secondary justify-content-center">로그인 화면으로</a>
     </div>
 </section>

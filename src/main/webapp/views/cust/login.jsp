@@ -91,13 +91,13 @@
             </div>
             <a href="/cust/forgotpwd" class="link__forgot">비밀번호를 잊어버리셨나요?</a>
         </form>
-        <div style="text-align: center">
+        <div style="text-align: center; padding-top: 10px;">
             <a href="/cust/register_intro"
                class="btn under hover:color-secondary justify-content-center size-13 color-text">
-                아직 헬쓱이가 아니라면 가입하러 가기!
+                아직 헬쓱이가 아니라면 <span style="color: blueviolet; ">가입하러 가기!</span>
             </a>
         </div>
-        <div style="text-align: center">
+        <div style="text-align: center; padding-top: 10px;">
             <button type="button" style="background-color: blueviolet; color: white;"
                     class="btn color-white justify-content-center" id="login_btn">로그인</button>
         </div>
@@ -107,7 +107,7 @@
             <p class="col-12 size-13 color-text" style="text-align: center">소셜 로그인으로 간편하게 로그인하세요!</p>
         </div>
         <div class="row">
-            <div class="col-6 me-auto px-1">
+            <div class="col-6 me-auto px-1" style="border: none">
                 <button class="btn btn-outline-light w-100" id="google_login">
                      <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -123,14 +123,14 @@
                             </g>
                         </g>
                     </svg>
-                    <p>구글 계정으로 로그인</p>
+                    <p style="padding-top: 10px; color: #9f9f9f; font-size: 11px;">구글 계정으로 로그인</p>
                 </button>
             </div>
-            <div class="col-6 px-1">
+            <div class="col-6 px-1" style="border: none">
                 <button class="btn btn-outline-light w-100"  id="kakao_login">
                     <img src="https://cdn-icons-png.flaticon.com/512/3669/3669973.png" alt="kakao"
                          style="width:30px; height:32px;">
-                    <p>카카오 계정으로 로그인</p>
+                    <p style="padding-top: 10px; color: #9f9f9f; font-size: 11px;">카카오 계정으로 로그인</p>
                 </button>
             </div>
         </div>

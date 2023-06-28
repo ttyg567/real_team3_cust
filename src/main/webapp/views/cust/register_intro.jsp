@@ -22,10 +22,10 @@
             <img src="/assets/img/logo.jpg" alt="">
         </div>
         <h1>회원가입</h1>
-        <p class="size-13 color-text">헬쓱에 오신 것을 환영합니다</p>
+        <p class="size-13 color-text">헬쓱에 오신 것을 환영합니다.</p>
     </div>
     <div class="" style="display: flex;  flex-direction: column; align-items: center;">
-        <button type="button" class="btn bg-primary color-white justify-content-center" id="normal_login" style="width: 250px; height: 50px;">일반 가입하기</button>
+        <button type="button" class="btn color-white justify-content-center" id="normal_login" style="width: 250px; height: 50px; background-color: blueviolet;">일반 가입하기</button>
     </div><br><br>
     <p class="size-13 color-text" style="text-align: center"> ----- 소셜 로그인으로 시작하기 ----- </p>
     <div class="" style="display: flex;  flex-direction: column; align-items: center;">

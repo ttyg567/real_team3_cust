@@ -154,8 +154,9 @@
     </div>
 
     <div class="em__footer" style="margin: 0px; padding: 0px;  text-align: center;">
-        <button type="button" class="btn bg-primary color-white justify-content-center" id="update_btn"
-        style="width: 300px ; display: inline-block; margin-right: 50px; margin-bottom: 10px">변경하기</button>
+        <button type="button" class="btn color-white justify-content-center" id="update_btn"
+        style="width: 300px ; display: inline-block; margin-right: 50px;
+        margin-bottom: 10px; background-color: blueviolet">변경하기</button>
         <a href="/cust/login" class="btn hover:color-secondary justify-content-center">로그인 화면으로</a>
     </div>
 </section>

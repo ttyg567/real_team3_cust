@@ -76,8 +76,8 @@
 
         <section class="emPage__ResultPayment">
             <div class="em__seccess">
-                <div class="icon">
-                    <i class="tio-done"></i>
+                <div class="icon"  style="background-color: #fae8fc; ">
+                    <i class="tio-done" style="color: blueviolet"></i>
                 </div>
                 <h2 class="size-18 weight-500 color-secondary margin-b-10">조인받을 준비 완료!</h2>
                 <p class="size-13 color-text margin-b-40">

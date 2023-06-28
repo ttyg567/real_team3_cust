@@ -93,15 +93,19 @@
         width: 14%;
         margin-right: 0px; /* 오른쪽 여백을 5px로 설정 */
     }
+    /* 운동종목 아이콘의 테두리 둥글게 */
+    #sportsicon{
+        border-radius: 30px;
+    }
 </style>
 
 <!-- header 구간  -->
 <header class="main_haeder header-sticky multi_item header-white" >
-    <div class="em_side_right">
-        <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/">
-            <i class="tio-chevron_left size-24 color-secondary"></i>
-            <%--            <span class="color-text size-14">Back</span>--%>
-        </a>
+    <div class="em_menu_sidebar">
+        <button type="button" class="btn btn_menuSidebar item-show" data-toggle="modal"
+                data-target="#mdllSidebarMenu-background">
+            <i class="ri-menu-fill"></i>
+        </button>
     </div>
     <div class="title_page">
                     <span class="page_name">
@@ -233,59 +237,62 @@
 <main class="main_Wallet_index">
 <section class="em__bkOperationsWallet npSwiper__ads bg-white np_Package_ac padding-t-0 mt-0 padding-b-0" style="padding-left: 0px; padding-right: 0px; padding-bottom: 0px;">
 <%--<section class="banner_swiper npSwiper__ads bg-white np_Package_ac padding-t-0 mt-0 padding-b-0">--%>
-    <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
+    <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20"
+        >
         <div>
             <h3 class="size-18 weight-500 color-secondary m-0">운동 종목별</h3>
         </div>
     </div>
 
-    <section class="np__bkOperationsService padding-0">
+    <section class="np__bkOperationsService padding-0"  style="width: 100%; padding-bottom: 0;
+      overflow-x: auto; padding-left: 5px; background-color : white; border: none;
+      scrollbar-width: none; -ms-overflow-style: none;">
         <%--<section class="banner_swiper bg-white np__ServicePackage padding-t-10 mt-0 padding-b-10">--%>
-        <div class="em__actions">
-            <a href="/groupboard/workout" class="btn">
-                <div class="icon bg-blue bg-opacity-10">
+        <div class="em__actions" style="display: inline-flex; width: max-content; margin-top: 5px; margin-bottom: 10px">
+            <a href="/groupboard/workout" class="btn" style="padding-right: 5px;">
+                <div id="sportsicon" class="icon bg-blue bg-opacity-10" style="border-radius: 30px">
                     <img src="/assets/img/cate2.png" alt="">
                     <%--                    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><path d="M22.942,6.837,20.76,4.654l.947-.947a1,1,0,1,0-1.414-1.414l-.947.947L17.163,1.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L14.24,8.346,8.346,14.24,6.163,12.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L3.24,19.346l-.947.947a1,1,0,1,0,1.414,1.414l.947-.947,2.183,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105L9.76,15.655l5.9-5.895,2.182,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105ZM11,20.39a1.6,1.6,0,0,1-.472,1.138,1.647,1.647,0,0,1-2.277,0L2.472,15.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779A1.6,1.6,0,0,1,11,20.39Zm10.528-9.862a1.647,1.647,0,0,1-2.277,0L13.472,4.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779a1.609,1.609,0,0,1,0,2.277Z"/></svg>--%>
                 </div>
                 <span>헬스</span>
             </a>
-            <a href="/groupboard/personaltraining" class="btn">
-                <div class="icon bg-green bg-opacity-10">
+            <a href="/groupboard/personaltraining" class="btn" style="padding-right: 5px;">
+                <div  id="sportsicon"  class="icon bg-green bg-opacity-10">
                     <img src="/assets/img/cate1.png" alt="">
                     <%--                    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><path d="M22.942,6.837,20.76,4.654l.947-.947a1,1,0,1,0-1.414-1.414l-.947.947L17.163,1.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L14.24,8.346,8.346,14.24,6.163,12.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L3.24,19.346l-.947.947a1,1,0,1,0,1.414,1.414l.947-.947,2.183,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105L9.76,15.655l5.9-5.895,2.182,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105ZM11,20.39a1.6,1.6,0,0,1-.472,1.138,1.647,1.647,0,0,1-2.277,0L2.472,15.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779A1.6,1.6,0,0,1,11,20.39Zm10.528-9.862a1.647,1.647,0,0,1-2.277,0L13.472,4.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779a1.609,1.609,0,0,1,0,2.277Z"/></svg>--%>
                 </div>
                 <span>PT</span>
             </a>
-            <a href="/groupboard/crossfit" class="btn">
-                <div class="icon bg-yellow bg-opacity-10">
+            <a href="/groupboard/crossfit" class="btn" style="padding-right: 5px;">
+                <div  id="sportsicon"  class="icon bg-yellow bg-opacity-10">
                     <img src="/assets/img/cate3.png" alt="">
                     <%--                    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><path d="M22.942,6.837,20.76,4.654l.947-.947a1,1,0,1,0-1.414-1.414l-.947.947L17.163,1.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L14.24,8.346,8.346,14.24,6.163,12.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L3.24,19.346l-.947.947a1,1,0,1,0,1.414,1.414l.947-.947,2.183,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105L9.76,15.655l5.9-5.895,2.182,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105ZM11,20.39a1.6,1.6,0,0,1-.472,1.138,1.647,1.647,0,0,1-2.277,0L2.472,15.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779A1.6,1.6,0,0,1,11,20.39Zm10.528-9.862a1.647,1.647,0,0,1-2.277,0L13.472,4.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779a1.609,1.609,0,0,1,0,2.277Z"/></svg>--%>
                 </div>
                 <span>크로스핏</span>
             </a>
-            <a href="/groupboard/yoga" class="btn">
-                <div class="icon bg-red bg-opacity-10">
+            <a href="/groupboard/yoga" class="btn" style="padding-right: 5px;">
+                <div  id="sportsicon"  class="icon bg-red bg-opacity-10">
                     <img src="/assets/img/cate4.png" alt="">
                     <%--                    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><path d="M22.942,6.837,20.76,4.654l.947-.947a1,1,0,1,0-1.414-1.414l-.947.947L17.163,1.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L14.24,8.346,8.346,14.24,6.163,12.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L3.24,19.346l-.947.947a1,1,0,1,0,1.414,1.414l.947-.947,2.183,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105L9.76,15.655l5.9-5.895,2.182,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105ZM11,20.39a1.6,1.6,0,0,1-.472,1.138,1.647,1.647,0,0,1-2.277,0L2.472,15.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779A1.6,1.6,0,0,1,11,20.39Zm10.528-9.862a1.647,1.647,0,0,1-2.277,0L13.472,4.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779a1.609,1.609,0,0,1,0,2.277Z"/></svg>--%>
                 </div>
                 <span>요가</span>
             </a>
-            <a href="/groupboard/pilates" class="btn">
-                <div class="icon bg-yellow bg-opacity-10">
+            <a href="/groupboard/pilates" class="btn" style="padding-right: 5px;">
+                <div  id="sportsicon"  class="icon bg-yellow bg-opacity-10">
                     <img src="/assets/img/cate5.png" alt="">
                     <%--                    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><path d="M22.942,6.837,20.76,4.654l.947-.947a1,1,0,1,0-1.414-1.414l-.947.947L17.163,1.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L14.24,8.346,8.346,14.24,6.163,12.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L3.24,19.346l-.947.947a1,1,0,1,0,1.414,1.414l.947-.947,2.183,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105L9.76,15.655l5.9-5.895,2.182,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105ZM11,20.39a1.6,1.6,0,0,1-.472,1.138,1.647,1.647,0,0,1-2.277,0L2.472,15.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779A1.6,1.6,0,0,1,11,20.39Zm10.528-9.862a1.647,1.647,0,0,1-2.277,0L13.472,4.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779a1.609,1.609,0,0,1,0,2.277Z"/></svg>--%>
                 </div>
                 <span>필라테스</span>
             </a>
-            <a href="/groupboard/golf" class="btn">
-                <div class="icon bg-green bg-opacity-10">
+            <a href="/groupboard/golf" class="btn" style="padding-right: 5px;">
+                <div  id="sportsicon"  class="icon bg-green bg-opacity-10">
                     <img src="/assets/img/cate6.png" alt="">
                     <%--                    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><path d="M22.942,6.837,20.76,4.654l.947-.947a1,1,0,1,0-1.414-1.414l-.947.947L17.163,1.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L14.24,8.346,8.346,14.24,6.163,12.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L3.24,19.346l-.947.947a1,1,0,1,0,1.414,1.414l.947-.947,2.183,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105L9.76,15.655l5.9-5.895,2.182,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105ZM11,20.39a1.6,1.6,0,0,1-.472,1.138,1.647,1.647,0,0,1-2.277,0L2.472,15.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779A1.6,1.6,0,0,1,11,20.39Zm10.528-9.862a1.647,1.647,0,0,1-2.277,0L13.472,4.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779a1.609,1.609,0,0,1,0,2.277Z"/></svg>--%>
                 </div>
                 <span>골프</span>
             </a>
-            <a href="/groupboard/swimming" class="btn">
-                <div class="icon bg-blue bg-opacity-10">
+            <a href="/groupboard/swimming" class="btn" style="padding-right: 5px;">
+                <div  id="sportsicon"  class="icon bg-blue bg-opacity-10">
                     <img src="/assets/img/cate7.png" alt="">
                     <%--                    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><path d="M22.942,6.837,20.76,4.654l.947-.947a1,1,0,1,0-1.414-1.414l-.947.947L17.163,1.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L14.24,8.346,8.346,14.24,6.163,12.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L3.24,19.346l-.947.947a1,1,0,1,0,1.414,1.414l.947-.947,2.183,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105L9.76,15.655l5.9-5.895,2.182,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105ZM11,20.39a1.6,1.6,0,0,1-.472,1.138,1.647,1.647,0,0,1-2.277,0L2.472,15.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779A1.6,1.6,0,0,1,11,20.39Zm10.528-9.862a1.647,1.647,0,0,1-2.277,0L13.472,4.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779a1.609,1.609,0,0,1,0,2.277Z"/></svg>--%>
                 </div>
@@ -296,7 +303,7 @@
     </section><!-- End. banner_swiper -->
 <%--</section>--%>
 </section>
-<hr style="height: 20px; color: #f7edfa; border: none; border-top: 10px solid; margin-bottom: 0px">
+<hr style="height: 20px; color: #f7edfa; border: none; border-top: 10px solid; margin-bottom: 0px; margin-top: 0">
 <!-- 운동 카테고리 끝 -->
 
 <%--관심지역에 오픈된 조인 : 슬라이드 --%>

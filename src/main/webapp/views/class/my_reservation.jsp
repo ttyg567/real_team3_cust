@@ -140,10 +140,11 @@
 
 <!-- Start main_haeder -->
 <header class="main_haeder header-sticky multi_item">
-    <div class="em_side_right">
-        <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/">
-            <i class="tio-chevron_left size-24 color-black"></i>
-        </a>
+    <div class="em_menu_sidebar">
+        <button type="button" class="btn btn_menuSidebar item-show" data-toggle="modal"
+                data-target="#mdllSidebarMenu-background">
+            <i class="ri-menu-fill"></i>
+        </button>
     </div>
     <div class="title_page">
                     <span class="page_name">

@@ -25,8 +25,8 @@
 
     <section class="emPage__ResultPayment">
       <div class="em__seccess">
-        <div class="icon">
-          <i class="tio-done"></i>
+        <div class="icon"  style="background-color: #fae8fc; ">
+          <i class="tio-done" style="color: blueviolet"></i>
         </div>
         <h2 class="size-18 weight-500 color-secondary margin-b-10">감사합니다.</h2>
         <p class="size-13 color-text margin-b-40">결제가 성공적으로 완료됐어요 </p>
