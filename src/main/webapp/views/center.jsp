@@ -539,7 +539,7 @@
       overflow-x: auto; padding-left: 5px; background-color : white; border: none;
       scrollbar-width: none; -ms-overflow-style: none;">
         <%--<section class="banner_swiper bg-white np__ServicePackage padding-t-10 mt-0 padding-b-10">--%>
-        <div class="em__actions" style="display: inline-flex; width: max-content; margin-top: 5px; ">
+        <div class="em__actions" style="display: inline-flex; width: max-content; margin-top: 5px; margin-bottom: 10px; ">
             <a href="/ticket/workout" class="btn" style="padding-right: 5px;">
                 <div id="sportsicon" class="icon bg-blue bg-opacity-10" style="border-radius: 30px">
                     <img src="/assets/img/cate2.png" alt="">
@@ -592,7 +592,7 @@
         </div>
         <%--</section>--%>
     </section>
-                        <hr style="height: 20px; color: #f7edfa; border: none; border-top: 10px solid;">
+                        <hr style="height: 20px; color: #f7edfa; border: none; border-top: 10px solid; margin-top: 0">
 
                         <!-- 카카오 지도 / 운동센터 혼잡도 안내 -->
                         <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">

@@ -206,7 +206,7 @@
       overflow-x: auto; padding-left: 5px; background-color : white; border: none;
       scrollbar-width: none; -ms-overflow-style: none;">
             <%--<section class="banner_swiper bg-white np__ServicePackage padding-t-10 mt-0 padding-b-10">--%>
-            <div class="em__actions" style="display: inline-flex; width: max-content; margin-top: 5px; ">
+            <div class="em__actions" style="display: inline-flex; width: max-content; margin-top: 5px; margin-bottom: 10px;">
                 <a href="/ticket/workout" class="btn" style="padding-right: 5px;">
                     <div id="sportsicon" class="icon bg-blue bg-opacity-10" style="border-radius: 30px">
                         <img src="/assets/img/cate2.png" alt="">
@@ -261,7 +261,7 @@
         </section><!-- End. banner_swiper -->
         <%--</section>--%>
 <!-- End. banner_swiper -->
-<hr style="height: 30px; color: #f7edfa; border: none; border-top: 10px solid; margin-bottom: 0px;">
+<hr style="height: 30px; color: #f7edfa; border: none; border-top: 10px solid; margin-bottom: 0px;  margin-top: 0">
 <!-- 알림 설정 component-action-sheet.html 로 모달창 활용해보기. -->
 <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
     <div>
