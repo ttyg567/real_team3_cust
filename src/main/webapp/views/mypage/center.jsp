@@ -204,7 +204,8 @@
                             <c:when test="${my_reservation_list != '[]'}">
                                 <c:forEach var="obj" items="${my_reservation_list}">
                                     <section class="npBalabce_section padding-5 pb-0">
-                                        <div class="content_balance " style="background: #fbebee;">
+                                        <div class="content_balance " style="background: #fbebee; margin-bottom: 10px;
+                                         box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 4px 4px 6px -3px rgba(0, 0, 0, 0.1);">
                                             <div class="txt">
                                                 <h6 style="color: rebeccapurple">
                                                         ${obj.dateCategory}의 운동 일정</h6>
