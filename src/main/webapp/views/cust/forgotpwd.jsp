@@ -16,7 +16,6 @@
             <div class="em_side_right">
                 <a class="rounded-circle d-flex align-items-center text-decoration-none" href="/cust/login">
                     <i class="tio-chevron_left size-24 color-text"></i>
-                    <span class="color-text size-14">Back</span>
                 </a>
             </div>
             <div class="title_page">
@@ -41,11 +40,11 @@
                     가입 당시 이메일로 임시 비밀번호를 전송해드릴게요.
                 </p>
             </div>
-            <div class="em__body">
-                <form action="" class="padding-t-40">
+            <div class="em__body padding-t-30">
+                <form action="" class="padding-0">
                     <div class="">
                         <div class="form-group input-lined lined__iconed">
-                            <div class="input_group">
+                            <div class="input_group" style="padding-top: 10px;">
                                 <input type="email" class="form-control" id="email" placeholder="example@mail.com"
                                        required="">
                                 <div class="icon">
@@ -67,12 +66,12 @@
                                     </svg>
                                 </div>
                             </div>
-                            <label for="email">이메일 주소</label>
+                            <label for="email" style="font-weight: bold">이메일 주소</label>
                         </div>
                     </div>
                 </form><br><br>
                 <div class="button-container">
-                    <button href="page-verification-email.html" class="btn bg-primary rounded-pill btn__default">
+                    <button href="page-verification-email.html" class="btn rounded-pill btn__default" style="background-color: blueviolet; border-radius: 10px;">
                         <span class="color-white">임시 비밀번호 받기</span>
                         <div class="icon rounded-circle">
                             <i class="tio-chevron_right"></i>

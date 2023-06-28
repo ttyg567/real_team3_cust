@@ -88,6 +88,23 @@
   .btn:hover .hover_ico {
     display: block; /* 커서를 올렸을 때 기본 이미지 숨김 */
   }
+/* 운동 카테고리  */
+  <%-- 운동 종목 : 텍스트 글씨 진하게 --%>
+  .em__actions span{
+    font-weight: bold;
+  }
+  .em__actions .icon{
+    border-radius: 30px;
+  }
+  <%-- 운동 종목 : 아이콘 사진 크기 조정 --%>
+  .icon img{
+    width: 50px;
+    height: 50px;
+    background-color: white;
+  }
+  .nav-link{
+    background-color: white;
+  }
 </style>
 <!-- header 구간  -->
 <header class="main_haeder header-sticky multi_item" >
@@ -214,37 +231,109 @@
 
   <div id="content">
 
-    <!-- Start page_join -->
+    <!-- 조인 카테고리 -->
     <section class="page_news">
-      <div class="emBlock__border padding-l-20 bg-snow">
-        <ul class="nav navListProducts">
-          <li class="nav-item"><!-- 진한 글씨로 표기된 페이지 active '전체' -->
-            <a class="nav-link" href="/groupboard/groupboard_list">전체</a>
+      <div class="emBlock__border padding-l-0 bg-snow" style="width: 100%; padding-bottom: 0;
+      overflow-x: auto; padding-left: 5px; background-color : white; border: none;
+      scrollbar-width: none; -ms-overflow-style: none;">
+        <p style="margin-left: 5px; margin-top: 7px; font-size: 11px; margin-bottom: 2px">관심가는 운동종목을 찾아 조인해 보세요🧐</p>
+        <div class="em__actions">
+        <ul class="nav navListProducts" style="display: inline-flex; width: max-content; margin-top: 5px">
+          <li class="nav-item" style="padding-left: 15px;"><!-- 진한 글씨로 표기된 페이지 active '전체' -->
+            <a class="nav-link" href="/groupboard/groupboard_list" style="padding-right: 7px;" >
+              <div class="icon bg-opacity-10">
+                <img src="/assets/img/all.png" alt=""  style="border-radius: 30px; padding: 5px;
+                border: #f2f3f5 0.5px solid;
+                box-shadow: 0 8px 6px -5px rgba(0, 0, 0, 0.2), 4px 4px 3px -3px rgba(0, 0, 0, 0.1);
+">
+              </div>
+              <p style="color: gray; font-size: 12px; width: 50px; text-align: center; padding-top: 5px;">전체</p>
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/groupboard/workout">헬스</a>
+            <a class="nav-link active" href="/groupboard/workout"  style="padding-right: 7px;">
+              <div class="icon bg-opacity-10">
+                <img src="/assets/img/cate2.png" alt=""  style="border-radius: 30px; padding: 5px;
+                border: blueviolet 2px solid;">
+              </div>
+              <p style="color: blueviolet; font-size: 12px; width: 50px; text-align: center; font-weight: bold; padding-top: 5px;">헬스</p>
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/groupboard/personaltraining">PT</a>
+            <a class="nav-link" href="/groupboard/personaltraining"  style="padding-right: 7px;">
+              <div class="icon bg-opacity-10">
+                <img src="/assets/img/cate1.png" alt=""  style="border-radius: 30px; padding: 5px;
+                border: #f2f3f5 0.5px solid;
+                box-shadow: 0 8px 6px -5px rgba(0, 0, 0, 0.2), 4px 4px 3px -3px rgba(0, 0, 0, 0.1);
+">
+              </div>
+              <p style="color: gray; font-size: 12px; width: 50px; text-align: center; padding-top: 5px;">PT</p>
+
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/groupboard/crossfit">크로스핏</a>
+            <a class="nav-link" href="/groupboard/crossfit"  style="padding-right: 7px;">
+              <div class="icon bg-opacity-10">
+                <img src="/assets/img/cate3.png" alt=""  style="border-radius: 30px; padding: 5px;
+                border: #f2f3f5 0.5px solid;
+                box-shadow: 0 8px 6px -5px rgba(0, 0, 0, 0.2), 4px 4px 3px -3px rgba(0, 0, 0, 0.1);
+">
+              </div>
+              <p style="color: gray; font-size: 12px; width: 50px; text-align: center; padding-top: 3px;">크로스핏</p>
+
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/groupboard/yoga">요가</a>
+            <a class="nav-link" href="/groupboard/yoga" style="padding-right: 7px;">
+              <div class="icon bg-opacity-10">
+                <img src="/assets/img/cate4.png" alt=""  style="border-radius: 30px; padding: 5px;
+                border: #f2f3f5 0.5px solid;
+                box-shadow: 0 8px 6px -5px rgba(0, 0, 0, 0.2), 4px 4px 3px -3px rgba(0, 0, 0, 0.1);
+">
+              </div>
+              <p style="color: gray; font-size: 12px; width: 50px; text-align: center; padding-top: 5px;">요가</p>
+
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/groupboard/pilates">필라테스</a>
+            <a class="nav-link" href="/groupboard/pilates" style="padding-right: 7px;">
+              <div class="icon bg-opacity-10">
+                <img src="/assets/img/cate5.png" alt=""  style="border-radius: 30px; padding: 5px;
+                border: #f2f3f5 0.5px solid;
+                box-shadow: 0 8px 6px -5px rgba(0, 0, 0, 0.2), 4px 4px 3px -3px rgba(0, 0, 0, 0.1);
+">
+              </div>
+              <p style="color: gray; font-size: 12px; width: 50px; text-align: center; padding-top: 5px;">필라테스</p>
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/groupboard/golf">골프</a>
+            <a class="nav-link" href="/groupboard/golf" style="padding-right:7px;">
+              <div class="icon bg-opacity-10">
+                <img src="/assets/img/cate6.png" alt=""  style="border-radius: 30px; padding: 5px;
+                border: #f2f3f5 0.5px solid;
+                box-shadow: 0 8px 6px -5px rgba(0, 0, 0, 0.2), 4px 4px 3px -3px rgba(0, 0, 0, 0.1);
+">
+              </div>
+              <p style="color: gray; font-size: 12px; width: 50px; text-align: center; padding-top: 5px;">골프</p>
+
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/groupboard/swimming">수영</a>
+            <a class="nav-link" href="/groupboard/swimming" style="padding-right: 7px;">
+              <div class="icon bg-opacity-10">
+                <img src="/assets/img/cate7.png" alt=""  style="border-radius: 30px; padding: 5px;
+                border: #f2f3f5 0.5px solid;
+                box-shadow: 0 8px 6px -5px rgba(0, 0, 0, 0.2), 4px 4px 3px -3px rgba(0, 0, 0, 0.1);
+">
+              </div>
+              <p style="color: gray; font-size: 12px; width: 50px; text-align: center; padding-top: 5px;">수영</p>
+
+            </a>
           </li>
         </ul>
+        </div>
       </div>
-
+    <hr style="margin-top: 0">
       <c:forEach var="obj" items="${alljoin}" >
       <ul class="itemList__news">
         <%--  li : 화면에 보여질 조인들   --%>

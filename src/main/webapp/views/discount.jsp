@@ -78,10 +78,6 @@
     display: flex;
   }
 
-  .itm.em_item {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
   .header-sticky {
     position: sticky;
     top: 0;
@@ -352,14 +348,16 @@
 <div class="--item-inside" id="joinbanner">
     <div class="cover_img" style="position: relative;">
         <a href="/groupboard">
+            <div class="image-container" style="position: relative;">
             <img src="/img/joinbanner1.jpg" alt="" style="width: 100%;">
-            <div class="text_img position-absolute bottom-0 padding-0 padding-l-20 text-left">
-                <h2 data-swiper-parallax="-300" style="position: relative; bottom: 30px; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);" class="size-27 weight-600 color-white text-uppercase mb-1"
-                >
-                    내가 관심있게 본 운동?<br>남도 관심 있어요</h2>
-                <p data-swiper-parallax="-200" class="size-12 color-white" style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); position: relative; bottom: 30px;">
-                    조인할 인원 모아서 최대 30% 동시할인 >
-                </p>
+            <div class="image-text" style="position: absolute; top: 50%; left: 50%;
+            transform: translate(-55%, -20%); width: 300px; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+            color: white; font-size: 22px; font-weight: bold">내가 관심있게 본 운동?<br>인원 모아서 결제하면 동시 할인
+            <span style="position: absolute; top: 120%; left: 50%;
+            transform: translate(-50%, -20%); width: 300px; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+            color: white; font-size: 11px; font-weight: bold">
+                인원 모두 모이면 무조건 동시 할인 >
+            </span></div>
             </div>
         </a>
     </div>
