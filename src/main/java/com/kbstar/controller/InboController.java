@@ -57,7 +57,7 @@ public class InboController {
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
 //            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
-            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
+            item.setTicketJoinPrice(item.getTicketCost()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // 선호운동이 일치하는 조인도 동일하게.
         for (Groupboard item : list2){
@@ -119,7 +119,7 @@ public class InboController {
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
 //            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
-            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
+            item.setTicketJoinPrice(item.getTicketCost()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
@@ -143,7 +143,7 @@ public class InboController {
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
 //            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
-            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
+            item.setTicketJoinPrice(item.getTicketCost()*(100-((int)item.getTicketDiscount()+10))/100);
         }
 
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
@@ -171,7 +171,7 @@ public class InboController {
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
 //            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
-            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
+            item.setTicketJoinPrice(item.getTicketCost()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
@@ -197,7 +197,7 @@ public class InboController {
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
 //            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
-            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
+            item.setTicketJoinPrice(item.getTicketCost()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
@@ -224,7 +224,7 @@ public class InboController {
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
 //            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
-            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
+            item.setTicketJoinPrice(item.getTicketCost()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
@@ -251,7 +251,7 @@ public class InboController {
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
 //            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
-            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
+            item.setTicketJoinPrice(item.getTicketCost()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
@@ -278,7 +278,7 @@ public class InboController {
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
 //            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
-            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
+            item.setTicketJoinPrice(item.getTicketCost()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
@@ -305,7 +305,7 @@ public class InboController {
         // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
         for (Groupboard item : list){
 //            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
-            item.setTicketJoinPrice(item.getTicketPrice()*(100-((int)item.getTicketDiscount()+10))/100);
+            item.setTicketJoinPrice(item.getTicketCost()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
@@ -321,34 +321,67 @@ public class InboController {
 
         List<Groupboard> groupboard_is_completed = null;
 
+        Integer groupboardNo = gbMember.getGroupboardNo();
+
         log.info("gbMember.getGroupboardNo()" + gbMember.getGroupboardNo());
         log.info("gbMember.getCustNo()" + gbMember.getCustNo());
 
-        // 조인 신청회원으로 등록해주기
+        // 조인 신청회원으로 등록해주기 OK
         gbMemberService.register(gbMember);
 
-        /*
-         Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-00001: unique constraint (HEALSSG.SYS_C008432) violated
-
-### The error may exist in file [C:\test\real_team3_cust\target\classes\mybatis\gbmembermapper.xml]
-### The error may involve com.kbstar.mapper.GBMemberMapper.insert-Inline
-### The error occurred while setting parameters
-### SQL: INSERT INTO gbmember (groupboardNo, custNo, MEMBERSTATUS)           VALUES (?, ?, '1')
-### Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-00001: unique constraint (HEALSSG.SYS_C008432) violated
-
-; ORA-00001: unique constraint (HEALSSG.SYS_C008432) violated
-; nested exception is java.sql.SQLIntegrityConstraintViolationException: ORA-00001: unique constraint (HEALSSG.SYS_C008432) violated
-         */
-
         // 멤버가 신청할 때마다 신청인원 +1, 확정인원 +1 하고,
-        // 모집인원과 확정인원이 같으면 상태를 '5'로 바꿔준다.
+        // 모집인원과 확정인원이 같으면 상태를 '5'로 바꿔준다. OK
         groupboardService.updateStatus(gbMember.getGroupboardNo());
 
-        groupboard_is_completed = groupboardService.selectGroupboardCompleted(gbMember.getGroupboardNo()); // 모집완료된거 추출
+        groupboard_is_completed = groupboardService.selectGroupboardCompleted(gbMember.getGroupboardNo()); // 모집완료된거 추출  OK
 
         // 꽉 차면 각 사용자들에게 쿠폰을 보낸다.
         if(groupboard_is_completed!=null && groupboard_is_completed.size()!=0){
-            joinCompleted(gbMember.getGroupboardNo());
+//            joinCompleted(gbMember.getGroupboardNo());
+
+            List<Groupboard> target_list = null;
+            Coupon cp = null;
+
+            // 쿠폰 발송 대상인 cust를 긁어온다.
+            target_list = groupboardService.selectJoincompletedmember(groupboardNo);
+
+            log.info("==상태를 봐야겠음==" + target_list);
+
+            if (target_list != null && target_list.size()!=0) {
+                for (Groupboard item : target_list) {
+                    log.info("쿠폰 알림 진입");
+
+                    // 앱 내 알람
+                    Notification noti = new Notification();
+                    noti.setCustNo(item.getCustNo()); //custNo
+                    noti.setGymNo(999999); // gymNo (가상)
+                    noti.setTicketNo(999999); // ticketNo(가상)
+                    noti.setClassNo(999999); // classNo(가상)
+                    noti.setNotiTitle("쿠폰발행");
+                    noti.setNotiMessage("조인완료 이용권 할인쿠폰이 발행되었어요");
+                    noti.setNotiType("4");
+                    notificationService.register(noti);
+
+                    item.setGroupboardNo(groupboardNo); // getGroupboardNo 쿠폰에 식별해서 들어가야 함
+                    couponService.getCouponcust_update_discount(item); // 쿠폰을 발송한다. // 이게 왜...... 지예 로그인, 성영 로그인하고 신청 완료 -> 앞서 로그인 사람이 두번 업데이트 됨 / 다른 ip 여야 되네 뭐여
+                    cp = couponService.getTodaymycoupon(item.getCustNo()); // 현재 시간 기준으로 직전에 보낸 쿠폰을 추출
+
+                    // firebase 알람
+                    String clientToken = "";
+
+                    log.info("==토큰을 보자==" + item.getCustToken());
+
+                    // 토큰이 null이 아니면
+                    if(item.getCustToken()!=null){
+                        clientToken = item.getCustToken().replaceAll("\\s+", ""); // 토큰에서 공백 제거
+                        log.info("=== 쿠폰 대상 번호는 === " + item.getCustNo() + "=====");
+                        log.info("=== 쿠폰 대상 이름은 === " + item.getCustName() + "=====");
+                        log.info("=== 쿠폰 대상 토큰은 === " + item.getCustToken() + "=====");
+                        PushNotificationUtil.sendCommonMessage("Open Coupon Box", "Open Coupon Box", "/coupon/show?couponNo="+cp.getCouponNo(), clientToken);
+                    }
+
+                }
+            }
         }
 
         model.addAttribute("groupboard_is_completed", groupboard_is_completed);
@@ -386,50 +419,51 @@ public class InboController {
     }
 
     // 성영 추가
-    public void joinCompleted(Integer getGroupboardNo) throws Exception {
-
-        List<Groupboard> target_list = null;
-        Coupon cp = null;
-
-        String title = "조인이 완료되었어요";
-        String message = "함께 운동을 시작하세요";
-
-        String encodedTitle = URLEncoder.encode(title, "UTF-8");
-        String encodedMessage = URLEncoder.encode(message, "UTF-8");
-
-        // 쿠폰 발송 대상인 cust를 긁어온다.
-        target_list = groupboardService.selectJoincompletedmember(getGroupboardNo);
-
-        log.info("==상태를 봐야겠음==" + target_list);
-
-        if (target_list != null || !target_list.isEmpty()) {  // 빈열이여도 실행이 되네
-//        if (target_list != null) {
-            for (Groupboard item : target_list) { // 그래도 여긴 안돈다.....
-                log.info("쿠폰 알림 진입");
-                String clientToken = item.getCustToken().replaceAll("\\s+", ""); // 토큰에서 공백 제거
-                log.info("=== 쿠폰 대상 번호는 === " + item.getCustNo() + "=====");
-                log.info("=== 쿠폰 대상 이름은 === " + item.getCustName() + "====="); // null 확인하기
-                log.info("=== 쿠폰 대상 토큰은 === " + item.getCustToken() + "=====");
-                item.setGroupboardNo(getGroupboardNo); // getGroupboardNo 셋
-                couponService.getCouponcust_update_discount(item);
-
-                Notification noti = new Notification();
-                noti.setCustNo(item.getCustNo()); //custNo
-                noti.setGymNo(999999); // gymNo (가상)
-                noti.setTicketNo(999999); // ticketNo(가상)
-                noti.setNotiTitle("쿠폰발행");
-                noti.setNotiMessage("조인완료 이용권 할인쿠폰이 발행되었어요");
-                noti.setNotiType("4");
-                notificationService.register(noti);
-
-                cp = couponService.getTodaymycoupon(item.getCustNo()); // 현재 시간 기준으로 직전에 보낸 쿠폰을 추출
-                // 푸쉬 알람은 cust에 등록된 토큰으로 보낸다.
-//                pushNotificationUtil.sendCommonMessage("Open Coupon Box", "Open Coupon Box", "/coupon/show?couponNo="+cp.getCustNo(), clientToken);
-                pushNotificationUtil.sendCommonMessage("Open Coupon Box", "Open Coupon Box", "/coupon/show?couponNo="+cp.getCouponNo(), clientToken);
-            }
-        }
-
-    }
+//    public void joinCompleted(Integer getGroupboardNo) throws Exception {
+//
+//        List<Groupboard> target_list = null;
+//        Coupon cp = null;
+//
+//        // 쿠폰 발송 대상인 cust를 긁어온다.
+//        target_list = groupboardService.selectJoincompletedmember(getGroupboardNo);
+//
+//        log.info("==상태를 봐야겠음==" + target_list);
+//
+//        if (target_list != null && target_list.size()!=0) {
+//            for (Groupboard item : target_list) {
+//                log.info("쿠폰 알림 진입");
+//
+//                // 앱 내 알람
+//                Notification noti = new Notification();
+//                noti.setCustNo(ㅇㅇㅇㅇㅇ); //custNo
+//                noti.setGymNo(999999); // gymNo (가상)
+//                noti.setTicketNo(999999); // ticketNo(가상)
+//                noti.setClassNo(999999); // classNo(가상)
+//                noti.setNotiTitle("쿠폰발행");
+//                noti.setNotiMessage("조인완료 이용권 할인쿠폰이 발행되었어요");
+//                noti.setNotiType("4");
+//                notificationService.register(noti);
+//
+//                item.setGroupboardNo(getGroupboardNo); // getGroupboardNo 쿠폰에 식별해서 들어가야 함
+//                couponService.getCouponcust_update_discount(item); // 쿠폰을 발송한다.
+//                cp = couponService.getTodaymycoupon(item.getCustNo()); // 현재 시간 기준으로 직전에 보낸 쿠폰을 추출
+//
+//                // firebase 알람
+//                String clientToken = "";
+//
+//                // 토큰이 null이 아니면
+//                if(item.getCustToken()!=null){
+//                    item.getCustToken().replaceAll("\\s+", ""); // 토큰에서 공백 제거
+//                    log.info("=== 쿠폰 대상 번호는 === " + item.getCustNo() + "=====");
+//                    log.info("=== 쿠폰 대상 이름은 === " + item.getCustName() + "=====");
+//                    log.info("=== 쿠폰 대상 토큰은 === " + item.getCustToken() + "=====");
+//                    pushNotificationUtil.sendCommonMessage("Open Coupon Box", "Open Coupon Box", "/coupon/show?couponNo="+cp.getCouponNo(), clientToken);
+//                }
+//
+//            }
+//        }
+//
+//    }
 
 }
 

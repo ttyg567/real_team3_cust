@@ -135,55 +135,89 @@
         <section class="page_news">
             <div id="wrapper">
                 <div id="content">
-                    <!-- Start 헬쓱이 지피티 -->
-                    <section class="npBalabce_section padding-20 pb-0 d-flex align-items-center">
-                        <div class="txt d-flex align-items-center">
-                            <img src="/assets/img/candy/chatbot.png" class="d-inline animated-bounce" id="chatbot"
-                                 alt="chatbot"
-                                 style="width: 50px; height: 50px;">
+                        <!-- Start. 챗봇 서비스 -->
+                        <div class="bg-white padding-20 ">
+                            <div class="item__tab lg_tab">
+                                <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link active" id="pills-personal-tab" data-toggle="pill"
+                                           href="#pills-personal" role="tab" aria-controls="pills-personal"
+                                           aria-selected="true">헬쓱 지피티</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="pills-personal2-tab" data-toggle="pill"
+                                           href="#pills-personal2" role="tab" aria-controls="pills-personal2"
+                                           aria-selected="false">헬쓱 클로바</a>
+                                    </li>
+                                    <span class="indicator__bg_active"></span>
+                                </ul>
+                            </div>
+
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-personal" role="tabpanel"
+                                     aria-labelledby="pills-personal-tab">
+                                    <section class="npBalabce_section padding-20 pb-0 d-flex align-items-center">
+                                        <div class="txt d-flex align-items-center">
+                                            <img src="/assets/img/candy/chatbot.png" class="d-inline animated-bounce" id="chatbot"
+                                                 alt="chatbot"
+                                                 style="width: 50px; height: 50px;">
+                                        </div>
+                                        <div class="text-left" style="margin-left: 20px">
+                                            <h6 class="color-secondary">안녕, ${logincust.custName}님! <br> 나는 헬쓱 지피티야!</h6>
+                                            <span class="color-snow h7">나에게는 무엇이든 물어봐도 좋아!</span>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="tab-pane fade" id="pills-personal2" role="tabpanel"
+                                     aria-labelledby="pills-personal2-tab">
+                                    <section class="npBalabce_section padding-20 pb-0 d-flex align-items-center">
+                                        <div class="txt d-flex align-items-center">
+                                            <img src="/assets/img/candy/clova.png" class="d-inline animated-bounce" id="chatbotclova"
+                                                 alt="chatbot"
+                                                 style="width: 50px; height: 50px;">
+                                        </div>
+                                        <div class="text-left" style="margin-left: 20px">
+                                            <h6 class="color-secondary">안녕, ${logincust.custName}님! <br> 나는 헬쓱 클로바야!</h6>
+                                            <span class="color-snow h7">나에게는 무엇이든 물어봐도 좋아!</span>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
                         </div>
-                        <div class="text-left" style="margin-left: 20px">
-                            <h6 class="color-secondary">안녕, ${logincust.custName}님! <br> 나는 헬쓱 지피티야!</h6>
-                            <span class="color-snow h7">나에게는 <br> 무엇이든 물어봐도 좋아!</span>
-                        </div>
-                        <div class="action" style="margin-left: auto;">
-                            <button href="/" class="btn" style="background-color: #815cdf; color: white; font-size: 13px;">
-                                로봇사양변경
-                            </button>
-                        </div>
-                    </section>
-                    <!-- End 헬쓱이 지피티 -->
-                    <br>
+                        <!-- End. 챗봇 서비스 -->
+
+                    <div class="dividar pt-1 mb-3 padding-20"></div>
+
                     <!-- Start 오늘의 일정 -->
                     <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe">
                         <c:choose>
                             <c:when test="${my_reservation_list != '[]'}">
                                 <c:forEach var="obj" items="${my_reservation_list}">
                                     <section class="npBalabce_section padding-5 pb-0">
-                                        <div class="content_balance bg-white border border-snow">
+                                        <div class="content_balance " style="background: #fbebee;">
                                             <div class="txt">
                                                 <h6 style="color: rebeccapurple">
                                                         ${obj.dateCategory}의 운동 일정</h6>
                                                 <h6 class="color-secondary">${obj.className}</h6>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                      fill="currentColor"
-                                                     class="bi bi-calendar2-check color-snow" viewBox="0 0 16 16">
+                                                     class="bi bi-calendar2-check color-instagram" viewBox="0 0 16 16">
                                                     <path d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
                                                     <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
                                                     <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
                                                 </svg>&nbsp;
-                                                <h7 class="color-snow">${obj.classDate}</h7>
+                                                <h7 class="color-instagram">${obj.classDate}</h7>
                                                 <br>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                     fill="currentColor" class="bi bi-alarm color-snow"
+                                                     fill="currentColor" class="bi bi-alarm color-instagram"
                                                      viewBox="0 0 16 16">
                                                     <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"/>
                                                     <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
                                                 </svg>&nbsp;
-                                                <h7 class="color-snow">${obj.classStarttime}~${obj.classEndtime}</h7>
+                                                <h7 class="color-instagram">${obj.classStarttime}~${obj.classEndtime}</h7>
                                             </div>
                                             <div class="action">
-                                                <a href="/class/my_reservation" class="btn">
+                                                <a href="/class/my_reservation" class="btn-">
                                                     나의 일정 보기
                                                 </a>
                                             </div>
@@ -197,7 +231,7 @@
                                         <div class="txt">
                                             <h6 >
                                                     ${logincust.custName}님의 일정이
-                                                        <br>당분간 없어요</h6>
+                                                <br>당분간 없어요</h6>
                                             <h7 style="color: gray">바로 수업을 예약하세요</h7>
                                         </div>
                                         <div class="action">
@@ -210,6 +244,75 @@
                             </c:otherwise>
                         </c:choose>
                     </div>
+                    <!-- End. 오늘의 일정 -->
+
+                    <div class="dividar pt-1 mb-3 padding-20"></div>
+
+                    <!-- Start. 운동 완료 별사탕 -->
+                    <section class="npBalabce_section padding-20 pb-0">
+                        <div class="content_balance bg-white border border-snow"
+                             style="background-image: linear-gradient(to right, #e66176, #5065da)">
+                            <div class="txt">
+                                <h6 class="color-white">
+                                    이 달의 프로틴 사탕</h6>
+                                <h6 class="color-secondary">매일매일 건강도 챙기고, <br/> 혜택도 챙겨가자!</h6>
+                                <h7 class="color-snow">이벤트날에 운동하면 쿠폰을 쏜다!!</h7>
+                                <br>
+                                <h7 id="candyCount" class="color-snow"></h7>
+                            </div>
+                            <div>
+                                <button id="qrCodeContainer" onclick="openModal()">
+                                    <img src="/assets/img/qr/qr.png" style="width: 50px; height: 50px">
+                                </button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="content_balance bg-white border border-snow" id="candy_list">
+                            <div class="image_list">
+                                <img src="/assets/img/candy/star_default_01.png" id="day01" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_02.png" id="day02" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_03.png" id="day03" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_04.png" id="day04" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_05.png" id="day05" class="candy" alt="candy">
+                            </div>
+                            <div class="image_list">
+                                <img src="/assets/img/candy/star_default_06.png" id="day06" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_07.png" id="day07" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_08.png" id="day08" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_09.png" id="day09" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_10.png" id="day10" class="candy" alt="candy">
+                            </div>
+                            <div class="image_list">
+                                <img src="/assets/img/candy/star_default_11.png" id="day11" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_12.png" id="day12" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_13.png" id="day13" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_14.png" id="day14" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_15.png" id="day15" class="candy" alt="candy">
+                            </div>
+                            <div class="image_list">
+                                <img src="/assets/img/candy/star_default_16.png" id="day16" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_17.png" id="day17" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_18.png" id="day18" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_19.png" id="day19" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_20.png" id="day20" class="candy" alt="candy">
+                            </div>
+                            <div class="image_list">
+                                <img src="/assets/img/candy/star_default_21.png" id="day21" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_22.png" id="day22" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_23.png" id="day23" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_24.png" id="day24" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_25.png" id="day25" class="candy" alt="candy">
+                            </div>
+                            <div class="image_list">
+                                <img src="/assets/img/candy/star_default_26.png" id="day26" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_27.png" id="day27" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_28.png" id="day28" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_29.png" id="day29" class="candy" alt="candy">
+                                <img src="/assets/img/candy/star_default_30.png" id="day30" class="candy" alt="candy">
+                            </div>
+                        </div>
+                    </section>
+                    <!-- End. 운동 완료 별사탕 -->
                     <hr>
                     <!-- Start 나의 이용권 -->
                     <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe">
@@ -291,78 +394,7 @@
                             </c:otherwise>
                         </c:choose>
                     </div>
-                    <!-- End. 오늘의 일정 -->
-                    <!-- Start. 운동 완료 별사탕 -->
-                    <section class="npBalabce_section padding-20 pb-0">
-                        <div class="content_balance bg-white border border-snow"
-                             style="background-image: linear-gradient(to right, #e66176, #5065da)">
-                            <div class="txt">
-                                <h6 class="color-white">
-                                    이 달의 프로틴 사탕</h6>
-                                <h6 class="color-secondary">매일매일 건강도 챙기고, <br/> 혜택도 챙겨가자!</h6>
-                                <h7 class="color-snow">이벤트날에 운동하면 쿠폰을 쏜다!!</h7>
-                                <br>
-                                <h7 id="candyCount" class="color-snow"></h7>
-                            </div>
-                            <div>
-                                <button id="qrCodeContainer" onclick="openModal()">
-                                    <img src="/assets/img/qr/qr.png" style="width: 50px; height: 50px">
-                                </button>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="content_balance bg-white border border-snow" id="candy_list">
-                            <div class="image_list">
-                                <img src="/assets/img/candy/star_default_01.png" id="day01" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_02.png" id="day02" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_03.png" id="day03" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_04.png" id="day04" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_05.png" id="day05" class="candy" alt="candy">
-                            </div>
-                            <div class="image_list">
-                                <img src="/assets/img/candy/star_default_06.png" id="day06" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_07.png" id="day07" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_08.png" id="day08" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_09.png" id="day09" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_10.png" id="day10" class="candy" alt="candy">
-                            </div>
-                            <div class="image_list">
-                                <img src="/assets/img/candy/star_default_11.png" id="day11" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_12.png" id="day12" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_13.png" id="day13" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_14.png" id="day14" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_15.png" id="day15" class="candy" alt="candy">
-                            </div>
-                            <div class="image_list">
-                                <img src="/assets/img/candy/star_default_16.png" id="day16" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_17.png" id="day17" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_18.png" id="day18" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_19.png" id="day19" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_20.png" id="day20" class="candy" alt="candy">
-                            </div>
-                            <div class="image_list">
-                                <img src="/assets/img/candy/star_default_21.png" id="day21" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_22.png" id="day22" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_23.png" id="day23" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_24.png" id="day24" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_25.png" id="day25" class="candy" alt="candy">
-                            </div>
-                            <div class="image_list">
-                                <img src="/assets/img/candy/star_default_26.png" id="day26" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_27.png" id="day27" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_28.png" id="day28" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_29.png" id="day29" class="candy" alt="candy">
-                                <img src="/assets/img/candy/star_default_30.png" id="day30" class="candy" alt="candy">
-                            </div>
-                        </div>
-                    </section>
-                    <!-- End. 운동 완료 별사탕 -->
-                    <hr>
-                    <!-- End. 수업 예약-->
-
-
-                    <hr>
-                    <!-- End. 오늘의 일정 -->
+                    <!-- End. 나의 이용권-->
                 </div>
             </div>
         </section>
@@ -463,6 +495,10 @@
 
         document.getElementById("chatbot").addEventListener("click", function () {
             window.location.href = "/mypage/gptchatbot";
+        });
+
+        document.getElementById("chatbotclova").addEventListener("click", function () {
+            window.location.href = "/mypage/chatbot";
         });
 
         document.getElementById('loginplzIcon').addEventListener('click', function () {
@@ -619,3 +655,47 @@
 
 </script>
 
+<!-- jquery -->
+<script src="assets/js/jquery-3.6.0.js"></script>
+<!-- popper.min.js 1.16.1 -->
+<script src="assets/js/popper.min.js"></script>
+<!-- bootstrap.js v4.6.0 -->
+<script src="assets/js/bootstrap.min.js"></script>
+
+<!-- Owl Carousel v2.3.4 -->
+<script src="assets/js/vendor/owl.carousel.min.js"></script>
+<!-- Swiper 6.4.11 -->
+<script src="assets/js/vendor/swiper-bundle.min.js"></script>
+<!-- sharer 0.4.0 -->
+<script src="assets/js/vendor/sharer.js"></script>
+<!-- short-and-sweet v1.0.2 - Accessible character counter for input elements -->
+<script src="assets/js/vendor/short-and-sweet.min.js"></script>
+<!-- jquery knob -->
+<script src="assets/js/vendor/jquery.knob.min.js"></script>
+<!-- indicator tab -->
+<script src="assets/js/indicator-tab.js"></script>
+<!-- main.js -->
+<script src="assets/js/main.js" defer></script>
+<!-- PWA app service registration and works js -->
+<script src="assets/js/pwa-services.js"></script>
+
+
+
+<!-- Start 헬쓱이 지피티 -->
+<%--                    <section class="npBalabce_section padding-20 pb-0 d-flex align-items-center">--%>
+<%--                        <div class="txt d-flex align-items-center">--%>
+<%--                            <img src="/assets/img/candy/chatbot.png" class="d-inline animated-bounce" id="chatbot"--%>
+<%--                                 alt="chatbot"--%>
+<%--                                 style="width: 50px; height: 50px;">--%>
+<%--                        </div>--%>
+<%--                        <div class="text-left" style="margin-left: 20px">--%>
+<%--                            <h6 class="color-secondary">안녕, ${logincust.custName}님! <br> 나는 헬쓱 지피티야!</h6>--%>
+<%--                            <span class="color-snow h7">나에게는 <br> 무엇이든 물어봐도 좋아!</span>--%>
+<%--                        </div>--%>
+<%--                        <div class="action" style="margin-left: auto;">--%>
+<%--                            <button href="/" class="btn" style="background-color: #815cdf; color: white; font-size: 13px;">--%>
+<%--                                로봇사양변경--%>
+<%--                            </button>--%>
+<%--                        </div>--%>
+<%--                    </section>--%>
+<!-- End 헬쓱이 지피티 -->

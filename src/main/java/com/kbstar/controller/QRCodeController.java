@@ -96,15 +96,7 @@ public class QRCodeController {
 
         log.info("==상태를 봐야겠음==" + target_list);
 
-        String clientToken = target_list.getCustToken().replaceAll("\\s+", ""); // 토큰에서 공백 제거
-        log.info("=== 쿠폰 대상 번호는 === " + target_list.getCustNo() + "=====");
-        log.info("=== 쿠폰 대상 이름은 === " + target_list.getCustName() + "=====");
-        log.info("=== 쿠폰 대상 토큰은 === " + clientToken + "=====");
-
-        couponService.getCouponcust_update(target_list); // 쿠폰 발행으로 업데이트
-        cp = couponService.getTodaymycoupon(target_list.getCustNo()); // 현재 시간 기준으로 직전에 보낸 쿠폰을 추출, 시차 때문에 xml 변경
-
-
+        // 앱 내 알람
         Notification noti = new Notification();
         noti.setCustNo(target_list.getCustNo()); //custNo
         noti.setGymNo(999999); // gymNo (가상)
@@ -115,7 +107,20 @@ public class QRCodeController {
         noti.setNotiType("3");
         notificationService.register(noti);
 
-        pushNotificationUtil.sendCommonMessage("Open Coupon Box", "Open Coupon Box", "/coupon/show?couponNo=" + cp.getCouponNo(), clientToken);
+        couponService.getCouponcust_update(target_list); // 쿠폰 발행으로 업데이트
+        cp = couponService.getTodaymycoupon(target_list.getCustNo()); // 현재 시간 기준으로 직전에 보낸 쿠폰을 추출, 시차 때문에 xml 변경
 
+        // firebase 알람
+        String clientToken = "";
+
+        // 토큰이 null이 아니면
+        if(target_list.getCustToken()!=null) {
+
+            clientToken = target_list.getCustToken().replaceAll("\\s+", ""); // 토큰에서 공백 제거
+            log.info("=== 쿠폰 대상 번호는 === " + target_list.getCustNo() + "=====");
+            log.info("=== 쿠폰 대상 이름은 === " + target_list.getCustName() + "=====");
+            log.info("=== 쿠폰 대상 토큰은 === " + clientToken + "=====");
+            pushNotificationUtil.sendCommonMessage("Open Coupon Box", "Open Coupon Box", "/coupon/show?couponNo=" + cp.getCouponNo(), clientToken);
+        }
     }
 }
