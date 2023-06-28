@@ -201,7 +201,7 @@ public class TicketController {
         model.addAttribute("relist", relist);
         model.addAttribute("regymName", gym.getGymName());
         model.addAttribute("regymNo", gymNo);
-        model.addAttribute("review_avg", review_avg.getAverageRate());
+//        model.addAttribute("review_avg", review_avg.getAverageRate());
         model.addAttribute("center", dir + "ticket_detail");
         model.addAttribute("teacher", trainer);
 
