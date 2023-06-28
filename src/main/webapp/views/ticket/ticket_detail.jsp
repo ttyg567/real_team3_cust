@@ -476,86 +476,86 @@
             <!-- End. emPage__blog -->
         <!-- 두번째 강사진 탭 끝-->
         <!-- 세번째 후기 탭 시작-->
-<%--        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">--%>
-<%--                <c:choose>--%>
-<%--                    <c:when test="${relist == null}">--%>
-<%--                        <div class="emTitle_co padding-20" style=" margin-top: 70px">--%>
-<%--                            <h2 class="size-16 weight-500 color-secondary mb-1">후기가 없습니다.</h2>--%>
-<%--                        </div>--%>
-<%--                    </c:when>--%>
-<%--                    <c:otherwise>--%>
-<%--                        <input type="hidden" id="gymNo" value="${regymNo}">--%>
-<%--                        <!-- Start title -->--%>
-<%--                        <div class="emTitle_co padding-20" style="margin-top: 50px">--%>
-<%--                            <h2 class="size-16 weight-500 color-secondary mb-1">${regymName}</h2>--%>
-<%--                            <p class="size-12 color-text m-0">헬쓱이 후기</p>--%>
-<%--                        </div>--%>
-<%--                        <!-- End. title -->--%>
-<%--                        <div class="pt_simpleDetails m-0 py-2 rounded-0 emBlock__border">--%>
-<%--                            <div class="em_bodyinner">--%>
-<%--                                <div class="embkRateCustomer">--%>
-<%--                                    <div class="emBoxRating">--%>
-<%--                                        <div class="row">--%>
-<%--                                            <div class="col-4">--%>
-<%--                                                <div class="item_rate">--%>
-<%--                                                    <span class="noRate" style="font-size: 20px">${review_avg}</span>--%>
-<%--                                                    <div class="">--%>
-<%--                                                        <p class="rateCutome">평점</p>--%>
-<%--                                                        <div class="emPatternRate">--%>
-<%--                                                            <c:forEach var="i" begin="1" end="5">--%>
-<%--                                                                <span class="ico ${i <= Math.round(review_avg) ? '_rated' : ''}"></span>--%>
-<%--                                                            </c:forEach>--%>
-<%--                                                        </div>--%>
-<%--                                                    </div>--%>
-<%--                                                </div>--%>
-<%--                                            </div>--%>
-<%--                                            <div class="col-8">--%>
-<%--                                                <div class="progress__rate">--%>
-<%--                                                </div>--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <c:choose>
+                    <c:when test="${relist == null}">
+                        <div class="emTitle_co padding-20" style=" margin-top: 70px">
+                            <h2 class="size-16 weight-500 color-secondary mb-1">후기가 없습니다.</h2>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <input type="hidden" id="gymNo" value="${regymNo}">
+                        <!-- Start title -->
+                        <div class="emTitle_co padding-20" style="margin-top: 50px">
+                            <h2 class="size-16 weight-500 color-secondary mb-1">${regymName}</h2>
+                            <p class="size-12 color-text m-0">헬쓱이 후기</p>
+                        </div>
+                        <!-- End. title -->
+                        <div class="pt_simpleDetails m-0 py-2 rounded-0 emBlock__border">
+                            <div class="em_bodyinner">
+                                <div class="embkRateCustomer">
+                                    <div class="emBoxRating">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="item_rate">
+                                                    <span class="noRate" style="font-size: 20px">${review_avg}</span>
+                                                    <div class="">
+                                                        <p class="rateCutome">평점</p>
+                                                        <div class="emPatternRate">
+                                                            <c:forEach var="i" begin="1" end="5">
+                                                                <span class="ico ${i <= Math.round(review_avg) ? '_rated' : ''}"></span>
+                                                            </c:forEach>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-8">
+                                                <div class="progress__rate">
+                                                </div>
+                                            </div>
+                                        </div>
 
-<%--                                    </div>--%>
-<%--                                </div>--%>
+                                    </div>
+                                </div>
 
-<%--                                <div class="emCommentCusomers">--%>
-<%--                                    <div class="title"></div>--%>
-<%--                                    <!-- item -->--%>
-<%--                                    <c:forEach var="obj" items="${relist}">--%>
-<%--                                        <div class="itemUser">--%>
-<%--                                            <div class="media">--%>
-<%--                                                <!-- 후기란에 고객 이미지 경로 없어서 추가 . uimg -->--%>
-<%--                                                <img class="x_img" src="/uimg/${obj.custImgName}" alt="프로필사진">--%>
-<%--                                                <div class="media-body">--%>
-<%--                                                    <div class="txt_details">--%>
-<%--                                                        <h4 class="username">${obj.custName}--%>
-<%--                                                            <time>${obj.reviewDate}</time>--%>
-<%--                                                        </h4>--%>
-<%--                                                        <div class="emPatternRate">--%>
-<%--                                                            <c:forEach var="i" begin="1" end="5">--%>
-<%--                                                                <span class="ico ${i <= obj.reviewRate ? '_rated' : ''}"></span>--%>
-<%--                                                            </c:forEach>--%>
-<%--                                                                &lt;%&ndash;                                                        <span class="ico _rated"></span>&ndash;%&gt;--%>
-<%--                                                                &lt;%&ndash;                                                        <span class="ico _rated"></span>&ndash;%&gt;--%>
-<%--                                                                &lt;%&ndash;                                                        <span class="ico _rated"></span>&ndash;%&gt;--%>
-<%--                                                                &lt;%&ndash;                                                        <span class="ico"></span>&ndash;%&gt;--%>
-<%--                                                                &lt;%&ndash;                                                        <span class="ico"></span>&ndash;%&gt;--%>
-<%--                                                        </div>--%>
-<%--                                                        <p class="txtComment">--%>
-<%--                                                                ${obj.reviewContents}--%>
-<%--                                                        </p>--%>
-<%--                                                    </div>--%>
-<%--                                                </div>--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
-<%--                                    </c:forEach>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </c:otherwise>--%>
-<%--                </c:choose>--%>
+                                <div class="emCommentCusomers">
+                                    <div class="title"></div>
+                                    <!-- item -->
+                                    <c:forEach var="obj" items="${relist}">
+                                        <div class="itemUser">
+                                            <div class="media">
+                                                <!-- 후기란에 고객 이미지 경로 없어서 추가 . uimg -->
+                                                <img class="x_img" src="/uimg/${obj.custImgName}" alt="프로필사진">
+                                                <div class="media-body">
+                                                    <div class="txt_details">
+                                                        <h4 class="username">${obj.custName}
+                                                            <time>${obj.reviewDate}</time>
+                                                        </h4>
+                                                        <div class="emPatternRate">
+                                                            <c:forEach var="i" begin="1" end="5">
+                                                                <span class="ico ${i <= obj.reviewRate ? '_rated' : ''}"></span>
+                                                            </c:forEach>
+                                                                <%--                                                        <span class="ico _rated"></span>--%>
+                                                                <%--                                                        <span class="ico _rated"></span>--%>
+                                                                <%--                                                        <span class="ico _rated"></span>--%>
+                                                                <%--                                                        <span class="ico"></span>--%>
+                                                                <%--                                                        <span class="ico"></span>--%>
+                                                        </div>
+                                                        <p class="txtComment">
+                                                                ${obj.reviewContents}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
 
-<%--        </div>--%>
+        </div>
 
         <!--세번째 탭 끝 -->
 
