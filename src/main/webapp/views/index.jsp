@@ -156,7 +156,76 @@ np_balanceDefault {
 .toggle-checkbox:checked + .toggle-handle {
     transform: translateX(30px);
 }
+/* 지피티 둥둥효과 */
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
 
+.animated-bounce {
+    animation: bounce 1.5s infinite;
+}
+
+#chatbot:hover {
+    transform: scale(1.1); /* 이미지를 1.1배 크기로 확대 */
+    transition: transform 0.3s; /* 확대/축소 효과에 0.3초의 전환 효과 적용 */
+}
+
+#candy_list {
+    display: flex;
+    flex-direction: column;
+}
+
+.image_list {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+}
+
+.candy {
+    width: 20%;
+    padding: 5px;
+}
+
+.image_list .candy[id^="day"]:first-child {
+    position: relative;
+}
+
+.image_list .candy[id^="day"]:first-child:before {
+    content: attr(id);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
+}
+
+@keyframes moveText {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Apply the animation to the moving text */
+.moving-text {
+    animation: moveText 2s infinite;
+}
 </style>
 
 <body>

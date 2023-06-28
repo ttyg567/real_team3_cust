@@ -16,14 +16,6 @@
     .nav-pills .nav-item .nav-link.active {
         color: black; /* 선택된 탭 글씨 색상 */;
     }
-.content_balance1 {
-    height: 150px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-}
 </style>
 
 <c:choose>
@@ -76,25 +68,16 @@
                 </a>
             </div>
         </header>
-
         <!-- Start 나의 이용권 -->
-<%--        <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe"--%>
-<%--        style=" padding-top: 80px;  padding-bottom:60px; background: linear-gradient(to bottom, #444B9C, #181d5e);">--%>
+        <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe">
             <c:choose>
                 <c:when test="${my_ticket_list != '[]'}">
-                <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe"
-                     style=" padding-top: 80px;  padding-bottom:20px; background: linear-gradient(to bottom, #BE95EF, #E499CF);">
-                <c:forEach var="obj2" items="${my_ticket_list}">
-                 <section class="npBalabce_section padding-5 pb-0">
-                            <div class="content_balance bg-white"
-                                 style=" height: 180px; background: linear-gradient(to bottom, #BB8EEC, #DB91D2);
-                                    border: none; margin: 2px 2px 5px 2px;
-                                    box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 4px 4px 6px -3px rgba(0, 0, 0, 0.1);
-                                    ">
-
+                    <c:forEach var="obj2" items="${my_ticket_list}">
+                        <section class="npBalabce_section padding-5 pb-0">
+                            <div class="content_balance bg-white border border-snow" >
                                 <div class="txt">
-                                    <h6 style="color: white">잔여 이용권</h6>
-                                    <h6 class="color-black" style="font-weight: bold">
+                                    <h6 style="color: rebeccapurple">잔여 이용권</h6>
+                                    <h6 class="color-secondary">
                                             ${obj2.gymName}
                                         <c:choose>
                                             <c:when test="${obj2.ticketType == '1'}">
@@ -111,7 +94,7 @@
                                         <path d="M4 5.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5Zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5ZM5 7a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z"/>
                                         <path d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6V4.5ZM1.5 4a.5.5 0 0 0-.5.5v1.05a2.5 2.5 0 0 1 0 4.9v1.05a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-1.05a2.5 2.5 0 0 1 0-4.9V4.5a.5.5 0 0 0-.5-.5h-13Z"/>
                                     </svg>
-                                    <h7 class="color-black">
+                                    <h7 class="color-snow">
                                         <c:choose>
                                             <c:when test="${obj2.ticketType == '1'}">
                                                 사용 : ${obj2.usedCnt}회
@@ -129,8 +112,7 @@
                                         <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
                                         <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
                                     </svg>
-                                    <h7 class="color-black"> 만료 : ${obj2.purchaseDate_str}</h7>
-
+                                    <h7 class="color-snow"> 만료 : ${obj2.purchaseDate_str}</h7>
                                     <button type="button" class="btn btn_smView" data-toggle="modal"
                                             data-target="#mdllAddRate-${obj2.gymNo}" id="review-link"
                                             style="margin-top: 7px; color: white; background-color: #a361e9; border: none; border-radius: 7px; cursor: pointer; padding: 4px 8px;">
@@ -140,62 +122,88 @@
                                             <path fill-rule="evenodd"
                                                   d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2Zm6 2.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7Zm3.5.878c1.482-1.42 4.795 1.392 0 4.622-4.795-3.23-1.482-6.043 0-4.622ZM2 5.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5Zm0 2a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5Zm0 2a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5Z"/>
                                         </svg>
-                                        <span style="margin-left: 4px; ">이용후기 남기기</span>
+                                        <span style="margin-left: 4px;">이용후기 남기기</span>
                                     </button>
                                 </div>
                             </div>
                         </section>
                     </c:forEach>
-                </div>
                 </c:when>
                 <c:otherwise>
-                    <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe"
-                    style=" padding-top: 80px;  padding-bottom:20px; background: linear-gradient(to bottom, #444B9C, #181d5e);">
-
                     <section class="npBalabce_section padding-5 pb-0">
-                        <div class="content_balance1 bg-white"
-                        style="  background: linear-gradient(to bottom, #565FAA, #252C86);
-                        border: none; height: 180px; margin: 2px 2px 5px 2px;
-                         box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 4px 4px 6px -3px rgba(0, 0, 0, 0.1);">
+                        <div class="content_balance bg-white border border-snow">
 
-                            <div class="txt" style="text-align: center; color: white ">
+                            <div class="txt" style="text-align: center">
                                 <h6>
-                                        ${logincust.custName} 님의 <br> 운동 이용권 구매가 아직이네요</h6>
-                                <h7 style="color: white; font-size: 10px; margin-bottom: 5px; font-weight: lighter">헬쓱에선 원하는 이용권을 더 저렴하게 이용할 수 있어요</h7>
-                            </div><br>
-                            <div class="action" style="border-radius: 7px; background-color: #cce5ff;  font-size: 9px; ">
-                                <a href="/ticket/all" class="btn" style="font-size: 9px; font-weight: bold">
+                                        ${logincust.custName} 님의 <br> 이용권이 없어요</h6>
+                                <h7 style="color: gray">딱 맞는 운동으로  <br> 이용권을 구매하세요</h7>
+                            </div>
+                            <div class="action">
+                                <a href="/ticket/all" class="btn">
                                     이용권 구매하기
                                 </a>
                             </div>
                         </div>
                     </section>
-                    </div>
                 </c:otherwise>
             </c:choose>
+        </div>
         <!-- End. 나의 이용권-->
-<%-- 탭생성 : 2개 제목구간 --%>
-            <div class="tab__line two_item">
-                <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
-                           role="tab" aria-controls="pills-home" aria-selected="true"
-                           style="font-size: 14px;">나의 운동</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
-                           role="tab" aria-controls="pills-profile" aria-selected="false"
-                           style="font-size: 14px;">출석체크</a>
-                    </li>
+        <section class="page_news">
+            <div id="wrapper">
+                <div id="content">
+                        <!-- Start. 챗봇 서비스 -->
+                        <div class="bg-white padding-20 ">
+                            <div class="item__tab lg_tab">
+                                <ul class="nav nav-pills" id="pills-tab" role="tablist" style="background-color: #b955f2;">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link active" id="pills-personal-tab" data-toggle="pill"
+                                           href="#pills-personal" role="tab" aria-controls="pills-personal"
+                                           aria-selected="true">운동 Q&A</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="pills-personal2-tab" data-toggle="pill"
+                                           href="#pills-personal2" role="tab" aria-controls="pills-personal2"
+                                           aria-selected="false">헬쓱어플 Q&A</a>
+                                    </li>
+                                    <span class="indicator__bg_active"></span>
+                                </ul>
+                            </div>
 
-                </ul>
-            </div><!-- 탭 제목 끝 -->
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-personal" role="tabpanel"
+                                     aria-labelledby="pills-personal-tab">
+                                    <section class="npBalabce_section padding-20 pb-0 d-flex align-items-center">
+                                        <div class="txt d-flex align-items-center">
+                                            <img src="/assets/img/candy/chatbot.png" class="d-inline animated-bounce" id="chatbot"
+                                                 alt="chatbot"
+                                                 style="width: 50px; height: 50px;">
+                                        </div>
+                                        <div class="text-left" style="margin-left: 20px; padding-top: 20px;">
+                                            <h6 class="color-secondary">안녕, 나는 헬쓱 지피티야. <br> 운동과 관련해서 궁금하다면?</h6>
+                                            <span class="color-snow h7" style="color: blueviolet;">나를 통해 검색해도 좋아!</span>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="tab-pane fade" id="pills-personal2" role="tabpanel"
+                                     aria-labelledby="pills-personal2-tab">
+                                    <section class="npBalabce_section padding-20 pb-0 d-flex align-items-center">
+                                        <div class="txt d-flex align-items-center">
+                                            <img src="/assets/img/candy/clova.png" class="d-inline animated-bounce" id="chatbotclova"
+                                                 alt="chatbot"
+                                                 style="width: 50px; height: 50px;">
+                                        </div>
+                                        <div class="text-left" style="margin-left: 20px; padding-top: 20px;">
+                                            <h6 class="color-secondary">안녕, 나는 헬쓱 클로바야.<br> 헬쓱 어플 이용법이 궁금하다면? </h6>
+                                            <span class="color-snow h7" style="color: blueviolet;">나에게 물어봐도 좋아!</span>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End. 챗봇 서비스 -->
 
-        <section class="components_page paddingTab_header" style="padding-top: 20px;">
-            <!-- 첫번째 탭 : 나의 운동 내용작성 구간 -->
-            <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                     aria-labelledby="pills-home-tab">
+                    <div class="dividar pt-1 mb-3 padding-20"></div>
 
                     <!-- Start 오늘의 일정 -->
                     <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe">
@@ -235,19 +243,16 @@
                                 </c:forEach>
                             </c:when>
                             <c:otherwise>
-                                <section class="npBalabce_section padding padding-b-20">
-                                    <div class="content_balance bg-white border border-gray"
-                                         style=" height:100px;
-                                      box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 4px 4px 6px -3px rgba(0, 0, 0, 0.1);">
+                                <section class="npBalabce_section padding-5 pb-0">
+                                    <div class="content_balance bg-white border border-gray">
                                         <div class="txt">
-                                            <h6 style="font-size: 14px;">
-                                                당분간 운동일정이 없네요
-                                                </h6>
-                                            <h7 style="color: blueviolet; font-size: 11px;">바로 수업일정을 알아보세요</h7>
+                                            <h6 >
+                                                    ${logincust.custName}님의 운동 일정이
+                                                <br>당분간 없어요</h6>
+                                            <h7 style="color: gray">바로 수업을 예약하세요</h7>
                                         </div>
-                                        <div class="action" style="
-                                        border-radius: 7px; background-color: #cce5ff;  font-size: 9px; ">
-                                            <a href="/class/reservation" class="btn" style="font-size: 9px; font-weight: bold; width: 20px; height: 30px; padding: 2px 2px 2px 2px;">
+                                        <div class="action">
+                                            <a href="/class/reservation" class="btn">
                                                 수업 예약하기
                                             </a>
                                         </div>
@@ -257,41 +262,8 @@
                         </c:choose>
                     </div>
                     <!-- End. 오늘의 일정 -->
-                    <%-- 챗봇 안내 --%>
-                    <div class="emTitle_co padding-20">
-                        <h2 class="size-16 weight-500 color-secondary mb-1">고객 문의사항</h2>
-                        <p class="size-12 color-text m-0">AI-ChatBot을 통해 궁금한 점을 빠르게 해결해 보세요.</p>
-                    </div>
-                    <div class="">
-                        <div class="margin-b-20 emPage__CateJobs withOut_colorful padding-l-20 padding-r-20">
 
-                            <a href="/mypage/gptchatbot" class="emCategorie_itemJobs _list bg-blue">
-                                <img src="/assets/img/candy/chatbot.png" class="d-inline animated-bounce" id="chatbot"
-                                     alt="chatbot"
-                                     style="width: 50px; height: 50px;">
-                                <div class="txt">
-                                    <h2>안녕, 나는 헬쓱 지피티야. <br> 운동하면서 궁금한 점을 알려줘</h2>
-                                    <p>24시간 대기중</p>
-                                </div>
-                            </a>
-                            <a href="/mypage/chatbot" class="emCategorie_itemJobs _list bg-orange">
-                                <img src="/assets/img/candy/clova.png" class="d-inline animated-bounce" id="chatbotclova"
-                                     alt="chatbot"
-                                     style="width: 50px; height: 50px;">
-                                <div class="txt">
-                                    <h2>안녕, 나는 헬쓱 클로바야.<br> 헬쓱 어플 이용법이 궁금하니? </h2>
-                                    <p>24시간 대기중</p>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                </div><!-- 나의운동 영역 끝. -->
-
-                <!-- 두번째 탭 : 출석체크 시작 -->
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-
-<%--                    <div class="dividar pt-1 mb-3 padding-20"></div>--%>
+                    <div class="dividar pt-1 mb-3 padding-20"></div>
 
                     <!-- Start. 운동 완료 별사탕 -->
                     <section class="npBalabce_section padding-0 pb-0">
@@ -299,7 +271,7 @@
                              style="width: 100%; height: 150px; padding-right: 0px; padding-left: 0px">
                         <div class="content_balance bg-white"
                              style="padding-bottom: 0px">
-                            <div class="txt">
+                             <div class="txt">
                                 <h6 class="color-secondary" style="font-weight: bold;">6월 운동 출석체크<br/><span style="font-size: 13px; font-weight: bold; color: blueviolet;">카메라를 열어 우측 QR코드를 찍어주세요</span></h6>
                                 <h7 id="candyCount" class="color-black"></h7>
                             </div>
@@ -365,20 +337,6 @@
                 </div>
             </div>
         </section>
-
-
-
-                    <!-- 조인리스트 넣는 공간 끝 -->
-
-                </div> <!-- 개설한 조인 끝. -->
-
-            </div>
-        </section>
-
-        <%--탭 종료--%>
-
-
-
 
         <!-- Modal -->
         <div class="modal defaultModal modalCentered change__address fade" id="mdllAdd_Address" tabindex="-1"

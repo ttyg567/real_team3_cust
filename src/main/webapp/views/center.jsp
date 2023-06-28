@@ -6,6 +6,29 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <style>
+<%-- 지피티   --%>
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    display: none;
+    background-color: #f9f9f9;
+    color: #000;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.join-button:hover .tooltip {
+    display: block;
+}
+
+    /**/
     .info span{
         font-family : 'KBFGTextM';!important;
     }
@@ -561,6 +584,7 @@
                                 </a>
                             </div>
                         </section><!-- 운동 카테고리 끝 -->
+
                         <hr style="height: 20px; color: #f7edfa; border: none; border-top: 10px solid;">
 
                         <!-- 카카오 지도 / 운동센터 혼잡도 안내 -->
@@ -568,7 +592,7 @@
                             <c:choose>
                                 <c:when test="${logincust == null}">
                                     <div>
-                                        <h3 class="size-15 weight-500 color-secondary m-0">회원님 주변 헬쓱 운동센터를 둘러보세요</h3>
+                                        <h3 class="size-15 weight-500 color-secondary m-0">회원님 주변 헬쓱 운동센터를 찾아보세요</h3>
                                         <p class="size-9 color-text m-0 pt-1">헬쓱에서 운동이용권을 결제하시면 운동수업 예약이 더욱 편리해져요</p>
                                     </div>
                                 </c:when>
@@ -1035,6 +1059,31 @@
     </c:forEach>
 
 </div>
+
+<!-- 조인만들기 버튼 : 로그인 고객은 만들기 가능, 비로그인 고객은 로그인 유도 창 안내 -->
+<c:choose>
+    <c:when test="${logincust == null}">
+        <div class="image-container">
+            <div class="join-button" style="position: fixed; z-index: 20; bottom: 80px; right: 20px">
+                <img src="/assets/img/candy/clova.png" class="d-inline animated-bounce" id="chatbotclova"
+                     alt="chatbot"
+                     style="width: 50px; height: 50px;">
+                <div class="tooltip">말풍선 내용</div>
+            </div>
+        </div>
+
+    </c:when>
+    <c:otherwise>
+        <div class="image-container">
+        <div class="join-button" style="position: fixed; z-index:20;  bottom: 80px; right: 20px">
+            <img src="/assets/img/candy/chatbot.png" class="d-inline animated-bounce" id="chatbot"
+                 alt="chatbot"
+                 style="width: 50px; height: 50px;">
+            <div class="tooltip">사용법</div>
+        </div>
+        </div>
+    </c:otherwise>
+</c:choose>
 
 <script>
     // 지도 마커를 담을 배열입니다
