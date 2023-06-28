@@ -45,14 +45,14 @@
     <!-- insert -->
     <insert id="insert" parameterType="cust">
         INSERT INTO cust (custNo, custEmail, custPwd, custName, custPhone, custBirth, custGender, custSido, custSigungu, sportsType,
-                          sportsClasstype, custStatus, custSocialmedia, custJoindate)
+                          sportsClasstype, custStatus, custSocialmedia, custJoindate, custImgName)
         VALUES (cust_seq.NEXTVAL, #{custEmail}, #{custPwd}, #{custName}, #{custPhone}, #{custBirth}, #{custGender},
-        #{custSido}, #{custSigungu}, #{sportsType}, #{sportsClasstype},'1', '0', sysdate)
+        #{custSido}, #{custSigungu}, #{sportsType}, #{sportsClasstype},'1', '0', sysdate,'workout.png')
     </insert>
     <!-- insert : social 전용 -->
     <insert id="insert_social" parameterType="cust">
-        INSERT INTO cust (custNo, custEmail, custName, custStatus, custSocialmedia, custSnstype, custJoindate)
-        VALUES (cust_seq.NEXTVAL, #{custEmail}, #{custName}, '1', '1', '구글', sysdate)
+        INSERT INTO cust (custNo, custEmail, custName, custStatus, custSocialmedia, custSnstype, custJoindate, custImgName)
+        VALUES (cust_seq.NEXTVAL, #{custEmail}, #{custName}, '1', '1', '구글', sysdate, 'workout.png')
     </insert>
     <!-- update (비밀번호와 관심컬럼은 다른 함수로) -->
     <update id="update" parameterType="cust">

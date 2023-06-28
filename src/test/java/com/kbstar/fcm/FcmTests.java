@@ -27,8 +27,11 @@ class FcmTests {
 
 
 //        pushNotificationUtil.sendCommonMessage("SPRING", "SPRING", "/cust/register");
-        pushNotificationUtil.sendCommonMessage("Open Coupon Box", "Open Coupon Box", "/cust/login", "eLTC8rfpQqeWLE1DDs8dY1:APA91bFdqm7IK3qc22AKpiemV5f1lOQ30NCcbgXDNY7uuZ9Y1vtzgTvThPngOKhxlKoYFSl4JhjT_FfAjVF3PQPLut90aWHYxl8YcFAW6D4xtCyoaVvqKY-oIRvjlWwsT9lWst4ys4OQ\n");
-//        pushNotificationUtil.sendCommonMessage(encodedTitle, encodedMessage, "/coupon/show", "e9ofDL7CSTu7_TfF0p3DaR:APA91bHuXvnrpfJst1krSsaflIZy1-B--iyx06KmY4nCLnqhvehoIQVMZtp2JRXB9mz0Pb0r3Y6JE-nIfPU998bHer0l0Y7odg_mpxhf_TF7b8-AycCpv0fH0RpSFh9wD0Fo25zO-KUl");
+//        pushNotificationUtil.sendCommonMessage("Open Coupon Box", "Open Coupon Box", "/coupon/show?couponNo="+24, "fRWwsGIRRw2U-tuhPYwng4:APA91bHsla7S9VBvhhVdU_SGGrMPMiTw47hQ6Fd77eGQz6XyyAsXVjndxJMjdcIHk-ayeb8k-8P8RDY5PTo7_t5QwhRNk6llDK2envljb7JFbdMqbmsXenJR5vGaWZNvLfd0G-d9afXj");
+//        pushNotificationUtil.sendCommonMessage("Open Coupon Box", "Open Coupon Box", "/coupon/show?couponNo="+25,  "eLTC8rfpQqeWLE1DDs8dY1:APA91bFdqm7IK3qc22AKpiemV5f1lOQ30NCcbgXDNY7uuZ9Y1vtzgTvThPngOKhxlKoYFSl4JhjT_FfAjVF3PQPLut90aWHYxl8YcFAW6D4xtCyoaVvqKY-oIRvjlWwsT9lWst4ys4OQ");
+//        pushNotificationUtil.sendCommonMessage("Open Coupon Box", "Open Coupon Box", "/cust/login",  "eLTC8rfpQqeWLE1DDs8dY1:APA91bFdqm7IK3qc22AKpiemV5f1lOQ30NCcbgXDNY7uuZ9Y1vtzgTvThPngOKhxlKoYFSl4JhjT_FfAjVF3PQPLut90aWHYxl8YcFAW6D4xtCyoaVvqKY-oIRvjlWwsT9lWst4ys4OQ");
     }
+
+    // https://115.85.183.166/coupon/received?couponNo=25
 
 }
