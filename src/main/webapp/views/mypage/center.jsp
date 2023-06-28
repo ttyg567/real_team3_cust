@@ -78,7 +78,12 @@
     .moving-text {
         animation: moveText 2s infinite;
     }
-
+    .nav-pills .nav-item .nav-link {
+        color: white; /* 원하는 글씨 색상으로 변경 */
+    }
+    .nav-pills .nav-item .nav-link.active {
+        color: black; /* 선택된 탭 글씨 색상 */;
+    }
 </style>
 
 <c:choose>
@@ -138,7 +143,7 @@
                         <!-- Start. 챗봇 서비스 -->
                         <div class="bg-white padding-20 ">
                             <div class="item__tab lg_tab">
-                                <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                                <ul class="nav nav-pills" id="pills-tab" role="tablist" style="background-color: #b955f2;">
                                     <li class="nav-item" role="presentation">
                                         <a class="nav-link active" id="pills-personal-tab" data-toggle="pill"
                                            href="#pills-personal" role="tab" aria-controls="pills-personal"
@@ -162,9 +167,9 @@
                                                  alt="chatbot"
                                                  style="width: 50px; height: 50px;">
                                         </div>
-                                        <div class="text-left" style="margin-left: 20px">
+                                        <div class="text-left" style="margin-left: 20px; padding-top: 20px;">
                                             <h6 class="color-secondary">안녕, ${logincust.custName}님! <br> 나는 헬쓱 지피티야!</h6>
-                                            <span class="color-snow h7">나에게는 무엇이든 물어봐도 좋아!</span>
+                                            <span class="color-snow h7" style="color: blueviolet;">나에게는 무엇이든 물어봐도 좋아!</span>
                                         </div>
                                     </section>
                                 </div>
@@ -176,9 +181,9 @@
                                                  alt="chatbot"
                                                  style="width: 50px; height: 50px;">
                                         </div>
-                                        <div class="text-left" style="margin-left: 20px">
+                                        <div class="text-left" style="margin-left: 20px; padding-top: 20px;">
                                             <h6 class="color-secondary">안녕, ${logincust.custName}님! <br> 나는 헬쓱 클로바야!</h6>
-                                            <span class="color-snow h7">나에게는 무엇이든 물어봐도 좋아!</span>
+                                            <span class="color-snow h7" style="color: blueviolet;">나에게는 무엇이든 물어봐도 좋아!</span>
                                         </div>
                                     </section>
                                 </div>

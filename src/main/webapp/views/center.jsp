@@ -1004,7 +1004,7 @@
                                 <p id="server_time" style="font-size: 12px; font-weight: bold"></p>
                                     <div style="width: 90%; height: 140px;">
                                     <video width="100%" height="140px" autoplay loop muted>
-                                        <source src="/assets/mp4/와이드 풀다운.mp4" type="video/mp4"> <!-- 동영상 파일 경로 및 유형을 지정 -->
+                                        <source src="/assets/mp4/kb본관센터.mp4" type="video/mp4"> <!-- 동영상 파일 경로 및 유형을 지정 -->
                                     </video>
                                     </div>
 <%--                                <img src="/assets/img/gym/health1.jpg" alt="" style="width: 90%; height: 140px;">--%>
