@@ -312,27 +312,7 @@
                                 <img  class="ticket_image" src="/assets/img/gymImg/${gym.gymImgname}" alt="">
                             </div>
                         </a>
-                        <!-- 찜버튼! -->
-                        <button type="button" class="btn rounded-8 btn_addBookmark item-active" id="itemSave">
-                            <div class="ico icon_current">
-                                <svg id="Iconly_Two-tone_Heart" data-name="Iconly/Two-tone/Heart"
-                                     xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                     viewBox="0 0 20 20">
-                                    <g id="Heart" transform="translate(1.667 2.5)">
-                                        <path id="Path_33961"
-                                              d="M8.124,14.878a30.408,30.408,0,0,1-5.282-3.907A9.935,9.935,0,0,1,.327,7.163,5.229,5.229,0,0,1,3.571.24,5.469,5.469,0,0,1,8.33,1h0A5.477,5.477,0,0,1,13.089.24,5.232,5.232,0,0,1,16.34,7.163a9.935,9.935,0,0,1-2.514,3.808,30.408,30.408,0,0,1-5.282,3.907L8.338,15Z"
-                                              transform="translate(0 0)" fill="none" stroke="#292e34"
-                                              stroke-linecap="round" stroke-linejoin="round"
-                                              stroke-miterlimit="10" stroke-width="1.5"></path>
-                                        <path id="Path_33964" d="M0,0A2.345,2.345,0,0,1,1.681,2.018"
-                                              transform="translate(11.613 3.378)" fill="none" stroke="#292e34"
-                                              stroke-linecap="round" stroke-linejoin="round"
-                                              stroke-miterlimit="10" stroke-width="1.5" opacity="0.4"></path>
-                                    </g>
-                                </svg>
-                            </div>
-                            <span class="icon_active"></span>
-                        </button>
+
                         <div class="item_discount">${gym.ticketDiscount}%</div>
                     </div>
                     <div class="title_product">
@@ -380,11 +360,11 @@
         <a href="/groupboard/groupboard_list" class="d-block color-text size-12 m-0">더보기</a>
     </div><br>
 <!-- 조인헬쓱 항목 나열 구간 -->
-        <div class="em_swiper_products margin-b-20">
+        <div class="em_swiper_products margin-b-50">
             <div class="em_body_products">
                 <div class="owl-carousel owl-theme em-owlRight">
                     <c:forEach var="obj" items="${alljoin}">
-                        <div class="item em_item_product">
+                        <div class="item em_item_product" style="width: 162px">
                             <div class="em_head" id="join_em_head"><!-- 선택 시 센터 상세페이지로 이동 -->
                                 <a data-toggle="modal"
                                    data-target="#mdllJobDetails${obj.groupboardNo}" class="image_product text-decoration-none">

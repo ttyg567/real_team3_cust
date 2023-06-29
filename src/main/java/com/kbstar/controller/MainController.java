@@ -34,6 +34,8 @@ public class MainController {
     MyMachineService myMachineService;
     @Autowired
     CustService custService;
+    @Autowired
+    PurchaseService purchaseService;
     // 투데이 페이지 : 헬쓱 메인 페이지로, 광고배너 노출 + 카테고리별 운동센터 조회 +
     // 운동이용권을 결제한 회원의 경우 -> 나의 운동센터 혼잡도 보여주기
     // 투데이 페이지 : 헬쓱 메인 페이지로, 광고배너 노출 + 카테고리별 운동센터 조회 +
@@ -53,6 +55,7 @@ public class MainController {
         List<GymMachine> list2 = null;
         List<MyMachine> list3 = null;
         List<Groupboard> list4 = null;
+        List<Purchase> my_ticket_list = null;
 
         model.addAttribute("searchType", list); //jsp파일에서 뿌릴 이름 정하기
         try {
@@ -68,6 +71,8 @@ public class MainController {
             // 로그인 고객만을 위한 정보 : 나의 운동기구로 즐겨찾기한 리스트를 메인페이지에서 보여준다.
             if (cust != null) {
                 list3 = myMachineService.getmymachine(cust.getCustNo()); // 즐겨찾기 보여주기 // 로그인시 오면 여기서 에러남
+                // 나의 티켓 추출
+                my_ticket_list = purchaseService.getvalid(cust.getCustNo());
             }
 
         }
@@ -82,6 +87,7 @@ public class MainController {
         if (cust != null) {
             //list3 = myMachineService.getmymachine(cust.getCustNo()); // 즐겨찾기 보여주기.
             model.addAttribute("myMachine", list3); // 즐겨찾기된 기구들 보여주기
+            model.addAttribute("my_ticket_list", my_ticket_list);
         }
 
         model.addAttribute("adminserver", adminserver);

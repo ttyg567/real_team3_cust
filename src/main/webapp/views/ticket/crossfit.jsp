@@ -305,7 +305,7 @@
                                             </g>
                                         </svg>
                                     </div>
-                                    <span>${obj.likecount}명이 관심있는 곳</span>
+                                    <span>${obj.likecount}명이 찜해요</span>
                                 </div>
                             </div>
                         </div>

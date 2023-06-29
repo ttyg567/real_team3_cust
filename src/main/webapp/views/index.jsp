@@ -70,7 +70,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="/assets/js/userjs/countup.min.js"></script>
     <style>
-        #map img{
+        #mapimg img{
             border-radius: 15px;
             width: 100%;
             height: 100%;
@@ -250,7 +250,7 @@ np_balanceDefault {
     <%-- center 시작 --%>
     <c:choose>
         <c:when test="${center == null}">
-            <jsp:include page="center.jsp"/>
+            <jsp:include page="center(티켓추가).jsp"/>
         </c:when>
         <c:otherwise>
             <jsp:include page="${center}.jsp"/>
@@ -925,7 +925,7 @@ np_balanceDefault {
                                             <div class="title">
                                                 <h6>센터 상세정보</h6>
                                                     <%--  센터 지도 이미지 --%>
-                                                <div id="map" style="width: 100%; height: 250px;">
+                                                <div id="mapimg" style="width: 100%; height: 250px;">
                                                 <img src="/assets/img/gym1_map.jpg" alt="">
                                                 </div>
                                             </div>

@@ -370,7 +370,7 @@
 
         <!-- 1.조인 관심지역 리스트 슬라이드. Swiper -->
         <!-- 조인 항목 나열 구간 -->
-        <div class="em_swiper_products margin-b-20">
+        <div class="em_swiper_products margin-b-30">
             <div class="em_body_products">
                 <div class="owl-carousel owl-theme em-owlRight">
                     <c:forEach var="obj" items="${alljoin}">
@@ -474,7 +474,7 @@
         </div>
         <%--2. 선호운동 비슷한 조인 리스트 나열--%>
         <!-- 조인 항목 나열 구간 -->
-        <div class="em_swiper_products margin-b-20">
+        <div class="em_swiper_products margin-b-50">
             <div class="em_body_products">
                 <div class="owl-carousel owl-theme em-owlRight">
                     <c:forEach var="obj" items="${mysportstype}">

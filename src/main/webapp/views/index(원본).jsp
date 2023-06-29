@@ -104,7 +104,7 @@
     <!-- center 시작 -->
     <c:choose>
         <c:when test="${center == null}">
-            <jsp:include page="center.jsp"/>
+            <jsp:include page="center(티켓추가).jsp"/>
         </c:when>
         <c:otherwise>
             <jsp:include page="${center}.jsp"/>
