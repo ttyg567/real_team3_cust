@@ -112,21 +112,22 @@
                               stroke-width="1.5" opacity="0.4" />
                     </g>
                 </svg>
-                <svg class="hover_ico color-primary" id="Iconly_Two-tone_Notification" data-name="Iconly/Two-tone/Notification"
-                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <g id="Notification" transform="translate(3.5 2)">
-                        <path id="Path_425"
-                              d="M0,11.787v-.219A3.6,3.6,0,0,1,.6,9.75,4.87,4.87,0,0,0,1.8,7.436c0-.666,0-1.342.058-2.009C2.155,2.218,5.327,0,8.461,0h.078c3.134,0,6.306,2.218,6.617,5.427.058.666,0,1.342.049,2.009A4.955,4.955,0,0,0,16.4,9.759a3.506,3.506,0,0,1,.6,1.809v.209a3.566,3.566,0,0,1-.844,2.39A4.505,4.505,0,0,1,13.3,15.538a45.078,45.078,0,0,1-9.615,0A4.554,4.554,0,0,1,.835,14.167,3.6,3.6,0,0,1,0,11.787Z"
-                              transform="translate(0 0)" fill="none" stroke="#200e32" stroke-linecap="round"
-                              stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
-                        <path id="Path_421"
-                              d="M0,0A3.061,3.061,0,0,0,2.037,1.127,3.088,3.088,0,0,0,4.288.5,2.886,2.886,0,0,0,4.812,0"
-                              transform="translate(6.055 18.852)" fill="none" stroke="#200e32"
-                              stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                              stroke-width="1.5" opacity="0.4" />
-                    </g>
-                </svg>
-                <span class="flashCircle"></span>
+<%--               알림 주석--%>
+<%--                <svg class="hover_ico color-primary" id="Iconly_Two-tone_Notification" data-name="Iconly/Two-tone/Notification"--%>
+<%--                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">--%>
+<%--                    <g id="Notification" transform="translate(3.5 2)">--%>
+<%--                        <path id="Path_425"--%>
+<%--                              d="M0,11.787v-.219A3.6,3.6,0,0,1,.6,9.75,4.87,4.87,0,0,0,1.8,7.436c0-.666,0-1.342.058-2.009C2.155,2.218,5.327,0,8.461,0h.078c3.134,0,6.306,2.218,6.617,5.427.058.666,0,1.342.049,2.009A4.955,4.955,0,0,0,16.4,9.759a3.506,3.506,0,0,1,.6,1.809v.209a3.566,3.566,0,0,1-.844,2.39A4.505,4.505,0,0,1,13.3,15.538a45.078,45.078,0,0,1-9.615,0A4.554,4.554,0,0,1,.835,14.167,3.6,3.6,0,0,1,0,11.787Z"--%>
+<%--                              transform="translate(0 0)" fill="none" stroke="#200e32" stroke-linecap="round"--%>
+<%--                              stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />--%>
+<%--                        <path id="Path_421"--%>
+<%--                              d="M0,0A3.061,3.061,0,0,0,2.037,1.127,3.088,3.088,0,0,0,4.288.5,2.886,2.886,0,0,0,4.812,0"--%>
+<%--                              transform="translate(6.055 18.852)" fill="none" stroke="#200e32"--%>
+<%--                              stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"--%>
+<%--                              stroke-width="1.5" opacity="0.4" />--%>
+<%--                    </g>--%>
+<%--                </svg>--%>
+<%--                <span class="flashCircle"></span>--%>
             </a>
 
         </div><!-- 우측상단 아이콘 모으는 영역 끝. -->
@@ -179,7 +180,7 @@
 
                   <div class="swiper-slide">
                       <div class="--item-inside">
-                          <div class="cover_img">
+                          <div class="cover_img" style="height: 400px">
                               <a href="/ticket/detail?gymNo=5">
                                   <img src="/assets/img/gymImg/best_banner2.jpg" alt="">
                                   <div
@@ -200,7 +201,7 @@
 
                   <div class="swiper-slide">
                       <div class="--item-inside">
-                          <div class="cover_img">
+                          <div class="cover_img" style="height: 400px">
                               <a href="/ticket/detail?gymNo=7">
                                   <img src="/assets/img/gymImg/yoga_main_7.jpg" alt="">
                                   <div
@@ -220,7 +221,7 @@
                   </div>
                   <div class="swiper-slide">
                       <div class="--item-inside">
-                          <div class="cover_img">
+                          <div class="cover_img" style="height: 400px">
                               <a href="/ticket/detail?gymNo=27">
                                   <img src="/assets/img/gymImg/best_banner1.jpg" alt="">
                                   <div
@@ -271,24 +272,12 @@
                               </a>
                           </div>
                           <div class="title_product">
-                              <button type="button" class="btn rounded-8 btn_addBookmark item-active -active">
-                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                       xmlns="http://www.w3.org/2000/svg">
-                                      <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M11.6648 18.6316L5.73341 21.8811C5.25984 22.1272 4.67641 21.953 4.41533 21.4875V21.4875C4.3398 21.3433 4.29905 21.1834 4.29634 21.0206V6.62247C4.29634 3.87647 6.17277 2.77808 8.873 2.77808H15.2162C17.8341 2.77808 19.7929 3.80325 19.7929 6.4394V21.0206C19.7929 21.2804 19.6897 21.5295 19.506 21.7132C19.3224 21.8969 19.0733 22 18.8135 22C18.6478 21.9974 18.485 21.9567 18.3375 21.8811L12.3696 18.6316C12.1497 18.5128 11.8847 18.5128 11.6648 18.6316Z"
-                                            stroke="#200E32" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                      <path opacity="0.4" d="M8.36957 9.32266H15.6648" stroke="#200E32"
-                                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                  </svg>
-                                  <span class="icon_active"></span>
-                              </button>
 
                               <div class="itemRating">
                                   <span class="number">우수</span>
                                   <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                       <path fill="#555" d="M13.6816069,1.68151414 C15.6886881,1.20225236 17.3492986,1.70793555 18.5305552,2.77637221 C19.5626391,3.70988338 20.1587415,5.33450059 19.9630126,7.16572033 C19.8161255,8.53998089 19.0697083,9.93491864 17.720706,11.386568 L10.4473397,18.3091773 C10.1789774,18.5645979 9.75131756,18.5634627 9.48437469,18.306621 L2.26602773,11.360285 C1.19796664,10.2267143 0.516216376,9.15006254 0.232531945,8.11775634 C-0.179041108,6.62007311 -0.0389102525,5.1069236 0.610402012,3.87469373 C1.38014048,2.41392548 2.91616709,1.54639939 5.14169869,1.54639939 C6.66436262,1.54639939 8.26181311,2.29873453 9.94732517,3.76705682 C11.0946237,2.70056091 12.3405404,2.00174132 13.6816069,1.68151414 Z M9.96986805,16.8832036 L16.7307562,10.4500428 C17.8683506,9.22426481 18.4802442,8.08073063 18.593038,7.02544401 C18.7443646,5.60964799 18.3027389,4.40604174 17.5956909,3.76652276 C16.7370508,2.98989 15.5402429,2.62544232 14.0080827,2.99129989 C12.7513412,3.29139148 11.5737369,4.01053975 10.4701027,5.16500603 C10.2073896,5.43981945 9.76565601,5.45085998 9.4889549,5.1895285 C7.85204028,3.64353785 6.39709722,2.89460061 5.14169869,2.89460061 C3.41950102,2.89460061 2.36199017,3.49186778 1.83462163,4.49267941 C1.34644218,5.41912009 1.23828402,6.58702475 1.56270689,7.76757505 C1.78126554,8.56289346 2.34931983,9.45999126 3.25514439,10.4225684 L9.96986805,16.8832036 Z"/>
-                                  </svg> <span class="users">　${gym.likecount} likes</span>
+                                  </svg> <span class="users">　${gym.likecount}명이 찜해요</span>
                               </div>
                               <h3>최신시설과 쾌적한 센터환경 유지로 헬쓱이용 회원 최고 만족도!</h3>
                               <p class="item_price">${gym.gymName}</p>

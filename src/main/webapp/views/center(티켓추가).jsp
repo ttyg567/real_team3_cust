@@ -473,21 +473,21 @@
                               stroke-width="1.5" opacity="0.4" />
                     </g>
                 </svg>
-<%--                <svg class="hover_ico color-primary" id="Iconly_Two-tone_Notification" data-name="Iconly/Two-tone/Notification"--%>
-<%--                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">--%>
-<%--                    <g id="Notification" transform="translate(3.5 2)">--%>
-<%--                        <path id="Path_425"--%>
-<%--                              d="M0,11.787v-.219A3.6,3.6,0,0,1,.6,9.75,4.87,4.87,0,0,0,1.8,7.436c0-.666,0-1.342.058-2.009C2.155,2.218,5.327,0,8.461,0h.078c3.134,0,6.306,2.218,6.617,5.427.058.666,0,1.342.049,2.009A4.955,4.955,0,0,0,16.4,9.759a3.506,3.506,0,0,1,.6,1.809v.209a3.566,3.566,0,0,1-.844,2.39A4.505,4.505,0,0,1,13.3,15.538a45.078,45.078,0,0,1-9.615,0A4.554,4.554,0,0,1,.835,14.167,3.6,3.6,0,0,1,0,11.787Z"--%>
-<%--                              transform="translate(0 0)" fill="none" stroke="#200e32" stroke-linecap="round"--%>
-<%--                              stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />--%>
-<%--                        <path id="Path_421"--%>
-<%--                              d="M0,0A3.061,3.061,0,0,0,2.037,1.127,3.088,3.088,0,0,0,4.288.5,2.886,2.886,0,0,0,4.812,0"--%>
-<%--                              transform="translate(6.055 18.852)" fill="none" stroke="#200e32"--%>
-<%--                              stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"--%>
-<%--                              stroke-width="1.5" opacity="0.4" />--%>
-<%--                    </g>--%>
-<%--                </svg>--%>
-<%--                <span class="flashCircle"></span>--%>
+                <svg class="hover_ico color-primary" id="Iconly_Two-tone_Notification" data-name="Iconly/Two-tone/Notification"
+                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <g id="Notification" transform="translate(3.5 2)">
+                        <path id="Path_425"
+                              d="M0,11.787v-.219A3.6,3.6,0,0,1,.6,9.75,4.87,4.87,0,0,0,1.8,7.436c0-.666,0-1.342.058-2.009C2.155,2.218,5.327,0,8.461,0h.078c3.134,0,6.306,2.218,6.617,5.427.058.666,0,1.342.049,2.009A4.955,4.955,0,0,0,16.4,9.759a3.506,3.506,0,0,1,.6,1.809v.209a3.566,3.566,0,0,1-.844,2.39A4.505,4.505,0,0,1,13.3,15.538a45.078,45.078,0,0,1-9.615,0A4.554,4.554,0,0,1,.835,14.167,3.6,3.6,0,0,1,0,11.787Z"
+                              transform="translate(0 0)" fill="none" stroke="#200e32" stroke-linecap="round"
+                              stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
+                        <path id="Path_421"
+                              d="M0,0A3.061,3.061,0,0,0,2.037,1.127,3.088,3.088,0,0,0,4.288.5,2.886,2.886,0,0,0,4.812,0"
+                              transform="translate(6.055 18.852)" fill="none" stroke="#200e32"
+                              stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+                              stroke-width="1.5" opacity="0.4" />
+                    </g>
+                </svg>
+                <span class="flashCircle"></span>
             </a>
         </div><!-- 우측상단 아이콘 모으는 영역 끝. -->
     </header>
@@ -631,298 +631,288 @@
                         <hr style="height: 20px; color: #f7edfa; border: none; border-top: 10px solid; margin-top: 0">
 
                         <!-- 카카오 지도 / 운동센터 혼잡도 안내 -->
-                        <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
+<%--                        <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">--%>
                             <c:choose>
                                 <c:when test="${logincust == null}">
+                                    <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
                                     <div>
                                         <h3 class="size-15 weight-500 color-secondary m-0">회원님 주변 헬쓱 운동센터를 찾아보세요</h3>
                                         <p class="size-9 color-text m-0 pt-1">헬쓱에서 운동이용권을 결제하시면 운동수업 예약이 더욱 편리해져요</p>
                                     </div>
-                                </c:when>
-                                <c:when test="${my_ticket_list == '[]'}">
-                                    <div>
-                                        <h3 class="size-16 weight-500 color-secondary m-0">${logincust.custName}님, 운동센터를 아직 고민 중이신가요?<br><br>
-                                            <p class="size-12 m-0 pt-1" style="color: blueviolet; font-weight: bold">현재 위치 주변 헬쓱센터를 검색하고<br> 합리적인 가격으로 운동 이용권을 구매해 보세요!</p>
+                                    <div class="map_wrap">
+                                        <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+
+                                        <div id="menu_wrap" class="bg_white">
+                                            <div class="option">
+                                                <div>
+                                                    <form  onsubmit="searchPlaces(); return false;" >
+                                                        <input type="text" value="성수" id="keyword" size="15">
+                                                        <button type="submit">검색</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <ul id="placesList"></ul>
+                                            <div id="pagination"></div>
+                                        </div>
+                                    </div>
                                     </div>
                                 </c:when>
                                 <c:otherwise>
                                     <div>
-                                        <h3 class="size-17 weight-500 color-secondary m-0">${logincust.custName}님의 KB피트니스센터 본관 여의도점<br>
-                                            <h3 class="size-17 weight-500 color-secondary m-0"><span style="color: limegreen; font-weight: bold; font-size: 18px">혼잡도는 지금 맑음</span> 이에요</h3>
-                                        <p class="size-9 color-text m-0 pt-1">자주 이용하는 운동기구를 즐겨찾기하고 빠르게 확인해요</p>
+                                        <h3 class="size-16 weight-500 color-secondary m-0">${logincust.custName}님, 운동센터를 아직 고민 중이신가요?<br><br>
+                                        <p><span style="font-weight: bold; text-align: center; font-size: 12px">헬쓱에서 운동센터의 이용권을 구매하시면
+                                        <br>센터 혼잡도를 실시간으로 확인하고 자주찾는 운동기구를 설정할 수 있어요.</span></p>
                                     </div>
-                                </c:otherwise>
-                            </c:choose>
-                        </div><br>
-                        <!-- 센터 기구 항목 나열 -->
-                        <section class=" components_page padding-b-30">
-                            <!-- 미로그인 고객이 메인페이지 오면, 카카오 지도로 센터 추천과 검색 기능보이게. -->
-                            <c:choose>
-                                <c:when test="${logincust == null}">
-                                    <div class="map_wrap">
-                                        <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-                                        <div id="menu_wrap" class="bg_white">
-                                            <div class="option">
-                                                <div>
-                                                    <form  onsubmit="searchPlaces(); return false;" >
-                                                        <input type="text" value="성수" id="keyword" size="15">
-                                                        <button type="submit">검색</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <ul id="placesList"></ul>
-                                            <div id="pagination"></div>
+                                <c:choose>
+                                    <c:when test="${my_ticket_list != '[]'}">
+                                        <div>
+                                            <h3 class="size-17 weight-500 color-secondary m-0">${logincust.custName}님의 KB피트니스센터 본관 여의도점<br>
+                                                <h3 class="size-17 weight-500 color-secondary m-0"><span style="color: limegreen; font-weight: bold; font-size: 18px">혼잡도는 지금 맑음</span> 이에요</h3>
+                                                <p class="size-9 color-text m-0 pt-1">자주 이용하는 운동기구를 즐겨찾기하고 빠르게 확인해요</p>
                                         </div>
-                                    </div>
-                                </c:when>
-                                <c:when test="${my_ticket_list == '[]'}">
-                                    <div class="map_wrap">
-                                        <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-                                        <div id="menu_wrap" class="bg_white">
-                                            <div class="option">
-                                                <div>
-                                                    <form  onsubmit="searchPlaces(); return false;" >
-                                                        <input type="text" value="성수" id="keyword" size="15">
-                                                        <button type="submit">검색</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <ul id="placesList"></ul>
-                                            <div id="pagination"></div>
-                                        </div>
-                                    </div>
-                                </c:when>
-                                <c:otherwise><!-- 로그인 고객에겐, 이용중인 센터 혼잡도 -->
-                                    <div class="pt_simpleDetails m-0 py-2 rounded-0 emBlock__border">
-                                        <div class="em_bodyinner">
-                                            <div class="embkRateCustomer" >
-                                                <div class="emBoxRating">
-                                                    <div class="row" style="height: 160px">
-                                                        <div class="col-4" style="height: 150px; padding-right: 0px">
-                                                            <img src="/img/good.png"  alt="" style="height: 90%; padding-bottom: 15px; padding-top: 15px;">
-                                                        </div>
-                                                        <div class="col-8" style="height: 150px">
-                                                                <%--                                          <span class="size-13 color-black m-0 pt-1" style="font-weight: bold">나의 운동기구</span>--%>
-                                                            <div class="btn btn_smView d-flex align-items-center" data-toggle="tooltip"
-                                                                 data-placement="top"
-                                                                 title="아래 별모양을 클릭하고 자주 찾는 기구들은 한눈에 보세요"
-                                                                 style="width: 100%; height: 30px; background-color: white; font-size: 13px; color: black; font-weight: bold; margin: 0px; padding-left: 0px; ">
-                                                                <span class="size-13 color-black m-0 pt-1" style="font-weight: bold; padding-right: 5px; text-align: left; padding-left: 0px; flex: 1;">나의 운동기구함</span>
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
-                                                                     class="bi bi-patch-exclamation-fill color-facebook" viewBox="0 0 16 16"
-                                                                     style="vertical-align: middle;">
-                                                                    <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                                                                </svg>
-                                                            </div>
-                                                            <br>
-                                                            <div class="group">
-                                                            </div>
-                                                            <div class="progress__rate">
-                                                                <div class="">
-                                                                    <c:forEach var="obj" items="${myMachine}">
-                                                                        <c:set var="canQuantity" value="${canQuantity = (obj.holdingQuantity - obj.usingQuantity) }" />
-                                                                        <input type="hidden" name="holdingQuantity" value="${obj.holdingQuantity}"/>
-                                                                        <input type="hidden" name="usingQuantity" value="${obj.usingQuantity}"/>
-                                                                        <div class="item" style="height: 40px;  display: flex; align-items: center;">
-                                                                            <div style="width:90%;">
-                                                                                <p class="size-13 color-black m-0 pt-1">${obj.machineName}</p>
-                                                                                    <%-- 그래프 그리기  --%>
-                                                                                <c:choose>
-                                                                                    <c:when test="${canQuantity == 0}">
-                                                                                        <div style="display: flex; align-items: center; justify-content: space-between;">
-                                                                                            <div class="progress" style="height: 8px;">
-                                                                                                <div class="progress-bar" role="progressbar" style="width: 100%; background-color: #ff8000;"
-                                                                                                     aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                                                                                                </div>
-                                                                                            </div><%-- 즐겨찾기 해제(삭제) 버튼 --%>
-                                                                                            <a href="/removemymachine?machineNo=${obj.machineNo}">
-                                                                                                <i class="ri-close-fill color-text" style="padding-left:5px;"></i>
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </c:when>
-                                                                                    <c:when test="${canQuantity <= 2}">
-                                                                                        <div style="display: flex; align-items: center; justify-content: space-between;">
-                                                                                            <div class="progress" style="height: 8px;">
-                                                                                                <div class="progress-bar" role="progressbar" style="width: 60%; background-color: #1E90FF;"
-                                                                                                     aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <a href="/removemymachine?machineNo=${obj.machineNo}">
-                                                                                                <i class="ri-close-fill color-text"></i>
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </c:when>
-                                                                                    <c:otherwise>
-                                                                                        <div style="display: flex; align-items: center; justify-content: space-between;">
-                                                                                            <div class="progress" style="height: 8px;">
-                                                                                                <div class="progress-bar" role="progressbar" style="width: 20%; background-color: #32CD32;"
-                                                                                                     aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <a href="/removemymachine?machineNo=${obj.machineNo}">
-                                                                                                <i class="ri-close-fill color-text"></i>
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </c:otherwise>
-                                                                                </c:choose>
+                                        <!-- 센터 기구 항목 나열 -->
+                                        <section class=" components_page padding-b-30">
+                                            <!-- 미로그인 고객이 메인페이지 오면, 카카오 지도로 센터 추천과 검색 기능보이게. -->
+                                            <c:choose>
+                                                <c:when test="${logincust == null}">
+
+                                                </c:when>
+                                                <c:otherwise><!-- 로그인 고객에겐, 이용중인 센터 혼잡도 -->
+                                                    <div class="pt_simpleDetails m-0 py-2 rounded-0 emBlock__border">
+                                                        <div class="em_bodyinner">
+                                                            <div class="embkRateCustomer" >
+                                                                <div class="emBoxRating">
+                                                                    <div class="row" style="height: 160px">
+                                                                        <div class="col-4" style="height: 150px; padding-right: 0px">
+                                                                            <img src="/img/good.png"  alt="" style="height: 90%; padding-bottom: 15px; padding-top: 15px;">
+                                                                        </div>
+                                                                        <div class="col-8" style="height: 150px">
+                                                                                <%--                                          <span class="size-13 color-black m-0 pt-1" style="font-weight: bold">나의 운동기구</span>--%>
+                                                                            <div class="btn btn_smView d-flex align-items-center" data-toggle="tooltip"
+                                                                                 data-placement="top"
+                                                                                 title="아래 별모양을 클릭하고 자주 찾는 기구들은 한눈에 보세요"
+                                                                                 style="width: 100%; height: 30px; background-color: white; font-size: 13px; color: black; font-weight: bold; margin: 0px; padding-left: 0px; ">
+                                                                                <span class="size-13 color-black m-0 pt-1" style="font-weight: bold; padding-right: 5px; text-align: left; padding-left: 0px; flex: 1;">나의 운동기구</span>
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                                                                                     class="bi bi-patch-exclamation-fill color-facebook" viewBox="0 0 16 16"
+                                                                                     style="vertical-align: middle;">
+                                                                                    <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                                                                </svg>
+                                                                            </div>
+                                                                            <br>
+                                                                            <div class="group">
+                                                                            </div>
+                                                                            <div class="progress__rate">
+                                                                                <div class="">
+                                                                                    <c:forEach var="obj" items="${myMachine}">
+                                                                                        <c:set var="canQuantity" value="${canQuantity = (obj.holdingQuantity - obj.usingQuantity) }" />
+                                                                                        <input type="hidden" name="holdingQuantity" value="${obj.holdingQuantity}"/>
+                                                                                        <input type="hidden" name="usingQuantity" value="${obj.usingQuantity}"/>
+                                                                                        <div class="item" style="height: 40px;  display: flex; align-items: center;">
+                                                                                            <div style="width:90%;">
+                                                                                                <p class="size-13 color-black m-0 pt-1">${obj.machineName}</p>
+                                                                                                    <%-- 그래프 그리기  --%>
+                                                                                                <c:choose>
+                                                                                                    <c:when test="${canQuantity == 0}">
+                                                                                                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                                                                                                            <div class="progress" style="height: 8px;">
+                                                                                                                <div class="progress-bar" role="progressbar" style="width: 100%; background-color: #ff8000;"
+                                                                                                                     aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                                                                                                </div>
+                                                                                                            </div><%-- 즐겨찾기 해제(삭제) 버튼 --%>
+                                                                                                            <a href="/removemymachine?machineNo=${obj.machineNo}">
+                                                                                                                <i class="ri-close-fill color-text" style="padding-left:5px;"></i>
+                                                                                                            </a>
+                                                                                                        </div>
+                                                                                                    </c:when>
+                                                                                                    <c:when test="${canQuantity <= 2}">
+                                                                                                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                                                                                                            <div class="progress" style="height: 8px;">
+                                                                                                                <div class="progress-bar" role="progressbar" style="width: 60%; background-color: #1E90FF;"
+                                                                                                                     aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <a href="/removemymachine?machineNo=${obj.machineNo}">
+                                                                                                                <i class="ri-close-fill color-text"></i>
+                                                                                                            </a>
+                                                                                                        </div>
+                                                                                                    </c:when>
+                                                                                                    <c:otherwise>
+                                                                                                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                                                                                                            <div class="progress" style="height: 8px;">
+                                                                                                                <div class="progress-bar" role="progressbar" style="width: 20%; background-color: #32CD32;"
+                                                                                                                     aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <a href="/removemymachine?machineNo=${obj.machineNo}">
+                                                                                                                <i class="ri-close-fill color-text"></i>
+                                                                                                            </a>
+                                                                                                        </div>
+                                                                                                    </c:otherwise>
+                                                                                                </c:choose>
 
 
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </c:forEach>
+
+
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </c:forEach>
-
+                                                                    </div>
 
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                                <%-- 센터가 보유한 운동기구 나열 --%>
-                                            <p class="size-14 color-black m-0 pt-1" style="font-weight: bold; padding-bottom: 10px">이용이 가능한 운동기구</p>
-                                            <%-- 검색 버튼 --%>
-                                            <div class="d-flex justify-content-between">
-                                            <div class="d-flex justify-content-start">
-                                            <a href="/">
-                                                <button type="button" class="btn btn-outline-secondary"
-                                                        style="border-radius: 15px; font-size: 9px; width: 45px; height: 33px; margin-right: 5px;">전체
-                                                </button>
-                                            </a>
-                                            <button type="button" class="btn btn-outline-secondary"
-                                                    data-toggle="modal"
-                                                    data-target="#mdllFilter"
-                                                    style="border-radius: 15px; font-size: 9px; margin-right: 5px;">시간대별 <i class="tio-chevron_down -arrwo"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-outline-secondary"
-                                                    data-toggle="modal"
-                                                    data-target="#mdllFilter"
-                                                    style="border-radius: 15px; font-size: 9px; margin-right: 5px;">부위별 <i class="tio-chevron_down -arrwo"></i>
-                                            </button>
-                                            </div>
-                                            <div></div>
-                                            <%-- cctv가 작동하고 있다는 의미로 모달에 서버시간 나타내주기 --%>
-                                            <div class="itemPkg_cart" data-toggle="modal"
-                                                 data-target="#mdllAdd_Address">
-                                                <div type="button" class="btn btn-outline-secondary"
-                                                        style="border-radius: 15px; font-size: 8px;">
-                                                    <img src="/img/cctv.png" style="width: 20px; height: 20px;">
-                                                </div>
-                                            </div>
-                                            </div>
-                                            <br>
-                                            <p class="size-14 color-black m-0 pt-1" style="font-weight: bold; padding-bottom: 10px">기구 검색결과</p>
-
-                                        <%-- 기구 리스트 나열 --%>
-                                            <section class="emPage__basket npPkg__basket default" style="padding-top: 10px">
-                                                <c:forEach  var="obj" items="${gymAllMachine}" >
-                                                    <form name="machine_form" id="machine_form"  action="/addmymachine" method="get">
-                                                        <input type="hidden" name="custNo" value="${logincust.custNo}"/>
-                                                        <input type="hidden" name="machineNo" value="${obj.machineNo}"/>
-                                                        <input type="hidden" name="gymNo" value="${obj.gymNo}"/>
-                                                        <input type="hidden" name="myMachineStatus" value="1"/>
-                                                            <%--                                  <input type="hidden" name="myMachineStatus" value="${obj.myMachineStatus}"/>--%>
-                                                        <div class="itemPkg_cart" data-toggle="modal"
-                                                             data-target="#mdllAdd_Address${obj.machineNo}"><!-- 클릭 시 상세 기구보기 모달로 이동 -->
-                                                            <div class="sideleft" style="height: 60px">
-                                                                <div class="item_rate">
-                                                                    <!-- 그래프바 : value 값 조절하면 그래프도 움직임-->
-                                                                    <div class="item_progress">
-                                                                        <c:set var="canQuantity" value="${canQuantity = (obj.holdingQuantity - obj.usingQuantity) }" />
-                                                                        <!-- canQuantity : 사용가능한 기구가 0이면 빨강(혼잡) 2이하면 파랑(보통) 3이상이면 여유(녹색)-->
-                                                                        <c:choose>
-                                                                            <c:when test="${canQuantity == 0}">
-                                                                                <div class="itemCircle" style="height: 60px; padding-right: 15px; padding-top: 0px">
-                                                                                    <input type="image" data-width="60" value="100" data-fgColor="#ff8000"
-                                                                                           data-bgColor="#E9EAEC" data-thickness=".15" class="circleFull"
-                                                                                           src="/img/${obj.machineImgname}" style="width: 25px; height: 25px; "
-                                                                                           data-readOnly="true" data-linecap="round">
-                                                                                </div>
-                                                                            </c:when>
-                                                                            <c:when test="${canQuantity <= 2}">
-                                                                                <div class="itemCircle" style="height: 60px; padding-right: 15px; padding-top: 0px">
-                                                                                    <input type="image" data-width="60" value="60" data-fgColor="#1E90FF"
-                                                                                           data-bgColor="#E9EAEC" data-thickness=".15" class="circleFull"
-                                                                                           src="/img/${obj.machineImgname}" style="width: 25px; height: 25px; "
-                                                                                           data-readOnly="true" data-linecap="round">
-                                                                                </div>
-                                                                            </c:when>
-                                                                            <c:otherwise>
-                                                                                <div class="itemCircle" style="height: 60px; padding-right: 15px; padding-top: 0px">
-                                                                                    <input type="image" data-width="60" value="20" data-fgColor="#32CD32"
-                                                                                           data-bgColor="#E9EAEC" data-thickness=".15" class="circleFull"
-                                                                                           src="/img/${obj.machineImgname}" style="width: 25px; height: 25px; "
-                                                                                           data-readOnly="true" data-linecap="round">
-                                                                                </div>
-                                                                            </c:otherwise>
-                                                                        </c:choose>
-
+                                                                <%-- 센터가 보유한 운동기구 나열 --%>
+                                                            <p class="size-14 color-black m-0 pt-1" style="font-weight: bold; padding-bottom: 10px">이용이 가능한 운동기구</p>
+                                                                <%-- 검색 버튼 --%>
+                                                            <div class="d-flex justify-content-between">
+                                                                <div class="d-flex justify-content-start">
+                                                                    <a href="/">
+                                                                        <button type="button" class="btn btn-outline-secondary"
+                                                                                style="border-radius: 15px; font-size: 9px; width: 45px; height: 33px; margin-right: 5px;">전체
+                                                                        </button>
+                                                                    </a>
+                                                                    <button type="button" class="btn btn-outline-secondary"
+                                                                            data-toggle="modal"
+                                                                            data-target="#mdllFilter"
+                                                                            style="border-radius: 15px; font-size: 9px; margin-right: 5px;">시간대별 <i class="tio-chevron_down -arrwo"></i>
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-outline-secondary"
+                                                                            data-toggle="modal"
+                                                                            data-target="#mdllFilter"
+                                                                            style="border-radius: 15px; font-size: 9px; margin-right: 5px;">부위별 <i class="tio-chevron_down -arrwo"></i>
+                                                                    </button>
+                                                                </div>
+                                                                <div></div>
+                                                                    <%-- cctv가 작동하고 있다는 의미로 모달에 서버시간 나타내주기 --%>
+                                                                <div class="itemPkg_cart" data-toggle="modal"
+                                                                     data-target="#mdllAdd_Address">
+                                                                    <div type="button" class="btn btn-outline-secondary"
+                                                                         style="border-radius: 15px; font-size: 8px;">
+                                                                        <img src="/img/cctv.png" style="width: 20px; height: 20px;">
                                                                     </div>
                                                                 </div>
-                                                                <div>
-                                                                    <div class="em__pkLink">
-                                                                        <ul class="nav__list with_border fullBorder mb-0">
-                                                                            <li>
-                                                                                <div class="item-link hoverNone" style="padding: 0">
-                                                                                    <div class="group">
-                                                                                        <span class="short__name"></span>
-                                                                                        <span>${obj.machineName}</span>
+                                                            </div>
+                                                            <br>
+                                                            <p class="size-14 color-black m-0 pt-1" style="font-weight: bold; padding-bottom: 10px">기구 검색결과</p>
+
+                                                                <%-- 기구 리스트 나열 --%>
+                                                            <section class="emPage__basket npPkg__basket default" style="padding-top: 10px">
+                                                                <c:forEach  var="obj" items="${gymAllMachine}" >
+                                                                    <form name="machine_form" id="machine_form"  action="/addmymachine" method="get">
+                                                                        <input type="hidden" name="custNo" value="${logincust.custNo}"/>
+                                                                        <input type="hidden" name="machineNo" value="${obj.machineNo}"/>
+                                                                        <input type="hidden" name="gymNo" value="${obj.gymNo}"/>
+                                                                        <input type="hidden" name="myMachineStatus" value="1"/>
+                                                                            <%--                                  <input type="hidden" name="myMachineStatus" value="${obj.myMachineStatus}"/>--%>
+                                                                        <div class="itemPkg_cart" data-toggle="modal"
+                                                                             data-target="#mdllAdd_Address${obj.machineNo}"><!-- 클릭 시 상세 기구보기 모달로 이동 -->
+                                                                            <div class="sideleft" style="height: 60px">
+                                                                                <div class="item_rate">
+                                                                                    <!-- 그래프바 : value 값 조절하면 그래프도 움직임-->
+                                                                                    <div class="item_progress">
+                                                                                        <c:set var="canQuantity" value="${canQuantity = (obj.holdingQuantity - obj.usingQuantity) }" />
+                                                                                        <!-- canQuantity : 사용가능한 기구가 0이면 빨강(혼잡) 2이하면 파랑(보통) 3이상이면 여유(녹색)-->
                                                                                         <c:choose>
                                                                                             <c:when test="${canQuantity == 0}">
-                                                                                                <span class="number_item" style="margin-left: 6px">혼잡</span>
+                                                                                                <div class="itemCircle" style="height: 60px; padding-right: 15px; padding-top: 0px">
+                                                                                                    <input type="image" data-width="60" value="100" data-fgColor="#ff8000"
+                                                                                                           data-bgColor="#E9EAEC" data-thickness=".15" class="circleFull"
+                                                                                                           src="/img/${obj.machineImgname}" style="width: 25px; height: 25px; "
+                                                                                                           data-readOnly="true" data-linecap="round">
+                                                                                                </div>
                                                                                             </c:when>
                                                                                             <c:when test="${canQuantity <= 2}">
-                                                                                                <span class="number_item" style="margin-left: 6px; color: blue; border: 1px solid blue;">보통</span>
+                                                                                                <div class="itemCircle" style="height: 60px; padding-right: 15px; padding-top: 0px">
+                                                                                                    <input type="image" data-width="60" value="60" data-fgColor="#1E90FF"
+                                                                                                           data-bgColor="#E9EAEC" data-thickness=".15" class="circleFull"
+                                                                                                           src="/img/${obj.machineImgname}" style="width: 25px; height: 25px; "
+                                                                                                           data-readOnly="true" data-linecap="round">
+                                                                                                </div>
                                                                                             </c:when>
                                                                                             <c:otherwise>
-                                                                                                <span class="number_item" style="margin-left: 6px; color: limegreen; border: 1px solid limegreen;">여유</span>
+                                                                                                <div class="itemCircle" style="height: 60px; padding-right: 15px; padding-top: 0px">
+                                                                                                    <input type="image" data-width="60" value="20" data-fgColor="#32CD32"
+                                                                                                           data-bgColor="#E9EAEC" data-thickness=".15" class="circleFull"
+                                                                                                           src="/img/${obj.machineImgname}" style="width: 25px; height: 25px; "
+                                                                                                           data-readOnly="true" data-linecap="round">
+                                                                                                </div>
                                                                                             </c:otherwise>
                                                                                         </c:choose>
 
-
                                                                                     </div>
                                                                                 </div>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <p style="font-size: 9px;" class="color-text">#정직한 #유산소운동</p>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                                                                        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-                                                                    </svg>
-                                                                    <c:set var="canQuantity" value="${canQuantity = (obj.holdingQuantity - obj.usingQuantity) }" />
-                                                                    <span style="font-size: 12px; font-weight: bold"><fmt:formatNumber value="${canQuantity}" />대 남음</span>
-
-                                                                </div>
-                                                            </div>
-                                                                <%-- 기구리스트 내 즐겨찾기 버튼 id :  machineSave.  --%>
-                                                            <div class="npPage__balanceProvider" style="padding: 0; ">
-                                                                <div class="npblock__favorite" style="padding: 0; border: none;">
-                                                                    <button type="submit" id="machineSave"
-                                                                            class="btn btn_favorite item-active" style="border: none;">
-                                                                        <i class="ri-star-s-line"></i>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </c:forEach>
-
-                                            </section>
+                                                                                <div>
+                                                                                    <div class="em__pkLink">
+                                                                                        <ul class="nav__list with_border fullBorder mb-0">
+                                                                                            <li>
+                                                                                                <div class="item-link hoverNone" style="padding: 0">
+                                                                                                    <div class="group">
+                                                                                                        <span class="short__name"></span>
+                                                                                                        <span>${obj.machineName}</span>
+                                                                                                        <c:choose>
+                                                                                                            <c:when test="${canQuantity == 0}">
+                                                                                                                <span class="number_item" style="margin-left: 6px">혼잡</span>
+                                                                                                            </c:when>
+                                                                                                            <c:when test="${canQuantity <= 2}">
+                                                                                                                <span class="number_item" style="margin-left: 6px; color: blue; border: 1px solid blue;">보통</span>
+                                                                                                            </c:when>
+                                                                                                            <c:otherwise>
+                                                                                                                <span class="number_item" style="margin-left: 6px; color: limegreen; border: 1px solid limegreen;">여유</span>
+                                                                                                            </c:otherwise>
+                                                                                                        </c:choose>
 
 
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                    <p style="font-size: 9px;" class="color-text">#정직한 #유산소운동</p>
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                                                                                        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+                                                                                    </svg>
+                                                                                    <c:set var="canQuantity" value="${canQuantity = (obj.holdingQuantity - obj.usingQuantity) }" />
+                                                                                    <span style="font-size: 12px; font-weight: bold"><fmt:formatNumber value="${canQuantity}" />대 남음</span>
+
+                                                                                </div>
+                                                                            </div>
+                                                                                <%-- 기구리스트 내 즐겨찾기 버튼 id :  machineSave.  --%>
+                                                                            <div class="npPage__balanceProvider" style="padding: 0; ">
+                                                                                <div class="npblock__favorite" style="padding: 0; border: none;">
+                                                                                    <button type="submit" id="machineSave"
+                                                                                            class="btn btn_favorite item-active" style="border: none;">
+                                                                                        <i class="ri-star-s-line"></i>
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </c:forEach>
+
+                                                            </section>
 
 
 
-                                            <!-- End. em_swiper_products -->
 
-                                        </div><!-- 첫번째 탭 끝. -->
-                                    </div>
-                                </c:otherwise>
-                            </c:choose>
-                        </section>
 
+                                                            <!-- End. em_swiper_products -->
+
+                                                        </div><!-- 첫번째 탭 끝. -->
+                                                    </div>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </section>
+                                    </c:when>
+                                </c:choose>
+
+                        </div><br>
+
+    </c:otherwise>
+    </c:choose>
                     <%--      </div>--%>
 
 <%-- 운동기구 검색하는 모달 1 --%>
