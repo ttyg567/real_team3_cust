@@ -176,7 +176,7 @@
                               </svg>
                             </div>
                               <%--3. 신청인원 / 모집인원 --%>
-                            <span style="color: black;">신청인원 <span style="font-weight: bold; color: blueviolet;">${obj.applicationMember}명</span> | </span> <span>모집인원 ${obj.expectMember}명</span>
+                            <span style="color: black;">신청인원 <span style="font-weight: bold; color: blueviolet;">${obj.applicationMember}명</span><span style="color: gray"> |  </span> </span> <span>모집인원 ${obj.expectMember}명</span>
                           </div>
 
                         </div>

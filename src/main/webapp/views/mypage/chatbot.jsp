@@ -152,7 +152,8 @@
                     <div class="form-group m-0">
                         <input type="text" class="form-control" placeholder="여기에 질문하실 내용을 적어주세요" id="msg">
                     </div>
-                    <button type="submit" class="btn btn_defSend rounded-10" id="send">
+                    <button type="submit" style="background-color: blueviolet"
+                            class="btn btn_defSend rounded-10" id="send">
                         <svg id="Iconly_Bulk_Send" data-name="Iconly/Bulk/Send" xmlns="http://www.w3.org/2000/svg"
                              width="20" height="20" viewBox="0 0 20 20">
                             <g id="Send" transform="translate(1.667 1.667)">
@@ -274,7 +275,7 @@
                                 </button>
                             </li>
                             <li>
-                                <button type="button" class="btn item-link">
+                                <button type="button" class="btn item-link" >
                                     <input type="file" capture="user" accept="image/*">
                                     <div class="group">
                                         <div class="icon bg-yellow">

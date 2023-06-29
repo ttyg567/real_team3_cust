@@ -97,6 +97,7 @@
 
     .card-calendar {
         border: none; /* 테두리 없애기 */
+
     }
 
     .card-body {
@@ -203,9 +204,9 @@
                                 <p class="size-12 color-text m-0">시간을 클릭하시면 수업을 취소하실 수 있습니다.</p>
                             </div>
                             <!-- 달력 부분 -->
-                            <div class="col-12 d-flex justify-content-center"> <!-- 중앙 정렬 스타일 추가 -->
-                                <div class="card card-calendar soft-ui-dashboard">
-                                    <div class="card-body p-3">
+                            <div class="col-12 d-flex justify-content-center" style="padding: 0"> <!-- 중앙 정렬 스타일 추가 -->
+                                <div class="card card-calendar soft-ui-dashboard" style="padding: 0">
+                                    <div class="card-body p-3" style="padding: 0">
                                         <div class="calendar_check" data-bs-toggle="calendar_check"
                                              id="calendar_check"></div>
                                     </div>

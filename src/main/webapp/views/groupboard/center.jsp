@@ -38,7 +38,9 @@
         width: 30px;
         height: 30px;
     }
-
+    #map{
+    margin-right: 0;
+        }
     #map img{
         border-radius: 15px;
         width: 100%;
@@ -327,7 +329,7 @@
         <div class="em_body_products">
             <div class="owl-carousel owl-theme em-owlRight">
                 <c:forEach var="obj" items="${alljoin}">
-                    <div class="item em_item_product">
+                    <div class="item em_item_product" style="width: 162px">
                         <div class="em_head" id="join_em_head1"><!-- 선택 시 센터 상세페이지로 이동 -->
                             <a data-toggle="modal"
                                data-target="#mdllJobDetails${obj.groupboardNo}" class="image_product text-decoration-none">
@@ -364,9 +366,9 @@
                                     <%-- 모집인원 - 신청된 인원 = 신청가능 인원   --%>
                                 <c:set var="canapplymember" value="${canapplymember = (obj.expectMember - obj.applicationMember) }" />
                                 <span style="font-size: smaller; color: #5d6072; font-weight: bold "><fmt:formatNumber value="${canapplymember}" />명 조인 시 </span>
-                                <span style="color: blueviolet; font-weight: bold">
-                                                     <fmt:formatNumber value="${obj.ticketJoinPrice}" type="number" pattern="#,##0 원" />
-                                    </span>
+                                <span style="color: blueviolet; font-weight: bold"><%-- 조인확정 시 최종가격  --%>
+                                 <fmt:formatNumber value="${obj.ticketJoinPrice}" type="number" pattern="#,##0 원" />
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -420,7 +422,7 @@
         <div class="em_body_products">
             <div class="owl-carousel owl-theme em-owlRight">
                 <c:forEach var="obj" items="${mysportstype}">
-                    <div class="item em_item_product">
+                    <div class="item em_item_product" style="width: 162px;">
                         <div class="em_head" id="join_em_head1"><!-- 선택 시 센터 상세페이지로 이동 -->
                             <a data-toggle="modal"
                                data-target="#mdllJobDetails${obj.groupboardNo}" class="image_product text-decoration-none">
@@ -458,7 +460,7 @@
                                 <c:set var="canapplymember" value="${canapplymember = (obj.expectMember - obj.applicationMember) }" />
                                 <span style="font-size: smaller; color: #5d6072; font-weight: bold "><fmt:formatNumber value="${canapplymember}" />명 조인 시 </span>
                                 <span style="color: blueviolet; font-weight: bold">
-                                                     <fmt:formatNumber value="${obj.ticketJoinPrice}" type="number" pattern="#,##0 원" />
+                                   <fmt:formatNumber value="${obj.ticketJoinPrice}" type="number" pattern="#,##0 원" />
                                     </span>
                             </div>
                         </div>

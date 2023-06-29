@@ -65,7 +65,8 @@
                     <div class="form-group m-0">
                         <input type="text" class="form-control" placeholder="여기에 질문하실 내용을 적어주세요" id="questionInput">
                     </div>
-                    <button type="button" class="btn btn_defSend rounded-10" id="sendBtn">
+                    <button type="button" class="btn btn_defSend rounded-10" id="sendBtn"
+                    style="background-color: blueviolet">
                         <svg id="Iconly_Bulk_Send" data-name="Iconly/Bulk/Send" xmlns="http://www.w3.org/2000/svg"
                              width="20" height="20" viewBox="0 0 20 20">
                             <g id="Send" transform="translate(1.667 1.667)">

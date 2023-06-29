@@ -276,6 +276,7 @@
                                     <p>24시간 대기중</p>
                                 </div>
                             </a>
+
                             <a href="/mypage/chatbot" class="emCategorie_itemJobs _list bg-orange">
                                 <img src="/assets/img/candy/clova.png" class="d-inline animated-bounce" id="chatbotclova"
                                      alt="chatbot"

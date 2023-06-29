@@ -15,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -43,7 +45,7 @@ public class InboController {
 
     // 4-1 조인 메인페이지
     @RequestMapping("")
-    public String main(Model model, String sportsType, HttpSession session) throws Exception {
+    public String main(Model model, String sportsType,HttpSession session) throws Exception {
         Cust cust = null;
         cust = (Cust) session.getAttribute("logincust");
 
@@ -61,7 +63,7 @@ public class InboController {
         }
         // 선호운동이 일치하는 조인도 동일하게.
         for (Groupboard item : list2){
-            item.setTicketJoinPrice(item.getTicketPrice()*90/100);
+            item.setTicketJoinPrice(item.getTicketCost()*(100-((int)item.getTicketDiscount()+10))/100);
         }
         // list에 담은 조인들을 jsp에 뿌릴 때 사용할 명칭 정하기
         model.addAttribute("alljoin", list);
@@ -417,6 +419,7 @@ public class InboController {
         model.addAttribute("center", dir + "myjoin");
         return "index"; // 로그인 후 "my_applyjoin" 페이지로 이동
     }
+
 
     // 성영 추가
 //    public void joinCompleted(Integer getGroupboardNo) throws Exception {

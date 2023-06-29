@@ -348,7 +348,19 @@
                   <%--1.대표 이미지--%><img class="img_news" src="/assets/img/${obj.groupboardImgname}" alt="">
                 <div class="media-body">
                   <div class="txt">
-                      <%--2.조인글 제목--%><h2>${obj.groupboardTitle}</h2>
+                      <%--2.조인글 제목--%><h2 style="height: 20px">${obj.groupboardTitle}</h2>
+                    <div class="info_bottom">
+                      <div class="time">
+                        <div class="icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-ticket-perforated color-text" viewBox="0 0 16 16">
+                            <path d="M4 4.85v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Z"/>
+                            <path d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z"/>
+                          </svg>
+                        </div>
+                          <%-- 이용권명 --%>
+                        <span  style="color: black;">${obj.gymName}<span style="color: gray"> |  </span> ${obj.ticketName}</span>
+                      </div>
+                    </div>
                     <div class="info_bottom">
                       <div class="time">
                         <div class="icon">
@@ -373,29 +385,7 @@
                           </svg>
                         </div>
                           <%--3. 신청인원 / 모집인원 --%>
-                        <span>${obj.applicationMember}명 신청 중</span> <span>${obj.expectMember}명 모집</span>
-                      </div>
-                      <div class="view">
-                        <div class="icon">
-                          <svg id="Iconly_Curved_Show" data-name="Iconly/Curved/Show"
-                               xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                               viewBox="0 0 15 15">
-                            <g id="Show" transform="translate(1.719 2.969)">
-                              <path id="Stroke_1" data-name="Stroke 1"
-                                    d="M3.952,1.976A1.976,1.976,0,1,1,1.976,0,1.977,1.977,0,0,1,3.952,1.976Z"
-                                    transform="translate(3.806 2.588)" fill="none"
-                                    stroke="#cbcdd8" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-miterlimit="10"
-                                    stroke-width="1.5" />
-                              <path id="Stroke_3" data-name="Stroke 3"
-                                    d="M0,4.564c0,2.05,2.589,4.564,5.782,4.564s5.782-2.512,5.782-4.564S8.976,0,5.782,0,0,2.514,0,4.564Z"
-                                    fill="none" stroke="#cbcdd8" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-miterlimit="10"
-                                    stroke-width="1.5" />
-                            </g>
-                          </svg>
-                        </div>
-                          <%--4. 조회수--%><span>${obj.boardViews}</span>
+                        <span style="color: black;">신청인원 <span style="font-weight: bold; color: blueviolet;">${obj.applicationMember}명</span><span style="color: gray"> |  </span> </span> <span>모집인원 ${obj.expectMember}명</span>
                       </div>
                     </div>
                   </div>
@@ -529,7 +519,7 @@
                               <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
                             </svg>
                             <c:set var="joinDiscount" value="${obj.ticketDiscount + 10}" />
-                            <span style="color: blueviolet; font-weight: bold">조인 확정 시 결제금액 <fmt:formatNumber value="${obj.ticketJoinPrice}" pattern="###,### 원" /> (<fmt:formatNumber value="${joinDiscount}"/>% 적용)</span>
+                            <span style="color: blueviolet; font-weight: bold">조인 헬쓱 회원가 <fmt:formatNumber value="${obj.ticketJoinPrice}" pattern="###,### 원" /> (<fmt:formatNumber value="${joinDiscount}"/>% 적용)</span>
                           </div>
                           <%-- 정상금액 --%>
                           <div class="joincontent" style="text-align: left">
@@ -540,11 +530,11 @@
                             </svg>
 
                             <span class="item_price">
-                                                                정상금액
-                                                                <span class="price_old">
-                                                                    <fmt:formatNumber value="${obj.ticketCost}" pattern="###,### 원" />
-                                                                </span>
-                                                            </span>
+                              일반 회원가
+                              <span class="price_old">
+                                  <fmt:formatNumber value="${obj.ticketCost}" pattern="###,### 원" />
+                              </span>
+                          </span>
                           </div>
                         </c:when>
                         <c:when test="${obj.ticketType == '2'}">
@@ -561,9 +551,22 @@
                               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                               <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
                             </svg>
-                            <span>할인가 <fmt:formatNumber value="${obj.ticketJoinPrice}" pattern="###,### 원" />(${obj.ticketDiscount}% 할인 적용) | 정상가 <fmt:formatNumber value="${obj.ticketCost}" pattern="###,### 원" /></span>
+                            <span style="color: blueviolet; font-weight: bold">조인 헬쓱 회원가 <fmt:formatNumber value="${obj.ticketJoinPrice}" pattern="###,### 원" /> (<fmt:formatNumber value="${joinDiscount}"/>% 적용)</span>
                           </div>
-
+                          <%-- 정상금액 --%>
+                          <div class="joincontent" style="text-align: left">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin color-primary" viewBox="0 0 16 16">
+                              <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
+                              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                              <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+                            </svg>
+                            <span class="item_price">
+                              일반 회원가
+                              <span class="price_old">
+                                  <fmt:formatNumber value="${obj.ticketCost}" pattern="###,### 원" />
+                              </span>
+                          </span>
+                          </div>
                         </c:when>
                       </c:choose>
 
@@ -579,8 +582,9 @@
                     <div class="title">
                       <h6>센터 상세정보</h6>
                         <%--  센터 지도 이미지 --%>
-                      <div id="map" style="width: 90%; height: 250px; border: #9f9f9f 1px solid; border-radius: 15px;">
-                        <img src="/assets/img/gym1_map.jpg" alt="">
+                      <div id="map" style="width: 100%; height: 250px;">
+
+                      <img src="/assets/img/gym1_map.jpg" alt="">
                       </div>
                     </div>
                     <div style="height: 100px; margin-top: 20px;  display: flex; flex-wrap: wrap; flex-direction: column; align-content: flex-start; align-items: flex-start;">

@@ -6,6 +6,41 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <style>
+<%-- cctv   --%>
+    .badge {
+        display: inline-block;
+        min-width: 10px;
+        padding: 3px 7px;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 1;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        background-color: #777;
+        border-radius: 10px;
+    }
+    .badge:empty {
+        display: none;
+    }
+    .btn .badge {
+        position: relative;
+        top: -1px;
+    }
+    .btn-xs .badge,
+    .btn-group-xs > .btn .badge {
+        top: 0;
+        padding: 1px 5px;
+    }
+    a.badge:hover,
+    a.badge:focus {
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .badge-secondary{color:#5974a2;background-color:#e4e8ed}.badge-secondary[href]:focus,.badge-secondary[href]:hover{color:color-yiq(#8392ab);text-decoration:none;background-color:#617390}
+    .text-danger{color:#ea0606!important}
 <%-- 지피티   --%>
 .image-container {
     position: relative;
@@ -381,31 +416,31 @@
 }
 </style>
 <script>
-    // 서버시간 보여주기
-    let ajax01 = {
-        init:function (){
-            setInterval(function (){ // setInterval : 00초 마다 함수 호출(비동기 함수)
-                $.ajax({ // ajax 부르기. (ajax 요청 처리하는 곳 : 일반 컨트롤러 아님 / 별도 존재)
-                    url:'/getservertime', // 여기 적은 서버에게 요청하기
-                    success:function (data){
-                        ajax01.display(data); // 결과 : 성공 시 값을 알럿창  또는 화면에 알려줘
-                    },
-                    error:function (){
-                        alert('Error!');// 결과 : 실패 시 실행되는 함수 다르게.
-                    }
-                });
-            }, 3000);
-        },
+    $(document).ready(function () {
+        // Update current time
+        function updateCurrentTime() {
+            var currentTimeElement = document.getElementById("current-time");
+            var currentTime = new Date().toLocaleString();
+            currentTimeElement.innerHTML = currentTime;
 
-        display:function (data){ // 성공 시 display로 띄우기 위해  data 여기로-
-            $('#server_time').text(data); // html.에서 지정한 id값
+            var currentTimeElement = document.getElementById("current-time2");
+            var currentTime = new Date().toLocaleString();
+            currentTimeElement.innerHTML = currentTime;
+
+            var currentTimeElement = document.getElementById("current-time3");
+            var currentTime = new Date().toLocaleString();
+            currentTimeElement.innerHTML = currentTime;
         }
-    };
-    // 실행
-    $(function (){
-        ajax01.init();
+
+        // Update current time initially
+        updateCurrentTime();
+
+        // Update current time every second
+        setInterval(updateCurrentTime, 1000);
     });
+
 </script>
+
 <div id="wrapper">
     <!--별도의 mainheader 구간  -->
     <!-- Start main_haeder -->
@@ -533,8 +568,9 @@
 
                          </div>
         </div>
-                        <br>
-                        <%-- 운동 카테고리 : Swiper로 변경 예정 --%>
+
+
+<%-- 운동 카테고리 : Swiper로 변경 예정 --%>
     <section class="np__bkOperationsService padding-0"  style="width: 100%; padding-bottom: 0;
       overflow-x: auto; padding-left: 5px; background-color : white; border: none;
       scrollbar-width: none; -ms-overflow-style: none;">
@@ -1032,7 +1068,10 @@
                                 <%-- 운동센터명  --%>
                                 <p style="font-size: 14px; font-weight: bold">${obj.gymName}</p>
                                 <%-- cctv영상이 표출되는 실시간 서버 시간   --%>
-                                <p id="server_time" style="font-size: 12px; font-weight: bold"></p>
+                                    <p id="current-time" class="p-3 mb-0" style="color: black; padding: 0px"></p>
+                                    <span class="badge badge-secondary">
+                                    <i class="fas fa-dot-circle text-danger"></i>
+                                     Recording</span>
                                     <div style="width: 90%; height: 140px;">
                                     <video width="100%" height="140px" autoplay loop muted>
                                         <source src="/assets/mp4/kb본관센터.mp4" type="video/mp4"> <!-- 동영상 파일 경로 및 유형을 지정 -->
@@ -1067,15 +1106,16 @@
 
 </div>
 
-<!-- 조인만들기 버튼 : 로그인 고객은 만들기 가능, 비로그인 고객은 로그인 유도 창 안내 -->
+<!-- 챗봇상담 안내 : 미로그인 고객은 클로바 / 로그인 고객은 지피티 -->
 <c:choose>
     <c:when test="${logincust == null}">
         <div class="image-container">
             <div class="join-button" style="position: fixed; z-index: 20; bottom: 80px; right: 20px">
+                <a href="/mypage/chatbot">
                 <img src="/assets/img/candy/clova.png" class="d-inline animated-bounce" id="chatbotclova"
                      alt="chatbot"
                      style="width: 50px; height: 50px;">
-                <div class="tooltip">말풍선 내용</div>
+                </a>
             </div>
         </div>
 
@@ -1083,15 +1123,42 @@
     <c:otherwise>
         <div class="image-container">
         <div class="join-button" style="position: fixed; z-index:20;  bottom: 80px; right: 20px">
+            <a href="/mypage/gptchatbot">
             <img src="/assets/img/candy/chatbot.png" class="d-inline animated-bounce" id="chatbot"
                  alt="chatbot"
                  style="width: 50px; height: 50px;">
-            <div class="tooltip">사용법</div>
+            </a>
         </div>
         </div>
     </c:otherwise>
 </c:choose>
+<script>
 
+    // Update current time
+    function updateCurrentTime() {
+        var currentTimeElement = document.getElementById("current-time");
+        var currentTime = new Date().toLocaleString();
+        currentTimeElement.innerHTML = currentTime;
+
+        var currentTimeElement = document.getElementById("current-time2");
+        var currentTime = new Date().toLocaleString();
+        currentTimeElement.innerHTML = currentTime;
+
+        var currentTimeElement = document.getElementById("current-time3");
+        var currentTime = new Date().toLocaleString();
+        currentTimeElement.innerHTML = currentTime;
+    }
+
+    // Update current time initially
+    updateCurrentTime();
+
+    // Update current time every second
+    setInterval(updateCurrentTime, 1000);
+
+
+
+
+</script>
 <script>
     // 지도 마커를 담을 배열입니다
     var markers = [];
