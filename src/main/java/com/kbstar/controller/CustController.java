@@ -170,7 +170,12 @@ public class CustController {
         }
 
         model.addAttribute("rcust", cust);
-        return "redirect:/view/1";
+        return "welcome";
+    }
+    @RequestMapping("/welcome")
+    public String welcome(Model model) {
+        model.addAttribute("center", dir + "welcome");
+        return "index";
     }
 
     @RequestMapping("/getaddress")

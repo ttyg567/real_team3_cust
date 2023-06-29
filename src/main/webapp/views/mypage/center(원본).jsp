@@ -330,6 +330,7 @@
                                 <img src="/assets/img/candy/star_default_30.png" id="day30" class="candy" alt="candy">
                             </div>
                         </div>
+
                     </section>
                     <!-- End. 운동 완료 별사탕 -->
                     <hr>

@@ -9,6 +9,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
+    .custom-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color:	#d070fb;
+        border: none;
+        border-radius: 10px;
+        color: #fff;
+        margin-left: 30px;
+        font-size: 13px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .custom-button:hover {
+        transform: translateY(-3px);
+    }
     <%--  챗봇 둥둥효과는 index파일로 이동시킴. : 인보 --%>
     .nav-pills .nav-item .nav-link {
         color: white; /* 원하는 글씨 색상으로 변경 */
@@ -276,6 +293,7 @@
                         </div>
                     </section>
                     <!-- End. 운동 완료 별사탕 -->
+                            <button onclick="location.href='/cust/bmi'" class="custom-button animated-bounce">BMI지수 체크하고 운동하기</button>
                     <hr>
 
                 </div>
