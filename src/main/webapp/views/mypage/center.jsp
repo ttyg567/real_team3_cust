@@ -9,21 +9,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
-<%--  챗봇 둥둥효과는 index파일로 이동시킴. : 인보 --%>
+    <%--  챗봇 둥둥효과는 index파일로 이동시킴. : 인보 --%>
     .nav-pills .nav-item .nav-link {
         color: white; /* 원하는 글씨 색상으로 변경 */
     }
+
     .nav-pills .nav-item .nav-link.active {
         color: black; /* 선택된 탭 글씨 색상 */;
     }
-.content_balance1 {
-    height: 150px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-}
+
+    .content_balance1 {
+        height: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+    }
 </style>
 
 <c:choose>
@@ -65,12 +67,12 @@
                             <path id="Path_425"
                                   d="M0,11.787v-.219A3.6,3.6,0,0,1,.6,9.75,4.87,4.87,0,0,0,1.8,7.436c0-.666,0-1.342.058-2.009C2.155,2.218,5.327,0,8.461,0h.078c3.134,0,6.306,2.218,6.617,5.427.058.666,0,1.342.049,2.009A4.955,4.955,0,0,0,16.4,9.759a3.506,3.506,0,0,1,.6,1.809v.209a3.566,3.566,0,0,1-.844,2.39A4.505,4.505,0,0,1,13.3,15.538a45.078,45.078,0,0,1-9.615,0A4.554,4.554,0,0,1,.835,14.167,3.6,3.6,0,0,1,0,11.787Z"
                                   transform="translate(0 0)" fill="none" stroke="#200e32" stroke-linecap="round"
-                                  stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
+                                  stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
                             <path id="Path_421"
                                   d="M0,0A3.061,3.061,0,0,0,2.037,1.127,3.088,3.088,0,0,0,4.288.5,2.886,2.886,0,0,0,4.812,0"
                                   transform="translate(6.055 18.852)" fill="none" stroke="#200e32"
                                   stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                  stroke-width="1.5" opacity="0.4" />
+                                  stroke-width="1.5" opacity="0.4"/>
                         </g>
                     </svg>
                     <span class="flashCircle"></span>
@@ -79,14 +81,14 @@
         </header>
 
         <!-- Start 나의 이용권 -->
-<%--        <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe"--%>
-<%--        style=" padding-top: 80px;  padding-bottom:60px; background: linear-gradient(to bottom, #444B9C, #181d5e);">--%>
-            <c:choose>
-                <c:when test="${my_ticket_list != '[]'}">
+        <%--        <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe"--%>
+        <%--        style=" padding-top: 80px;  padding-bottom:60px; background: linear-gradient(to bottom, #444B9C, #181d5e);">--%>
+        <c:choose>
+            <c:when test="${my_ticket_list != '[]'}">
                 <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe"
                      style=" padding-top: 80px;  padding-bottom:20px; background: linear-gradient(to bottom, #BE95EF, #E499CF);">
-                <c:forEach var="obj2" items="${my_ticket_list}">
-                 <section class="npBalabce_section padding-5 pb-0">
+                    <c:forEach var="obj2" items="${my_ticket_list}">
+                        <section class="npBalabce_section padding-5 pb-0">
                             <div class="content_balance bg-white"
                                  style=" height: 180px; background: linear-gradient(to bottom, #BB8EEC, #DB91D2);
                                     border: none; margin: 2px 2px 5px 2px;
@@ -148,153 +150,61 @@
                         </section>
                     </c:forEach>
                 </div>
-                </c:when>
-                <c:otherwise>
-                    <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe"
-                    style=" padding-top: 80px;  padding-bottom:20px; background: linear-gradient(to bottom, #444B9C, #181d5e);">
+            </c:when>
+            <c:otherwise>
+                <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe"
+                     style=" padding-top: 80px;  padding-bottom:20px; background: linear-gradient(to bottom, #444B9C, #181d5e);">
 
                     <section class="npBalabce_section padding-5 pb-0">
                         <div class="content_balance1 bg-white"
-                        style="  background: linear-gradient(to bottom, #565FAA, #252C86);
+                             style="  background: linear-gradient(to bottom, #565FAA, #252C86);
                         border: none; height: 180px; margin: 2px 2px 5px 2px;
                          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 4px 4px 6px -3px rgba(0, 0, 0, 0.1);">
 
                             <div class="txt" style="text-align: center; color: white ">
                                 <h6>
                                         ${logincust.custName} 님의 <br> 운동 이용권 구매가 아직이네요</h6>
-                                <h7 style="color: white; font-size: 10px; margin-bottom: 5px; font-weight: lighter">헬쓱에선 원하는 이용권을 더 저렴하게 이용할 수 있어요</h7>
-                            </div><br>
-                            <div class="action" style="border-radius: 7px; background-color: #cce5ff;  font-size: 9px; ">
+                                <h7 style="color: white; font-size: 10px; margin-bottom: 5px; font-weight: lighter">헬쓱에선
+                                    원하는 이용권을 더 저렴하게 이용할 수 있어요
+                                </h7>
+                            </div>
+                            <br>
+                            <div class="action"
+                                 style="border-radius: 7px; background-color: #cce5ff;  font-size: 9px; ">
                                 <a href="/ticket/all" class="btn" style="font-size: 9px; font-weight: bold">
                                     이용권 구매하기
                                 </a>
                             </div>
                         </div>
                     </section>
-                    </div>
-                </c:otherwise>
-            </c:choose>
+                </div>
+            </c:otherwise>
+        </c:choose>
         <!-- End. 나의 이용권-->
-<%-- 탭생성 : 2개 제목구간 --%>
-            <div class="tab__line two_item">
-                <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
-                           role="tab" aria-controls="pills-home" aria-selected="true"
-                           style="font-size: 14px;">나의 운동</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
-                           role="tab" aria-controls="pills-profile" aria-selected="false"
-                           style="font-size: 14px;">출석체크</a>
-                    </li>
-
-                </ul>
-            </div><!-- 탭 제목 끝 -->
+        <%-- 탭생성 : 2개 제목구간 --%>
+        <div class="tab__line two_item">
+            <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" active id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
+                       role="tab" aria-controls="pills-profile" aria-selected="true"
+                       style="font-size: 14px;">출석체크</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home"
+                       role="tab" aria-controls="pills-home" aria-selected="false"
+                       style="font-size: 14px;">나의 운동</a>
+                </li>
+            </ul>
+        </div>
+        <!-- 탭 제목 끝 -->
 
         <section class="components_page paddingTab_header" style="padding-top: 20px;">
-            <!-- 첫번째 탭 : 나의 운동 내용작성 구간 -->
             <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                     aria-labelledby="pills-home-tab">
+                <!-- 첫번째 탭 : 출석체크 시작 -->
+                <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
+                     aria-labelledby="pills-profile-tab">
 
-                    <!-- Start 오늘의 일정 -->
-                    <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe">
-                        <c:choose>
-                            <c:when test="${my_reservation_list != '[]'}">
-                                <c:forEach var="obj" items="${my_reservation_list}">
-                                    <section class="npBalabce_section padding-5 pb-0">
-                                        <div class="content_balance " style="background: #fbebee; margin-bottom: 10px;
-                                         box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 4px 4px 6px -3px rgba(0, 0, 0, 0.1);">
-                                            <div class="txt">
-                                                <h6 style="color: rebeccapurple">
-                                                        ${obj.dateCategory}의 운동 일정</h6>
-                                                <h6 class="color-secondary">${obj.className}</h6>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                     fill="currentColor"
-                                                     class="bi bi-calendar2-check color-instagram" viewBox="0 0 16 16">
-                                                    <path d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
-                                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
-                                                    <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
-                                                </svg>&nbsp;
-                                                <h7 class="color-instagram">${obj.classDate}</h7>
-                                                <br>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                     fill="currentColor" class="bi bi-alarm color-instagram"
-                                                     viewBox="0 0 16 16">
-                                                    <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"/>
-                                                    <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
-                                                </svg>&nbsp;
-                                                <h7 class="color-instagram">${obj.classStarttime}~${obj.classEndtime}</h7>
-                                            </div>
-                                            <div class="action">
-                                                <a href="/class/my_reservation" class="btn-">
-                                                    나의 일정 보기
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </section>
-                                </c:forEach>
-                            </c:when>
-                            <c:otherwise>
-                                <section class="npBalabce_section padding padding-b-20">
-                                    <div class="content_balance bg-white border border-gray"
-                                         style=" height:100px;
-                                      box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 4px 4px 6px -3px rgba(0, 0, 0, 0.1);">
-                                        <div class="txt">
-                                            <h6 style="font-size: 14px;">
-                                                당분간 운동일정이 없네요
-                                                </h6>
-                                            <h7 style="color: blueviolet; font-size: 11px;">바로 수업일정을 알아보세요</h7>
-                                        </div>
-                                        <div class="action" style="
-                                        border-radius: 7px; background-color: #cce5ff;  font-size: 9px; ">
-                                            <a href="/class/reservation" class="btn" style="font-size: 9px; font-weight: bold; width: 20px; height: 30px; padding: 2px 2px 2px 2px;">
-                                                수업 예약하기
-                                            </a>
-                                        </div>
-                                    </div>
-                                </section>
-                            </c:otherwise>
-                        </c:choose>
-                    </div>
-                    <!-- End. 오늘의 일정 -->
-                    <%-- 챗봇 안내 --%>
-                    <div class="emTitle_co padding-20">
-                        <h2 class="size-16 weight-500 color-secondary mb-1">고객 문의사항</h2>
-                        <p class="size-12 color-text m-0">AI-ChatBot을 통해 궁금한 점을 빠르게 해결해 보세요.</p>
-                    </div>
-                    <div class="">
-                        <div class="margin-b-20 emPage__CateJobs withOut_colorful padding-l-20 padding-r-20">
-
-                            <a href="/mypage/gptchatbot" class="emCategorie_itemJobs _list bg-blue">
-                                <img src="/assets/img/candy/chatbot.png" class="d-inline animated-bounce" id="chatbot"
-                                     alt="chatbot"
-                                     style="width: 50px; height: 50px;">
-                                <div class="txt">
-                                    <h2>안녕, 나는 헬쓱 지피티야. <br> 운동하면서 궁금한 점을 알려줘</h2>
-                                    <p>24시간 대기중</p>
-                                </div>
-                            </a>
-
-                            <a href="/mypage/chatbot" class="emCategorie_itemJobs _list bg-orange">
-                                <img src="/assets/img/candy/clova.png" class="d-inline animated-bounce" id="chatbotclova"
-                                     alt="chatbot"
-                                     style="width: 50px; height: 50px;">
-                                <div class="txt">
-                                    <h2>안녕, 나는 헬쓱 클로바야.<br> 헬쓱 어플 이용법이 궁금하니? </h2>
-                                    <p>24시간 대기중</p>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                </div><!-- 나의운동 영역 끝. -->
-
-                <!-- 두번째 탭 : 출석체크 시작 -->
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-
-<%--                    <div class="dividar pt-1 mb-3 padding-20"></div>--%>
+                        <%--                    <div class="dividar pt-1 mb-3 padding-20"></div>--%>
 
                     <!-- Start. 운동 완료 별사탕 -->
                     <section class="npBalabce_section padding-0 pb-0">
@@ -303,7 +213,9 @@
                         <div class="content_balance bg-white"
                              style="padding-bottom: 0px">
                             <div class="txt">
-                                <h6 class="color-secondary" style="font-weight: bold;">6월 운동 출석체크<br/><span style="font-size: 13px; font-weight: bold; color: blueviolet;">카메라를 열어 우측 QR코드를 찍어주세요</span></h6>
+                                <h6 class="color-secondary" style="font-weight: bold;">6월 운동 출석체크<br/><span
+                                        style="font-size: 13px; font-weight: bold; color: blueviolet;">카메라를 열어 우측 QR코드를 찍어주세요</span>
+                                </h6>
                                 <h7 id="candyCount" class="color-black"></h7>
                             </div>
                             <div>
@@ -315,7 +227,8 @@
                                 </button>
                             </div>
                         </div>
-                        <br><hr style="margin-top: 0px">
+                        <br>
+                        <hr style="margin-top: 0px">
                         <div class="content_balance bg-white" id="candy_list"
                              style="padding-top: 0px;">
                             <div class="image_list">
@@ -366,22 +279,108 @@
                     <hr>
 
                 </div>
+                <!-- 두번째 탭 : 나의 운동 내용작성 구간 -->
+
+                <div class="tab-pane fade" id="pills-home" role="tabpanel"
+                     aria-labelledby="pills-home-tab">
+
+                    <!-- Start 오늘의 일정 -->
+                    <div class="owl-carousel owl-theme em-owlCentred em_owl_swipe">
+                        <c:choose>
+                            <c:when test="${my_reservation_list != '[]'}">
+                                <c:forEach var="obj" items="${my_reservation_list}">
+                                    <section class="npBalabce_section padding-5 pb-0">
+                                        <div class="content_balance " style="background: #fbebee; margin-bottom: 10px;
+                                         box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 4px 4px 6px -3px rgba(0, 0, 0, 0.1);">
+                                            <div class="txt">
+                                                <h6 style="color: rebeccapurple">
+                                                        ${obj.dateCategory}의 운동 일정</h6>
+                                                <h6 class="color-secondary">${obj.className}</h6>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     fill="currentColor"
+                                                     class="bi bi-calendar2-check color-instagram" viewBox="0 0 16 16">
+                                                    <path d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+                                                    <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
+                                                </svg>&nbsp;
+                                                <h7 class="color-instagram">${obj.classDate}</h7>
+                                                <br>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     fill="currentColor" class="bi bi-alarm color-instagram"
+                                                     viewBox="0 0 16 16">
+                                                    <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"/>
+                                                    <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
+                                                </svg>&nbsp;
+                                                <h7 class="color-instagram">${obj.classStarttime}~${obj.classEndtime}</h7>
+                                            </div>
+                                            <div class="action">
+                                                <a href="/class/my_reservation" class="btn-">
+                                                    나의 일정 보기
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <section class="npBalabce_section padding padding-b-20">
+                                    <div class="content_balance bg-white border border-gray"
+                                         style=" height:100px;
+                                      box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 4px 4px 6px -3px rgba(0, 0, 0, 0.1);">
+                                        <div class="txt">
+                                            <h6 style="font-size: 14px;">
+                                                당분간 운동일정이 없네요
+                                            </h6>
+                                            <h7 style="color: blueviolet; font-size: 11px;">바로 수업일정을 알아보세요</h7>
+                                        </div>
+                                        <div class="action" style="
+                                        border-radius: 7px; background-color: #cce5ff;  font-size: 9px; ">
+                                            <a href="/class/reservation" class="btn"
+                                               style="font-size: 9px; font-weight: bold; width: 20px; height: 30px; padding: 2px 2px 2px 2px;">
+                                                수업 예약하기
+                                            </a>
+                                        </div>
+                                    </div>
+                                </section>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                    <!-- End. 오늘의 일정 -->
+                        <%-- 챗봇 안내 --%>
+                    <div class="emTitle_co padding-20">
+                        <h2 class="size-16 weight-500 color-secondary mb-1">고객 문의사항</h2>
+                        <p class="size-12 color-text m-0">AI-ChatBot을 통해 궁금한 점을 빠르게 해결해 보세요.</p>
+                    </div>
+                    <div class="">
+                        <div class="margin-b-20 emPage__CateJobs withOut_colorful padding-l-20 padding-r-20">
+
+                            <a href="/mypage/gptchatbot" class="emCategorie_itemJobs _list bg-blue">
+                                <img src="/assets/img/candy/chatbot.png" class="d-inline animated-bounce" id="chatbot"
+                                     alt="chatbot"
+                                     style="width: 50px; height: 50px;">
+                                <div class="txt">
+                                    <h2>안녕, 나는 헬쓱 지피티야. <br> 운동하면서 궁금한 점을 알려줘</h2>
+                                    <p>24시간 대기중</p>
+                                </div>
+                            </a>
+                            <a href="/mypage/chatbot" class="emCategorie_itemJobs _list bg-orange">
+                                <img src="/assets/img/candy/clova.png" class="d-inline animated-bounce"
+                                     id="chatbotclova"
+                                     alt="chatbot"
+                                     style="width: 50px; height: 50px;">
+                                <div class="txt">
+                                    <h2>안녕, 나는 헬쓱 클로바야.<br> 헬쓱 어플 이용법이 궁금하니? </h2>
+                                    <p>24시간 대기중</p>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                </div><!-- 나의운동 영역 끝. -->
             </div>
+
         </section>
-
-
-
-                    <!-- 조인리스트 넣는 공간 끝 -->
-
-                </div> <!-- 개설한 조인 끝. -->
-
-            </div>
-        </section>
-
         <%--탭 종료--%>
-
-
-
 
         <!-- Modal -->
         <div class="modal defaultModal modalCentered change__address fade" id="mdllAdd_Address" tabindex="-1"
@@ -413,7 +412,8 @@
 <c:forEach var="obj" items="${my_ticket_list}" varStatus="status">
     <form id="review-form-${obj.gymNo}">
         <!-- Modal Add Rate -->
-        <div class="modal transition-bottom screenFull defaultModal mdlladd__rate fade" id="mdllAddRate-${obj.gymNo}" tabindex="-1"
+        <div class="modal transition-bottom screenFull defaultModal mdlladd__rate fade" id="mdllAddRate-${obj.gymNo}"
+             tabindex="-1"
              aria-labelledby="exampleModalLabel" aria-hidden="true">
             <input type="hidden" name="gymNo" value="${obj.gymNo}"/>
             <input type="hidden" name="purchaseNo" value="${obj.purchaseNo}"/>
@@ -424,7 +424,8 @@
                             <div class="media">
                                 <div class="imgProd">
                                     <img src="/assets/img/candy/star_active.png" alt="">
-                                </div><br>
+                                </div>
+                                <br>
                                 <div class="media-body">
                                     <div class="txt">
                                         <h2>${obj.gymName}</h2>
@@ -491,13 +492,13 @@
 
     });
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // 이벤트 위임 사용
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
             if (event.target && event.target.id === 'review_register_btn') {
                 console.log("눌렸다!");
 
-                var selectedRates = $(event.target).closest('form').find('input[name="reviewRate"]:checked').map(function() {
+                var selectedRates = $(event.target).closest('form').find('input[name="reviewRate"]:checked').map(function () {
                     return $(this).val();
                 }).get();
 
@@ -514,19 +515,22 @@
                     url    : '/review/add',
                     method : 'POST',
                     data   : {
-                        reviewRate: selectedRates,
+                        reviewRate    : selectedRates,
                         reviewContents: reviewContents,
                         gymNo         : gymNo,
                         purchaseNo    : purchaseNo
                     },
                     success: function (response) {
                         if (response === "success") {
+                            toastr.options.positionClass = "toast-top-full-width";
+                            toastr.options.timeOut = 1000;
+                            toastr.success('리뷰가 등록되었습니다', {timeOut: 1000});
                             $('#mdllAddRate-' + gymNo).modal('hide'); // 모달을 감추는 코드 추가
-                            alert('리뷰가 등록되었습니다.');
+                            // alert('리뷰가 등록되었습니다.');
                         }
                     },
                     error  : function () {
-                        alert('오류가 발생했습니다.');
+                        // alert('오류가 발생했습니다.');
                     }
                 });
             }
@@ -541,6 +545,8 @@
         // 3초 후에 모달 창 닫기
         setTimeout(function () {
             $('#mdllAdd_Address').modal('hide');
+            // 전체 화면 새로고침
+            window.location.href = '/mypage';
         }, 3000);
     }
 
@@ -662,7 +668,6 @@
 <script src="assets/js/main.js" defer></script>
 <!-- PWA app service registration and works js -->
 <script src="assets/js/pwa-services.js"></script>
-
 
 
 <!-- Start 헬쓱이 지피티 -->

@@ -230,17 +230,40 @@ function openCancelModal(classNo, purchaseNo) {
                 purchaseNo : purchaseNo},
             success: function (response) {
                 if (response === "success") {
-                    alert("예약취소가 완료되었습니다");
-                    $('#mdllRemoveStand').modal('hide'); // 모달 창을 닫습니다
-                    window.location.href = "/class/my_reservation"; // 페이지 이동
+                    // alert("예약취소가 완료되었습니다");
+                    toastr.options.positionClass = "toast-top-full-width";
+                    toastr.options.timeOut = 1000;
+                    toastr.success('예약취소가 완료되었습니다', {timeOut: 1000});
+
+                    setTimeout(function() {
+                        $('#mdllAdd_Address').modal('hide');
+                        window.location.href = "/class/my_reservation";
+                    }, 800); // Delay for 5 seconds (5000 milliseconds)
+
+                    // $('#mdllRemoveStand').modal('hide'); // 모달 창을 닫습니다
+                    // window.location.href = "/class/my_reservation"; // 페이지 이동
                 } else {
-                    alert("예약취소에 실패하였습니다");
-                    $('#mdllRemoveStand').modal('hide'); // 모달 창을 닫습니다
+                    // alert("예약취소에 실패하였습니다");
+                    toastr.options.positionClass = "toast-top-full-width";
+                    toastr.options.timeOut = 1000;
+                    toastr.error('예약취소에 실패하였습니다', {timeOut: 1000});
+
+                    setTimeout(function() {
+                        $('#mdllAdd_Address').modal('hide');
+                        window.location.href = "/class/my_reservation";
+                    }, 800); // Delay for 5 seconds (5000 milliseconds)
                 }
             },
             error: function (error) {
-                alert("예약취소에 실패하였습니다");
-                $('#mdllRemoveStand').modal('hide'); // 모달 창을 닫습니다
+                // alert("예약취소에 실패하였습니다");
+                toastr.options.positionClass = "toast-top-full-width";
+                toastr.options.timeOut = 1000;
+                toastr.error('예약취소에 실패하였습니다', {timeOut: 1000});
+
+                setTimeout(function() {
+                    $('#mdllAdd_Address').modal('hide');
+                    window.location.href = "/class/my_reservation";
+                }, 800); // Delay for 5 seconds (5000 milliseconds)
             },
             complete: function () {
                 // AJAX 요청 완료 후 필요한 작업을 수행할 수 있습니다.

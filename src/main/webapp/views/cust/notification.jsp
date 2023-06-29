@@ -111,7 +111,7 @@
      // 스위치 버튼 작동 시 알럿창
       toastr.options.positionClass = "toast-top-full-width";
       toastr.options.timeOut = 3000;
-      toastr.success('헬쓱 Push알림 상태 변경 완료(2023.06.23)', {timeOut: 3000});
+      toastr.success('헬쓱 Push알림 상태 변경 완료(2023.07.07)', {timeOut: 3000});
 
   });
 
