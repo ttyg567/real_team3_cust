@@ -709,7 +709,7 @@
                                                                  data-placement="top"
                                                                  title="아래 별모양을 클릭하고 자주 찾는 기구들은 한눈에 보세요"
                                                                  style="width: 100%; height: 30px; background-color: white; font-size: 13px; color: black; font-weight: bold; margin: 0px; padding-left: 0px; ">
-                                                                <span class="size-13 color-black m-0 pt-1" style="font-weight: bold; padding-right: 5px; text-align: left; padding-left: 0px; flex: 1;">나의 운동기구</span>
+                                                                <span class="size-13 color-black m-0 pt-1" style="font-weight: bold; padding-right: 5px; text-align: left; padding-left: 0px; flex: 1;">나의 운동기구함</span>
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
                                                                      class="bi bi-patch-exclamation-fill color-facebook" viewBox="0 0 16 16"
                                                                      style="vertical-align: middle;">
