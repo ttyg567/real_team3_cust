@@ -106,18 +106,18 @@
         </div>
 
     </header>
-
-    <h6 style="text-align: center">비만율을 체크하고 헬쓱을 유지하세요!</h6><br>
-    <p style="font-size: 11px; line-height: 1.5;">
-        <strong>BMI가 무엇인가요?</strong><br>
-        체질량지수를 의미하는 지표로, 체중(kg)을 키의 제곱(㎡)으로 나눈 값을 통해 지방의 양을 추정하는 비만측정법입니다.<br>
-        <br>
-        <strong>신체지수에 의한 비만의 분류표</strong><br>
-        - 정상: BMI 20~25<br>
-        - 과체중(1도 비만): BMI 25~29.9<br>
-        - 비만(2도 비만): BMI 30~40<br>
-        - 고도비만: BMI 40.1 이상
-    </p>
+    <img src="/assets/img/bmiinfo.png" style="width: 100%; margin-top: -200px">
+<%--    <h6 style="text-align: center">비만율을 체크하고 헬쓱을 유지하세요!</h6><br>--%>
+<%--    <p style="font-size: 11px; line-height: 1.5;">--%>
+<%--        <strong>BMI가 무엇인가요?</strong><br>--%>
+<%--        체질량지수를 의미하는 지표로, 체중(kg)을 키의 제곱(㎡)으로 나눈 값을 통해 지방의 양을 추정하는 비만측정법입니다.<br>--%>
+<%--        <br>--%>
+<%--        <strong>신체지수에 의한 비만의 분류표</strong><br>--%>
+<%--        - 정상: BMI 20~25<br>--%>
+<%--        - 과체중(1도 비만): BMI 25~29.9<br>--%>
+<%--        - 비만(2도 비만): BMI 30~40<br>--%>
+<%--        - 고도비만: BMI 40.1 이상--%>
+<%--    </p>--%>
     <section class="em__signTypeOne padding-t-20" >
           <p >키 (cm)</p>
           <input type="text" id="height">
@@ -135,8 +135,8 @@
 
     </section>
     <div class="image-container" style="margin-top: -50px">
-        <img src="/assets/img/workout.gif" style="width: 100px">
-        <img src="/assets/img/workout2.gif" style="width: 100px">
+<%--        <img src="/assets/img/workout.gif" style="width: 100px">--%>
+<%--        <img src="/assets/img/workout2.gif" style="width: 100px">--%>
     </div>
 <%--    <img src="/assets/img/BMI.png" style="width: 300px; margin-top: -50px">--%>
 </div>

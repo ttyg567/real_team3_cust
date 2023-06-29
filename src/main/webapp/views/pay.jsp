@@ -35,7 +35,7 @@
 
         //IMP.request_pay(param, callback) 결제창 호출
         IMP.request_pay({
-                pg            : "kcp",
+                pg            : "html5_inicis",
                 pay_method    : "card",
                 merchant_uid  : 'merchant_' + new Date().getTime(),
                 name          : "${gymName} ${ticket_pay_option.substring(0, 3)}",

@@ -53,7 +53,10 @@
                 contentType: false,
                 success: function (data) {
                     $('#imgname').val(data);
-                    alert('프로필 사진이 정상 등록되었어요')
+
+                    toastr.options.positionClass = "toast-top-full-width";
+                    toastr.options.timeOut = 3000;
+                    toastr.success('프로필 사진이 정상 등록되었어요', {timeOut: 3000});
                 }
             });
         },
