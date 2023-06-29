@@ -40,7 +40,8 @@
         <!-- End.main_haeder -->
 
         <!-- Start npPage_introDefault -->
-        <section class="npPage_introDefault padding-t-70">
+        <section class="npPage_introDefault padding-t-70"
+        style="margin-top: 100px">
 <%--            <div class="cover">--%>
 <%--                <img src="assets/img/0sd6f8.jpg" alt="">--%>
 <%--            </div>--%>
@@ -82,17 +83,13 @@
                 <div class="swiper-pagination"></div>
             </div>
 
-            <div class="npButtons_networks env-pb margin-b-20">
-                <a href="/cust/pic" class="btn rounded-pill border-snow">
-                    <span class="color-secondary">프로필 사진 등록</span>
+            <div class="npButtons_networks env-pb margin-b-20" >
+                <a href="/cust/pic" class="btn rounded-pill border-snow"
+                   style="background-color: rebeccapurple">
+                    <span class="color-white">프로필 사진 등록</span>
                 </a>
 
-                <a href="/ticket/all" class="btn rounded-pill bg-primary">
-                    <span class="color-white">운동 하러가기</span>
-                </a>
-                <a href="/groupboard" class="btn rounded-pill bg-secondary">
-                    <span class="color-white">나의 조인찾기</span>
-                </a>
+
             </div>
 
         </section>
