@@ -1,6 +1,5 @@
 package com.kbstar.controller;
 
-
 import com.kbstar.dto.Cust;
 import com.kbstar.service.CustService;
 import com.kbstar.util.FileUploadUtil;
@@ -49,5 +48,6 @@ public class AjaxImplController {
         Date date = new Date();
         return date;
     }
+
 
 }

@@ -85,7 +85,8 @@
                     헬쓱을 더 둘러 보세요.<br><br>
                     tip. 조인을 개설하고 이용권을 함께 구매하면 할인쿠폰 증정
                 </p>
-                <a href="/groupboard" style="background-color: blueviolet; color: white; border: none;"
+<%--         조인 만들기 성공페이지에서 확인 누르면, 나의 조인 페이지로 바로 이동.       --%>
+                <a href="/groupboard/my_applyjoin?custNo=${logincust.custNo}" style="background-color: blueviolet; color: white; border: none;"
                    class="btn rounded-10 h-48 min-w-130 size-14 color-secondary border-snow border-solid d-inline-flex align-items-center justify-content-center">
                     확인했어요</a>
             </div>

@@ -103,10 +103,14 @@
 
     .card-calendar {
         border: none; /* 테두리 없애기 */
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .card-body {
         border: none;
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .bg-gradient-primary {
