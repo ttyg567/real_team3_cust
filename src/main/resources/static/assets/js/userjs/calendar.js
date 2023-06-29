@@ -298,7 +298,11 @@ var calendar = new FullCalendar.Calendar(document.getElementById("calendar_reser
         $(document).on('click', '#reserve_btn', function () {
             // 정보가 있는지 확인
             if ($('.circle_check.active').length === 0) {
-                alert("예약하실 수업을 선택해주세요."); // 정보가 없을 경우 alert 창을 띄웁니다.
+                // alert("예약하실 수업을 선택해주세요."); // 정보가 없을 경우 alert 창을 띄웁니다.
+                toastr.options.positionClass = "toast-top-full-width";
+                toastr.options.timeOut = 1000;
+                toastr.error('예약하실 수업을 선택해주세요', {timeOut: 1000});
+
                 return;
             }
 
@@ -318,17 +322,40 @@ var calendar = new FullCalendar.Calendar(document.getElementById("calendar_reser
                     ticketNo: ticketNo},
                 success: function (response) {
                     if (response === "success") {
-                        alert("예약이 완료되었습니다");
-                        $('#mdllAdd_Address').modal('hide'); // 모달 창을 닫습니다
-                        window.location.href = "/class/my_reservation"; // 페이지 이동
+                        // alert("예약이 완료되었습니다");
+                        toastr.options.positionClass = "toast-top-full-width";
+                        toastr.options.timeOut = 1000;
+                        toastr.success('예약이 완료되었습니다', {timeOut: 1000});
+
+                        setTimeout(function() {
+                            $('#mdllAdd_Address').modal('hide');
+                            window.location.href = "/class/my_reservation";
+                        }, 800); // Delay for 5 seconds (5000 milliseconds)
+
+                        // $('#mdllAdd_Address').modal('hide'); // 모달 창을 닫습니다
+                        // window.location.href = "/class/my_reservation"; // 페이지 이동
                     } else {
-                        alert("예약에 실패하였습니다");
-                        $('#mdllAdd_Address').modal('hide'); // 모달 창을 닫습니다
+                        // alert("예약에 실패하였습니다");
+                        toastr.options.positionClass = "toast-top-full-width";
+                        toastr.options.timeOut = 1000;
+                        toastr.error('예약에 실패하였습니다', {timeOut: 1000});
+
+                        setTimeout(function() {
+                            $('#mdllAdd_Address').modal('hide');
+                            window.location.href = "/class/my_reservation";
+                        }, 800); // Delay for 5 seconds (5000 milliseconds)
                     }
                 },
                 error: function (error) {
-                    alert("예약에 실패하였습니다");
-                    $('#mdllAdd_Address').modal('hide');
+                    // alert("예약에 실패하였습니다");
+                    toastr.options.positionClass = "toast-top-full-width";
+                    toastr.options.timeOut = 1000;
+                    toastr.error('예약에 실패하였습니다', {timeOut: 1000});
+
+                    setTimeout(function() {
+                        $('#mdllAdd_Address').modal('hide');
+                        window.location.href = "/class/my_reservation";
+                    }, 800); // Delay for 5 seconds (5000 milliseconds)
                 },
                 complete: function () {
                     // 버튼 다시 활성화

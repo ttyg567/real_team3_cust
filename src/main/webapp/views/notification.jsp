@@ -56,7 +56,7 @@
                             <a href="#" class="item__activiClassic">
                                 <div class="media">
                                     <div class="img_user">
-                                        <img src="/assets/img/persons/pexels-juliana-stein-1898555.jpg" alt="">
+                                        <img src="/assets/img/candy/star_active.png" alt="">
                                     </div>
                                     <div class="media-body my-auto">
                                         <div class="txt" style="width: 100%;">

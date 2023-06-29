@@ -48,7 +48,7 @@
                 // m_redirect_url:
                 <%--    "http://"+${serviceserver}" +/paySuccess_mobile?custNo=" + custNo + "&ticketNo=" + ticketNo + "&gymNo=" + gymNo + "&sportsType=" + sportsType + "&sportsClasstype=" + sportsClasstype + "&ticketType=" + ticketType + "&ticketMonth=" + ticketMonth + "&ticketNumber=" + ticketNumber + "&ticketJoin=" + ticketJoin + "&purchasePrice=" + purchasePrice--%>
                 m_redirect_url:
-                    "http://172.16.20.107/paySuccess_mobile?custNo=" + custNo + "&ticketNo=" + ticketNo + "&gymNo=" + gymNo + "&sportsType=" + sportsType + "&sportsClasstype=" + sportsClasstype + "&ticketType=" + ticketType + "&ticketMonth=" + ticketMonth + "&ticketNumber=" + ticketNumber + "&ticketJoin=" + ticketJoin + "&hiddenFinalPrice=" + hiddenFinalPrice + "&hiddenCouponNo=" + hiddenCouponNo
+                    "http://115.85.183.166/paySuccess_mobile?custNo=" + custNo + "&ticketNo=" + ticketNo + "&gymNo=" + gymNo + "&sportsType=" + sportsType + "&sportsClasstype=" + sportsClasstype + "&ticketType=" + ticketType + "&ticketMonth=" + ticketMonth + "&ticketNumber=" + ticketNumber + "&ticketJoin=" + ticketJoin + "&hiddenFinalPrice=" + hiddenFinalPrice + "&hiddenCouponNo=" + hiddenCouponNo
                 // 리다이렉트 유알엘은 앞에 ip 주소 써야 함. 실 ip주소 가능, 127.0.0.1 쓰지 말기 (안드로이드에서 실 ip 주소로)
             },
             rsp => {
@@ -95,7 +95,7 @@
                 // m_redirect_url:
                 <%--    "http://"+${serviceserver}" +/paySuccess_mobile?custNo=" + custNo + "&ticketNo=" + ticketNo + "&gymNo=" + gymNo + "&sportsType=" + sportsType + "&sportsClasstype=" + sportsClasstype + "&ticketType=" + ticketType + "&ticketMonth=" + ticketMonth + "&ticketNumber=" + ticketNumber + "&ticketJoin=" + ticketJoin + "&purchasePrice=" + purchasePrice--%>
                 m_redirect_url:
-                    "http://172.16.20.107/paySuccess_mobile?custNo=" + custNo + "&ticketNo=" + ticketNo + "&gymNo=" + gymNo + "&sportsType=" + sportsType + "&sportsClasstype=" + sportsClasstype + "&ticketType=" + ticketType + "&ticketMonth=" + ticketMonth + "&ticketNumber=" + ticketNumber + "&ticketJoin=" + ticketJoin + "&hiddenFinalPrice=" + hiddenFinalPrice + "&hiddenCouponNo=" + hiddenCouponNo
+                    "http://115.85.183.166/paySuccess_mobile?custNo=" + custNo + "&ticketNo=" + ticketNo + "&gymNo=" + gymNo + "&sportsType=" + sportsType + "&sportsClasstype=" + sportsClasstype + "&ticketType=" + ticketType + "&ticketMonth=" + ticketMonth + "&ticketNumber=" + ticketNumber + "&ticketJoin=" + ticketJoin + "&hiddenFinalPrice=" + hiddenFinalPrice + "&hiddenCouponNo=" + hiddenCouponNo
                 // 리다이렉트 유알엘은 앞에 ip 주소 써야 함. 실 ip주소 가능, 127.0.0.1 쓰지 말기 (안드로이드에서 실 ip 주소로)
             },
             rsp => {
