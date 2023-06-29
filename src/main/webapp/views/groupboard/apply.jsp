@@ -93,7 +93,7 @@
 <%--                </a>--%>
             </div>
                 <div class="emfo_button __withIcon">
-                    <a href="/groupboard" style="background-color: blueviolet; color: white; border: none;"
+                    <a href="/groupboard/my_applyjoin?custNo=${logincust.custNo}" style="background-color: blueviolet; color: white; border: none;"
                        class="btn rounded-10 h-48 min-w-130 size-14 color-secondary border-snow border-solid d-inline-flex align-items-center justify-content-center">
                         확인했어요</a>
                 </div>

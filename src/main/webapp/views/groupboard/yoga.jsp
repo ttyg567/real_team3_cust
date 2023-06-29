@@ -617,66 +617,21 @@
                 </section>
 
                   <%--  모달 맨 밑 푸터   --%>
-                <div class="modal-footer">
-                  <div class="em__footer">
-                    <div class="em_footerinner">
+                <div class="modal-footer" style="width: 100%;">
+                  <div class="em__footer" style="width: 100%;">
+                    <div class="em_footerinner" style="width: 100%;">
                       <div class="emfo_button __withIcon">
-                        <button type="button" class="btn btn_addCart" id="itemSave">
-                          <div class="ico icon_current">
-                            <svg id="Iconly_Two-tone_Heart" data-name="Iconly/Two-tone/Heart"
-                                 xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                 viewBox="0 0 20 20">
-                              <g id="Heart" transform="translate(1.667 2.5)">
-                                <path id="Path_33961"
-                                      d="M8.124,14.878a30.408,30.408,0,0,1-5.282-3.907A9.935,9.935,0,0,1,.327,7.163,5.229,5.229,0,0,1,3.571.24,5.469,5.469,0,0,1,8.33,1h0A5.477,5.477,0,0,1,13.089.24,5.232,5.232,0,0,1,16.34,7.163a9.935,9.935,0,0,1-2.514,3.808,30.408,30.408,0,0,1-5.282,3.907L8.338,15Z"
-                                      transform="translate(0 0)" fill="none" stroke="#292e34"
-                                      stroke-linecap="round" stroke-linejoin="round"
-                                      stroke-miterlimit="10" stroke-width="1.5"></path>
-                                <path id="Path_33964" d="M0,0A2.345,2.345,0,0,1,1.681,2.018"
-                                      transform="translate(11.613 3.378)" fill="none" stroke="#292e34"
-                                      stroke-linecap="round" stroke-linejoin="round"
-                                      stroke-miterlimit="10" stroke-width="1.5" opacity="0.4"></path>
-                              </g>
-                            </svg>
-                          </div>
-                          <span class="textCart color-secondary d-inline-block" >Save</span>
-                        </button>
                           <%-- get 방식의 submit으로 정보 전송 --%>
-                        <button type="submit" id="join_addbtn" style="margin-left: 50px; background-color: blueviolet; color: white"
-                                class="btn btn__icon color-white min-w-175 text-left justify-content-between">
+                        <button type="submit" id="join_addbtn" style="background-color: blueviolet; color: white; width: 100%"
+                                class="btn btn__icon color-white min-w-175">
                           조인 신청하기
                           <a href="/groupboard/success_apply" >
-                            <div class="icon">
-                              <svg id="Iconly_Light_Arrow_-_Right_Square"
-                                   data-name="Iconly/Light/Arrow - Right Square"
-                                   xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                   viewBox="0 0 24 24">
-                                <g id="Arrow_-_Right_Square" data-name="Arrow - Right Square"
-                                   transform="translate(2 22) rotate(-90)">
-                                  <path id="Stroke_1" data-name="Stroke 1"
-                                        d="M4.916,18.5h8.669c3.02,0,4.915-2.139,4.915-5.166V5.166C18.5,2.139,16.615,0,13.585,0H4.916C1.886,0,0,2.139,0,5.166v8.168C0,16.361,1.886,18.5,4.916,18.5Z"
-                                        transform="translate(0.75 0.75)" fill="none" stroke="#200e32"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-miterlimit="10" stroke-width="1.5" opacity="0.4"></path>
-                                  <path id="Stroke_3" data-name="Stroke 3" d="M.5,8.172V0"
-                                        transform="translate(9.5 5.914)" fill="none" stroke="#200e32"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-miterlimit="10" stroke-width="1.5"></path>
-                                  <path id="Stroke_5" data-name="Stroke 5" d="M7.5,0,3.748,3.764,0,0"
-                                        transform="translate(6.252 10.322)" fill="none" stroke="#200e32"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-miterlimit="10" stroke-width="1.5"></path>
-                                </g>
-                              </svg>
-
-                            </div>
                           </a>
                         </button>
                       </div>
                     </div>
                   </div>
                 </div>
-
               </div><%-- 제목~내용 구간 끝. --%>
 
             </div>
