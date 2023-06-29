@@ -26,13 +26,20 @@
 <div id="wrapper">
     <div id="content">
         <!-- Start main_haeder -->
-        <header class="main_haeder bg-transparent">
-            <div class="em_side_right absolute top-0 right-0 padding-t-20">
-                <a class="btn btn__back rounded-10" href="/">
-                    <i class="tio-clear"></i>
+        <header class="main_haeder header-sticky multi_item d-lfex justify-content-end">
+            <div class="em_side_right">
+                <div class="title_page">
+                    <span class="page_name">
+                     헬쓱
+                    </span>
+                </div>
+                <a href="/"
+                   class="link__forgot d-block size-14 color-text text-decoration-none hover:color-secondary transition-all">
+                    Skip
                 </a>
             </div>
         </header>
+
         <!-- End.main_haeder -->
         <div>
             <c:choose>
@@ -63,19 +70,20 @@
                 </c:when>
                 <c:otherwise>
                     <!-- Swiper -->
-                    <div class="swiper-container swiper-intro-default swiper__text padding-t-40">
-                        <div class="swiper-wrapper">
+                    <div class="container">
+                        <div class="container">
                             <div class="swiper-slide">
-                                <div class="content_text">
-                                    <h2 class="txt_gradient">축하드려요! ${couponOpen.couponName} 쿠폰 당첨!</h2>
-                                    <h2 class="size-20 weight-500 color-secondary margin-b-10">이용권을 바로 구매하세요</h2>
+                                <div class="content_text" style="margin-top: 80px">
+                                    <h4 class="txt_gradient">축하드려요! ${couponOpen.couponName} 쿠폰 당첨!</h4>
+                                    <h6 class="size-20 weight-500 color-secondary margin-b-10">이용권을 바로 구매하세요</h6>
                                     <p class="size-15 color-text margin-b-10 moving-text">▼ 커피 한 잔으로 오늘도 이겨내보아요! ▼</p>
                                     <a href="/coupon/my_coupon?custNo=${logincust.custNo}"
-                                       class="btn rounded-10 h-48 min-w-130 size-14 color-secondary border-snow border-solid d-inline-flex align-items-center justify-content-center">
+                                       class="btn rounded-10 h-48 min-w-130 size-14 color-white border-snow border-solid d-inline-flex align-items-center justify-content-center" style="background-color: #af9ad5;">
                                         내 쿠폰함 보기</a>
                                 </div>
+                            </div>
                                 <br/>
-                                <div id="notification">
+                                <div id="notification" style="text-align: center">
                                     <img id="ame1" src="/assets/img/gift/ame1.jpg"
                                          style="cursor: pointer; width: 270px; height: 270px;"><br/>
                                         <%--                유효기간 : 2023-06-20 ~ 2023-08-20--%>
@@ -89,7 +97,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+
                 </c:otherwise>
             </c:choose>
         </div>
