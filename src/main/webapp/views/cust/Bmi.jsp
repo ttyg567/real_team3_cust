@@ -106,7 +106,7 @@
         </div>
 
     </header>
-    <img src="/assets/img/bmiinfo.png" style="width: 100%; margin-top: -200px">
+    <img src="/assets/img/bmiinfo.png" style="width: 100%; margin-top: -60px">
 <%--    <h6 style="text-align: center">비만율을 체크하고 헬쓱을 유지하세요!</h6><br>--%>
 <%--    <p style="font-size: 11px; line-height: 1.5;">--%>
 <%--        <strong>BMI가 무엇인가요?</strong><br>--%>
