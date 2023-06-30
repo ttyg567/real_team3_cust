@@ -1097,7 +1097,7 @@
                         <div class="modal-body" style="height: 400px;">
                             <ul class="nav__listAddress itemSingle"  style="height: 150px; display: flex; align-items: center; flex-direction: column;">
                                 <%-- 운동센터명  --%>
-                                <p style="font-size: 14px; font-weight: bold">${obj.gymName}</p>
+                                <p style="font-size: 14px; font-weight: bold">KB피트니스센터 본관 여의도점</p>
                                 <%-- cctv영상이 표출되는 실시간 서버 시간   --%>
                                     <p id="current-time" class="p-3 mb-0" style="color: black; padding: 0px"></p>
                                     <span class="badge badge-secondary">

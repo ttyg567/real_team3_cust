@@ -59,7 +59,7 @@ public class MainController {
         List<MyMachine> list3 = null;
         List<Groupboard> list4 = null;
         List<Purchase> my_ticket_list = null;
-        List<Like1> list5 = new ArrayList<>();
+        List<Like1> list5 = null;
 
         model.addAttribute("searchType", list); //jsp파일에서 뿌릴 이름 정하기
         try {
