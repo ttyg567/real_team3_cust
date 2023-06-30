@@ -1151,18 +1151,18 @@
                     </div>
 
                 </div>
-                <div class="modal-body" style="height: 260px;">
-                    <ul class="nav__listAddress itemSingle"  style="height: 50px; display: flex; align-items: center; flex-direction: column;">
+                <div class="modal-body" style="height: 420px;">
+                    <ul class="nav__listAddress itemSingle"  style="height: 150px; display: flex; align-items: center; flex-direction: column;">
                             <%-- 운동센터명  --%>
                         <p style="font-size: 15px; font-weight: bold">오늘 찜한 그 이용권,<br> 함께 구매하면 <span style="font-size: 15px; font-weight: bold; color: blueviolet">15% 할인</span> 받아요!</p>
                         <p style="font-size: 11px; font-weight: bold; color: blueviolet"></p>
-<%--                        <div style="">--%>
-<%--                            <img class="img_news" style="width: 90%; height: 85%; margin-left: 10px "--%>
-<%--                                 src="/img/popup.jpg" alt="">--%>
-<%--                        </div>--%>
+                        <div style="">
+                            <img class="img_news" style="width: 90%; height: 85%; margin-left: 10px "
+                                 src="/img/popup.jpg" alt="">
+                        </div>
                     </ul>
                             <%--                                <img src="/assets/img/gym/health1.jpg" alt="" style="width: 90%; height: 140px;">--%>
-                        <br>
+                        <br><br><br><br>
                     <ul class="itemList__news" style="padding-left: 0; padding-right: 0; padding-top: 5px; padding-bottom: 20px">
                             <%--  li : 화면에 보여질 조인들   --%>
                         <li class="items-nav">
@@ -1181,7 +1181,7 @@
                                                         </svg>
                                                     </div>
                                                         <%-- 이용권명 --%>
-                                                    <span  style="color: black; font-size: 11px; font-weight: bold">${obj.gymName}<span style="color: gray"></span><br> ${obj.ticketName}</span>
+                                                    <span  style="color: black; font-size: 11px">${obj.gymName}<span style="color: gray"></span><br> ${obj.ticketName}</span>
                                                 </div>
                                             </div>
                                             <div class="info_bottom">
@@ -1194,7 +1194,7 @@
                                                         </svg>
                                                     </div>
 
-                                                    <span style="color: black;font-weight: bold; font-size: 11px">일반 회원가 <fmt:formatNumber value="${obj.ticketCost}" pattern="###,### 원" /></span>
+                                                    <span style="color: black; font-size: 11px">일반 회원가 <fmt:formatNumber value="${obj.ticketCost}" pattern="###,### 원" /></span>
                                                 </div>
                                             </div>
 
@@ -1248,6 +1248,9 @@
         </div>
     </c:otherwise>
 </c:choose>
+
+
+
 
 <script>
 

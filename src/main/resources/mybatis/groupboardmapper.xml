@@ -5,7 +5,7 @@
 <mapper namespace="com.kbstar.mapper.GroupboardMapper">
     <!-- 로그인 회원의 정보 중 '관심운동종목'과 같은 조인만 보여주기 -->
     <select id="selectMySport" resultType="groupboard">
-        SELECT
+        SELECT DISTINCT
             gb.groupboardNo, gb.custNo, gb.ticketNo,
             gb.groupboardTitle, gb.groupboardContents,
             gb.groupboardImgname,
@@ -14,14 +14,16 @@
             tk.TICKETTYPE, tk.TICKETMONTH, tk.TICKETNUMBER, tk.TICKETCOST, tk.TICKETDISCOUNT,
             tk.TICKETPRICE, tk.ticketname,
             gm.GYMNO, gm.GYMNAME, gm.GYMADDRESS1, gm.GYMADDRESS2, gm.GYMADDRESS3, gm.gymPhone, gm.GYMREGINUMBER
-                , cu.custname
-        FROM groupboard gb, ticket tk, gym gm, cust cu
-        where cu.SPORTSTYPE = #{SPORTSTYPE}
-          and gb.ticketno = tk.ticketno
-          and tk.gymno = gm.gymno
-          and gb.custno = cu.custno
-          and cu.SPORTSTYPE = gb.CATEGORYNO
-          and gb.groupboardStatus = '1'
+        FROM
+            groupboard gb
+                JOIN
+            cust cu ON cu.SPORTSTYPE = gb.CATEGORYNO
+                JOIN
+            ticket tk ON gb.ticketno = tk.ticketno
+                JOIN
+            gym gm ON tk.gymno = gm.gymno
+        WHERE
+            gb.categoryno = #{categoryNo}
     </select>
     <!--  조인만들 때 입력한 카테고리번호별로 일치하는 조인들만 조회시켜주기 : 모집중인 것만!(인보수정) -->
     <select id="getcategory" parameterType="String" resultType="groupboard">
