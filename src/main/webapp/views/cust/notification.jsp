@@ -54,7 +54,7 @@
           </label>
           <div class="em_toggle">
             <button type="button" class="btn btn-toggle toggle_lg" data-toggle="button"
-                    aria-pressed="false" autocomplete="off" id="toggleTwo">
+                    aria-pressed="true" autocomplete="off" id="toggleTwo">
               <div class="handle"></div>
             </button>
           </div>
@@ -111,7 +111,7 @@
      // 스위치 버튼 작동 시 알럿창
       toastr.options.positionClass = "toast-top-full-width";
       toastr.options.timeOut = 3000;
-      toastr.success('헬쓱 Push알림 상태 변경 완료(2023.07.07)', {timeOut: 3000});
+      toastr.success('헬쓱 Push알림 상태 변경 완료(2023.06.30)', {timeOut: 3000});
 
   });
 

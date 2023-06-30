@@ -269,11 +269,11 @@
         <p class="size-14 color-black m-0 pt-1" style="font-weight: bold">이용권 할인 소식 알림을 받아볼게요🌟</p>
     </div>
     <button type="button" id="ringBtn"
-            class="btn btn_smView btn-outline-secondary d-block color-text size-12
+            class="btn btn_smView btn-outline-secondary d-block color-text size-10
             d-flex justify-content-between align-items-center"
             data-toggle="modal"
             data-target="#mdllContent"
-            style="width: 85px; color: black;">알림받기<!-- 클릭버튼 -->
+            style="width: 93px; color: black;">알림받기<!-- 클릭버튼 -->
 <%--    <a href="/add_notification" class="d-block color-text size-12 m-0" style=" color: black;">알림받기--%>
 <%--    </a>--%>
         <svg class="ico color-secondary" id="Iconly_Two-tone_Notification" data-name="Iconly/Two-tone/Notification"
@@ -321,8 +321,8 @@
                         <div class="bottom_info">
                             <p class="item_price">
                                 <fmt:formatNumber value="${gym.ticketPrice}" type="number" pattern="#,##0원" />
-                                <span class="price_old">
-                                <fmt:formatNumber value="${gym.ticketCost}" type="number" pattern="#,##0원" />
+                                <span class="price_old" >
+                                <fmt:formatNumber value="${gym.ticketCost}" type="number" pattern="#,##0" />
                                 </span>
                             </p>
                         </div>
@@ -342,7 +342,7 @@
             <img src="/img/joinbanner1.jpg" alt="" style="width: 100%;">
             <div class="image-text" style="position: absolute; top: 50%; left: 50%;
             transform: translate(-55%, -20%); width: 300px; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-            color: white; font-size: 22px; font-weight: bold">내가 관심있게 본 운동?<br>인원 모아서 결제하면 동시 할인
+            color: white; font-size: 22px; font-weight: bold">내가 관심있게 본 운동?<br>조인해서 결제하면 동시 할인
             <span style="position: absolute; top: 120%; left: 50%;
             transform: translate(-50%, -20%); width: 300px; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
             color: white; font-size: 11px; font-weight: bold">
