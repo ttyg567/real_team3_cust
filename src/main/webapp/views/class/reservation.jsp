@@ -144,6 +144,7 @@
         -ms-transform: scale(1.1, -1.2) !important;
         transform: scale(1.1, -1.2) !important;
     }
+
     .circle_check.active {
         background-color: var(--bg-green) !important;
         border-color: var(--border-green) !important;
@@ -153,6 +154,7 @@
         -ms-animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) both !important;
         animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) both !important;
     }
+
     .circle_check.active::before {
         opacity: 1 !important;
     }
@@ -173,22 +175,35 @@
     </div>
     <div class="em_side_right">
         <a href="/notification" class="btn justify-content-center relative">
-            <svg class="color-secondary" id="Iconly_Two-tone_Notification"
-                 data-name="Iconly/Two-tone/Notification" xmlns="http://www.w3.org/2000/svg" width="24"
-                 height="24" viewBox="0 0 24 24">
+            <svg class="ico color-secondary" id="Iconly_Two-tone_Notification" data-name="Iconly/Two-tone/Notification"
+                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <g id="Notification" transform="translate(3.5 2)">
                     <path id="Path_425"
                           d="M0,11.787v-.219A3.6,3.6,0,0,1,.6,9.75,4.87,4.87,0,0,0,1.8,7.436c0-.666,0-1.342.058-2.009C2.155,2.218,5.327,0,8.461,0h.078c3.134,0,6.306,2.218,6.617,5.427.058.666,0,1.342.049,2.009A4.955,4.955,0,0,0,16.4,9.759a3.506,3.506,0,0,1,.6,1.809v.209a3.566,3.566,0,0,1-.844,2.39A4.505,4.505,0,0,1,13.3,15.538a45.078,45.078,0,0,1-9.615,0A4.554,4.554,0,0,1,.835,14.167,3.6,3.6,0,0,1,0,11.787Z"
                           transform="translate(0 0)" fill="none" stroke="#200e32" stroke-linecap="round"
-                          stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
+                          stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
                     <path id="Path_421"
                           d="M0,0A3.061,3.061,0,0,0,2.037,1.127,3.088,3.088,0,0,0,4.288.5,2.886,2.886,0,0,0,4.812,0"
                           transform="translate(6.055 18.852)" fill="none" stroke="#200e32"
                           stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                          stroke-width="1.5" opacity="0.4" />
+                          stroke-width="1.5" opacity="0.4"/>
                 </g>
             </svg>
-            <span class="flashCircle"></span>
+            <%--            <svg class="hover_ico color-primary" id="Iconly_Two-tone_Notification" data-name="Iconly/Two-tone/Notification"--%>
+            <%--                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">--%>
+            <%--                <g id="Notification" transform="translate(3.5 2)">--%>
+            <%--                    <path id="Path_425"--%>
+            <%--                          d="M0,11.787v-.219A3.6,3.6,0,0,1,.6,9.75,4.87,4.87,0,0,0,1.8,7.436c0-.666,0-1.342.058-2.009C2.155,2.218,5.327,0,8.461,0h.078c3.134,0,6.306,2.218,6.617,5.427.058.666,0,1.342.049,2.009A4.955,4.955,0,0,0,16.4,9.759a3.506,3.506,0,0,1,.6,1.809v.209a3.566,3.566,0,0,1-.844,2.39A4.505,4.505,0,0,1,13.3,15.538a45.078,45.078,0,0,1-9.615,0A4.554,4.554,0,0,1,.835,14.167,3.6,3.6,0,0,1,0,11.787Z"--%>
+            <%--                          transform="translate(0 0)" fill="none" stroke="#200e32" stroke-linecap="round"--%>
+            <%--                          stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />--%>
+            <%--                    <path id="Path_421"--%>
+            <%--                          d="M0,0A3.061,3.061,0,0,0,2.037,1.127,3.088,3.088,0,0,0,4.288.5,2.886,2.886,0,0,0,4.812,0"--%>
+            <%--                          transform="translate(6.055 18.852)" fill="none" stroke="#200e32"--%>
+            <%--                          stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"--%>
+            <%--                          stroke-width="1.5" opacity="0.4" />--%>
+            <%--                </g>--%>
+            <%--            </svg>--%>
+            <%--            <span class="flashCircle"></span>--%>
         </a>
     </div>
 </header>
@@ -218,7 +233,8 @@
                     <section class="row">
                         <div class="col-12 content_balance bg-white border border-snow padding-10 ">
                             <div class="emTitle_co padding-20">
-                                <h2 class="size-16 weight-500 color-secondary mb-1">${logincust.custName}님, 매일매일 오운완 도전!</h2>
+                                <h2 class="size-16 weight-500 color-secondary mb-1">${logincust.custName}님, 매일매일 오운완
+                                    도전!</h2>
                                 <p class="size-12 color-text m-0">날짜를 클릭하시면 예약 가능한 수업이 보여집니다.</p>
                             </div>
                             <!-- 달력 부분 -->
@@ -254,20 +270,20 @@
                     <div class="modal-body emPage__shippingAddress withBorder__sm bg-white">
                         <ul class="nav__listAddress itemSingle">
                             <li class="item">
-<%--                                <div class="personal__info">--%>
-<%--                                    <h1 class="size-15 color-secondary weight-400">수업명 : </h1>--%>
-<%--                                    <span class="size-13 color-text weight-400 d-inline-block" id="gymName">센터 : </span>--%>
-<%--                                    <span class="size-13 color-text weight-400 d-inline-block"--%>
-<%--                                          id="trainerName">강사 : </span>--%>
-<%--                                    <p class="size-13 color-text weight-400" id="classTime">수업시간 : </p>--%>
-<%--                                    <span class="size-13 color-text weight-400 d-inline-block"--%>
-<%--                                          id="sportsType">운동종목: </span>--%>
-<%--                                    <span class="size-13 color-text weight-400 d-inline-block"--%>
-<%--                                          id="sportsClasstype">수업형태: </span>--%>
-<%--                                </div>--%>
-<%--                                <div class="areaRight">--%>
-<%--                                    <span class="circle_check"></span>--%>
-<%--                                </div>--%>
+                                <%--                                <div class="personal__info">--%>
+                                <%--                                    <h1 class="size-15 color-secondary weight-400">수업명 : </h1>--%>
+                                <%--                                    <span class="size-13 color-text weight-400 d-inline-block" id="gymName">센터 : </span>--%>
+                                <%--                                    <span class="size-13 color-text weight-400 d-inline-block"--%>
+                                <%--                                          id="trainerName">강사 : </span>--%>
+                                <%--                                    <p class="size-13 color-text weight-400" id="classTime">수업시간 : </p>--%>
+                                <%--                                    <span class="size-13 color-text weight-400 d-inline-block"--%>
+                                <%--                                          id="sportsType">운동종목: </span>--%>
+                                <%--                                    <span class="size-13 color-text weight-400 d-inline-block"--%>
+                                <%--                                          id="sportsClasstype">수업형태: </span>--%>
+                                <%--                                </div>--%>
+                                <%--                                <div class="areaRight">--%>
+                                <%--                                    <span class="circle_check"></span>--%>
+                                <%--                                </div>--%>
                             </li>
                         </ul>
                     </div>
