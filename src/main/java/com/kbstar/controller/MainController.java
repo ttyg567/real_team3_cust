@@ -59,7 +59,7 @@ public class MainController {
         List<MyMachine> list3 = null;
         List<Groupboard> list4 = null;
         List<Purchase> my_ticket_list = null;
-//        List<Like1> list5 = new ArrayList<>();
+        List<Like1> list5 = new ArrayList<>();
 
         model.addAttribute("searchType", list); //jsp파일에서 뿌릴 이름 정하기
         try {
@@ -67,7 +67,7 @@ public class MainController {
             list = gymService.get();
             list2 = gymMachineService.get();
             list4 = groupboardService.get(); // 가져오기.
-//
+            list5 = likeService.getmylike(cust.getCustNo());
             // 성영 : pay를 건드리지 않기 위해
             // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
             for (Groupboard item : list4){
@@ -89,7 +89,7 @@ public class MainController {
         model.addAttribute("allGym",list);
         model.addAttribute("gymAllMachine",list2); //센터의 기계들 보여주기
         model.addAttribute("alljoin", list4);
-//        model.addAttribute("myLike", list5);  로그인회원이 찜한 거 넛지 모달예정
+        model.addAttribute("myLike", list5); // 로그인회원이 찜한 거 넛지 모달예정
         if (cust != null) {
             //list3 = myMachineService.getmymachine(cust.getCustNo()); // 즐겨찾기 보여주기.
             model.addAttribute("myMachine", list3); // 즐겨찾기된 기구들 보여주기
