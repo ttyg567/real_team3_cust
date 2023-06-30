@@ -170,7 +170,8 @@ public class CustController {
         }
 
         model.addAttribute("rcust", cust);
-        return "welcome";
+        model.addAttribute("center", dir + "welcomecust");
+        return "index";
     }
     @RequestMapping("/welcomecust")
     public String welcomecust(Model model) {
