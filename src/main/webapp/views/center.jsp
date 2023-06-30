@@ -611,7 +611,9 @@
                 </div>
                 <span>필라테스</span>
             </a>
-            <a href="/ticket/golf" class="btn" style="padding-right: 5px;">
+            <a href="/ticket/golf" class="btn" data-toggle="modal"
+               data-target="#mdllAdd_Like"
+               style="padding-right: 5px;">
                 <div  id="sportsicon"  class="icon bg-green bg-opacity-10">
                     <img src="/assets/img/cate6.png" alt="">
                     <%--                    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><path d="M22.942,6.837,20.76,4.654l.947-.947a1,1,0,1,0-1.414-1.414l-.947.947L17.163,1.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L14.24,8.346,8.346,14.24,6.163,12.058a3.7,3.7,0,0,0-5.105,0,3.609,3.609,0,0,0,0,5.106L3.24,19.346l-.947.947a1,1,0,1,0,1.414,1.414l.947-.947,2.183,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105L9.76,15.655l5.9-5.895,2.182,2.182a3.609,3.609,0,0,0,5.105,0h0a3.608,3.608,0,0,0,0-5.105ZM11,20.39a1.6,1.6,0,0,1-.472,1.138,1.647,1.647,0,0,1-2.277,0L2.472,15.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779A1.6,1.6,0,0,1,11,20.39Zm10.528-9.862a1.647,1.647,0,0,1-2.277,0L13.472,4.749a1.61,1.61,0,1,1,2.277-2.277l5.779,5.779a1.609,1.609,0,0,1,0,2.277Z"/></svg>--%>
@@ -626,10 +628,14 @@
                 <span>수영</span>
             </a>
         </div>
-        <%--</section>--%>
+
     </section>
                         <hr style="height: 20px; color: #f7edfa; border: none; border-top: 10px solid; margin-top: 0">
-
+    <%-- 넛지버튼 임시공간 --%>
+    <div class="itemPkg_cart" data-toggle="modal"
+         data-target="#mdllAdd_Like">
+        <!-- 클릭 시 : 찜한 이용권 구매유도하는 넛지 모달로 이동 -->
+    </div>
                         <!-- 카카오 지도 / 운동센터 혼잡도 안내 -->
                         <div class="title d-flex justify-content-between align-items-center padding-l-20 padding-r-20">
                             <c:choose>
@@ -1132,6 +1138,91 @@
 
 </div>
 
+
+<%-- 넛지 상세모달 내용 --%>
+    <c:forEach var="obj" items="${myLike}">
+    <div class="modal defaultModal modalCentered change__address fade" id="mdllAdd_Like" tabindex="-1"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 padding-l-20 padding-r-20 justify-content-center">
+                    <div class="itemProduct_sm">
+                        <h1 class="size-18 weight-500 color-secondary m-0"
+                        style="font-weight: bold">깜짝 할인 소식</h1>
+                    </div>
+
+                </div>
+                <div class="modal-body" style="height: 420px;">
+                    <ul class="nav__listAddress itemSingle"  style="height: 150px; display: flex; align-items: center; flex-direction: column;">
+                            <%-- 운동센터명  --%>
+                        <p style="font-size: 15px; font-weight: bold">오늘 찜한 그 이용권,<br> 함께 구매하면 <span style="font-size: 15px; font-weight: bold; color: blueviolet">15% 할인</span> 받아요!</p>
+                        <p style="font-size: 11px; font-weight: bold; color: blueviolet"></p>
+                        <div style="">
+                            <img class="img_news" style="width: 90%; height: 85%; margin-left: 10px "
+                                 src="/img/popup.jpg" alt="">
+                        </div>
+                    </ul>
+                            <%--                                <img src="/assets/img/gym/health1.jpg" alt="" style="width: 90%; height: 140px;">--%>
+                        <br><br><br><br>
+                    <ul class="itemList__news" style="padding-left: 0; padding-right: 0; padding-top: 5px; padding-bottom: 20px">
+                            <%--  li : 화면에 보여질 조인들   --%>
+                        <li class="items-nav">
+                            <a class="btn"  href="">
+                                <div class="media align-items-center">
+                                        <%--1.찜한 센터 이용권의 이미지--%><img class="img_news" src="/assets/img/gymImg/${obj.gymImgName}" alt="">
+                                    <div class="media-body">
+                                        <div class="txt">
+                                                <%--2 센터이용권 ㅇ내용--%>
+                                            <div class="info_bottom">
+                                                <div class="time">
+                                                    <div class="icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-ticket-perforated color-text" viewBox="0 0 16 16">
+                                                            <path d="M4 4.85v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Z"/>
+                                                            <path d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z"/>
+                                                        </svg>
+                                                    </div>
+                                                        <%-- 이용권명 --%>
+                                                    <span  style="color: black; font-size: 11px">${obj.gymName}<span style="color: gray"></span><br> ${obj.ticketName}</span>
+                                                </div>
+                                            </div>
+                                            <div class="info_bottom">
+                                                <div class="time">
+                                                    <div class="icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin color-primary" viewBox="0 0 16 16">
+                                                            <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
+                                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                            <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+                                                        </svg>
+                                                    </div>
+
+                                                    <span style="color: black; font-size: 11px">일반 회원가 <fmt:formatNumber value="${obj.ticketCost}" pattern="###,### 원" /></span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </a>
+                        </li>
+                                <p style=" text-align: center; font-size: 12px; font-weight: bold; color: black">다른회원과 ${obj.gymName} 이용권을 <br>
+                                    <span style="color: blueviolet; font-size: 15px; font-weight: bold"><fmt:formatNumber value="425000" pattern="###,### 원" />으로</span><br>
+                                    합리적인 가격에 이용할 수 있어요.</p>
+                    </ul>
+                </div>
+
+                <div class="modal-footer">
+                    <a  href="/groupboard/golf" class="btn btn_default_lg"
+                       style="text-align: center; display: flex; justify-content: center;
+                            background-color: blueviolet">
+                        이용권 조인 하러가기
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</c:forEach>
+
 <!-- 챗봇상담 안내 : 미로그인 고객은 클로바 / 로그인 고객은 지피티 -->
 <c:choose>
     <c:when test="${logincust == null}">
@@ -1158,6 +1249,10 @@
         </div>
     </c:otherwise>
 </c:choose>
+
+
+
+
 <script>
 
     // Update current time
