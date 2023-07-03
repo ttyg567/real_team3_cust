@@ -273,7 +273,12 @@ let center2 = {
 <script>
 
 </script>
-
+<script>
+    function showPrice() {
+        var previewText = "1,138,800원 (27% 할인)";
+        document.getElementById("priceText").value = previewText;
+    }
+</script>
 
 <!-- Start main_haeder -->
 <header class="main_haeder header-sticky multi_item">
@@ -361,31 +366,16 @@ let center2 = {
             </div><br>
             <div class="form-group with_icon">
                 <label>예상 할인금액</label>
-                <p style="font-size: 12px; color:#8890E8">모집인원이 모두 조인을 신청하면 결제할 때 할인이 자동 적용돼요</p>
+                <p style="font-size: 12px; color:#8890E8">모집인원만큼 조인신청이 완료되면 전원에게 할인쿠폰이 자동으로 발송돼요</p>
                 <div class="input_group">
-<%--                    <input type="text" class="form-control" style="margin-right: 10px"--%>
-<%--                           placeholder="할인 금액"--%>
-<%--                            required>--%>
-<%--                    <div class="icon">--%>
-<%--                        <svg id="Iconly_Two-tone_Message" data-name="Iconly/Two-tone/Call"--%>
-<%--                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">--%>
-<%--                            <g id="Message" transform="translate(2 3)">--%>
-<%--                                <path id="Path_445" d="M11.314,0,7.048,3.434a2.223,2.223,0,0,1-2.746,0L0,0"--%>
-<%--                                      transform="translate(3.954 5.561)" fill="none" stroke="#200e32"--%>
-<%--                                      stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"--%>
-<%--                                      stroke-width="1.5" opacity="0.4"/>--%>
-<%--                                <path id="Rectangle_511"--%>
-<%--                                      d="M4.888,0h9.428A4.957,4.957,0,0,1,17.9,1.59a5.017,5.017,0,0,1,1.326,3.7v6.528a5.017,5.017,0,0,1-1.326,3.7,4.957,4.957,0,0,1-3.58,1.59H4.888C1.968,17.116,0,14.741,0,11.822V5.294C0,2.375,1.968,0,4.888,0Z"--%>
-<%--                                      transform="translate(0 0)" fill="none" stroke="#200e32"--%>
-<%--                                      stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"--%>
-<%--                                      stroke-width="1.5"/>--%>
-<%--                            </g>--%>
-<%--                        </svg>--%>
-<%--                    </div>--%>
+                    <input id="priceText"
+                            type="text" class="form-control" style="margin-right: 10px; padding-left: 15px"
+                            required>
                     <button type="button" class="btn btn-outline-secondary" style="width: 35%; height: 100%;"
                             data-toggle="modal"
-                            id="btnECheck">  <!--data-target="#duplicateCheck" -->
-                        미리보기
+                            id="btnECheck"
+                            onclick="showPrice()">  <!--data-target="#duplicateCheck" -->
+                        조회
                     </button>
                 </div>
                 <br>
