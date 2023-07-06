@@ -67,7 +67,7 @@ public class MainController {
             list = gymService.get();
             list2 = gymMachineService.get();
             list4 = groupboardService.get(); // 가져오기.
-            list5 = likeService.getmylike(cust.getCustNo());
+//            list5 = likeService.getmylike(cust.getCustNo());
             // 성영 : pay를 건드리지 않기 위해
             // 화면에 뿌려주는 조인시 티켓 가격은 TICKETPRICE에서 10% 더 할인된 금액으로 보여준다.
             for (Groupboard item : list4){
