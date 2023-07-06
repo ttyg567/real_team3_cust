@@ -1,0 +1,528 @@
+-- DROP TABLES --------------------------------------------------
+DROP TABLE GymImg CASCADE CONSTRAINTS;
+DROP TABLE Class CASCADE CONSTRAINTS;
+DROP TABLE GroupBoard CASCADE CONSTRAINTS;
+DROP TABLE Purchase CASCADE CONSTRAINTS;
+DROP TABLE Coupon CASCADE CONSTRAINTS;
+DROP TABLE Like1 CASCADE CONSTRAINTS;
+DROP TABLE Myschedule CASCADE CONSTRAINTS;
+DROP TABLE PayRequest CASCADE CONSTRAINTS;
+DROP TABLE PayApproval CASCADE CONSTRAINTS;
+DROP TABLE admin CASCADE CONSTRAINTS;
+DROP TABLE Ticket CASCADE CONSTRAINTS;
+DROP TABLE GBMember CASCADE CONSTRAINTS;
+DROP TABLE Trainer CASCADE CONSTRAINTS;
+DROP TABLE Gym CASCADE CONSTRAINTS;
+DROP TABLE Cust CASCADE CONSTRAINTS;
+DROP TABLE Notification CASCADE CONSTRAINTS;
+DROP TABLE REVIEW CASCADE CONSTRAINTS;
+
+-- DROP SEQUENCES --------------------------------------------------
+DROP SEQUENCE Cust_seq;
+DROP SEQUENCE Gym_seq;
+DROP SEQUENCE Trainer_seq;
+DROP SEQUENCE Class_seq;
+DROP SEQUENCE Ticket_seq;
+DROP SEQUENCE Coupon_seq;
+DROP SEQUENCE Myschedule_seq;
+DROP SEQUENCE Purchase_seq;
+DROP SEQUENCE Groupboard_seq;
+DROP SEQUENCE Notification_seq;
+DROP SEQUENCE GymImg_seq;
+DROP SEQUENCE Like1_seq;
+DROP SEQUENCE Review_seq;
+
+-- CREATE SEQUENCES --------------------------------------------------
+CREATE SEQUENCE Cust_seq
+    INCREMENT BY 1
+    START WITH 1;
+CREATE SEQUENCE Gym_seq
+    INCREMENT BY 1
+    START WITH 1;
+CREATE SEQUENCE Trainer_seq
+    INCREMENT BY 1
+    START WITH 1;
+CREATE SEQUENCE Class_seq
+    INCREMENT BY 1
+    START WITH 1;
+CREATE SEQUENCE Ticket_seq
+    INCREMENT BY 1000
+    START WITH 1;
+CREATE SEQUENCE Coupon_seq
+    INCREMENT BY 1
+    START WITH 1;
+CREATE SEQUENCE Myschedule_seq
+    INCREMENT BY 1
+    START WITH 1;
+CREATE SEQUENCE Purchase_seq
+    INCREMENT BY 1
+    START WITH 1;
+CREATE SEQUENCE Groupboard_seq
+    INCREMENT BY 1000
+    START WITH 1;
+CREATE SEQUENCE Notification_seq
+    INCREMENT BY 1
+    START WITH 1;
+CREATE SEQUENCE GymImg_seq
+    INCREMENT BY 1
+    START WITH 1;
+CREATE SEQUENCE Like1_seq
+    INCREMENT BY 1
+    START WITH 1;
+CREATE SEQUENCE GYMMACHINE_seq
+    INCREMENT BY 1
+    START WITH 1;
+CREATE SEQUENCE Review_seq
+    INCREMENT BY 1
+    START WITH 1;
+
+- REVIEW TABLE -------------리뷰 테이블 생성 이성영 ----------------
+CREATE TABLE REVIEW (
+	reviewNo NUMBER(10)	NOT NULL,
+	reviewRate NUMBER(2)	NULL, -- 1, 2, 3, 4, 5
+	custNo	NUMBER(10)	NULL,
+	reviewDate DATE		NULL,
+	reviewContents	VARCHAR(200)	NULL,
+	purchaseNo NUMBER(10)		NOT NULL
+);
+
+ALTER TABLE REVIEW ADD CONSTRAINT PK_REVIEW PRIMARY KEY (
+	reviewNo
+);
+
+INSERT INTO REVIEW (reviewNo, reviewRate, custNo, reviewDate, reviewContents, purchaseNo)
+VALUES (Review_seq.NEXTVAL, 4, 22, sysdate, '깨끗한 시설, 운동하기 좋아요!', 3);
+
+INSERT INTO REVIEW (reviewNo, reviewRate, custNo, reviewDate, reviewContents, purchaseNo)
+VALUES (Review_seq.NEXTVAL, 5, 41, sysdate, '트레이너 분들 완전 친절하세요', 21);
+
+INSERT INTO REVIEW (reviewNo, reviewRate, custNo, reviewDate, reviewContents, purchaseNo)
+VALUES (Review_seq.NEXTVAL, 3, 22, sysdate, '조인 멤버랑 같이 오운완 하는 중', 3);
+
+INSERT INTO REVIEW (reviewNo, reviewRate, custNo, reviewDate, reviewContents, purchaseNo)
+VALUES (Review_seq.NEXTVAL, 4, 41, sysdate, '굳이에요~ 아주 굳굳굳', 21);
+
+INSERT INTO REVIEW (reviewNo, reviewRate, custNo, reviewDate, reviewContents, purchaseNo)
+VALUES (Review_seq.NEXTVAL, 3, 22, sysdate, '보통이에용!! 운동하기 괜찮아요!', 3);
+
+INSERT INTO REVIEW (reviewNo, reviewRate, custNo, reviewDate, reviewContents, purchaseNo)
+VALUES (Review_seq.NEXTVAL, 2, 41, sysdate, '가격 대비 시설이 별로인듯...', 21);
+
+INSERT INTO REVIEW (reviewNo, reviewRate, custNo, reviewDate, reviewContents, purchaseNo)
+VALUES (Review_seq.NEXTVAL, 3, 22, sysdate, '회사랑 가까워서 괜챃습니다.', 3);
+
+-- purchase에 컬럼 추가 이성영 --
+ALTER TABLE purchase ADD (reviewIs CHAR(1)); -- 리뷰 없음 : 0, 리뷰 있음 : 1
+
+-- GYMMACHINE TABLE --------운동기구 테이블 생성 정인보-----------
+CREATE TABLE GYMMACHINE (
+	machineNo NUMBER(10)		NOT NULL,
+        machineName VARCHAR2(60)	NULL,
+        holdingQuantity  NUMBER(10)	NULL, -- 기계 수량    
+        usingQuantity  NUMBER(10)	NULL, -- 기계를 사용 중인 수량
+        machineImgname	VARCHAR2(100)	NULL,
+        gymNo	NUMBER(10)		NULL,
+	gymName	VARCHAR2(60)		NULL,
+	exerciseType    CHAR(1)		NULL, 
+        -- 운동부위1 또는 2(1 : 상체.등-팔1-팔2-어깨-가슴 / 2. 하체.복부-허벅지-종아리-엉덩이)
+        machineStatus   CHAR(1)		NULL, -- 기계상태 : 1여유.2보통.3혼잡
+            usingTime       VARCHAR2(10)	NULL -- 1인당 기계 사용 시간
+      
+);
+
+ALTER TABLE GYMMACHINE ADD CONSTRAINT PK_GYMMACHINE PRIMARY KEY (
+	machineNo
+);
+
+INSERT INTO GYMMACHINE (machineNo, machineName, holdingQuantity, usingQuantity, machineImgname, gymNo, gymName, exerciseType, machineStatus, usingTime)
+VALUES (1, '런닝머신', 8, 5, '런닝머신.png', 1, '마이 짐', '2', '3', '33분');
+
+INSERT INTO GYMMACHINE (machineNo, machineName, holdingQuantity, usingQuantity, machineImgname, gymNo, gymName, exerciseType, machineStatus, usingTime)
+VALUES (2, '스미스 머신', 3, 1, '스미스 머신.png', 1, '마이 짐', '1', '1', '18분');
+
+INSERT INTO GYMMACHINE (machineNo, machineName, holdingQuantity, usingQuantity, machineImgname, gymNo, gymName, exerciseType, machineStatus, usingTime)
+VALUES (3, '와이드 풀다운', 2, 1, '와이드 풀다운.png', 1, '마이 짐', '1', '2', '11분');
+
+INSERT INTO GYMMACHINE (machineNo, machineName, holdingQuantity, usingQuantity, machineImgname, gymNo, gymName, exerciseType, machineStatus, usingTime)
+VALUES (4, '다리 프레스 머신', 1, 1, '다리 프레스 머신.png', 1, '마이 짐', '2', '1', '15분');
+
+INSERT INTO GYMMACHINE (machineNo, machineName, holdingQuantity, usingQuantity, machineImgname, gymNo, gymName, exerciseType, machineStatus, usingTime)
+VALUES (5, '핵스쿼트 머신', 2, 1, '핵스쿼트 머신.png', 1, '마이 짐', '2', '1', '21분');
+
+INSERT INTO GYMMACHINE (machineNo, machineName, holdingQuantity, usingQuantity, machineImgname, gymNo, gymName, exerciseType, machineStatus, usingTime)
+VALUES (6, '하이풀 머신', 2, 2, '하이풀 머신.png', 1, '마이 짐', '1', '3', '28분');
+
+INSERT INTO GYMMACHINE (machineNo, machineName, holdingQuantity, usingQuantity, machineImgname, gymNo, gymName, exerciseType, machineStatus, usingTime)
+VALUES (7, '로우풀 머신', 2, 1, '로우풀 머신.png', 1, '마이 짐', '1', '2', '15분');
+
+
+-- MYMACHINE TABLE --------나의 운동기구 즐겨찾기 테이블 생성 정인보-----------
+CREATE TABLE MYMACHINE (
+        custNo NUMBER(10)		NOT NULL,
+        gymNo NUMBER(10)		NULL,
+        machineNo NUMBER(10)		NOT NULL,
+        myMachineStatus CHAR(1)         NULL -- 즐겨찾기 상태
+      
+);
+
+
+INSERT INTO MYMACHINE (myMachineNo, custNo, gymNo, machineNo, myMachineStatus)
+VALUES (1, 2, 1, 5, '1');
+
+-- GYM TABLE --------------------------------------------------
+CREATE TABLE Gym (
+	gymNo	NUMBER(10)		NOT NULL,
+	gymMasterCk	CHAR(1)		NOT NULL,
+	gymEmail	VARCHAR2(50)		NULL,
+	gymPwd	VARCHAR2(60)		NULL,
+	gymName	VARCHAR2(60)		NULL,
+	gymPhone	VARCHAR2(20)		NULL,
+	gymZipcode	VARCHAR2(6)		NULL,
+	gymAddress1	VARCHAR2(100)		NULL,
+	gymAddress2	VARCHAR2(100)		NULL,
+	gymAddress3	VARCHAR2(100)		NULL,
+	gymRegiimgname	VARCHAR2(100)		NULL,
+	gymReginumber	VARCHAR2(15)		NULL,
+	gymTitle	VARCHAR(50)		NULL,
+	gymContents	VARCHAR(1000)		NULL,
+	gymMarketing	CHAR(1)		NULL,
+	Status	CHAR(1)		NULL,
+	approvedAdmID	VARCHAR2(20)		NULL,
+	typeNo		CHAR(2)		NULL
+);
+
+ALTER TABLE Gym ADD CONSTRAINT PK_GYM PRIMARY KEY (
+	gymNo,
+	gymMasterCk
+);
+
+
+-- GYM IMG TABLE --------------------------------------------------
+
+CREATE TABLE GymImg (
+	gymImgNo	NUMBER(10)		NOT NULL,
+	gymNo	NUMBER(10)		NOT NULL,
+	gymMasterCk	CHAR(1)		NOT NULL,
+	gymImgname	VARCHAR2(100)		NULL,
+	gymImgdetailCk	CHAR(1)		NULL
+);
+
+ALTER TABLE GymImg ADD CONSTRAINT PK_GYMIMG PRIMARY KEY (
+	gymImgNo
+);
+
+-- TRAINER TABLE --------------------------------------------------
+CREATE TABLE Trainer (
+	trainerNo	NUMBER(10)		NOT NULL,
+	gymNo	NUMBER(10)		NOT NULL,
+	gymMasterCk	CHAR(1)		NOT NULL,
+	trainerName	VARCHAR2(20)		NULL,
+	trainerGender	CHAR(1)		NULL,
+	trainerCareer	VARCHAR2(100)		NULL,
+	trainerIntro	VARCHAR2(300)		NULL,
+	trainerImgname  VARCHAR2(100)		NULL
+);
+
+ALTER TABLE Trainer ADD CONSTRAINT PK_TRAINER PRIMARY KEY (
+	trainerNo
+);
+
+
+-- CLASS TABLE --------------------------------------------------
+CREATE TABLE Class (
+	classNo	NUMBER(10)		NOT NULL,
+	gymNo	NUMBER(10)		NOT NULL,
+	gymMasterCk	CHAR(1)		NOT NULL,
+	className	VARCHAR2(30)		NULL,
+	classDate	DATE		NULL,
+	classStarttime	VARCHAR2(10)		NULL,
+	classEndtime	VARCHAR2(10)		NULL,
+	classMaximum	NUMBER(2)		NULL,
+	classJoin	NUMBER(2)		NULL,
+	classFullbooked	CHAR(1)		NULL,
+	sportsType	CHAR(2)		NULL,
+	sportsClasstype	CHAR(2)		NULL,
+	trainerNo	NUMBER(10)		NOT NULL
+);
+
+ALTER TABLE Class ADD CONSTRAINT PK_CLASS PRIMARY KEY (
+	classNo
+);
+
+
+-- TICKET TABLE --------------------------------------------------
+CREATE TABLE Ticket (
+	ticketNo	NUMBER(10)		NOT NULL,
+	gymNo	NUMBER(10)		NOT NULL,
+	gymMasterCk	CHAR(1)		NOT NULL,
+        ticketName      VARCHAR2(50)    NULL,
+	ticketType	CHAR(1)		NULL,
+	ticketMonth	NUMBER(2)		NULL,
+	ticketNumber	NUMBER(2)		NULL,
+	ticketJoin	CHAR(1)		NULL,
+	ticketTotal	NUMBER(6)		NULL,
+	ticketSales	NUMBER(6)		NULL,
+	ticketCost	NUMBER(7)		NULL,
+	ticketDiscount	NUMBER(5,2)		NULL,
+	ticketPrice	NUMBER(7)		NULL,
+	ticketImgname	VARCHAR2(50)		NULL,
+	sportsType	CHAR(2)		NULL,
+	sportsClasstype	CHAR(2)		NULL
+);
+
+ALTER TABLE Ticket ADD CONSTRAINT PK_TICKET PRIMARY KEY (
+	ticketNo
+);
+
+
+-- CUST TABLE --------------------------------------------------
+CREATE TABLE Cust (
+	custNo	NUMBER(10)		NOT NULL,
+	custEmail	VARCHAR2(50)		NULL,
+	custPwd	VARCHAR2(60)		NULL,
+	custName	VARCHAR2(20)		NULL,
+	custPhone	VARCHAR2(20)		NULL,
+	custBirth	NUMBER(4)		NULL,
+	custGender	CHAR(1)		NULL,
+	custSido	VARCHAR2(40)		NULL,
+	custSigungu	VARCHAR2(40)		NULL,
+	sportsType	CHAR(2)		NULL,
+	sportsClasstype	CHAR(2)		NULL,
+	custStatus	CHAR(1)		NULL,
+	custSocialmedia	CHAR(1)		NULL,
+	custSnstype	VARCHAR2(20)		NULL,
+	custJoindate	DATE	DEFAULT SYSDATE	NULL,
+	custImgName	VARCHAR2(100)	NULL,
+	marketingStatus CHAR(1)		NULL,
+	custToken	VARCHAR2(500)	NULL
+);
+
+ALTER TABLE Cust
+ADD (custToken VARCHAR2(500) NULL)
+
+
+ALTER TABLE Cust ADD CONSTRAINT PK_CUST PRIMARY KEY (
+	custNo
+);
+
+-- PURCHASE TABLE--------------------------------------------------
+CREATE TABLE Purchase (
+	purchaseNo	NUMBER(10)		NOT NULL,
+	custNo	NUMBER(10)		NOT NULL,
+	ticketNo	NUMBER(10)		NULL,
+	gymNo	NUMBER(10)		NULL,
+	sportsType	CHAR(2)		NULL,
+	sportsClasstype	CHAR(2)		NULL,
+	ticketType	CHAR(1)		NULL,
+	ticketMonth	NUMBER(2)		NULL,
+	ticketNumber	NUMBER(2)		NULL,
+	ticketJoin	CHAR(1)		NULL,
+	ticketImgname	VARCHAR2(50)		NULL,
+	purchaseDate	DATE		NULL,
+	purchasePrice	NUMBER(7)		NULL,
+	usedCnt	NUMBER(3)		NULL,
+	ticketEx	CHAR(1)		NULL,
+	exDate	DATE		NULL
+);
+
+ALTER TABLE Purchase ADD CONSTRAINT PK_PURCHASE PRIMARY KEY (
+	purchaseNo
+);
+
+
+-- MY SCHEDULE TABLE --------------------------------------------------
+CREATE TABLE Myschedule (
+	myscheduleNo	NUMBER(20)		NOT NULL,
+	classNo	NUMBER(10)		NOT NULL,
+	purchaseNo	NUMBER(10)		NOT NULL,
+	scheduleCompleted	CHAR(1)		NULL,
+	sheduleCanceled	CHAR(1)		NULL,
+	custNo	NUMBER(10)		NOT NULL
+);
+
+ALTER TABLE Myschedule ADD CONSTRAINT PK_MYSCHEDULE PRIMARY KEY (
+	myscheduleNo
+);
+
+
+-- GROUP BOARD MEMBER TABLE --------------------------------------------------
+CREATE TABLE GBMember (
+	groupboardNo	NUMBER(10)		NOT NULL,
+	custNo	NUMBER(10)		NOT NULL,
+	memberStatus	CHAR(1)		NOT NULL
+);
+
+ALTER TABLE GBMember ADD CONSTRAINT PK_GBMEMBER PRIMARY KEY (
+	groupboardNo,
+	custNo
+);
+
+-- Like1 TABLE --------------------------------------------------
+
+CREATE TABLE Like1 (
+	likeNo	NUMBER(10)		NOT NULL,
+	ticketNo	NUMBER(10)		NOT NULL,
+	custNo	NUMBER(10)		NOT NULL,
+	likeStatus	CHAR(1)		NULL
+);
+ALTER TABLE Like1 ADD CONSTRAINT PK_Like1 PRIMARY KEY (
+	likeNo
+);
+
+
+
+-- GROUP BOARD  TABLE --------------------------------------------------
+CREATE TABLE GroupBoard (
+	groupboardNo	NUMBER(10)		NOT NULL,
+	custNo	NUMBER(10)		NOT NULL,
+	ticketNo	NUMBER(10)		NOT NULL,
+	groupboardTitle	VARCHAR2(100)		NOT NULL,
+	groupboardContents	VARCHAR2(150)		NULL,
+	groupboardImgname	VARCHAR2(200)		NULL,
+	groupboardImgpath	VARCHAR2(200)		NULL,
+	categoryNo	CHAR(1)		NOT NULL,
+	expectMember	NUMBER(10)		NOT NULL,
+	applicationMember	NUMBER(10)		NULL,
+	confirmMember	NUMBER(10)		NULL,
+	groupboardStatus	CHAR(1)		NOT NULL,
+	boardViews	NUMBER(10)		NULL,
+	writeDate	DATE		NULL
+);
+
+ALTER TABLE GroupBoard ADD CONSTRAINT PK_GROUPBOARD PRIMARY KEY (
+	groupboardNo
+);
+
+
+
+-- NOTIFICATION TABLE --------------------------------------------------
+CREATE TABLE Notification (
+	notiNo	NUMBER(10)		NOT NULL,
+	custNo	NUMBER(10)		NOT NULL,
+	gymNo	NUMBER(10)		NULL,
+	ticketNo	NUMBER(10)		NULL,
+	classNo		NUMBER(10)	NULL,
+	notiTitle	VARCHAR2(20)		NULL, -- 제목
+	notiMessage	VARCHAR2(100)		NULL, -- 내용
+	notiDate	DATE		NULL,
+	notiType	CHAR(1)		NULL, -- ex) 1:예약완료, 2:수업 전 예정알림, 3:운동완료, 4:조인완료, 5.수업변경
+	notiCheck	CHAR(1)		NULL
+);
+
+
+ALTER TABLE Notification ADD CONSTRAINT PK_NOTIFICATION PRIMARY KEY (
+	notiNo
+);
+
+
+INSERT INTO Notification (notiNo, custNo, gymNo, ticketNo, notiTitle, notiMessage, notiDate, notiType, notiCheck)
+VALUES (1, 2, 1, 14001, '수업안내', '수업 예약이 완료되었습니다.', SYSDATE, '1', '0');
+
+
+-- PAY REQUEST TABLE --------------------------------------------------
+CREATE TABLE PayRequest (
+	requestId	NUMBER(10)		NOT NULL,
+	custNo	NUMBER(10)		NOT NULL,
+	createdAt	DATE		NULL,
+	updatedAt	DATE		NULL,
+	totalAmount	NUMBER(7)		NULL,
+	taxfreeAmount	NUMBER(7)		NULL,
+	vatAmount	NUMBER(20)		NULL,
+	tid	VARCHAR2(50)		NULL,
+	payStatus	NUMBER(20)		NULL
+);
+
+ALTER TABLE PayRequest ADD CONSTRAINT PK_PAYREQUEST PRIMARY KEY (
+	requestId
+);
+
+
+-- PAY APPROVAL TABLE --------------------------------------------------
+CREATE TABLE PayApproval (
+	approvalId	NUMBER(10)		NOT NULL,
+	requestId	NUMBER(10)		NOT NULL,
+	createdAt	DATE		NULL,
+	updatedAt	DATE		NULL,
+	aid	VARCHAR2(50)		NULL,
+	paymentType	NUMBER(10)		NULL,
+	totalAmount	NUMBER(7)		NULL,
+	taxfreeAmount	NUMBER(7)		NULL,
+	vatAmount	NUMBER(7)		NULL,
+	cardInfo	VARCHAR2(50)		NULL,
+	approvedAt	DATE		NULL
+);
+
+ALTER TABLE PayApproval ADD CONSTRAINT PK_PAYAPPROVAL PRIMARY KEY (
+	approvalId
+);
+
+
+-- ADMIN TABLE --------------------------------------------------
+CREATE TABLE admin (
+	adminId	VARCHAR2(20)		NOT NULL,
+	adminPwd	VARCHAR2(60)		NOT NULL
+);
+
+ALTER TABLE admin ADD CONSTRAINT PK_ADMIN PRIMARY KEY (
+	adminId
+);
+
+-- COUPON TABLE -------------------------------
+-- couponCode : 1: 운동완료(스타벅스), 2:이벤트(신세계), 3: 조인(할인권)
+-- groupBoardno : 2번 조인으로 간 경우 그룹보드 넘버
+CREATE TABLE Coupon (
+	couponNo	NUMBER(10)		NOT NULL,
+	adminId	VARCHAR(255)		NOT NULL,
+	couponRate	NUMBER(5,2)		NOT NULL,
+	couponIsdate	DATE		NULL,
+	couponExdate	DATE		NULL,
+	couponUsed	CHAR(1)		NULL,
+	custNo 		NUMBER(10)	NULL,
+	couponName	VARCHAR2(20)	NULL,
+	sendDate 	DATE		NULL,
+	couponCode	CHAR(1)		NULL,
+	groupBoardno	NUMBER(10)	NULL	
+); 
+
+ALTER TABLE Coupon
+ADD (couponCode CHAR(1) NULL,
+     groupBoardno NUMBER(10) NULL);
+
+update coupon set
+couponcode = '1'
+where couponno = 1
+
+
+
+ALTER TABLE Coupon ADD CONSTRAINT PK_COUPON PRIMARY KEY (
+	couponNo
+);
+
+
+INSERT INTO Gym (gymNo, gymMasterCk, gymEmail, gymPwd, gymName, gymPhone, gymZipcode, gymAddress1, gymAddress2, gymAddress3, gymRegiimgname, gymReginumber, gymTitle, gymContents, gymMarketing, Status, approvedAdmID, typeNo)
+VALUES (1, '1', 'gym1@example.com', 'gym123', '패스트헬스 성수', '1234567890', '12345', '123 Street', 'Building A', 'Floor 2', 'workout_main_1.jpg', '12345678', 'Fitness Center', 'We offer a wide range of fitness programs.', '1', '2', 'admin1', '1');
+
+INSERT INTO Gym (gymNo, gymMasterCk, gymEmail, gymPwd, gymName, gymPhone, gymZipcode, gymAddress1, gymAddress2, gymAddress3, gymRegiimgname, gymReginumber, gymTitle, gymContents, gymMarketing, Status, approvedAdmID, typeNo)
+VALUES (2, '1', 'gym2@example.com', 'pass123', '성수 요가 애니 밥플', '9876543210', '54321', '456 Avenue', 'Suite 10', 'Floor 1', 'yoga_main_7.jpg', '87654321', 'Strength Training', 'Build your strength with our state-of-the-art equipment.', '1', '2', 'admin2', '4');
+
+INSERT INTO GymImg (gymImgNo, gymNo, gymMasterCk, gymImgname, gymImgdetailCk)
+VALUES (1, 1, '1','workout_1.jpg', '1');
+
+INSERT INTO GymImg (gymImgNo, gymNo, gymMasterCk, gymImgname, gymImgdetailCk)
+VALUES (2, 2, '1','yoga_7.jpg', '1');
+
+
+INSERT INTO Ticket (ticketNo, gymNo, gymMasterCk,  ticketName, ticketType, ticketMonth, ticketNumber, ticketJoin, ticketTotal, ticketSales, ticketCost, ticketDiscount, ticketPrice, ticketImgname, sportsType, sportsClasstype)
+VALUES (1000, 1, 'Y', '헬스 3개월 이용권', '1', 6, 10, 'Y', 450000, 67500, 50000, 15, 382500, 'ticket1.jpg', 'FT', 'BS');
+
+INSERT INTO Ticket (ticketNo, gymNo, gymMasterCk, ticketName, ticketType, ticketMonth, ticketNumber, ticketJoin, ticketTotal, ticketSales, ticketCost, ticketDiscount, ticketPrice, ticketImgname, sportsType, sportsClasstype)
+VALUES (1001, 2, 'Y','요가 36회 이용권', '2', NULL, NULL, 'N', 690000, 138000, 5000, 20, 552000, 'ticket2.jpg', 'FT', 'VL');
+
+
+
+INSERT INTO GroupBoard (groupboardNo, custNo, ticketNo, groupboardTitle, groupboardContents, groupboardImgname, groupboardImgpath, categoryNo, expectMember, applicationMember, confirmMember, groupboardStatus, boardViews, WriteDate)
+VALUES (1, 1, 1000, '같이 댕댕헬쓰 해욥🐶', '늦기전에 오운완 서로 인증해요~~ 여름 준비 시작!', 'join1.jpg', NULL, '1', 5, NULL, NULL, '1', 50, SYSDATE);
+
+
+INSERT INTO GroupBoard (groupboardNo, custNo, ticketNo, groupboardTitle, groupboardContents, groupboardImgname, groupboardImgpath, categoryNo, expectMember, applicationMember, confirmMember, groupboardStatus, boardViews, WriteDate)
+VALUES (2, 2, 1001, '요가로 라인 만들구 여름준비해요😥', '늦기전에 오운완 서로 인증해요~~ 여름 준비 시작!', 'join3.jpg', NULL, '5', 2, NULL, NULL, '1', 167, SYSDATE);
